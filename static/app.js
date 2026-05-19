@@ -107,8 +107,23 @@ function setupQuizzes() {
   });
 }
 
+function setupDashboard() {
+  document.querySelectorAll(".dash-week-cell").forEach((cell) => {
+    const header = cell.querySelector(".dash-week-header");
+    const detail = cell.querySelector(".dash-week-detail");
+    if (!header || !detail) return;
+    header.addEventListener("click", () => {
+      const isOpen = !detail.hidden;
+      detail.hidden = isOpen;
+      header.setAttribute("aria-expanded", String(!isOpen));
+      cell.classList.toggle("is-active", !isOpen);
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   setupQuizzes();
   renderModuleSummaries();
   renderResultsPage();
+  setupDashboard();
 });
