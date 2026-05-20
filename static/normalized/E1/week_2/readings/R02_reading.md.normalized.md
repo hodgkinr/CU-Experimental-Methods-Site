@@ -23,6 +23,25 @@ A second audience worth naming explicitly: the non-engineer. Several assignments
 
 <image description: A two-panel illustration. Left panel, labeled "The Sympathetic Friend," shows a reader leaning forward, nodding, filling in a thought bubble with a complete version of an incomplete sentence: the written text trails off mid-sentence but the reader's thought bubble finishes it generously. Right panel, labeled "The Skeptical Expert," shows a reader with a red pen, question marks in their thought bubble, circling the same incomplete sentence and writing "Insufficient detail — how was this measured?" Clean editorial illustration style, black and white with one accent color.>
 
+### Worked Example: From Engineering Form to Plain Language
+
+Here is the same result written two ways.
+
+**Engineering form (for the skeptical expert):**
+> "The measured electrical power dissipated in a 5 Ω resistor with a 12 V input is 25.7 ± 1.3 W at 95% confidence, derived using partial derivative uncertainty propagation from voltage and current measurements with a ±0.2 V voltmeter and ±0.05 A ammeter."
+
+This version is correct and complete. Every number is supported. Every bound is traceable to a method. A colleague can reproduce the result.
+
+**Plain-language version (for the non-engineer):**
+> "We measured how much electrical power a small resistor was consuming when connected to a 12-volt source — similar to a standard lantern battery. The result was about 26 watts, roughly the energy a dim incandescent bulb uses. Our measurement has an uncertainty of about 5%, which means the true value is almost certainly somewhere between 24 and 27 watts."
+
+**What changed and why:**
+- *Uncertainty expressed as consequence, not as a statistical bound.* "±1.3 W at 95% confidence" is meaningless to a non-engineer; "about 5%" gives a sense of scale, and "almost certainly between 24 and 27 watts" states the consequence in plain language.
+- *Physical result grounded in an everyday reference.* "25.7 W" is a number; "roughly the energy a dim incandescent bulb uses" is a physical anchor that makes the magnitude interpretable.
+- *Technical method removed.* The non-engineer reader does not need to know about partial derivative propagation — they need to trust that the measurement was done carefully. That trust is built through the framing ("our measurement has an uncertainty of about 5%"), not through the method details.
+
+The skeptical expert version and the plain-language version contain the same core result. Writing both is not redundant — it is evidence that you understand the result well enough to translate it. Several deliverables in this course require both: the Lab 1 brief report, the Phase 1 report (Section 9), and the Phase 3 presentation.
+
 ---
 
 ## The Architecture of a Technical Document

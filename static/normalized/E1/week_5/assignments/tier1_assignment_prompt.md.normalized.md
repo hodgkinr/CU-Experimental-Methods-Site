@@ -175,6 +175,16 @@ graph presentation framework from E1 W2.
 A 3–5 sentence summary of what you did and what your result means, written for a non-engineer.
 This section belongs in your introduction or conclusion, not as an appendix.
 
+**10. Predict-from-specs (alternative sensor)**
+Using only the spec sheet for an alternative sensor configuration — provided by the instructor
+in the Week 4 lab session — estimate what the uncertainty in your primary derived quantity
+would have been if that alternative sensor had been used instead. Propagate the uncertainty
+from the spec sheet parameters, sketch the expected output range with labeled axes and
+approximate uncertainty bounds, and compare qualitatively to the uncertainty you achieved
+with your actual sensor suite. This workflow is the conceptual foundation for Phase 2, where
+you will apply the same predict-from-specs procedure to a complete experiment you have never
+run.
+
 ### Phase 1 report — format and submission
 
 - Length: No page limit. There is no credit for length. The value is in the quality of

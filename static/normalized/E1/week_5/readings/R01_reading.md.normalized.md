@@ -25,4 +25,6 @@ This taxonomy carries directly into E2, where residual plots are formalized as a
 
 ---
 
+The verbal decision rule is simple to apply in practice: residuals within the uncertainty band → Case 1, no model revision required; mean outside the band but no trend in the residuals → Case 2, find the missing uncertainty source; consistent trend in the residuals → Case 3, find the missing physics. Apply this rule before reaching for a statistical test or a more complex analysis — the qualitative pattern is usually diagnostic enough to identify the category and point toward the appropriate response.
+
 **The Takeaway:** Discrepancy between prediction and measurement is not a grade penalty — it is an opportunity to identify which part of your model or measurement chain failed. The answer depends entirely on whether the gap is within your uncertainty bounds (Case 1), uniformly displaced beyond them (Case 2), or systematically structured (Case 3), and each category points to a different corrective action.
