@@ -1,6 +1,6 @@
 {
   "course_id": "asen3501-fall2026",
-  "generated_at": "2026-05-21T21:06:39.252231+00:00",
+  "generated_at": "2026-05-22T16:53:48.081842+00:00",
   "pages": [
     {
       "page_id": "home",
@@ -863,15 +863,15 @@
       ]
     },
     {
-      "page_id": "labs-tier1-aeroelasticity",
+      "page_id": "labs-tier2-aeroelasticity",
       "title": "Aeroelasticity",
       "module_id": null,
-      "url": "labs/tier1/aeroelasticity/index.html",
+      "url": "labs/tier2/aeroelasticity/index.html",
       "source_type": "overview",
       "text": "Aeroelasticity Measure structural response of a flexible structure under aerodynamic loading.",
       "chunks": [
         {
-          "chunk_id": "labs-tier1-aeroelasticity-chunk-001",
+          "chunk_id": "labs-tier2-aeroelasticity-chunk-001",
           "text": "Aeroelasticity Measure structural response of a flexible structure under aerodynamic loading.",
           "anchor": ""
         }
@@ -883,11 +883,11 @@
       "module_id": null,
       "url": "labs/tier1_candidates.html",
       "source_type": "overview",
-      "text": "Tier 1 Lab Candidates Student-selectable experiments for the Phase I (E1) lab. Each experiment is a self-contained measurement challenge at the middle/high school difficulty level. Bouncing Ball \u2014 Coefficient of Restitution Buoyancy Balloon Spin Modules Unbalanced Wheel Aeroelasticity",
+      "text": "Tier 1 Lab Candidates Student-selectable experiments for the Phase I (E1) lab. Each experiment is a self-contained measurement challenge at the middle/high school difficulty level. Bouncing Ball \u2014 Coefficient of Restitution Buoyancy Balloon Spin Modules Unbalanced Wheel",
       "chunks": [
         {
           "chunk_id": "labs-tier1-candidates-chunk-001",
-          "text": "Tier 1 Lab Candidates Student-selectable experiments for the Phase I (E1) lab. Each experiment is a self-contained measurement challenge at the middle/high school difficulty level. Bouncing Ball \u2014 Coefficient of Restitution Buoyancy Balloon Spin Modules Unbalanced Wheel Aeroelasticity",
+          "text": "Tier 1 Lab Candidates Student-selectable experiments for the Phase I (E1) lab. Each experiment is a self-contained measurement challenge at the middle/high school difficulty level. Bouncing Ball \u2014 Coefficient of Restitution Buoyancy Balloon Spin Modules Unbalanced Wheel",
           "anchor": ""
         }
       ]
@@ -898,11 +898,11 @@
       "module_id": null,
       "url": "labs/tier2_candidates.html",
       "source_type": "overview",
-      "text": "Tier 2 Lab Candidates Canned aerospace department experiments for the Phase II (E2) lab. Specifics TBD \u2014 placeholders in use.",
+      "text": "Tier 2 Lab Candidates Canned aerospace department experiments for the Phase II (E2) lab. Specifics TBD \u2014 placeholders in use. Aeroelasticity",
       "chunks": [
         {
           "chunk_id": "labs-tier2-candidates-chunk-001",
-          "text": "Tier 2 Lab Candidates Canned aerospace department experiments for the Phase II (E2) lab. Specifics TBD \u2014 placeholders in use.",
+          "text": "Tier 2 Lab Candidates Canned aerospace department experiments for the Phase II (E2) lab. Specifics TBD \u2014 placeholders in use. Aeroelasticity",
           "anchor": ""
         }
       ]

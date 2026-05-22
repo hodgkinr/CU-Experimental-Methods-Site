@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aeroelasticity</title>
+  <link rel="stylesheet" href="../../style.css">
+  <script defer src="../../app.js"></script>
+</head>
+<body>
+  
+    
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../../index.html">Aerospace Experimental Methods</a>
+        <nav class="top-nav">
+          <a href="../../index.html">Home</a>
+          <a href="../../syllabus.html">Syllabus</a>
+          <a href="../../schedule.html">Schedule</a>
+          <a class="is-current" href="../../labs.html">Labs</a>
+          <a href="../../results.html">Results</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main class="page-shell">
+      <nav class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../labs/tier2_candidates.html">Tier 2 Candidates</a>
+        <span>Aeroelasticity</span>
+      </nav>
+      <section class="hero compact">
+        <p class="eyebrow">Tier 2 Candidate</p>
+        <h1>Aeroelasticity</h1>
+        <p class="lead">Measure structural response of a flexible structure under aerodynamic loading.</p>
+      </section>
+      <section class="experiment-scaffold">
+        <h2>Lab Content</h2>
+        <p class="muted" style="margin-bottom:1rem">Lab content compiled from source materials. Sections marked as incomplete will be updated as additional source files become available.</p>
+        <div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure — Aeroelasticity Lab (Compiled First Pass)</h1>
+<p>This document consolidates the experimental procedures for all three phases of the aeroelasticity lab sequence. A student or lab assistant who has never seen the source documents should be able to run these experiments using only this file, together with the sensor and DAQ details in <code>instrumentation/sensor_specs_summary_agent.md</code>.</p>
+<p>The lab has two parallel experimental tracks that eventually converge:</p>
+<ul>
+<li><strong>Aerodynamics track:</strong> Measures airspeed and airfoil pressure distributions using the desktop and PILOT wind tunnels.</li>
+<li><strong>Structures track:</strong> Designs and tests a whiffle tree apparatus, then measures wing deflection.</li>
+</ul>
+<hr>
+<h2>Equipment List (Full Lab Sequence)</h2>
+<h3>Aerodynamics Track</h3>
+<ul>
+<li>Desktop wind tunnel (test section: 1.125&quot; diameter, 5&quot; length; inlet diameter: 4.3&quot;)</li>
+<li>PILOT Low-Speed Wind Tunnel (Aerolab LLC; Eiffel/open-circuit type; 12&quot; × 12&quot; test section)</li>
+<li>Pitot-Static Probe (free to move through desktop wind tunnel)</li>
+<li>Honeywell ABP2DDAN005NDAA3XX differential pressure transducer</li>
+<li>Arduino (likely Uno — <code>[MISSING: Arduino model not confirmed]</code>)</li>
+<li>USB-A cable (Arduino to computer)</li>
+<li>Computer running MATLAB (with <code>WindTunnelGUI.m</code> installed)</li>
+<li>Clark Y-14 airfoil model (16 chord-wise static pressure ports, infinite-span wing mount)</li>
+<li>Scanivalve pressure scanner (<code>[MISSING: model number not specified]</code>)</li>
+<li>Computer running LabVIEW (<code>WindTunnel - Shortcut.vi</code>)</li>
+<li>Pressure tubes connecting airfoil ports to Scanivalve</li>
+</ul>
+<h3>Structures Track</h3>
+<ul>
+<li>Two aluminum spar beams, 1/8&quot; × 1/2&quot; × 12&quot;</li>
+<li>Whiffle tree components: steel rod whiffles, paper clips, string or fishing wire, duct tape</li>
+<li>C-clamp</li>
+<li>Chair (for supporting masses during whiffle tree loading)</li>
+<li>Masses (combination, to achieve required external load)</li>
+<li>Ruler (vertical deflection measurement)</li>
+<li>Clark Y-14 deflection test specimen (PLA plastic ribs + 1/8&quot; × 1/2&quot; × 12&quot; spar + clear packing tape skin; 10&quot; span, 3.5&quot; chord)</li>
+<li>Masking tape</li>
+<li>PILOT Low-Speed Wind Tunnel (shared with aero track)</li>
+<li>Computer running LabVIEW (<code>WindTunnel - Shortcut.vi</code>)</li>
+</ul>
+<hr>
+<h2>Safety Considerations</h2>
+<p><code>[SAFETY: None explicitly stated in source documents — instructor should review. Standard wind tunnel safety procedures (eye protection, secure fastening of models, hearing protection if required by facility) should be applied. The PILOT tunnel is a low-speed facility, but models and loose hardware can become projectiles if not properly secured. Verify that all retaining screws on airfoil mounts are tightened before running the tunnel.]</code></p>
+<hr>
+<h2>Part 1 — Desktop Wind Tunnel Data Collection (Aerodynamics Track, Phase 1)</h2>
+<p><strong>Source:</strong> Milestone 1, Appendix B</p>
+<p><strong>Purpose:</strong> Measure differential pressure and calculate airspeed at various positions in the desktop wind tunnel; collect data in three configurations to understand Pitot-Static and static-only measurements.</p>
+<h3>Setup</h3>
+<ol>
+<li>Connect the Arduino to the computer using the USB-A cable.</li>
+<li>In MATLAB, type <code>arduinosetup</code> in the command window.</li>
+</ol>
+<ul>
+<li>Select &quot;Uno&quot; for the board type.</li>
+<li>Record the port number (appearance varies by operating system).</li>
+<li>Deselect all server libraries and click &quot;Program.&quot;</li>
+<li>On the following page, click &quot;Test arduino connection.&quot;</li>
+<li>If the Arduino is working correctly, exit this window.</li>
+</ul>
+<ol>
+<li>From the Honeywell ABP2 datasheet (see <code>instrumentation/sensor_specs_summary_agent.md</code>), determine the scale factor <strong>k</strong> (units: Pa/V). <code>[INSTRUCTOR TO PROVIDE: scale factor k — this value is set by the instructional team, not read directly from the datasheet.]</code></li>
+<li>In MATLAB, type <code>WindTunnelGUI</code> and click &quot;Run Section&quot; to start the GUI.</li>
+<li>Enter the Serial Port Number and Scale Factor into the GUI.</li>
+<li>Click &quot;Start Data Collection.&quot; Wait 5–10 seconds, then click &quot;Zero Pressure Transducer.&quot;</li>
+<li>After the GUI reports the offset, click &quot;Stop &amp; Save Data,&quot; then &quot;Reset Data,&quot; and restart data collection to verify the zero offset.</li>
+</ol>
+<h3>Data Collection Procedure</h3>
+<ol>
+<li>With lab assistant approval, activate the fan and turn the voltage control knob to its maximum setting.</li>
+<li>Collect data in three configurations in sequence:</li>
+</ol>
+<ul>
+<li><strong>Configuration 1:</strong> Connect the total pressure port (p₀) and static pressure port (p_s) to the transducer. Move the probe along the length of the inlet to the back of the test section, observing how differential pressure changes. Select the appropriate configuration in the GUI drop-down. When complete, click &quot;Stop &amp; Save Data.&quot;</li>
+<li><strong>Configuration 2:</strong> Disconnect the static pressure port only. Reset the data. Select the appropriate configuration in the GUI drop-down. Repeat the same probe traverse. Save data.</li>
+<li><strong>Configuration 3:</strong> Connect only the static pressure port. Select the appropriate configuration in the GUI drop-down. Repeat the traverse. Save data.</li>
+</ul>
+<ol>
+<li>After collecting sufficient data, reduce the fan voltage control to zero.</li>
+<li>Load data by double-clicking on any of the three files in the current folder or typing <code>load [filename]</code> in MATLAB.</li>
+</ol>
+<p>[SETUP_PHOTO NEEDED: Desktop wind tunnel with Pitot-Static probe inserted, Arduino cable visible, and MATLAB GUI displayed on screen]</p>
+<h3>Pitfalls — Instructor Notes</h3>
+<p>(From &quot;Questions to Consider&quot; in M1 §5.2 and §5.3)</p>
+<ul>
+<li>Students often confuse which port measures total vs. static pressure. Reinforce the cross-sectional diagram of the Pitot-Static probe.</li>
+<li>The area ratio between the settling chamber and the test section matters significantly for the Venturi Tube configuration; students should understand why airspeed differs between inlet and test section.</li>
+<li>Students may expect the differential pressure to be the same at all probe positions — it is not. The profile across the inlet and test section is part of the learning objective.</li>
+<li>The choice between the Pitot-Static and Venturi configurations involves a trade-off: the Pitot probe causes blockage; the Venturi avoids probe intrusion but requires area ratio knowledge.</li>
+</ul>
+<hr>
+<h2>Part 2 — Clark Y-14 Infinite Wing Pressure Survey (Aerodynamics Track, Phase 2)</h2>
+<p><strong>Source:</strong> Milestone 2, Appendix C</p>
+<p><strong>Purpose:</strong> Measure the chord-wise static pressure distribution on a Clark Y-14 airfoil at multiple angles of attack and airspeeds using the PILOT low-speed wind tunnel.</p>
+<p><strong>Note:</strong> All measurements are acquired by the LabVIEW control program at 500 Hz for a period of 0.04 s (20 measurements per collection point). Data is saved in collimated ASCII format.</p>
+<h3>Setup</h3>
+<ol>
+<li>Visually inspect the PILOT tunnel and verify its configuration.</li>
+<li>Locate the pressure tubes for the pitot-static tube. Confirm they are connected to the airspeed pressure transducer so the wind tunnel control computer can monitor tunnel speed.</li>
+<li>Inspect the airfoil model: verify that only the correct set of spanwise pressure ports is open and all others are covered with tape.</li>
+<li>Connect all pressure tubes from the airfoil model to the Scanivalve pressure scanner. Confirm the measurement configuration of each port.</li>
+<li>Using the angle markings on the airfoil base plate, set the airfoil to the first assigned angle of attack. Tighten all retaining screws securely.</li>
+<li>Close and lock the wind tunnel door.</li>
+</ol>
+<p>[SETUP_PHOTO NEEDED: PILOT wind tunnel test section with Clark Y-14 airfoil mounted, angle markings visible, and Scanivalve connections visible]</p>
+<h3>Procedure</h3>
+<ol>
+<li>Open the LabVIEW control program: <code>WindTunnel - Shortcut.vi</code> (located in AES Courses Folder: <code>Courses/AES/Software/VIs/ASEN2002</code>). Click the white arrow in the top left to start the VI.</li>
+<li>Set your data file path using the assigned naming convention. <strong>Do not overwrite another group&#x27;s data file.</strong></li>
+<li>Zero the airspeed and pressure transducers using the green button on the VI front panel (bottom left).</li>
+<li>Open the angle of attack window; enter the current angle of attack.</li>
+<li>Switch the control mode toggle to &quot;airspeed control.&quot;</li>
+<li>Enter the test velocity into the LabVIEW VI to bring the fan up to speed.</li>
+<li>Confirm measurement parameters: Sampling Rate = 500 Hz, Samples per Set = 20.</li>
+<li>Once the tunnel reaches equilibrium (typically 30–60 s), collect measurements by clicking &quot;Send Samples to File.&quot;</li>
+<li>Return airspeed to 0 m/s. <strong>Do NOT stop the VI.</strong></li>
+<li>Once the tunnel has settled, open the tunnel door. Rotate the airfoil to the next angle of attack. Secure the model. Close the door.</li>
+<li>Repeat steps 12–16 for each assigned velocity and angle of attack, progressing through angles in the assigned order. Always return to zero airspeed before changing angle of attack.</li>
+<li>After all data collection is complete, return the tunnel to zero, wait for the tunnel to fully stop, then stop the VI to save and close the data file.</li>
+<li>Immediately upload data to the class folder.</li>
+</ol>
+<h3>Pitfalls — Instructor Notes</h3>
+<p>(From &quot;Questions to Consider&quot; in M2 §5.2–5.4)</p>
+<ul>
+<li>Students should notice that pressure port spacing is non-uniform — denser near the leading edge where pressure gradients are steepest.</li>
+<li>The trailing edge pressure cannot be read directly; it must be extrapolated (linear regression from ports 8→9 and 10→11, then averaged). Students often try to average the last two ports directly, which is incorrect.</li>
+<li>The Cp scale is conventionally inverted (negative up); students must flip their plots.</li>
+<li>Lift at zero angle of attack is non-zero for a cambered airfoil — this surprises many students.</li>
+</ul>
+<hr>
+<h2>Part 3 — Spanwise Pressure Survey (Aerodynamics Track, Phase 3)</h2>
+<p><strong>Source:</strong> Milestone 3, §5.1–5.2</p>
+<p><strong>Purpose:</strong> Apply the same chord-wise pressure analysis to 11 spanwise positions to build the spanwise lift distribution of the finite wing.</p>
+<h3>Setup and Procedure</h3>
+<p>The procedure is identical to Part 2 above, repeated for each of the 11 spanwise port sets. The leading edge pressure ports are at the following distances from the root:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Set #</th><th>Distance from root (in)</th></tr></thead><tbody><tr><td>1</td><td>1</td></tr><tr><td>2</td><td>2</td></tr><tr><td>3</td><td>3</td></tr><tr><td>4</td><td>4</td></tr><tr><td>5</td><td>5</td></tr><tr><td>6</td><td>6</td></tr><tr><td>7</td><td>7</td></tr><tr><td>8</td><td>8</td></tr><tr><td>9</td><td>9</td></tr><tr><td>10</td><td>9.4375</td></tr><tr><td>11</td><td>9.875</td></tr></tbody></table></div>
+<p><strong>Note on positional uncertainty:</strong> Spanwise port locations have up to ±1/16&quot; positional uncertainty. This is generally considered negligible for analysis purposes but should be noted in any presentation of the lift distribution.</p>
+<p><strong>Test condition:</strong> Angle of attack = 10°. Spanwise data was collected by the lab team and provided to students — students do not independently collect this dataset in all course offerings.</p>
+<hr>
+<h2>Part 4 — Whiffle Tree Assembly and Bench Test (Structures Track)</h2>
+<p><strong>Source:</strong> Milestone 3, §6.1 and Appendix A</p>
+<p><strong>Purpose:</strong> Experimentally verify the analytical deflection model by applying a simulated distributed load to a spar beam via a 4-point whiffle tree, and measuring the resulting tip deflection.</p>
+<p><strong>Pre-requisite:</strong> Whiffle tree geometry (dimensions a–f) must be computed from <code>discretizeLoad.m</code> and <code>whiffleTree4.m</code> before assembly. External mass must be calculated.</p>
+<h3>Materials</h3>
+<ul>
+<li>Two aluminum spar beams, 1/8&quot; × 1/2&quot; × 12&quot;</li>
+<li>Steel rod whiffles (3 bars)</li>
+<li>Paper clips (4, for attaching whiffle tree to spar)</li>
+<li>String or fishing wire</li>
+<li>Duct tape</li>
+<li>C-clamp</li>
+<li>Chair</li>
+<li>Masses (calculated from whiffle tree design)</li>
+<li>Ruler</li>
+</ul>
+<h3>Setup</h3>
+<p>The spar beams overhang a table and are secured with a C-clamp. The whiffle tree is attached to one spar using paper clips and secured with duct tape. The second spar is unloaded and used as a reference. External masses are tied together as a single external mass. A ruler is positioned vertically to measure the deflection of the loaded spar relative to the unloaded spar.</p>
+<p>[SETUP_PHOTO NEEDED: Whiffle tree assembly attached to spar beam, C-clamp visible, ruler positioned at tip, reference spar alongside]</p>
+<h3>Procedure</h3>
+<ol>
+<li>Acquire all materials.</li>
+<li>Tape paper clips to the whiffles at the computed positions.</li>
+<li>Tape the completed whiffle tree to the spar beam.</li>
+<li>Clamp the spar beam to the table using the C-clamp, ensuring the spar overhangs by exactly 10 inches.</li>
+<li>Position the ruler vertically next to the spar tip.</li>
+<li>Record the initial position of the loaded spar tip relative to the unloaded spar.</li>
+<li>Tie the required external mass together using fishing wire or string.</li>
+<li>Place a chair under the spar and whiffle tree.</li>
+<li>Secure the external mass to the bottom whiffle, resting the mass on the chair.</li>
+<li>Remove the chair, allowing the external mass to hang freely.</li>
+<li>Measure the spar tip position relative to the unloaded spar. Calculate deflection from the difference.</li>
+</ol>
+<p><strong>Also test:</strong> Deflection under a single point load acting at the centroid of the load distribution, for comparison against the distributed load result.</p>
+<h3>Pitfalls — Instructor Notes</h3>
+<ul>
+<li>Paper clip attachment points must exactly match the computed x-positions (x₁–x₄); small deviations change the load distribution significantly.</li>
+<li>The spar must overhang exactly 10 inches (matching L used in calculations); use a ruler to verify before clamping.</li>
+<li>Masses should be assembled and weighed before the test to confirm they match the computed Feq.</li>
+</ul>
+<hr>
+<h2>Part 5 — Wind Tunnel Deflection Test (Structures Track)</h2>
+<p><strong>Source:</strong> Milestone 3, §6.2 and Appendix B</p>
+<p><strong>Purpose:</strong> Measure the actual aerodynamic deflection of the Clark Y-14 finite wing in the PILOT wind tunnel at a specific angle of attack and airspeed, for comparison to the analytical model.</p>
+<p><strong>Test condition:</strong> Angle of attack = 10°; test velocity = 30 m/s.</p>
+<h3>Test Specimen</h3>
+<p>Clark Y-14 deflection specimen: PLA plastic ribs on a 1/8&quot; × 1/2&quot; × 12&quot; aluminum spar, wrapped in clear packing tape. Span = 10&quot;. The wing is secured at the base by the spar only. The wing profile begins within the wind tunnel boundary layer, so the wing is analyzed as a half-finite airfoil.</p>
+<h3>Setup</h3>
+<p>The wing is mounted horizontally in the PILOT tunnel, with the positive z-direction oriented upright. A ruler is mounted on the front door of the wind tunnel for measuring vertical deflection.</p>
+<p>[SETUP_PHOTO NEEDED: Clark Y-14 deflection specimen mounted in PILOT tunnel test section, ruler visible on tunnel door, wing horizontal with spar root visible]</p>
+<h3>Procedure</h3>
+<ol>
+<li>Visually inspect the tunnel; verify that there are no major geometric defects in the airfoil.</li>
+<li>Using the angle markings on the airfoil base plate, set the airfoil to 10°. Tighten all retaining screws securely.</li>
+<li>Close and lock the wind tunnel door.</li>
+<li>Attach masking tape perpendicular to the chord line, positioned at the quarter chord. Use a machinist&#x27;s protractor to align the tape.</li>
+<li>Mark the initial vertical position of the lowest point of the spar beam on the spar beam (no-load reference).</li>
+<li>Open the LabVIEW control program (<code>WindTunnel - Shortcut.vi</code>) as described in Part 2.</li>
+<li>Set the data file path (do not overwrite other files).</li>
+<li>Zero the airspeed and pressure transducers using the green button.</li>
+<li>Enter 10° in the angle of attack window.</li>
+<li>Switch to &quot;airspeed control&quot; mode.</li>
+<li>Enter 30 m/s as the test velocity to bring the tunnel up to speed.</li>
+<li>Once the tunnel has reached equilibrium (30–60 s), record the new vertical position of the highest point of the spar beam (loaded condition).</li>
+<li>Return the wind tunnel to 0 m/s. Stop the VI.</li>
+<li>Calculate deflection from the difference in loaded and unloaded spar tip positions.</li>
+</ol>
+<h3>Pitfalls — Instructor Notes</h3>
+<ul>
+<li>The ruler position must be carefully recorded relative to a fixed reference before and after tunnel operation; the tunnel vibrates slightly during operation.</li>
+<li>The spar root must be the only structural connection to the tunnel — ribs and skin transfer load to the spar, not to the tunnel walls.</li>
+<li>Confirm that the masking tape reference mark is on the spar, not the skin, since skin flexes independently.</li>
+</ul>
+<hr>
+<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Theoretical Framework — Aeroelasticity Lab (Compiled First Pass)</h1>
+<p>This document extracts the governing equations, derivations, and stated assumptions from the three Milestone source documents. It is organized by topic rather than by source document page order. All equations are preserved as stated in the source; symbols are defined immediately following each equation.</p>
+<hr>
+<h2>1. Airspeed Measurement from Differential Pressure</h2>
+<p><strong>Source:</strong> Milestone 1, §5.3 and Appendix A</p>
+<h3>1.1 Bernoulli&#x27;s Equation for Incompressible Flow</h3>
+<p>The starting point is Bernoulli&#x27;s equation applied along a streamline in the wind tunnel:</p>
+<p>$$p_1 + \frac{1}{2}\rho V_1^2 = p_2 + \frac{1}{2}\rho V_2^2 = p_3 + \frac{1}{2}\rho V_3^2$$</p>
+<p><strong>Assumption:</strong> Incompressible flow (density ρ is constant throughout the tunnel).</p>
+<h3>1.2 Ideal Gas Law for Air Density</h3>
+<p>Air density cannot be measured directly. Using the equation of state for a perfect gas:</p>
+<p>$$\rho = \frac{p}{RT} = \frac{p_\text{atm}}{R T_\text{atm}}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>ρ</td><td>Air density</td><td>kg/m³</td></tr><tr><td>p_atm</td><td>Atmospheric pressure</td><td>Pa</td></tr><tr><td>T_atm</td><td>Atmospheric temperature</td><td>K</td></tr><tr><td>R</td><td>Specific gas constant for air (287 J/(kg·K))</td><td>J/(kg·K)</td></tr></tbody></table></div>
+<p><strong>Assumption:</strong> Atmospheric conditions (measured outside the tunnel under stagnant conditions) represent the density throughout the tunnel.</p>
+<h3>1.3 Pitot-Static Probe Configuration (Equation 1)</h3>
+<p>For a Pitot-Static probe, the stagnation condition (V₀ → 0 at the total pressure port) gives:</p>
+<p>$$p_0 - p_s = \Delta p = q = \frac{1}{2}\rho V_\infty^2 = \frac{1}{2}\frac{p_\text{atm}}{RT_\text{atm}}V_\infty^2$$</p>
+<p>Rearranging to solve for airspeed:</p>
+<p>$$V_\infty = \sqrt{\frac{2(p_0 - p_s)}{\rho}} = \sqrt{\frac{2\Delta p}{\rho}} = \sqrt{\frac{2\Delta p \, R T_\text{atm}}{p_\text{atm}}} \tag{1}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>V_∞</td><td>Freestream airspeed (test section)</td><td>m/s</td></tr><tr><td>p₀</td><td>Total (stagnation) pressure</td><td>Pa</td></tr><tr><td>p_s</td><td>Static pressure</td><td>Pa</td></tr><tr><td>Δp</td><td>Differential pressure (p₀ − p_s)</td><td>Pa</td></tr><tr><td>q</td><td>Dynamic pressure</td><td>Pa</td></tr></tbody></table></div>
+<p><strong>Assumptions:</strong></p>
+<ul>
+<li>Incompressible flow</li>
+<li>Negligible losses between total and static measurement locations</li>
+</ul>
+<h3>1.4 Venturi Tube Configuration (Settling Chamber–Test Section)</h3>
+<p>The second standard configuration compares pressures at two locations. Using mass conservation and Bernoulli:</p>
+<p>$$V_\infty = \sqrt{\frac{2(p_{s,1} - p_{s,2})}{\rho\left(1 - \left(\frac{A_2}{A_1}\right)^2\right)}} = \sqrt{\frac{2\Delta p \, R T_\text{atm}}{p_\text{atm}\left(1 - \left(\frac{A_2}{A_1}\right)^2\right)}}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th></tr></thead><tbody><tr><td>p_{s,1}</td><td>Static pressure in settling chamber</td></tr><tr><td>p_{s,2}</td><td>Static pressure in test section (= p_{s,∞})</td></tr><tr><td>A₁</td><td>Cross-sectional area of settling chamber</td></tr><tr><td>A₂</td><td>Cross-sectional area of test section</td></tr></tbody></table></div>
+<p><strong>Note:</strong> For the desktop wind tunnel: A₁ is the inlet area (4.3&quot; diameter), A₂ is the test section area (1.125&quot; diameter).</p>
+<hr>
+<h2>2. Airspeed Uncertainty Propagation</h2>
+<p><strong>Source:</strong> Milestone 1, §5.4</p>
+<p>Applying the general uncertainty propagation formula from Taylor (§3.11):</p>
+<p>$$\delta q = \sqrt{\left(\frac{\partial q}{\partial x}\delta x\right)^2 + \cdots + \left(\frac{\partial q}{\partial z}\delta z\right)^2}$$</p>
+<p>For airspeed V_∞ as a function of Δp, p_atm, and T_atm:</p>
+<p>$$\delta V = \sqrt{\left(\frac{\partial V}{\partial \Delta p}\,\delta\Delta p\right)^2 + \left(\frac{\partial V}{\partial p_\text{atm}}\,\delta p_\text{atm}\right)^2 + \left(\frac{\partial V}{\partial T_\text{atm}}\,\delta T_\text{atm}\right)^2} \tag{2}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th></tr></thead><tbody><tr><td>δV</td><td>Total uncertainty in computed airspeed</td></tr><tr><td>δΔp</td><td>Uncertainty in differential pressure measurement (from pressure transducer total error band; reference off full collection range)</td></tr><tr><td>δp_atm</td><td>Uncertainty in atmospheric pressure measurement</td></tr><tr><td>δT_atm</td><td>Uncertainty in atmospheric temperature measurement</td></tr></tbody></table></div>
+<p><strong>Key point:</strong> The partial derivatives of V with respect to each variable must be computed analytically from Equation 1 before this formula can be evaluated. [STUDENT TASK — students derive the partial derivatives and evaluate δV.]</p>
+<hr>
+<h2>3. Pressure Coefficient and Aerodynamic Force Coefficients</h2>
+<p><strong>Source:</strong> Milestone 2, §5.3–5.4, Appendix B, Appendix D</p>
+<h3>3.1 Pressure Coefficient C_p (Equations 1 and 13)</h3>
+<p>$$C_p = \frac{\Delta p}{q_\infty} = \frac{p - p_\infty}{\frac{1}{2}\rho_\infty V_\infty^2} \tag{1/13}$$</p>
+<p>Alternative form using Bernoulli:</p>
+<p>$$C_p = 1 - \frac{V^2}{V_\infty^2}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th></tr></thead><tbody><tr><td>C_p</td><td>Pressure coefficient (dimensionless)</td></tr><tr><td>p</td><td>Local static pressure at a surface point</td><td>Pa</td></tr><tr><td>p_∞</td><td>Freestream static pressure</td><td>Pa</td></tr><tr><td>q_∞</td><td>Freestream dynamic pressure = ½ρ_∞V_∞²</td><td>Pa</td></tr><tr><td>V</td><td>Local flow speed at the surface</td><td>m/s</td></tr></tbody></table></div>
+<p><strong>Note on sign convention:</strong> C_p plots are conventionally displayed with the C_p axis inverted (negative values plotted upward).</p>
+<p><strong>Trailing-edge estimation:</strong> There is no physical port at the trailing edge. Estimate the trailing edge pressure using linear extrapolation from adjacent ports on the upper surface (ports 8→9) and lower surface (ports 10→11), then average the two extrapolated values.</p>
+<h3>3.2 Normal and Axial Force Coefficients — Elemental Form (Equations 20–25, 27–28)</h3>
+<p>For an element spanning pressure taps i and i+1, with element geometry Δxᵢ = xᵢ₊₁ − xᵢ and Δyᵢ = yᵢ₊₁ − yᵢ:</p>
+<p>Normal force element (in dimensional form):</p>
+<p>$$n_i = -\frac{1}{2}(p_i + p_{i+1})\Delta x_i \tag{21}$$</p>
+<p>Axial force element (in dimensional form):</p>
+<p>$$a_i = \frac{1}{2}(p_i + p_{i+1})\Delta y_i \tag{23}$$</p>
+<p>Summing over all elements and non-dimensionalizing by ½ρ_∞V_∞²c:</p>
+<p>$$C_n = -\sum_{i=1}^{n}\frac{1}{2}(C_{p_i} + C_{p_{i+1}})\frac{\Delta x_i}{c} \tag{27}$$</p>
+<p>$$C_a = \sum_{i=1}^{n}\frac{1}{2}(C_{p_i} + C_{p_{i+1}})\frac{\Delta y_i}{c} \tag{28}$$</p>
+<p>These are trapezoidal rule approximations to the exact contour integrals:</p>
+<p>$$C_n = -\oint C_p \frac{dx}{c}, \qquad C_a = \oint C_p \frac{dy}{c}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th></tr></thead><tbody><tr><td>C_n</td><td>Sectional normal force coefficient</td></tr><tr><td>C_a</td><td>Sectional axial force coefficient</td></tr><tr><td>c</td><td>Airfoil chord length</td></tr><tr><td>(xᵢ, yᵢ)</td><td>Chord-wise and thickness-wise position of pressure tap i</td></tr></tbody></table></div>
+<p><strong>Coordinate system:</strong> x-axis is chordwise (leading edge to trailing edge); y-axis is in thickness direction; z-axis is spanwise. Origin is at the quarter-chord.</p>
+<h3>3.3 Lift and Drag Coefficients (Equations 4–5, 31–32)</h3>
+<p>Transform from airfoil frame to freestream frame:</p>
+<p>$$C_l = C_n\cos\alpha - C_a\sin\alpha \tag{4/31}$$</p>
+<p>$$C_d = C_n\sin\alpha + C_a\cos\alpha \tag{5/32}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th></tr></thead><tbody><tr><td>C_l</td><td>Sectional lift coefficient</td></tr><tr><td>C_d</td><td>Sectional drag coefficient (pressure drag only)</td></tr><tr><td>α</td><td>Angle of attack</td><td>rad</td></tr></tbody></table></div>
+<p><strong>Note:</strong> These are sectional (per unit span) coefficients for an infinite rectangular wing.</p>
+<h3>3.4 Lift and Drag for Finite Wing</h3>
+<p>For a finite rectangular wing with span b and chord c, the reference area S = c·b, and the wing-level coefficients are:</p>
+<p>$$C_L = \frac{L}{\frac{1}{2}\rho_\infty V_\infty^2 S}, \qquad C_D = \frac{D}{\frac{1}{2}\rho_\infty V_\infty^2 S}$$</p>
+<p>For a rectangular wing with uniform spanwise distribution, C_L = C_l and C_D = C_d.</p>
+<hr>
+<h2>4. Load Discretization and Whiffle Tree Design</h2>
+<p><strong>Source:</strong> Milestone 1, §6.1–6.3</p>
+<h3>4.1 Wing Spar as a Cantilevered Beam</h3>
+<p>The wing spar is modeled as a flexible cantilevered beam:</p>
+<ul>
+<li>Fixed (welded) connection at the root: x = 0</li>
+<li>Free tip at x = L = 10 in</li>
+<li>Beam length L = 10 in (to fit within 12&quot; × 12&quot; PILOT test section)</li>
+<li>Gravity ignored (weight of beam assumed negligible compared to lift load)</li>
+</ul>
+<p>Three load distributions are analyzed:</p>
+<ul>
+<li><strong>Rectangular:</strong> uniform load, magnitude ω₀ (lbf/in)</li>
+<li><strong>Triangular:</strong> linearly decreasing, ω(x) = ω₀(1 − x/L)</li>
+<li><strong>Trapezoidal:</strong> ω(x) = ω₀ + (ω₁ − ω₀)(x/L) where ω₀ and ω₁ are root and tip intensities</li>
+</ul>
+<p><strong>Note:</strong> Values of ω₀ and ω₁ are determined from the aerodynamic analysis (Milestone 3). Initial whiffle tree designs are carried out symbolically.</p>
+<h3>4.2 Load Discretization using Trapezoidal Rule</h3>
+<p>The <code>discretizeLoad</code> MATLAB function divides the span into N panels, applies the trapezoidal rule to each panel, and returns:</p>
+<ul>
+<li>N×1 vector of resultant panel forces (magnitudes)</li>
+<li>N×1 vector of centroid x-locations of each panel</li>
+</ul>
+<p>Each panel force equals the area under the load curve over that panel width; the centroid is the weighted centroid of that trapezoidal strip.</p>
+<h3>4.3 Whiffle Tree Equivalent Force and Centroid (Equation 3)</h3>
+<p>The equivalent total force and its location from the root:</p>
+<p>$$x_{F_{eq}} = \frac{\sum F_{Ri}\, x_i}{\sum F_{Ri}} \tag{3}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th></tr></thead><tbody><tr><td>F_{Ri}</td><td>Resultant force of the ith panel</td><td>lbf</td></tr><tr><td>xᵢ</td><td>x-location of the ith panel centroid</td><td>in</td></tr><tr><td>x_{Feq}</td><td>x-location of the equivalent total force</td><td>in</td></tr><tr><td>F_{eq}</td><td>Magnitude of equivalent total force = ΣF_Ri</td><td>lbf</td></tr></tbody></table></div>
+<h3>4.4 Whiffle Tree Geometry</h3>
+<p>The whiffle tree has 4 connecting loads to the spar beam and 3 bars. Geometric variables a–f describe the bar lengths and spacings. These are solved by writing moment equilibrium equations for each bar, putting them into matrix form, and solving with MATLAB.</p>
+<p>[STUDENT TASK — symbolic derivation of expressions for lengths a–f. Students derive this in ASEN 3501 using moment equilibrium on each bar of the whiffle tree.]</p>
+<hr>
+<h2>5. Structural Analysis: Deflection of Cantilevered Spar</h2>
+<p><strong>Source:</strong> Milestone 2, §6; Appendix E</p>
+<h3>5.1 Spar Material and Cross-Section Properties</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th></tr></thead><tbody><tr><td>Material</td><td>Aluminum 6061</td></tr><tr><td>Modulus of elasticity E</td><td>10⁷ psi (69 GPa)</td></tr><tr><td>Width w</td><td>0.5 in</td></tr><tr><td>Thickness t</td><td>0.12 in</td></tr><tr><td>Span L</td><td>10 in</td></tr></tbody></table></div>
+<h3>5.2 Second Moment of Area (Equation 12)</h3>
+<p>For a thin rectangular cross-section, bending about the y-axis (relevant to out-of-plane deflection):</p>
+<p>$$I_y = \frac{wt^3}{12} \tag{12}$$</p>
+<p>Substituting: I_y = (0.5)(0.12)³/12 = 7.2 × 10⁻⁵ in⁴</p>
+<h3>5.3 Beam Curvature and Bending Stress (Equations 9–11)</h3>
+<p>The second derivative of deflection ν(x) equals the ratio of bending moment to bending rigidity:</p>
+<p>$$\nu&#x27;&#x27;(x) = \frac{d^2\nu(x)}{dx^2} = \frac{M(x)}{EI} \tag{9}$$</p>
+<p>Internal bending stress:</p>
+<p>$$\sigma(x,z) = -\frac{M(x)z}{I} \tag{10}$$</p>
+<p>Bending strain (Hooke&#x27;s law):</p>
+<p>$$\varepsilon(x,z) = \frac{\sigma(x,z)}{E} \tag{11}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>ν(x)</td><td>Beam deflection at spanwise position x</td><td>in</td></tr><tr><td>M(x)</td><td>Internal bending moment at x</td><td>lbf·in</td></tr><tr><td>E</td><td>Modulus of elasticity</td><td>psi</td></tr><tr><td>I</td><td>Second moment of area</td><td>in⁴</td></tr><tr><td>EI</td><td>Bending rigidity</td><td>lbf·in²</td></tr><tr><td>z</td><td>Position in the cross-section thickness direction</td><td>in</td></tr><tr><td>σ(x,z)</td><td>Bending stress</td><td>psi</td></tr><tr><td>ε(x,z)</td><td>Bending strain</td><td>dimensionless</td></tr></tbody></table></div>
+<h3>5.4 Internal Bending Moment — Distributed Load</h3>
+<p>Two methods available for finding M(x):</p>
+<ol>
+<li><strong>Method of Cuts:</strong> Make a cut at arbitrary spanwise position x; solve for M(x) from equilibrium of the cut segment.</li>
+<li><strong>Integration Method:</strong> V(x) = −∫ω(x)dx; M(x) = −∫V(x)dx, using boundary conditions at the fixed end (x=0) and free end (x=L).</li>
+</ol>
+<p>[STUDENT TASK — students derive M(x) for rectangular, triangular, and trapezoidal loads in ASEN 3501.]</p>
+<h3>5.5 Point Load Deflection (Equation 6)</h3>
+<p><strong>Source:</strong> Appendix E (full derivation reproduced in Milestone 2 source)</p>
+<p>The maximum deflection of a cantilevered beam due to a point load F_eq acting at location x̃ (centroid of the distributed load):</p>
+<p>$$\nu_{\max,\text{point load}} = \frac{F_{eq}\tilde{x}^2}{6EI}(3L - \tilde{x}) \tag{6}$$</p>
+<p>This is the value at the beam tip (x = L), which is always to the right of the load application point.</p>
+<p><strong>Full piecewise deflection expression (derived in Appendix E):</strong></p>
+<p>$$\nu(x) = \frac{F_{eq}}{6EI} \begin{cases} -x^3 + 3\tilde{x}x^2 &amp; x \leq \tilde{x} \\ 3\tilde{x}^2 x - \tilde{x}^3 &amp; x &gt; \tilde{x} \end{cases} \tag{42}$$</p>
+<p>Derivation proceeds by:</p>
+<ol>
+<li>Finding M(x) from two cuts (left of and right of the point load)</li>
+<li>Integrating M(x)/EI twice to get ν(x)</li>
+<li>Applying fixed-end conditions: ν(0) = 0, ν&#x27;(0) = 0</li>
+<li>Applying continuity conditions at x = x̃: ν&#x27;_L(x̃) = ν&#x27;_R(x̃) and ν_L(x̃) = ν_R(x̃)</li>
+</ol>
+<p>[STUDENT TASK — students derive deflection expressions for rectangular, triangular, and trapezoidal distributed loads in ASEN 3501.]</p>
+<hr>
+<h2>6. Spanwise Lift Distribution and Finite Wing Analysis</h2>
+<p><strong>Source:</strong> Milestone 3, §5</p>
+<h3>6.1 Sectional Lift Coefficient over the Span</h3>
+<p>The same chord-wise pressure integration procedure (Section 3 above) is applied at each of 11 spanwise positions. This yields C_l as a function of spanwise position x, producing the spanwise lift distribution ω(x) [lbf/in].</p>
+<h3>6.2 Conversion from C_l to Load Intensity ω₀</h3>
+<p>[STUDENT TASK — students derive the relationship between sectional lift coefficient C_l (from aerodynamic analysis) and the structural load intensity ω₀ (in lbf/in) in ASEN 3501. This conversion links the aerodynamics track output to the structures track input.]</p>
+<h3>6.3 Geometric Load Approximation</h3>
+<p>The measured spanwise C_l distribution is compared to rectangular, triangular, and trapezoidal geometric shapes. Students apply engineering judgment to choose the best-fit shape for use in structural analysis and whiffle tree design.</p>
+<p><strong>Finite wing effects:</strong> Near the wing tips, C_l falls off due to tip vortex effects. The transition from the chord-wise infinite wing model (Milestone 2) to the finite wing (Milestone 3) is the physical reason the load distribution is not rectangular. Reference: Anderson §5.13.</p>
+<hr>
+<h2>7. Textbook References</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Reference</th><th>Relevant Sections</th></tr></thead><tbody><tr><td>Anderson, &quot;Introduction to Flight&quot; 8th ed.</td><td>§2.1–2.4 (fundamentals); §4.1–4.3 (conservation equations); §4.10–4.11 (wind tunnel velocity measurement); §5.1–5.7 (airfoil aerodynamics); §5.5, 5.13, 5.14 (finite wings)</td></tr><tr><td>Hibbeler, &quot;Statics and Mechanics of Materials&quot; 5th ed.</td><td>§3.9 (distributed loading); §4.5–4.6 (equilibrium); §6.1 (centroids); §6.3 (moments of inertia); §7.1–7.8 (stress and strain); §11.1–11.3 (beam bending); §16.1–16.2 (deflection)</td></tr><tr><td>Taylor, &quot;Introduction to Error Analysis&quot; 2nd ed.</td><td>Chapters 1–4 (uncertainty and error propagation); §3.11 (propagation formula)</td></tr></tbody></table></div>
+<hr>
+<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p>
+<h1>Equation Reference Sheet — Aeroelasticity Lab</h1>
+<p>Equations in logical order. All symbols defined. No derivation prose — see <code>derivation_agent.md</code> for full context.</p>
+<hr>
+<h2>Eq. 1 — Airspeed from Pitot-Static Differential Pressure</h2>
+<p><em>Source: Milestone 1, Eq. 1</em></p>
+<p>$$V_\infty = \sqrt{\frac{2\Delta p \, R T_\text{atm}}{p_\text{atm}}}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>V_∞</td><td>Test-section freestream airspeed</td><td>m/s</td></tr><tr><td>Δp</td><td>Differential pressure (p₀ − p_s) from pressure transducer</td><td>Pa</td></tr><tr><td>R</td><td>Specific gas constant for air = 287</td><td>J/(kg·K)</td></tr><tr><td>T_atm</td><td>Atmospheric temperature (measured outside tunnel)</td><td>K</td></tr><tr><td>p_atm</td><td>Atmospheric pressure (measured outside tunnel)</td><td>Pa</td></tr></tbody></table></div>
+<p><strong>Assumptions:</strong> Incompressible flow; density taken from atmospheric conditions.</p>
+<hr>
+<h2>Eq. 2 — Airspeed Uncertainty Propagation</h2>
+<p><em>Source: Milestone 1, Eq. 2</em></p>
+<p>$$\delta V = \sqrt{\left(\frac{\partial V}{\partial \Delta p}\,\delta\Delta p\right)^2 + \left(\frac{\partial V}{\partial p_\text{atm}}\,\delta p_\text{atm}\right)^2 + \left(\frac{\partial V}{\partial T_\text{atm}}\,\delta T_\text{atm}\right)^2}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>δV</td><td>Total uncertainty in airspeed</td><td>m/s</td></tr><tr><td>δΔp</td><td>Uncertainty in differential pressure (from transducer total error band, referenced to full collection range)</td><td>Pa</td></tr><tr><td>δp_atm</td><td>Uncertainty in atmospheric pressure</td><td>Pa</td></tr><tr><td>δT_atm</td><td>Uncertainty in atmospheric temperature</td><td>K</td></tr></tbody></table></div>
+<p><strong>Note:</strong> The partial derivatives must be computed analytically from Eq. 1 before evaluation.</p>
+<hr>
+<h2>Eq. 3 — Whiffle Tree Equivalent Force Centroid</h2>
+<p><em>Source: Milestone 1, Eq. 3</em></p>
+<p>$$x_{F_{eq}} = \frac{\sum F_{Ri}\, x_i}{\sum F_{Ri}}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>x_{Feq}</td><td>Location of equivalent total force from root (x=0)</td><td>in</td></tr><tr><td>F_{Ri}</td><td>Resultant force of the ith discretization panel</td><td>lbf</td></tr><tr><td>xᵢ</td><td>Centroid location of the ith panel</td><td>in</td></tr></tbody></table></div>
+<p><strong>Note:</strong> F_eq = ΣF_Ri is the total equivalent point load magnitude.</p>
+<hr>
+<h2>Eq. 1/13 — Pressure Coefficient</h2>
+<p><em>Source: Milestone 2, Eqs. 1 and 13</em></p>
+<p>$$C_p = \frac{p - p_\infty}{\frac{1}{2}\rho_\infty V_\infty^2} = \frac{p - p_\infty}{q_\infty}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>C_p</td><td>Pressure coefficient</td><td>dimensionless</td></tr><tr><td>p</td><td>Local static pressure at surface port</td><td>Pa</td></tr><tr><td>p_∞</td><td>Freestream static pressure</td><td>Pa</td></tr><tr><td>ρ_∞</td><td>Freestream air density</td><td>kg/m³</td></tr><tr><td>V_∞</td><td>Freestream airspeed</td><td>m/s</td></tr><tr><td>q_∞</td><td>Dynamic pressure = ½ρ_∞V_∞²</td><td>Pa</td></tr></tbody></table></div>
+<p><strong>Sign convention:</strong> C_p plots are displayed inverted (negative up per aerodynamics convention).</p>
+<hr>
+<h2>Eqs. 2–3, 27–28 — Normal and Axial Force Coefficients</h2>
+<p><em>Source: Milestone 2, Eqs. 2–3 and Appendix D Eqs. 27–28</em></p>
+<p>Continuous forms (for reference):</p>
+<p>$$C_n = -\frac{1}{c}\oint C_p\, dy, \qquad C_a = \frac{1}{c}\oint C_p\, dz$$</p>
+<p>Discrete (trapezoidal rule) forms used in computation:</p>
+<p>$$C_n = -\sum_{i=1}^{n}\frac{1}{2}(C_{p_i} + C_{p_{i+1}})\frac{\Delta x_i}{c}$$</p>
+<p>$$C_a = \sum_{i=1}^{n}\frac{1}{2}(C_{p_i} + C_{p_{i+1}})\frac{\Delta y_i}{c}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>C_n</td><td>Sectional normal force coefficient</td><td>dimensionless</td></tr><tr><td>C_a</td><td>Sectional axial force coefficient</td><td>dimensionless</td></tr><tr><td>c</td><td>Airfoil chord length</td><td>in or m</td></tr><tr><td>(xᵢ, yᵢ)</td><td>Chordwise and thickness-wise location of pressure tap i</td><td>in or m</td></tr><tr><td>Δxᵢ = xᵢ₊₁ − xᵢ</td><td>Chordwise spacing between consecutive taps</td><td>in or m</td></tr><tr><td>Δyᵢ = yᵢ₊₁ − yᵢ</td><td>Thickness-wise spacing between consecutive taps</td><td>in or m</td></tr></tbody></table></div>
+<hr>
+<h2>Eqs. 4–5, 31–32 — Lift and Drag Coefficients</h2>
+<p><em>Source: Milestone 2, Eqs. 4–5 and Appendix D Eqs. 31–32</em></p>
+<p>$$C_l = C_n\cos\alpha - C_a\sin\alpha$$</p>
+<p>$$C_d = C_n\sin\alpha + C_a\cos\alpha$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>C_l</td><td>Sectional lift coefficient</td><td>dimensionless</td></tr><tr><td>C_d</td><td>Sectional pressure drag coefficient</td><td>dimensionless</td></tr><tr><td>α</td><td>Angle of attack</td><td>rad (convert from degrees)</td></tr></tbody></table></div>
+<p><strong>Note:</strong> These represent the rotation from airfoil-fixed frame to freestream frame.</p>
+<hr>
+<h2>Eq. 6 — Maximum Deflection Due to Point Load</h2>
+<p><em>Source: Milestone 2, Eq. 6 and Appendix E</em></p>
+<p>$$\nu_{\max} = \frac{F_{eq}\tilde{x}^2}{6EI}(3L - \tilde{x})$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>ν_max</td><td>Maximum beam deflection (occurs at tip, x=L)</td><td>in</td></tr><tr><td>F_eq</td><td>Equivalent point load magnitude</td><td>lbf</td></tr><tr><td>x̃</td><td>Spanwise location where point load acts (centroid of distributed load)</td><td>in</td></tr><tr><td>E</td><td>Modulus of elasticity (Al 6061: 10⁷ psi = 69 GPa)</td><td>psi</td></tr><tr><td>I</td><td>Second moment of area</td><td>in⁴</td></tr><tr><td>L</td><td>Beam length (= 10 in)</td><td>in</td></tr></tbody></table></div>
+<p><strong>Condition:</strong> x̃ &lt; L (load acts before the tip, which is the physical scenario).</p>
+<hr>
+<h2>Eq. 9 — Beam Curvature (Bending Moment–Deflection Relationship)</h2>
+<p><em>Source: Milestone 2, Eq. 9</em></p>
+<p>$$\nu&#x27;&#x27;(x) = \frac{d^2\nu(x)}{dx^2} = \frac{M(x)}{EI}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>ν(x)</td><td>Deflection at spanwise position x</td><td>in</td></tr><tr><td>M(x)</td><td>Internal bending moment at x</td><td>lbf·in</td></tr><tr><td>EI</td><td>Bending rigidity</td><td>lbf·in²</td></tr></tbody></table></div>
+<hr>
+<h2>Eq. 12 — Second Moment of Area (Rectangular Cross-Section)</h2>
+<p><em>Source: Milestone 2, Eq. 12</em></p>
+<p>$$I_y = \frac{wt^3}{12}$$</p>
+<p>For this spar: I_y = (0.5)(0.12)³/12 = <strong>7.2 × 10⁻⁵ in⁴</strong></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>I_y</td><td>Second moment of area about the y-axis (bending axis)</td><td>in⁴</td></tr><tr><td>w</td><td>Beam width = 0.5 in</td><td>in</td></tr><tr><td>t</td><td>Beam thickness = 0.12 in</td><td>in</td></tr></tbody></table></div>
+<p><strong>Context:</strong> Bending is about the y-axis for out-of-plane (z-direction) deflection due to lift.</p>
+<hr>
+<h2>Summary Table — Key Constants for This Experiment</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Constant</th><th>Value</th><th>Units</th></tr></thead><tbody><tr><td>Spar material</td><td>Aluminum 6061</td><td>—</td></tr><tr><td>Modulus of elasticity E</td><td>10⁷ (69 GPa)</td><td>psi (Pa)</td></tr><tr><td>Spar width w</td><td>0.5</td><td>in</td></tr><tr><td>Spar thickness t</td><td>0.12</td><td>in</td></tr><tr><td>Spar length L</td><td>10</td><td>in</td></tr><tr><td>Second moment of area I_y</td><td>7.2 × 10⁻⁵</td><td>in⁴</td></tr><tr><td>Test angle of attack (M3)</td><td>10°</td><td>deg</td></tr><tr><td>Wind tunnel test velocity (M3)</td><td>30</td><td>m/s</td></tr><tr><td>Sampling rate (PILOT tunnel)</td><td>500</td><td>Hz</td></tr><tr><td>Samples per collection point</td><td>20</td><td>—</td></tr><tr><td>Air specific gas constant R</td><td>287</td><td>J/(kg·K)</td></tr></tbody></table></div>
+<hr>
+<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Sensor and DAQ Specifications — Aeroelasticity Lab</h1>
+<p>This document summarizes everything known about the sensors, instruments, and DAQ systems used in this experiment. Items marked <code>[MISSING]</code> or <code>[INSTRUCTOR TO PROVIDE]</code> require human follow-up before this package is student-ready.</p>
+<hr>
+<h2>1. Pressure Transducer — Honeywell ABP2 Series</h2>
+<p><strong>Model:</strong> ABP2DDAN005NDAA3XX (also referenced as ABP2DDAN005NDAA5XX in one location — verify which variant is installed)</p>
+<p><strong>Source:</strong> Milestone 1, §5.2, §5.3, and Appendix C (partial datasheet excerpt)</p>
+<p><strong>Used for:</strong> Measuring differential pressure in the desktop wind tunnel (between total and static ports of Pitot-Static probe). Converts voltage output to Pa using scale factor k.</p>
+<h3>Relevant Specs (from Milestone 1 Appendix C datasheet excerpt — Table 17)</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Specification</th><th>Value / Description</th></tr></thead><tbody><tr><td>Product series</td><td>ABP2 Amplified Basic Board Mount Pressure Sensor</td></tr><tr><td>Package</td><td>D = DIP (Dual Inline Pin)</td></tr><tr><td>Pressure port</td><td>DA = Dual axial barbed ports, same side</td></tr><tr><td>Pressure range code</td><td>005ND = Differential, ±5 inH₂O</td></tr><tr><td>Pressure range</td><td>−5 to +5 inH₂O (differential)</td></tr><tr><td>Output type</td><td>A = Analog (10% to 90% of V_supply)</td></tr><tr><td>Supply voltage</td><td>A = 3 (from part number position 7 = &quot;3&quot;) → 3.3 V_dc</td></tr><tr><td>Transfer function</td><td>A = 10% to 90% of V_supply</td></tr><tr><td>Total error band (0°C to 50°C)</td><td>±2.0 %FSS</td></tr><tr><td>Total error band (−20°C to 85°C)</td><td>±3.5 %FSS</td></tr><tr><td>Long-term stability (1000 hr)</td><td>±0.3 %FSS</td></tr><tr><td>Overpressure (both ports)</td><td>270 inH₂O</td></tr><tr><td>Burst pressure (Port 1)</td><td>2800 inH₂O</td></tr></tbody></table></div>
+<p><strong>FSS = Full-Scale Span</strong></p>
+<h3>Scale Factor k</h3>
+<p><code>[INSTRUCTOR TO PROVIDE: scale factor k (units: Pa/V) — this is the calibration constant used to convert the transducer&#x27;s analog voltage output to differential pressure in Pa. The instructional team provides this value; it is not extractable from the datasheet alone.]</code></p>
+<h3>Full Datasheet</h3>
+<p>The partial excerpt above comes from pages 13–15 of Milestone 1. The full datasheet is available at: &gt; <a href="https://www.mouser.com/pdfDocs/ABP2SeriesDatasheet-IssueC.pdf">https://www.mouser.com/pdfDocs/ABP2SeriesDatasheet-IssueC.pdf</a></p>
+<p>Save the full PDF as <code>instrumentation/datasheets/honeywell_ABP2_datasheet.pdf</code>.</p>
+<h3>Uncertainty Note</h3>
+<p>Per Milestone 1 §5.4: &quot;To find the uncertainty in the reading on the pressure transducer, reference the datasheet in Appendix C. Note that a percentage error should be referenced off the entire data collection range.&quot; Use the ±2.0 %FSS figure (0°C–50°C operating range) as δΔp for uncertainty propagation.</p>
+<hr>
+<h2>2. Pitot-Static Probe</h2>
+<p><strong>Used for:</strong> Measuring total pressure (p₀) and static pressure (p_s) in the desktop wind tunnel test section. Provides the differential pressure Δp = p₀ − p_s used in Eq. 1.</p>
+<p><code>[MISSING: Pitot-static probe manufacturer and model number not specified in source documents. The probe is described as &quot;free to move throughout the tunnel&quot; in the desktop wind tunnel setup. A cross-sectional schematic is referenced (Figure 2 in Milestone 1) but not available as a file. Instructor should identify the specific probe used and obtain its datasheet.]</code></p>
+<p><strong>Physical configuration:</strong> Two output lines — total pressure and static pressure. Each can be connected or disconnected independently to the pressure transducer to enable three measurement configurations (total+static, total only, static only).</p>
+<hr>
+<h2>3. Scanivalve Pressure Scanner</h2>
+<p><strong>Used for:</strong> Measuring differential pressure at 16 chord-wise ports on the Clark Y-14 airfoil in the PILOT wind tunnel (Milestone 2). Each port is referenced to the wind tunnel freestream static pressure.</p>
+<p><code>[MISSING: Scanivalve model number not specified in source documents. Instructor should identify the scanner model installed in the PILOT tunnel and obtain its datasheet.]</code></p>
+<p><strong>Configuration:</strong> The 16 chordwise pressure tubes from the airfoil model connect to the Scanivalve. The Scanivalve interfaces with the LabVIEW control system.</p>
+<hr>
+<h2>4. Arduino (Desktop Wind Tunnel DAQ)</h2>
+<p><strong>Used for:</strong> Interfacing the Honeywell pressure transducer with the MATLAB <code>WindTunnelGUI</code> for data collection in the desktop wind tunnel.</p>
+<p><code>[MISSING: Arduino model not confirmed in source. Setup text instructs students to select &quot;Uno&quot; in MATLAB&#x27;s arduinosetup, which strongly implies Arduino Uno. Verify with lab team.]</code></p>
+<p><strong>Setup:</strong> Connect via USB-A cable. Run <code>arduinosetup</code> in MATLAB, select board type, record COM port. Deselect all server libraries, then program. Test connection before running the GUI.</p>
+<hr>
+<h2>5. MATLAB WindTunnelGUI</h2>
+<p><strong>Used for:</strong> Collecting and saving differential pressure data from the Arduino/pressure transducer system in the desktop wind tunnel.</p>
+<ul>
+<li>Command to launch: <code>WindTunnelGUI</code> (type in MATLAB command window, then click &quot;Run Section&quot;)</li>
+<li>Requires: Serial port number and scale factor k as inputs</li>
+<li><strong>Zero procedure:</strong> Click &quot;Start Data Collection,&quot; wait 5–10 s, click &quot;Zero Pressure Transducer,&quot; verify offset, then &quot;Stop &amp; Save Data&quot; and &quot;Reset Data&quot;</li>
+<li><strong>Data output:</strong> Saved to files in current directory; loadable via <code>load [filename]</code> or double-click</li>
+</ul>
+<hr>
+<h2>6. LabVIEW Wind Tunnel Control Program</h2>
+<p><strong>Used for:</strong> Controlling the PILOT low-speed wind tunnel and logging all measurement data (Milestones 2 and 3).</p>
+<ul>
+<li>Program name: <code>WindTunnel - Shortcut.vi</code></li>
+<li>Location: <code>Courses/AES/Software/VIs/ASEN2002</code></li>
+<li>Launch: Click white arrow (top left of VI window) to start</li>
+<li><strong>Sampling:</strong> 500 Hz; 20 samples per collection point (0.04 s total)</li>
+<li><strong>Data format:</strong> ASCII, collimated columns; fields include pressure port readings, temperature, dynamic pressure, density, and airspeed</li>
+<li><strong>Zero procedure:</strong> Use green button (bottom left of VI front panel) to zero airspeed and pressure transducers before each run</li>
+<li><strong>Important:</strong> Do NOT stop the VI while switching angles of attack — stopping the VI creates a new data file</li>
+</ul>
+<hr>
+<h2>7. Wind Tunnels</h2>
+<h3>Desktop Wind Tunnel</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Type</td><td>Small-scale benchtop model</td></tr><tr><td>Test section diameter</td><td>1.125 in</td></tr><tr><td>Test section length</td><td>5 in</td></tr><tr><td>Inlet diameter</td><td>4.3 in</td></tr><tr><td>Flow direction</td><td>Fan downstream (suction type)</td></tr></tbody></table></div>
+<p>[SETUP_PHOTO NEEDED: Desktop wind tunnel with probe inserted and Arduino DAQ connected]</p>
+<h3>PILOT Low-Speed Wind Tunnel</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Type</td><td>Eiffel / open-circuit suction</td></tr><tr><td>Manufacturer</td><td>Aerolab LLC</td></tr><tr><td>Test section dimensions</td><td>12 in × 12 in</td></tr><tr><td>Full-size dimensions</td><td>See Milestone 1 Figure 1 (engineering drawing — not available as file)</td></tr></tbody></table></div>
+<p><code>[MISSING: PILOT tunnel full schematic with dimensions is referenced as Figure 1 in Milestone 1 but is not available as a file in the source directory. Obtain from lab facility documentation.]</code></p>
+<hr>
+<h2>Note for Instructor</h2>
+<p>The Honeywell ABP2 partial datasheet excerpt in Milestone 1 (pages 13–15) covers the order guide nomenclature and pressure range specifications table. It confirms the sensor model, pressure range (±5 inH₂O differential), transfer function (10%–90% of V_supply analog), and total error band (±2.0 %FSS at 0–50°C). The excerpt does <strong>not</strong> include the full analog transfer function calibration curve or the detailed electrical specifications. Download the complete datasheet from the URL listed above before finalizing the uncertainty analysis in this lab.</p>
+<hr>
+<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Aeroelasticity Lab</h1>
+<p>This document describes the expected data types, formats, and collection conditions for each experimental phase. No actual dataset is present in the source directory.</p>
+<p><code>[MISSING_DATA: No sample dataset from a prior run is present in the source directory. A real dataset must be obtained from the lab team or prior Canvas submissions before this lab can be assigned with real data analysis exercises.]</code></p>
+<hr>
+<h2>Dataset 1 — Desktop Wind Tunnel Differential Pressure</h2>
+<p><strong>Source:</strong> Milestone 1, §5.5 and Appendix B</p>
+<p><strong>What is measured:</strong></p>
+<ul>
+<li>Differential pressure (voltage reading from Honeywell ABP2 transducer, converted to Pa using scale factor k)</li>
+<li>Atmospheric temperature T_atm and pressure p_atm (measured outside tunnel)</li>
+</ul>
+<p><strong>Collection conditions:</strong></p>
+<ul>
+<li>Fan at maximum voltage</li>
+<li>Three probe configurations tested sequentially: (1) total + static, (2) total only, (3) static only</li>
+<li>Probe traversed from inlet to back of test section</li>
+</ul>
+<p><strong>Data format:</strong></p>
+<ul>
+<li>Saved by <code>WindTunnelGUI.m</code> as MATLAB <code>.mat</code> files (one file per configuration)</li>
+<li>Load with <code>load [filename]</code> or double-click in MATLAB</li>
+<li>Fields: raw voltage readings from pressure transducer (to be converted to Pa using k), plus atmospheric conditions if logged</li>
+</ul>
+<p><strong>Expected output after processing:</strong></p>
+<ul>
+<li>Airspeed profile along the inlet and test section (from Eq. 1)</li>
+<li>Maximum achievable velocity and its location in the tunnel</li>
+<li>Uncertainty in airspeed as a function of velocity (from Eq. 2)</li>
+</ul>
+<p><code>[MISSING: No sample .mat file from a desktop wind tunnel run is available in the source directory. Request from lab team.]</code></p>
+<hr>
+<h2>Dataset 2 — Clark Y-14 Chord-Wise Pressure Distribution</h2>
+<p><strong>Source:</strong> Milestone 2, §5.5 and Appendix C</p>
+<p><strong>What is measured:</strong></p>
+<ul>
+<li>Differential pressure at 16 chord-wise static pressure ports on the Clark Y-14 airfoil, referenced to freestream static pressure</li>
+<li>Air temperature</li>
+<li>Dynamic pressure in the test section</li>
+<li>Air density (computed from temperature and pressure)</li>
+<li>Airspeed in the test section</li>
+</ul>
+<p><strong>Collection conditions:</strong></p>
+<ul>
+<li>PILOT Low-Speed Wind Tunnel</li>
+<li>Clark Y-14 airfoil mounted as infinite wing (spanning full 12&quot; test section width)</li>
+<li>Tape covers all spanwise port sets except the active one</li>
+<li>Multiple angles of attack surveyed (specific values assigned per team)</li>
+<li>Multiple airspeeds surveyed</li>
+</ul>
+<p><strong>Sampling parameters:</strong></p>
+<ul>
+<li>Rate: 500 Hz</li>
+<li>Samples per collection point: 20 (duration = 0.04 s per point)</li>
+</ul>
+<p><strong>Data format:</strong></p>
+<ul>
+<li>ASCII collimated data file (saved by LabVIEW VI)</li>
+<li>One file covers all collection points for the entire test session</li>
+<li>Columns include: pressure port readings (differential, Pa), temperature (°C or K), dynamic pressure (Pa), density (kg/m³), airspeed (m/s)</li>
+<li>Note: not all columns are used; additional sensor channels are logged but may be ignored</li>
+</ul>
+<p><strong>Reference files:</strong></p>
+<ul>
+<li><code>ClarkY14_PortLocations.xls</code> — y and z locations of all 16+ chord-wise pressure ports</li>
+</ul>
+<p><code>[MISSING: Referenced in M2 §5.5 as available on Canvas. Not present in source directory. Required for computing Cn and Ca from Eqs. 27–28.]</code></p>
+<ul>
+<li>Sample/development data posted on Canvas</li>
+</ul>
+<p><code>[MISSING: Referenced in M2 Appendix C as available on course website. Not present in source directory. Needed to develop and test MATLAB processing functions.]</code></p>
+<hr>
+<h2>Dataset 3 — Spanwise Lift Distribution Data</h2>
+<p><strong>Source:</strong> Milestone 3, §5.2</p>
+<p><strong>What is measured:</strong></p>
+<ul>
+<li>Same chord-wise pressure data as Dataset 2, but collected at 11 spanwise positions</li>
+</ul>
+<p><strong>Spanwise positions:</strong> 1, 2, 3, 4, 5, 6, 7, 8, 9, 9.4375, and 9.875 in from root</p>
+<p><strong>Positional uncertainty:</strong> ±1/16&quot; on spanwise location. Not strictly used in calculations but relevant for presenting the lift distribution.</p>
+<p><strong>Note:</strong> In the ASEN 2802 source course, this data was collected by the lab team and provided to students — students did not independently run this sweep. For ASEN 3501, clarify whether students collect this data themselves or receive it.</p>
+<p><code>[MISSING: Spanwise pressure dataset not present in source directory. Must be obtained from lab team or prior Canvas submissions.]</code></p>
+<hr>
+<h2>Dataset 4 — Deflection Measurements</h2>
+<p><strong>Source:</strong> Milestone 3, §6.1 (whiffle tree) and §6.2 (wind tunnel)</p>
+<p><strong>What is measured:</strong></p>
+<ul>
+<li>Vertical deflection of loaded spar tip relative to unloaded spar (whiffle tree test): manual ruler reading (in)</li>
+<li>Vertical deflection of wind tunnel wing tip (loaded at 30 m/s, 10° AoA): manual ruler reading (in)</li>
+</ul>
+<p><strong>Collection conditions:</strong></p>
+<ul>
+<li>Whiffle tree: room temperature, quasi-static loading; beam overhang exactly 10 in</li>
+<li>Wind tunnel: 30 m/s, 10° angle of attack; ruler mounted on PILOT tunnel door</li>
+<li>Both tests use two measurement points: zero-load reference and loaded position</li>
+</ul>
+<p><strong>Format:</strong> Single scalar values for each test case. No digital data logging — both are hand measurements.</p>
+<p><strong>Known limitation:</strong> Single manual measurements with no repeat trials in the source procedure. No formal uncertainty estimate for deflection measurements is required by the source documents (only qualitative error discussion).</p>
+<p><code>[MISSING_DATA: No prior-run deflection measurements from a completed lab session are present in the source directory.]</code></p>
+<hr>
+<h2>Known Data Quirks</h2>
+<ol>
+<li>The C_p axis is conventionally inverted in plots (negative upward). MATLAB: <code>set(gca, &#x27;YDir&#x27;,&#x27;reverse&#x27;)</code>.</li>
+<li>There is no physical pressure port at the trailing edge — extrapolation is required (linear fit from ports 8→9 and 10→11, then average).</li>
+<li>The spanwise port positions have ±1/16&quot; uncertainty — use MATLAB <code>errorbar</code> with horizontal error bars when plotting the lift distribution.</li>
+<li>DAQ data may contain columns for sensors not relevant to this lab (logged by the LabVIEW VI for all possible channels). Ignore unused columns.</li>
+</ol>
+<hr>
+<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes — Aeroelasticity Lab (Instructor Use Only)</h1>
+<p>This document consolidates CLO alignment summaries, lab character notes, instructor discussion prompts, and adaptation notes for the ASEN 3501 context. Not student-facing.</p>
+<hr>
+<h2>1. CLO Alignment Summary (from Milestone agent analyses)</h2>
+<p>Alignment levels: 0 = None, 1 = Partial/Weak, 2 = Strong</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>CLO</th><th>M1</th><th>M2</th><th>M3</th><th>Notes</th></tr></thead><tbody><tr><td>CLO 1 — Design and conduct experiments; instrumentation</td><td>2</td><td>0</td><td>2</td><td>M1: aerodynamics DAQ + whiffle tree design. M3: two experimental tests. M2 is purely analytical.</td></tr><tr><td>CLO 2 — Statistical methods and uncertainty analysis</td><td>2</td><td>1</td><td>1</td><td>M1: formal quantitative error propagation (strongest CLO 2 hit in the sequence). M2/M3: qualitative only.</td></tr><tr><td>CLO 3 — Integrate models with experimental data</td><td>2</td><td>2</td><td>2</td><td>Strongest overall thread; progresses from tool-building (M1) through analysis (M2) to validation (M3).</td></tr><tr><td>CLO 4 — Signal conditioning, sampling, DAQ</td><td>1</td><td>0</td><td>0</td><td>Only M1 has any DAQ interaction (Arduino/GUI). Students operate a pre-built system; no sampling rate or signal conditioning design.</td></tr><tr><td>CLO 5 — Communicate experimental results</td><td>2</td><td>2</td><td>2</td><td>Strong across all milestones via weekly deliverables and final report.</td></tr><tr><td>CLO 6 — Identify/evaluate/create new methods</td><td>0</td><td>0</td><td>0</td><td>Not addressed. Lab applies established methods throughout.</td></tr></tbody></table></div>
+<h3>Key observations for ASEN 3501 design</h3>
+<ul>
+<li><strong>Strongest contribution:</strong> CLO 3 (model–experiment integration). This lab is an excellent multi-step validation exercise.</li>
+<li><strong>Secondary contribution:</strong> CLO 2 via M1 error propagation; CLO 1 via M1 design (whiffle tree) and M3 execution.</li>
+<li><strong>Major gap:</strong> CLO 4 (DAQ and signal conditioning). The Arduino/GUI setup in M1 is the only electronics interaction, and students are not designing it. For ASEN 3501, either expand the DAQ component or treat this as a modeling-heavy lab with weak DAQ coverage.</li>
+<li><strong>CLO 6 entirely absent:</strong> Expected for this lab type.</li>
+</ul>
+<hr>
+<h2>2. Lab Character Notes (from lab_summary.json files)</h2>
+<h3>Milestone 1 Character</h3>
+<ul>
+<li><strong>Strengths:</strong> Formal quantitative error propagation introduced early; combines mechanical design (whiffle tree) with hands-on wind tunnel measurements; develops foundational tools for the full aeroelasticity sequence.</li>
+<li><strong>Gaps:</strong> No full experimental loop (hypothesis through conclusion); parallel sub-team tracks require later integration.</li>
+<li><strong>Operational:</strong> Requires Arduino setup; MATLAB GUI; split aerodynamics/structures workflow.</li>
+<li><strong>Suggested stage:</strong> Early (introductory/tool-building phase).</li>
+</ul>
+<h3>Milestone 2 Character</h3>
+<ul>
+<li><strong>Strengths:</strong> Strong integration of experimental data (pressure distribution) with theoretical structural model; numerical integration of C_p to get C_l and C_d; validation against NACA historical data.</li>
+<li><strong>Gaps:</strong> Entirely computational — no hands-on experimental work; quantitative uncertainty analysis absent; depends on pre-collected data.</li>
+<li><strong>Operational:</strong> Requires MATLAB; data files from wind tunnel test (must be provided separately).</li>
+<li><strong>Suggested stage:</strong> Middle (analytical core; bridges data collection and validation).</li>
+</ul>
+<h3>Milestone 3 Character</h3>
+<ul>
+<li><strong>Strengths:</strong> Comprehensive validation using two distinct experimental methods (whiffle tree + wind tunnel deflection); application of engineering judgment for load shape selection; strong synthesis of aero and structures.</li>
+<li><strong>Gaps:</strong> No modern instrumentation or DAQ (manual ruler measurements only); quantitative uncertainty analysis absent; relies on provided spanwise data.</li>
+<li><strong>Operational:</strong> Requires wind tunnel, whiffle tree assembly, masses, ruler.</li>
+<li><strong>Suggested stage:</strong> Late (capstone/synthesis).</li>
+</ul>
+<hr>
+<h2>3. Questions to Consider (Instructor Discussion Prompts)</h2>
+<p>These are extracted from the &quot;Questions to Consider&quot; sidebar boxes in the original source documents. They are useful as in-class discussion prompts or assessment items for ASEN 3501.</p>
+<h3>From Milestone 1 §5.2 — Wind Tunnel Measurement Devices</h3>
+<ul>
+<li>Why is there a difference in airspeed between the nozzle inlet and the test section? What fundamental principles change between these sections?</li>
+<li>What is the difference between a measurement from the Pitot-Static Probe and the Venturi Tube, and why do they yield slightly different results?</li>
+</ul>
+<h3>From Milestone 1 §5.3 — Airspeed Calculation</h3>
+<ul>
+<li>Which of the three configurations will best measure differential pressure/airspeed?</li>
+<li>How does the total pressure relate to the room pressure at different points in the inlet? What about the static pressure?</li>
+<li>What happens as the area ratio A₂/A₁ between the settling chamber and test section changes? Is there a benefit to a larger or smaller area ratio?</li>
+</ul>
+<h3>From Milestone 1 §5.4 — Uncertainty Analysis</h3>
+<ul>
+<li>Is the uncertainty in airspeed constant with wind tunnel speed? If not, how does it change?</li>
+<li>Does uncertainty improve or degrade as mean tunnel airspeed increases?</li>
+<li>Which independent variable contributes the most to uncertainty in airspeed?</li>
+</ul>
+<h3>From Milestone 1 §6.2 — Load Discretization</h3>
+<ul>
+<li>What forces act on the wing?</li>
+<li>What is the advantage of one integration method over another?</li>
+<li>How would you implement discretization in MATLAB? What variables are known vs. unknown?</li>
+</ul>
+<h3>From Milestone 1 §6.3 — Whiffle Tree Design</h3>
+<ul>
+<li>What integration method is most accurate for different load shapes?</li>
+<li>How will you calculate the centroids of these sections?</li>
+<li>What patterns should you expect? Will the point loads increase or decrease in magnitude as x increases?</li>
+</ul>
+<h3>From Milestone 2 §5.2 — Pressure Port Configuration</h3>
+<ul>
+<li>How many pressure ports are used in the airfoil design? What engineering trade-offs would you encounter with fewer or more ports?</li>
+<li>Is the port spacing uniform? Why or why not?</li>
+</ul>
+<h3>From Milestone 2 §5.3 — Pressure Distribution Analysis</h3>
+<ul>
+<li>Why is the pressure at the trailing edge not simply the mean of ports 9 and 10?</li>
+<li>Do you observe any features in the pressure distribution that indicate flow separation at a surface point?</li>
+<li>Where along the chord is the largest difference in pressure between upper and lower surfaces? What does this tell you about the pitching moment?</li>
+</ul>
+<h3>From Milestone 2 §5.4 — Lift and Drag Coefficients</h3>
+<ul>
+<li>How do lift and pressure drag vary with angle of attack?</li>
+<li>What is the maximum lift coefficient, and at what angle of attack does it occur?</li>
+<li>What is the lift at zero angle of attack; is it zero? If not, why? Where does lift equal zero?</li>
+<li>Do your results match NACA 1938 data? If not, what are the error sources?</li>
+</ul>
+<h3>From Milestone 2 §6.3 — Structural Analysis</h3>
+<ul>
+<li>What resources can you use to determine E and I?</li>
+<li>What boundary conditions do you have to solve for integration constants?</li>
+<li>Where does maximum deflection occur? What about max stress and strain?</li>
+<li>Are maximum stress and maximum strain at the same location? What does this tell you about the stress–strain relationship?</li>
+</ul>
+<h3>From Milestone 3 §5.3 — Geometric Load Approximation</h3>
+<ul>
+<li>Do your results for lift and drag after taking the whole wing into account line up with Anderson §5.13 predictions?</li>
+<li>What condition should structural analysis be performed under?</li>
+<li>What are the benefits of geometric loading simplifications? How much margin of error is acceptable?</li>
+<li>What is the trade-off between using a more vs. less complicated load shape?</li>
+</ul>
+<hr>
+<h2>4. Adaptation Notes for ASEN 3501</h2>
+<h3>Source context</h3>
+<p>This lab sequence was developed for <strong>ASEN 2802: Aerospace Sciences Lab</strong>, CU Boulder, Spring/Fall 2025. It was a 3-milestone project spanning approximately 7 weeks for teams of 6–7 students, split into structures and aerodynamics sub-teams. The source is a team project with weekly progress deliverables and a final group report.</p>
+<h3>Key structural differences for ASEN 3501</h3>
+<p>ASEN 3501 uses a different assignment structure: individual forward analysis, individual reverse prediction, and paired synthesis. This source lab does not map cleanly onto that structure without redesign.</p>
+<p>Specific mismatches to address before adapting:</p>
+<ol>
+<li><strong>Team composition:</strong> The source assumes 6–7 person teams split into sub-teams working in parallel over multiple weeks. ASEN 3501 should use individual or paired work.</li>
+<li><strong>Time horizon:</strong> The source spans 7+ weeks. ASEN 3501 lab slots are shorter — the aeroelasticity content may need to be condensed or split across the E1/E2/E3 structure.</li>
+<li><strong>Pre-collected data:</strong> Milestones 2 and 3 rely heavily on data collected by the &quot;lab team&quot; (M2 aerodynamic pressure data; M3 spanwise data). ASEN 3501 should clarify whether students collect data themselves or receive a canonical dataset.</li>
+<li><strong>Deliverable framing:</strong> All deliverables in the source are formatted as Canvas check-ins and group reports. The ASEN 3501 Tier 1 assignment format (individual report with V&amp;V checklist) is different and will require reframing.</li>
+<li><strong>Deliverable content:</strong> The source&#x27;s grading criteria, weekly team check-ins, and Canvas references have been discarded from this compilation. Only content relevant to running the experiment has been retained.</li>
+</ol>
+<h3>What maps well to ASEN 3501</h3>
+<ul>
+<li>The aero-structures integration thread (measuring lift → predicting deflection → validating experimentally) is a strong fit for the E2 &quot;predictive modeling and comparative validation&quot; segment.</li>
+<li>The error propagation in M1 is a strong CLO 2 exercise suitable for any phase.</li>
+<li>The whiffle tree design and bench test are a self-contained model V&amp;V activity.</li>
+<li>The qualitative judgment about load shape selection (M3 §5.3) maps well to CLO 6 thinking.</li>
+</ul>
+<h3>Possible placement in ASEN 3501</h3>
+<p>Given the CLO profile (strong CLO 3, moderate CLO 1 and CLO 2), this lab sequence is most appropriate for <strong>Phase II (E2)</strong> of ASEN 3501, where predictive modeling and comparative validation are the primary learning focus.</p>
+<p>The M1 uncertainty propagation component could be used earlier (E1) as a standalone exercise.</p>
+<hr>
+<h2>5. Prior Course Note</h2>
+<p>Source course: <strong>ASEN 2802: Aerospace Sciences Lab</strong>, CU Boulder, Spring 2025 and Fall 2025 (the two Milestones reference both semester labels). This was the second major lab project in a 2000-level lab course for sophomore aerospace engineering students. All course-specific terminology (course number, team structure, Canvas references, grading criteria) has been stripped from the compiled output files.</p>
+<hr>
+<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p></div></div>
+      </section>
+    </main>
+    
+    <footer class="site-footer">
+      <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+    </footer>
+    
+    
+  
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier2-aeroelasticity", "title": "Aeroelasticity", "url": "labs/tier2/aeroelasticity/index.html", "text": "Aeroelasticity Measure structural response of a flexible structure under aerodynamic loading.", "module_id": null, "source_type": "overview"}</script>
+</body>
+</html>

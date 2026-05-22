@@ -852,6 +852,82 @@ a {
   font-style: italic;
 }
 
+.scaffold-section.compiled {
+  border: 1px solid var(--cu-border);
+  border-left: 3px solid var(--cu-gold);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.scaffold-section.compiled h3 {
+  color: #2a2824;
+}
+
+.compiled-content {
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.compiled-content h1,
+.compiled-content h2,
+.compiled-content h3,
+.compiled-content h4 {
+  line-height: 1.25;
+  color: #2a2824;
+  margin-top: 1.2rem;
+}
+
+.compiled-content p {
+  margin: 0.6rem 0;
+}
+
+.compiled-content ul,
+.compiled-content ol {
+  padding-left: 1.4rem;
+  margin: 0.5rem 0;
+}
+
+.compiled-content code {
+  background: rgba(162, 164, 163, 0.16);
+  border-radius: 4px;
+  padding: 0.12rem 0.32rem;
+  font-size: 0.9em;
+}
+
+.compiled-content pre {
+  overflow-x: auto;
+  background: #efebe3;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+}
+
+.compiled-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 0.75rem 0;
+}
+
+.compiled-content th {
+  background: rgba(31, 31, 31, 0.85);
+  color: white;
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+}
+
+.compiled-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--cu-border);
+  vertical-align: top;
+}
+
+.compiled-content tr:last-child td {
+  border-bottom: none;
+}
+
+.compiled-content tr:nth-child(even) td {
+  background: rgba(162, 164, 163, 0.07);
+}
+
 .instructor-resource-bar {
   background: rgba(31, 31, 31, 0.06);
   border: 1px solid var(--cu-border);
