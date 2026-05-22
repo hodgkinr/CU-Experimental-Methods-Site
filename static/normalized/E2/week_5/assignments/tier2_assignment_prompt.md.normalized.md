@@ -88,10 +88,28 @@ force to reach approximately X N at operating condition Y, based on [physical re
 State the expected shape of any time-series outputs — where peaks occur, whether the
 response is monotonic, where you expect transient vs. steady-state behavior.
 
-**2. Model derivation or reference**
-Show the equation(s) from the theory that support your predicted values. If the derivation
-is long, reference the relevant section of the experiment-specific lab document and show
-the final form with your substituted values.
+**2. Theoretical model — confirm the derivation, show the working form**
+The experiment-specific lab document provides the theoretical model for your experiment.
+You are not expected to re-derive it from scratch. You are expected to confirm that
+the derivation is reasonable and that you understand it well enough to use it.
+
+Concretely, this means:
+- Trace the key steps of the derivation. Identify the physical principles it applies
+ (conservation laws, constitutive relationships, geometry). Confirm that the dimensions
+ are consistent at each step.
+- Identify the assumptions embedded in the model. Every analytical model makes
+ simplifying assumptions — linearity, steady state, negligible losses, idealized
+ geometry. Name at least two that apply to your experiment and note what conditions
+ would cause them to break down.
+- Extend the model as needed for your specific experiment conditions. The provided
+ theory gives the general form. You may need to substitute in your specific geometry,
+ operating condition, or boundary conditions to arrive at the numerical prediction
+ your experiment will actually test. That extension is yours to do.
+
+In the prediction document, show the final working equation with your values substituted.
+If you needed to extend or adapt the provided theory to reach that equation, show how
+you did it. If you cannot trace the steps or explain the assumptions, that is the signal
+that you are not ready for the gate check — not a reason to skip the section.
 
 **3. Estimated uncertainty in the primary derived quantity**
 Using the sensor specifications from the experiment-specific lab document, apply first-order
