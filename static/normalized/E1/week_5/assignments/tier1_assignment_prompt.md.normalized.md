@@ -25,13 +25,21 @@ and understanding why each phase exists will make each one more productive.
 ## Why Three Phases?
 
 Most experimental courses ask you to run an experiment and analyze the data. That is Phase 1.
-It is the natural order. It is also incomplete.
+It is the natural order. It is also a good starting point — but it is only the beginning.
 
-A test engineer — the professional identity this course is building toward — does not just
-analyze data. Before the experiment runs, a test engineer asks: *what should the data look
-like?* They build a model of the experiment itself — accounting for the sensors, the data
-acquisition, the signal chain — and commit to a prediction. Then they run the experiment.
-Then they compare.
+A test engineer's job is much more than collecting data and placing it on top of a prediction.
+Before a test ever runs, a test engineer asks: *what should the data look like?* They build a
+model of the experiment itself — accounting for the sensors, the data acquisition, the signal
+chain — and commit to a prediction. That prediction is not decoration. It is used to design the
+experiment: to determine whether the sensors are capable of resolving the quantity of interest,
+to anticipate failure modes, and to define in advance what a meaningful result looks like. The
+ability to watch data come in during a live test and immediately know whether it matches
+expectation — and to act on that in real time — is one of the most important skills a test
+engineer develops.
+
+This course will get there. The full experimental design workflow — where your prediction shapes
+the design of the test — is the focus of E3. For now, in E1 and E2, you are building the
+foundational mindset: the habit of pre-committing to a prediction before you see the data.
 
 This pre-commitment changes everything about how you interpret discrepancy. When you see
 a gap between your model and your data, and you committed to the model *before* you saw
@@ -40,12 +48,21 @@ real, and you have to explain it.
 
 That is Phase 2.
 
-Phase 3 is the moment when these two perspectives come together. You ran one experiment.
-Your partner ran a different one. You each predicted the other's experiment before seeing
-the data. Now you compare, contrast, and synthesize. What do two different experiments
-tell you that one experiment alone cannot?
+Phase 3 takes the prediction mindset one step further. You ran one experiment. Your partner
+ran a different one. You each predicted the other's experiment before seeing the data — an
+experiment you never ran, using only the setup description and sensor specs. This is
+deliberate. The goal is not to mimic the full test engineer workflow, but to develop the
+prediction-first mindset by working through it in the most challenging form: predicting an
+experiment you have no direct experience with.
 
-The three-phase structure is not busywork. It is the actual workflow of a test engineer.
+Think of Phase 3 as reverse-engineering the experiment. You are reconstructing what the data
+should look like from the physics and the instrument chain alone — without the shortcut of
+having been in the room when the data was collected. This mindset — building a forward model
+before you have the answer — is exactly what you will need when you design your own experiment
+from scratch in E3.
+
+The three-phase structure is not the actual workflow of a test engineer. It is a scaffold for
+developing the mindset of one.
 
 ---
 
@@ -90,45 +107,18 @@ presentation.
 Run your assigned experiment, characterize the uncertainty in your measurements, compare
 your data to a predictive model, and use the data to improve that model.
 
-### Before the lab session
+### Before the lab session and during the lab session
 
-Do the following before you arrive at the lab:
+Complete items 1–4 before you arrive; items 5–8 are in-lab steps. Items 1–4 are not graded as a separate pre-lab deliverable — they are required inputs to your Phase 1 report, and students who arrive without them typically need significantly more time to complete the lab.
 
-1. **Read the experiment-specific lab document** for your assigned experiment. This document
- (provided separately) contains the theory primer, sensor specifications, and equipment
- list for your experiment. It is not this document.
-
-2. **Write a hypothesis** — a one-sentence, falsifiable prediction of the experimental
- outcome. A hypothesis is not "I think it will work." It is "I predict the measured value
- of [quantity] will be [value or range], because [brief physical reasoning]."
-
-3. **Sketch an AMVF diagram** for your experiment. Map each step of your planned procedure
- to a node in the Aerospace Modeling & Validation Framework. You don't need to be perfect —
- you will refine this after the lab.
-
-4. **Identify your independent and dependent variables.** Identify at least one control
- condition and at least one potential confounding factor.
-
-These are not graded as a separate pre-lab deliverable — they are required inputs to your
-Phase 1 report. Students who arrive without them typically need significantly more time to
-complete the lab.
-
-### During the lab session
-
-5. **Use at least two sensor types or measurement methods** to measure the same physical
- quantity. This is required, not optional. The comparison between sensors is part of the
- analysis.
-
-6. **Record your measurements** using the correct format: value, units, uncertainty. Every
- measurement in your report must carry an uncertainty estimate with a stated basis
- (e.g., manufacturer spec, resolution, or statistical bound).
-
-7. **Use MATLAB** for data collection, processing, and plotting. MATLAB Mobile is available
- for phone-based data acquisition where applicable to your experiment. The experiment-specific
- lab document will indicate whether MATLAB Mobile is used.
-
-8. **Note anomalies in real time.** If your data looks unexpected, write it down immediately —
- when it happened, what changed, and what you observed. These notes are evidence.
+1. **Read the experiment-specific lab document** for your assigned experiment. This document (provided separately) contains the theory primer, sensor specifications, and equipment list for your experiment. It is not this document.
+2. **Write a hypothesis** — a one-sentence, falsifiable prediction of the experimental outcome. A hypothesis is not "I think it will work." It is "I predict the measured value of [quantity] will be [value or range], because [brief physical reasoning]."
+3. **Sketch an AMVF diagram** for your experiment. Map each step of your planned procedure to a node in the Aerospace Modeling & Validation Framework. You don't need to be perfect — you will refine this after the lab.
+4. **Identify your independent and dependent variables.** Identify at least one control condition and at least one potential confounding factor.
+5. **Use at least two sensor types or measurement methods** to measure the same physical quantity. This is required, not optional. The comparison between sensors is part of the analysis.
+6. **Record your measurements** using the correct format: value, units, uncertainty. Every measurement in your report must carry an uncertainty estimate with a stated basis (e.g., manufacturer spec, resolution, or statistical bound).
+7. **Use MATLAB** for data collection, processing, and plotting. MATLAB Mobile is available for phone-based data acquisition where applicable to your experiment. The experiment-specific lab document will indicate whether MATLAB Mobile is used.
+8. **Note anomalies in real time.** If your data looks unexpected, write it down immediately — when it happened, what changed, and what you observed. These notes are evidence.
 
 ### Phase 1 report — required sections
 
@@ -140,42 +130,54 @@ one confounding factor identified and addressed.
 Your annotated AMVF diagram, mapping each step of the actual procedure (not the planned one)
 to a framework node. Note any steps that did not match your pre-lab plan.
 
-**3. Measurement record**
+**3. Theory — confirm the model and understand it**
+The experiment-specific lab document provides a theoretical model for the physical phenomenon
+you are measuring. You are not expected to re-derive it from scratch, but you are expected
+to demonstrate that you understand it well enough to use it.
+
+This means: identify the physical principle(s) the model applies, confirm that the dimensions
+are consistent, name at least one simplifying assumption the model makes and describe the
+condition under which that assumption would break down. Then show the working equation with
+your specific experimental values substituted in — this is the prediction your model makes
+for your particular setup. If you cannot do this, you are not ready to run the analysis in
+the sections that follow.
+
+**4. Measurement record**
 Your recorded values for all primary measurements, with units and uncertainty for each.
 Describe the basis for each uncertainty estimate. Present in a table.
 
-**4. Multi-sensor comparison**
+**5. Multi-sensor comparison**
 Side-by-side comparison of the measurements from your two sensor types or methods. Apply a
 named validation metric to determine whether they agree. State the metric, the threshold,
 and the conclusion numerically — not just visually.
 
-**5. Uncertainty propagation**
+**6. Uncertainty propagation**
 For the primary derived quantity in your experiment: apply first-order error propagation
 using partial derivatives to compute uncertainty. Identify and rank the dominant error
 sources. Show your work.
 
-**6. Model comparison**
+**7. Model comparison**
 Compare your experimental result (with uncertainty bounds) to your predictive model. Use a
 named validation metric. State whether the comparison meets your pre-defined acceptance
 criterion. Interpret any discrepancy — is it attributable to measurement uncertainty, model
 form limitations, or both?
 
-**7. Experimentally informed model**
+**8. Experimentally informed model**
 Identify at least one way your experimental results suggest the predictive model should be
 updated or refined. This is not about accepting or rejecting the model — it is about using
 the data to make the model better. Describe specifically what you would change, and what
 physical reasoning supports that change.
 
-**8. MATLAB figures**
+**9. MATLAB figures**
 All plots must have: title, labeled axes with units, legend if multiple datasets, uncertainty
 bounds where applicable, and a caption that states the takeaway in one sentence. Apply the
 graph presentation framework from E1 W2.
 
-**9. Plain-language summary**
+**10. Plain-language summary**
 A 3–5 sentence summary of what you did and what your result means, written for a non-engineer.
 This section belongs in your introduction or conclusion, not as an appendix.
 
-**10. Predict-from-specs (alternative sensor)**
+**11. Predict-from-specs (alternative sensor)**
 Using only the spec sheet for an alternative sensor configuration — provided by the instructor
 in the Week 4 lab session — estimate what the uncertainty in your primary derived quantity
 would have been if that alternative sensor had been used instead. Propagate the uncertainty
@@ -207,7 +209,13 @@ it before you see any real data.
 In Phase 1, you followed the natural order: build the experiment, collect data, analyze it.
 In Phase 2, the order is reversed. You start with the experimental setup on paper and work
 backwards to the expected output. You are building a model of the experiment itself, not
-just of the physical phenomenon.
+just of the physical phenomenon. You are essentially reverse-engineering the experiment.
+
+Note that in Phase 2 you are predicting the output of a single, specified sensor — the one
+described in your experiment packet. Phase 1 required you to use two sensors and compare
+them; Phase 2 is a prediction exercise, and your packet will identify which sensor and
+configuration to base your analysis on. Use only that sensor's specifications for your
+uncertainty propagation.
 
 This requires you to think about:
 - What physical quantity is being measured, and what is its expected range given the

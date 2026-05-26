@@ -30,20 +30,12 @@ else in this course is built.
 
 By the end of this lab and its associated activities, you should be able to:
 
-1. Measure voltage and current using a digital multimeter and correctly read and record the
- result — including an appropriate uncertainty assigned from the instrument datasheet.
-2. Apply first-order uncertainty propagation (the general method using partial derivatives)
- to compute the uncertainty in a derived quantity — electrical power — from measurements
- of voltage and current.
-3. Explain why different algebraic forms of the same physical law (P = IV, P = V²/R,
- P = I²R) produce different uncertainty estimates for the same quantity, and articulate
- which form is most sensitive to which measured input.
-4. Run a Monte Carlo simulation in MATLAB to estimate uncertainty using the same manufacturer
- specifications, and compare the Monte Carlo result to the partial-derivative result.
-5. State a result in the correct engineering form: *estimate ± uncertainty (units, confidence
- level or method)*.
-6. Explain the core concepts of this lab clearly and concisely to someone who has not taken
- this course.
+1. Measure voltage and current using a digital multimeter and correctly read and record the result — including an appropriate uncertainty assigned from the instrument datasheet.
+2. Apply first-order uncertainty propagation (the general method using partial derivatives) to compute the uncertainty in a derived quantity — electrical power — from measurements of voltage and current.
+3. Explain why different algebraic forms of the same physical law (P = IV, P = V²/R, P = I²R) produce different uncertainty estimates for the same quantity, and articulate which form is most sensitive to which measured input.
+4. Run a Monte Carlo simulation in MATLAB to estimate uncertainty using the same manufacturer specifications, and compare the Monte Carlo result to the partial-derivative result.
+5. State a result in the correct engineering form: *estimate ± uncertainty (units, confidence level or method)*.
+6. Explain the core concepts of this lab clearly and concisely to someone who has not taken this course.
 
 ---
 
@@ -98,10 +90,10 @@ systems will fail. The correct answer is the smallest defensible bound.
 The instrument datasheet specifies accuracy in the form:
 
 ```
-± (% of reading + number of counts)
+± (% of reading + % of range)
 ```
 
-For example: ± (0.5% of reading + 2 counts). This is the *manufacturer specification* for
+For example: ± (0.5% of reading + 0.1% of range). This is the *manufacturer specification* for
 the maximum systematic error. You will use this specification — not the fluctuating digit
 alone — as your formal uncertainty estimate for the partial-derivative and Monte Carlo
 analyses.
@@ -117,37 +109,17 @@ Write these down. They are your primary uncertainty inputs.
 
 ## In-Lab Procedure
 
-### Part 1 — Build and measure
+The procedure has three parts: building and measuring (steps 1–4), uncertainty analysis from the datasheet (steps 5–7), and Monte Carlo simulation in MATLAB (steps 8–9).
 
-1. Build the series circuit using the provided resistor, power supply, and multimeter.
- Record the nominal resistor value and tolerance from its label.
+1. Build the series circuit using the provided resistor, power supply, and multimeter. Record the nominal resistor value and tolerance from its label.
 2. Set the power supply to a target voltage (specified by your lab instructor).
-3. Read and record V and I from the multimeter displays using the fluctuating-digit
- procedure above. Record each reading three times to check for repeatability.
+3. Read and record V and I from the multimeter displays using the fluctuating-digit procedure above. Record each reading three times to check for repeatability.
 4. Compute P three ways from your recorded values. Note the differences.
-
-### Part 2 — Uncertainty from the datasheet
-
-5. Using the manufacturer specifications from the datasheet, compute the uncertainty in V
- and the uncertainty in I.
-6. Apply first-order error propagation (partial derivatives) to compute the uncertainty in
- P for each of the three forms. Show your work: write out the partial derivatives, substitute
- values, and state the result as P ± u_P.
-7. Answer: which form of the power equation is most sensitive to uncertainty in V? In I?
- Where would you spend money on a better instrument if minimizing uncertainty in P was
- the goal?
-
-### Part 3 — Monte Carlo in MATLAB
-
-8. Using the same manufacturer specifications as probability distribution parameters, run a
- Monte Carlo simulation in MATLAB for each of the three power equation forms.
- - Model V and I as independent random variables drawn from distributions consistent with
- the datasheet (Gaussian or uniform — justify your choice).
- - Use at least 10,000 samples.
- - Plot the resulting distribution of P for each form on the same figure with appropriate
- labels and captions.
-9. Compare the Monte Carlo result to your partial-derivative result. Are they consistent?
- If not, explain why they might differ.
+5. Using the manufacturer specifications from the datasheet, compute the uncertainty in V and the uncertainty in I.
+6. Apply first-order error propagation (partial derivatives) to compute the uncertainty in P for each of the three forms. Show your work: write out the partial derivatives, substitute values, and state the result as P ± u_P.
+7. Answer: which form of the power equation is most sensitive to uncertainty in V? In I? Where would you spend money on a better instrument if minimizing uncertainty in P was the goal?
+8. Using the same manufacturer specifications as probability distribution parameters, run a Monte Carlo simulation in MATLAB for each of the three power equation forms. Model V and I as independent random variables drawn from distributions consistent with the datasheet (Gaussian or uniform — justify your choice). Use at least 10,000 samples. Plot the resulting distribution of P for each form on the same figure with appropriate labels and captions.
+9. Compare the Monte Carlo result to your partial-derivative result. Are they consistent? If not, explain why they might differ.
 
 ---
 

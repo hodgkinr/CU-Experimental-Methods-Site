@@ -22,18 +22,47 @@ Those were two separate activities. In Tier 2, they are one. Before you touch an
 your group must develop a predictive model, commit to a prediction, and show it to the
 instructor or TA. Only then do you get on the equipment.
 
-That requirement is not procedural gatekeeping. It is the point. A test engineer who cannot
-predict what the data should look like before the test runs is not prepared to run the test.
-If your prediction is wildly wrong, you need to understand why — before you collect data
-that you will later be unable to interpret. If your prediction is right but your reasoning
-was vague, you got lucky and you know it.
+That requirement is not procedural gatekeeping. It is the point — and the reason goes beyond
+grading. Predicting the data before you collect it is how you catch fundamental problems with
+your experimental setup *before* you waste time running a broken experiment. Consider a
+concrete example: suppose your group is using a differential pressure sensor with an accuracy
+of ±1 kPa to estimate airspeed from a pitot-static probe, where the expected differential
+pressures at your operating condition are on the order of 10 Pa. The sensor simply cannot
+produce meaningful results in that configuration — its uncertainty is two orders of magnitude
+larger than the signal. The correct way to catch this is to predict the data ahead of time:
+run the numbers, propagate the uncertainty, and ask whether your sensor can resolve the
+quantity of interest before you ever touch the equipment. The incorrect way is to pick a
+sensor, run the experiment, stare at the data, and wonder why nothing makes sense — or worse,
+assume the pitot-static probe must be broken and schedule additional run time to repeat an
+experiment that was never going to work.
+
+This is not a hypothetical concern. In industry, time on an experiment is expensive.
+Professionally operated test equipment routinely costs thousands of dollars per hour of
+run time, and that clock runs whether or not your group is prepared. Your employer will
+not accept "we didn't think to check the sensor range" as the explanation for an unusable
+dataset. The habit of building a quantitative prediction before the experiment begins —
+and using that prediction to verify that the experiment is even capable of answering your
+question — is one of the most practically valuable skills you will develop in this course.
+
+A test engineer who cannot predict what the data should look like before the test runs is
+not prepared to run the test. If your prediction is wildly wrong, you need to understand
+why — before you collect data that you will later be unable to interpret. If your prediction
+is right but your reasoning was vague, you got lucky and you know it.
 
 The second thing that is different about Tier 2: after you have run the experiment and
 analyzed the data, you are required to answer a question that Tier 1 only touched on:
 **how would you improve this experiment?** This is not a reflection prompt. It is a
-graded deliverable with the same analytical weight as the uncertainty analysis. It is the
-bridge between using someone else's experimental infrastructure and designing your own —
-the bridge between E2 and E3.
+graded deliverable with the same analytical weight as the uncertainty analysis.
+
+This improvement question is also the bridge to E3, where you will design your own
+experiment from scratch. The central questions of experimental design are: what are you
+trying to achieve, and how do you know your experiment is designed to give you that? Two
+of the most powerful mental constructs for building that design intuition are exactly what
+this course has been training: reverse-engineering an existing experiment to understand
+what makes it work (the core learning outcome of the Tier 1 lab), and critically evaluating
+an existing experiment to identify what would make it better (the core learning outcome of
+the Tier 2 lab). Both are prerequisites to the harder task of designing something from
+nothing.
 
 ---
 
@@ -48,6 +77,21 @@ for your particular experiment.
 Read both documents before your pre-lab prediction session. If you have not read the
 experiment-specific lab document before attempting the prediction, you will not be able
 to produce a defensible prediction — and you will not be cleared to access the equipment.
+
+**Come prepared — this is not optional.** There are two reasons, both real.
+
+First, the practical constraint: this is a large class with limited equipment and limited
+lab time. If your group is not ready to run the experiment during your allocated slot, we
+cannot hold the line for you out of fairness to your classmates and to the paid personnel
+who staff the lab. The slot will move on.
+
+Second, and more important for your professional development: in industry, lack of
+preparation is not an acceptable explanation for a failed experiment. Test time on
+professional-grade equipment is expensive — often thousands of dollars per hour or more
+once you account for the equipment, the facility, and the personnel. Your future employer
+will not absorb that cost because a team member did not read the manual in advance. The
+habit of thorough pre-experiment preparation is not a course requirement — it is an
+employability skill.
 
 ---
 
@@ -205,35 +249,19 @@ models than the P=IV circuit of Lab 1 — multiple inputs, nonlinear relationshi
 possible sources of error. Your uncertainty analysis must reflect that complexity.
 
 Required:
-1. **Partial derivative propagation** for the primary derived quantity — derive the
- uncertainty expression, substitute your measured values and instrument specifications,
- and compute u for your primary output. Show the derivation.
-2. **Dominant error source ranking** — rank the top three sources of uncertainty by
- contribution to total uncertainty. Justify the ranking numerically.
-3. **Monte Carlo simulation in MATLAB** — using the same instrument specifications as
- input distribution parameters, run a Monte Carlo simulation (minimum 10,000 samples)
- for your primary derived quantity. Plot the resulting distribution. Compare the Monte
- Carlo result to your partial-derivative result numerically — state whether they are
- consistent and explain any discrepancy.
-4. **Interpretation** — does your uncertainty bound allow you to evaluate your acceptance
- criterion? That is: is the experiment sensitive enough, given the instrument suite, to
- distinguish model agreement from disagreement for the stated intended use? If not, what
- would need to change?
+1. **Partial derivative propagation** for the primary derived quantity — derive the uncertainty expression, substitute your measured values and instrument specifications, and compute u for your primary output. Show the derivation.
+2. **Dominant error source ranking** — rank the top three sources of uncertainty by contribution to total uncertainty. Justify the ranking numerically.
+3. **Monte Carlo simulation in MATLAB** — using the same instrument specifications as input distribution parameters, run a Monte Carlo simulation (minimum 10,000 samples) for your primary derived quantity. Plot the resulting distribution. Compare the Monte Carlo result to your partial-derivative result numerically — state whether they are consistent and explain any discrepancy.
+4. **Interpretation** — does your uncertainty bound allow you to evaluate your acceptance criterion? That is: is the experiment sensitive enough, given the instrument suite, to distinguish model agreement from disagreement for the stated intended use? If not, what would need to change?
 
 ### 3C — Calibration status review
 
 Using the calibration documentation you recorded during the lab session, answer the
 following questions in 1–3 paragraphs:
 
-1. Are the primary sensors within their calibration interval? State the calibration date,
- the required interval, and whether the current status is compliant.
-2. If the calibration interval has elapsed — or if it is approaching — what is the
- practical consequence for your result? Propagate the calibration uncertainty (from the
- instrument documentation) into your primary output. Does the out-of-calibration
- condition make your result unusable for your stated intended use, or does the calibration
- uncertainty remain small relative to your total uncertainty budget?
-3. State a conclusion: is the calibration status of this experiment adequate for the
- intended use, or should recalibration be performed before the next use?
+1. Are the primary sensors within their calibration interval? State the calibration date, the required interval, and whether the current status is compliant.
+2. If the calibration interval has elapsed — or if it is approaching — what is the practical consequence for your result? Propagate the calibration uncertainty (from the instrument documentation) into your primary output. Does the out-of-calibration condition make your result unusable for your stated intended use, or does the calibration uncertainty remain small relative to your total uncertainty budget?
+3. State a conclusion: is the calibration status of this experiment adequate for the intended use, or should recalibration be performed before the next use?
 
 This is an analysis section, not a lab activity. You are evaluating whether the existing
 calibration is sufficient — not performing a new calibration.
