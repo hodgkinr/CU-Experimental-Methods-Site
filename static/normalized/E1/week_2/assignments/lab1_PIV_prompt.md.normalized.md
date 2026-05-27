@@ -118,8 +118,8 @@ The procedure has three parts: building and measuring (steps 1–4), uncertainty
 5. Using the manufacturer specifications from the datasheet, compute the uncertainty in V and the uncertainty in I.
 6. Apply first-order error propagation (partial derivatives) to compute the uncertainty in P for each of the three forms. Show your work: write out the partial derivatives, substitute values, and state the result as P ± u_P.
 7. Answer: which form of the power equation is most sensitive to uncertainty in V? In I? Where would you spend money on a better instrument if minimizing uncertainty in P was the goal?
-8. Using the same manufacturer specifications as probability distribution parameters, run a Monte Carlo simulation in MATLAB for each of the three power equation forms. Model V and I as independent random variables drawn from distributions consistent with the datasheet (Gaussian or uniform — justify your choice). Use at least 10,000 samples. Plot the resulting distribution of P for each form on the same figure with appropriate labels and captions.
-9. Compare the Monte Carlo result to your partial-derivative result. Are they consistent? If not, explain why they might differ.
+8. Using the same manufacturer specifications as probability distribution parameters, run a Monte Carlo simulation in MATLAB for each of the three power equation forms. Model V and I as independent random variables drawn from distributions consistent with the datasheet. Two defensible choices are: (a) a **uniform distribution** spanning [measured value − u, measured value + u], which treats the spec as a hard tolerance bound with no assumed shape; or (b) a **Gaussian distribution** with σ = u/2, which treats the spec as a ±2σ (approximately 95%) coverage bound. See W2_L2 slide 7 for the reasoning behind each choice. **State your distribution choice explicitly in your report and justify it in one sentence.** Use at least 10,000 samples. Plot the resulting distribution of P for each form on the same figure with appropriate labels and captions.
+9. Compare the Monte Carlo result to your partial-derivative result. Are they consistent? If not, explain why they might differ. *Note: if you used σ = u/2 in your Gaussian simulation (treating the spec as a ±2σ bound), expect your Monte Carlo output standard deviation to be approximately half your partial-derivative δP. This is not an error — it reflects the σ-convention you chose. State your convention explicitly and check consistency in Section 6 of your report.*
 
 ---
 
@@ -154,7 +154,9 @@ Where would you invest in a better instrument, and why?
 Include your MATLAB figure(s) showing the distributions of P for each equation form.
 Each figure must have a title, labeled axes with units, a legend, and a caption that states
 the key takeaway in one sentence. Include the key MATLAB code (the simulation loop and
-distribution plot — not every setup line).
+distribution plot — not every setup line). **State what distribution you used for V and I
+(Gaussian or uniform), and justify your choice in one sentence. State the σ-convention you
+applied (e.g., σ = u or σ = u/2) so the comparison in Section 6 is unambiguous.**
 
 **6. Comparison: partial derivatives vs. Monte Carlo**
 Are the results consistent? State the comparison numerically — do not just say "yes they
