@@ -330,6 +330,10 @@ tell you about the physical phenomena, the models, or the measurement approach t
 experiment alone could tell you? If you were designing a follow-on test, what would you
 change and why? 2–3 minutes for the pair.
 
+*One useful starting point for Segment 3: what assumption does your experiment’s model make
+that the other experiment’s model also makes — and where do those assumptions diverge?
+The most interesting synthesis often lives in that gap.*
+
 ### Group of 4 (if applicable)
 
 If resources and enrollment allow, your pair will be combined with another pair that worked
