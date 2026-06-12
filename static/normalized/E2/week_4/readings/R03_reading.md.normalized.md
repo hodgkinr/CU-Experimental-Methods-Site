@@ -23,7 +23,7 @@ A credible validation report documents that the model was committed before the d
 
 ## Category 2: Residual Analysis
 
-A credible validation report presents residuals explicitly — not just the overlay of prediction and data.
+A credible validation report presents residuals explicitly, not just the overlay of prediction and data.
 
 - Are residuals plotted versus the independent variable (not just shown as a percentage error)?
 - Is the shape of the residual pattern described (random vs. systematic)?
@@ -82,7 +82,7 @@ A credible report uses confidence intervals correctly and interprets them precis
 A credible improvement proposal is grounded in the data and uncertainty analysis, not generic.
 
 - Does the proposal name a specific sensor, parameter, model term, or test condition?
-- Is the proposal motivated by something in the data — a residual trend, a dominant uncertainty source, a calibration gap?
+- Is the proposal motivated by something in the data: a residual trend, a dominant uncertainty source, a calibration gap?
 - Does the proposal estimate the improvement quantitatively (even roughly)?
 
 **Failure mode to look for:** "More trials would reduce uncertainty." This is always true and says nothing. A credible proposal is: "The load cell contributes 68% of the total uncertainty budget. Replacing the LCL-010 (u_cal = ±0.12 N) with a higher-precision alternative (estimated u_cal = ±0.03 N) would reduce the combined uncertainty by approximately 40%, which is sufficient to resolve the acceptance criterion at the current model-data discrepancy of 0.18 N."
