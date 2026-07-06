@@ -358,10 +358,13 @@ just "the model agreed."
 
 ### Format and submission
 
-- Markdown or PDF submitted to Canvas as a group.
-- Figures embedded in the document.
+- Format: LaTeX. Submit a single `.zip` archive containing your LaTeX source (`.tex`
+ file(s) and any figure files) and the compiled PDF, submitted to Canvas as a group.
+- Figures embedded in the compiled PDF.
 - Include a brief author contribution statement at the end — one sentence per group member
  describing their primary contribution.
+- See **E0 Supplemental: Getting Started with Overleaf and LaTeX** for setting up a shared
+ Overleaf project for group collaboration.
 - See Canvas for the due date.
 
 ---
@@ -428,6 +431,7 @@ presentation, nice figures" receives no credit.
 - Experiment-specific lab document (provided separately for your assigned experiment)
 - Quad chart PowerPoint template — Canvas
 - E0 Supplemental: AI Tutor Setup and Practice
+- E0 Supplemental: Getting Started with Overleaf and LaTeX
 
 ---
 
