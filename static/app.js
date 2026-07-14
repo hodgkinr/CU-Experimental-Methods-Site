@@ -1,4 +1,5 @@
 const STORAGE_KEY = "forwardLmsQuizScores";
+let conceptQuizPreviewCache = null;
 
 function loadScores() {
   try {
@@ -121,9 +122,129 @@ function setupDashboard() {
   });
 }
 
+function getAssetBaseUrl() {
+  const appScript = document.querySelector('script[src$="app.js"]');
+  if (!appScript) return new URL("./", window.location.href);
+  return new URL("./", appScript.src);
+}
+
+function getPageContext() {
+  const node = document.getElementById("bobpe-page-context");
+  if (!node) return null;
+  try {
+    return JSON.parse(node.textContent || "{}");
+  } catch (_error) {
+    return null;
+  }
+}
+
+async function loadConceptQuizPreviews() {
+  if (conceptQuizPreviewCache) return conceptQuizPreviewCache;
+  const response = await fetch(new URL("concept_quizzes_preview.json", getAssetBaseUrl()));
+  if (!response.ok) {
+    throw new Error(`Failed to load concept quiz previews: ${response.status}`);
+  }
+  conceptQuizPreviewCache = await response.json();
+  return conceptQuizPreviewCache;
+}
+
+function createQuestionCard(question, index) {
+  const item = document.createElement("li");
+  item.className = "concept-preview-item";
+
+  const header = document.createElement("div");
+  header.className = "concept-preview-item-header";
+
+  const number = document.createElement("span");
+  number.className = "concept-preview-number";
+  number.textContent = `Q${index + 1}`;
+
+  const badge = document.createElement("span");
+  badge.className = "concept-preview-badge";
+  badge.textContent = question.type === "multiple_choice" ? "Multiple Choice" : "Open Response";
+
+  header.append(number, badge);
+
+  const prompt = document.createElement("p");
+  prompt.className = "concept-preview-prompt";
+  prompt.textContent = question.prompt;
+
+  item.append(header, prompt);
+
+  if (question.options?.length) {
+    const options = document.createElement("ol");
+    options.className = "concept-preview-options";
+    options.type = "A";
+    question.options.forEach((optionText) => {
+      const option = document.createElement("li");
+      option.textContent = optionText;
+      options.appendChild(option);
+    });
+    item.appendChild(options);
+  }
+
+  return item;
+}
+
+function renderConceptQuizPreview(preview) {
+  const pageShell = document.querySelector(".page-shell");
+  const moduleGrid = document.querySelector(".module-overview-grid");
+  const sequenceCard = document.querySelector(".module-page-list")?.closest(".content-card");
+  if (!pageShell || !moduleGrid || !sequenceCard) return;
+
+  const existing = document.querySelector("[data-concept-preview]");
+  if (existing) existing.remove();
+
+  const section = document.createElement("section");
+  section.className = "content-card concept-preview-card";
+  section.dataset.conceptPreview = "true";
+
+  const title = document.createElement("h2");
+  title.textContent = "Questions to Think Through Before Class";
+
+  const intro = document.createElement("p");
+  intro.className = "concept-preview-intro";
+  intro.textContent = "These are possible in-class concept questions for this week. They are here to help you think ahead; answers are intentionally hidden.";
+
+  const focus = document.createElement("p");
+  focus.className = "concept-preview-focus";
+  focus.innerHTML = `<strong>${preview.week_label} focus:</strong> ${preview.week_focus}`;
+
+  const list = document.createElement("ol");
+  list.className = "concept-preview-list";
+  preview.questions.forEach((question, index) => {
+    list.appendChild(createQuestionCard(question, index));
+  });
+
+  section.append(title, intro, focus, list);
+  pageShell.insertBefore(section, sequenceCard);
+
+  const metaList = document.querySelector(".meta-list");
+  if (metaList && !metaList.querySelector("[data-concept-count]")) {
+    const row = document.createElement("div");
+    row.dataset.conceptCount = "true";
+    row.innerHTML = `<dt>Concept questions</dt><dd>${preview.questions.length}</dd>`;
+    metaList.appendChild(row);
+  }
+}
+
+async function setupConceptQuizPreviews() {
+  const context = getPageContext();
+  if (!context || context.source_type !== "module_index" || !context.module_id) return;
+  try {
+    const previews = await loadConceptQuizPreviews();
+    const preview = previews[context.module_id];
+    if (!preview) return;
+    renderConceptQuizPreview(preview);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   setupQuizzes();
   renderModuleSummaries();
   renderResultsPage();
   setupDashboard();
+  setupConceptQuizPreviews();
 });

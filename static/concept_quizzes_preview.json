@@ -1,0 +1,442 @@
+{
+  "e1-week_1": {
+    "week_label": "Week 1",
+    "week_focus": "AMVF, verification vs. validation, measurement vs. inference, and formal experiment design.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "In the course framing, what is the main job of validation?",
+        "options": [
+          "Checking whether the experiment was performed safely",
+          "Checking whether the equations were solved correctly",
+          "Checking whether the model is an adequate representation of the real physical system",
+          "Checking whether the sensor was calibrated correctly"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which statement best captures the difference between what a sensor measures and what an engineer often cares about?",
+        "options": [
+          "A sensor always measures the final engineering quantity directly.",
+          "A sensor measures a raw signal, and the engineering quantity is often inferred through a calibration or model.",
+          "A sensor only measures noise, and the engineer removes it later.",
+          "A sensor and a model are unrelated parts of the workflow."
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which hypothesis is the most testable in the Week 1 sense?",
+        "options": [
+          "The system will probably change when we run the experiment.",
+          "We expect interesting behavior.",
+          "If input voltage is increased from 3 V to 9 V while resistance is held constant, measured power will increase by a factor of nine because power scales with V^2/R.",
+          "The data should make sense if we do the procedure correctly."
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "Explain the difference between verification and validation in your own words, and give one short engineering-style example of each."
+      },
+      {
+        "type": "open_response",
+        "prompt": "A team says their sensor reads force directly. Based on Week 1, what would you want to ask before accepting that claim?"
+      }
+    ]
+  },
+  "e1-week_2": {
+    "week_label": "Week 2",
+    "week_focus": "Variability, measurement error, uncertainty propagation, Monte Carlo reasoning, and correct engineering result statements.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "Which statement best matches the Week 2 distinction?",
+        "options": [
+          "Variability, measurement error, and uncertainty all mean the same thing.",
+          "Variability is physical scatter, measurement error is instrument-related deviation, and uncertainty is the quantified bound on what we do not know about the reported result.",
+          "Uncertainty is only used when the instrument is broken.",
+          "Measurement error disappears if you repeat the measurement enough times."
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Why can two algebraically equivalent power equations produce different uncertainty estimates?",
+        "options": [
+          "Because one of the equations must be physically wrong",
+          "Because uncertainty propagation depends on which measured inputs appear in the chosen form and how sensitive the result is to each input",
+          "Because engineers are free to choose whichever result they like better",
+          "Because uncertainty only applies to nonlinear equations"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which result is written in the most appropriate Week 2 engineering form?",
+        "options": [
+          "The answer is 4.98.",
+          "The power is about 5 watts, probably.",
+          "P = 4.98 +/- 0.12 W based on partial-derivative propagation.",
+          "The power should be close to what the meter said."
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "Suppose your Monte Carlo result and your partial-derivative result are close but not identical. Based on Week 2, how should you interpret that?"
+      },
+      {
+        "type": "open_response",
+        "prompt": "In the P=IV lab, why might one form of the power equation lead you to care more about improving the current measurement than the resistance measurement?"
+      }
+    ]
+  },
+  "e1-week_3": {
+    "week_label": "Week 3",
+    "week_focus": "Validation metrics, calibration vs. validation, multi-sensor comparison, residuals, and critique quality.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "Why is visual overlap on a plot alone not enough to support an engineering comparison claim?",
+        "options": [
+          "Because engineers are not allowed to use plots",
+          "Because agreement should be argued using a defined metric and uncertainty-bounded reasoning, not just by eyeballing the figure",
+          "Because every plot must have a regression line",
+          "Because visual inspection is only useful in chemistry"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which statement best captures the Week 3 distinction between calibration and validation?",
+        "options": [
+          "Calibration and validation are the same thing with different names",
+          "Calibration tests whether a model is predictive, while validation adjusts a sensor to a reference",
+          "Calibration is a measurement activity that aligns sensor output to a reference, while validation tests whether a model adequately predicts reality",
+          "Validation is only needed if calibration fails"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "If two sensors measuring the same quantity disagree outside the accepted comparison bound, what is the best Week 3 conclusion?",
+        "options": [
+          "One sensor must be lying, so delete that dataset immediately",
+          "The disagreement is evidence that needs explanation, using uncertainty, sensor behavior, or model limitations",
+          "The comparison is irrelevant because two sensors never match perfectly",
+          "Validation is complete because two sensors were used"
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "What does a residual pattern tell you that a single overall error number might not tell you?"
+      },
+      {
+        "type": "open_response",
+        "prompt": "If you were critiquing a sample lab report in the Week 3 style, what four things should your critique try to identify?"
+      }
+    ]
+  },
+  "e1-week_4": {
+    "week_label": "Week 4",
+    "week_focus": "Reading models to design tests, ranking error sources, sensor selection logic, and integrating the full Phase I pipeline.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "If a model output has to be known within a certain tolerance, what is the most useful Week 4 design move?",
+        "options": [
+          "Start collecting data and hope the uncertainty is small enough",
+          "Work backward from the output requirement to determine what measurement quality the inputs must have",
+          "Ignore sensor choice because analysis can fix it later",
+          "Replace the model with a qualitative description"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Why is ranking dominant error sources useful?",
+        "options": [
+          "It tells you where improvement effort is most likely to matter",
+          "It proves the model is valid",
+          "It removes the need for uncertainty propagation",
+          "It guarantees all sensors will agree"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which statement best reflects the Week 4 full-pipeline mindset?",
+        "options": [
+          "Experimental design, measurement, uncertainty analysis, and model comparison are separate chores that happen to be in the same report",
+          "The report is a single argument from setup to conclusion, and each section depends on the analytical work before it",
+          "The most important section is whichever one has the nicest figure",
+          "Once data is collected, the AMVF is no longer useful"
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "Suppose one error term dominates your uncertainty budget by a wide margin. What does Week 4 suggest you should do with that information?"
+      },
+      {
+        "type": "open_response",
+        "prompt": "In your own words, what does it mean to say that the Phase I report is a single integrated argument?"
+      }
+    ]
+  },
+  "e1-week_5": {
+    "week_label": "Week 5",
+    "week_focus": "Prediction before data release, committed reasoning, discrepancy interpretation, and cross-prediction.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "Why does the course require a prediction memo before students see the data?",
+        "options": [
+          "To make the assignment longer",
+          "To force students to commit to reasoning before hindsight can reshape the story",
+          "To prevent any use of uncertainty analysis",
+          "To guarantee that every prediction is correct"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which of the following is the strongest prediction in the Week 5 sense?",
+        "options": [
+          "The result will probably be close.",
+          "The sensor should give reasonable data.",
+          "The measured response should peak near X with uncertainty about Y, and we will consider agreement acceptable if the data falls within the committed bound.",
+          "We will know whether the model is good after we look at the data."
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "If a prediction is wrong but the reasoning was careful and committed in advance, what is the best Week 5 interpretation?",
+        "options": [
+          "The work was useless",
+          "The student should hide the prediction and rewrite it",
+          "The discrepancy is valuable because it can reveal model limitations or missing physics",
+          "The experiment automatically failed"
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "Why is predicting someone else’s experiment from specs a useful training exercise, even though it is not the same as running the experiment yourself?"
+      },
+      {
+        "type": "open_response",
+        "prompt": "A team says, “Our prediction was off, but that just means the experiment was bad.” What would Week 5 push you to ask next?"
+      }
+    ]
+  },
+  "e2-week_1": {
+    "week_label": "Week 6",
+    "week_focus": "Prediction before exposure, postdiction, intended use, formal response features, and pre-lab commitment.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "Which statement best captures the Week 6 problem with postdiction?",
+        "options": [
+          "It always produces mathematically impossible models",
+          "It lets the analyst reshape the explanation after seeing the data, which weakens the credibility of the validation claim",
+          "It only happens in biology experiments",
+          "It means the experiment should never be repeated"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "In Tier 2, why does intended use matter before the experiment runs?",
+        "options": [
+          "It tells you what color to make the plots",
+          "It defines what counts as a meaningful prediction and what level of agreement matters for the experiment’s purpose",
+          "It replaces the need for a model",
+          "It guarantees the calibration is current"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which item belongs in a defensible pre-lab prediction document?",
+        "options": [
+          "A rewritten explanation after seeing the data",
+          "A clear acceptance criterion stated before data collection",
+          "A promise to adjust the model until it matches the results",
+          "A list of everyone’s favorite plotting styles"
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "Explain why “the result should look reasonable” is not an adequate Week 6 prediction."
+      },
+      {
+        "type": "open_response",
+        "prompt": "What is the value of naming an anomalous data pattern before the experiment runs?"
+      }
+    ]
+  },
+  "e2-week_2": {
+    "week_label": "Week 7",
+    "week_focus": "Sampling, aliasing, signal bandwidth, anti-aliasing filters, and DAQ justification.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "What is aliasing in the Week 7 sense?",
+        "options": [
+          "Random noise caused by a broken sensor",
+          "High-frequency signal content folding into a false lower-frequency signal because the sampling rate is too low",
+          "A plotting mistake caused by bad axis labels",
+          "Any disagreement between a model and experiment"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Signal bandwidth is primarily a property of:",
+        "options": [
+          "The physical phenomenon being measured",
+          "The font size on the DAQ screen",
+          "The student’s preferred spreadsheet format",
+          "The color of the sensor cable"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Why must anti-aliasing happen before the analog-to-digital conversion?",
+        "options": [
+          "Because once aliased data is sampled, the false low-frequency content is already inside the recorded dataset",
+          "Because digital filters always increase noise",
+          "Because analog components are cheaper than digital ones",
+          "Because MATLAB cannot read filtered data"
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "Why is choosing a sampling rate a modeling commitment rather than just a technical setting?"
+      },
+      {
+        "type": "open_response",
+        "prompt": "A dataset shows a clean 120 Hz oscillation. Based on Week 7 alone, why should you still be cautious before concluding the physical system truly contains a 120 Hz mode?"
+      }
+    ]
+  },
+  "e2-week_3": {
+    "week_label": "Week 8",
+    "week_focus": "Model adequacy, residual taxonomy, calibration status review, and experimentally informed model updates.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "If residuals show a systematic pattern instead of random scatter, what is the strongest Week 8 inference?",
+        "options": [
+          "The pattern is unimportant if the plot looks nice",
+          "The model or setup may be missing a structured physical effect, not just showing random noise",
+          "Residuals should always be ignored after calibration",
+          "The data must be deleted"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which statement best captures calibration status review?",
+        "options": [
+          "If the instrument turned on, calibration status is irrelevant",
+          "Calibration status review asks whether the instrument’s calibration documentation, interval, and uncertainty support the credibility of the measurement claim",
+          "Calibration status review proves the model is valid",
+          "Calibration status review replaces uncertainty analysis"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which is the best example of an experimentally informed model update?",
+        "options": [
+          "The data was noisy, so we will keep the same model and say the experiment went fine.",
+          "The residual pattern suggests the model is missing a boundary-condition effect, so the next model revision should explicitly include that effect.",
+          "We changed the plot color and the model looks better.",
+          "Calibration and validation are the same, so no update is needed."
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "What is the difference between saying “the model is wrong” and saying “the residual pattern suggests model-form error”?"
+      },
+      {
+        "type": "open_response",
+        "prompt": "Why doesn’t a current calibration sticker automatically settle the validation question?"
+      }
+    ]
+  },
+  "e2-week_4": {
+    "week_label": "Week 9",
+    "week_focus": "Statistical vs. engineering significance, regression limits, confidence intervals, and data-grounded improvement proposals.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "Which statement best reflects Week 9’s warning about R^2?",
+        "options": [
+          "A high R^2 proves the model is physically correct",
+          "A high R^2 means the model explains variance in the fitted data, but it does not by itself prove the model is physically adequate",
+          "R^2 is only useful for finance",
+          "R^2 replaces residual analysis"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which statement best captures the difference between statistical significance and engineering significance?",
+        "options": [
+          "They are always identical",
+          "Statistical significance concerns whether a difference is distinguishable in the data, while engineering significance concerns whether that difference matters for the intended use or requirement",
+          "Engineering significance only matters in civil engineering",
+          "Statistical significance only matters when a model fails"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "What is the strongest Week 9 reason to use Monte Carlo for a multi-variable system?",
+        "options": [
+          "It avoids having to think about uncertainty sources",
+          "It helps propagate multiple uncertain inputs through the model and examine the resulting output distribution, including cases that are awkward for simple closed-form reasoning",
+          "It guarantees the prediction will match the experiment",
+          "It removes the need to interpret residuals"
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "A comparison is statistically different, but the gap is still inside the allowed engineering tolerance for the intended use. How should you describe that result?"
+      },
+      {
+        "type": "open_response",
+        "prompt": "Why is a data-grounded improvement proposal stronger than a generic suggestion like “use better sensors”?"
+      }
+    ]
+  },
+  "e2-week_5": {
+    "week_label": "Week 10",
+    "week_focus": "Quad chart communication, defending analysis choices, peer review quality, and transition from improving existing experiments to designing new ones.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "What is the main purpose of the quad chart presentation in Week 10?",
+        "options": [
+          "To show as many equations as possible on one slide",
+          "To communicate the full prediction-to-outcome logic, uncertainty analysis, and improvement argument in a compact, defensible format",
+          "To avoid answering questions from the audience",
+          "To replace the need for a group report"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "What makes a strong peer review comment in the Week 10 sense?",
+        "options": [
+          "Nice job",
+          "This was confusing",
+          "A specific comment tied to the technical content, explaining what is correct, what is weak or missing, and what improvement would strengthen the work",
+          "A comment that only focuses on slide colors"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Why is E2 a bridge to E3?",
+        "options": [
+          "Because after E2, the course no longer uses models",
+          "Because E2 trains students to critique and improve existing experiments, which supports the later task of designing original experiments from scratch",
+          "Because E3 is only about presentation style",
+          "Because E2 removes the need for prediction"
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "If someone challenges one of your presentation conclusions during the Q&A, what does Week 10 suggest you should defend first: the conclusion itself, the evidence behind it, or something else?"
+      },
+      {
+        "type": "open_response",
+        "prompt": "In one short paragraph, explain how the course’s idea of “good critique” is different from just being negative."
+      }
+    ]
+  }
+}

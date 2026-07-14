@@ -241,6 +241,78 @@ a {
   font-size: 0.9rem;
 }
 
+.concept-preview-card {
+  background:
+    linear-gradient(135deg, rgba(207, 184, 124, 0.16), rgba(255, 255, 255, 0.96)),
+    var(--cu-card);
+}
+
+.concept-preview-intro,
+.concept-preview-focus {
+  margin: 0 0 0.85rem;
+}
+
+.concept-preview-focus {
+  color: #49453b;
+}
+
+.concept-preview-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.concept-preview-item {
+  padding: 1rem 1.05rem;
+  border-radius: 18px;
+  border: 1px solid rgba(162, 164, 163, 0.28);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.concept-preview-item-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.6rem;
+}
+
+.concept-preview-number,
+.concept-preview-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.concept-preview-number {
+  background: rgba(31, 31, 31, 0.88);
+  color: white;
+}
+
+.concept-preview-badge {
+  background: rgba(207, 184, 124, 0.28);
+  color: #473a18;
+}
+
+.concept-preview-prompt {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.concept-preview-options {
+  margin: 0.8rem 0 0 1.4rem;
+  padding-left: 0.5rem;
+  display: grid;
+  gap: 0.45rem;
+  color: #525754;
+}
+
 .lesson-body {
   line-height: 1.7;
 }
