@@ -246,5 +246,4 @@ document.addEventListener("DOMContentLoaded", () => {
   renderModuleSummaries();
   renderResultsPage();
   setupDashboard();
-  setupConceptQuizPreviews();
 });

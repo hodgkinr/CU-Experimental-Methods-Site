@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bouncing Ball — Coefficient of Restitution</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../chat_widget.css">
+  <script defer src="../../chat_widget.js"></script>
+  <script defer src="../../app.js"></script>
+</head>
+<body>
+  
+    
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../../index.html">Aerospace Experimental Methods</a>
+        <nav class="top-nav">
+          <a href="../../index.html">Home</a>
+          <a href="../../syllabus.html">Syllabus</a>
+          <a href="../../schedule.html">Schedule</a>
+          <a class="is-current" href="../../labs.html">Labs</a>
+          <a href="../../results.html">Results</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main class="page-shell">
+      <nav class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../labs/tier1_candidates.html">Tier 1 Candidates</a>
+        <span>Bouncing Ball — Coefficient of Restitution</span>
+      </nav>
+      <section class="hero compact">
+        <p class="eyebrow">Tier 1 Candidate</p>
+        <h1>Bouncing Ball — Coefficient of Restitution</h1>
+        <p class="lead">Measure the coefficient of restitution of a ball using multiple methods including video tracking.</p>
+      </section>
+      <section class="experiment-scaffold">
+        <h2>Lab Content</h2>
+        <p class="muted" style="margin-bottom:1rem">Lab content compiled from source materials. Sections marked as incomplete will be updated as additional source files become available.</p>
+        <div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure — Bouncing Ball: Coefficient of Restitution</h1>
+<p><strong>Lab:</strong> Bouncing Ball — Coefficient of Restitution <strong>Source:</strong> ASEN 2003 Lab 2, CU Boulder (2014 and 2018/2019 versions) <strong>Compilation bin:</strong> procedure/</p>
+<hr>
+<h2>Safety</h2>
+<p>[SAFETY: No safety notes in source. Experiment involves dropping balls from hand height onto hard surfaces. No special safety requirements anticipated — instructor should confirm before lab delivery.]</p>
+<hr>
+<h2>Equipment</h2>
+<p>Students select their own measurement instruments as part of the experimental design task. The following represent the tools described or implied in the source documents:</p>
+<ul>
+<li>Ping-pong ball (provided)</li>
+<li>A second ball of student&#x27;s choosing (ping-pong or other)</li>
+<li>Measuring instrument for height (ruler, meter stick — student selects)</li>
+<li>Timing instrument (stopwatch — student selects; or extracted from video)</li>
+<li>Cell phone camera (for video tracking trials)</li>
+<li>Hard, flat horizontal surface for bouncing</li>
+</ul>
+<p><strong>Software (video tracking only):</strong></p>
+<ul>
+<li>Tracker (free): <a href="https://physlets.org/tracker/">https://physlets.org/tracker/</a> — requires Java 1.6 or higher</li>
+<li>Logger Pro (ITLL computers only — not available for personal installation)</li>
+</ul>
+<p>[SETUP_PHOTO NEEDED: Ball height vs. time diagram showing h0, hn, hn-1, tn, tn-1, ts — this is Figure 1 in both source versions; essential for understanding variable definitions before any measurement begins.]</p>
+<p>[SETUP_PHOTO NEEDED: Example of manual height measurement setup — ruler, ball, and drop height.]</p>
+<p>[SETUP_PHOTO NEEDED: Example of video tracking setup with phone camera positioned to capture full bounce sequence.]</p>
+<hr>
+<h2>Part 1 — Experiment Overview</h2>
+<h3>What Is Being Measured</h3>
+<p>The coefficient of restitution <code>e</code> characterizes how much kinetic energy is retained after an impact. This lab measures <code>e</code> for a bouncing ball using three independent methods derived from first principles. The three methods differ in which physical quantities are measured:</p>
+<ul>
+<li><strong>Method 1 (Height of Bounce):</strong> Measure heights of successive bounces.</li>
+<li><strong>Method 2 (Time of Bounce):</strong> Measure the duration of adjacent individual bounces.</li>
+<li><strong>Method 3 (Time to Stop):</strong> Measure the total time from first impact until the ball stops</li>
+</ul>
+<p>bouncing, plus the initial drop height.</p>
+<p>Each method yields an independent estimate of <code>e</code>. Students derive the governing equations for all three methods before running any experiments.</p>
+<h3>Ball Characteristics to Record</h3>
+<p>Before any trials, measure and record the following for each ball used:</p>
+<ul>
+<li>Mass (g)</li>
+<li>Diameter (mm or cm)</li>
+<li>Material and surface type (rubber, plastic, etc.)</li>
+<li>Any visible deformities or wear</li>
+</ul>
+<p>Record these for both the primary ping-pong ball and the second ball of your choosing.</p>
+<h3>Data Collection Requirements Summary</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Activity</th><th>Ball</th><th>Method</th><th>Trials</th></tr></thead><tbody><tr><td>Preliminary experiments</td><td>Ping-pong</td><td>Method 1</td><td>≥ 10</td></tr><tr><td>Preliminary experiments</td><td>Ping-pong</td><td>Method 2</td><td>≥ 10</td></tr><tr><td>Preliminary experiments</td><td>Ping-pong</td><td>Method 3</td><td>≥ 10</td></tr><tr><td>Video tracking</td><td>Ping-pong</td><td>All three (from video)</td><td>3</td></tr><tr><td>Refined best method</td><td>Ping-pong</td><td>Best method (your choice)</td><td>≥ 10</td></tr><tr><td>Second ball</td><td>Student-chosen</td><td>Best method</td><td>10</td></tr></tbody></table></div>
+<hr>
+<h2>Part 2 — Guidance for Designing Each Measurement Method</h2>
+<p>This lab does not prescribe a specific measurement procedure. Designing a measurement procedure for each method is a student task. The guidance below describes what must be measured and what factors to consider — not how to measure it.</p>
+<h3>Method 1: Height of Bounce</h3>
+<p><strong>What to measure:</strong> The height of the ball&#x27;s center of mass at its peak immediately after each bounce — i.e., the successive bounce heights h₁, h₂, ..., hₙ relative to the drop height h₀.</p>
+<p><strong>Possible approaches:</strong></p>
+<ul>
+<li>Mark initial drop height h₀ on a wall or ruler. After each bounce, observe or record peak</li>
+</ul>
+<p>height visually or from video frame-by-frame.</p>
+<ul>
+<li>Use a meter stick mounted vertically near the bounce point for visual reference.</li>
+<li>Record on video and extract heights frame by frame in Tracker or Logger Pro.</li>
+</ul>
+<p><strong>Key error sources to consider:</strong></p>
+<ul>
+<li>Parallax error when reading height from the side</li>
+<li>Difficulty identifying the exact moment of peak height</li>
+<li>Ruler placement and resolution</li>
+<li>Ball is not always released from exactly h₀</li>
+</ul>
+<p><strong>What constitutes one trial:</strong> One drop from h₀ with recording of all bounce heights until the ball effectively stops. Each trial yields one value of <code>e</code> per bounce pair (or the cumulative estimate using h₀ and hₙ).</p>
+<h3>Method 2: Time of Bounce</h3>
+<p><strong>What to measure:</strong> The duration of each individual bounce — from impact to impact — for adjacent bounces tₙ and tₙ₋₁.</p>
+<p><strong>Possible approaches:</strong></p>
+<ul>
+<li>Use a stopwatch or timer with manual triggering at each impact (audio cue from bounce sound</li>
+</ul>
+<p>is useful; visual trigger is harder).</p>
+<ul>
+<li>Record on video and extract impact times from frame timestamps.</li>
+<li>Use audio recording to identify impact events with higher time resolution.</li>
+</ul>
+<p><strong>Key error sources to consider:</strong></p>
+<ul>
+<li>Human reaction time dominates when using a stopwatch — this is a major error source</li>
+<li>Video frame rate sets time resolution; 30 fps gives ±1/30 s per event</li>
+<li>Distinguishing the exact moment of impact from the bounce sound</li>
+</ul>
+<p><strong>What constitutes one trial:</strong> Recording the time sequence t₁, t₂, ..., tₙ for one drop. Each adjacent pair (tₙ, tₙ₋₁) yields one estimate of <code>e</code>.</p>
+<h3>Method 3: Time to Stop</h3>
+<p><strong>What to measure:</strong> The total time tₛ from first impact until the ball stops bouncing, plus the initial drop height h₀.</p>
+<p><strong>Possible approaches:</strong></p>
+<ul>
+<li>Start a stopwatch at first impact (triggered by sound or visual); stop when ball ceases</li>
+</ul>
+<p>audible bouncing.</p>
+<ul>
+<li>Define a threshold for &quot;stopped&quot; — e.g., bounces too small to hear or see — and note that</li>
+</ul>
+<p>this threshold introduces a systematic bias.</p>
+<ul>
+<li>Record on video to more precisely determine the final bounce.</li>
+</ul>
+<p><strong>Key error sources to consider:</strong></p>
+<ul>
+<li>Defining when the ball has &quot;stopped&quot; (ball may continue micro-bounces)</li>
+<li>Reaction time at start and end of timing</li>
+<li>Accuracy of h₀ measurement</li>
+</ul>
+<p><strong>What constitutes one trial:</strong> One drop from h₀ with recording of tₛ. Each trial yields one estimate of <code>e</code>.</p>
+<hr>
+<h2>Part 3 — Refinement and Second Ball</h2>
+<p>After completing preliminary experiments (10 trials × 3 methods):</p>
+<ol>
+<li>Analyze results and error for all three methods (see model derivations for error propagation).</li>
+<li>Identify which method produces the most consistent or lowest-error estimates.</li>
+<li>Refine the experimental procedure for that method — improve measurement setup, reduce error</li>
+</ol>
+<p>sources identified in preliminary results.</p>
+<ol>
+<li>Collect at least 10 additional refined trials with the ping-pong ball using the best method.</li>
+<li>Using the same best method, collect 10 trials with a second ball of your choice.</li>
+</ol>
+<hr>
+<h2>Part 4 — Video Tracking Procedure</h2>
+<h3>Recording</h3>
+<ol>
+<li>Position your cell phone camera so it has a clear, stable view of the ball&#x27;s full bounce</li>
+</ol>
+<p>trajectory. The camera must remain stationary for the entire trial.</p>
+<ol>
+<li>Include a scale reference in the frame (e.g., a ruler or meter stick placed vertically at</li>
+</ol>
+<p>the bounce location).</p>
+<ol>
+<li>Record 3 trials of a ping-pong ball dropped from h₀. Each trial is one recording.</li>
+</ol>
+<h3>Analysis with Tracker (Recommended — Free)</h3>
+<ul>
+<li>Download Tracker from: <a href="https://physlets.org/tracker/">https://physlets.org/tracker/</a></li>
+<li>Requires Java 1.6 or higher installed on your computer</li>
+<li>Tutorial: The Tracker project site includes a built-in tutorial under Help → Help Contents.</li>
+</ul>
+<p>A getting-started guide is also available at <a href="https://physlets.org/tracker/help/frameset.html">https://physlets.org/tracker/help/frameset.html</a> If a lab-specific tutorial PDF is added to <code>instrumentation/datasheets/</code>, it will be linked here.</p>
+<ul>
+<li>Use Tracker&#x27;s auto-tracking or manual point-by-point tracking to extract ball position vs.</li>
+</ul>
+<p>time from each recording.</p>
+<ul>
+<li>Export position/time data and compute <code>e</code> using the same three methods.</li>
+</ul>
+<h3>Analysis with Logger Pro (ITLL Only)</h3>
+<ul>
+<li>Available only on ITLL lab computers. Not available for personal installation.</li>
+<li>Tutorial: <code>Bouncing_Ball_Logger_Pro.PDF</code> — [MISSING: file referenced in source as Canvas</li>
+</ul>
+<p>download; locate from prior ASEN 2003 course and add to instrumentation/datasheets/]</p>
+<h3>After Tracking</h3>
+<p>Compute <code>e</code> from the video-extracted position and time data using Methods 1, 2, and 3. Compare these estimates to those obtained from manual measurement. Assess whether video tracking reduces error, and identify which error sources are eliminated vs. which remain.</p>
+<hr>
+<h2>Known Pitfalls / Common Mistakes</h2>
+<ul>
+<li><strong>Not recording ball characteristics:</strong> Mass and diameter are required; measure these before</li>
+</ul>
+<p>starting trials.</p>
+<ul>
+<li><strong>Releasing with spin:</strong> The model assumes no spin (direct central impact). Hold the ball</li>
+</ul>
+<p>gently and release by opening fingers — do not throw or flick.</p>
+<ul>
+<li><strong>Inconsistent drop height:</strong> Mark h₀ clearly. Use a fixed reference point for each trial,</li>
+</ul>
+<p>not a new visual estimate each time.</p>
+<ul>
+<li><strong>Stopwatch human reaction time:</strong> This is often the largest error source in Methods 2 and 3.</li>
+</ul>
+<p>Design your measurement to minimize it (audio cue, video extraction, or two-person triggering).</p>
+<ul>
+<li><strong>Too few data points:</strong> Minimum is 10 trials per method. More is better for statistical</li>
+</ul>
+<p>confidence.</p>
+<ul>
+<li><strong>Not defining &quot;stopped&quot;:</strong> For Method 3, document your criterion for what counts as the</li>
+</ul>
+<p>ball having stopped bouncing. Consistency within trials matters more than the exact threshold.</p>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Theoretical Framework — Bouncing Ball: Coefficient of Restitution</h1>
+<p><strong>Lab:</strong> Bouncing Ball — Coefficient of Restitution <strong>Source:</strong> ASEN 2003 Lab 2, CU Boulder (2014 and 2018/2019 versions) <strong>Compilation bin:</strong> model/</p>
+<hr>
+<h2>Section 1 — Physical Setup and Variable Definitions</h2>
+<p>A ball is released from rest at a height h₀ above a flat, horizontal surface. The ball is modelled as a particle undergoing <strong>direct central impact</strong> with the surface — meaning the ball travels vertically with no spin, and the impact force acts along the line connecting the center of mass of the ball and the contact point.</p>
+<p>[SETUP_PHOTO NEEDED: Ball height vs. time diagram showing the full bounce sequence. The diagram should label: h₀ (initial drop height), h₁, hₙ₋₁, hₙ (heights of successive bounces), t₁, tₙ₋₁, tₙ (durations of individual bounces), and tₛ (total time from first impact to stop). This is Figure 1 / bb_diagram from both source versions — it is essential for understanding all three methods and must accompany any presentation of the theory.]</p>
+<p><strong>Variable definitions:</strong></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Meaning</th><th>Units</th></tr></thead><tbody><tr><td>h₀</td><td>Initial drop height (height of center of mass above surface at release)</td><td>m (or in)</td></tr><tr><td>hₙ</td><td>Height of center of mass after n bounces (peak height following the nth impact)</td><td>m (same as h₀)</td></tr><tr><td>tₙ</td><td>Time duration of the nth bounce (from nth to (n+1)th impact)</td><td>s</td></tr><tr><td>tₛ</td><td>Total time from first impact until ball stops bouncing</td><td>s</td></tr><tr><td>n</td><td>Bounce number (dimensionless integer)</td><td>—</td></tr><tr><td>g</td><td>Gravitational acceleration = 9.81 m/s² (or 32.2 ft/s²)</td><td>m/s²</td></tr><tr><td>e</td><td>Coefficient of restitution (dimensionless, 0 ≤ e ≤ 1)</td><td>—</td></tr></tbody></table></div>
+<p><strong>Modelling assumptions:</strong></p>
+<ul>
+<li>Ball modelled as a particle (no rotational dynamics)</li>
+<li>No spin — direct central impact only</li>
+<li>Horizontal surface is effectively infinitely massive (negligible velocity change of Earth)</li>
+<li>Atmospheric drag neglected during free-flight phases</li>
+<li>e is treated as constant across all bounces (same ball/surface interaction each time)</li>
+</ul>
+<hr>
+<h2>Section 2 — General Coefficient of Restitution</h2>
+<p>For a direct central impact between two bodies A and B, the coefficient of restitution is defined as:</p>
+<pre><code>
+ v_B&#x27; - v_A&#x27;
+e = ─────────────
+ v_A - v_B
+</code></pre>
+<p>where:</p>
+<ul>
+<li>v_A, v_B = velocities of bodies A and B <strong>before</strong> impact (positive upward)</li>
+<li>v_A&#x27;, v_B&#x27; = velocities of bodies A and B <strong>after</strong> impact (positive upward)</li>
+<li>Body A = Earth (surface); Body B = ball</li>
+</ul>
+<p>Because the Earth is effectively infinitely massive, its velocity before and after impact is negligible: v_A ≈ v_A&#x27; ≈ 0. This simplifies the equation to:</p>
+<pre><code>
+ v_B&#x27;
+e = ──────
+ -v_B
+</code></pre>
+<p>i.e., e is the ratio of the ball&#x27;s outgoing speed to its incoming speed at each impact.</p>
+<p>[STUDENT TASK — students derive all three method equations starting from this base definition, using energy conservation and kinematics to connect ball velocities to the observable quantities h₀, hₙ, tₙ, and tₛ.]</p>
+<hr>
+<h2>Section 3 — Method 1: Height of Bounce</h2>
+<p><strong>Governing equation:</strong></p>
+<pre><code>
+ ⎛ hₙ ⎞^(1/2) ⎛ hₙ ⎞^(1/2n)
+e = ⎜────⎟ = ⎜────⎟
+ ⎝hₙ₋₁⎠ ⎝ h₀ ⎠
+</code></pre>
+<p>The left form uses the ratio of adjacent bounce heights (nth to (n-1)th). The right form uses the nth bounce height relative to the initial drop height h₀.</p>
+<p><strong>Derivation:</strong></p>
+<p>[STUDENT TASK — derive from energy conservation and kinematic relationships:</p>
+<ul>
+<li>Ball in free fall: velocity just before nth impact = sqrt(2g·hₙ₋₁)</li>
+<li>Ball after nth impact (rising): velocity just after = sqrt(2g·hₙ)</li>
+<li>Substitute into the general CoR definition: e = v_B&#x27; / (-v_B)</li>
+<li>Simplify to obtain e = (hₙ/hₙ₋₁)^(1/2)</li>
+<li>Extend to the cumulative form using e^n = (hₙ/h₀)^(1/2) to get e = (hₙ/h₀)^(1/2n)]</li>
+</ul>
+<p><strong>Sensitivity to measurement error:</strong></p>
+<p>[STUDENT TASK — derive via propagation of errors (see Taylor, &quot;Introduction to Error Analysis&quot;; ASEN 2012 notes):</p>
+<ul>
+<li>For the adjacent-bounce form: propagate uncertainty in hₙ and hₙ₋₁ to uncertainty in e</li>
+<li>Identify which quantity (height measurement) dominates the error</li>
+<li>Express sensitivity as ∂e/∂hₙ and ∂e/∂hₙ₋₁]</li>
+</ul>
+<hr>
+<h2>Section 4 — Method 2: Time of Bounce</h2>
+<p><strong>Governing equation:</strong></p>
+<pre><code>
+ tₙ
+e = ────
+ tₙ₋₁
+</code></pre>
+<p>where tₙ is the duration of the nth bounce and tₙ₋₁ is the duration of the preceding bounce.</p>
+<p><strong>Derivation:</strong></p>
+<p>[STUDENT TASK — derive from kinematics of free-fall and bounce:</p>
+<ul>
+<li>Ball leaves surface after nth bounce with velocity v_B&#x27; = sqrt(2g·hₙ)</li>
+<li>Time for one complete bounce (up and down): tₙ = 2·v_B&#x27; / g = 2·sqrt(2hₙ/g)</li>
+<li>Similarly tₙ₋₁ = 2·sqrt(2hₙ₋₁/g)</li>
+<li>Form the ratio tₙ/tₙ₋₁ and simplify using e = (hₙ/hₙ₋₁)^(1/2) from Method 1</li>
+<li>Result: e = tₙ/tₙ₋₁]</li>
+</ul>
+<p><strong>Sensitivity to measurement error:</strong></p>
+<p>[STUDENT TASK — propagate uncertainty in tₙ and tₙ₋₁ to uncertainty in e. Note: human reaction time is a significant and systematic error source for this method when using a manual stopwatch — students should identify this explicitly.]</p>
+<hr>
+<h2>Section 5 — Method 3: Time to Stop</h2>
+<p><strong>Governing equation:</strong></p>
+<pre><code>
+ tₛ - sqrt(2h₀/g)
+e = ─────────────────
+ tₛ + sqrt(2h₀/g)
+</code></pre>
+<p>where tₛ is the total time from first impact until the ball stops bouncing, and h₀ is the initial drop height.</p>
+<p><strong>Derivation:</strong></p>
+<p>[STUDENT TASK — derive by summing the geometric series of bounce times:</p>
+<ul>
+<li>First fall time (from h₀ to first impact): t_fall = sqrt(2h₀/g)</li>
+<li>Time of nth bounce: tₙ = 2·e^n·sqrt(2h₀/g) (using the relation developed in Method 2)</li>
+<li>Total time tₛ = t_fall + sum of all bounce times (infinite geometric series)</li>
+<li>Sum the series: sum = 2·e·sqrt(2h₀/g) / (1-e)</li>
+<li>Total: tₛ = sqrt(2h₀/g) + 2·e·sqrt(2h₀/g) / (1-e)</li>
+<li>Solve for e to obtain the Method 3 equation.]</li>
+</ul>
+<p><strong>Sensitivity to measurement error:</strong></p>
+<p>[STUDENT TASK — propagate uncertainty in tₛ and h₀ to uncertainty in e. Note: defining &quot;stopped&quot; introduces a systematic measurement bias — students should address this in their error analysis.]</p>
+<hr>
+<h2>Section 6 — Statistical Analysis Framework</h2>
+<p>This section describes the statistical analysis required for each method. The computations are student tasks in MATLAB; this section documents what is expected.</p>
+<p>For each method and each ball, compute the following statistics across N trials:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Statistic</th><th>Symbol</th><th>Formula</th></tr></thead><tbody><tr><td>Mean</td><td>ē</td><td>ē = (1/N) Σ eᵢ</td></tr><tr><td>Median</td><td>ẽ</td><td>Middle value of sorted {eᵢ}</td></tr><tr><td>Standard deviation</td><td>σ</td><td>σ = sqrt[ (1/(N-1)) Σ (eᵢ - ē)² ]</td></tr><tr><td>Standard deviation of the mean</td><td>σ_mean</td><td>σ_mean = σ / sqrt(N)</td></tr></tbody></table></div>
+<p>The standard deviation of the mean (σ_mean) quantifies uncertainty in the mean estimate as a function of sample size N. It is distinct from σ, which describes spread of individual trial values.</p>
+<p>Final estimate of e should be reported as: ē ± (some bound), with the bound justified by the error analysis and statistical results.</p>
+<hr>
+<h2>References from Source</h2>
+<ul>
+<li>Principles of direct central impact: ASEN 2003 dynamics course material (Hibbeler or</li>
+</ul>
+<p>equivalent undergraduate dynamics text)</p>
+<ul>
+<li>Propagation of errors: Taylor, J.R., &quot;An Introduction to Error Analysis&quot; (referenced in</li>
+</ul>
+<p>source); ASEN 2012 lecture notes on error propagation (referenced but not included in source documents — [MISSING: ASEN 2012 error propagation reference notes not included in source directory])</p>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p>
+<h1>Equation Reference Sheet — Bouncing Ball: Coefficient of Restitution</h1>
+<p><strong>Lab:</strong> Bouncing Ball — Coefficient of Restitution <strong>Source:</strong> ASEN 2003 Lab 2, CU Boulder (2014 and 2018/2019 versions) <strong>Compilation bin:</strong> model/</p>
+<hr>
+<h2>Equation 0 — General Coefficient of Restitution</h2>
+<p><strong>Definition (direct central impact):</strong></p>
+<pre><code>
+ v_B&#x27; - v_A&#x27;
+e = ─────────────
+ v_A - v_B
+</code></pre>
+<p><strong>LaTeX:</strong> <code>e = \frac{v_B&#x27; - v_A&#x27;}{v_A - v_B}</code></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Definition</th><th>Units</th></tr></thead><tbody><tr><td>e</td><td>Coefficient of restitution</td><td>dimensionless [0, 1]</td></tr><tr><td>v_A</td><td>Velocity of body A (Earth/surface) before impact</td><td>m/s</td></tr><tr><td>v_A&#x27;</td><td>Velocity of body A after impact</td><td>m/s</td></tr><tr><td>v_B</td><td>Velocity of body B (ball) before impact (negative, downward)</td><td>m/s</td></tr><tr><td>v_B&#x27;</td><td>Velocity of body B after impact (positive, upward)</td><td>m/s</td></tr></tbody></table></div>
+<p><strong>Note:</strong> Earth treated as body A; negligible velocity change → v_A ≈ v_A&#x27; ≈ 0. <strong>Status:</strong> Given (base definition, not student-derived). All three method equations below are STUDENT TASK.</p>
+<hr>
+<h2>Equation 1 — Method 1: Height of Bounce</h2>
+<p><strong>Adjacent-bounce form:</strong></p>
+<pre><code>
+ ⎛ hₙ ⎞^(1/2)
+e = ⎜─────⎟
+ ⎝hₙ₋₁ ⎠
+</code></pre>
+<p><strong>Cumulative form:</strong></p>
+<pre><code>
+ ⎛ hₙ ⎞^(1/2n)
+e = ⎜────⎟
+ ⎝ h₀ ⎠
+</code></pre>
+<p><strong>LaTeX (adjacent):</strong> <code>e = \left(\frac{h_n}{h_{n-1}}\right)^{1/2}</code> <strong>LaTeX (cumulative):</strong> <code>e = \left(\frac{h_n}{h_0}\right)^{1/2n}</code></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Definition</th><th>Units</th></tr></thead><tbody><tr><td>e</td><td>Coefficient of restitution</td><td>dimensionless</td></tr><tr><td>h₀</td><td>Initial drop height (center of mass above surface)</td><td>m (or in)</td></tr><tr><td>hₙ</td><td>Height of center of mass after n bounces</td><td>m (same as h₀)</td></tr><tr><td>hₙ₋₁</td><td>Height of center of mass after (n-1) bounces</td><td>m (same as h₀)</td></tr><tr><td>n</td><td>Bounce number</td><td>dimensionless integer</td></tr></tbody></table></div>
+<p><strong>Derivation:</strong> [STUDENT TASK] <strong>Sensitivity (∂e/∂h):</strong> [STUDENT TASK — via propagation of errors]</p>
+<hr>
+<h2>Equation 2 — Method 2: Time of Adjacent Bounces</h2>
+<pre><code>
+ tₙ
+e = ────
+ tₙ₋₁
+</code></pre>
+<p><strong>LaTeX:</strong> <code>e = \frac{t_n}{t_{n-1}}</code></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Definition</th><th>Units</th></tr></thead><tbody><tr><td>e</td><td>Coefficient of restitution</td><td>dimensionless</td></tr><tr><td>tₙ</td><td>Duration of the nth bounce (impact-to-impact interval)</td><td>s</td></tr><tr><td>tₙ₋₁</td><td>Duration of the (n-1)th bounce</td><td>s</td></tr></tbody></table></div>
+<p><strong>Derivation:</strong> [STUDENT TASK] <strong>Sensitivity (∂e/∂t):</strong> [STUDENT TASK]</p>
+<hr>
+<h2>Equation 3 — Method 3: Time to Stop</h2>
+<pre><code>
+ tₛ - sqrt(2h₀/g)
+e = ─────────────────
+ tₛ + sqrt(2h₀/g)
+</code></pre>
+<p><strong>LaTeX:</strong> <code>e = \frac{t_s - \sqrt{2h_0/g}}{t_s + \sqrt{2h_0/g}}</code></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Definition</th><th>Units</th></tr></thead><tbody><tr><td>e</td><td>Coefficient of restitution</td><td>dimensionless</td></tr><tr><td>tₛ</td><td>Total time from first impact until ball stops bouncing</td><td>s</td></tr><tr><td>h₀</td><td>Initial drop height</td><td>m</td></tr><tr><td>g</td><td>Gravitational acceleration = 9.81 m/s² (or 32.2 ft/s²)</td><td>m/s²</td></tr></tbody></table></div>
+<p><strong>Derivation:</strong> [STUDENT TASK — sum of geometric series of bounce times] <strong>Sensitivity (∂e/∂tₛ, ∂e/∂h₀):</strong> [STUDENT TASK]</p>
+<hr>
+<h2>Equation 4 — Standard Deviation of the Mean</h2>
+<pre><code>
+ σ
+σ_mean = ─────
+ sqrt(N)
+</code></pre>
+<p><strong>LaTeX:</strong> <code>\sigma_{\bar{e}} = \frac{\sigma}{\sqrt{N}}</code></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Definition</th><th>Units</th></tr></thead><tbody><tr><td>σ_mean</td><td>Standard deviation of the mean (uncertainty in ē)</td><td>same as e</td></tr><tr><td>σ</td><td>Sample standard deviation of individual e estimates</td><td>same as e</td></tr><tr><td>N</td><td>Number of trials</td><td>dimensionless</td></tr></tbody></table></div>
+<p><strong>Note:</strong> σ_mean quantifies how well the sample mean ē estimates the true e; it decreases with sqrt(N). Distinct from σ (spread of individual trial values). <strong>Status:</strong> Given (standard statistical result — not derived; applied in MATLAB analysis).</p>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Instrumentation Summary — Bouncing Ball: Coefficient of Restitution</h1>
+<p><strong>Lab:</strong> Bouncing Ball — Coefficient of Restitution <strong>Source:</strong> ASEN 2003 Lab 2, CU Boulder (2014 and 2018/2019 versions) <strong>Compilation bin:</strong> instrumentation/</p>
+<hr>
+<h2>Electronic Instrumentation</h2>
+<p>[NOT APPLICABLE: This lab uses manual measurement tools and/or video tracking software. No electronic sensors, DAQ hardware, signal conditioning, or sampling rate considerations are involved. The &quot;sensors&quot; in this lab are physical measurement tools (ruler, stopwatch, camera) selected by the student as part of the experimental design task.]</p>
+<hr>
+<h2>Measurement Tools Described in Source</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Tool</th><th>Version</th><th>Notes</th></tr></thead><tbody><tr><td>Ruler / meter stick</td><td>Both (implied)</td><td>For height measurement; not specified — students select their own</td></tr><tr><td>Stopwatch / timer</td><td>Both (implied)</td><td>For time measurement; not specified — students select their own</td></tr><tr><td>Cell phone camera</td><td>2018/2019 .tex</td><td>Used for 3 video-tracked trials; any modern smartphone</td></tr><tr><td>ITLL camera</td><td>2018/2019 .tex</td><td>Alternative to phone camera; ITLL-provided</td></tr><tr><td>Tracker software</td><td>2018/2019 .tex (Appendix A)</td><td>Free image tracking; Physlets; requires Java 1.6+</td></tr><tr><td>Logger Pro</td><td>2018/2019 .tex (Appendix A)</td><td>ITLL computers only; not for personal installation</td></tr><tr><td>Automatic tracking system</td><td>2014 .md only</td><td>Lab-demonstrated; details not specified in source</td></tr></tbody></table></div>
+<hr>
+<h2>Tool Detail: Tracker Software</h2>
+<ul>
+<li><strong>Type:</strong> Image tracking / video analysis software</li>
+<li><strong>Manufacturer / source:</strong> Physlets (open source)</li>
+<li><strong>Download:</strong> <a href="https://physlets.org/tracker/">https://physlets.org/tracker/</a></li>
+<li><strong>System requirement:</strong> Java 1.6 or higher</li>
+<li><strong>Cost:</strong> Free</li>
+<li><strong>Tutorial:</strong> <code>Bouncing_Ball_Tracker_Tutorial.PDF</code></li>
+</ul>
+<p>[MISSING: Referenced in 2018/2019 source as Canvas download; not in source directory. Locate from prior ASEN 2003 Canvas course and add to instrumentation/datasheets/.]</p>
+<ul>
+<li><strong>Capability:</strong> Frame-by-frame tracking of ball position; exports position vs. time data</li>
+<li><strong>Resolution:</strong> Determined by camera frame rate and pixel resolution of recording</li>
+</ul>
+<h2>Tool Detail: Logger Pro</h2>
+<ul>
+<li><strong>Type:</strong> Video analysis and data logging software</li>
+<li><strong>Manufacturer:</strong> Vernier</li>
+<li><strong>Availability:</strong> ITLL lab computers only — NOT available for personal installation</li>
+<li><strong>Tutorial:</strong> <code>Bouncing_Ball_Logger_Pro.PDF</code></li>
+</ul>
+<p>[MISSING: Referenced in 2018/2019 source as Canvas download; not in source directory. Locate from prior ASEN 2003 Canvas course and add to instrumentation/datasheets/.]</p>
+<ul>
+<li><strong>Capability:</strong> Similar to Tracker; performs image tracking on video recordings</li>
+</ul>
+<h2>Tool Detail: Automatic Tracking System (2014 version only)</h2>
+<ul>
+<li><strong>Type:</strong> Unknown — referenced as &quot;the automatic tracking system demonstrated in lab&quot;</li>
+<li><strong>Source:</strong> 2014 version of lab assignment</li>
+<li><strong>Details:</strong> Not specified in source. The 2018/2019 version replaces this with student-</li>
+</ul>
+<p>owned phone camera + Tracker or Logger Pro. The 2018/2019 approach is recommended for 3501 use as it is more accessible and self-contained. [MISSING: Details of the 2014 automatic tracking system — make, model, operation, and uncertainty characteristics are unspecified in source documents.]</p>
+<hr>
+<h2>What Is Explicitly Missing</h2>
+<p>The following specification information is absent from the source and is a student design decision in the original lab:</p>
+<ul>
+<li>[MISSING: Ruler/meter stick specifications — length, graduation resolution, and uncertainty</li>
+</ul>
+<p>(students choose their own ruler; uncertainty is part of their error analysis)]</p>
+<ul>
+<li>[MISSING: Stopwatch/timer specifications — resolution and uncertainty (students choose their</li>
+</ul>
+<p>own stopwatch; reaction time error is the dominant source, not device resolution)]</p>
+<ul>
+<li>[MISSING: Ball specifications — ping-pong ball mass and diameter are not given; students</li>
+</ul>
+<p>measure these as part of the pre-lab preparation]</p>
+<ul>
+<li>[MISSING: Cell phone camera specifications — frame rate and resolution affect time resolution</li>
+</ul>
+<p>for video tracking; students should record their camera model and settings]</p>
+<ul>
+<li>[MISSING: Tutorial PDFs for Tracker and Logger Pro (Bouncing_Ball_Tracker_Tutorial.PDF and</li>
+</ul>
+<p>Bouncing_Ball_Logger_Pro.PDF) — referenced as Canvas downloads in source]</p>
+<hr>
+<h2>Predictive Model Value — Source and Interpretation</h2>
+<p>The typical CoR range for a regulation ping-pong ball on a hard floor is <strong>0.85–0.90</strong> (dimensionless). This value reflects an experimentally established material property for standard impact conditions — it is not derivable from the method equations above and cannot be predicted from first principles using the constant-e model alone.</p>
+<p>For Phase 1 students: use this range as your predictive model anchor in Section 7. Treat e_predicted = 0.875 ± 0.025 (midpoint and half-range) and cite this file as the source.</p>
+<p>For Phase 2 students: your Phase 2 experiment packet will include this same range. It is an appropriate basis for your predicted system response — but note the distinction: this is a material reference property, not a calibrated instrument output. State explicitly that your predicted e is based on published material behavior for this ball and surface type, and that the actual value may vary with temperature, ball age, and surface compliance.</p>
+<hr>
+<h2>Uncertainty Considerations by Measurement Tool</h2>
+<p>Since measurement tool selection is a student design task, the uncertainty characteristics are also student-determined. The following are known from the source and general measurement principles:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Measurement</th><th>Primary error source</th><th>Notes</th></tr></thead><tbody><tr><td>Height (ruler, manual)</td><td>Ruler resolution + parallax + judgment of peak</td><td>Dominant error for Method 1</td></tr><tr><td>Time (stopwatch, manual)</td><td>Human reaction time (~0.1–0.3 s)</td><td>Dominant error for Methods 2 and 3</td></tr><tr><td>Time (video, 30 fps)</td><td>Frame rate → ±1/30 s per event</td><td>Significantly reduces reaction time error</td></tr><tr><td>Height (video tracking)</td><td>Pixel resolution + scale calibration</td><td>Depends on camera distance and reference scale</td></tr></tbody></table></div>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Bouncing Ball: Coefficient of Restitution</h1>
+<p><strong>Lab:</strong> Bouncing Ball — Coefficient of Restitution <strong>Source:</strong> ASEN 2003 Lab 2, CU Boulder (2014 and 2018/2019 versions) <strong>Compilation bin:</strong> data/</p>
+<hr>
+<h2>Sample Dataset</h2>
+<p>[MISSING_DATA: No prior-run dataset is present in the source directory. Students generate their own data during the experiment. For 3501 use, a sample dataset from a prior run — containing heights, times, and computed e values for 10 trials of each method — would be useful as a reference or worked example for calibrating student expectations. Recommend requesting a sample dataset from the prior ASEN 2003 course team.]</p>
+<hr>
+<h2>Expected Data Structure</h2>
+<p>Each student/group collects data across three methods, two balls, and three video trials. The recommended MATLAB data structure (based on Appendix B coding guidance in source):</p>
+<ul>
+<li>Data for each method stored as a vector of raw measurements (not just computed e values)</li>
+<li>One function computes e from raw measurements for a given method</li>
+<li>One reusable function performs statistical analysis on any vector of e values</li>
+<li>Data loading uses a loop, not repeated load() calls</li>
+</ul>
+<hr>
+<h2>What Is Measured Per Method</h2>
+<h3>Method 1 — Height of Bounce</h3>
+<p><strong>Per trial:</strong></p>
+<ul>
+<li>Initial drop height h₀ [m or inches — choose and record units consistently]</li>
+<li>Heights of successive bounces h₁, h₂, ..., hₙ until ball effectively stops [same units]</li>
+<li>Ball identification (which ball; measured characteristics recorded separately)</li>
+</ul>
+<p><strong>Per trial output:</strong></p>
+<ul>
+<li>One or more estimates of e (one per bounce pair, or one cumulative estimate using h₀ and hₙ)</li>
+</ul>
+<p><strong>Recommended format:</strong></p>
+<pre><code>
+% Column 1: h0 (m)
+% Column 2+: h1, h2, ..., hn (m)
+% Rows: one per trial
+</code></pre>
+<h3>Method 2 — Time of Adjacent Bounces</h3>
+<p><strong>Per trial:</strong></p>
+<ul>
+<li>Initial drop height h₀ [m] (for context; not used in e calculation but useful for consistency)</li>
+<li>Time duration of each bounce t₁, t₂, ..., tₙ [s]</li>
+<li>Ball identification</li>
+</ul>
+<p><strong>Per trial output:</strong></p>
+<ul>
+<li>One or more estimates of e (one per adjacent bounce pair tₙ / tₙ₋₁)</li>
+</ul>
+<p><strong>Recommended format:</strong></p>
+<pre><code>
+% Column 1: t1 (s)
+% Column 2: t2 (s)
+% ...
+% Rows: one per trial
+</code></pre>
+<h3>Method 3 — Time to Stop</h3>
+<p><strong>Per trial:</strong></p>
+<ul>
+<li>Initial drop height h₀ [m]</li>
+<li>Total time from first impact to ball stopping tₛ [s]</li>
+<li>Ball identification</li>
+</ul>
+<p><strong>Per trial output:</strong></p>
+<ul>
+<li>One estimate of e per trial</li>
+</ul>
+<p><strong>Recommended format:</strong></p>
+<pre><code>
+% Column 1: h0 (m)
+% Column 2: ts (s)
+% Rows: one per trial
+</code></pre>
+<h3>Video Tracking (3 trials, ping-pong ball)</h3>
+<p><strong>Per trial:</strong></p>
+<ul>
+<li>Video recording file (not stored in MATLAB; archived separately)</li>
+<li>Extracted position vs. time data from Tracker or Logger Pro (exported as CSV or text)</li>
+<li>From position/time data: compute h₀, hₙ₋₁, hₙ, tₙ₋₁, tₙ, tₛ for all three methods</li>
+</ul>
+<p><strong>Per trial output:</strong></p>
+<ul>
+<li>Three estimates of e (one per method) from video-extracted data</li>
+</ul>
+<hr>
+<h2>Final Dataset Summary (Required by Source)</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Dataset</th><th>Ball</th><th>Method</th><th>Min. Trials</th><th>Notes</th></tr></thead><tbody><tr><td>Preliminary</td><td>Ping-pong</td><td>Method 1</td><td>10</td><td>Design and test measurement procedure</td></tr><tr><td>Preliminary</td><td>Ping-pong</td><td>Method 2</td><td>10</td><td>Design and test measurement procedure</td></tr><tr><td>Preliminary</td><td>Ping-pong</td><td>Method 3</td><td>10</td><td>Design and test measurement procedure</td></tr><tr><td>Video tracking</td><td>Ping-pong</td><td>All 3 (from video)</td><td>3</td><td>Via Tracker or Logger Pro</td></tr><tr><td>Refined</td><td>Ping-pong</td><td>Best method only</td><td>10</td><td>After selecting best method</td></tr><tr><td>Second ball</td><td>Student-chosen</td><td>Best method</td><td>10</td><td>Different ball type</td></tr></tbody></table></div>
+<p><strong>Total minimum trials:</strong> 53 (10+10+10+3+10+10)</p>
+<hr>
+<h2>Ball Characteristics to Record</h2>
+<p>For each ball used, record before any trials begin:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Characteristic</th><th>Unit</th><th>Notes</th></tr></thead><tbody><tr><td>Mass</td><td>g</td><td>Measure with available scale</td></tr><tr><td>Diameter</td><td>mm</td><td>Measure with calipers or ruler</td></tr><tr><td>Material / surface</td><td>text</td><td>Rubber, plastic, felt, etc.</td></tr><tr><td>Manufacturer / type</td><td>text</td><td>Brand name if available</td></tr><tr><td>Condition</td><td>text</td><td>New, worn, deformed, etc.</td></tr></tbody></table></div>
+<hr>
+<h2>Known Measurement Considerations</h2>
+<ul>
+<li><strong>Height measurement (Method 1):</strong> Parallax error and difficulty identifying the exact</li>
+</ul>
+<p>peak height are the primary error sources. Ruler resolution is secondary to observer judgment error.</p>
+<ul>
+<li><strong>Time measurement (Methods 2 and 3):</strong> Human reaction time is typically 0.1–0.3 s and</li>
+</ul>
+<p>is the dominant error source when using a manual stopwatch. Video tracking effectively eliminates this; reaction time error is replaced by frame-rate-limited time resolution.</p>
+<ul>
+<li><strong>Ball spin:</strong> The model assumes no spin (direct central impact). Real drops on hard</li>
+</ul>
+<p>surfaces can introduce small rotational motion, particularly if the surface is not perfectly flat or the ball has surface irregularities. This is a known model limitation.</p>
+<ul>
+<li><strong>Definition of &quot;stopped&quot; (Method 3):</strong> There is no universal criterion for when a ball</li>
+</ul>
+<p>has stopped bouncing. This introduces a systematic measurement bias. Students should define their criterion explicitly and apply it consistently across all trials.</p>
+<ul>
+<li><strong>Consistency of h₀:</strong> Releasing from a slightly different height each trial introduces</li>
+</ul>
+<p>variability that is not captured in the statistical analysis unless h₀ is measured independently for each trial.</p>
+<hr>
+<h2>Units Convention</h2>
+<p>Equations 1 and 2 yield dimensionless e (ratio of lengths or times). Equation 3 requires h₀ in meters if g = 9.81 m/s² is used, or h₀ in feet if g = 32.2 ft/s² is used. Within-trial unit consistency is more important than which system is used — choose one and apply it throughout all calculations. Document units at the top of each MATLAB function.</p>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes — Bouncing Ball: Coefficient of Restitution</h1>
+<p><strong>Lab:</strong> Bouncing Ball — Coefficient of Restitution <strong>Source:</strong> ASEN 2003 Lab 2, CU Boulder (2014 and 2018/2019 versions) <strong>Compilation bin:</strong> notes/ <strong>Audience:</strong> Instructor only</p>
+<hr>
+<h2>1. CLO Alignment</h2>
+<p>Source: <code>Lab2_ASEN2003_2014_agent_analyzed.md</code> and <code>Lab2_ASEN2003_2014_lab_summary.json</code></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>CLO</th><th>Score (0/1/2)</th><th>Evidence</th></tr></thead><tbody><tr><td>CLO 1 — Design &amp; Conduct</td><td>2 (Strong)</td><td>Students design their own experimental procedures from scratch — no prescribed steps. Minimum 10 trials per method enforces disciplined data collection. Ball characteristics must be recorded before testing.</td></tr><tr><td>CLO 2 — Statistics &amp; Uncertainty</td><td>2 (Strong)</td><td>Central theme of the lab. Mean, median, std, std_of_mean required for all methods. Error propagation must be derived <em>before</em> experiments run. Final e estimate must include quantified accuracy bounds.</td></tr><tr><td>CLO 3 — Model Integration</td><td>2 (Strong)</td><td>Three theoretical models derived from first principles. Each model is then tested against experimental data. Students compare models and assess agreement — the complete model → experiment → validation pipeline.</td></tr><tr><td>CLO 4 — Instrumentation/DAQ</td><td>0 (None)</td><td>No electronic instrumentation, signal conditioning, DAQ hardware, or sampling rate considerations. This is a feature, not a gap — the lab is designed to teach CLOs 1, 2, and 3 without requiring electronics knowledge.</td></tr><tr><td>CLO 5 — Communication</td><td>2 (Strong)</td><td>Structured group report with prescribed section outline. MATLAB code must be included in appendices. Abstract, theory, procedures, results, analysis, conclusions all required.</td></tr><tr><td>CLO 6 — New Methods</td><td>0 (None)</td><td>Students apply pre-defined theoretical methods and design measurement procedures, but they are not inventing new methods for characterizing coefficient of restitution.</td></tr></tbody></table></div>
+<hr>
+<h2>2. Lab Character</h2>
+<p>Source: <code>Lab2_ASEN2003_2014_lab_summary.json</code></p>
+<p><strong>Primary strengths:</strong></p>
+<ul>
+<li>Strong emphasis on student-designed experimental procedures and rigorous statistical analysis</li>
+<li>Detailed application of error propagation for uncertainty quantification — students derive</li>
+</ul>
+<p>sensitivity equations <em>before</em> running experiments, then compare expected error to actual results</p>
+<ul>
+<li>Integration of theoretical model derivation with experimental data for model validation</li>
+<li>Minimal hardware requirements allow focus on analytical rigor without lab setup complexity</li>
+</ul>
+<p><strong>Primary gaps:</strong></p>
+<ul>
+<li>No electronic instrumentation or data acquisition component (CLO 4 entirely absent)</li>
+<li>No exposure to sensor-specific error characteristics (bias, drift, noise, quantization)</li>
+</ul>
+<p><strong>Lab character:</strong> Theory-first, derivation-heavy, analysis-intensive. The intellectual work is in the math, not the hardware. Students must own the theoretical framework before running anything. The experimental execution is deliberately simple — balls, a ruler, a stopwatch — so that all effort goes into analysis quality.</p>
+<p><strong>Suggested course stage:</strong> Early — ideal before any electronics-heavy labs. Establishes the statistical and uncertainty analysis framework that subsequent labs will extend to sensor-based measurements.</p>
+<hr>
+<h2>3. Discussion Questions / Assessment Prompts</h2>
+<p>The following questions appear in the Analysis section of both source versions. They are valuable for oral assessment, in-class discussion, and rubric design:</p>
+<ol>
+<li>How different are the results for different types of balls?</li>
+<li>How consistent are the results of different trials and methods for determining e for the</li>
+</ol>
+<p>same ball?</p>
+<ol>
+<li>Which method has the greatest measurement error? Can you quantify it?</li>
+<li>Can the error analysis suggest refinements to the experiment design?</li>
+<li>What is your final estimate of e? What bounds can you place on it, and why?</li>
+<li>(2018/2019 version) How do the e values from video-tracked trials compare to the manual</li>
+</ol>
+<p>methods? Is there more or less error associated with the recorded videos?</p>
+<ol>
+<li>Does video tracking yield a fundamentally different result, or does it simply reduce a</li>
+</ol>
+<p>specific error source (reaction time)?</p>
+<hr>
+<h2>4. Adaptation Notes for ASEN 3501</h2>
+<p>This lab maps well onto the E1 phase (Execution &amp; Quantification) of ASEN 3501. It aligns closely with the &quot;Are You Smarter Than a 5th Grader?&quot; anchor concept — a deceptively simple experiment that demands rigorous analysis.</p>
+<h3>Scope</h3>
+<p>The original lab spans ~2–3 weeks for a group of 3 in a dynamics course. For 3501&#x27;s individual or small-group structure, scope reduction may be appropriate:</p>
+<ul>
+<li><strong>Option A:</strong> Assign all three methods as the complete E1 experimental sequence. This</li>
+</ul>
+<p>preserves the method-comparison element, which is pedagogically strong.</p>
+<ul>
+<li><strong>Option B:</strong> Assign one or two methods for a single week, treating the third as an</li>
+</ul>
+<p>extension. This reduces workload but loses some of the comparative analysis.</p>
+<ul>
+<li><strong>Recommendation:</strong> Retain all three methods if used in E1; the comparison between</li>
+</ul>
+<p>methods IS the learning objective for uncertainty and experimental design.</p>
+<h3>Derivation Requirement</h3>
+<p>The original lab asks students to derive all three equations from first principles. This aligns directly with 3501&#x27;s principle that students should own the theoretical framework before collecting data. <strong>Keep this requirement.</strong></p>
+<p>The derivation distinguishes this lab from a recipe-following exercise. It also sets up the error propagation task naturally: once students have derived the equations symbolically, deriving the sensitivity expressions is a straightforward next step.</p>
+<h3>Video Tracking (Tracker / Logger Pro)</h3>
+<p>The Tracker/Logger Pro component is a strong candidate for retention in 3501. Comparing manual timing to video-extracted timing directly demonstrates the effect of measurement tool selection on uncertainty — a core E1 concept. Specifically:</p>
+<ul>
+<li>Manual stopwatch: dominated by human reaction time (~0.1–0.3 s per event)</li>
+<li>Video extraction: dominated by frame rate (±1/30 s at 30 fps)</li>
+<li>The difference in e estimates between these approaches quantifies the impact of instrument</li>
+</ul>
+<p>choice — this is exactly what CLO 4 is preparing students to reason about, even though this lab uses no electronic sensors</p>
+<p><strong>Recommendation:</strong> Include the video tracking component. It is low-cost (free software, student&#x27;s own phone) and directly motivates the &quot;why does instrument choice matter&quot; question.</p>
+<h3>No DAQ</h3>
+<p>This lab fills CLOs 1, 2, 3, and 5 without CLO 4. That is a feature — it makes it a clean early-course experiment that does not require lab hardware access. <strong>Place it before any electronics labs.</strong> Students who complete this lab will have the statistical vocabulary (mean, std, std_of_mean, error propagation, final estimate with bounds) needed for all subsequent instrumented experiments.</p>
+<h3>Multiple Balls</h3>
+<p>The comparison between ball types (ping-pong vs. student-chosen) is a natural entry point for discussing how material properties affect model assumptions. Consider retaining this: it is the first place in the course where students encounter the idea that e is not a universal constant but depends on the specific ball-surface pair.</p>
+<hr>
+<h2>5. Version Differences (2014 vs. 2018/2019)</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Feature</th><th>2014 version</th><th>2018/2019 version</th></tr></thead><tbody><tr><td>Video tracking tool</td><td>&quot;Automatic tracking system demonstrated in lab&quot; (lab-provided)</td><td>Student-owned phone camera + Tracker (free) or Logger Pro (ITLL only)</td></tr><tr><td>Tracking accessibility</td><td>Requires special lab equipment</td><td>Students can use their own phone; Tracker is free</td></tr><tr><td>LaTeX source available</td><td>No (PDF extraction only)</td><td>Yes (.tex file in source directory)</td></tr><tr><td>Assignment length</td><td>Apr 10 → May 1 (3 weeks)</td><td>Jan 29 → Feb 12 (2 weeks)</td></tr><tr><td>Team size</td><td>Groups of 3</td><td>Groups of 3</td></tr><tr><td>Analysis tool</td><td>MATLAB (required)</td><td>MATLAB (required)</td></tr></tbody></table></div>
+<p><strong>Recommendation for 3501:</strong> Use the 2018/2019 approach (phone camera + Tracker). It is more accessible, does not depend on lab-specific equipment, and is better documented in the source. The 2018/2019 .tex file is the primary source for all procedure and theory content.</p>
+<hr>
+<h2>6. Prior Course Context</h2>
+<ul>
+<li><strong>Course:</strong> ASEN 2003: Introduction to Dynamics and Systems, CU Boulder</li>
+<li><strong>2014 version:</strong> Lab 2, assigned Jan 29, due Feb 12 (2-week turnaround)</li>
+<li><strong>2018/2019 version:</strong> Lab 2, assigned Apr 10, due May 1 (3-week turnaround, end of semester)</li>
+<li><strong>Team structure:</strong> Groups of 3; data collected jointly, reports written individually</li>
+<li><strong>Computation requirement:</strong> MATLAB only — Excel and Mathematica explicitly prohibited</li>
+</ul>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div>
+      </section>
+    </main>
+    
+    <footer class="site-footer">
+      <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+    </footer>
+    
+    
+  
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier1-bouncing_ball", "title": "Bouncing Ball \u2014 Coefficient of Restitution", "url": "labs/tier1/bouncing_ball/index.html", "text": "Bouncing Ball \u2014 Coefficient of Restitution Measure the coefficient of restitution of a ball using multiple methods including video tracking.", "module_id": null, "source_type": "overview"}</script>
+</body>
+</html>

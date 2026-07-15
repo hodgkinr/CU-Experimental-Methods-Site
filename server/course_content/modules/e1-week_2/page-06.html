@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>lab1 PIV faq</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../chat_widget.css">
+  <script defer src="../../chat_widget.js"></script>
+  <script defer src="../../app.js"></script>
+</head>
+<body>
+  
+    
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../../index.html">Aerospace Experimental Methods</a>
+        <nav class="top-nav">
+          <a href="../../index.html">Home</a>
+          <a href="../../syllabus.html">Syllabus</a>
+          <a href="../../schedule.html">Schedule</a>
+          <a href="../../labs.html">Labs</a>
+          <a href="../../results.html">Results</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main class="page-shell">
+      <nav class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <a href="../../schedule.html">Schedule</a>
+        <a href="index.html">E1 Week 2 (Course Week 2)</a>
+        <span>lab1 PIV faq</span>
+      </nav>
+      <section class="hero compact">
+        <p class="eyebrow">E1 Week 2 (Course Week 2) · Assessment</p>
+        <h1>lab1 PIV faq</h1>
+        <p class="lead"># Lab 1 (P=IV) — Frequently Asked Questions ## ASEN 3501: Aerospace Experimental Methods *This document answers questions that come up frequently during Lab 1 preparation, execution, and report writing. If your questi...</p>
+        <div class="meta-chips">
+          <span>9 min</span>
+          <span>Assessments</span>
+          <span>1 source variant(s)</span>
+        </div>
+      </section>
+      
+      <section class="module-overview-grid">
+        <article class="content-card">
+          <h2>Learning Objectives</h2>
+          <ul><li>No item-specific objectives found; module-level goals are unavailable for this page.</li></ul>
+        </article>
+        <article class="content-card">
+          <h2>Source Variants</h2>
+          <ul class="source-link-list"><li><a href="../../normalized/E1/week_2/assignments/lab1_PIV_faq.md.normalized.md">Markdown</a><span>E1/week_2/assignments/lab1_PIV_faq.md</span></li></ul>
+        </article>
+      </section>
+      <section class="content-card lesson-body">
+        <h1>Lab 1 (P=IV) — Frequently Asked Questions</h1>
+<h2>ASEN 3501: Aerospace Experimental Methods</h2>
+<p><em>This document answers questions that come up frequently during Lab 1 preparation, execution, and report writing. If your question isn&#x27;t here, ask your TA or the course AI tutor.</em></p>
+<hr>
+<h2>Before the lab</h2>
+<p><strong>Should I use the nominal resistance value (from the label) or the measured resistance (from a pre-assembly DMM reading) when I compute power and propagate uncertainty?</strong></p>
+<p>Both. You&#x27;re required to run the analysis both ways and compare, not pick one:</p>
+<ul>
+<li><strong>Case 1:</strong> nominal resistance and its printed tolerance (e.g., 200 Ω ± 5%)</li>
+<li><strong>Case 2:</strong> DMM-measured resistance and the DMM&#x27;s resistance-measurement accuracy spec</li>
+</ul>
+<p>These are two independent, valid estimates of R and u_R, and they will generally give you slightly different P ± u_P results for P = V²/R and P = I²R. That&#x27;s expected. The point of comparing them is to look at whether the two ranges overlap. If they do, that overlapping region is a strong candidate for where the true value of P actually lies. You&#x27;ve bounded the answer from two different directions and they agree. If they don&#x27;t overlap, that&#x27;s a signal worth digging into (e.g., is the resistor self-heating, or is one of your uncertainty inputs off?), not something to paper over.</p>
+<hr>
+<p><strong>My three trial readings for V (or I) aren&#x27;t just scattered. They seem to be trending steadily in one direction (e.g., drifting downward). Is something wrong?</strong></p>
+<p>Probably not. This is likely warm-up drift, not a mistake. The power supply and DMM take a few minutes to reach a stable operating point after power-on, and it&#x27;s common to see voltage readings settle gradually (for example, starting a little high right after power-on and drifting down slightly over the first several minutes) before leveling off. This is a different phenomenon from the fluctuating-digit noise described in the assignment, and a different phenomenon from instrument accuracy error. It&#x27;s a slow, directional trend rather than a random jitter around a stable value.</p>
+<p>What to do about it:</p>
+<ul>
+<li>Take your three repeated readings close together in time (within a minute or two of each</li>
+</ul>
+<p>other) rather than spread across the full lab session. This keeps your &quot;repeatability&quot; trials measuring genuine repeatability, not warm-up drift dressed up as repeatability.</p>
+<ul>
+<li>If you want to confirm the drift is coming from the power supply rather than the circuit</li>
+</ul>
+<p>or DMM, you can power-cycle the supply (off, then back on) with the circuit still connected. If the reading jumps back up toward its initial value and begins drifting again, that points to the supply as the source.</p>
+<ul>
+<li>You don&#x27;t need to model or correct for this drift mathematically. Just be aware of it,</li>
+</ul>
+<p>take your readings in a tight time window, and if you notice a strong trend, it&#x27;s worth a sentence in your report noting that you observed it and controlled for it by timing your trials closely together.</p>
+<p>If you&#x27;re using <strong>Case 2</strong> (DMM-measured resistance) for your resistor value, there&#x27;s a related wrinkle: if you measured R with the DMM <em>before</em> the resistor was in the powered circuit, that&#x27;s a &quot;cold&quot; measurement. Once current flows for a while, the resistor will self-heat slightly and its true in-circuit resistance may drift from that cold value. You don&#x27;t need to correct for this either, but it&#x27;s a reasonable thing to mention if your Case 1 and Case 2 results don&#x27;t overlap as cleanly as expected.</p>
+<hr>
+<p><strong>My propagated uncertainty came out way too large, like the same order of magnitude as P itself. What did I do wrong?</strong></p>
+<p>The most common cause is a percent-to-decimal error. The datasheet specification is given as a percentage (e.g., 0.5% of reading), which means 0.005, not 0.5. If you plug in 0.5 directly, your uncertainty will be inflated by a factor of 100. Go back to your u_V and u_I calculations and confirm you converted the percentage to a decimal before multiplying.</p>
+<hr>
+<p><strong>Do I need to memorize my report for the oral interview?</strong></p>
+<p>No. You may bring your lab report and refer to it freely. What the interviewer is assessing is whether you can explain the <em>reasoning</em> behind a result, not whether you can recall a formula from memory. If asked to walk through the partial derivative computation, it&#x27;s completely fine to look at the formula in your report. The question is whether you can explain what each term means and why the form matters.</p>
+<p>The rubric requires you to demonstrate understanding in 3 of 5 categories. See <code>LAB1_PIV_rubric_student.md</code> for what &quot;understanding&quot; looks like in each category.</p>
+<hr>
+<h2>During the lab</h2>
+<p><strong>Should I average the three voltage and current readings, or use each trial separately?</strong></p>
+<p>Use the mean of your three readings as your measured value of V and I. The standard error of the mean from three readings (σ/√3) is typically much smaller than the manufacturer specification uncertainty, so the spec will dominate your formal uncertainty estimate. Record all three individual readings in your report to demonstrate repeatability, but compute P and propagate uncertainty using the mean values.</p>
+<hr>
+<h2>Monte Carlo simulation</h2>
+<p><strong>Which distribution should I use for V and I in the Monte Carlo simulation: Gaussian or uniform?</strong></p>
+<p>Both are defensible. The choice depends on what you know about the error source:</p>
+<ul>
+<li><strong>Uniform distribution</strong> [measured value − u, measured value + u]: use this when all</li>
+</ul>
+<p>you know is a tolerance bound from the datasheet, with no information about the distribution shape. This is the more conservative and technically honest choice for a manufacturer specification.</p>
+<ul>
+<li><strong>Gaussian distribution</strong> with σ = u/2: use this when you are treating the manufacturer</li>
+</ul>
+<p>spec as an approximately 95% confidence bound (k=2 coverage factor), which is common for precision instrument specifications. The factor of 2 means σ = u/2, not σ = u.</p>
+<p>See W2_L2 slide 7 for the full reasoning. Either choice is acceptable. What matters is that you state your choice explicitly in Section 5 of your report and justify it in one sentence.</p>
+<p>If you want a single defensible default: <strong>use uniform</strong>. It makes fewer assumptions.</p>
+<hr>
+<p><strong>Why does my Monte Carlo standard deviation look like it&#x27;s about half of my partial-derivative uncertainty? Did I do something wrong?</strong></p>
+<p>Probably not. This is a σ-convention issue. Here&#x27;s what&#x27;s happening:</p>
+<p>The partial-derivative method computes δP using the full manufacturer spec value u as the input uncertainty. The result δP represents the maximum bound.</p>
+<p>If you set σ = u/2 in your Gaussian Monte Carlo (treating u as a ±2σ bound), then your simulation input standard deviation is half the spec value. The output distribution standard deviation will therefore also be approximately half of δP.</p>
+<p>This isn&#x27;t an error. It&#x27;s a consistent consequence of your σ-convention. To make the two methods give comparable magnitudes directly, either:</p>
+<ul>
+<li>Use uniform distributions (the bounds match the spec value directly), or</li>
+<li>Use Gaussian with σ = u (treating the spec as a 1σ bound: less standard, but it makes</li>
+</ul>
+<p>the comparison numerically direct)</p>
+<p>The key requirement is to state your convention explicitly in Section 5 and check consistency when writing Section 6. The comparison should explain <em>why</em> the numbers relate the way they do, not just assert that they agree or disagree.</p>
+<hr>
+<h2>Report writing</h2>
+<p><strong>I computed three different values of P: 0.2425 W, 0.2447 W, and 0.2404 W. They&#x27;re close but not the same. Which one is my &quot;best estimate&quot; for Section 7?</strong></p>
+<p>Report the result from the form with the smallest propagated uncertainty. In this lab that is typically P = IV, because both V and I are directly measured inputs and the sensitivity coefficients are smaller than in the forms that involve R² terms.</p>
+<p>Your choice should be <em>consistent</em> with your Section 4 sensitivity analysis. If you concluded in Section 4 that P = IV has the smallest uncertainty, your Section 7 result should use that form. The point of the sensitivity analysis isn&#x27;t just arithmetic. It&#x27;s to make a reasoned choice about which result to report.</p>
+<p>You may report all three forms for completeness, but designate one as your primary result and explain why.</p>
+<hr>
+<p><strong>Should I say &quot;95% CI&quot; or &quot;manufacturer spec bound&quot; when stating my result in engineering form in Section 7?</strong></p>
+<p>For Lab 1, use <strong>&quot;manufacturer spec bound&quot;</strong> as your default. Here&#x27;s the distinction:</p>
+<ul>
+<li><strong>&quot;Manufacturer spec bound&quot;</strong> means the uncertainty was derived directly from the</li>
+</ul>
+<p>instrument datasheet specification, without a statistical sampling argument. This is accurate for what you did.</p>
+<ul>
+<li><strong>&quot;95% CI&quot;</strong> means you can trace the bound to a specific probability statement, either</li>
+</ul>
+<p>from repeated measurements and a t-distribution, or from a manufacturer spec that explicitly states it corresponds to 95% coverage.</p>
+<p>Some multimeter datasheets do state that their accuracy specification corresponds to a 95% or 99% confidence level. If yours does, you may write &quot;95% CI (manufacturer spec).&quot; If it doesn&#x27;t state the confidence level explicitly, write &quot;manufacturer spec bound.&quot;</p>
+<p>The general format is: <em>P = [value] ± [uncertainty] W (manufacturer spec bound, partial derivative propagation)</em></p>
+<hr>
+<p><em>Lab 1 FAQ | ASEN 3501 | E1 Week 2</em> <em>Generated from simulated student gap analysis — 2026-05-26</em> <em>Questions or corrections: contact the teaching team</em></p>
+      </section>
+      <section class="page-nav">
+        <a class="secondary-button" href="page-05.html">Previous</a>
+        <a class="primary-button next-button" href="../e1-week_3/index.html" >Next</a>
+      </section>
+    </main>
+    
+    <footer class="site-footer">
+      <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+    </footer>
+    
+    
+  
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "e1-week_2-lab1-piv-faq", "title": "lab1 PIV faq", "url": "modules/e1-week_2/page-06.html", "text": "E1 Week 2 (Course Week 2)\nAssessment\nlab1 PIV faq\n# Lab 1 (P=IV) \u2014 Frequently Asked Questions ## ASEN 3501: Aerospace Experimental Methods *This document answers questions that come up frequently during Lab 1 preparation, execution, and report writing. If your questi...\nLab 1 (P=IV) \u2014 Frequently Asked Questions\n\n ASEN 3501: Aerospace Experimental Methods\n\n This document answers questions that come up frequently during Lab 1 preparation, execution, and report writing. If your question isn't here, ask your TA or the course AI tutor.\n\n Before the lab\n\n Should I use the nominal resistance value (from the label) or the measured resistance (from a pre-assembly DMM reading) when I compute power and propagate uncertainty?\n\n Both. You're required to run the analysis both ways and compare, not pick one:\n\n Case 1: nominal resistance and its printed tolerance (e.g., 200 \u03a9 \u00b1 5%)\n\n Case 2: DMM-measured resistance and the DMM's resistance-measurement accuracy spec\n\n These are two independent, valid estimates of R and u_R, and they will generally give you slightly different P \u00b1 u_P results for P = V\u00b2/R and P = I\u00b2R. That's expected. The point of comparing them is to look at whether the two ranges overlap. If they do, that overlapping region is a strong candidate for where the true value of P actually lies. You've bounded the answer from two different directions and they agree. If they don't overlap, that's a signal worth digging into (e.g., is the resistor self-heating, or is one of your uncertainty inputs off?), not something to paper over.\n\n My three trial readings for V (or I) aren't just scattered. They seem to be trending steadily in one direction (e.g., drifting downward). Is something wrong?\n\n Probably not. This is likely warm-up drift, not a mistake. The power supply and DMM take a few minutes to reach a stable operating point after power-on, and it's common to see voltage readings settle gradually (for example, starting a little high right after power-on and drifting down slightly over the first several minutes) before leveling off. This is a different phenomenon from the fluctuating-digit noise described in the assignment, and a different phenomenon from instrument accuracy error. It's a slow, directional trend rather than a random jitter around a stable value.\n\n What to do about it:\n\n Take your three repeated readings close together in time (within a minute or two of each\n\n other) rather than spread across the full lab session. This keeps your \"repeatability\" trials measuring genuine repeatability, not warm-up drift dressed up as repeatability.\n\n If you want to confirm the drift is coming from the power supply rather than the circuit\n\n or DMM, you can power-cycle the supply (off, then back on) with the circuit still connected. If the reading jumps back up toward its initial value and begins drifting again, that points to the supply as the source.\n\n You don't need to model or correct for this drift mathematically. Just be aware of it,\n\n take your readings in a tight time window, and if you notice a strong trend, it's worth a sentence in your report noting that you observed it and controlled for it by timing your trials closely together.\n\n If you're using Case 2 (DMM-measured resistance) for your resistor value, there's a related wrinkle: if you measured R with the DMM before the resistor was in the powered circuit, that's a \"cold\" measurement. Once current flows for a while, the resistor will self-heat slightly and its true in-circuit resistance may drift from that cold value. You don't need to correct for this either, but it's a reasonable thing to mention if your Case 1 and Case 2 results don't overlap as cleanly as expected.\n\n My propagated uncertainty came out way too large, like the same order of magnitude as P itself. What did I do wrong?\n\n The most common cause is a percent-to-decimal error. The datasheet specification is given as a percentage (e.g., 0.5% of reading), which means 0.005, not 0.5. If you plug in 0.5 directly, your uncertainty will be inflated by a factor of 100. Go back to your u_V and u_I calculations and confirm you converted the percentage to a decimal before multiplying.\n\n Do I need to memorize my report for the oral interview?\n\n No. You may bring your lab report and refer to it freely. What the interviewer is assessing is whether you can explain the reasoning behind a result, not whether you can recall a formula from memory. If asked to walk through the partial derivative computation, it's completely fine to look at the formula in your report. The question is whether you can explain what each term means and why the form matters.\n\n The rubric requires you to demonstrate understanding in 3 of 5 categories. See LAB1_PIV_rubric_student.md for what \"understanding\" looks like in each category.\n\n During the lab\n\n Should I average the three voltage and current readings, or use each trial separately?\n\n Use the mean of your three readings as your measured value of V and I. The standard error of the mean from three readings (\u03c3/\u221a3) is typically much smaller than the manufacturer specification uncertainty, so the spec will dominate your formal uncertainty estimate. Record all three individual readings in your report to demonstrate repeatability, but compute P and propagate uncertainty using the mean values.\n\n Monte Carlo simulation\n\n Which distribution should I use for V and I in the Monte Carlo simulation: Gaussian or uniform?\n\n Both are defensible. The choice depends on what you know about the error source:\n\n Uniform distribution [measured value \u2212 u, measured value + u]: use this when all\n\n you know is a tolerance bound from the datasheet, with no information about the distribution shape. This is the more conservative and technically honest choice for a manufacturer specification.\n\n Gaussian distribution with \u03c3 = u/2: use this when you are treating the manufacturer\n\n spec as an approximately 95% confidence bound (k=2 coverage factor), which is common for precision instrument specifications. The factor of 2 means \u03c3 = u/2, not \u03c3 = u.\n\n See W2_L2 slide 7 for the full reasoning. Either choice is acceptable. What matters is that you state your choice explicitly in Section 5 of your report and justify it in one sentence.\n\n If you want a single defensible default: use uniform . It makes fewer assumptions.\n\n Why does my Monte Carlo standard deviation look like it's about half of my partial-derivative uncertainty? Did I do something wrong?\n\n Probably not. This is a \u03c3-convention issue. Here's what's happening:\n\n The partial-derivative method computes \u03b4P using the full manufacturer spec value u as the input uncertainty. The result \u03b4P represents the maximum bound.\n\n If you set \u03c3 = u/2 in your Gaussian Monte Carlo (treating u as a \u00b12\u03c3 bound), then your simulation input standard deviation is half the spec value. The output distribution standard deviation will therefore also be approximately half of \u03b4P.\n\n This isn't an error. It's a consistent consequence of your \u03c3-convention. To make the two methods give comparable magnitudes directly, either:\n\n Use uniform distributions (the bounds match the spec value directly), or\n\n Use Gaussian with \u03c3 = u (treating the spec as a 1\u03c3 bound: less standard, but it makes\n\n the comparison numerically direct)\n\n The key requirement is to state your convention explicitly in Section 5 and check consistency when writing Section 6. The comparison should explain why the numbers relate the way they do, not just assert that they agree or disagree.\n\n Report writing\n\n I computed three different values of P: 0.2425 W, 0.2447 W, and 0.2404 W. They're close but not the same. Which one is my \"best estimate\" for Section 7?\n\n Report the result from the form with the smallest propagated uncertainty. In this lab that is typically P = IV, because both V and I are directly measured inputs and the sensitivity coefficients are smaller than in the forms that involve R\u00b2 terms.\n\n Your choice should be consistent with your Section 4 sensitivity analysis. If you concluded in Section 4 that P = IV has the smallest uncertainty, your Section 7 result should use that form. The point of the sensitivity analysis isn't just arithmetic. It's to make a reasoned choice about which result to report.\n\n You may report all three forms for completeness, but designate one as your primary result and explain why.\n\n Should I say \"95% CI\" or \"manufacturer spec bound\" when stating my result in engineering form in Section 7?\n\n For Lab 1, use \"manufacturer spec bound\" as your default. Here's the distinction:\n\n \"Manufacturer spec bound\" means the uncertainty was derived directly from the\n\n instrument datasheet specification, without a statistical sampling argument. This is accurate for what you did.\n\n \"95% CI\" means you can trace the bound to a specific probability statement, either\n\n from repeated measurements and a t-distribution, or from a manufacturer spec that explicitly states it corresponds to 95% coverage.\n\n Some multimeter datasheets do state that their accuracy specification corresponds to a 95% or 99% confidence level. If yours does, you may write \"95% CI (manufacturer spec).\" If it doesn't state the confidence level explicitly, write \"manufacturer spec bound.\"\n\n The general format is: P = [value] \u00b1 [uncertainty] W (manufacturer spec bound, partial derivative propagation)\n\n Lab 1 FAQ | ASEN 3501 | E1 Week 2 Generated from simulated student gap analysis \u2014 2026-05-26 Questions or corrections: contact the teaching team", "module_id": "e1-week_2", "source_type": "page"}</script>
+</body>
+</html>

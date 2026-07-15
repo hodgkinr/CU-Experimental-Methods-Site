@@ -27,10 +27,10 @@
         "type": "multiple_choice",
         "prompt": "Which hypothesis is the most testable in the Week 1 sense?",
         "options": [
-          "The system will probably change when we run the experiment.",
-          "We expect interesting behavior.",
-          "If input voltage is increased from 3 V to 9 V while resistance is held constant, measured power will increase by a factor of nine because power scales with V^2/R.",
-          "The data should make sense if we do the procedure correctly."
+          "\u201cThe system will probably change when we run the experiment.\u201d",
+          "\u201cWe expect interesting behavior.\u201d",
+          "\u201cIf input voltage is increased from 3 V to 9 V while resistance is held constant, measured power will increase by a factor of nine because power scales with V^2/R.\u201d",
+          "\u201cThe data should make sense if we do the procedure correctly.\u201d"
         ]
       },
       {
@@ -71,10 +71,10 @@
         "type": "multiple_choice",
         "prompt": "Which result is written in the most appropriate Week 2 engineering form?",
         "options": [
-          "The answer is 4.98.",
-          "The power is about 5 watts, probably.",
-          "P = 4.98 +/- 0.12 W based on partial-derivative propagation.",
-          "The power should be close to what the meter said."
+          "\u201cThe answer is 4.98.\u201d",
+          "\u201cThe power is about 5 watts, probably.\u201d",
+          "\u201cP = 4.98 +/- 0.12 W based on partial-derivative propagation.\u201d",
+          "\u201cThe power should be close to what the meter said.\u201d"
         ]
       },
       {
@@ -171,7 +171,7 @@
       },
       {
         "type": "open_response",
-        "prompt": "In your own words, what does it mean to say that the Phase I report is a single integrated argument?"
+        "prompt": "In your own words, what does it mean to say that the Phase I report is a \u201csingle integrated argument\u201d?"
       }
     ]
   },
@@ -193,10 +193,10 @@
         "type": "multiple_choice",
         "prompt": "Which of the following is the strongest prediction in the Week 5 sense?",
         "options": [
-          "The result will probably be close.",
-          "The sensor should give reasonable data.",
-          "The measured response should peak near X with uncertainty about Y, and we will consider agreement acceptable if the data falls within the committed bound.",
-          "We will know whether the model is good after we look at the data."
+          "\u201cThe result will probably be close.\u201d",
+          "\u201cThe sensor should give reasonable data.\u201d",
+          "\u201cThe measured response should peak near X with uncertainty about Y, and we will consider agreement acceptable if the data falls within the committed bound.\u201d",
+          "\u201cWe will know whether the model is good after we look at the data.\u201d"
         ]
       },
       {
@@ -211,11 +211,11 @@
       },
       {
         "type": "open_response",
-        "prompt": "Why is predicting someone else’s experiment from specs a useful training exercise, even though it is not the same as running the experiment yourself?"
+        "prompt": "Why is predicting someone else\u2019s experiment from specs a useful training exercise, even though it is not the same as running the experiment yourself?"
       },
       {
         "type": "open_response",
-        "prompt": "A team says, “Our prediction was off, but that just means the experiment was bad.” What would Week 5 push you to ask next?"
+        "prompt": "A team says, \u201cOur prediction was off, but that just means the experiment was bad.\u201d What would Week 5 push you to ask next?"
       }
     ]
   },
@@ -238,7 +238,7 @@
         "prompt": "In Tier 2, why does intended use matter before the experiment runs?",
         "options": [
           "It tells you what color to make the plots",
-          "It defines what counts as a meaningful prediction and what level of agreement matters for the experiment’s purpose",
+          "It defines what counts as a meaningful prediction and what level of agreement matters for the experiment\u2019s purpose",
           "It replaces the need for a model",
           "It guarantees the calibration is current"
         ]
@@ -250,12 +250,12 @@
           "A rewritten explanation after seeing the data",
           "A clear acceptance criterion stated before data collection",
           "A promise to adjust the model until it matches the results",
-          "A list of everyone’s favorite plotting styles"
+          "A list of everyone\u2019s favorite plotting styles"
         ]
       },
       {
         "type": "open_response",
-        "prompt": "Explain why “the result should look reasonable” is not an adequate Week 6 prediction."
+        "prompt": "Explain why \u201cthe result should look reasonable\u201d is not an adequate Week 6 prediction."
       },
       {
         "type": "open_response",
@@ -283,7 +283,7 @@
         "options": [
           "The physical phenomenon being measured",
           "The font size on the DAQ screen",
-          "The student’s preferred spreadsheet format",
+          "The student\u2019s preferred spreadsheet format",
           "The color of the sensor cable"
         ]
       },
@@ -326,7 +326,7 @@
         "prompt": "Which statement best captures calibration status review?",
         "options": [
           "If the instrument turned on, calibration status is irrelevant",
-          "Calibration status review asks whether the instrument’s calibration documentation, interval, and uncertainty support the credibility of the measurement claim",
+          "Calibration status review asks whether the instrument\u2019s calibration documentation, interval, and uncertainty support the credibility of the measurement claim",
           "Calibration status review proves the model is valid",
           "Calibration status review replaces uncertainty analysis"
         ]
@@ -335,19 +335,19 @@
         "type": "multiple_choice",
         "prompt": "Which is the best example of an experimentally informed model update?",
         "options": [
-          "The data was noisy, so we will keep the same model and say the experiment went fine.",
-          "The residual pattern suggests the model is missing a boundary-condition effect, so the next model revision should explicitly include that effect.",
-          "We changed the plot color and the model looks better.",
-          "Calibration and validation are the same, so no update is needed."
+          "\u201cThe data was noisy, so we will keep the same model and say the experiment went fine.\u201d",
+          "\u201cThe residual pattern suggests the model is missing a boundary-condition effect, so the next model revision should explicitly include that effect.\u201d",
+          "\u201cWe changed the plot color and the model looks better.\u201d",
+          "\u201cCalibration and validation are the same, so no update is needed.\u201d"
         ]
       },
       {
         "type": "open_response",
-        "prompt": "What is the difference between saying “the model is wrong” and saying “the residual pattern suggests model-form error”?"
+        "prompt": "What is the difference between saying \u201cthe model is wrong\u201d and saying \u201cthe residual pattern suggests model-form error\u201d?"
       },
       {
         "type": "open_response",
-        "prompt": "Why doesn’t a current calibration sticker automatically settle the validation question?"
+        "prompt": "Why doesn\u2019t a current calibration sticker automatically settle the validation question?"
       }
     ]
   },
@@ -357,7 +357,7 @@
     "questions": [
       {
         "type": "multiple_choice",
-        "prompt": "Which statement best reflects Week 9’s warning about R^2?",
+        "prompt": "Which statement best reflects Week 9\u2019s warning about R^2?",
         "options": [
           "A high R^2 proves the model is physically correct",
           "A high R^2 means the model explains variance in the fitted data, but it does not by itself prove the model is physically adequate",
@@ -391,7 +391,7 @@
       },
       {
         "type": "open_response",
-        "prompt": "Why is a data-grounded improvement proposal stronger than a generic suggestion like “use better sensors”?"
+        "prompt": "Why is a data-grounded improvement proposal stronger than a generic suggestion like \u201cuse better sensors\u201d?"
       }
     ]
   },
@@ -413,8 +413,8 @@
         "type": "multiple_choice",
         "prompt": "What makes a strong peer review comment in the Week 10 sense?",
         "options": [
-          "Nice job",
-          "This was confusing",
+          "\u201cNice job\u201d",
+          "\u201cThis was confusing\u201d",
           "A specific comment tied to the technical content, explaining what is correct, what is weak or missing, and what improvement would strengthen the work",
           "A comment that only focuses on slide colors"
         ]
@@ -435,7 +435,7 @@
       },
       {
         "type": "open_response",
-        "prompt": "In one short paragraph, explain how the course’s idea of “good critique” is different from just being negative."
+        "prompt": "In one short paragraph, explain how the course\u2019s idea of \u201cgood critique\u201d is different from just being negative."
       }
     ]
   }

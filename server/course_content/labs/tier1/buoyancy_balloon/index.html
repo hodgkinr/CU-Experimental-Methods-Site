@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buoyancy Balloon</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../chat_widget.css">
+  <script defer src="../../chat_widget.js"></script>
+  <script defer src="../../app.js"></script>
+</head>
+<body>
+  
+    
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../../index.html">Aerospace Experimental Methods</a>
+        <nav class="top-nav">
+          <a href="../../index.html">Home</a>
+          <a href="../../syllabus.html">Syllabus</a>
+          <a href="../../schedule.html">Schedule</a>
+          <a class="is-current" href="../../labs.html">Labs</a>
+          <a href="../../results.html">Results</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main class="page-shell">
+      <nav class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../labs/tier1_candidates.html">Tier 1 Candidates</a>
+        <span>Buoyancy Balloon</span>
+      </nav>
+      <section class="hero compact">
+        <p class="eyebrow">Tier 1 Candidate</p>
+        <h1>Buoyancy Balloon</h1>
+        <p class="lead">Measure the buoyant force on a balloon and compare to a simple fluid model.</p>
+      </section>
+      <section class="experiment-scaffold">
+        <h2>Lab Content</h2>
+        <p class="muted" style="margin-bottom:1rem">Lab content compiled from source materials. Sections marked as incomplete will be updated as additional source files become available.</p>
+        <div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure — Buoyancy Balloon: High Altitude Vehicles (Lifting Gas and Hot Air)</h1>
+<p><strong>Lab:</strong> Buoyancy Balloon — High Altitude Vehicles <strong>Source:</strong> ASEN 2802: Aerospace Laboratory, CU Boulder, Spring 2025 <strong>Audience:</strong> Lab assistant or student executing the experiment</p>
+<hr>
+<h2>Equipment List</h2>
+<p><strong>Experiment 1 — Lifting Gas (Helium) Balloon</strong></p>
+<ul>
+<li>Mylar party balloon</li>
+<li>String</li>
+<li>Paperclips (multiple)</li>
+<li>Mass scale — PILOT lab <code>[MISSING: make/model/resolution not specified in source]</code></li>
+<li>Ruler (for volume estimation)</li>
+<li>Lab technician (required for helium fill)</li>
+<li>PILOT lab instrumentation for ambient T and P <code>[MISSING: make/model not specified]</code></li>
+<li>Alternate: NCAR website <a href="http://www.eol.ucar.edu/cgi-bin/weather.cgi?site=fl">http://www.eol.ucar.edu/cgi-bin/weather.cgi?site=fl</a></li>
+</ul>
+<p><strong>Experiment 2 — Mini Hot Air Balloon (Sky Lantern)</strong></p>
+<ul>
+<li>Sky lantern</li>
+<li>Heat gun</li>
+<li>String</li>
+<li>Tape measure</li>
+<li>K-type thermocouple array (quantity unspecified — see Sensor Informational Packet)</li>
+<li>Differential pressure sensor (see Sensor Informational Packet)</li>
+<li>DAQ system <code>[MISSING: make/model not specified]</code></li>
+<li>Lab station computer with LabVIEW temperature sensor VI installed</li>
+<li>Sensor Supplemental Document (Canvas) <code>[MISSING: ASEN2802_Sensor_Informational_Packet.pdf present in source directory as binary PDF; content must be extracted separately before student use]</code></li>
+</ul>
+<hr>
+<h2>Safety</h2>
+<p><code>[SAFETY: Do not hold the mylar balloon too close to or too long near the heater — risk of melting balloon skin. Heat gun safety: hot air directed at skin or flammables is a burn hazard. Instructor should verify PILOT lab safety requirements before student distribution.]</code></p>
+<hr>
+<h2>Experiment 1 — Lifting Gas (Helium) Balloon</h2>
+<h3>Part 1: Achieve Neutral Buoyancy</h3>
+<p><strong>Goal:</strong> Determine the payload mass (paperclips) required to hold the balloon in a stable vertical position — neither rising nor falling.</p>
+<ol>
+<li>Gather all balloon materials (balloon, string, paperclips). Using the PILOT lab mass scale, record the mass of each component separately <em>before</em> filling the balloon.</li>
+<li>With the assistance of a lab technician, fill the balloon with helium gas. Tie a string to the bottom with a loop to attach paperclips.</li>
+<li>Add paperclips one by one until neutral buoyancy is achieved (balloon holds position, not moving up or down).</li>
+<li>Record the final mass of the string and paperclips (payload mass at neutral buoyancy).</li>
+<li>Draw a free-body diagram of the system identifying all forces (buoyant force up; weights of envelope, gas, and ballast down).</li>
+<li>Record local ambient temperature and pressure from PILOT instrumentation or the NCAR website.</li>
+</ol>
+<p><code>[SETUP_PHOTO NEEDED: Helium balloon setup — balloon with string and paperclip ballast, scale, and PILOT instrumentation visible]</code></p>
+<hr>
+<h3>Part 2: Modify Buoyancy with Heat</h3>
+<p><strong>Goal:</strong> Make the balloon negatively buoyant by adding mass, then use heat to restore neutral buoyancy. Observe and characterize the thermodynamic process.</p>
+<ol>
+<li>Using the same configuration from Part 1, add more paperclips until the balloon is just negatively buoyant — it should fall slowly.</li>
+<li>Hold the balloon briefly in front of a heater to allow heat transfer to the gas.</li>
+</ol>
+<p><code>[CAUTION: Do not hold the balloon too close to or for too long — risk of melting the mylar skin]</code></p>
+<ol>
+<li>Release the balloon and observe its behavior. Record observations.</li>
+<li>Define the thermal system and describe thermodynamically the processes taking place (processes and energy conversions).</li>
+<li>Use dimensional analysis to estimate the volume of the balloon while it is still at the elevated temperature.</li>
+</ol>
+<hr>
+<h3>Part 3: Estimate Mass of Helium</h3>
+<p><strong>Goal:</strong> Estimate the mass of helium inside the balloon using two independent methods, then compare.</p>
+<ol>
+<li>Record the mass of the payload (string, paperclips, etc.).</li>
+<li>Estimate the volume of the balloon using rulers and/or other techniques with the balloon at room temperature. Compare this to your dimensional analysis estimate from Part 2 (near heater).</li>
+<li>Using the neutrally buoyant force balance (FBD from Part 1) and thermodynamic properties, estimate the required mass of helium to achieve buoyancy. <code>[STUDENT TASK — not pre-solved; students derive from force balance in ASEN 3501]</code></li>
+<li>Using the measured volume and the Ideal Gas Law (P, V, T at room conditions), estimate the mass of helium independently. <code>[STUDENT TASK — not pre-solved]</code></li>
+<li>Compare both estimates. Compute the total mass budget and the fractional percent of each balloon system component relative to total system mass.</li>
+</ol>
+<p><strong>Known pitfall:</strong> Volume estimates from ruler measurements are sensitive to assumed geometry. Document assumptions (e.g., sphere vs. oblate sphere) explicitly.</p>
+<hr>
+<h2>Experiment 2 — Mini Hot Air Balloon (Sky Lantern)</h2>
+<h3>Part 1: Familiarize with Test Stand</h3>
+<p><strong>Goal:</strong> Understand the test stand components and how the data acquisition system reports measurements.</p>
+<ol>
+<li>Identify all components of the test stand: sky lantern, heat gun, string, thermocouple array, differential pressure sensor, DAQ system, and the LabVIEW temperature sensor VI on the lab station computer.</li>
+<li>Review thermocouple color coding as displayed on the VI — each color corresponds to a specific thermocouple channel and location.</li>
+<li>Confirm the differential pressure sensor connection — it measures internal balloon pressure minus room pressure.</li>
+<li>Review the Sensor Supplemental Document. <code>[MISSING: ASEN2802_Sensor_Informational_Packet.pdf is present in source directory as a binary PDF; content must be extracted and made available to students before this step can be completed as written]</code></li>
+</ol>
+<p><code>[SETUP_PHOTO NEEDED: Hot air balloon test stand full setup as in Figure 3 from source document — sky lantern, heat gun, thermocouple placement, and DAQ connections labeled]</code></p>
+<hr>
+<h3>Part 2: Estimate Filled Volume</h3>
+<p><strong>Goal:</strong> Obtain an initial geometric volume estimate of the fully inflated balloon.</p>
+<ol>
+<li>Turn the heat gun to <strong>low</strong> and inflate the balloon using room temperature air until it takes shape.</li>
+<li>Using a tape measure, take geometric measurements (diameter, height, or other relevant dimensions depending on balloon shape).</li>
+<li>Calculate and record the estimated filled volume in ft³. <code>[STUDENT TASK — geometric calculation from measurements]</code></li>
+</ol>
+<p><strong>Known pitfall:</strong> Balloon shape is irregular. Agree on a geometric approximation model (e.g., sphere, cylinder + cone) and document the assumption.</p>
+<hr>
+<h3>Part 3: Observe Temperature at Neutral Buoyancy</h3>
+<p><strong>Goal:</strong> Record thermocouple temperatures and differential pressure at the moment the balloon achieves neutral buoyancy.</p>
+<ol>
+<li><strong>Start the temperature sensor VI before beginning the experiment</strong> — data logging must be running before filling starts.</li>
+<li>Start the flow of room temperature air (heat gun on low) until the balloon begins to take shape.</li>
+<li>Switch the heat gun to <strong>hot</strong> to begin flowing hot air into the balloon and warm the internal air.</li>
+<li>Monitor the thermocouple temperature channels on the VI as the balloon heats.</li>
+<li>Also monitor the differential pressure sensor.</li>
+<li>When the balloon achieves neutral buoyancy (begins to lift), record:</li>
+</ol>
+<ul>
+<li>All individual thermocouple temperatures [°C or K]</li>
+<li>Differential pressure at that moment [Pa]</li>
+<li>Any notes on which thermocouples are responding and which lag</li>
+</ul>
+<p><strong>Known pitfall:</strong> Thermocouples at different positions in the balloon will read different temperatures — the average internal temperature is not trivial to determine. Record all channels individually.</p>
+<hr>
+<h2>Common Mistakes Across Both Experiments</h2>
+<ul>
+<li>Failing to record component masses before filling — do all pre-fill measurements first.</li>
+<li>Not noting ambient T and P at time of experiment — these values are required for the Ideal Gas Law calculations.</li>
+<li>Starting the LabVIEW VI after the balloon is already being filled — VI must be running before heating starts.</li>
+<li>Melting the mylar skin by holding it too close to the heater.</li>
+</ul>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Theoretical Derivations — Buoyancy Balloon: High Altitude Vehicles</h1>
+<p><strong>Lab:</strong> Buoyancy Balloon — High Altitude Vehicles <strong>Source:</strong> ASEN 2802: Aerospace Laboratory, CU Boulder, Spring 2025 <strong>Audience:</strong> Student or TA working through the theory</p>
+<hr>
+<h2>Background: Lighter-Than-Air Vehicles</h2>
+<p>There are two practical methods of achieving buoyant flight:</p>
+<ol>
+<li><strong>Lifting gas balloon:</strong> Fill an envelope with a gas lighter than air (e.g., helium, hydrogen). The gas is denser than vacuum but less dense than air — the net upward buoyant force exceeds the weight of the system.</li>
+<li><strong>Hot air balloon:</strong> Heat the air inside an envelope to reduce its density. A sufficient reduction in internal air density causes the total system weight to fall below the weight of displaced air.</li>
+</ol>
+<p>Modern high-altitude research balloons (&gt; 30 km) are deployed by NASA to carry scientific payloads above atmospheric interference. Two balloon types are relevant:</p>
+<ul>
+<li><strong>Zero-pressure balloons:</strong> Internal and external pressures equalize; volume varies with altitude. Example: Red Bull Stratos.</li>
+<li><strong>Super-pressure balloons:</strong> Internal pressure exceeds external; volume is fixed at design altitude. Example: Google Project Loon.</li>
+</ul>
+<p>The same governing physical principles (Archimedes&#x27; Principle, Ideal Gas Law, Standard Atmosphere) apply to both types. The distinction lies in structural design and altitude control strategy.</p>
+<p><strong>References:</strong></p>
+<ul>
+<li>Anderson, J.D., <em>Introduction to Flight</em>, Chapter 3 (Standard Atmosphere)</li>
+<li>MathWorks, <code>atmoscoesa</code> — COESA 1976 Standard Atmosphere implementation</li>
+</ul>
+<hr>
+<h2>Section 1 — Archimedes&#x27; Principle and Buoyant Force</h2>
+<p>The buoyant force on a body fully submerged in a fluid equals the weight of the displaced fluid:</p>
+<p>$$F_b = \rho_{\text{air}} \cdot V_{\text{balloon}} \cdot g$$</p>
+<p>where:</p>
+<ul>
+<li>$\rho_{\text{air}}$: density of ambient air [kg/m³]</li>
+<li>$V_{\text{balloon}}$: volume of the balloon [m³]</li>
+<li>$g$: gravitational acceleration = 9.81 m/s² (assumed constant with altitude)</li>
+</ul>
+<p><strong>Neutral buoyancy condition:</strong> The buoyant force exactly equals the total weight of the system:</p>
+<p>$$F_b = (m_{\text{envelope}} + m_{\text{gas}} + m_{\text{ballast}}) \cdot g$$</p>
+<p>Simplifying (dividing through by $g$):</p>
+<p>$$\rho_{\text{air}} \cdot V = m_{\text{envelope}} + m_{\text{gas}} + m_{\text{ballast}} \quad \text{[kg]}$$</p>
+<p><strong>Free-body diagram:</strong> Buoyant force acts upward. Gravitational weight of each component (envelope, gas, ballast/payload) acts downward.</p>
+<p>The same framework applies to both helium and hot air balloons — only the gas properties differ. For helium, $m_{\text{gas}}$ is small but non-zero. For hot air, $m_{\text{gas}}$ is the mass of heated air retained inside (which decreases as temperature increases at fixed volume).</p>
+<p><strong>Assumption:</strong> Constant $g$ with altitude. Valid for altitudes below ~100 km where the fractional change in $g$ is less than 3%.</p>
+<hr>
+<h2>Section 2 — Ideal Gas Law</h2>
+<p>The mass-specific (intensive) form of the Ideal Gas Law:</p>
+<p>$$P = \rho \cdot R \cdot T$$</p>
+<p>Rearranged for density:</p>
+<p>$$\rho = \frac{P}{R \cdot T}$$</p>
+<p>where:</p>
+<ul>
+<li>$P$: absolute pressure [Pa]</li>
+<li>$\rho$: gas density [kg/m³]</li>
+<li>$R$: specific gas constant [J/(kg·K)]</li>
+<li>$T$: absolute temperature [K]</li>
+</ul>
+<p><strong>Gas constants:</strong></p>
+<ul>
+<li>Helium: $R_{\text{He}} = 2077$ J/(kg·K)</li>
+<li>Air: $R_{\text{air}} = 287$ J/(kg·K)</li>
+</ul>
+<p><strong>Applications in this lab:</strong></p>
+<p><em>Estimate helium mass from balloon volume at known T and P:</em> $$m_{\text{He}} = \frac{P \cdot V}{R_{\text{He}} \cdot T}$$</p>
+<p><em>Estimate volume change when heated at constant mass and pressure:</em> Volume increases proportionally with temperature — $V \propto T$ at constant $P$ and $m$.</p>
+<p><em>Estimate internal hot air density as a function of temperature:</em> $$\rho_{\text{hot}} = \frac{P_{\text{atm}}}{R_{\text{air}} \cdot T_{\text{inside}}}$$</p>
+<hr>
+<h2>Section 3 — Standard Atmosphere Model (COESA 1976)</h2>
+<p>The 1976 COESA Standard Atmosphere defines pressure $P(h)$, density $\rho(h)$, and temperature $T(h)$ as functions of geometric altitude $h$.</p>
+<p><strong>MATLAB implementation:</strong> MathWorks Aerospace Toolbox function <code>atmoscoesa(h)</code> returns [T, a, P, rho] at altitude $h$ [m].</p>
+<p><strong>Reference:</strong> Anderson, <em>Introduction to Flight</em>, Chapter 3.</p>
+<p>This model is used in both balloon analyses to determine how atmospheric conditions change with altitude, which drives changes in balloon volume (lifting gas) or required internal temperature (hot air).</p>
+<p><strong>Assumption:</strong> Standard atmosphere is representative. Real atmospheric profiles deviate from standard — this is a modeling simplification.</p>
+<hr>
+<h2>Section 4 — Lifting Gas Balloon Volume vs. Altitude</h2>
+<p><strong>Setup:</strong> A helium balloon floats upward into decreasing ambient pressure. The envelope is modeled as infinitely stretchable (zero structural constraint on expansion).</p>
+<p><strong>Governing assumption:</strong> Helium mass is constant; the envelope exerts no stress or strain force on the gas; pressure equilibrium is instantaneous.</p>
+<p>At any altitude $h$, the internal helium pressure equals the ambient pressure $P(h)$. By the Ideal Gas Law at constant mass:</p>
+<p>$$V(h) = \frac{m_{\text{He}} \cdot R_{\text{He}} \cdot T(h)}{P(h)}$$</p>
+<p>where $T(h)$ and $P(h)$ are from the COESA Standard Atmosphere.</p>
+<p><strong>Expected behavior:</strong> As altitude increases, $P(h)$ decreases faster than $T(h)$ decreases, so $V(h)$ increases — the balloon expands with altitude.</p>
+<p><strong>MATLAB analysis:</strong> Plot $V(h)$ for $h = 0$ to 30,000 m using <code>atmoscoesa</code>. <code>[STUDENT TASK — not pre-solved]</code></p>
+<p><strong>Assumptions to justify:</strong></p>
+<ul>
+<li>Infinitely stretchable envelope</li>
+<li>No stress/strain forces on shell</li>
+<li>Constant helium mass (no leakage)</li>
+<li>Constant $g$</li>
+</ul>
+<hr>
+<h2>Section 5 — Hot Air Balloon Required Temperature vs. Altitude</h2>
+<p><strong>Setup:</strong> A hot air balloon of fixed volume floats at altitude by heating internal air. As altitude increases, ambient air density decreases, so less heating is required — but material failure temperature sets a maximum altitude.</p>
+<p><strong>Governing assumption:</strong> Fixed volume; no pressure gradient between inside and outside of balloon ($P_{\text{inside}} = P_{\text{atm}}(h)$).</p>
+<p>At neutral buoyancy, the buoyant force equals the total system weight. Combining the neutral buoyancy condition with the Ideal Gas Law for the internal hot air:</p>
+<p><code>[STUDENT TASK — derive the expression for T_inside(h) from the neutral buoyancy force balance and the Ideal Gas Law, using the no-pressure-gradient assumption. Note: the source asks students to evaluate whether the no-pressure-gradient assumption is valid. See the differential pressure sensor data from Experiment 2.]</code></p>
+<p>Final form: $T_{\text{inside}}(h)$ relates to $\rho_{\text{air}}(h)$, the fixed volume $V$, and the total mass of the envelope and payload.</p>
+<p><strong>Maximum altitude:</strong> When $T_{\text{inside}}(h) = 522$ K (material failure temperature of the balloon envelope), the balloon has reached its maximum operational altitude.</p>
+<p><strong>MATLAB analysis:</strong> Plot $T_{\text{inside}}(h)$ for $h = 0$ to 15,000 m; mark the maximum altitude point. <code>[STUDENT TASK — not pre-solved]</code></p>
+<p><strong>Assumptions to justify:</strong></p>
+<ul>
+<li>Fixed volume</li>
+<li>No pressure gradient (validity should be assessed using differential pressure sensor data)</li>
+<li>Material failure at 522 K</li>
+<li>Constant $g$</li>
+</ul>
+<p><code>[NEEDS INSTRUCTOR REVIEW: The no-pressure-gradient assumption is flagged in the source as a question for students to evaluate. The differential pressure sensor in Experiment 2 directly tests this assumption. Instructor should confirm the expected magnitude of the pressure difference and whether it materially affects the model.]</code></p>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p>
+<h1>Model Equations Reference — Buoyancy Balloon: High Altitude Vehicles</h1>
+<p><strong>Lab:</strong> Buoyancy Balloon — High Altitude Vehicles <strong>Source:</strong> ASEN 2802: Aerospace Laboratory, CU Boulder, Spring 2025 <strong>Audience:</strong> Anyone needing a quick equation reference</p>
+<hr>
+<h2>Equation 1 — Buoyant Force</h2>
+<p>$$F_b = \rho_{\text{air}} \cdot V \cdot g$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>$F_b$</td><td>Buoyant force</td><td>N</td></tr><tr><td>$\rho_{\text{air}}$</td><td>Ambient air density</td><td>kg/m³</td></tr><tr><td>$V$</td><td>Balloon volume</td><td>m³</td></tr><tr><td>$g$</td><td>Gravitational acceleration = 9.81</td><td>m/s²</td></tr></tbody></table></div>
+<hr>
+<h2>Equation 2 — Neutral Buoyancy Condition</h2>
+<p>$$\rho_{\text{air}} \cdot V = m_{\text{envelope}} + m_{\text{gas}} + m_{\text{ballast}}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>$m_{\text{envelope}}$</td><td>Mass of balloon skin and string</td><td>kg</td></tr><tr><td>$m_{\text{gas}}$</td><td>Mass of lifting gas (He or hot air) inside balloon</td><td>kg</td></tr><tr><td>$m_{\text{ballast}}$</td><td>Mass of payload/ballast</td><td>kg</td></tr></tbody></table></div>
+<hr>
+<h2>Equation 3 — Ideal Gas Law (mass-specific form)</h2>
+<p>$$P = \rho \cdot R \cdot T \quad \Longrightarrow \quad \rho = \frac{P}{R \cdot T}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>$P$</td><td>Absolute pressure</td><td>Pa</td></tr><tr><td>$\rho$</td><td>Gas density</td><td>kg/m³</td></tr><tr><td>$R$</td><td>Specific gas constant</td><td>J/(kg·K)</td></tr><tr><td>$T$</td><td>Absolute temperature</td><td>K</td></tr></tbody></table></div>
+<p><strong>Gas constants:</strong></p>
+<ul>
+<li>Helium: $R_{\text{He}} = 2077$ J/(kg·K)</li>
+<li>Air: $R_{\text{air}} = 287$ J/(kg·K)</li>
+</ul>
+<hr>
+<h2>Equation 4 — Helium Mass from Ideal Gas Law</h2>
+<p>$$m_{\text{He}} = \frac{P \cdot V}{R_{\text{He}} \cdot T}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>$m_{\text{He}}$</td><td>Mass of helium inside balloon</td><td>kg</td></tr><tr><td>$P$</td><td>Ambient pressure at time of measurement</td><td>Pa</td></tr><tr><td>$V$</td><td>Measured balloon volume</td><td>m³</td></tr><tr><td>$T$</td><td>Ambient temperature at time of measurement</td><td>K</td></tr></tbody></table></div>
+<hr>
+<h2>Equation 5 — Lifting Gas Balloon Volume vs. Altitude</h2>
+<p>$$V(h) = \frac{m_{\text{He}} \cdot R_{\text{He}} \cdot T(h)}{P(h)}$$</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>$V(h)$</td><td>Balloon volume at altitude $h$</td><td>m³</td></tr><tr><td>$m_{\text{He}}$</td><td>Constant helium mass</td><td>kg</td></tr><tr><td>$T(h)$</td><td>Ambient temperature at altitude $h$ from COESA</td><td>K</td></tr><tr><td>$P(h)$</td><td>Ambient pressure at altitude $h$ from COESA</td><td>Pa</td></tr></tbody></table></div>
+<p><strong>Assumptions:</strong> Infinitely stretchable envelope; constant helium mass; no stress/strain forces on shell; $P_{\text{inside}} = P_{\text{outside}}$.</p>
+<p><strong>MATLAB:</strong> Use <code>atmoscoesa(h)</code> for $T(h)$, $P(h)$. Plot $h = 0$ to 30,000 m.</p>
+<hr>
+<h2>Equation 6 — Hot Air Balloon Internal Temperature vs. Altitude</h2>
+<p><code>[STUDENT TASK — derive from neutral buoyancy condition (Eq. 2) and Ideal Gas Law (Eq. 3) using the no-pressure-gradient assumption (P_inside = P_atm(h)). Final form relates T_inside(h) to rho_air(h), fixed volume V, and total non-air mass.]</code></p>
+<p><strong>Assumptions:</strong> Fixed volume; $P_{\text{inside}} = P_{\text{atm}}(h)$; material failure at $T_{\text{inside}} = 522$ K.</p>
+<p><strong>MATLAB:</strong> Use <code>atmoscoesa(h)</code> for $\rho_{\text{air}}(h)$. Plot $h = 0$ to 15,000 m; mark maximum altitude.</p>
+<hr>
+<h2>Standard Atmosphere</h2>
+<p><strong>MATLAB:</strong> <code>[T, a, P, rho] = atmoscoesa(h)</code> — MathWorks Aerospace Toolbox. <strong>Reference:</strong> Anderson, <em>Introduction to Flight</em>, Chapter 3. <strong>Input:</strong> $h$ in meters (geometric altitude). <strong>Outputs used in this lab:</strong> $T(h)$ [K], $P(h)$ [Pa], $\rho_{\text{air}}(h)$ [kg/m³].</p>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Sensor and DAQ Specifications — Buoyancy Balloon: High Altitude Vehicles</h1>
+<p><strong>Lab:</strong> Buoyancy Balloon — High Altitude Vehicles <strong>Source:</strong> ASEN 2802: Aerospace Laboratory, CU Boulder, Spring 2025 <strong>Audience:</strong> Anyone configuring sensors and DAQ for this experiment</p>
+<hr>
+<h2>Experiment 1 — Manual Measurement Tools Only</h2>
+<p>No electronic sensors or DAQ system are used in Experiment 1. All measurements are taken manually.</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Instrument</th><th>Measurement</th><th>Notes</th></tr></thead><tbody><tr><td>Mass scale</td><td>Component masses [g]</td><td>PILOT lab scale; <code>[MISSING: make/model/resolution not specified in source]</code></td></tr><tr><td>Ruler / tape measure</td><td>Balloon geometry for volume estimation</td><td>Student-selected; no specification required</td></tr><tr><td>PILOT ambient instruments</td><td>Ambient temperature T [°C or K] and pressure P [Pa]</td><td><code>[MISSING: make/model of PILOT T/P instrumentation not specified in source]</code></td></tr></tbody></table></div>
+<p><strong>Alternate for ambient T/P:</strong> NCAR website <a href="http://www.eol.ucar.edu/cgi-bin/weather.cgi?site=fl">http://www.eol.ucar.edu/cgi-bin/weather.cgi?site=fl</a></p>
+<p><code>[NOT APPLICABLE: No signal conditioning, DAQ, or sampling considerations for Experiment 1]</code></p>
+<hr>
+<h2>Experiment 2 — Electronic Sensors and DAQ</h2>
+<h3>K-type Thermocouple Array</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Type</td><td>K-type (chromel–alumel)</td></tr><tr><td>Quantity</td><td>Multiple; exact count unspecified in source <code>[MISSING: see Sensor Informational Packet]</code></td></tr><tr><td>Measurement</td><td>Internal balloon air temperature</td></tr><tr><td>Units</td><td>°C or K</td></tr><tr><td>Display</td><td>Color-coded time-history on LabVIEW VI; each color = one thermocouple channel</td></tr><tr><td>Accuracy / uncertainty</td><td><code>[MISSING: see ASEN2802_Sensor_Informational_Packet.pdf]</code></td></tr><tr><td>Measurement range</td><td><code>[MISSING: see Sensor Informational Packet]</code></td></tr><tr><td>Sampling rate</td><td><code>[MISSING: governed by DAQ configuration; see Sensor Informational Packet]</code></td></tr><tr><td>Signal type</td><td>Thermoelectric voltage, conditioned by DAQ</td></tr><tr><td>Datasheet</td><td><code>[MISSING: see ASEN2802_Sensor_Informational_Packet.pdf — present in source directory as binary PDF; must be extracted]</code></td></tr></tbody></table></div>
+<h3>Differential Pressure Sensor</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Measurement</td><td>Pressure difference: balloon interior minus room [Pa]</td></tr><tr><td>Purpose</td><td>Verify no-pressure-gradient assumption for hot air balloon model</td></tr><tr><td>Make / model</td><td><code>[MISSING: see ASEN2802_Sensor_Informational_Packet.pdf]</code></td></tr><tr><td>Measurement range</td><td><code>[MISSING: see Sensor Informational Packet]</code></td></tr><tr><td>Accuracy / uncertainty</td><td><code>[MISSING: see Sensor Informational Packet]</code></td></tr><tr><td>Signal type</td><td><code>[MISSING: see Sensor Informational Packet]</code></td></tr><tr><td>Datasheet</td><td><code>[MISSING: see ASEN2802_Sensor_Informational_Packet.pdf]</code></td></tr></tbody></table></div>
+<h3>DAQ System</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Hardware</td><td><code>[MISSING: make/model not specified in source; see Sensor Informational Packet]</code></td></tr><tr><td>Software</td><td>LabVIEW — temperature sensor <code>.vi</code> on lab station computer</td></tr><tr><td>Channels used</td><td>One per thermocouple (color-coded in VI display) + differential pressure channel</td></tr><tr><td>DAQ resolution</td><td><code>[MISSING: see Sensor Informational Packet]</code></td></tr><tr><td>Sampling rate</td><td><code>[MISSING: see Sensor Informational Packet]</code></td></tr><tr><td>Signal conditioning</td><td><code>[MISSING: configuration not described in student-facing source; see Sensor Informational Packet]</code></td></tr></tbody></table></div>
+<hr>
+<h2>Critical Missing Item</h2>
+<p>The <strong>ASEN2802 Sensor Informational Packet</strong> (<code>ASEN2802_Sensor_Informational_Packet.pdf</code>) is referenced throughout the source document as the primary reference for all electronic sensor and DAQ specifications. This file is present in the source directory as a binary PDF and cannot be read by the agent. It must be extracted and its content added to this spec summary before this instrumentation package is complete.</p>
+<p><code>[MISSING: ASEN2802_Sensor_Informational_Packet.pdf — present at detailed_design/curriculum_2000_labs/Buoyancy_balloon/ASEN2802_Sensor_Informational_Packet.pdf as binary PDF; content required for all sensor/DAQ specifications above]</code></p>
+<p><code>[INSTRUCTOR TO PROVIDE: PILOT lab mass scale make/model/resolution]</code> <code>[INSTRUCTOR TO PROVIDE: PILOT ambient T/P instrumentation make/model]</code></p>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Buoyancy Balloon: High Altitude Vehicles</h1>
+<p><strong>Lab:</strong> Buoyancy Balloon — High Altitude Vehicles <strong>Source:</strong> ASEN 2802: Aerospace Laboratory, CU Boulder, Spring 2025 <strong>Audience:</strong> Anyone processing experimental results from this lab</p>
+<hr>
+<h2>Experiment 1 — Manually Recorded Values</h2>
+<p>No data file is generated from Experiment 1. All values are measured by hand and entered directly into MATLAB for analysis.</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Symbol</th><th>Units</th><th>How Measured</th><th>Notes</th></tr></thead><tbody><tr><td>Pre-fill balloon envelope mass</td><td>$m_{\text{envelope}}$</td><td>g</td><td>Mass scale (PILOT lab)</td><td>Before helium fill</td></tr><tr><td>Pre-fill string mass</td><td>$m_{\text{string}}$</td><td>g</td><td>Mass scale</td><td>Before helium fill</td></tr><tr><td>Pre-fill paperclip mass (per clip)</td><td>—</td><td>g</td><td>Mass scale</td><td>Weigh before adding</td></tr><tr><td>Final payload mass at neutral buoyancy</td><td>$m_{\text{ballast}}$</td><td>g</td><td>Mass scale</td><td>String + paperclips together</td></tr><tr><td>Balloon volume at room temperature</td><td>$V_{\text{room}}$</td><td>m³</td><td>Ruler + geometric estimate</td><td>Sphere or ellipsoid approximation; document assumed geometry</td></tr><tr><td>Balloon volume near heater (elevated T)</td><td>$V_{\text{hot}}$</td><td>m³</td><td>Dimensional analysis</td><td>Estimated while balloon is still warm</td></tr><tr><td>Ambient temperature</td><td>$T_{\text{atm}}$</td><td>K</td><td>PILOT or NCAR</td><td>Record at time of experiment</td></tr><tr><td>Ambient pressure</td><td>$P_{\text{atm}}$</td><td>Pa</td><td>PILOT or NCAR</td><td>Record at time of experiment</td></tr></tbody></table></div>
+<p><strong>Collection conditions:</strong> PILOT lab, indoor, ambient conditions. Record T and P at time of test — do not use a standard atmosphere value.</p>
+<p><strong>Known quirks:</strong></p>
+<ul>
+<li>Balloon volume from ruler measurements assumes a regular geometric shape; the actual mylar balloon is not a perfect sphere. Document the assumed shape.</li>
+<li>The volume estimate at elevated temperature is inherently less precise — note the time elapsed between heating and measurement.</li>
+</ul>
+<p><code>[MISSING_DATA: No sample dataset from a prior ASEN 2802 run is present in the source directory. A completed set of recorded values from a real run would be useful for 3501 instructor reference but is not required for student use.]</code></p>
+<hr>
+<h2>Experiment 2 — LabVIEW-Logged Data</h2>
+<p>Data is collected by the LabVIEW temperature sensor VI running on the lab station computer.</p>
+<p><strong>Expected file format:</strong> <code>[MISSING: likely .txt or .csv export from LabVIEW; confirm with lab team and Sensor Informational Packet]</code></p>
+<p><strong>Expected columns (approximate):</strong></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Column</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td>Time</td><td>Elapsed time from VI start</td><td>s</td></tr><tr><td>TC_1 (or Channel 1)</td><td>Thermocouple 1 temperature</td><td>°C or K</td></tr><tr><td>TC_2</td><td>Thermocouple 2 temperature</td><td>°C or K</td></tr><tr><td>TC_3</td><td>Thermocouple 3 temperature</td><td>°C or K</td></tr><tr><td>TC_4</td><td>Thermocouple 4 temperature</td><td>°C or K</td></tr><tr><td>dP</td><td>Differential pressure (inside − room)</td><td>Pa</td></tr></tbody></table></div>
+<p>Number of thermocouple columns = number of K-type thermocouple channels in the array. <code>[MISSING: exact channel count; see Sensor Informational Packet]</code></p>
+<p><strong>Key values to extract from the time-history:</strong></p>
+<ul>
+<li>Thermocouple temperatures at the moment of neutral buoyancy (balloon lifts off) for each channel</li>
+<li>Average internal temperature at neutral buoyancy (averaging strategy is a student task)</li>
+<li>Differential pressure at neutral buoyancy</li>
+</ul>
+<p><strong>Collection conditions:</strong> Sky lantern on test stand, heat gun starting on low (room temperature air) then switched to hot. VI must be started before filling begins. Indoor PILOT lab ambient conditions.</p>
+<p><strong>Known quirks:</strong></p>
+<ul>
+<li>Thermocouples at different positions will read different values — the &quot;average internal temperature&quot; requires a spatial averaging decision that the student must justify.</li>
+<li>There is likely a thermal lag between when the hot air enters the balloon and when internal thermocouples stabilize. The moment of neutral buoyancy may correspond to a transient, not a steady-state, thermocouple reading.</li>
+<li>If the VI was not started before filling, early data will be missing.</li>
+</ul>
+<p><code>[MISSING_DATA: No sample LabVIEW output file from a prior ASEN 2802 hot air balloon test run is present in the source directory. A real data file from a completed test is needed for use in ASEN 3501. Obtain from ASEN 2802 lab team or run the experiment to generate a baseline dataset.]</code></p>
+<p><code>[MISSING_SOLUTION: No completed MATLAB analysis (processed values, figures) from a prior run is present in the source directory. Instructor provides worked solution if desired.]</code></p>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes — Buoyancy Balloon: High Altitude Vehicles</h1>
+<p><strong>Lab:</strong> Buoyancy Balloon — High Altitude Vehicles <strong>Source:</strong> ASEN 2802: Aerospace Laboratory, CU Boulder, Spring 2025 <strong>Audience:</strong> Instructor only</p>
+<hr>
+<h2>1. CLO Alignment (from <code>_agent_analyzed.md</code>)</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>CLO</th><th>Level</th><th>Notes</th></tr></thead><tbody><tr><td>CLO 1: Design and conduct experiments</td><td>Strong</td><td>Strong on conduct; students actively run both experiments. Instrumentation exposure via thermocouples, pressure sensor, LabVIEW. Design component is weak — procedure is prescribed.</td></tr><tr><td>CLO 2: Statistical methods and uncertainty analysis</td><td>Weak</td><td>Uncertainty discussed qualitatively only in &quot;Questions to Consider.&quot; No formal error propagation required. <strong>Biggest CLO gap for 3501 adaptation.</strong></td></tr><tr><td>CLO 3: Integrate models with experimental data</td><td>Strong</td><td>This is the central learning loop of the lab. Students derive from first principles (FBD, Ideal Gas Law, Standard Atmosphere), generate MATLAB models, and compare against measured values.</td></tr><tr><td>CLO 4: Signal conditioning, DAQ, sampling</td><td>Partial</td><td>Students are end-users of the LabVIEW VI. No DAQ configuration, no signal conditioning decisions, no sampling rate choices.</td></tr><tr><td>CLO 5: Communicate results</td><td>Strong</td><td>Weekly deliverables (FBDs, equations, plots) plus final PDF report with MATLAB code.</td></tr><tr><td>CLO 6: Create new experimental methods</td><td>None</td><td>Students apply established methods to a prescribed problem.</td></tr></tbody></table></div>
+<p><strong>Summary from lab_summary.json:</strong> CLO1=2, CLO2=1, CLO3=2, CLO4=1, CLO5=2, CLO6=0 (scale: 0=none, 1=weak/partial, 2=strong).</p>
+<hr>
+<h2>2. Lab Character (from <code>_lab_summary.json</code>)</h2>
+<p><strong>Strengths:</strong></p>
+<ul>
+<li>Strong integration of theoretical modeling (Standard Atmosphere, Ideal Gas Law) with experimental data — a complete engineering loop</li>
+<li>Hands-on buoyancy and thermal physics with tangible, intuitive results</li>
+<li>Introduces thermocouples and pressure sensors in a low-stakes context</li>
+<li>MATLAB throughout; connects well to ASEN 3501&#x27;s MATLAB-throughout approach</li>
+<li>Iterative communication structure (weekly deliverables)</li>
+</ul>
+<p><strong>Gaps:</strong></p>
+<ul>
+<li>No quantitative uncertainty analysis or formal error propagation</li>
+<li>Limited experimental design — students follow prescribed steps</li>
+<li>DAQ use is end-user only (read VI output; no configuration)</li>
+<li>CLO 6 (create new methods) not addressed</li>
+</ul>
+<p><strong>Operational notes:</strong></p>
+<ul>
+<li>Requires helium from lab technician — schedule ahead</li>
+<li>Hot air balloon test stand is a fixed setup; thermocouple and pressure sensor configuration is pre-wired</li>
+<li>Sensor Informational Packet (binary PDF) is critical for understanding DAQ setup</li>
+</ul>
+<p><strong>Suggested stage for ASEN 3501:</strong> Early. Low hardware complexity, well-defined model, clear model-experiment comparison.</p>
+<hr>
+<h2>3. Questions to Consider (verbatim from source)</h2>
+<h3>Experiment 1 — Section 4.2</h3>
+<ol>
+<li>If you were to make the party balloon neutrally buoyant in water, what would be the required mass of the payload?</li>
+<li>What is your estimate of the amount of helium in the balloon using force balance? How does that estimate compare to an estimate of the balloon volume?</li>
+<li>How sensitive are these estimates of amount of helium to uncertainties in the measured quantities (material mass, payload mass, temperature, pressure, distance measurements, etc.)?</li>
+</ol>
+<h3>Experiment 2 — Section 4.3</h3>
+<ol>
+<li>Would the air temperature required to achieve positive buoyancy increase/decrease at standard temperature and pressure? Atop Vail Pass (67.9 kPa and 0°C)?</li>
+<li>Using the derived theoretical model, what average temperature of air is needed for the balloon to achieve positive buoyancy?</li>
+<li>The actual average temperature in the hot air balloon is very difficult to estimate accurately — using the 4 thermocouple measurements how well does the experiment agree with the theoretical model?</li>
+<li>We assume no pressure difference between the room and the inside of the hot air balloon — is this a good assumption, why or why not?</li>
+<li>How sensitive is the estimate of hot air temperature to uncertainties in the measured quantities (material mass, payload mass, volume estimate, room temperature and pressure, etc.)?</li>
+</ol>
+<hr>
+<h2>4. Adaptation Notes for ASEN 3501</h2>
+<p><strong>Overall assessment:</strong> Strong E1 candidate. Low hardware setup, well-defined physical model, clear model-experiment comparison, and suitable for early course before instrumentation-heavy labs.</p>
+<p><strong>Recommended upgrade — CLO 2 (quantitative uncertainty):</strong> The &quot;Questions to Consider&quot; in Sections 4.2 and 4.3 explicitly ask about sensitivity to measurement uncertainties — these are ready-made scaffolds for formal error propagation. Converting these from qualitative discussion prompts into formal propagation tasks would bring this lab into strong CLO 2 alignment with minimal restructuring. Suggested upgrade: add formal uncertainty propagation for helium mass (Eq. 4) and required hot air temperature, using worst-case or RSS methods.</p>
+<p><strong>Remove fictional framing:</strong> The &quot;Boatin Bob&quot; and &quot;Lawnchair Larry&quot; narrative from Section 2 (Theoretical Motivation) is an ASEN 2802-specific engagement hook for sophomore students. It should not appear in ASEN 3501 materials. Replace with direct motivational context (e.g., NASA scientific balloon programs, ASTHROS mission, Red Bull Stratos).</p>
+<p><strong>Historical and technical context to retain:</strong></p>
+<ul>
+<li>Montgolfier brothers (1783), Jacques Charles (first gas balloon), Jean Pierre Blanchard</li>
+<li>NASA research balloons for scientific measurements above atmospheric interference</li>
+<li>Zero-pressure vs. super-pressure balloon types and use cases</li>
+<li>Red Bull Stratos, Felix Baumgartner altitude record (37,640 m / 123,491 ft)</li>
+<li>ASTHROS mission reference (8.4-foot telescope at &gt; 40 km)</li>
+<li>CU Aerospace alumni connection (Jared Leidich, Pressure Suit Assembly Lead)</li>
+</ul>
+<p><strong>Critical missing item for hot air balloon experiment:</strong> The ASEN2802 Sensor Informational Packet is referenced in the procedure but exists only as a binary PDF. It must be extracted before the hot air balloon experiment can be fully documented for student use. This is the single most critical blocking item for this compilation.</p>
+<p><strong>MATLAB dependency:</strong> <code>atmoscoesa</code> requires the MathWorks Aerospace Toolbox. Verify this is available on ASEN 3501 student licenses and lab computers before assigning this lab.</p>
+<p><strong>No-pressure-gradient assumption:</strong> The model for $T_{\text{inside}}(h)$ assumes $P_{\text{inside}} = P_{\text{atm}}$. The differential pressure sensor in Experiment 2 directly tests this assumption. The source flags this as a student question. In 3501, this could be formalized: use the measured $\Delta P$ to estimate the error introduced by the assumption.</p>
+<hr>
+<h2>5. Prior Course Context</h2>
+<ul>
+<li><strong>Course:</strong> ASEN 2802: Aerospace Laboratory, CU Boulder</li>
+<li><strong>Term:</strong> Spring 2025</li>
+<li><strong>Team size:</strong> 6–7 students</li>
+<li><strong>Duration:</strong> 7 lab periods (weekly deliverables each week)</li>
+<li><strong>Final deliverable:</strong> Short (~2 page) PDF report with MATLAB figures and code appended</li>
+<li><strong>Grading structure:</strong> Weekly deliverable completion (group) + final report + individual contribution scores + peer evaluations</li>
+</ul>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div>
+      </section>
+    </main>
+    
+    <footer class="site-footer">
+      <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+    </footer>
+    
+    
+  
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier1-buoyancy_balloon", "title": "Buoyancy Balloon", "url": "labs/tier1/buoyancy_balloon/index.html", "text": "Buoyancy Balloon Measure the buoyant force on a balloon and compare to a simple fluid model.", "module_id": null, "source_type": "overview"}</script>
+</body>
+</html>

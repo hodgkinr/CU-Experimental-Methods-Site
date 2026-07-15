@@ -1,0 +1,351 @@
+# ASEN 3501 — Lab 1: Power, Voltage, and the Language of Uncertainty
+## Student-Facing Assignment
+
+**Segment:** E1 — Execution & Quantification
+**Week:** 2
+**CLO Alignment:** CLO 1, CLO 2, CLO 5
+**Assessment:** Brief lab report (support document) + 3-minute oral interview
+**Estimated time:** 3–5 hours total (in-lab activity: ~1 hour; report preparation: 2–4 hours)
+
+---
+
+## Why This Lab Exists
+
+Every engineering measurement you take comes with a number and an uncertainty. The number
+alone is incomplete. It tells you what the instrument displayed, not what the physical
+quantity actually is or how confident you should be in that display.
+
+This lab is your first chance to practice treating uncertainty as a required output, not an
+afterthought. The physical setup is deliberately simple: a resistor, a power supply, and a
+multimeter. The simplicity is intentional. There is nothing here to distract you from the
+core question: *given that your instruments have limits, what can you actually claim about
+the power dissipated in this circuit?*
+
+That question, and the rigorous way to answer it, is the foundation this course is built on.
+
+---
+
+## Learning Goals
+
+By the end of this lab and its associated activities, you should be able to:
+
+1. Measure voltage and current using a digital multimeter, correctly read and record the result, and assign an appropriate uncertainty from the instrument datasheet.
+2. Apply first-order uncertainty propagation (the general method using partial derivatives) to compute the uncertainty in a derived quantity, electrical power, from measurements of voltage and current.
+3. Explain why different algebraic forms of the same physical law (P = IV, P = V²/R, P = I²R) produce different uncertainty estimates for the same quantity, and articulate which form is most sensitive to which measured input.
+4. Run a Monte Carlo simulation in MATLAB to estimate uncertainty using the same manufacturer specifications, and compare the Monte Carlo result to the partial-derivative result.
+5. State a result in the correct engineering form: *estimate ± uncertainty (units, confidence level or method)*.
+6. Explain the core concepts of this lab clearly and concisely to someone who has not taken this course.
+
+---
+
+## Background: The Circuit
+
+You will build a simple series circuit: a DC power supply, a known resistor, and a
+multimeter. You will measure:
+
+- **V** — voltage across the resistor (voltmeter, in parallel)
+- **I** — current through the resistor (ammeter, in series)
+
+From these measurements you will compute electrical power three ways:
+
+| Equation | Measured inputs | What you derive |
+|---|---|---|
+| P = IV | I and V directly | Power from both measurements |
+| P = V²/R | V and R | Power using voltage and resistance |
+| P = I²R | I and R | Power using current and resistance |
+
+Each form uses different measured inputs. Different inputs have different uncertainties.
+Different forms therefore produce different uncertainty estimates for the same quantity P.
+This isn't an error. It's the physics of error propagation.
+
+### Which resistance value to use: two valid cases
+
+For the two forms that use R (P = V²/R and P = I²R), there are two defensible ways to get
+a value for R and its uncertainty:
+
+- **Case 1: Nominal + manufacturer tolerance.** Use the resistor's labeled nominal value
+ and the tolerance printed on it (e.g., 200 Ω ± 5%) as u_R.
+- **Case 2: DMM-measured + instrument accuracy.** Measure the resistor's resistance
+ directly with the multimeter and use the DMM's resistance-measurement accuracy
+ specification (from the datasheet) as u_R.
+
+**You are required to compute both cases** for P = V²/R and P = I²R, not just pick one.
+This is intentional, and it's the real point of this part of the lab: Case 1 and Case 2 use
+different information about R and will generally produce different point estimates and
+different uncertainty bounds. When you compare the resulting P ± u_P ranges from both cases
+in your report, look at whether they overlap. An overlapping region between two independent,
+valid estimates is a good sign. It suggests the true value of P most likely lies in that
+shared range. If the two cases do *not* overlap, that's worth investigating and discussing,
+not ignoring.
+
+### A note on system warm-up and drift
+
+The power supply and multimeter in this circuit are not perfectly static the moment you
+turn them on. It's common to observe the voltage reading drift gradually over the first
+several minutes of operation. For example, it might start a little high right after
+power-on and settle to a slightly lower, stable value after about five minutes. This is
+typically caused by the power supply warming up to its normal operating temperature, not by
+an error in your circuit or technique. If you power-cycle the supply (turn it off and back
+on) with the circuit still connected, the reading will usually jump back up and begin
+drifting again. That's a useful check if you want to confirm the supply, rather than the
+resistor or DMM, is the source of the drift.
+
+**Practical implication for data collection:** take your three repeated V and I readings
+close together in time (within a minute or two of each other), rather than spacing them out
+over the full lab session. This keeps your repeatability trials measuring genuine
+instrument/reading variation, rather than accidentally capturing warm-up drift and
+mistaking it for repeatability.
+
+If you are using **Case 2** (DMM-measured resistance), there is an additional interaction to
+be aware of: if you measure R with the DMM *before* the resistor is in the powered circuit,
+that measurement reflects the resistor at room temperature ("cold"). Once current flows
+through the resistor for an extended period, it will self-heat slightly, and its actual
+in-circuit ("hot") resistance may differ from your cold measurement. You don't need to
+correct for this quantitatively, but flag it as a limitation if your Case 1 and Case 2
+results in Section 6 don't overlap as cleanly as you'd expect.
+
+---
+
+## The Instrument — Reading Your Multimeter
+
+### What the display is telling you
+
+A digital multimeter display shows a numerical reading that is updated at a fixed rate.
+On most benchtop multimeters, the least significant digit, the rightmost digit, will
+fluctuate during a measurement. This isn't noise in the measurement. It's the instrument's
+resolution limit combined with real variation in the signal.
+
+**The rule for recording measurements from a fluctuating display:**
+
+> Cover the fluctuating digit with your finger. Read and record the stable digits. Assign
+> an uncertainty of ±½ of the last stable digit's place value.
+
+**Example:** Your voltmeter reads 4.9_3_, 4.9_2_, 4.9_4_. The units digit in the tenths
+place is stable (4.9), but the hundredths digit fluctuates (2, 3, 4). You record **4.9 V**
+and assign an uncertainty of **±0.05 V** (half of one unit in the tenths place).
+
+This is a *conservative but not overcautious* recording strategy. You aren't ignoring
+variation. You're bounding it at the resolution of the instrument. The tradeoff matters:
+if you assign unnecessarily large uncertainties, the systems designed around your measurements
+will be over-engineered and expensive. If you assign uncertainties that are too small, those
+systems will fail. The correct answer is the smallest defensible bound.
+
+### Two methods, two different jobs
+
+You now have two different ways to assign an uncertainty to a measurement: the
+fluctuating-digit procedure above, and the manufacturer datasheet specification below.
+They aren't competing methods where you pick your favorite. They answer different
+questions:
+
+- **The fluctuating-digit method is a field technique.** It's what you do at the bench,
+ in real time, with no datasheet in hand, just by watching the display. It's a fast,
+ physical sanity check on resolution, and it's what you record and describe in Section 2
+ of your report to demonstrate you can read an instrument correctly.
+- **The datasheet specification is your formal uncertainty source.** It's what you use for
+ every partial-derivative and Monte Carlo calculation in this lab. The reason it takes
+ priority over the fluctuating digit is that a display can look perfectly stable and still
+ be systematically wrong by more than the resolution suggests. The datasheet's accuracy
+ spec captures that systematic error, which the fluctuating digit alone cannot.
+
+If you ever find that your fluctuating-digit uncertainty is *larger* than the datasheet
+spec, that's worth a sentence of discussion in your report. It usually means the signal
+itself is genuinely noisy (e.g., an unstable supply or a marginal connection), not that the
+instrument's formal accuracy is worse than advertised.
+
+### Using the datasheet
+
+The instrument datasheet specifies accuracy in the form:
+
+```
+± (% of reading + % of range)
+```
+
+For example: ± (0.5% of reading + 0.1% of range). This is the *manufacturer specification* for
+the maximum systematic error. You'll use this specification, not the fluctuating digit
+alone, as your formal uncertainty estimate for the partial-derivative and Monte Carlo
+analyses.
+
+**Careful:** these are percentages, not fractions. 0.5% means 0.005, not 0.5. A common
+mistake is to use 0.5 directly in the calculation, which inflates the uncertainty by a
+factor of 100. Double-check your decimal conversion before propagating.
+
+You'll receive the multimeter datasheet at the start of the lab session. Before you begin
+any measurements, locate the specification for:
+- DC voltage accuracy in the range you are using
+- DC current accuracy in the range you are using
+
+Write these down. They are your primary uncertainty inputs.
+
+Datasheets typically list several tolerance columns depending on how long it has been
+since the instrument's last calibration (e.g., 90-day, 1-year, 2-year). Use the **2-year
+column** unless your instructor tells you otherwise. The DMMs in this lab were purchased
+in **2019**, and their listed accuracy specification assumes they are within their stated
+calibration interval. In practice, an instrument can drift beyond its spec over time,
+particularly if it hasn't been recalibrated recently. You're not expected to correct for
+this drift numerically, but be ready to discuss, in Section 6 of your report, whether your
+measured values and the datasheet-based uncertainty are still reasonable given the
+instrument's age.
+
+The datasheet also lists an additional accuracy derating as a function of deviation from a
+reference room temperature. **For this lab, assume the lab room is at the datasheet's
+reference temperature and do not compute a temperature correction term.** This is an
+intentional scope decision, not an oversight: part of engineering judgment is recognizing
+which sources of uncertainty are negligible for a given situation and which are not. You are
+still expected to **state this assumption explicitly** in your report (Section 1 or 3) as
+your justification for excluding the temperature term. A documented assumption, even a
+simple one, is part of a complete uncertainty analysis.
+
+---
+
+## In-Lab Procedure
+
+The procedure has three parts: building and measuring (steps 1–5), uncertainty analysis
+from the datasheet (steps 6–8), and Monte Carlo simulation in MATLAB (steps 9–10).
+
+**Note:** a single multimeter can't measure voltage and current at the same time. It must
+be configured and connected differently for each. You'll measure V and I as two separate
+steps, not simultaneously.
+
+1. Build the circuit: connect the resistor to the power supply so current can flow through
+ it. Record the nominal resistor value and tolerance from its label. Also measure the
+ resistor's resistance directly with the DMM (easiest done before wiring it into the
+ powered circuit) and record this measured value. You'll need both the nominal and
+ measured values for the resistance-uncertainty comparison described above.
+2. Set the power supply to a target voltage (specified by your lab instructor).
+3. **Measure voltage first.** Configure the multimeter as a voltmeter and connect it in parallel across the resistor. Read and record V from the display using the fluctuating-digit procedure above. Take three repeated V readings, close together in time (see the warm-up note above), to check for repeatability. ![Digital multimeter configured as a voltmeter, connected in parallel across the resistor, displaying a voltage reading.](images/voltage1.png)
+4. **Then measure current.** Reconfigure the multimeter as an ammeter and reconnect it in series in the loop (this requires briefly breaking the circuit to insert the meter in the current path; it can't stay connected the way it was for the voltage measurement). Read and record I from the display using the same fluctuating-digit procedure. Take three repeated I readings, close together in time. ![Digital multimeter configured as an ammeter, connected in series with the resistor, displaying a current reading.](images/current1.png)
+5. Compute P three ways from your recorded V and I values. Note the differences.
+6. Using the manufacturer specifications from the datasheet, compute the uncertainty in V and the uncertainty in I.
+7. Apply first-order error propagation (partial derivatives) to compute the uncertainty in P for each of the three forms. Show your work: write out the partial derivatives, substitute values, and state the result as P ± u_P.
+8. Answer: which form of the power equation is most sensitive to uncertainty in V? In I? Where would you spend money on a better instrument if minimizing uncertainty in P was the goal?
+9. Using the same manufacturer specifications as probability distribution parameters, run a Monte Carlo simulation in MATLAB for each of the three power equation forms. Model V and I as independent random variables drawn from distributions consistent with the datasheet. Two defensible choices are: (a) a **uniform distribution** spanning [measured value − u, measured value + u], which treats the spec as a hard tolerance bound with no assumed shape. (b) A **Gaussian distribution** with σ = u/2, which treats the spec as a ±2σ (approximately 95%) coverage bound. See W2_L2 slide 7 for the reasoning behind each choice. **State your distribution choice explicitly in your report and justify it in one sentence.** Use at least 10,000 samples. Plot the resulting distribution of P for each form on the same figure with appropriate labels and captions.
+10. Compare the Monte Carlo result to your partial-derivative result. Are they consistent? If not, explain why they might differ. *Note: if you used σ = u/2 in your Gaussian simulation (treating the spec as a ±2σ bound), expect your Monte Carlo output standard deviation to be approximately half your partial-derivative δP. This isn't an error. It reflects the σ-convention you chose. State your convention explicitly and check consistency in Section 6 of your report.*
+
+---
+
+## Deliverable: Brief Lab Report
+
+You'll prepare a brief lab report to bring to your oral interview. This document is your
+support material for the interview. You may refer to it during the conversation, but the
+interview questions will probe your understanding, not your ability to read your own document.
+
+**The report isn't graded independently. It's evidence that you prepared.**
+
+### Required sections
+
+**1. Circuit description and measurement record**
+One paragraph and a simple schematic or sketch. What did you build? What did you measure?
+Include your recorded V and I values with units. Include the datasheet specification you used.
+
+**2. Fluctuating digit — what you did and why**
+Describe the fluctuating digit procedure in your own words. What did the display show?
+What did you record? What uncertainty did you assign from the display, and why?
+
+**3. Uncertainty propagation — partial derivatives**
+Show the three partial derivative derivations for u_P under each power equation form.
+For the two forms that depend on R (P = V²/R and P = I²R), compute u_P **twice each**:
+once using Case 1 (nominal R and its tolerance) and once using Case 2 (DMM-measured R and
+its measurement uncertainty). Present the final result for each as P ± u_P with units. A
+table is the clearest way to present this (one row per form/case combination).
+
+**4. Sensitivity analysis**
+Which form is most sensitive to uncertainty in V? In I? Answer with numbers, not just words.
+Where would you invest in a better instrument, and why?
+
+**5. Monte Carlo simulation**
+Include your MATLAB figure(s) showing the distributions of P for each equation form.
+Each figure must have a title, labeled axes with units, a legend, and a caption that states
+the key takeaway in one sentence. Include the key MATLAB code (the simulation loop and
+distribution plot — not every setup line). **State what distribution you used for V and I
+(Gaussian or uniform), and justify your choice in one sentence. State the σ-convention you
+applied (e.g., σ = u or σ = u/2) so the comparison in Section 6 is unambiguous.**
+
+**6. Comparison: partial derivatives vs. Monte Carlo**
+Are the results consistent? State the comparison numerically. Don't just say "yes they
+agree." What does the comparison tell you about when you might prefer one method over the
+other? Also briefly address: given that the DMMs were purchased in 2019, is it reasonable
+to trust the datasheet's 2-year-column specification at face value, or should you flag
+possible drift beyond spec as an additional (unquantified) source of uncertainty? Finally,
+compare your Case 1 and Case 2 results for P = V²/R and P = I²R: do the two P ± u_P ranges
+overlap? An overlap is a good sign that the true value of P lies in that shared region.
+State whether that's what you observed.
+
+**7. Result statement**
+State your best estimate of P in the correct engineering form:
+*P = [value] ± [uncertainty] [units] ([confidence level or method, e.g., 95% CI or
+manufacturer spec bound])*
+
+**8. Plain-language explanation**
+In 3–5 sentences, explain what you did in this lab and what your result means to someone
+who has never taken an engineering course. Assume your audience is a curious high school
+student. This section should be in your introduction or conclusion, not appended as an
+afterthought.
+
+### Format and submission
+
+Submit your report as a single `.zip` archive containing your LaTeX source (`.tex` file(s)
+and any figure files) and the compiled PDF, uploaded to Canvas before your scheduled
+interview slot. Bring the compiled PDF (printed or on a device) to your interview; the
+LaTeX source lets the AI-assisted grading pipeline check your work against the required
+sections consistently.
+
+See **E0 Supplemental: Getting Started with Overleaf and LaTeX** if you haven't used LaTeX
+before.
+
+**Submission:** See Canvas for the due date.
+
+---
+
+## Oral Interview
+
+The oral interview is a 3-minute, one-on-one conversation with a member of the teaching team.
+You may bring your lab report. No other materials are permitted.
+
+The interview is a pass/fail assessment. You must pass this interview to satisfy the Lab 1
+requirement.
+
+Note that Learning Goal 6, explaining this lab's core concepts to someone without an
+engineering background, isn't just a report-writing exercise. It's one of the categories
+the interviewer may probe (see Category 5 in the student rubric), so it's worth practicing
+your plain-language explanation out loud, not just writing it in Section 8.
+
+**See the separate file `LAB1_PIV_rubric_student.md` for the question categories and what
+a passing response looks like.** Prepare by reviewing that document before your interview.
+
+### Preparing with the course AI tutor
+
+The course AI tutor persona is described in the E0 supplemental materials. You can upload
+this assignment document and the student rubric to a Claude or ChatGPT session configured
+with the tutor persona, and practice your oral responses before the interview. Example prompts:
+
+- *"Ask me an oral interview question about why P = IV and P = V²/R give different
+ uncertainty estimates."*
+- *"Pretend you are the instructor and ask me to explain the fluctuating digit procedure."*
+- *"Give me a harder version of a question about when Monte Carlo is preferable to the
+ partial derivative method."*
+
+The AI tutor cannot predict the exact questions you will be asked, but it can give you
+targeted practice on the core concepts. Use it.
+
+---
+
+## Resources
+
+- E1 Week 2 Lecture: Error Propagation, Sensitivity Analysis & Monte Carlo
+- E1 Week 2 Lecture: Variability, Error, and Uncertainty
+- Coleman & Steele, *Experimentation, Validation, and Uncertainty Analysis for Engineers*,
+ 4th ed. — Chapter on uncertainty propagation (reference copy on course page)
+- Multimeter datasheet — provided at lab session
+- MATLAB starter script — available on Canvas (sets up the Monte Carlo loop structure;
+ you complete the equation forms and plotting)
+- E0 Supplemental: Virtual Multimeter Simulator (optional bonus activity)
+- E0 Supplemental: AI Tutor Setup and Practice
+- E0 Supplemental: Getting Started with Overleaf and LaTeX
+- For multimeter technique when measuring voltage and current as separate steps in the
+ same circuit: https://www.youtube.com/watch?v=Y6xnLkiUMn8
+
+---
+
+*ASEN 3501 — Lab 1 Assignment | E1 Week 2*
+*Evergreen — physics content; Update-friendly — multimeter datasheet specifications,
+MATLAB starter script, power supply target voltage*

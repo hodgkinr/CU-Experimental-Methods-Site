@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spin Modules</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../chat_widget.css">
+  <script defer src="../../chat_widget.js"></script>
+  <script defer src="../../app.js"></script>
+</head>
+<body>
+  
+    
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../../index.html">Aerospace Experimental Methods</a>
+        <nav class="top-nav">
+          <a href="../../index.html">Home</a>
+          <a href="../../syllabus.html">Syllabus</a>
+          <a href="../../schedule.html">Schedule</a>
+          <a class="is-current" href="../../labs.html">Labs</a>
+          <a href="../../results.html">Results</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main class="page-shell">
+      <nav class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <a href="../../labs.html">Labs</a>
+        <a href="../../labs/tier1_candidates.html">Tier 1 Candidates</a>
+        <span>Spin Modules</span>
+      </nav>
+      <section class="hero compact">
+        <p class="eyebrow">Tier 1 Candidate</p>
+        <h1>Spin Modules</h1>
+        <p class="lead">Characterize the rotational dynamics of a spinning module using sensor data.</p>
+      </section>
+      <section class="experiment-scaffold">
+        <h2>Lab Content</h2>
+        <p class="muted" style="margin-bottom:1rem">Lab content compiled from source materials. Sections marked as incomplete will be updated as additional source files become available.</p>
+        <div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
+<p>&gt; <strong>Lab:</strong> Spin Modules — Rate Gyro Calibration and Inertia Estimation &gt; <strong>Scope:</strong> MEMS rate gyro calibration; reaction wheel MOI; spacecraft body MOI &gt; <strong>Hardware:</strong> CU Boulder Spin Module (single-axis spacecraft mockup) &gt; <strong>Software:</strong> LabVIEW VI — <code>All_Spin_Module_Labs.vi</code> &gt; <strong>Source:</strong> ASEN3801 Lab 3 (primary); ASEN3200 LabA1 (supplemental)</p>
+<hr>
+<p>[SAFETY: Power-up sequence is ORDER-DEPENDENT. Incorrect power-up can damage the hardware. Follow the exact sequence in Part 1 below. Clamp the spin module to the table BEFORE running any motor commands — an unclamped module will fly off the table.]</p>
+<hr>
+<h2>Part 1 — Spin Module Power-Up Procedure</h2>
+<p><em>Primary source: ASEN3801 Lab 3, Setup Procedure (pages 12–13); supplemental: ASEN3200 LabA1 (pages 8–9).</em></p>
+<ol>
+<li>Use the clamp provided to secure the spin module base to the lab station top. Place the clamp on the base plate at the spot labeled &quot;clamp here&quot;.</li>
+<li><strong>CHECK that you have completed step 1.</strong> If you do not clamp the spin module down and you run the motor, it will fly off the table and be damaged.</li>
+<li>Connect the USB cable Type B end to the National Instruments myRIO port labeled &quot;DEVICE&quot; (the middle port). The other Type A end connects to the lab station computer. (Do not connect to the Type A top port on the myRIO.)</li>
+<li>Connect the power adapter to the barrel connector. The power light on the myRIO should now be illuminated blue.</li>
+<li>Wait 1–2 minutes until the Status light on the myRIO turns from orange to off.</li>
+<li>Verify the lab assistant has connected the second power supply to the base station printed circuit board (PCB). Verify the U8002A power supply is set to a limit of 12.00 V and 0.300 A (press &quot;Display Limit&quot; on the supply). Do not plug in any power connections until power supply settings have been verified.</li>
+<li>Confirm that the satellite 9V battery pack has been plugged in. Wait for the lower board motor controller to flash its green LED.</li>
+<li>Once the above steps are complete, turn on the satellite board power located on the top PCB, inside the spin module chassis, using the red toggle switch.</li>
+<li>Verify the board goes through a series of status LEDs shown near the toggle switch. The remaining LED under the switch should be Yellow; the Alive LED should be green.</li>
+<li>Open <code>All_Spin_Module_Labs.vi</code> located in your current semester&#x27;s class folder (Courses H:/AES/Software/VIs/ASEN 3200/). <strong>Do NOT run the VI yet.</strong></li>
+<li>Check the battery voltage meter in the VI status panel (bottom right corner). If the battery voltage of the satellite&#x27;s onboard battery pack drops below 14 V, turn off the top satellite board with the red toggle switch and request staff assistance for new batteries.</li>
+<li>The &quot;Reinitialize Arduino&quot; button is used if you notice the gyro voltage drift over time from zero at rest. Use it to reset this offset bias.</li>
+<li>The green indicators show if the myRIO (on the base) and the Arduino DUE (inside the satellite) are properly connected and communicating.</li>
+<li>Check the &quot;Link Speed&quot; dial — a good typical value is 1.5 or higher. If you see frequent dropouts to zero, the Xbee channel may be experiencing interference from other wireless sources, or the battery voltage may be too low.</li>
+</ol>
+<p><strong>NOTE:</strong> For safety, you cannot change the LabVIEW operating modes (Torque vs. Gyro) of the Spin Module while the VI is running.</p>
+<p>[SETUP_PHOTO NEEDED: myRIO port layout (USB DEVICE port location, barrel connector location). See LabA1 Figure 2 in source — not available as a standalone image file.]</p>
+<hr>
+<h2>Part 2 — Rate Gyro Calibration</h2>
+<p><em>Primary source: ASEN3801 Section 3.1; supplemental: ASEN3200 LabA1 Section 5.1.</em></p>
+<p><strong>Purpose:</strong> Characterize the MEMS gyro bias (b) and scale factor (K) relative to the encoder truth reference.</p>
+<h3>Sub-Part 2a: Manual Experiment (Qualitative)</h3>
+<ol>
+<li>Select the &quot;Gyro&quot; tab on the VI front panel.</li>
+<li>Start running the VI by clicking &quot;play&quot;. The VI will now display live gyro measurements.</li>
+<li>Select &quot;Manual Control&quot; from the VI front panel.</li>
+<li>Move the spacecraft gently back and forth by hand in a smooth, sinusoidal manner so that a good linear relationship between gyro rate measurement and input angular rate can be observed on the VI.</li>
+</ol>
+<ul>
+<li><strong>Note:</strong> Abrupt changes in angular velocity lead to non-linear effects in the gyro output that appear as &quot;looping&quot; in the relationship between true angular rate and gyro measurement. Use gentle, sinusoidal motion to avoid this.</li>
+</ul>
+<ol>
+<li>Observe how moving the spacecraft at different rates affects the data collection.</li>
+<li>Collect approximately 1 minute of data for observation; there is no need to save this file.</li>
+<li>Take notes on the performance of the MEMS gyro for later discussion.</li>
+</ol>
+<h3>Sub-Part 2b: Motor-Driven Calibration Data Collection</h3>
+<ol>
+<li>While still on the &quot;Gyro&quot; tab, select &quot;Automatic RW Control&quot; from the VI front panel.</li>
+<li>Set the desired output frequency and amplitude. A <strong>0.2 Hz sine wave at an amplitude of 0.5 Amps</strong> is a good starting point.</li>
+<li>Click &quot;Begin Test&quot;. The VI will display data on the screen (not yet logging to file).</li>
+<li>Collect approximately 1 minute of data.</li>
+<li>Click &quot;Write to File&quot; and save using the naming convention:</li>
+</ol>
+<p><code>YEAR_MONTH_DAY_SEC_MEMS_F#C#</code></p>
+<ul>
+<li>Example: <code>2024_XX_XX_001_MEMS_F02C05</code> (Section 001, 0.2 Hz, 0.5 A)</li>
+</ul>
+<ol>
+<li>Repeat for at least 2 more different frequency/amplitude combinations, saving each file.</li>
+<li>Use the &quot;STOP&quot; button when done collecting.</li>
+</ol>
+<p><strong>Data quality note:</strong> If &quot;DUMPING&quot; is displayed and illuminated (rather than &quot;QUEUING&quot;), data will not be saved — check this before clicking Write to File.</p>
+<h3>Sub-Part 2c: MATLAB Analysis</h3>
+<p><em>From ASEN3801 Section 3.1, Tasks 1–4.</em></p>
+<ol>
+<li>For one data set: import the data into MATLAB. Identify what information is in each column and convert the rate data from RPM to rad/s.</li>
+<li>On the same graph, plot the time history of the encoder rate measurement (true angular rate) and the gyro rate measurement (in rad/s). Note: you should observe that the gyro rate measurements have the opposite sign from the encoder rate measurements.</li>
+<li>To determine the calibration parameters, plot the encoder rate measurement on the horizontal axis and the gyro rate measurement on the vertical axis. Fit a line to the data to determine:</li>
+</ol>
+<ul>
+<li>Gyro bias <strong>b</strong> [rad/s] (y-intercept)</li>
+<li>Scale factor <strong>K</strong> [unitless, (rad/s)/(rad/s)] (slope)</li>
+</ul>
+<ol>
+<li>Write a calibration equation for how the gyro rate measurements should be corrected. Apply the calibration to the data set and plot the time history of encoder rate and calibrated rate on the same axes — they should match well.</li>
+<li>Make a table of b and K for each run. Compute the mean and standard deviation of b and K across all runs. Explain which trials you used and which portions of the data, if any, you removed before computing statistics.</li>
+<li>For two data sets, compute and plot:</li>
+</ol>
+<ul>
+<li>(a) Time history of encoder rate and calibrated rate</li>
+<li>(b) Time history of angular rate error (calibrated rate − encoder rate)</li>
+<li>(c) Time history of true angular position (from encoder) and measured angular position (from calibrated gyro rate) — compute positions by integrating respective rates</li>
+<li>(d) Time history of angular position error (measured − true)</li>
+<li>(e) Angular position error as a function of encoder rate (encoder rate on x-axis)</li>
+</ul>
+<p><code>[STUDENT TASK: Determine bias and scale factor; write calibration equation; analyze position drift from integrated gyro measurements.]</code></p>
+<hr>
+<h2>Part 3 — Reaction Wheel MOI Estimation</h2>
+<p><em>Primary source: ASEN3801 Section 3.2; supplemental: ASEN3200 LabA1 Section 5.2.</em></p>
+<p><strong>Purpose:</strong> Estimate the moment of inertia of the reaction wheel using a constant-torque spin-up test.</p>
+<p>[SAFETY: When torque is applied to the reaction wheel, the spacecraft will naturally start to spin (Newton&#x27;s 3rd Law reaction). To measure ONLY the reaction wheel MOI, hold the spacecraft body stationary with your hand during this measurement.]</p>
+<p><strong>NOTE:</strong> You cannot change operating modes (Gyro vs. Torque) while the VI is running. Stop the VI before switching tabs.</p>
+<ol>
+<li>Triple-check that the spin module is clamped to the table. This is especially important for torque measurements.</li>
+<li>Select the &quot;Torque&quot; tab on the VI front panel.</li>
+<li>Start running the VI by clicking &quot;play&quot;.</li>
+<li>Configure for RW MOI measurement:</li>
+</ol>
+<ul>
+<li>Select the &quot;<strong>RW</strong>&quot; switch to apply a constant torque to the RW motor (displays &quot;Torque Applied to RW&quot; on the Commanded Torque plot).</li>
+<li>Under &quot;Angular Velocity Sensor,&quot; select &quot;<strong>Reaction Wheel (Hall Sensors)</strong>&quot; to measure the actual angular velocity of the reaction wheel using the RW motor&#x27;s built-in Hall-effect sensors (displayed on the Angular Speed plot).</li>
+<li>Select &quot;<strong>RW</strong>&quot; for the Current Sensor to display actual current drawn by the RW motor (third plot).</li>
+</ul>
+<ol>
+<li>Enter the desired torque in mNm.</li>
+<li>Click &quot;Begin Test&quot;. Let the wheel spin up to an observable rate.</li>
+<li>Click &quot;Write to File&quot;. Save using the naming convention:</li>
+</ol>
+<p><code>YEAR_MONTH_DAY_SEC_RWHEEL_T#t#</code></p>
+<ul>
+<li>Example: <code>2024_XX_XX_003_RWHEEL_T10t5</code> (10 mNm torque, 5 seconds)</li>
+</ul>
+<ol>
+<li>Use &quot;STOP&quot; to stop the VI between runs.</li>
+<li>Repeat for at least 4 more different torque values, saving each file.</li>
+</ol>
+<p><strong>Current-to-torque conversion:</strong></p>
+<ul>
+<li>Use the RW motor datasheet (motor part #251601, datasheet page 300 of motor catalog) to find the torque constant k_t [mNm/A].</li>
+<li>Convert measured motor current [A] to torque [mNm]: τ = k_t × I_motor</li>
+<li><code>[MISSING: RW motor torque constant k_t — motor datasheet embedded as image in ASEN3801 source (pages 14–15); actual k_t value must be read from the physical datasheet or PDF. See instrumentation/datasheets/README_agent.md.]</code></li>
+</ul>
+<p><strong>MATLAB Analysis:</strong></p>
+<ol>
+<li>Import each data file; plot angular velocity vs. time for each trial.</li>
+<li>Fit a line (linear regression) to find average angular acceleration α [rad/s²].</li>
+<li>Compute MOI: I_RW = τ / α [kg·m²]</li>
+<li>Compute mean and standard deviation of I_RW across all trials.</li>
+<li>Estimate angular momentum capacity: H_max = I_RW × ω_max (ω_max = 4000 rpm = 419 rad/s)</li>
+<li>Estimate saturation time under aerodynamic disturbance: t_sat = H_max / τ_disturbance (use τ_disturbance = 10⁻⁴ N·m as representative LEO aerodynamic drag torque)</li>
+</ol>
+<p><code>[STUDENT TASK: Fit angular acceleration; compute MOI; compute mean and std dev across trials; compute angular momentum capacity.]</code></p>
+<hr>
+<h2>Part 4 — Spacecraft Body MOI Estimation</h2>
+<p><em>Source: ASEN3801 Section 3.3a only — not in LabA1. ASEN3801 is the only source for this measurement.</em></p>
+<p><strong>Purpose:</strong> Estimate the moment of inertia of the spacecraft body about its spin axis.</p>
+<p><strong>Key difference from Part 3:</strong></p>
+<ul>
+<li>NOW allow the spacecraft to spin freely (do not hold it).</li>
+<li>Apply torque with the <strong>BASE motor</strong> (not the RW motor).</li>
+<li>Measure angular velocity with the <strong>BASE ENCODER</strong> (not Hall sensors).</li>
+<li>Use the <strong>BASE MOTOR torque constant</strong> for current-to-torque conversion (motor part #200142).</li>
+</ul>
+<ol>
+<li>Confirm the spin module is clamped to the table.</li>
+<li>Select the &quot;Torque&quot; tab on the VI.</li>
+<li>Start running the VI.</li>
+<li>Configure for spacecraft body MOI measurement:</li>
+</ol>
+<ul>
+<li>Select the &quot;<strong>Base</strong>&quot; switch to apply a constant torque to the base motor (displays &quot;Torque Applied to BASE&quot; on the Commanded Torque plot).</li>
+<li>Under &quot;Angular Velocity Sensor,&quot; select &quot;<strong>Base (Encoder)</strong>.&quot; The base encoder data will be displayed on the Angular Speed plot.</li>
+<li>Select &quot;<strong>Base</strong>&quot; for the Current Sensor.</li>
+</ul>
+<ol>
+<li>Enter the desired torque in mNm.</li>
+<li>Click &quot;Begin Test.&quot; Allow the spacecraft to spin up.</li>
+<li>Click &quot;Write to File.&quot; Save files with a consistent naming convention (adapt the RWHEEL convention: e.g., <code>YEAR_MONTH_DAY_SEC_SC_T#t#</code>).</li>
+<li>Repeat for multiple torque values, saving each file.</li>
+</ol>
+<p><strong>Current-to-torque conversion:</strong></p>
+<ul>
+<li>Use the BASE motor datasheet (motor part #200142, datasheet page 265) to find the torque constant k_t [mNm/A].</li>
+<li><code>[MISSING: Base motor torque constant k_t — same issue as RW motor. See instrumentation/datasheets/README_agent.md.]</code></li>
+</ul>
+<p><strong>MATLAB Analysis:</strong> Identical to Part 3 (linear fit → α → I_sc = τ / α). Report mean and standard deviation of I_sc across trials.</p>
+<p><code>[STUDENT TASK: Same method as RW MOI applied to spacecraft body — fit angular acceleration, compute I_sc, report mean and std dev.]</code></p>
+<hr>
+<h2>Power-Down Procedure</h2>
+<ol>
+<li>Turn off the red toggle switch on the satellite body.</li>
+<li>Disconnect the 9V battery pack using the blue pry bar located in the clear plastic box.</li>
+</ol>
+<ul>
+<li><strong>IMPORTANT:</strong> Do this every session — the battery pack does not have a built-in safety cutoff, and leaving it connected drains battery life.</li>
+</ul>
+<hr>
+<h2>Known Pitfalls and Common Mistakes</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Issue</th><th>Cause</th><th>Remedy</th></tr></thead><tbody><tr><td>Module flies off table</td><td>Not clamped before running motor</td><td>Always clamp before powering up motors</td></tr><tr><td>Gyro voltage drifts from zero at rest</td><td>Accumulated bias in Arduino</td><td>Click &quot;Reinitialize Arduino&quot; in VI</td></tr><tr><td>Low Link Speed (&lt; 1.5)</td><td>Xbee interference or low battery</td><td>Check battery voltage; reduce wireless interference</td></tr><tr><td>&quot;DUMPING&quot; shown instead of &quot;QUEUING&quot;</td><td>Buffer state issue</td><td>Use &quot;Reinitialize Spreadsheet Data&quot;; check before saving</td></tr><tr><td>Base motor controller LED turns RED</td><td>Input exceeded allowable limits</td><td>Reduce commanded torque</td></tr><tr><td>Mode cannot be changed while VI runs</td><td>VI operating mode lock</td><td>Stop VI before changing Gyro/Torque tab</td></tr><tr><td>Gyro shows &quot;looping&quot;</td><td>Abrupt rate changes → nonlinear response</td><td>Use gentle sinusoidal motion; avoid step inputs</td></tr><tr><td>Battery voltage below 14V</td><td>Low onboard battery</td><td>Stop satellite board; request new batteries from staff</td></tr></tbody></table></div>
+<p>[SETUP_PHOTO NEEDED: Spin module with clamp in place, showing &quot;clamp here&quot; location and power connections. Also: VI front panel layout showing Gyro/Torque tabs, Begin Test button, Write to File button, and status indicators.]</p>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Theoretical Derivation — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
+<p>&gt; <strong>Scope:</strong> MEMS rate gyro sensor model and calibration; reaction wheel MOI estimation; spacecraft body MOI estimation &gt; <strong>Sources:</strong> ASEN3801 Lab 3 Sections 3.1–3.3a; ASEN3200 LabA1 Sections 5.1–5.2, Section 6</p>
+<hr>
+<h2>Section 1 — MEMS Rate Gyro: Sensor Model and Calibration</h2>
+<h3>Physical Sensor Description</h3>
+<p>A MEMS (Micro-Electro-Mechanical System) gyroscope measures angular rate about one sensitive axis. The rate gyro installed on the spin module is mounted with its sensitive axis pointed upward, measuring spacecraft rotation about the vertical spin axis. The gyro output is proportional to the true angular rate but typically has two systematic errors:</p>
+<ul>
+<li><strong>Bias (b):</strong> a constant offset — the sensor reads a nonzero rate even when the spacecraft is stationary.</li>
+<li><strong>Scale factor error (K):</strong> the ratio between the gyro&#x27;s output and the true angular rate deviates from 1.0 — the sensor over- or under-reports the rate magnitude.</li>
+</ul>
+<h3>Calibration Model</h3>
+<p>The linear calibration model for the MEMS gyro is:</p>
+<pre><code>
+gyro_output = K · ω_true + b + noise
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><code>gyro_output</code> — measured gyro rate [rad/s]</li>
+<li><code>ω_true</code> — true angular rate of spacecraft [rad/s], provided by base encoder</li>
+<li><code>K</code> — scale factor [unitless; (rad/s)/(rad/s)]</li>
+<li><code>b</code> — bias [rad/s]</li>
+<li><code>noise</code> — zero-mean random sensor noise (not modeled)</li>
+</ul>
+<p><strong>Note on sign convention:</strong> In practice, the gyro output has the opposite sign relative to the encoder rate measurement. The linear regression procedure (fitting gyro output vs. encoder rate) handles this automatically — K will be negative when this sign flip is present.</p>
+<h3>Calibration Procedure (Parameter Identification)</h3>
+<p>The encoder (on the base motor) provides a truth reference for spacecraft angular velocity. To determine K and b:</p>
+<ol>
+<li>Collect data at multiple spacecraft angular velocities driven by the reaction wheel motor (sinusoidal excitation).</li>
+<li>Plot encoder rate (x-axis) vs. gyro rate measurement (y-axis).</li>
+<li>Fit a line to the data using linear regression:</li>
+</ol>
+<ul>
+<li>Slope = K</li>
+<li>Intercept = b</li>
+</ul>
+<ol>
+<li>Write the calibration equation:</li>
+</ol>
+<pre><code>
+ω_calibrated = (gyro_output − b) / K
+</code></pre>
+<p>The calibrated rate should closely match the encoder rate.</p>
+<h3>Calibration Performance Metrics</h3>
+<p>Students should characterize the following after completing multiple calibration runs:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Metric</th><th>Definition</th><th>Significance</th></tr></thead><tbody><tr><td>Bias repeatability</td><td>std(b) across runs</td><td>Is bias consistent enough to use a single calibration?</td></tr><tr><td>Scale factor precision</td><td>std(K) across runs</td><td>How well-determined is K?</td></tr><tr><td>Useful rate range</td><td>Rate below which the gyro deviates from linearity</td><td>Upper limit for reliable gyro use</td></tr><tr><td>Nonlinear behavior</td><td>&quot;Looping&quot; in gyro vs. encoder plot</td><td>Indicates saturation-like behavior at abrupt changes</td></tr></tbody></table></div>
+<h3>Angular Position from Gyro Integration</h3>
+<p>Given calibrated angular rate, angular position can be estimated by integration:</p>
+<pre><code>
+θ(t) = θ(0) + ∫ ω_calibrated(t) dt
+</code></pre>
+<p>In MATLAB, this is computed as cumulative trapezoidal integration:</p>
+<pre><code>
+theta = cumtrapz(t, omega_calibrated);
+</code></pre>
+<p><strong>Key finding — position drift:</strong> Because any residual bias error after calibration accumulates over time during integration, the estimated angular position will drift from the true position. This drift:</p>
+<ul>
+<li>Grows monotonically with time</li>
+<li>Is proportional to the residual rate error</li>
+<li>Is a fundamental limitation of gyro-only navigation (no drift correction without additional sensor)</li>
+</ul>
+<p>Students should observe and explain this mechanism by comparing the integrated gyro position estimate to the true position derived from the encoder.</p>
+<p><code>[STUDENT TASK: Determine K and b from calibration data; write calibration equation; quantify repeatability of K and b across runs; analyze position drift mechanism and magnitude.]</code></p>
+<hr>
+<h2>Section 2 — Reaction Wheel and Spacecraft Body: MOI Estimation</h2>
+<h3>Physical Basis</h3>
+<p>The moment of inertia (MOI) of a rotating body can be measured experimentally by applying a known, constant torque and measuring the resulting angular acceleration. This follows directly from Newton&#x27;s second law for rotation:</p>
+<pre><code>
+τ = I · α
+</code></pre>
+<p>Rearranging to solve for MOI:</p>
+<pre><code>
+I = τ / α [kg·m²]
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><code>τ</code> = applied torque [N·m]</li>
+<li><code>I</code> = moment of inertia about the spin axis [kg·m²]</li>
+<li><code>α</code> = angular acceleration [rad/s²]</li>
+</ul>
+<p>This same method applies to two different objects in this lab:</p>
+<ul>
+<li><strong>Reaction wheel:</strong> Hold the spacecraft body stationary; apply torque to RW motor; measure RW angular velocity via Hall sensors → estimate I_RW</li>
+<li><strong>Spacecraft body:</strong> Allow spacecraft to spin freely; apply torque to base motor; measure spacecraft angular velocity via base encoder → estimate I_sc</li>
+</ul>
+<p>Using the same method on two different objects makes the method itself the focus, rather than a specific piece of hardware.</p>
+<h3>Angular Acceleration Estimation</h3>
+<p>Under constant applied torque, angular velocity increases linearly with time:</p>
+<pre><code>
+ω(t) = ω₀ + α · t
+</code></pre>
+<p>Therefore, angular acceleration α is the slope of a linear fit to ω(t) data.</p>
+<p>In MATLAB:</p>
+<pre><code>
+p = polyfit(t, omega, 1); % 1st-order polynomial fit
+alpha = p(1); % slope = angular acceleration [rad/s^2]
+</code></pre>
+<h3>Current-to-Torque Conversion</h3>
+<p>The LabVIEW VI measures motor current I_motor [A]. Torque is computed from the motor&#x27;s torque constant:</p>
+<pre><code>
+τ = k_t · I_motor
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><code>k_t</code> = motor torque constant [N·m/A or mN·m/A] from the motor datasheet</li>
+<li><code>I_motor</code> = measured motor current [A] from VI</li>
+</ul>
+<p>Two different k_t values are required:</p>
+<ul>
+<li><strong>Reaction wheel motor:</strong> part #251601 (datasheet page 300 of motor catalog)</li>
+<li><strong>Base motor:</strong> part #200142 (datasheet page 265 of motor catalog)</li>
+</ul>
+<p><code>[MISSING: Actual k_t values for both motors — motor datasheets are embedded as images in the ASEN3801 source document (pages 14–15). The torque calculation and MOI estimation cannot be completed without these values. See instrumentation/datasheets/README_agent.md.]</code></p>
+<h3>Statistical Characterization of MOI Estimate</h3>
+<p>Because individual trials may have minor variations in torque delivery, students should perform multiple trials and report a statistical estimate:</p>
+<ul>
+<li>Collect at least 5 trials at different torque values</li>
+<li>For each trial: compute I = τ / α</li>
+<li>Report:</li>
+<li>I_mean = mean(I₁, I₂, ..., I_N)</li>
+<li>I_std = std(I₁, ..., I_N)</li>
+<li>I_unc = I_std / sqrt(N) (uncertainty of the mean)</li>
+</ul>
+<p>Students should also explain which trials they used and why (data quality judgment: did any trial show clearly non-constant torque or poor linear fit quality?).</p>
+<h3>Angular Momentum Capacity (Reaction Wheel)</h3>
+<p>The maximum angular momentum the reaction wheel can store:</p>
+<pre><code>
+H_max = I_RW · ω_max [N·m·s]
+</code></pre>
+<p>Where ω_max = 4000 rpm = 4000 × (2π/60) = 418.9 rad/s (from ASEN3801 source).</p>
+<h3>Reaction Wheel Saturation Time</h3>
+<p>The time before the reaction wheel reaches its angular velocity limit under a constant external disturbance torque:</p>
+<pre><code>
+t_sat = H_max / τ_disturbance [s]
+</code></pre>
+<p>Using a representative low Earth orbit aerodynamic drag torque:</p>
+<ul>
+<li>τ_disturbance = 10⁻⁴ N·m (given in source as representative LEO disturbance)</li>
+</ul>
+<p><code>[STUDENT TASK: Fit angular acceleration for each trial; compute I for each trial; compute mean, std dev, and uncertainty of the mean; compute H_max and t_sat for the reaction wheel.]</code></p>
+<hr>
+<h2>Section 3 — Assumptions and Limitations</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Assumption</th><th>Justification</th><th>Limitation</th></tr></thead><tbody><tr><td>Linear gyro model (K, b constant)</td><td>Encoder vs. gyro data shows good linear relationship at moderate rates</td><td>Nonlinear &quot;looping&quot; observed at abrupt rate changes — calibration valid only in linear regime</td></tr><tr><td>Constant torque during spin-up</td><td>LabVIEW VI commands constant torque; observed as approximately linear ω(t)</td><td>Torque ripple in brushless motor and encoder discretization introduce noise</td></tr><tr><td>Rigid body rotation</td><td>Single-axis spin module with rigid mechanical connection</td><td>No coupling to other degrees of freedom; single-axis model is appropriate</td></tr><tr><td>No friction or bearing losses</td><td>Spin module designed to minimize friction</td><td>Some bearing friction is present; contributes small systematic MOI underestimate</td></tr><tr><td>τ = k_t × I_motor (linear)</td><td>Standard brushless motor model</td><td>Valid in normal operating range; breaks down at motor saturation</td></tr></tbody></table></div>
+<hr>
+<h2>Textbook References</h2>
+<ul>
+<li>Schaub, H. and Junkins, J.L., <em>Analytical Mechanics of Space Systems</em>, AIAA Education Series (general reference for spacecraft attitude dynamics)</li>
+<li>Any undergraduate mechanics of materials or dynamics text covering Newton&#x27;s second law for rotation and moment of inertia</li>
+</ul>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p>
+<h1>Model Equations Reference — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
+<p>&gt; Quick reference for all equations used in this lab. Symbols defined and units stated for each. &gt; Sources: ASEN3801 Lab 3 Sections 3.1–3.3a; ASEN3200 LabA1 Sections 5.1–5.2</p>
+<hr>
+<h2>1. Rate Gyro Calibration Model</h2>
+<pre><code>
+gyro_output = K · ω_true + b
+</code></pre>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td><code>gyro_output</code></td><td>Raw gyro rate measurement</td><td>rad/s</td></tr><tr><td><code>K</code></td><td>Scale factor</td><td>unitless [(rad/s)/(rad/s)]</td></tr><tr><td><code>ω_true</code></td><td>True spacecraft angular rate (from encoder)</td><td>rad/s</td></tr><tr><td><code>b</code></td><td>Bias</td><td>rad/s</td></tr></tbody></table></div>
+<p><strong>Note:</strong> K is typically negative (gyro output is sign-inverted relative to encoder); the linear fit handles this automatically.</p>
+<hr>
+<h2>2. Calibrated Angular Rate</h2>
+<pre><code>
+ω_calibrated = (gyro_output − b) / K
+</code></pre>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td><code>ω_calibrated</code></td><td>Corrected angular rate estimate</td><td>rad/s</td></tr><tr><td><code>b</code></td><td>Bias (from calibration fit)</td><td>rad/s</td></tr><tr><td><code>K</code></td><td>Scale factor (from calibration fit)</td><td>unitless</td></tr></tbody></table></div>
+<hr>
+<h2>3. Angular Position from Gyro Integration</h2>
+<p><strong>Continuous form:</strong></p>
+<pre><code>
+θ(t) = θ(0) + ∫₀ᵗ ω_calibrated(τ) dτ
+</code></pre>
+<p><strong>Discrete form (MATLAB):</strong></p>
+<pre><code>
+theta = theta_0 + cumtrapz(t, omega_calibrated);
+</code></pre>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td><code>θ(t)</code></td><td>Angular position</td><td>rad</td></tr><tr><td><code>θ(0)</code></td><td>Initial angular position</td><td>rad</td></tr><tr><td><code>ω_calibrated</code></td><td>Calibrated gyro rate</td><td>rad/s</td></tr><tr><td><code>t</code></td><td>Time</td><td>s</td></tr></tbody></table></div>
+<hr>
+<h2>4. Newton&#x27;s 2nd Law for Rotation — MOI Estimation</h2>
+<pre><code>
+τ = I · α → I = τ / α
+</code></pre>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td><code>τ</code></td><td>Applied torque</td><td>N·m</td></tr><tr><td><code>I</code></td><td>Moment of inertia about spin axis</td><td>kg·m²</td></tr><tr><td><code>α</code></td><td>Angular acceleration</td><td>rad/s²</td></tr></tbody></table></div>
+<hr>
+<h2>5. Current-to-Torque Conversion</h2>
+<pre><code>
+τ = k_t · I_motor
+</code></pre>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td><code>τ</code></td><td>Motor torque</td><td>N·m (or mN·m)</td></tr><tr><td><code>k_t</code></td><td>Torque constant (from motor datasheet)</td><td>N·m/A (or mN·m/A)</td></tr><tr><td><code>I_motor</code></td><td>Measured motor current</td><td>A</td></tr></tbody></table></div>
+<p><strong>Motor-specific k_t values:</strong></p>
+<ul>
+<li>RW motor part #251601: <code>k_t</code> = <code>[MISSING — read from motor datasheet, page 300 of catalog]</code></li>
+<li>Base motor part #200142: <code>k_t</code> = <code>[MISSING — read from motor datasheet, page 265 of catalog]</code></li>
+</ul>
+<hr>
+<h2>6. Angular Acceleration from Linear Fit</h2>
+<p>Under constant torque, angular velocity is linear in time:</p>
+<pre><code>
+ω(t) = ω₀ + α · t
+</code></pre>
+<p>Angular acceleration is the slope of the linear fit:</p>
+<pre><code>
+p = polyfit(t, omega, 1);
+alpha = p(1); % slope [rad/s^2]
+</code></pre>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td><code>ω(t)</code></td><td>Angular velocity at time t</td><td>rad/s</td></tr><tr><td><code>ω₀</code></td><td>Initial angular velocity</td><td>rad/s</td></tr><tr><td><code>α</code></td><td>Angular acceleration</td><td>rad/s²</td></tr></tbody></table></div>
+<hr>
+<h2>7. Angular Momentum Capacity (Reaction Wheel)</h2>
+<pre><code>
+H_max = I_RW · ω_max
+</code></pre>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td><code>H_max</code></td><td>Maximum angular momentum (reaction wheel)</td><td>N·m·s</td></tr><tr><td><code>I_RW</code></td><td>Reaction wheel MOI (estimated experimentally)</td><td>kg·m²</td></tr><tr><td><code>ω_max</code></td><td>Maximum wheel angular velocity</td><td>rad/s</td></tr></tbody></table></div>
+<p><strong>Numerical value:</strong> ω_max = 4000 rpm = 4000 × (2π/60) = <strong>418.9 rad/s</strong> (from ASEN3801 source)</p>
+<hr>
+<h2>8. Reaction Wheel Saturation Time</h2>
+<pre><code>
+t_sat = H_max / τ_disturbance
+</code></pre>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td><code>t_sat</code></td><td>Time to wheel saturation</td><td>s</td></tr><tr><td><code>H_max</code></td><td>Angular momentum capacity of wheel</td><td>N·m·s</td></tr><tr><td><code>τ_disturbance</code></td><td>External disturbance torque</td><td>N·m</td></tr></tbody></table></div>
+<p><strong>Representative value:</strong> τ_disturbance = 10⁻⁴ N·m (representative LEO aerodynamic drag torque, per source)</p>
+<hr>
+<h2>9. Statistical Estimates of MOI</h2>
+<pre><code>
+I_mean = mean(I₁, I₂, ..., I_N)
+I_std = std(I₁, I₂, ..., I_N)
+I_unc = I_std / sqrt(N)
+</code></pre>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td><code>I_mean</code></td><td>Mean MOI across N trials</td><td>kg·m²</td></tr><tr><td><code>I_std</code></td><td>Standard deviation of MOI across trials</td><td>kg·m²</td></tr><tr><td><code>I_unc</code></td><td>Uncertainty of the mean (standard error)</td><td>kg·m²</td></tr><tr><td><code>N</code></td><td>Number of trials used</td><td>—</td></tr></tbody></table></div>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
+<p>&gt; <strong>Sources:</strong> ASEN3801 Lab 3; ASEN3200 LabA1 &gt; <strong>Scope:</strong> In-scope instrumentation only (rate gyro calibration; RW MOI; spacecraft body MOI)</p>
+<hr>
+<h2>Hardware System Overview: CU Boulder Spin Module</h2>
+<p>The Spin Module is a single-axis spacecraft mockup developed at CU Boulder. It consists of two mechanically distinct sections connected only by a motor shaft:</p>
+<p><strong>Upper section (&quot;satellite&quot;):</strong></p>
+<ul>
+<li>Self-contained; runs on onboard battery</li>
+<li>Contains: MEMS rate gyro (IMU), reaction wheel with brushless DC motor, 9V battery pack, Arduino DUE microcontroller, Xbee wireless radio</li>
+<li>Communicates wirelessly with the base via Xbee</li>
+</ul>
+<p><strong>Lower section (&quot;base&quot;):</strong></p>
+<ul>
+<li>Connected to lab power supply</li>
+<li>Contains: brushless DC base motor with optical encoder, NI myRIO DAQ hardware, power PCB</li>
+<li>Communicates via USB to lab computer</li>
+</ul>
+<p>The only mechanical connection between upper and lower sections is the motor shaft, allowing the spacecraft to rotate freely or be spun by the base motor.</p>
+<p>[SETUP_PHOTO NEEDED: Full spin module assembly showing upper and lower sections, clamp location, and external connections.]</p>
+<p><strong>Hardware development credits:</strong></p>
+<ul>
+<li>Original modules: Prof. Dale Lawrence, Walter Lund, Matt Rhode (manufacturing), Brad Dunkin (LabVIEW); with lab updates by Trudy Schwartz, Gabe LoDolce, Prof. Penina Axelrad, Prof. Hanspeter Schaub, and others.</li>
+<li>New revision: Lewis Gillis, Devon Campbell, Joshua White, Rolf Andrada, Bobby Hodgkinson, and Trudy Schwartz.</li>
+<li>Reference: YouTube playlist — <a href="https://www.youtube.com/playlist?list=PLfIpWHYDHoWytG8GgT7vmwgyJgJdZ_q71">https://www.youtube.com/playlist?list=PLfIpWHYDHoWytG8GgT7vmwgyJgJdZ_q71</a></li>
+</ul>
+<hr>
+<h2>Sensors</h2>
+<h3>1. MEMS Rate Gyro (Onboard Satellite)</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value / Notes</th></tr></thead><tbody><tr><td>Type</td><td>MEMS (Micro-Electro-Mechanical System) integrated circuit board</td></tr><tr><td>Location</td><td>Upper section (&quot;satellite&quot;), onboard</td></tr><tr><td>Sensitive axis</td><td>Single axis; oriented upward in standard mount — measures rotation about vertical spin axis</td></tr><tr><td>Output</td><td>Angular rate [rad/s]; logged by VI via Xbee wireless link</td></tr><tr><td>Bias b</td><td><code>[STUDENT TASK — determined experimentally during calibration]</code></td></tr><tr><td>Scale factor K</td><td><code>[STUDENT TASK — determined experimentally during calibration]</code></td></tr><tr><td>Nonlinear regime</td><td>&quot;Looping&quot; (nonlinear response) observed at abrupt rate changes; use gentle sinusoidal motion</td></tr><tr><td>Bias reset</td><td>&quot;Reinitialize Arduino&quot; button in VI resets accumulated gyro offset bias</td></tr><tr><td>Manufacturer / Part #</td><td><code>[MISSING — not specified in source documents]</code></td></tr><tr><td>Measurement range</td><td><code>[MISSING — not specified; inferred from calibration data]</code></td></tr><tr><td>Sampling rate</td><td><code>[MISSING — logged by VI; actual sample rate not specified in source]</code></td></tr></tbody></table></div>
+<h3>2. Optical Encoder (Base Motor)</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value / Notes</th></tr></thead><tbody><tr><td>Type</td><td>Optical encoder (built into base motor assembly)</td></tr><tr><td>Location</td><td>Lower section (&quot;base&quot;), on base motor</td></tr><tr><td>Purpose</td><td>Truth reference for spacecraft angular velocity</td></tr><tr><td>Output</td><td>Angular rate in RPM (convert to rad/s in MATLAB); logged by NI myRIO</td></tr><tr><td>Manufacturer / Part #</td><td><code>[MISSING — not specified; associated with base motor part #200142]</code></td></tr><tr><td>Resolution</td><td><code>[MISSING — not specified in source]</code></td></tr><tr><td>Sampling rate</td><td><code>[MISSING — controlled by NI myRIO; not specified]</code></td></tr></tbody></table></div>
+<h3>3. Reaction Wheel Hall-Effect Sensors (Onboard RW Motor)</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value / Notes</th></tr></thead><tbody><tr><td>Type</td><td>Built-in Hall-effect sensors in brushless DC motor</td></tr><tr><td>Location</td><td>Upper section (&quot;satellite&quot;), on reaction wheel motor</td></tr><tr><td>Purpose</td><td>Measure reaction wheel angular velocity for MOI experiment</td></tr><tr><td>Output</td><td>Angular velocity; logged by VI via Xbee wireless link</td></tr><tr><td>Manufacturer / Part #</td><td>Integrated into RW motor, part #251601</td></tr><tr><td>Measurement range</td><td><code>[MISSING — depends on motor; consistent with up to 4000 rpm]</code></td></tr></tbody></table></div>
+<h3>4. Current Sensors (NI myRIO / VI)</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value / Notes</th></tr></thead><tbody><tr><td>Purpose</td><td>Measure motor current for torque calculation (τ = k_t × I_motor)</td></tr><tr><td>Channels</td><td>Two: &quot;RW&quot; (reaction wheel motor current) and &quot;Base&quot; (base motor current)</td></tr><tr><td>Output</td><td>Current [A]; logged by NI myRIO and displayed in VI</td></tr><tr><td>Accuracy</td><td><code>[MISSING — not specified in source; depends on myRIO specifications]</code></td></tr></tbody></table></div>
+<hr>
+<h2>DAQ and Control Hardware</h2>
+<h3>NI myRIO</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value / Notes</th></tr></thead><tbody><tr><td>Type</td><td>National Instruments myRIO — real-time DAQ and control hardware</td></tr><tr><td>Location</td><td>Lower section (&quot;base&quot;)</td></tr><tr><td>Connection</td><td>USB Type B to lab computer; Xbee wireless to Arduino DUE on satellite</td></tr><tr><td>Function</td><td>Logs encoder rate, commanded torque, and base motor current; interfaces with LabVIEW VI</td></tr><tr><td>Status indicators</td><td>Power light (blue when connected); Status light (orange → off during boot); green indicators in VI for myRIO and Arduino DUE connection</td></tr></tbody></table></div>
+<h3>Arduino DUE (Onboard Satellite)</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value / Notes</th></tr></thead><tbody><tr><td>Type</td><td>Arduino DUE microcontroller</td></tr><tr><td>Location</td><td>Upper section (&quot;satellite&quot;), onboard</td></tr><tr><td>Function</td><td>Controls onboard systems; reads and transmits gyro data and RW Hall sensor data via Xbee</td></tr><tr><td>Power</td><td>9V battery pack; monitor voltage in VI (minimum threshold: 14V)</td></tr><tr><td>Reset</td><td>&quot;Reinitialize Arduino&quot; button in VI</td></tr></tbody></table></div>
+<h3>LabVIEW VI</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value / Notes</th></tr></thead><tbody><tr><td>Filename</td><td><code>All_Spin_Module_Labs.vi</code></td></tr><tr><td>Path</td><td>Courses (H:)/AES/Software/VIs/ASEN 3200/</td></tr><tr><td>Tabs (in-scope)</td><td><strong>Gyro</strong> — for rate gyro calibration; <strong>Torque</strong> — for MOI measurements</td></tr><tr><td>Tab (out-of-scope)</td><td><strong>Control</strong> — closed-loop PD control; excluded from ASEN 3501 scope</td></tr><tr><td>Data output</td><td><code>.txt</code> file; columns include time, encoder rate, gyro rate, commanded torque, angular velocity, motor current</td></tr><tr><td>Link Speed</td><td>Quality indicator for Xbee wireless link; ≥ 1.5 is good; 0 = interference or low battery</td></tr><tr><td>Data buffering</td><td>&quot;QUEUING&quot; = ready to save; &quot;DUMPING&quot; = data will NOT be saved</td></tr></tbody></table></div>
+<h3>External Power Supply</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value / Notes</th></tr></thead><tbody><tr><td>Model</td><td>U8002A (Agilent/Keysight)</td></tr><tr><td>Setting</td><td>12.00 V, 0.300 A limit</td></tr><tr><td>Function</td><td>Powers base station PCB and base motor</td></tr><tr><td>Verification</td><td>Press &quot;Display Limit&quot; on supply before connecting</td></tr></tbody></table></div>
+<hr>
+<h2>Motor Specifications</h2>
+<h3>Reaction Wheel Motor</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value / Notes</th></tr></thead><tbody><tr><td>Part number</td><td>251601</td></tr><tr><td>Datasheet page</td><td>300 of motor catalog</td></tr><tr><td>Type</td><td>Brushless DC motor</td></tr><tr><td>Torque constant k_t</td><td><code>[MISSING — embedded as image in ASEN3801 source, pages 14–15; must be extracted from physical datasheet or PDF]</code></td></tr><tr><td>Max speed</td><td>4000 rpm (used for H_max calculation)</td></tr><tr><td>Torque range commanded</td><td>Up to <code>[MISSING]</code> mNm (limited by VI)</td></tr></tbody></table></div>
+<h3>Base Motor</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value / Notes</th></tr></thead><tbody><tr><td>Part number</td><td>200142</td></tr><tr><td>Datasheet page</td><td>265 of motor catalog</td></tr><tr><td>Type</td><td>Brushless DC motor</td></tr><tr><td>Torque constant k_t</td><td><code>[MISSING — same issue as RW motor]</code></td></tr><tr><td>Angular velocity sensor</td><td>Optical encoder (separate from Hall sensors)</td></tr></tbody></table></div>
+<p><code>[MISSING — CRITICAL: Both motor torque constants (k_t) are required to convert measured current to torque for the MOI experiments. The datasheets are embedded as images (pages 14–15 of ASEN3801 source) and could not be read as text. The MOI calculation cannot be completed until k_t is obtained. See instrumentation/datasheets/README_agent.md for action steps.]</code></p>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
+<p>&gt; Describes expected data format, collection conditions, file naming, and known characteristics. &gt; Sources: ASEN3801 Lab 3 Section 3.1–3.3a; ASEN3200 LabA1 Section 5.1–5.2</p>
+<hr>
+<h2>Data File Format</h2>
+<p><strong>File type:</strong> <code>.txt</code> — plain text output from LabVIEW VI (<code>All_Spin_Module_Labs.vi</code>)</p>
+<p><strong>Delimiter:</strong> <code>[MISSING — not specified in source; likely tab-delimited or comma-delimited; verify by opening a sample file]</code></p>
+<p><strong>General column structure (from source descriptions):</strong></p>
+<ul>
+<li>Time [s or ms]</li>
+<li>Encoder rate [RPM — convert to rad/s in MATLAB: × (2π/60)]</li>
+<li>Gyro rate measurement [RPM or rad/s — check units; source indicates sign flip relative to encoder]</li>
+<li>Commanded torque [mNm] (in Torque tab datasets)</li>
+<li>Angular velocity (Hall sensors or encoder, depending on mode) [RPM]</li>
+<li>Motor current [A]</li>
+</ul>
+<p><strong>Note:</strong> The exact column order should be verified by opening an actual data file from the lab. The above structure is inferred from source procedure descriptions.</p>
+<p><code>[MISSING_DATA: No sample data files from a prior run are present in the source directory. Sample .txt files from gyro calibration, RW spin-up, and spacecraft spin-up runs are needed for 3501 student reference and analysis development.]</code></p>
+<hr>
+<h2>File Naming Convention</h2>
+<p><strong>Format:</strong> <code>YEAR_MONTH_DAY_SEC_DATA</code></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Field</th><th>Description</th><th>Examples</th></tr></thead><tbody><tr><td>YEAR_MONTH_DAY</td><td>Date of test</td><td><code>2024_09_15</code></td></tr><tr><td>SEC</td><td>Lab section identifier</td><td><code>001</code>, <code>002</code>, <code>003</code></td></tr><tr><td>DATA</td><td>Test type and parameters</td><td>See below</td></tr></tbody></table></div>
+<p><strong>Gyro calibration files:</strong></p>
+<ul>
+<li>Manual control: <code>YEAR_MONTH_DAY_SEC_MEMS_MAN</code></li>
+<li>Automatic (frequency and current): <code>YEAR_MONTH_DAY_SEC_MEMS_F#C#</code></li>
+<li>Example: <code>2024_XX_XX_001_MEMS_F02C05</code> (0.2 Hz, 0.5 A)</li>
+</ul>
+<p><strong>Reaction wheel MOI files:</strong></p>
+<ul>
+<li><code>YEAR_MONTH_DAY_SEC_RWHEEL_T#t#</code></li>
+<li>Example: <code>2024_XX_XX_003_RWHEEL_T10t5</code> (10 mNm torque, 5 seconds)</li>
+</ul>
+<p><strong>Spacecraft body MOI files:</strong></p>
+<ul>
+<li>Convention not explicitly specified in source for spacecraft body; recommend: <code>YEAR_MONTH_DAY_SEC_SC_T#t#</code> (analogous to RWHEEL convention)</li>
+</ul>
+<hr>
+<h2>Dataset Descriptions by Experiment</h2>
+<h3>Rate Gyro Calibration Datasets</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Number of files</td><td>Minimum 3 (3 different frequency/amplitude combinations)</td></tr><tr><td>Duration per file</td><td>~1 minute of motor-driven sinusoidal motion</td></tr><tr><td>Driving frequency</td><td>Varied: e.g., 0.2 Hz, 0.3 Hz, 0.5 Hz (recommended starting point: 0.2 Hz)</td></tr><tr><td>Driving amplitude</td><td>Varied: e.g., 0.5 A, 0.7 A (starting point: 0.5 A)</td></tr><tr><td>Channels used</td><td>Time, encoder rate, gyro rate</td></tr><tr><td>Units to convert</td><td>Encoder rate and gyro rate from RPM to rad/s</td></tr><tr><td>Known quirk</td><td>Gyro output has opposite sign to encoder rate — sign flip is expected and accounted for in calibration</td></tr></tbody></table></div>
+<h3>Reaction Wheel MOI Datasets</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Number of files</td><td>Minimum 5 (5 different torque values)</td></tr><tr><td>Duration per file</td><td>Long enough for observable spin-up (several seconds to ~30 s depending on torque)</td></tr><tr><td>Torque range</td><td>Multiple values in mNm; exact range <code>[INSTRUCTOR TO PROVIDE — depends on motor specs]</code></td></tr><tr><td>Channels used</td><td>Time, commanded torque, RW angular velocity (Hall sensors), RW motor current</td></tr><tr><td>Units to convert</td><td>Angular velocity from RPM to rad/s; current [A] to torque [mNm] using k_t</td></tr><tr><td>Note</td><td>Spacecraft body must be held stationary during RW spin-up</td></tr></tbody></table></div>
+<h3>Spacecraft Body MOI Datasets</h3>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Number of files</td><td>Minimum 5 recommended (multiple torque values)</td></tr><tr><td>Channels used</td><td>Time, commanded torque, base encoder angular velocity, base motor current</td></tr><tr><td>Units to convert</td><td>Angular velocity from RPM to rad/s; current [A] to torque [mNm] using base motor k_t</td></tr><tr><td>Note</td><td>Spacecraft must spin freely (not held) during this measurement</td></tr></tbody></table></div>
+<hr>
+<h2>Known Data Characteristics and Anomalies</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Characteristic</th><th>Description</th></tr></thead><tbody><tr><td>Sign flip in gyro data</td><td>Gyro output has opposite sign to encoder rate — expected; handled in calibration</td></tr><tr><td>Torque ripple</td><td>Brushless motor current is not perfectly constant; angular velocity vs. time shows slight noise around the linear trend</td></tr><tr><td>Looping in gyro data</td><td>If spacecraft is moved abruptly, gyro rate vs. encoder rate shows a loop (nonlinear region) — these data points should be excluded from calibration fit</td></tr><tr><td>Battery voltage drop</td><td>If battery drops below 14V, data quality may degrade — check voltage meter in VI before collection</td></tr><tr><td>Xbee dropouts</td><td>Brief data gaps can occur if Xbee link speed is low — verify Link Speed ≥ 1.5 before collecting</td></tr></tbody></table></div>
+<hr>
+<h2>Required Sample Data (Missing)</h2>
+<p><code>[MISSING_DATA: No sample data files from prior runs exist in the source directory. For 3501 use, the following datasets should be obtained from prior ASEN3200 or ASEN3801 lab runs:]</code></p>
+<ol>
+<li>At least 3 gyro calibration <code>.txt</code> files (3 different frequency/amplitude settings)</li>
+<li>At least 5 reaction wheel spin-up <code>.txt</code> files (5 different torque values)</li>
+<li>At least 3 spacecraft body spin-up <code>.txt</code> files (3 different torque values)</li>
+</ol>
+<p><strong>Contact:</strong> CU AES laboratory staff or former ASEN3200/3801 teaching team for archived data files.</p>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
+<p>&gt; <strong>Audience:</strong> Instructor only &gt; <strong>Contents:</strong> CLO alignment, lab character, discussion questions, adaptation notes for ASEN 3501</p>
+<hr>
+<h2>1. CLO Alignment (In-Scope Content Only)</h2>
+<p>Alignment ratings from LabA1 lab_summary.json and ASEN3801 lab_summary.json, filtered to in-scope content (rate gyro calibration + MOI estimation):</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>CLO</th><th>Alignment</th><th>Evidence (in-scope content)</th></tr></thead><tbody><tr><td>CLO 1</td><td><strong>Strong</strong></td><td>Students conduct multiple experiments using a DAQ-instrumented spacecraft mockup; apply instrumentation principles (sensor calibration, encoder as truth reference)</td></tr><tr><td>CLO 2</td><td><strong>Strong</strong></td><td>Linear regression for K and b; mean and standard deviation of calibration parameters and MOI across trials; uncertainty of the mean</td></tr><tr><td>CLO 3</td><td><strong>Strong</strong></td><td>Sensor model validation (calibrated rate vs. encoder truth); MOI model validation (τ = I·α applied to physical system; result compared against angular acceleration data)</td></tr><tr><td>CLO 4</td><td><strong>Strong</strong></td><td>NI myRIO DAQ chain; LabVIEW VI for multi-channel data acquisition; MEMS gyro and optical encoder; Hall-effect sensors; Xbee wireless link; software signal conditioning (calibration equation)</td></tr><tr><td>CLO 5</td><td><strong>Strong</strong></td><td>Formal lab report (LabA1) or detailed PDF submission (ASEN3801); requires block diagrams, plots, tables, and quantitative analysis</td></tr><tr><td>CLO 6</td><td><strong>None</strong></td><td>No open-ended experimental design; procedure is fully prescribed</td></tr></tbody></table></div>
+<p><strong>CLO 4 note:</strong> This lab provides more hands-on DAQ and sensor exposure than most other labs reviewed in the source catalog. The combination of NI myRIO, Arduino DUE, Xbee wireless, LabVIEW VI, MEMS gyro, Hall sensors, and optical encoder is unusually rich instrumentation for an undergraduate lab exercise.</p>
+<hr>
+<h2>2. Lab Character</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Dimension</th><th>Assessment</th></tr></thead><tbody><tr><td>Primary strengths</td><td>Comprehensive sensor and actuator characterization; statistical calibration; modern integrated DAQ and wireless system; clean example of Newton&#x27;s 2nd Law applied to parameter estimation</td></tr><tr><td>Primary gaps</td><td>Prescriptive procedure; no open-ended design; no frequency-domain analysis</td></tr><tr><td>Operational notes</td><td>Requires spin module hardware (up to 8 units at CU); NI myRIO; LabVIEW VI; MATLAB</td></tr><tr><td>Suggested ASEN 3501 stage</td><td>Early to mid E1 (instrumentation and sensor characterization phase)</td></tr></tbody></table></div>
+<hr>
+<h2>3. Discussion Questions (In-Scope Only — Extracted from Source)</h2>
+<h3>Rate Gyro Questions</h3>
+<p><em>(From ASEN3200 LabA1 Section 6 Analysis and ASEN3801 Section 3.1d)</em></p>
+<ol>
+<li>How precisely were you able to determine the sensitivity of the MEMS gyro?</li>
+<li>Over what range of rates would you consider the MEMS gyro to be useful?</li>
+<li>Based on the manual experiment, how does the gyro perform when given abrupt changes in spin rate?</li>
+<li>How repeatable was the gyro bias, and is this important?</li>
+<li>How did the angular position estimates based on the MEMS gyro compare with the known angular position of the spacecraft — what do you think is going on?</li>
+<li>How does angular position error change with time (position drift)?</li>
+<li>What portions of the data set did you remove before computing calibration parameters, and why?</li>
+</ol>
+<h3>Reaction Wheel Questions</h3>
+<p><em>(From ASEN3200 LabA1 Section 6 Analysis and ASEN3801 Section 3.2)</em></p>
+<ol>
+<li>Using the MOI data, calculate how long the reaction wheel could resist an aerodynamic torque of 10⁻⁴ N·m before the wheel speed exceeds its limit.</li>
+</ol>
+<ul>
+<li>LabA1 limit: 150 rad/s</li>
+<li>ASEN3801 limit: 4000 rpm</li>
+<li><strong>Recommend using 4000 rpm (418.9 rad/s) for ASEN 3501 as the more current specification.</strong></li>
+</ul>
+<ol>
+<li>What is the angular momentum capacity of this wheel in [N·m·s]?</li>
+<li>How does reaction wheel angular momentum capacity relate to disturbance torque management for a spacecraft?</li>
+</ol>
+<hr>
+<h2>4. Adaptation Notes for ASEN 3501</h2>
+<h3>What Maps Cleanly to 3501</h3>
+<p>The in-scope content (rate gyro calibration + MOI estimation) maps directly to ASEN 3501&#x27;s E1 phase and connects to ASEN V&amp;V 10-2006 sensor characterization concepts:</p>
+<p><strong>Rate gyro calibration as sensor characterization:</strong> This is a complete, self-contained sensor characterization exercise:</p>
+<ul>
+<li>Determine K and b</li>
+<li>Quantify repeatability across runs (std dev of K and b)</li>
+<li>Understand fundamental limitation (position drift from integrated bias)</li>
+<li>Maps strongly to CLO 4 (instrumentation) and CLO 2 (statistics)</li>
+</ul>
+<p><strong>MOI estimation as model-based parameter identification:</strong> The MOI experiment is a clean example of using Newton&#x27;s 2nd Law as the underlying model and experimental data to estimate a physical parameter (I). This is a direct application of the AMVF &quot;experimentally informed model&quot; concept. Using the <strong>same method</strong> on two different objects (reaction wheel and spacecraft body) keeps the method itself in focus — good ASEN 3501 pedagogy.</p>
+<p><strong>Position drift analysis:</strong> The observation that integrated gyro errors accumulate over time (position drift grows with time and rate) is conceptually rich and connects to navigation, attitude estimation, and sensor fusion. This is a strong discussion prompt for E1.</p>
+<h3>Considerations Before Running in 3501</h3>
+<ol>
+<li><strong>Motor torque constants (CRITICAL):</strong> Without k_t for both motors, the torque calculation and MOI computation cannot be completed. This is the single most important item to resolve. See <code>instrumentation/datasheets/README_agent.md</code> for action steps.</li>
+</ol>
+<ol>
+<li><strong>Binary documentation files:</strong> SpinModule.pdf, SpinModule1.docx, and SpinModule2.docx in the source directory have not been read. They likely contain hardware diagrams, wiring details, or sensor specifications that would substantially improve the instrumentation section.</li>
+</ol>
+<ol>
+<li><strong>Sample data files:</strong> No archived data files from prior lab runs exist in the source directory. Sample files would be valuable for 3501 analysis template development and instructor reference.</li>
+</ol>
+<ol>
+<li><strong>Block diagram task:</strong> Both source documents ask students to draw a functional block diagram of the experimental setup. This is a useful addition to 3501 if retained — it reinforces CLO 4 and forces students to map sensor/actuator/DAQ connections before collecting data.</li>
+</ol>
+<ol>
+<li><strong>Out-of-scope content is well-documented and clean:</strong> The control content (PD control design, ASEN3801 Section 3.3b-d) spans a large portion of the ASEN3801 source but is clearly separable from the in-scope content. The boundary is sharp — no bleed-through of control concepts into the calibration and MOI sections.</li>
+</ol>
+<hr>
+<h2>5. Out-of-Scope Content Summary</h2>
+<p>The following content exists in the source documents but was intentionally excluded per the scope statement for this compilation. Excluded content does not appear in any bin of this compilation package.</p>
+<p><strong>From ASEN3200 LabA1:</strong></p>
+<ul>
+<li>Section 5.3: Physical (handheld) rate gyro qualitative exploration</li>
+<li>Section 5.4: Control Moment Gyro bicycle wheel qualitative exploration</li>
+<li>Section 6, Analysis items 3–4: Physical gyro Euler&#x27;s equations; CMG qualitative analysis</li>
+</ul>
+<p><strong>From ASEN3801 Lab 3:</strong></p>
+<ul>
+<li>Lab Task 1: Physical Rate Gyro (handheld)</li>
+<li>Lab Task 2: Control Moment Gyro (bicycle wheel)</li>
+<li>Section 3.3b: Explore Closed-Loop PD Gains (block diagram, K1/K2 design)</li>
+<li>Section 3.3c: Design Feedback Gains (natural frequency, damping ratio, settling time)</li>
+<li>Section 3.3d: Test Feedback Gains (step response, Gradescope submission)</li>
+<li>Full LabA2 (Spinning Spacecraft — AVI simulations, bicycle wheel precession)</li>
+<li>Full LabA3 (Active Pointing Control)</li>
+</ul>
+<p>If the instructor wishes to expand scope in the future, the control content is well-documented in the source and could be added to a separate compilation. The physical rate gyro and CMG sections are brief qualitative activities that could be added with minimal effort.</p>
+<hr>
+<h2>6. Prior Course Context</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Field</th><th>LabA1 (ASEN3200)</th><th>Lab 3 (ASEN3801)</th></tr></thead><tbody><tr><td>Course</td><td>ASEN 3200: Orbital Mechanics, Attitude Dynamics, and Control</td><td>ASEN 3801: Aero Vehicle Dynamics and Controls Lab</td></tr><tr><td>Institution</td><td>University of Colorado Boulder</td><td>University of Colorado Boulder</td></tr><tr><td>Semester</td><td>Spring 2019</td><td>Spring 2025</td></tr><tr><td>Instructor</td><td>Prof. D.J. Scheeres</td><td>Prof. Ahmed</td></tr><tr><td>Format</td><td>Group lab report</td><td>Individual + group submission; ~4 lab sessions</td></tr><tr><td>Source quality</td><td>Complete and clear for in-scope sections</td><td>More detailed for MOI analysis; contains motor datasheets (as images)</td></tr></tbody></table></div>
+<hr>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div>
+      </section>
+    </main>
+    
+    <footer class="site-footer">
+      <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+    </footer>
+    
+    
+  
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier1-spin_modules", "title": "Spin Modules", "url": "labs/tier1/spin_modules/index.html", "text": "Spin Modules Characterize the rotational dynamics of a spinning module using sensor data.", "module_id": null, "source_type": "overview"}</script>
+</body>
+</html>
