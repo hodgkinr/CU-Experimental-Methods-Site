@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E1 Week 4 (Course Week 4)</title>
+  <title>E1 Week 4: Integration — Full Phase I Pipeline &amp; Tier 1 Phase 1 Report</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../../chat_widget.css">
   <script defer src="../../chat_widget.js"></script>
@@ -33,8 +33,8 @@
       </nav>
       <section class="hero compact">
         <p class="eyebrow">E1 Week 4 (Course Week 4)</p>
-        <h1>E1 Week 4 (Course Week 4)</h1>
-        <p class="lead">Work through the sequence below in order. Lectures, readings, and assessments are arranged to match the source module structure.</p>
+        <h1>E1 Week 4: Integration — Full Phase I Pipeline &amp; Tier 1 Phase 1 Report</h1>
+        <p class="lead">Establishes the connection between a physical model and the experimental design required to test it — and the connection between that design and the uncertainty budget. The lecture opens with a direct question: given a model equation, what does it tell you about what to measure, how precisely, and under what conditions? The answer lives in the partial derivatives. Each term in an error propagation expression is a...</p>
         <div class="hero-actions">
           <a class="primary-button" href="page-01.html">Start module</a>
           <a class="secondary-button" href="../../results.html">View results</a>
@@ -43,7 +43,7 @@
       <section class="module-overview-grid">
         <article class="content-card">
           <h2>Learning Goals</h2>
-          <ul><li>No explicit learning goals were found in the source meta file.</li></ul>
+          <ul><li>Read a physical model&#x27;s equations to identify what must be measured, how precisely, and under what conditions — connecting model structure to experimental design requirements — CLO 1, CLO 3</li><li>Rank the contributions of multiple error sources in a measurement chain and articulate where improving one input would most reduce total uncertainty in the derived output — CLO 2</li><li>Execute a complete Phase I experimental pipeline — hypothesis, sensor selection, installation, MATLAB-based data collection, uncertainty propagation, and quantitative model comparison — as a single traceable workflow — CLO 1, CLO 2, CLO 3</li><li>Write explicit sensor selection rationale connected to accuracy requirements and intended use — CLO 1</li><li>Perform a structured calibration procedure and propagate calibration uncertainty into the final experimental outcome — CLO 1</li><li>Produce a complete Tier 1 Phase 1 Individual Report with all required sections, AMVF annotation, and properly captioned MATLAB figures — CLO 5</li></ul>
         </article>
         <article class="content-card">
           <h2>Module Details</h2>
@@ -61,13 +61,13 @@
         <ol class="module-page-list">
           
             <li class="module-page-row">
-              <a href="page-01.html">L01</a>
+              <a href="page-01.html">From Model to Experiment — Reading the Equations to Design the Test</a>
               <span>Lecture</span>
               <span>32 min</span>
             </li>
             
             <li class="module-page-row">
-              <a href="page-02.html">R01</a>
+              <a href="page-02.html">Multiple Sensors, Multiple Sources — When Measurements Disagree</a>
               <span>Reading</span>
               <span>6 min</span>
             </li>
@@ -92,6 +92,6 @@
     
     
   
-  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "e1-week_4-index", "title": "E1 Week 4 (Course Week 4)", "url": "modules/e1-week_4/index.html", "text": "E1 Week 4 (Course Week 4)\n\nL01 E1_W4_L1 \u2014 From Model to Experiment: Reading the Equations to Design the Test ASEN 3501: Aerospace Experimental Methods | Week 4, Lecture 1 Generated from Iteration 5 blueprint \u2014 2026-05-14 Revised by V&V Executor \u2014 2...\nR01 # Multiple Sensors, Multiple Sources \u2014 When Measurements Disagree ## Three Diagnostic Cases and What Each One Tells You About Your Measurement Two sensors measuring the same physical quantity should agree. When they d...\nQuestions to Think Through Before Class", "module_id": "e1-week_4", "source_type": "module_index"}</script>
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "e1-week_4-index", "title": "E1 Week 4: Integration \u2014 Full Phase I Pipeline & Tier 1 Phase 1 Report", "url": "modules/e1-week_4/index.html", "text": "E1 Week 4: Integration \u2014 Full Phase I Pipeline & Tier 1 Phase 1 Report\nEstablishes the connection between a physical model and the experimental design required to test it \u2014 and the connection between that design and the uncertainty budget. The lecture opens with a direct question: given a model equation, what does it tell you about what to measure, how precisely, and under what conditions? The answer lives in the partial derivatives. Each term in an error propagation expression is a...\n\nRead a physical model's equations to identify what must be measured, how precisely, and under what conditions \u2014 connecting model structure to experimental design requirements \u2014 CLO 1, CLO 3\nRank the contributions of multiple error sources in a measurement chain and articulate where improving one input would most reduce total uncertainty in the derived output \u2014 CLO 2\nExecute a complete Phase I experimental pipeline \u2014 hypothesis, sensor selection, installation, MATLAB-based data collection, uncertainty propagation, and quantitative model comparison \u2014 as a single traceable workflow \u2014 CLO 1, CLO 2, CLO 3\nWrite explicit sensor selection rationale connected to accuracy requirements and intended use \u2014 CLO 1\nPerform a structured calibration procedure and propagate calibration uncertainty into the final experimental outcome \u2014 CLO 1\nProduce a complete Tier 1 Phase 1 Individual Report with all required sections, AMVF annotation, and properly captioned MATLAB figures \u2014 CLO 5\nFrom Model to Experiment \u2014 Reading the Equations to Design the Test Establishes the connection between a physical model and the experimental design required to test it \u2014 and the connection between that design and the uncertainty budget. The lecture opens with a direct question: given a model equation, what does it tell you about what to measure, how precisely, and under what conditions? The answer lives in the partial derivatives. Each term in an error propagation expression is a sensitivity \u2014 it quantifies how much the derived output changes per unit of error in that input. A large sensitivity on a poorly characterized input is the dominant error source; a small sensitivity on a noisy input may be negligible. This is exactly the P=IV lesson from Lab 1, generalized: P=I\u00b2R is more sensitive to current than to resistance, so a current-measurement error has greater consequence than the same proportional error in resistance. That logic applies to any model. **Worked example (model-driven design):** Walk through a simple dynamics model from the Tier 1 experiment pool \u2014 e.g., an angular velocity expression for an unbalanced wheel or a damped oscillation equation \u2014 and use the partial derivatives to identify: (1) which measured quantity dominates the uncertainty budget, (2) what that implies about sensor selection (which input needs the tightest spec?), (3) what range of the independent variable would make the model comparison most informative (where is the model most sensitive to the parameter being estimated?), and (4) what anomalous behavior would look like if a model assumption breaks down. The key message: the model is not just a thing you compare data to \u2014 it is a design document for the experiment itself. Students who read their model before they set up the hardware make better instrumentation choices and write more defensible reports.\nMultiple Sensors, Multiple Sources \u2014 When Measurements Disagree A short reference reading covering what to do when two sensors measuring the same quantity disagree \u2014 and, more broadly, how to think about multiple sources of uncertainty in the same measurement chain. Three cases are distinguished: (1) one sensor is biased (systematic difference \u2014 the gap is consistent across repeated trials), (2) both sensors have random noise but no systematic offset (the distributions overlap but their centers agree), (3) the two sensors are not measuring the same physical quantity at the same point in space or time (a spatial or temporal mismatch that is not a sensor error at all, but a design flaw). Each case has a different diagnostic signature and a different remedy. The reading also covers the taxonomy of error sources students encounter in the Tier 1 experiment: random noise (scatter across repeated trials), systematic bias (consistent offset from truth, bounded by the instrument spec), and structured error (a repeatable pattern that is neither random nor a constant bias \u2014 often a sign of model-form limitation or confounding factor). The reading frames how these three categories should be handled differently in a measurement report: random error is characterized statistically, systematic bias is bounded from the datasheet and propagated, and structured error is identified, named, and its physical cause investigated. This reading complements the W4 lecture (dominant error source ranking) and directly supports the Tier 1 Phase 1 report's uncertainty propagation and multi-sensor comparison sections. It also bridges forward to E2 W8's treatment of discrepancy as diagnostic information and the Tier 2 improvement proposal.\nQuestions to Think Through Before Class", "module_id": "e1-week_4", "source_type": "module_index"}</script>
 </body>
 </html>

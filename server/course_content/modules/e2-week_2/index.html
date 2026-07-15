@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E2 Week 2 (Course Week 7)</title>
+  <title>E2 Week 7: Signal Conditioning, Sampling &amp; DAQ Fundamentals</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../../chat_widget.css">
   <script defer src="../../chat_widget.js"></script>
@@ -33,8 +33,8 @@
       </nav>
       <section class="hero compact">
         <p class="eyebrow">E2 Week 2 (Course Week 7)</p>
-        <h1>E2 Week 2 (Course Week 7)</h1>
-        <p class="lead">Work through the sequence below in order. Lectures, readings, and assessments are arranged to match the source module structure.</p>
+        <h1>E2 Week 7: Signal Conditioning, Sampling &amp; DAQ Fundamentals</h1>
+        <p class="lead">Introduces the Nyquist-Shannon sampling theorem and aliasing as the fundamental constraints on any digital measurement system. Covers signal bandwidth as the property of the physical phenomenon being measured (not a property of the sensor), the aliasing mechanism — how undersampled signals fold back into the measured spectrum — and the practical consequences for aerospace measurements where signal content may span...</p>
         <div class="hero-actions">
           <a class="primary-button" href="page-01.html">Start module</a>
           <a class="secondary-button" href="../../results.html">View results</a>
@@ -43,7 +43,7 @@
       <section class="module-overview-grid">
         <article class="content-card">
           <h2>Learning Goals</h2>
-          <ul><li>No explicit learning goals were found in the source meta file.</li></ul>
+          <ul><li>Apply the Nyquist sampling theorem to identify the minimum sampling rate required for a given signal bandwidth, and predict the consequences of aliasing when the theorem is violated — CLO 4</li><li>Explain the purpose and design rationale of an anti-aliasing filter, and identify appropriate filter cutoff frequency relative to signal bandwidth and sampling rate — CLO 4</li><li>Identify and describe at least three common DAQ configuration choices — channel configuration, resolution, sample rate — and articulate the tradeoff each choice imposes — CLO 4</li><li>Visualize a measured signal in both time and frequency domain using MATLAB and identify signal bandwidth from the frequency-domain representation — CLO 4</li><li>Produce a DAQ configuration justification section in the Tier 2 group report documenting sampling frequency selection, filtering rationale, and noise source identification with MATLAB signal visualizations — CLO 4, CLO 5</li><li>Read and interpret DAQ configuration documentation for a real instrument, identifying channel configuration, resolution, and sample rate choices and articulating the tradeoff each imposes — CLO 4</li></ul>
         </article>
         <article class="content-card">
           <h2>Module Details</h2>
@@ -61,25 +61,25 @@
         <ol class="module-page-list">
           
             <li class="module-page-row">
-              <a href="page-01.html">L01</a>
+              <a href="page-01.html">Nyquist Sampling, Aliasing &amp; Signal Bandwidth</a>
               <span>Lecture</span>
               <span>21 min</span>
             </li>
             
             <li class="module-page-row">
-              <a href="page-02.html">L02</a>
+              <a href="page-02.html">Analog Signal Conditioning — Filtering, Noise &amp; Gain</a>
               <span>Lecture</span>
               <span>23 min</span>
             </li>
             
             <li class="module-page-row">
-              <a href="page-03.html">R01</a>
+              <a href="page-03.html">Sampling, Aliasing &amp; the Limits of Digital Measurement</a>
               <span>Reading</span>
               <span>6 min</span>
             </li>
             
             <li class="module-page-row">
-              <a href="page-04.html">R02</a>
+              <a href="page-04.html">DAQ Configuration Choices &amp; Practical Setup — A Decision Reference</a>
               <span>Reading</span>
               <span>9 min</span>
             </li>
@@ -104,6 +104,6 @@
     
     
   
-  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "e2-week_2-index", "title": "E2 Week 2 (Course Week 7)", "url": "modules/e2-week_2/index.html", "text": "E2 Week 2 (Course Week 7)\n\nL01 slide 1: Title Slide Title: Nyquist Sampling, Aliasing & Signal Bandwidth Talking Point: Before you can run a credible measurement on a complex aerospace system, you need to understand what you are asking the digital...\nL02 slide 1: Title Slide Title: Analog Signal Conditioning \u2014 Filtering, Noise & Gain Talking Point: In the last lecture, we established that choosing a sample rate is a modeling commitment \u2014 you are claiming that the phys...\nR01 # Sampling, Aliasing & the Limits of Digital Measurement ## Why the fastest thing you can't see can still destroy your data Watch a helicopter's rotor blades in a film and you will sometimes see them appear to rotate...\nR02 # DAQ Configuration Choices & Practical Setup \u2014 A Decision Reference ## Every configuration choice is a claim about your signal. Treat it that way. A data acquisition system handed to you with factory defaults is not...\nQuestions to Think Through Before Class", "module_id": "e2-week_2", "source_type": "module_index"}</script>
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "e2-week_2-index", "title": "E2 Week 7: Signal Conditioning, Sampling & DAQ Fundamentals", "url": "modules/e2-week_2/index.html", "text": "E2 Week 7: Signal Conditioning, Sampling & DAQ Fundamentals\nIntroduces the Nyquist-Shannon sampling theorem and aliasing as the fundamental constraints on any digital measurement system. Covers signal bandwidth as the property of the physical phenomenon being measured (not a property of the sensor), the aliasing mechanism \u2014 how undersampled signals fold back into the measured spectrum \u2014 and the practical consequences for aerospace measurements where signal content may span...\n\nApply the Nyquist sampling theorem to identify the minimum sampling rate required for a given signal bandwidth, and predict the consequences of aliasing when the theorem is violated \u2014 CLO 4\nExplain the purpose and design rationale of an anti-aliasing filter, and identify appropriate filter cutoff frequency relative to signal bandwidth and sampling rate \u2014 CLO 4\nIdentify and describe at least three common DAQ configuration choices \u2014 channel configuration, resolution, sample rate \u2014 and articulate the tradeoff each choice imposes \u2014 CLO 4\nVisualize a measured signal in both time and frequency domain using MATLAB and identify signal bandwidth from the frequency-domain representation \u2014 CLO 4\nProduce a DAQ configuration justification section in the Tier 2 group report documenting sampling frequency selection, filtering rationale, and noise source identification with MATLAB signal visualizations \u2014 CLO 4, CLO 5\nRead and interpret DAQ configuration documentation for a real instrument, identifying channel configuration, resolution, and sample rate choices and articulating the tradeoff each imposes \u2014 CLO 4\nNyquist Sampling, Aliasing & Signal Bandwidth Introduces the Nyquist-Shannon sampling theorem and aliasing as the fundamental constraints on any digital measurement system. Covers signal bandwidth as the property of the physical phenomenon being measured (not a property of the sensor), the aliasing mechanism \u2014 how undersampled signals fold back into the measured spectrum \u2014 and the practical consequences for aerospace measurements where signal content may span many orders of frequency. Students work through examples to develop intuition for when sampling rate matters critically.\nAnalog Signal Conditioning \u2014 Filtering, Noise & Gain Covers the signal conditioning chain between a physical sensor and a DAQ digitizer: amplification (gain and offset), filtering (low-pass anti-aliasing filter \u2014 purpose, order, cutoff selection), and noise sources (thermal noise, electromagnetic interference, ground loops). The design rationale for anti-aliasing filter cutoff selection is emphasized: the cutoff must be below the Nyquist frequency of the chosen sampling rate, but not so aggressive that it attenuates signal content of interest. Students see that signal conditioning choices are not technical defaults \u2014 they encode assumptions about signal structure and acceptable data quality. **Analog vs. digital filtering contrast (5\u20137 min segment):** This lecture should include an explicit segment contrasting analog and digital filtering roles. The key message: anti-aliasing must happen in the analog domain before the ADC \u2014 digital filters applied post-digitization cannot retroactively correct aliasing because the information is already lost. Additionally, digital filters introduce phase delay, passband ripple, and potential edge-case artifacts (e.g., ringing near sharp transitions) that are non-obvious. Students do not need to know how to design analog or digital filters \u2014 this is awareness-level content. The takeaway: signal conditioning choices must be made before sampling, not after, and the choice of whether to filter in the analog or digital domain is a consequential design decision that must be documented in any credible experimental report.\nSampling, Aliasing & the Limits of Digital Measurement Intuition-building pre-class read for W7's two lectures. Approaches Nyquist and aliasing from a physical intuition angle: what does it actually mean for a signal to be \"undersampled,\" and why does the resulting artifact look like a real signal rather than obvious noise? Uses the stroboscopic wheel and helicopter blade visual analogies to make aliasing concrete before any mathematics appears. Covers signal bandwidth as a property of the physical phenomenon (not the sensor), and frames the sampling rate decision as a modeling commitment \u2014 you are claiming, before you sample, that your signal has no content above half your sampling rate. If that claim is wrong, the data is silently corrupted. The reading stops before filter design and DAQ configuration \u2014 those are covered in the companion reading (R2) and lectures. Its job is to ensure students arrive at the W7 lectures already understanding *why* these choices matter, so lecture time can address *how* to make them defensibly.\nDAQ Configuration Choices & Practical Setup \u2014 A Decision Reference Reference-style companion to the W7 signal conditioning lecture, designed to be read alongside or immediately after class. Covers the DAQ configuration choices that experimentalists must document and justify: single-ended vs. differential channel configuration (ground loop implications), resolution (quantization error and its contribution to uncertainty), sample rate selection (Nyquist argument plus margin), triggering and synchronization, and practical setup documentation. The central message is that DAQ configuration is a written, justifiable design decision \u2014 not a lab default to accept without inspection. Students are expected to reference this reading when completing the DAQ configuration justification section of the Tier 2 group report. **Bit rollover example:** Includes a concrete walkthrough of a bit-rollover or counter-overflow artifact that produces a plausible-looking oscillatory signal in the recorded data \u2014 where only uncertainty bounds and physical reasoning allow the artifact to be identified as non-physical. This is the key illustration for why DAQ configuration choices introduce their own error sources and why uncertainty analysis is the mechanism for distinguishing physical behavior from instrumentation artifacts. Unlike R1, this reading is reference-dense rather than narrative \u2014 students should expect to return to it when drafting their report.\nQuestions to Think Through Before Class", "module_id": "e2-week_2", "source_type": "module_index"}</script>
 </body>
 </html>
