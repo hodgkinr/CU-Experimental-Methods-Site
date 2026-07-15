@@ -25,7 +25,7 @@
             "Locate and identify relevant engineering standards and professional handbooks as resources for experimental design, including ASME V&V 10-2006 as the primary standards anchor for this course \u2014 CLO 1, CLO 6"
           ],
           "weekly_flow": "",
-          "summary": "Introduces the AMVF as the organizing framework for the entire course \u2014 mathematical vs. physical modeling branches, verification vs. validation, outcomes vs. results, and uncertainty as a mandatory element of any engineering claim. Students see where Phase I sits in the flowchart and why the left-to-right logic of the arc is not arbitrary. The AMVF is also positioned as a gateway to professional engineering stand...",
+          "summary": "The course opens not with a lab but with a question: *how do you know this prediction is right?* Week 1 introduces the Aerospace Modeling & Validation Framework (AMVF) as the organizing structure of the entire course \u2014 a framework that also serves as a gateway to the engineering standards, handbooks, and validation resources that professional experimentalists use. Alongside this conceptual orientation, Week 1 intr...",
           "items": {
             "lectures": [
               {
@@ -234,7 +234,7 @@
           "slug": "e1-week_2",
           "label": "E1 Week 2 (Course Week 2)",
           "order": 1,
-          "headline": "E1 Week 2: Uncertainty Foundations \u2014 Power, Monte Carlo & First Experiment Deliverable",
+          "headline": "E1 Week 2: Uncertainty Foundations: Power, Monte Carlo & MATLAB",
           "learning_goals": [
             "Distinguish variability, measurement error, and uncertainty, and explain why the distinction matters for engineering claims \u2014 CLO 2",
             "Apply first-order error propagation using partial derivatives to compute uncertainty in a derived quantity \u2014 CLO 2",
@@ -244,7 +244,7 @@
             "Write a structured lab report with required sections: measurement procedure, error source classification, uncertainty propagation, confidence interval, MATLAB figures with captions, and a plain-language explanation accessible to a non-technical audience \u2014 CLO 5"
           ],
           "weekly_flow": "",
-          "summary": "Establishes the three-way distinction that underpins all uncertainty work in the course: variability is a property of the physical world, measurement error is a property of the instrument, and uncertainty is a quantified epistemic claim about ignorance. Covers random vs. systematic error, statistical properties (mean, standard deviation, distributions, confidence intervals), and repeatability vs. reproducibility....",
+          "summary": "Measurement produces variation. Week 2 gives students the mathematical and computational apparatus to characterize and communicate that variation rigorously. The central activity uses electrical power \u2014 expressed as P = IV, P = V\u00b2/R, and P = I\u00b2R \u2014 to explore uncertainty propagation from multiple angles: the standard partial derivative method, how different equation forms yield different sensitivities to measuremen...",
           "items": {
             "lectures": [
               {
@@ -534,7 +534,7 @@
             "Evaluate a provided lab report \u2014 identifying what is correct, what is incorrect, what is missing, and how to improve it \u2014 demonstrating that critique quality is a primary course competency \u2014 CLO 5"
           ],
           "weekly_flow": "",
-          "summary": "Establishes that visual inspection of data is insufficient for engineering claims \u2014 agreement must be argued numerically using a defined validation metric. Covers candidate metrics (e.g., relative difference within uncertainty bounds, normalized agreement index), the concept of acceptable agreement defined before measurement, and the logical structure of a quantitative comparison argument. Students practice identi...",
+          "summary": "With uncertainty quantified, Week 3 addresses the question left open by Week 2: how do you use that uncertainty to argue whether your result agrees with a model? Visual comparison of curves is insufficient \u2014 agreement must be argued numerically using a defined validation metric. Week 3 introduces structured comparison, the calibration-vs-validation distinction, and the concept of acceptable agreement. Students app...",
           "items": {
             "lectures": [
               {
@@ -798,7 +798,7 @@
           "slug": "e1-week_4",
           "label": "E1 Week 4 (Course Week 4)",
           "order": 3,
-          "headline": "E1 Week 4: Integration \u2014 Full Phase I Pipeline & Tier 1 Phase 1 Report",
+          "headline": "E1 Week 4: Integration Lab: Full Phase I Pipeline",
           "learning_goals": [
             "Read a physical model's equations to identify what must be measured, how precisely, and under what conditions \u2014 connecting model structure to experimental design requirements \u2014 CLO 1, CLO 3",
             "Rank the contributions of multiple error sources in a measurement chain and articulate where improving one input would most reduce total uncertainty in the derived output \u2014 CLO 2",
@@ -808,7 +808,7 @@
             "Produce a complete Tier 1 Phase 1 Individual Report with all required sections, AMVF annotation, and properly captioned MATLAB figures \u2014 CLO 5"
           ],
           "weekly_flow": "",
-          "summary": "Establishes the connection between a physical model and the experimental design required to test it \u2014 and the connection between that design and the uncertainty budget. The lecture opens with a direct question: given a model equation, what does it tell you about what to measure, how precisely, and under what conditions? The answer lives in the partial derivatives. Each term in an error propagation expression is a...",
+          "summary": "Week 4 is the integration week. No new concepts are introduced. Students execute the complete Phase I pipeline \u2014 hypothesis, sensor selection, installation, measurement, MATLAB-based uncertainty propagation, and quantitative model comparison \u2014 as a single uninterrupted, documented workflow. Every analytical decision connects to the AMVF. The integration difficulty is intentional: students discover which steps they...",
           "items": {
             "lectures": [
               {
@@ -927,7 +927,7 @@
           "slug": "e1-week_5",
           "label": "E1 Week 5 (Course Week 5)",
           "order": 4,
-          "headline": "E1 Week 5: Transition 1 \u2014 Cross-Prediction, Lightning Talks & Peer Assessment",
+          "headline": "E1 Week 5: Transition 1: Cross-Prediction, Lightning Talks & Peer Assessment",
           "learning_goals": [
             "Identify the five elements that make a prediction defensible \u2014 system response features, propagated uncertainty, a sketch with committed bounds, a ranked uncertainty source list, and a named acceptance criterion \u2014 and produce all five for an unfamiliar experiment \u2014 CLO 1, CLO 2, CLO 3",
             "Distinguish between a vague prediction (\"it will go up\") and a committed prediction (\"I expect the measured value to reach X \u00b1 Y by time T, because of physical reasoning Z\") and articulate why the distinction matters for engineering credibility \u2014 CLO 3",
@@ -938,7 +938,7 @@
             "Evaluate another group's experiment and provide specific, evidence-based constructive feedback on strengths and weaknesses \u2014 CLO 5, CLO 6"
           ],
           "weekly_flow": "",
-          "summary": "Directly primes students for the Tier 1 Phase 2 prediction memo, which they will begin in this week's lab session. The lecture opens with the distinction that separates a prediction from a guess: a prediction is falsifiable, committed in writing before data is seen, and derived from reasoning that can be evaluated independently of whether the prediction turned out to be correct. The lecture walks through the five...",
+          "summary": "Week 5 is a transition, not a content week. Students are assigned an experiment they did not run and must construct a predictive model \u2014 with committed hypothesis, dominant uncertainty sources, and a defined acceptance criterion \u2014 before any data is released. They then compare their prior prediction to measured outcomes from a peer group and reverse roles. The week culminates in lightning talks where students pres...",
           "items": {
             "lectures": [
               {
@@ -1204,7 +1204,7 @@
             "Articulate how experimental results can be used to inform and update a predictive model \u2014 not merely validate it \u2014 as the stated purpose of every E2 canned experiment \u2014 CLO 3"
           ],
           "weekly_flow": "",
-          "summary": "Examines the psychological and epistemic reasons why prediction must precede measurement in a credible validation effort. **Opening consolidation beat (10\u201315 min) \u2014 Where we are and what you should have solid before W7:** Before introducing E2's new material, this lecture opens with an explicit inventory of the two foundational nodes that E1 developed but did not fully consolidate, and which W7 will depend on heav...",
+          "summary": "The defining epistemic move of E2 is introduced here: prediction must precede measurement, and that sequence is not arbitrary. Week 6 builds directly on the cross-prediction exercise of Week 5 and formalizes the idea that committing to a hypothesis before encountering data is not just good scientific practice \u2014 it is the standard of engineering validation. Students learn to specify system response features, define...",
           "items": {
             "lectures": [
               {
@@ -1382,7 +1382,7 @@
             "Read and interpret DAQ configuration documentation for a real instrument, identifying channel configuration, resolution, and sample rate choices and articulating the tradeoff each imposes \u2014 CLO 4"
           ],
           "weekly_flow": "",
-          "summary": "Introduces the Nyquist-Shannon sampling theorem and aliasing as the fundamental constraints on any digital measurement system. Covers signal bandwidth as the property of the physical phenomenon being measured (not a property of the sensor), the aliasing mechanism \u2014 how undersampled signals fold back into the measured spectrum \u2014 and the practical consequences for aerospace measurements where signal content may span...",
+          "summary": "Before a complex system can be measured reliably, its signals must be understood. Week 7 provides the foundational treatment of signal conditioning, sampling, and data acquisition that the canned aerospace experiments make concrete. Three core lecture topics anchor the week: Nyquist sampling and aliasing, analog signal conditioning and filtering principles, and DAQ configuration choices and noise sources. Students...",
           "items": {
             "lectures": [
               {
@@ -1595,7 +1595,7 @@
             "Begin the Tier 2 group report analysis sections using the released Canned Experiment 1 data \u2014 CLO 5"
           ],
           "weekly_flow": "",
-          "summary": "Establishes the hardest conceptual shift of E2: discrepancy between model and experiment is not failure to be explained away \u2014 it is data about the model. Covers parametric uncertainty (you know the form is right but the parameters are imprecise), model-form error (the functional form itself is inadequate), and boundary condition realism (assumptions about system boundaries or inputs that were wrong). Students wor...",
+          "summary": "Phase I taught students to ask whether model and experiment agree. Phase II asks a harder question: when they disagree, what does that tell you about the model? Week 8 introduces model-form error, sensitivity to boundary condition assumptions, and the distinction between discrepancy as failure and discrepancy as diagnostic information. Students learn to interpret residuals structurally \u2014 not as noise to explain aw...",
           "items": {
             "lectures": [
               {
@@ -1767,7 +1767,7 @@
             "Apply these tools directly to the Tier 2 group report uncertainty analysis and improvement proposal sections \u2014 CLO 2, CLO 5"
           ],
           "weekly_flow": "",
-          "summary": "Extends the Week 2 statistical foundations to the case of comparing two or more datasets, or comparing a dataset to a model prediction across a range of conditions. Covers comparing means and standard errors, confidence interval overlap as a practical test of whether two results are distinguishable, and hypothesis testing at a conceptual level \u2014 what it means to reject a null hypothesis, and the difference between...",
+          "summary": "Week 9 completes the Phase II analytical toolkit by extending quantitative comparison to full datasets and repeated measurements. Students encounter hypothesis testing at a conceptual level, compare means and confidence interval overlap, apply regression and goodness-of-fit measures to assess model adequacy, and use Monte Carlo simulation in MATLAB to propagate uncertainty through complex derived quantities. The c...",
           "items": {
             "lectures": [
               {
@@ -2017,7 +2017,7 @@
           "slug": "e2-week_5",
           "label": "E2 Week 5 (Course Week 10)",
           "order": 4,
-          "headline": "E2 Week 10: Transition 2 \u2014 Tier 2 Presentation & Peer Review",
+          "headline": "E2 Week 10: Transition 2: Design Framing Workshop",
           "learning_goals": [
             "Present a complete prediction-to-outcome comparison, uncertainty analysis, calibration status review, and experimental improvement proposal on a single quad chart slide \u2014 CLO 5",
             "Defend instrumentation and validation logic under direct questioning in a 5-minute Q&A \u2014 CLO 1, CLO 3, CLO 4, CLO 5",
@@ -2025,7 +2025,7 @@
             "Articulate the transition from analyzing and improving existing experiments (E2) to designing original experiments from scratch (E3) \u2014 CLO 1, CLO 3"
           ],
           "weekly_flow": "",
-          "summary": "The primary E2 oral assessment. Groups demonstrate the ability to distill a complex multi-week analysis into a compact, defensible communication artifact. Graded on clarity of hypothesis and model connection, quality of instrumentation justification, rigor of uncertainty analysis interpretation, defensibility of the validation plan, and quality of responses under direct questioning. Audience members complete struc...",
+          "summary": "Week 10 is a transition, not a content week. Students are given a set of design constraints \u2014 available hardware, time limitations, measurement resolution, sensor options, physical boundaries \u2014 and must propose a validation experiment without building anything yet. The deliverable is a design frame: a system response feature selected, a formal hypothesis stated, a validation plan sketched, dominant uncertainty sou...",
           "items": {
             "lectures": [],
             "readings": [],
@@ -2142,15 +2142,15 @@
       "module_slug": "e1-week_1",
       "label": "E1 Week 1 (Course Week 1)",
       "headline": "E1 Week 1: The Modeling Spine, Measurement Literacy & Experiment Design",
-      "summary": "Introduces the AMVF as the organizing framework for the entire course \u2014 mathematical vs. physical modeling branches, verification vs. validation, outcomes vs. results, and uncertainty as a mandatory element of any engineering claim. Students see where Phase I sits in the flowchart and why the left-to-right logic of the arc is not arbitrary. The AMVF is also positioned as a gateway to professional engineering stand...",
+      "summary": "The course opens not with a lab but with a question: *how do you know this prediction is right?* Week 1 introduces the Aerospace Modeling & Validation Framework (AMVF) as the organizing structure of the entire course \u2014 a framework that also serves as a gateway to the engineering standards, handbooks, and validation resources that professional experimentalists use. Alongside this conceptual orientation, Week 1 intr...",
       "item_count": 4,
       "quiz_count": 0
     },
     {
       "module_slug": "e1-week_2",
       "label": "E1 Week 2 (Course Week 2)",
-      "headline": "E1 Week 2: Uncertainty Foundations \u2014 Power, Monte Carlo & First Experiment Deliverable",
-      "summary": "Establishes the three-way distinction that underpins all uncertainty work in the course: variability is a property of the physical world, measurement error is a property of the instrument, and uncertainty is a quantified epistemic claim about ignorance. Covers random vs. systematic error, statistical properties (mean, standard deviation, distributions, confidence intervals), and repeatability vs. reproducibility....",
+      "headline": "E1 Week 2: Uncertainty Foundations: Power, Monte Carlo & MATLAB",
+      "summary": "Measurement produces variation. Week 2 gives students the mathematical and computational apparatus to characterize and communicate that variation rigorously. The central activity uses electrical power \u2014 expressed as P = IV, P = V\u00b2/R, and P = I\u00b2R \u2014 to explore uncertainty propagation from multiple angles: the standard partial derivative method, how different equation forms yield different sensitivities to measuremen...",
       "item_count": 6,
       "quiz_count": 0
     },
@@ -2158,23 +2158,23 @@
       "module_slug": "e1-week_3",
       "label": "E1 Week 3 (Course Week 3)",
       "headline": "E1 Week 3: Quantitative Comparison, Validation Basics & Multiple Sensors",
-      "summary": "Establishes that visual inspection of data is insufficient for engineering claims \u2014 agreement must be argued numerically using a defined validation metric. Covers candidate metrics (e.g., relative difference within uncertainty bounds, normalized agreement index), the concept of acceptable agreement defined before measurement, and the logical structure of a quantitative comparison argument. Students practice identi...",
+      "summary": "With uncertainty quantified, Week 3 addresses the question left open by Week 2: how do you use that uncertainty to argue whether your result agrees with a model? Visual comparison of curves is insufficient \u2014 agreement must be argued numerically using a defined validation metric. Week 3 introduces structured comparison, the calibration-vs-validation distinction, and the concept of acceptable agreement. Students app...",
       "item_count": 5,
       "quiz_count": 0
     },
     {
       "module_slug": "e1-week_4",
       "label": "E1 Week 4 (Course Week 4)",
-      "headline": "E1 Week 4: Integration \u2014 Full Phase I Pipeline & Tier 1 Phase 1 Report",
-      "summary": "Establishes the connection between a physical model and the experimental design required to test it \u2014 and the connection between that design and the uncertainty budget. The lecture opens with a direct question: given a model equation, what does it tell you about what to measure, how precisely, and under what conditions? The answer lives in the partial derivatives. Each term in an error propagation expression is a...",
+      "headline": "E1 Week 4: Integration Lab: Full Phase I Pipeline",
+      "summary": "Week 4 is the integration week. No new concepts are introduced. Students execute the complete Phase I pipeline \u2014 hypothesis, sensor selection, installation, measurement, MATLAB-based uncertainty propagation, and quantitative model comparison \u2014 as a single uninterrupted, documented workflow. Every analytical decision connects to the AMVF. The integration difficulty is intentional: students discover which steps they...",
       "item_count": 2,
       "quiz_count": 0
     },
     {
       "module_slug": "e1-week_5",
       "label": "E1 Week 5 (Course Week 5)",
-      "headline": "E1 Week 5: Transition 1 \u2014 Cross-Prediction, Lightning Talks & Peer Assessment",
-      "summary": "Directly primes students for the Tier 1 Phase 2 prediction memo, which they will begin in this week's lab session. The lecture opens with the distinction that separates a prediction from a guess: a prediction is falsifiable, committed in writing before data is seen, and derived from reasoning that can be evaluated independently of whether the prediction turned out to be correct. The lecture walks through the five...",
+      "headline": "E1 Week 5: Transition 1: Cross-Prediction, Lightning Talks & Peer Assessment",
+      "summary": "Week 5 is a transition, not a content week. Students are assigned an experiment they did not run and must construct a predictive model \u2014 with committed hypothesis, dominant uncertainty sources, and a defined acceptance criterion \u2014 before any data is released. They then compare their prior prediction to measured outcomes from a peer group and reverse roles. The week culminates in lightning talks where students pres...",
       "item_count": 5,
       "quiz_count": 0
     },
@@ -2182,7 +2182,7 @@
       "module_slug": "e2-week_1",
       "label": "E2 Week 1 (Course Week 6)",
       "headline": "E2 Week 6: Prediction Before Exposure & Formal Hypothesis Framing",
-      "summary": "Examines the psychological and epistemic reasons why prediction must precede measurement in a credible validation effort. **Opening consolidation beat (10\u201315 min) \u2014 Where we are and what you should have solid before W7:** Before introducing E2's new material, this lecture opens with an explicit inventory of the two foundational nodes that E1 developed but did not fully consolidate, and which W7 will depend on heav...",
+      "summary": "The defining epistemic move of E2 is introduced here: prediction must precede measurement, and that sequence is not arbitrary. Week 6 builds directly on the cross-prediction exercise of Week 5 and formalizes the idea that committing to a hypothesis before encountering data is not just good scientific practice \u2014 it is the standard of engineering validation. Students learn to specify system response features, define...",
       "item_count": 3,
       "quiz_count": 0
     },
@@ -2190,7 +2190,7 @@
       "module_slug": "e2-week_2",
       "label": "E2 Week 2 (Course Week 7)",
       "headline": "E2 Week 7: Signal Conditioning, Sampling & DAQ Fundamentals",
-      "summary": "Introduces the Nyquist-Shannon sampling theorem and aliasing as the fundamental constraints on any digital measurement system. Covers signal bandwidth as the property of the physical phenomenon being measured (not a property of the sensor), the aliasing mechanism \u2014 how undersampled signals fold back into the measured spectrum \u2014 and the practical consequences for aerospace measurements where signal content may span...",
+      "summary": "Before a complex system can be measured reliably, its signals must be understood. Week 7 provides the foundational treatment of signal conditioning, sampling, and data acquisition that the canned aerospace experiments make concrete. Three core lecture topics anchor the week: Nyquist sampling and aliasing, analog signal conditioning and filtering principles, and DAQ configuration choices and noise sources. Students...",
       "item_count": 4,
       "quiz_count": 0
     },
@@ -2198,7 +2198,7 @@
       "module_slug": "e2-week_3",
       "label": "E2 Week 3 (Course Week 8)",
       "headline": "E2 Week 8: Model Adequacy, Discrepancy & Calibration Revisited",
-      "summary": "Establishes the hardest conceptual shift of E2: discrepancy between model and experiment is not failure to be explained away \u2014 it is data about the model. Covers parametric uncertainty (you know the form is right but the parameters are imprecise), model-form error (the functional form itself is inadequate), and boundary condition realism (assumptions about system boundaries or inputs that were wrong). Students wor...",
+      "summary": "Phase I taught students to ask whether model and experiment agree. Phase II asks a harder question: when they disagree, what does that tell you about the model? Week 8 introduces model-form error, sensitivity to boundary condition assumptions, and the distinction between discrepancy as failure and discrepancy as diagnostic information. Students learn to interpret residuals structurally \u2014 not as noise to explain aw...",
       "item_count": 3,
       "quiz_count": 0
     },
@@ -2206,15 +2206,15 @@
       "module_slug": "e2-week_4",
       "label": "E2 Week 4 (Course Week 9)",
       "headline": "E2 Week 9: Statistical Comparison of Datasets with MATLAB & Monte Carlo",
-      "summary": "Extends the Week 2 statistical foundations to the case of comparing two or more datasets, or comparing a dataset to a model prediction across a range of conditions. Covers comparing means and standard errors, confidence interval overlap as a practical test of whether two results are distinguishable, and hypothesis testing at a conceptual level \u2014 what it means to reject a null hypothesis, and the difference between...",
+      "summary": "Week 9 completes the Phase II analytical toolkit by extending quantitative comparison to full datasets and repeated measurements. Students encounter hypothesis testing at a conceptual level, compare means and confidence interval overlap, apply regression and goodness-of-fit measures to assess model adequacy, and use Monte Carlo simulation in MATLAB to propagate uncertainty through complex derived quantities. The c...",
       "item_count": 5,
       "quiz_count": 0
     },
     {
       "module_slug": "e2-week_5",
       "label": "E2 Week 5 (Course Week 10)",
-      "headline": "E2 Week 10: Transition 2 \u2014 Tier 2 Presentation & Peer Review",
-      "summary": "The primary E2 oral assessment. Groups demonstrate the ability to distill a complex multi-week analysis into a compact, defensible communication artifact. Graded on clarity of hypothesis and model connection, quality of instrumentation justification, rigor of uncertainty analysis interpretation, defensibility of the validation plan, and quality of responses under direct questioning. Audience members complete struc...",
+      "headline": "E2 Week 10: Transition 2: Design Framing Workshop",
+      "summary": "Week 10 is a transition, not a content week. Students are given a set of design constraints \u2014 available hardware, time limitations, measurement resolution, sensor options, physical boundaries \u2014 and must propose a validation experiment without building anything yet. The deliverable is a design frame: a system response feature selected, a formal hypothesis stated, a validation plan sketched, dominant uncertainty sou...",
       "item_count": 2,
       "quiz_count": 0
     }
