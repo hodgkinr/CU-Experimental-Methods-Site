@@ -16,15 +16,14 @@ you will not be assigned a fully specified experiment. You will design one.
 
 This is a paper design assignment. You are not expected to build and run the experiment
 during this course. You are expected to produce a technically defensible experimental
-design and V&V plan: a plan detailed enough that a knowledgeable engineering team could
-decide whether the experiment is worth building, what hardware it would require, what
-data it would produce, and whether those data would be capable of informing the predictive
-model you care about.
+design and V&V plan. The plan should be detailed enough that a knowledgeable engineering
+team could decide whether the experiment is worth building, what hardware it would require,
+what data it would produce, and whether those data could inform the predictive model you
+care about.
 
 The physical systems will differ across students and groups. One design may involve
-thermal behavior, another structural vibration, another power measurement, another
-attitude dynamics, another propulsion or fluids measurement. The equations will differ.
-The process is the same.
+thermal behavior. Another may involve structural vibration, power measurement, attitude
+dynamics, propulsion, or fluids. The equations will differ. The process is the same.
 
 You will:
 
@@ -55,16 +54,16 @@ Tier 3 asks you to take ownership of the step that comes before all of that:
 > What experiment should be run in the first place?
 
 That question is harder than it sounds. An experiment is not valuable because it produces
-data. It is valuable because it produces data that can inform a model, reduce uncertainty,
-expose a limitation, or support an engineering decision. A test engineer has to decide
-what to measure, how accurately it must be measured, what hardware can do the job, what
-data patterns would matter, and what conclusion would actually be justified.
+data. It is valuable because the data can inform a model, reduce uncertainty, expose a
+limitation, or support an engineering decision. A test engineer has to decide what to
+measure, how accurately it must be measured, what hardware can do the job, which data
+patterns would matter, and what conclusion would actually be justified.
 
 This is also the main CLO 6 demonstration in the course. You must go beyond the methods
 and instrumentation handed to you by the instructor. That does not mean inventing a
-capstone-scale project. It means showing independent professional judgment: finding
-resources, evaluating options, comparing alternatives, and explaining why your choices
-are appropriate for your experiment.
+capstone-scale project. It means showing independent professional judgment. Find resources,
+evaluate options, compare alternatives, and explain why your choices are appropriate for
+your experiment.
 
 ---
 
@@ -136,16 +135,16 @@ A passing experiment idea has:
  test conditions.
 5. **A bounded scope.** The experiment must be designable on paper within this course.
 
-The course will provide a catalog of available resources and suggested starting points:
-example physical systems, available lab resources, common sensor types, data acquisition
-options, standards and handbooks, prior course examples, and approved reference links.
-You may use these resources directly, adapt them, or propose a different experiment.
+The course will provide a catalog of available resources and suggested starting points.
+These may include example physical systems, available lab resources, common sensor types,
+data acquisition options, standards and handbooks, prior course examples, and approved
+reference links. You may use these resources directly, adapt them, or propose a different
+experiment.
 
 You may use a chatbot or other AI tool to brainstorm experiment ideas, compare sensor
-options, draft checklists, or identify possible failure modes. You are responsible for
-every technical claim in your submission. If an AI tool suggests a sensor, equation,
-standard, or design option, you must verify it using a reliable source before using it
-as evidence.
+options, draft checklists, or identify possible failure modes. You are still responsible
+for every technical claim in your submission. If an AI tool suggests a sensor, equation,
+standard, or design option, verify it using a reliable source before using it as evidence.
 
 An optional starting prompt is provided in `TIER3_ai_assistant_prompt.md`. Use it to
 generate and stress-test ideas, not to produce final assignment prose.
@@ -316,8 +315,8 @@ Your presentation must answer:
 ### Q&A expectation
 
 Every team member must be able to defend the design. You may use notes, but you may not
-read answers directly from the written plan. The point of Q&A is to test whether you
-understand the reasoning behind your design choices.
+read answers directly from the written plan. Q&A tests whether you understand the reasoning
+behind your design choices.
 
 ---
 
@@ -370,8 +369,8 @@ used for uncertainty calculations must be submitted with the relevant deliverabl
 Passing work is specific, traceable, and honest.
 
 It does not need to be expensive, flashy, or complicated. It does need to show that you
-can design an experiment by reasoning from the model to the measurement chain to the
-uncertainty to the validation claim.
+can reason from the model to the measurement chain, from the measurement chain to
+uncertainty, and from uncertainty to the validation claim.
 
 A weak Tier 3 project says: "We would use better sensors and compare to theory."
 
@@ -382,7 +381,7 @@ to evaluate the acceptance criterion. If residuals show a monotonic trend with o
 condition, we would interpret that as model-form error rather than random measurement
 noise and revise the assumed boundary condition."
 
-That is the level of reasoning this assignment is designed to assess.
+That is the level of reasoning this assignment assesses.
 
 ---
 

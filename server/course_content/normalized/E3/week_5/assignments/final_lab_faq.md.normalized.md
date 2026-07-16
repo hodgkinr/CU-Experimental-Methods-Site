@@ -3,15 +3,15 @@
 ## Is this a real lab or a paper design?
 
 It is a paper design. You are not expected to build and run the experiment during ASEN
-3501. You are expected to design it with enough technical detail that someone could judge
-whether it is worth building.
+3501. Design it with enough technical detail that someone could judge whether it is worth
+building.
 
 ## Do I get to choose my own experiment?
 
 Yes, within constraints. Your experiment must connect to a predictive model, produce
 measurable data, have a plausible instrumentation path, and be narrow enough to design
 well in the available time. The instructor may ask you to narrow, revise, or replace an
-idea that is too broad, unsafe, too expensive, or not tied to a model.
+idea if it is too broad, unsafe, too expensive, or not tied to a model.
 
 ## Can two groups choose similar experiments?
 
@@ -22,7 +22,7 @@ or validation plan differs meaningfully. The process is what is being assessed.
 
 No. You may investigate hardware and include cost or availability in your feasibility
 discussion, but purchase is not required. If you already own components or want to buy
-low-cost parts for personal learning, keep them; they may be useful later in senior design
+low-cost parts for personal learning, keep them. They may be useful later in senior design
 or independent projects.
 
 ## What counts as "beyond provided" for CLO 6?
@@ -30,8 +30,8 @@ or independent projects.
 Examples include a sensor not listed in the course catalog, a measurement method from a
 paper or handbook, a relevant engineering standard, a manufacturer application note, a
 different DAQ platform, a calibration method, or an analysis approach not directly handed
-to you. The key is that you found it, evaluated it, and explained whether it improves your
-design.
+to you. You need to show that you found it, evaluated it, and explained whether it improves
+your design.
 
 ## Can I use a chatbot to brainstorm ideas?
 
@@ -42,7 +42,7 @@ a standard exists, or an equation is valid.
 
 ## What should I ask a chatbot?
 
-Ask for alternatives, not answers. A useful prompt will ask the chatbot to generate possible
+Ask for alternatives, not answers. A useful prompt asks the chatbot to generate possible
 experiment ideas, list assumptions, identify measurable quantities, suggest candidate
 sensors, and name failure modes. Then you verify and choose. A polished chatbot response
 that you cannot defend will hurt you in the oral defense.
@@ -52,15 +52,15 @@ act like a design coach rather than a ghostwriter.
 
 ## Does my experiment need to be aerospace-specific?
 
-It should be aerospace-relevant. That can mean the system itself is aerospace hardware,
-or the measurement problem is common in aerospace contexts: thermal behavior, vibration,
-power, thrust, flow, pressure, attitude dynamics, structural response, materials testing,
-controls, or environmental effects.
+It should be aerospace-relevant. That can mean the system itself is aerospace hardware.
+It can also mean the measurement problem is common in aerospace contexts: thermal behavior,
+vibration, power, thrust, flow, pressure, attitude dynamics, structural response, materials
+testing, controls, or environmental effects.
 
 ## What if my experiment is too simple?
 
-Simple is fine if the design reasoning is strong. A simple thermal or power experiment can
-be excellent if the model, instrumentation, uncertainty analysis, and validation logic are
+Simple is fine if the design reasoning is strong. A thermal or power experiment can be
+excellent if the model, instrumentation, uncertainty analysis, and validation logic are
 clear. A complicated experiment with vague measurement reasoning will not pass.
 
 ## What if my experiment is too ambitious?
@@ -88,10 +88,10 @@ propagation is sufficient, explain why.
 
 ## What does "validation metric" mean in a paper design?
 
-It is the numerical rule you would use to compare the future data to the model. For example:
-percent error in a primary response, normalized residuals, RMS error across a time series,
-slope/intercept agreement in a regression, or whether a measured response falls within a
-predefined uncertainty bound.
+It is the numerical rule you would use to compare the future data to the model. Examples
+include percent error in a primary response, normalized residuals, RMS error across a time
+series, slope/intercept agreement in a regression, or whether a measured response falls
+within a predefined uncertainty bound.
 
 ## What if I find that my proposed experiment would not be sensitive enough?
 
