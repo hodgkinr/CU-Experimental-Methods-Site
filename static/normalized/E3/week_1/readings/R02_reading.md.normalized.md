@@ -75,7 +75,7 @@ A citation is useful only if it changes or supports a design decision. Use the t
 
 | Source type | Citation or link | What it establishes | How it applies to this experiment | What it does not answer |
 |---|---|---|---|---|
-| Standard | ASME V&V 10-2006 | Provides V&V vocabulary and credibility framing | Supports intended-use statement, validation metric, and uncertainty logic | Does not choose your exact sensor or fixture |
+| Standard or professional guide | | Identify its domain and the practice or vocabulary it establishes | Explain why it fits this model, measurement, and intended use | State what it does not establish |
 | Datasheet / handbook | | | | |
 | Prior paper / application note | | | | |
 
@@ -90,7 +90,7 @@ Before submitting, answer yes or revise.
 - [ ] The hypothesis could be challenged by future data.
 - [ ] Confounders are specific to the physical setup.
 - [ ] The test matrix is small enough to defend and rich enough to teach something.
-- [ ] ASME V&V 10-2006 is cited for a reason.
+- [ ] At least one relevant standard or professional guide is cited, and its relevance and limits are annotated.
 - [ ] At least one additional source contributes a design implication.
 - [ ] The proposal says how evidence would inform or improve the model.
 

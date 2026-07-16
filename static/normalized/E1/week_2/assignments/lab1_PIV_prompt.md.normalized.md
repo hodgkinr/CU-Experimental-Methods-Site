@@ -33,7 +33,15 @@ By the end of this lab and its associated activities, you should be able to:
 2. Apply first-order uncertainty propagation (the general method using partial derivatives) to compute the uncertainty in a derived quantity, electrical power, from measurements of voltage and current.
 3. Explain why different algebraic forms of the same physical law (P = IV, P = V²/R, P = I²R) produce different uncertainty estimates for the same quantity, and articulate which form is most sensitive to which measured input.
 4. Run a Monte Carlo simulation in MATLAB to estimate uncertainty using the same manufacturer specifications, and compare the Monte Carlo result to the partial-derivative result.
-5. State a result in the correct engineering form: *estimate ± uncertainty (units, confidence level or method)*.
+5. State a result in the course reporting form: *estimate ± interval (units; interval type, method, and coverage basis)*.
+
+### Course reporting convention
+
+Use `E1_W2_R3_reading.md` for every uncertainty statement. Convert all elemental inputs
+to standard uncertainties before propagation. Report Taylor-series results as combined
+standard uncertainty `u_c`, and, when requested, as expanded uncertainty `U = k u_c` with
+`k` stated. Report Monte Carlo percentile bounds as coverage intervals, not confidence
+intervals. Label every plotted interval with its basis.
 6. Explain the core concepts of this lab clearly and concisely to someone who has not taken this course.
 
 ---
@@ -54,9 +62,11 @@ From these measurements you will compute electrical power three ways:
 | P = V²/R | V and R | Power using voltage and resistance |
 | P = I²R | I and R | Power using current and resistance |
 
-Each form uses different measured inputs. Different inputs have different uncertainties.
-Different forms therefore produce different uncertainty estimates for the same quantity P.
-This isn't an error. It's the physics of error propagation.
+Each form uses a different set of measured inputs. These are different **measurement
+models**, even though the circuit law is algebraically equivalent under ideal conditions.
+The estimates can differ because V, I, and R are acquired differently, at different times,
+with shared inputs and different loading or thermal effects. Algebra alone does not create
+new information.
 
 ### Which resistance value to use: two valid cases
 
@@ -72,11 +82,11 @@ a value for R and its uncertainty:
 **You are required to compute both cases** for P = V²/R and P = I²R, not just pick one.
 This is intentional, and it's the real point of this part of the lab: Case 1 and Case 2 use
 different information about R and will generally produce different point estimates and
-different uncertainty bounds. When you compare the resulting P ± u_P ranges from both cases
-in your report, look at whether they overlap. An overlapping region between two independent,
-valid estimates is a good sign. It suggests the true value of P most likely lies in that
-shared range. If the two cases do *not* overlap, that's worth investigating and discussing,
-not ignoring.
+different uncertainty bounds. Compare their point estimates and labeled intervals, but do
+not interpret overlap as locating the true value. These estimates are not independent: they
+share measurements and may share instrument effects. Agreement is an internal-consistency
+check; disagreement is a prompt to inspect assumptions, timing, loading, self-heating, and
+the uncertainty model.
 
 ### A note on system warm-up and drift
 
@@ -141,7 +151,7 @@ questions:
  in real time, with no datasheet in hand, just by watching the display. It's a fast,
  physical sanity check on resolution, and it's what you record and describe in Section 2
  of your report to demonstrate you can read an instrument correctly.
-- **The datasheet specification is your formal uncertainty source.** It's what you use for
+- **The datasheet specification is evidence for a specification-based Type B evaluation.** It's what you use for
  every partial-derivative and Monte Carlo calculation in this lab. The reason it takes
  priority over the fluctuating digit is that a display can look perfectly stable and still
  be systematically wrong by more than the resolution suggests. The datasheet's accuracy
@@ -160,10 +170,11 @@ The instrument datasheet specifies accuracy in the form:
 ± (% of reading + % of range)
 ```
 
-For example: ± (0.5% of reading + 0.1% of range). This is the *manufacturer specification* for
-the maximum systematic error. You'll use this specification, not the fluctuating digit
-alone, as your formal uncertainty estimate for the partial-derivative and Monte Carlo
-analyses.
+For example: ± (0.5% of reading + 0.1% of range). This is a manufacturer limit, not
+automatically a standard uncertainty. Unless current calibration is verified, label this
+exercise **specification-based**. Treat the symmetric limit `±a` as a Type B input with a
+uniform model, so the standard uncertainty is `u=a/√3`, unless the datasheet states another
+coverage basis. State that assumption before propagation.
 
 **Careful:** these are percentages, not fractions. 0.5% means 0.005, not 0.5. A common
 mistake is to use 0.5 directly in the calculation, which inflates the uncertainty by a
@@ -179,12 +190,10 @@ Write these down. They are your primary uncertainty inputs.
 Datasheets typically list several tolerance columns depending on how long it has been
 since the instrument's last calibration (e.g., 90-day, 1-year, 2-year). Use the **2-year
 column** unless your instructor tells you otherwise. The DMMs in this lab were purchased
-in **2019**, and their listed accuracy specification assumes they are within their stated
-calibration interval. In practice, an instrument can drift beyond its spec over time,
-particularly if it hasn't been recalibrated recently. You're not expected to correct for
-this drift numerically, but be ready to discuss, in Section 6 of your report, whether your
-measured values and the datasheet-based uncertainty are still reasonable given the
-instrument's age.
+in **2019**, and their listed accuracy specification assumes the stated calibration
+conditions. If current calibration cannot be verified, the exercise remains a
+specification-based estimate rather than a calibration-supported result. Do not invent a
+drift correction; state this limitation in Section 6.
 
 The datasheet also lists an additional accuracy derating as a function of deviation from a
 reference room temperature. **For this lab, assume the lab room is at the datasheet's
@@ -194,6 +203,15 @@ which sources of uncertainty are negligible for a given situation and which are 
 still expected to **state this assumption explicitly** in your report (Section 1 or 3) as
 your justification for excluding the temperature term. A documented assumption, even a
 simple one, is part of a complete uncertainty analysis.
+
+### Measurement-system limitations to identify
+
+At a conceptual level, note four effects: voltmeter and ammeter **loading** can alter the
+circuit; using one DMM sequentially makes V, I, and R non-simultaneous while the supply and
+resistor drift; resistor **self-heating** changes the hot resistance from the cold ohmmeter
+measurement; and quantities derived from shared V, I, or R inputs are correlated. You do
+not need to estimate covariance numerically in Lab 1, but you must not call the three power
+estimates independent.
 
 ---
 

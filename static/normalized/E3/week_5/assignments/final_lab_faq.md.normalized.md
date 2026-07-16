@@ -70,9 +70,11 @@ or two primary response features, and a feasible measurement path.
 
 ## Do I need to use ASME V&V 10-2006?
 
-Yes. You must cite ASME V&V 10-2006 and explain how it informs your validation thinking.
-You also need at least one additional relevant standard, handbook, datasheet, manual, or
-publication.
+Only when its computational solid-mechanics scope is relevant to your project. V&V 20 is
+the ASME guide for CFD and heat transfer; PTC 19.1 and the GUM are the measurement-
+uncertainty references used in this course. You must cite at least one relevant standard
+or professional guide and one additional technical source, and explain what each source
+contributes and what it does not establish.
 
 ## Do I need to do uncertainty analysis if no data are collected?
 

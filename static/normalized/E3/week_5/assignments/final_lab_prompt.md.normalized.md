@@ -7,6 +7,12 @@
 **Structure:** Student-chosen paper design — proposal → instrumentation plan → V&V plan → oral defense → reflection
 **Assessment:** Written design artifacts + oral defense + peer evaluations + CLO 6 reflection
 
+> **TBD before publication — individual evidence and scores:** The finalized assignment
+> must record individually attributable evidence from every student on prospective
+> uncertainty, DAQ/instrumentation, and validation decisions, with an individual score or
+> pass record. The defense format, weighting, question allocation, and reattempt details
+> are not yet specified.
+
 ---
 
 ## What This Assignment Is
@@ -20,6 +26,10 @@ design and V&V plan. The plan should be detailed enough that a knowledgeable eng
 team could decide whether the experiment is worth building, what hardware it would require,
 what data it would produce, and whether those data could inform the predictive model you
 care about.
+
+Use the course uncertainty convention in `E1_W2_R3_reading.md`. Put prospective inputs on
+a standard-uncertainty basis before propagation and label every reported or plotted interval
+by type, method, and coverage.
 
 The physical systems will differ across students and groups. One design may involve
 thermal behavior. Another may involve structural vibration, power measurement, attitude
@@ -178,9 +188,9 @@ three plausible confounding factors. Explain how the design would control, rando
 block, or document them.
 
 **6. Prior art and standards**
-Cite ASME V&V 10-2006 and at least one additional relevant standard, handbook, datasheet,
-technical manual, or prior publication. Annotate each source: what does it contribute to
-your design?
+Cite at least one relevant standard or professional guide and one additional handbook,
+datasheet, technical manual, or prior publication. Annotate each source: what does it
+contribute to your design, why is its scope relevant, and what does it not establish?
 
 **7. Initial test matrix**
 Propose a small, feasible test matrix: conditions, repetitions, and what each condition
@@ -210,9 +220,12 @@ needed. Justify sampling rate using expected signal bandwidth and Nyquist reason
 
 **4. Prospective uncertainty analysis**
 Before the experiment exists, estimate the expected uncertainty in the primary output.
-Use first-order error propagation where appropriate. Use Monte Carlo simulation when the
-model is nonlinear, multi-input, or distribution assumptions matter. Identify dominant
-uncertainty sources.
+Use first-order error propagation where appropriate. Use Monte Carlo when nonlinearities
+or nonstandard input models materially affect the decision. For every input, cite repeat
+data, calibration evidence, manufacturer coverage, or an explicit Type B assumption.
+Identify possible shared sources conceptually; quantify covariance only when defensible.
+If methods differ, diagnose inputs, units, linearization, distributions, convergence, and
+dependence before choosing an interpretation. Identify dominant uncertainty sources.
 
 **5. Sensitivity and adequacy**
 State whether the proposed measurement chain is sensitive enough to evaluate the acceptance

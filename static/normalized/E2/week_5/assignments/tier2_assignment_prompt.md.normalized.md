@@ -7,6 +7,11 @@
 **Structure:** Group of ~3 — Pre-lab prediction → Lab execution → Analysis → Presentation
 **Assessment:** Group report + quad chart presentation (5 min talk + 5 min Q&A) + peer evaluations
 
+> **TBD before publication — individual evidence and scores:** The finalized assignment
+> must include an individually attributable check of uncertainty, DAQ, and validation
+> understanding for every student, with an individual score or pass record. The format,
+> weighting, question allocation, and reattempt details are not yet specified.
+
 ---
 
 ## What This Assignment Is
@@ -15,6 +20,11 @@ The Tier 2 assignment is the primary lab sequence of E2. Every group completes t
 assignment. The specific experiment differs — you will be assigned one of the Tier 2 canned
 aerospace experiments — but the analytical framework, the deliverables, and the expectations
 are identical for all groups regardless of which experiment is assigned.
+
+Use the course uncertainty convention in `E1_W2_R3_reading.md`. In particular, distinguish
+combined standard uncertainty, expanded uncertainty, confidence intervals, prediction
+intervals, and Monte Carlo coverage intervals; label every reported or plotted interval by
+type, method, and coverage.
 
 This is a different kind of assignment than Tier 1. In Tier 1, you executed an experiment
 and analyzed the data, and separately, you predicted someone else's experiment from specs.
@@ -232,9 +242,11 @@ for reconstruction after the fact.
 Compare your committed pre-lab prediction to the measured data using your pre-defined
 acceptance criterion. The comparison must be numerical — state whether the acceptance
 criterion was met, and by how much. If the criterion was not met, classify the discrepancy:
-is it consistent with measurement uncertainty (random scatter bounded by your propagated
-uncertainty), or does it suggest a model-form limitation (systematic trend, wrong shape,
-wrong magnitude beyond the uncertainty bounds)?
+is it consistent with random measurement variation, known measurement bias, a setup or
+installation effect, an uncontrolled/confounding input, a data-reduction error, parameter
+uncertainty, or model-form discrepancy? State the preferred explanation, cite the evidence,
+and identify at least one competing hypothesis. A systematic trend establishes a problem in
+the combined model–experiment system; it does not by itself prove model-form error.
 
 Apply residual analysis: plot the residuals (measured minus predicted) over the relevant
 independent variable. A residual plot with random scatter around zero is consistent with
@@ -251,7 +263,7 @@ possible sources of error. Your uncertainty analysis must reflect that complexit
 Required:
 1. **Partial derivative propagation** for the primary derived quantity — derive the uncertainty expression, substitute your measured values and instrument specifications, and compute u for your primary output. Show the derivation.
 2. **Dominant error source ranking** — rank the top three sources of uncertainty by contribution to total uncertainty. Justify the ranking numerically.
-3. **Monte Carlo simulation in MATLAB** — using the same instrument specifications as input distribution parameters, run a Monte Carlo simulation (minimum 10,000 samples) for your primary derived quantity. Plot the resulting distribution. Compare the Monte Carlo result to your partial-derivative result numerically — state whether they are consistent and explain any discrepancy.
+3. **Monte Carlo simulation in MATLAB** — justify each input distribution from repeat data, calibration evidence, a manufacturer coverage statement, or an explicit conservative Type B model. Run at least 10,000 samples, check that the reported interval is stable, and plot the output distribution with a labeled coverage interval. Identify possible shared error sources; numerical covariance is not required unless evidence and an estimate are provided. If Monte Carlo and first-order results differ, check common inputs and units, nonlinearity, distribution choices, sample convergence, and dependence assumptions before selecting or interpreting either result.
 4. **Interpretation** — does your uncertainty bound allow you to evaluate your acceptance criterion? That is: is the experiment sensitive enough, given the instrument suite, to distinguish model agreement from disagreement for the stated intended use? If not, what would need to change?
 
 ### 3C — Calibration status review
@@ -329,8 +341,8 @@ or block diagram if useful.
 
 **3. Prediction vs. outcome comparison**
 Numerical comparison using your pre-defined acceptance criterion. Residual plot with
-systematic trend assessment. Classification of any discrepancy as measurement uncertainty
-or model-form limitation, with physical reasoning.
+systematic trend assessment. Diagnostic classification across the course taxonomy, with
+evidence for the preferred explanation and at least one competing hypothesis.
 
 **4. Uncertainty analysis**
 The full analysis from Phase 3B: partial derivative derivation, dominant error source

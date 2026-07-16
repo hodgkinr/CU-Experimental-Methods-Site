@@ -19,11 +19,9 @@ Both. You're required to run the analysis both ways and compare, not pick one:
 
 These are two independent, valid estimates of R and u_R, and they will generally give you
 slightly different P ± u_P results for P = V²/R and P = I²R. That's expected. The point of
-comparing them is to look at whether the two ranges overlap. If they do, that overlapping
-region is a strong candidate for where the true value of P actually lies. You've bounded
-the answer from two different directions and they agree. If they don't overlap, that's a
-signal worth digging into (e.g., is the resistor self-heating, or is one of your uncertainty
-inputs off?), not something to paper over.
+comparing them is to check internal consistency, not to locate the true value from their
+overlap. The cases share measurements and are not independent. If they disagree, inspect
+self-heating, meter loading, non-simultaneous readings, drift, and the Type B assumptions.
 
 ---
 
@@ -165,7 +163,8 @@ and explain why.
 **Should I say "95% CI" or "manufacturer spec bound" when stating my result in
 engineering form in Section 7?**
 
-For Lab 1, use **"manufacturer spec bound"** as your default. Here's the distinction:
+For Lab 1, use **"specification-based Type B standard uncertainty"** as your default after
+converting the manufacturer limit using your stated distribution assumption.
 
 - **"Manufacturer spec bound"** means the uncertainty was derived directly from the
  instrument datasheet specification, without a statistical sampling argument. This is
@@ -175,12 +174,12 @@ For Lab 1, use **"manufacturer spec bound"** as your default. Here's the distinc
  from repeated measurements and a t-distribution, or from a manufacturer spec that
  explicitly states it corresponds to 95% coverage.
 
-Some multimeter datasheets do state that their accuracy specification corresponds to a
-95% or 99% confidence level. If yours does, you may write "95% CI (manufacturer spec)."
-If it doesn't state the confidence level explicitly, write "manufacturer spec bound."
+If a datasheet or calibration certificate gives an expanded uncertainty and coverage factor,
+convert with `u=U/k` and preserve that stated basis. Do not relabel a manufacturer bound as
+a frequentist confidence interval.
 
 The general format is:
-*P = [value] ± [uncertainty] W (manufacturer spec bound, partial derivative propagation)*
+*P = [value] ± [uncertainty] W (combined standard uncertainty; specification-based Type B inputs; Taylor-series method)*
 
 ---
 

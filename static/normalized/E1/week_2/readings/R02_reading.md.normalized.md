@@ -33,7 +33,7 @@ Here is the same result written two ways.
 This version is correct and complete. Every number is supported. Every bound is traceable to a method. A colleague can reproduce the result.
 
 **Plain-language version (for the non-engineer):**
-> "We measured how much electrical power a small resistor was consuming when connected to a 12-volt source — similar to a standard lantern battery. The result was about 26 watts, roughly the energy a dim incandescent bulb uses. Our measurement has an uncertainty of about 5%, which means the true value is almost certainly somewhere between 24 and 27 watts."
+> "We measured how much electrical power a small resistor was consuming when connected to a 12-volt source. The result was about 26 watts. Our specification-based expanded uncertainty is about 5%, so we report a range of roughly 24 to 27 watts under the stated instrument and Type B assumptions."
 
 **What changed and why:**
 - *Uncertainty expressed as consequence, not as a statistical bound.* "±1.3 W at 95% confidence" is meaningless to a non-engineer; "about 5%" gives a sense of scale, and "almost certainly between 24 and 27 watts" states the consequence in plain language.

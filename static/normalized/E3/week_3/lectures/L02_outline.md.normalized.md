@@ -20,7 +20,7 @@ Talking Point: Partial-derivative propagation gives you a local sensitivity pict
 
 slide 6: Monte Carlo for the Full Chain
 (Image: A Monte Carlo workflow with random samples drawn from input distributions, passed through the measurement equation, and collected into an output histogram. The histogram is marked with mean, 95% interval, and acceptance band.)
-Talking Point: Monte Carlo lets you propagate uncertainties through nonlinear equations, mixed distributions, and more complicated measurement chains. Instead of linearizing everything, you sample plausible input values and compute the resulting output many times. The output distribution shows the predicted measurement performance. This is the distribution you compare to the validation requirement.
+Talking Point: Monte Carlo propagates stated input models through nonlinear equations and measurement chains. Its credibility comes from the inputs: each distribution needs evidence or an explicit conservative Type B assumption. Begin with the simplest defensible model, check numerical stability, and report a labeled coverage interval. Identify shared sources conceptually; covariance calculation is advanced and required only when supported.
 
 slide 7: Distinguishing Model Agreement from Disagreement
 (Image: A plot with model prediction, predicted measurement uncertainty band, and acceptable agreement region. One case shows uncertainty small enough to distinguish pass/fail; another shows uncertainty so wide that both agreement and disagreement are plausible.)
