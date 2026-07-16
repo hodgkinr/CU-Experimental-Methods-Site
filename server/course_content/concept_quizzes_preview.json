@@ -438,5 +438,225 @@
         "prompt": "In one short paragraph, explain how the course\u2019s idea of \u201cgood critique\u201d is different from just being negative."
       }
     ]
+  },
+  "e3-week_1": {
+    "week_label": "Week 11",
+    "week_focus": "Experimental design vocabulary, hypothesis formulation, variables, confounding, replication, prior art, and standards as design evidence.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "Which statement best captures the Week 11 idea that \"experimental design is modeling in hardware\"?",
+        "options": [
+          "The experiment should collect as much data as possible before the model is discussed",
+          "Every design choice encodes an assumption about what variables matter and what evidence would inform the model",
+          "Hardware selection is separate from validation logic",
+          "A good design avoids stating a hypothesis until results are available"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "A student varies fan voltage during a motor test, but the motor temperature also rises throughout the test and is highest during the high-voltage trials. What is the main experimental design concern?",
+        "options": [
+          "Replication",
+          "Confounding",
+          "Calibration traceability",
+          "Quantization"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Why does Week 11 require ASME V&V 10-2006 and at least one additional relevant source in the preliminary proposal?",
+        "options": [
+          "To make the bibliography longer",
+          "To replace the need for a hypothesis",
+          "To anchor the design in professional validation language, accepted practices, and prior knowledge relevant to the measurement problem",
+          "To prove the proposed experiment will work"
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "In one short paragraph, distinguish an independent variable, dependent variable, and controlled variable for a possible E3 experiment."
+      },
+      {
+        "type": "open_response",
+        "prompt": "What makes a hypothesis useful for E3 rather than just a vague prediction?"
+      }
+    ]
+  },
+  "e3-week_2": {
+    "week_label": "Week 12",
+    "week_focus": "Sensor selection, dynamic range, resolution versus accuracy, mounting and environmental effects, DAQ and signal conditioning choices, and beyond-provided-hardware investigation.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "Which sensor-selection rationale is strongest in the Week 12 sense?",
+        "options": [
+          "\"We chose it because it was already in the lab\"",
+          "\"We chose it because it has the most decimal places in the output\"",
+          "\"We chose it because its range, accuracy, bandwidth, mounting requirements, and uncertainty contribution are adequate for the intended validation use\"",
+          "\"We chose it because it is the newest model\""
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "A sensor reports values to 0.001 units, but its calibrated accuracy is +/-0.2 units. What is the best interpretation?",
+        "options": [
+          "The measurement is accurate to 0.001 units",
+          "The display resolution is fine, but the accuracy limit is much larger and must be used in the uncertainty analysis",
+          "The sensor has no uncertainty",
+          "Resolution and accuracy are the same thing"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Why is a sensor choice incomplete without a DAQ and signal conditioning plan?",
+        "options": [
+          "Because DAQ choices determine whether the sensor signal is sampled, filtered, scaled, and digitized in a way that preserves the information needed for validation",
+          "Because DAQ choices only affect file names",
+          "Because filtering should always remove as much signal as possible",
+          "Because the DAQ replaces the sensor calibration"
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "Give one example of a mounting or environmental effect that could bias an aerospace measurement and explain why it matters."
+      },
+      {
+        "type": "open_response",
+        "prompt": "What counts as a meaningful \"beyond-provided-hardware\" investigation for E3?"
+      }
+    ]
+  },
+  "e3-week_3": {
+    "week_label": "Week 13",
+    "week_focus": "V&V plan structure, intended use, response features, validation metrics, calibration versus validation, and prospective MATLAB uncertainty analysis.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "In Week 13, why does intended use come before the validation metric?",
+        "options": [
+          "Intended use determines what level and type of agreement is sufficient for the engineering purpose",
+          "Intended use is only a writing style choice",
+          "Intended use is decided after data collection",
+          "Intended use replaces uncertainty analysis"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which item is a system response feature?",
+        "options": [
+          "\"Use MATLAB\"",
+          "\"The maximum deflection of the beam under a specified load\"",
+          "\"Write a clear report\"",
+          "\"Buy a sensor\""
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which statement best distinguishes calibration from validation?",
+        "options": [
+          "Calibration checks an instrument against a known reference; validation checks whether a model predicts system behavior adequately for its intended use",
+          "Calibration and validation are identical",
+          "Validation is only about sensor zeroing",
+          "Calibration proves the model is correct"
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "What does it mean to use MATLAB uncertainty analysis prospectively in E3?"
+      },
+      {
+        "type": "open_response",
+        "prompt": "If prospective uncertainty analysis shows the uncertainty band is too wide to judge the model against the acceptance criterion, what should the design team do?"
+      }
+    ]
+  },
+  "e3-week_4": {
+    "week_label": "Week 14",
+    "week_focus": "Oral defense, structured technical critique, peer evaluation, and comparative analysis of sample or AI-generated experimental design work.",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "What is the main purpose of the Week 14 oral defense?",
+        "options": [
+          "To summarize the report without questions",
+          "To defend the experimental design, instrumentation rationale, uncertainty analysis, and validation logic under technical questioning",
+          "To replace the V&V plan document",
+          "To focus only on slide aesthetics"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which peer evaluation comment is strongest?",
+        "options": [
+          "\"Good job, I liked it\"",
+          "\"The presentation was confusing\"",
+          "\"The proposed sampling rate is not justified relative to the expected signal bandwidth, so the validation plan needs either a bandwidth estimate or a revised sampling/filtering argument\"",
+          "\"The colors were nice\""
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Why does Week 14 include comparative analysis of sample or AI-generated work?",
+        "options": [
+          "To show that polished writing guarantees technical correctness",
+          "To practice applying the same technical standards regardless of whether the work came from a peer, prior report, professional source, or AI system",
+          "To avoid evaluating student presentations",
+          "To teach prompt engineering as the main course outcome"
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "During Q&A, someone challenges your validation metric. What should you defend first?"
+      },
+      {
+        "type": "open_response",
+        "prompt": "Explain how good critique is different from simply being negative in Week 14."
+      }
+    ]
+  },
+  "e3-week_5": {
+    "week_label": "Week 15",
+    "week_focus": "Course arc integration, AMVF mapping, CLO 6 reflection, experimentally informed models, and the closing question: how do you know this prediction is right?",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "prompt": "Which sequence best describes the course arc?",
+        "options": [
+          "Learn to measure, learn to predict, learn to design",
+          "Learn to memorize, learn to copy, learn to avoid uncertainty",
+          "Learn to present, learn to present again, learn to present faster",
+          "Learn to validate models without experiments"
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "What is the strongest Week 15 answer to \"How do you know this prediction is right?\"",
+        "options": [
+          "\"Because the model looks reasonable\"",
+          "\"Because the data matched once\"",
+          "\"Because we designed an experiment around the model's intended use, quantified uncertainty, committed to validation metrics before measuring, compared honestly, and used discrepancies to improve the model\"",
+          "\"Because the sensor had many decimal places\""
+        ]
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "What is the purpose of the CLO 6 reflection?",
+        "options": [
+          "To list every website the student visited",
+          "To describe what method, sensor, platform, or standard the student investigated beyond provided materials, why it mattered, what was learned, and how it affected professional judgment",
+          "To prove that the beyond-provided option was always adopted",
+          "To replace the technical V&V plan"
+        ]
+      },
+      {
+        "type": "open_response",
+        "prompt": "In one short paragraph, explain how E1, E2, and E3 each connect to the AMVF."
+      },
+      {
+        "type": "open_response",
+        "prompt": "What does \"experimentally informed model\" mean by the end of the course?"
+      }
+    ]
   }
 }
