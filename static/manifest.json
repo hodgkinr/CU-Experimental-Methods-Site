@@ -413,7 +413,7 @@
                 "module_key": "week_2",
                 "module_slug": "e1-week_2",
                 "category": "assessments",
-                "title": "Lab 1 (P=IV) + Tier 1 Phase 1 Data Collection (Week 1 of 3)",
+                "title": "ASEN 3501 \u2014 Lab 1: Power, Voltage, and the Language of Uncertainty",
                 "slug": "lab1-piv",
                 "order": 1,
                 "variants": [
@@ -428,7 +428,7 @@
                 ],
                 "summary": "# ASEN 3501 \u2014 Lab 1: Power, Voltage, and the Language of Uncertainty ## Student-Facing Assignment **Segment:** E1 \u2014 Execution & Quantification **Week:** 2 **CLO Alignment:** CLO 1, CLO 2, CLO 5 **Assessment:** Brief l...",
                 "purpose": "",
-                "type_label": "Lab",
+                "type_label": "Assessment",
                 "learning_goals": [
                   "Distinguish variability, measurement error, and uncertainty, and explain why the distinction matters for engineering claims \u2014 CLO 2",
                   "Apply first-order error propagation using partial derivatives to compute uncertainty in a derived quantity \u2014 CLO 2",
@@ -1072,7 +1072,7 @@
                 "module_key": "week_5",
                 "module_slug": "e1-week_5",
                 "category": "assessments",
-                "title": "Tier 1 Phase 2 \u2014 Reverse Prediction Exercise",
+                "title": "ASEN 3501 \u2014 Tier 1 Lab Assignment",
                 "slug": "tier1-assignment",
                 "order": 1,
                 "variants": [
@@ -1085,9 +1085,9 @@
                     "summary": "# ASEN 3501 \u2014 Tier 1 Lab Assignment ## Forward Analysis, Reverse Prediction, and Combined Synthesis **Segment:** E1 \u2014 Execution & Quantification **Weeks:** 2\u20135 **CLO Alignment:** CLO 1, CLO 2, CLO 3, CLO 5 **Structure..."
                   }
                 ],
-                "summary": "Each student is assigned a canned experiment from the Tier 1 pool that they did not run in Phase 1. They receive the Phase 2 Experiment Packet (theory primer, sensor specs, DAQ configuration, physical setup description, and the original hypothesis from the student who ran it) \u2014 but not the data. Before data is released, they develop a predictive model, specify system response features and expected trends, identify dominant uncertainty sources, sketch the expected output, and define an acceptance criterion. This commitment is submitted as the Phase 2 Prediction Memo. Data is then released, and students compare their prediction to the measured outcomes. The pairing is complementary: the student who receives Experiment B's packet ran Experiment A as their Phase 1, and the student who ran Experiment B is now receiving Experiment A's packet. This sets up the Phase 3 combined presentation.",
-                "purpose": "Each student is assigned a canned experiment from the Tier 1 pool that they did not run in Phase 1. They receive the Phase 2 Experiment Packet (theory primer, sensor specs, DAQ configuration, physical setup description, and the original hypothesis from the student who ran it) \u2014 but not the data. Before data is released, they develop a predictive model, specify system response features and expected trends, identify dominant uncertainty sources, sketch the expected output, and define an acceptance criterion. This commitment is submitted as the Phase 2 Prediction Memo. Data is then released, and students compare their prediction to the measured outcomes. The pairing is complementary: the student who receives Experiment B's packet ran Experiment A as their Phase 1, and the student who ran Experiment B is now receiving Experiment A's packet. This sets up the Phase 3 combined presentation.",
-                "type_label": "Lab / Discussion",
+                "summary": "# ASEN 3501 \u2014 Tier 1 Lab Assignment ## Forward Analysis, Reverse Prediction, and Combined Synthesis **Segment:** E1 \u2014 Execution & Quantification **Weeks:** 2\u20135 **CLO Alignment:** CLO 1, CLO 2, CLO 3, CLO 5 **Structure...",
+                "purpose": "",
+                "type_label": "Assessment",
                 "learning_goals": [
                   "Identify the five elements that make a prediction defensible \u2014 system response features, propagated uncertainty, a sketch with committed bounds, a ranked uncertainty source list, and a named acceptance criterion \u2014 and produce all five for an unfamiliar experiment \u2014 CLO 1, CLO 2, CLO 3",
                   "Distinguish between a vague prediction (\"it will go up\") and a committed prediction (\"I expect the measured value to reach X \u00b1 Y by time T, because of physical reasoning Z\") and articulate why the distinction matters for engineering credibility \u2014 CLO 3",
@@ -2036,7 +2036,7 @@
                 "module_key": "week_5",
                 "module_slug": "e2-week_5",
                 "category": "assessments",
-                "title": "Tier 2 Quad Chart Presentations",
+                "title": "ASEN 3501 \u2014 Tier 2 Lab Assignment",
                 "slug": "tier2-assignment",
                 "order": 1,
                 "variants": [
@@ -2049,8 +2049,8 @@
                     "summary": "# ASEN 3501 \u2014 Tier 2 Lab Assignment ## Predict, Execute, Analyze, Improve **Segment:** E2 \u2014 Predictive Modeling & Comparative Validation **Weeks:** 6\u201310 **CLO Alignment:** CLO 1, CLO 2, CLO 3, CLO 4, CLO 5, CLO 6 **St..."
                   }
                 ],
-                "summary": "The primary E2 oral assessment. Groups demonstrate the ability to distill a complex multi-week analysis into a compact, defensible communication artifact. Graded on clarity of hypothesis and model connection, quality of instrumentation justification, rigor of uncertainty analysis interpretation, defensibility of the validation plan, and quality of responses under direct questioning.",
-                "purpose": "The primary E2 oral assessment. Groups demonstrate the ability to distill a complex multi-week analysis into a compact, defensible communication artifact. Graded on clarity of hypothesis and model connection, quality of instrumentation justification, rigor of uncertainty analysis interpretation, defensibility of the validation plan, and quality of responses under direct questioning.",
+                "summary": "# ASEN 3501 \u2014 Tier 2 Lab Assignment ## Predict, Execute, Analyze, Improve **Segment:** E2 \u2014 Predictive Modeling & Comparative Validation **Weeks:** 6\u201310 **CLO Alignment:** CLO 1, CLO 2, CLO 3, CLO 4, CLO 5, CLO 6 **St...",
+                "purpose": "",
                 "type_label": "Assessment",
                 "learning_goals": [
                   "Present a complete prediction-to-outcome comparison, uncertainty analysis, calibration status review, and experimental improvement proposal on a single quad chart slide \u2014 CLO 5",
@@ -2732,7 +2732,7 @@
                 "module_key": "week_5",
                 "module_slug": "e3-week_5",
                 "category": "assessments",
-                "title": "Connecting the Course Arc to AMVF",
+                "title": "ASEN 3501 \u2014 Tier 3 Final Lab Assignment",
                 "slug": "final-lab",
                 "order": 1,
                 "variants": [
@@ -2745,9 +2745,9 @@
                     "summary": "# ASEN 3501 \u2014 Tier 3 Final Lab Assignment ## Paper Experimental Design and V&V Plan **Segment:** E3 \u2014 Experimental Design & V&V Planning **Weeks:** 11\u201315 **CLO Alignment:** CLO 1, CLO 2, CLO 3, CLO 4, CLO 5, CLO 6 **S..."
                   }
                 ],
-                "summary": "Working in groups, students trace a single engineering decision through all three phases of the course \u2014 for example, how sensor selection was constrained in E1 (use whatever is available, document the effects), informed in E2 (analyze the given DAQ configuration and justify its choices), and owned in E3 (select, justify, and specify from scratch). Each group presents their trace to the class, and the instructor maps the progression onto the AMVF flowchart on the board. The goal is for students to see the course as a coherent development of one capability \u2014 disciplined experimental design \u2014 rather than three separate units.",
-                "purpose": "Working in groups, students trace a single engineering decision through all three phases of the course \u2014 for example, how sensor selection was constrained in E1 (use whatever is available, document the effects), informed in E2 (analyze the given DAQ configuration and justify its choices), and owned in E3 (select, justify, and specify from scratch). Each group presents their trace to the class, and the instructor maps the progression onto the AMVF flowchart on the board. The goal is for students to see the course as a coherent development of one capability \u2014 disciplined experimental design \u2014 rather than three separate units.",
-                "type_label": "Discussion / Mapping Session",
+                "summary": "# ASEN 3501 \u2014 Tier 3 Final Lab Assignment ## Paper Experimental Design and V&V Plan **Segment:** E3 \u2014 Experimental Design & V&V Planning **Weeks:** 11\u201315 **CLO Alignment:** CLO 1, CLO 2, CLO 3, CLO 4, CLO 5, CLO 6 **S...",
+                "purpose": "",
+                "type_label": "Assessment",
                 "learning_goals": [
                   "Map each phase of the course \u2014 E1's measurement and uncertainty work, E2's prediction and signal conditioning work, E3's design and V&V planning work \u2014 to the corresponding nodes of the AMVF \u2014 CLO 3",
                   "Describe specifically how they investigated sensors, platforms, methods, or standards beyond the course-provided materials during the E3 design activity, and evaluate what the investigation produced \u2014 CLO 6",

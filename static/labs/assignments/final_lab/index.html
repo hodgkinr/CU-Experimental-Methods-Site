@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tier 3 Final Lab</title>
+  <link rel="stylesheet" href="../../style.css">
+  <script defer src="../../app.js"></script>
+</head>
+<body>
+  
+    
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../../index.html">Aerospace Experimental Methods</a>
+        <nav class="top-nav">
+          <a href="../../index.html">Home</a>
+          <a href="../../syllabus.html">Syllabus</a>
+          <a href="../../schedule.html">Schedule</a>
+          <a class="is-current" href="../../labs.html">Labs</a>
+          <a href="../../results.html">Results</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main class="page-shell">
+      <nav class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <a href="../../labs.html">Labs</a>
+        <span>Tier 3 Final Lab</span>
+      </nav>
+      <section class="hero compact">
+        <p class="eyebrow">E3 — Final Lab</p>
+        <h1>Tier 3 Final Lab</h1>
+        <p class="lead">Open-ended paper experimental design and V&amp;V plan. Students define the experiment, justify instrumentation, quantify expected uncertainty, and defend how the proposed data would inform a predictive model.</p>
+      </section>
+      <section class="content-card markdown-body" style="padding:1.5rem">
+        <h1>ASEN 3501 — Tier 3 Final Lab Assignment</h1>
+<h2>Paper Experimental Design and V&amp;V Plan</h2>
+<p><strong>Segment:</strong> E3 — Experimental Design &amp; V&amp;V Planning <strong>Weeks:</strong> 11–15 <strong>CLO Alignment:</strong> CLO 1, CLO 2, CLO 3, CLO 4, CLO 5, CLO 6 <strong>Structure:</strong> Student-chosen paper design — proposal → instrumentation plan → V&amp;V plan → oral defense → reflection <strong>Assessment:</strong> Written design artifacts + oral defense + peer evaluations + CLO 6 reflection</p>
+<hr>
+<h2>What This Assignment Is</h2>
+<p>The Tier 3 final lab is the culminating assignment of ASEN 3501. Unlike Tier 1 and Tier 2, you will not be assigned a fully specified experiment. You will design one.</p>
+<p>This is a paper design assignment. You are not expected to build and run the experiment during this course. You are expected to produce a technically defensible experimental design and V&amp;V plan: a plan detailed enough that a knowledgeable engineering team could decide whether the experiment is worth building, what hardware it would require, what data it would produce, and whether those data would be capable of informing the predictive model you care about.</p>
+<p>The physical systems will differ across students and groups. One design may involve thermal behavior, another structural vibration, another power measurement, another attitude dynamics, another propulsion or fluids measurement. The equations will differ. The process is the same.</p>
+<p>You will:</p>
+<ul>
+<li>define a predictive model claim or engineering question;</li>
+<li>design an experiment that would produce data relevant to that claim;</li>
+<li>identify variables, controls, confounding factors, and a feasible test matrix;</li>
+<li>select instrumentation and DAQ/signal-conditioning choices;</li>
+<li>predict measurement performance using uncertainty analysis;</li>
+<li>define validation metrics and acceptance criteria before any data would be collected;</li>
+<li>cite standards, handbooks, manufacturer specifications, and prior art;</li>
+<li>investigate at least one method, sensor, or platform beyond the provided course resources;</li>
+<li>defend the design orally to a technical audience.</li>
+</ul>
+<p>This assignment evaluates your process. A polished idea with vague reasoning does not pass. A modest experiment with a clear model, defensible instrumentation, quantified uncertainty, and honest limitations can be excellent.</p>
+<hr>
+<h2>Why This Assignment Exists</h2>
+<p>In Tier 1, you learned to execute and analyze experiments. In Tier 2, you learned to predict before measuring, compare results to models, interpret discrepancy, and propose improvements to an existing experimental setup.</p>
+<p>Tier 3 asks you to take ownership of the step that comes before all of that:</p>
+<p>&gt; What experiment should be run in the first place?</p>
+<p>That question is harder than it sounds. An experiment is not valuable because it produces data. It is valuable because it produces data that can inform a model, reduce uncertainty, expose a limitation, or support an engineering decision. A test engineer has to decide what to measure, how accurately it must be measured, what hardware can do the job, what data patterns would matter, and what conclusion would actually be justified.</p>
+<p>This is also the main CLO 6 demonstration in the course. You must go beyond the methods and instrumentation handed to you by the instructor. That does not mean inventing a capstone-scale project. It means showing independent professional judgment: finding resources, evaluating options, comparing alternatives, and explaining why your choices are appropriate for your experiment.</p>
+<hr>
+<h2>Assignment Overview</h2>
+<h3>Phase 1 — Experimental Design Proposal</h3>
+<p><strong>What you do:</strong> Choose an experiment idea, connect it to a predictive model, state a formal hypothesis, identify variables and confounders, and summarize relevant prior art.</p>
+<p><strong>What you produce:</strong> Preliminary Experimental Design Proposal.</p>
+<p><strong>When:</strong> Week 11.</p>
+<h3>Phase 2 — Instrumentation Justification</h3>
+<p><strong>What you do:</strong> Select sensors, DAQ configuration, signal conditioning, sampling strategy, and at least one beyond-provided hardware or method alternative.</p>
+<p><strong>What you produce:</strong> Instrumentation Justification Report.</p>
+<p><strong>When:</strong> Week 12.</p>
+<h3>Phase 3 — Full V&amp;V Plan</h3>
+<p><strong>What you do:</strong> Assemble the full experiment design into a V&amp;V plan, including system response features, validation metrics, acceptance criteria, prospective uncertainty analysis, calibration-vs-validation distinction, AMVF annotation, and safety/test-plan considerations.</p>
+<p><strong>What you produce:</strong> Full V&amp;V Plan Document.</p>
+<p><strong>When:</strong> Week 13.</p>
+<h3>Phase 4 — Oral Defense and Peer Review</h3>
+<p><strong>What you do:</strong> Defend your experimental design to a technical audience and evaluate other students&#x27; designs using a structured rubric.</p>
+<p><strong>What you produce:</strong> Oral defense presentation and written peer evaluations.</p>
+<p><strong>When:</strong> Week 14.</p>
+<h3>Phase 5 — CLO 6 and Course Reflection</h3>
+<p><strong>What you do:</strong> Explain what you investigated beyond the provided course materials and how your understanding of uncertainty, prediction, and validation changed across the course.</p>
+<p><strong>What you produce:</strong> CLO 6 Reflection and Course Reflection.</p>
+<p><strong>When:</strong> Week 15.</p>
+<hr>
+<h2>Choosing Your Experiment</h2>
+<p>Your experiment must be open-ended enough to require design judgment but bounded enough to support a defensible paper design in the time available.</p>
+<p>A passing experiment idea has:</p>
+<ol>
+<li><strong>A predictive model.</strong> There must be an equation, simulation, scaling law, empirical</li>
+</ol>
+<p>model, or physical argument that predicts something measurable.</p>
+<ol>
+<li><strong>A measurable system response.</strong> You must identify what quantity or feature the</li>
+</ol>
+<p>experiment would measure.</p>
+<ol>
+<li><strong>A validation purpose.</strong> You must explain how the data would inform, challenge, or</li>
+</ol>
+<p>improve the model.</p>
+<ol>
+<li><strong>A feasible measurement path.</strong> You must identify plausible sensors, DAQ needs, and</li>
+</ol>
+<p>test conditions.</p>
+<ol>
+<li><strong>A bounded scope.</strong> The experiment must be designable on paper within this course.</li>
+</ol>
+<p>The course will provide a catalog of available resources and suggested starting points: example physical systems, available lab resources, common sensor types, data acquisition options, standards and handbooks, prior course examples, and approved reference links. You may use these resources directly, adapt them, or propose a different experiment.</p>
+<p>You may use a chatbot or other AI tool to brainstorm experiment ideas, compare sensor options, draft checklists, or identify possible failure modes. You are responsible for every technical claim in your submission. If an AI tool suggests a sensor, equation, standard, or design option, you must verify it using a reliable source before using it as evidence.</p>
+<p>An optional starting prompt is provided in <code>TIER3_ai_assistant_prompt.md</code>. Use it to generate and stress-test ideas, not to produce final assignment prose.</p>
+<hr>
+<h2>Phase 1 — Experimental Design Proposal</h2>
+<h3>Required sections</h3>
+<p><strong>1. Problem statement and intended use</strong> State the engineering question. What model, decision, or design context motivates the experiment? What would the results be used for?</p>
+<p><strong>2. Predictive model</strong> Describe the model your experiment is meant to inform. Include the governing equation, simulation output, empirical relation, or physical reasoning. Identify at least two assumptions in the model and one condition under which each assumption could fail.</p>
+<p><strong>3. Formal hypothesis</strong> State a falsifiable hypothesis. It must specify what you expect the experiment to show, what data would support that expectation, and what data would challenge it.</p>
+<p><strong>4. System response features</strong> Identify the specific quantities, trends, distributions, or time-series features the experiment would measure. Give expected values or ranges where possible.</p>
+<p><strong>5. Variables, controls, and confounders</strong> Identify independent variables, dependent variables, controlled variables, and at least three plausible confounding factors. Explain how the design would control, randomize, block, or document them.</p>
+<p><strong>6. Prior art and standards</strong> Cite ASME V&amp;V 10-2006 and at least one additional relevant standard, handbook, datasheet, technical manual, or prior publication. Annotate each source: what does it contribute to your design?</p>
+<p><strong>7. Initial test matrix</strong> Propose a small, feasible test matrix: conditions, repetitions, and what each condition is intended to reveal. Include replication or repeated measurements where appropriate.</p>
+<hr>
+<h2>Phase 2 — Instrumentation Justification Report</h2>
+<h3>Required sections</h3>
+<p><strong>1. Measurement chain</strong> Draw or describe the full measurement chain from physical quantity to reported data: physical phenomenon → sensor/transducer → signal conditioning → DAQ → processing → reported quantity.</p>
+<p><strong>2. Sensor selection</strong> Select sensors for each primary measurement. For each sensor, cite specifications from a manufacturer datasheet, standard, handbook, or other reliable source. Discuss range, resolution, accuracy, bandwidth, installation effects, environmental sensitivity, and cost or availability where relevant.</p>
+<p><strong>3. DAQ and signal conditioning</strong> Specify sample rate, DAQ range/resolution, channel configuration, filtering or anti-aliasing strategy, gain, grounding/shielding considerations, and synchronization/triggering if needed. Justify sampling rate using expected signal bandwidth and Nyquist reasoning.</p>
+<p><strong>4. Prospective uncertainty analysis</strong> Before the experiment exists, estimate the expected uncertainty in the primary output. Use first-order error propagation where appropriate. Use Monte Carlo simulation when the model is nonlinear, multi-input, or distribution assumptions matter. Identify dominant uncertainty sources.</p>
+<p><strong>5. Sensitivity and adequacy</strong> State whether the proposed measurement chain is sensitive enough to evaluate the acceptance criterion from your design proposal. If not, revise the design or explain why the proposed experiment is not adequate.</p>
+<p><strong>6. Beyond-provided-method investigation</strong> Investigate at least one sensor, measurement method, platform, standard, or analysis approach beyond the provided course catalog. Compare it to your baseline option. Explain whether it improves the design, is unnecessary, is infeasible, or changes your thinking.</p>
+<hr>
+<h2>Phase 3 — Full V&amp;V Plan Document</h2>
+<p>The V&amp;V plan is the primary written deliverable of Tier 3. It should read like a coherent engineering document, not a stack of disconnected homework answers.</p>
+<h3>Required sections</h3>
+<p><strong>1. Executive summary</strong> One page maximum. State the experiment, model, measurement strategy, primary uncertainty result, validation metric, and conclusion on whether the design is adequate for its intended use.</p>
+<p><strong>2. Experiment purpose and intended use</strong> Explain what decision or model question the experiment informs. State what would be learned from running it.</p>
+<p><strong>3. Predictive model and assumptions</strong> Present the model, assumptions, expected outputs, and likely model-form limitations.</p>
+<p><strong>4. Experimental design</strong> Describe variables, controls, confounders, test matrix, replication, randomization or blocking where applicable, and planned operating conditions.</p>
+<p><strong>5. Instrumentation and DAQ plan</strong> Summarize sensors, DAQ configuration, signal conditioning, sampling, filtering, and installation considerations.</p>
+<p><strong>6. Calibration vs. validation</strong> State what would need to be calibrated, how calibration status would be documented, and which parts of the experiment are validation activities rather than calibration activities.</p>
+<p><strong>7. Uncertainty analysis</strong> Present the prospective uncertainty analysis. Include equations, assumptions, dominant sources, MATLAB outputs or plots, and interpretation. Do not report uncertainty without explaining what it means.</p>
+<p><strong>8. Validation metrics and acceptance criteria</strong> Define the numerical metric(s) used to assess model-experiment agreement. State acceptance criteria before data collection. Justify why those criteria are meaningful for the intended use.</p>
+<p><strong>9. Expected residuals and risk assessment</strong> Describe what data would look like if the model is adequate. Then describe at least two specific anomalous data patterns that would suggest model-form error, measurement error, poor calibration, aliasing/noise, or uncontrolled confounding.</p>
+<p><strong>10. Experimentally informed model update</strong> State how the experimental results would be used to update the model. What parameter, assumption, boundary condition, or functional form might change? What data pattern would trigger that change?</p>
+<p><strong>11. AMVF annotation</strong> Map your design to the Aerospace Modeling &amp; Validation Framework. Show how the model, experiment, uncertainty analysis, validation metric, and model update fit together.</p>
+<p><strong>12. Safety, resources, and feasibility</strong> Identify hazards, required equipment, approximate cost or availability, time requirements, and practical constraints. A paper design can still be infeasible; identify those limits honestly.</p>
+<p><strong>13. References</strong> Cite all standards, handbooks, datasheets, papers, manuals, and AI-assisted resources used. AI tools are not authoritative sources. Cite them only as process aids if required by course policy; verify technical claims elsewhere.</p>
+<hr>
+<h2>Phase 4 — Oral Defense</h2>
+<p>Your oral defense is a technical defense of your design, not a project pitch.</p>
+<h3>Presentation format</h3>
+<p>See Canvas for exact timing. Expect approximately 10–12 minutes of presentation followed by Q&amp;A.</p>
+<p>Your presentation must answer:</p>
+<ol>
+<li>What model or decision does this experiment inform?</li>
+<li>What would be measured, and why those quantities?</li>
+<li>Why are the selected sensors and DAQ choices adequate?</li>
+<li>What uncertainty do you expect, and what dominates it?</li>
+<li>What validation metric and acceptance criterion would be used?</li>
+<li>What data pattern would tell you the model needs to change?</li>
+<li>What did you investigate beyond the provided course resources?</li>
+</ol>
+<h3>Q&amp;A expectation</h3>
+<p>Every team member must be able to defend the design. You may use notes, but you may not read answers directly from the written plan. The point of Q&amp;A is to test whether you understand the reasoning behind your design choices.</p>
+<hr>
+<h2>Phase 5 — Reflections</h2>
+<h3>CLO 6 Reflection</h3>
+<p>Describe the method, sensor, platform, standard, or resource you investigated beyond the provided course materials. Your reflection must answer:</p>
+<ol>
+<li>What did you investigate and why?</li>
+<li>What sources did you consult?</li>
+<li>What did you find?</li>
+<li>Did it change your design? If not, did it strengthen your confidence in the original</li>
+</ol>
+<p>choice?</p>
+<ol>
+<li>What does this investigation tell you about how you will approach unfamiliar measurement</li>
+</ol>
+<p>problems in professional practice?</p>
+<h3>Course Reflection</h3>
+<p>Write a short reflection on how your understanding changed across the course. Address:</p>
+<ul>
+<li>uncertainty: what you misunderstood early and understand now;</li>
+<li>prediction: how committing before data changed your reasoning;</li>
+<li>validation: what it means to validate or evaluate a model;</li>
+<li>experimental design: what you would do differently if you were starting Week 1 again.</li>
+</ul>
+<hr>
+<h2>Submission Format</h2>
+<p>Submit the following, according to Canvas deadlines:</p>
+<ol>
+<li>Experimental Design Proposal</li>
+<li>Instrumentation Justification Report</li>
+<li>Full V&amp;V Plan Document</li>
+<li>Oral Defense Slides</li>
+<li>Written Peer Evaluations</li>
+<li>CLO 6 Reflection</li>
+<li>Course Reflection</li>
+</ol>
+<p>Unless otherwise specified, written documents should be submitted as compiled PDFs with source files included when equations, figures, or MATLAB outputs are used. MATLAB scripts used for uncertainty calculations must be submitted with the relevant deliverable.</p>
+<hr>
+<h2>What Passing Work Looks Like</h2>
+<p>Passing work is specific, traceable, and honest.</p>
+<p>It does not need to be expensive, flashy, or complicated. It does need to show that you can design an experiment by reasoning from the model to the measurement chain to the uncertainty to the validation claim.</p>
+<p>A weak Tier 3 project says: &quot;We would use better sensors and compare to theory.&quot;</p>
+<p>A passing Tier 3 project says: &quot;We need to distinguish a 6% change in the predicted response. With the proposed sensor and DAQ chain, the propagated uncertainty in the primary response is approximately 2.1%, dominated by sensor bias. That is small enough to evaluate the acceptance criterion. If residuals show a monotonic trend with operating condition, we would interpret that as model-form error rather than random measurement noise and revise the assumed boundary condition.&quot;</p>
+<p>That is the level of reasoning this assignment is designed to assess.</p>
+<hr>
+<p><em>ASEN 3501 — Tier 3 Final Lab Assignment | E3 Weeks 11–15</em></p>
+      </section>
+      <section class="content-card markdown-body" style="padding:1.5rem; margin-top:1.5rem">
+        <hr style="margin-bottom:1.5rem">
+        <h1>Tier 3 Final Lab Assignment — Frequently Asked Questions</h1>
+<h2>Is this a real lab or a paper design?</h2>
+<p>It is a paper design. You are not expected to build and run the experiment during ASEN</p>
+<ol>
+<li>You are expected to design it with enough technical detail that someone could judge</li>
+</ol>
+<p>whether it is worth building.</p>
+<h2>Do I get to choose my own experiment?</h2>
+<p>Yes, within constraints. Your experiment must connect to a predictive model, produce measurable data, have a plausible instrumentation path, and be narrow enough to design well in the available time. The instructor may ask you to narrow, revise, or replace an idea that is too broad, unsafe, too expensive, or not tied to a model.</p>
+<h2>Can two groups choose similar experiments?</h2>
+<p>Yes. Similar physical systems are allowed if the model question, instrumentation strategy, or validation plan differs meaningfully. The process is what is being assessed.</p>
+<h2>Do I have to buy hardware?</h2>
+<p>No. You may investigate hardware and include cost or availability in your feasibility discussion, but purchase is not required. If you already own components or want to buy low-cost parts for personal learning, keep them; they may be useful later in senior design or independent projects.</p>
+<h2>What counts as &quot;beyond provided&quot; for CLO 6?</h2>
+<p>Examples include a sensor not listed in the course catalog, a measurement method from a paper or handbook, a relevant engineering standard, a manufacturer application note, a different DAQ platform, a calibration method, or an analysis approach not directly handed to you. The key is that you found it, evaluated it, and explained whether it improves your design.</p>
+<h2>Can I use a chatbot to brainstorm ideas?</h2>
+<p>Yes. You may use AI tools to brainstorm experiment ideas, generate checklists, compare options, or identify possible failure modes. You are responsible for verifying technical claims using authoritative sources. Do not cite a chatbot as evidence that a sensor works, a standard exists, or an equation is valid.</p>
+<h2>What should I ask a chatbot?</h2>
+<p>Ask for alternatives, not answers. A useful prompt will ask the chatbot to generate possible experiment ideas, list assumptions, identify measurable quantities, suggest candidate sensors, and name failure modes. Then you verify and choose. A polished chatbot response that you cannot defend will hurt you in the oral defense.</p>
+<p>Use <code>TIER3_ai_assistant_prompt.md</code> as a starting point. It is designed to make the chatbot act like a design coach rather than a ghostwriter.</p>
+<h2>Does my experiment need to be aerospace-specific?</h2>
+<p>It should be aerospace-relevant. That can mean the system itself is aerospace hardware, or the measurement problem is common in aerospace contexts: thermal behavior, vibration, power, thrust, flow, pressure, attitude dynamics, structural response, materials testing, controls, or environmental effects.</p>
+<h2>What if my experiment is too simple?</h2>
+<p>Simple is fine if the design reasoning is strong. A simple thermal or power experiment can be excellent if the model, instrumentation, uncertainty analysis, and validation logic are clear. A complicated experiment with vague measurement reasoning will not pass.</p>
+<h2>What if my experiment is too ambitious?</h2>
+<p>Narrow it. You do not need to design an entire test campaign. Choose one model claim, one or two primary response features, and a feasible measurement path.</p>
+<h2>Do I need to use ASME V&amp;V 10-2006?</h2>
+<p>Yes. You must cite ASME V&amp;V 10-2006 and explain how it informs your validation thinking. You also need at least one additional relevant standard, handbook, datasheet, manual, or publication.</p>
+<h2>Do I need to do uncertainty analysis if no data are collected?</h2>
+<p>Yes. This is prospective uncertainty analysis. You estimate how well the proposed measurement chain would perform before the experiment is built. This is one of the main skills of the assignment.</p>
+<h2>Do I need a Monte Carlo simulation?</h2>
+<p>Use Monte Carlo when it is appropriate: nonlinear equations, multiple uncertain inputs, non-normal distributions, or a need to visualize the output distribution. If first-order propagation is sufficient, explain why.</p>
+<h2>What does &quot;validation metric&quot; mean in a paper design?</h2>
+<p>It is the numerical rule you would use to compare the future data to the model. For example: percent error in a primary response, normalized residuals, RMS error across a time series, slope/intercept agreement in a regression, or whether a measured response falls within a predefined uncertainty bound.</p>
+<h2>What if I find that my proposed experiment would not be sensitive enough?</h2>
+<p>That can be a strong result if you show it clearly. You should then revise the design or state exactly what would need to change: better sensor, different range, different test condition, more repetitions, different response feature, or a narrower validation claim.</p>
+<h2>How is this different from Tier 2&#x27;s improvement proposal?</h2>
+<p>Tier 2 asks you to improve an experiment that was already given to you. Tier 3 asks you to design the experiment from the start. You are responsible for the model question, the measurement chain, the uncertainty, and the validation plan.</p>
+<h2>What is the most common way to do poorly on this assignment?</h2>
+<p>Choosing an interesting topic but not turning it into a measurable, testable design. The assignment is not asking for a project idea. It is asking for a defensible experimental design and V&amp;V plan.</p>
+<h2>What is the most important habit to carry from Tier 1 and Tier 2?</h2>
+<p>Commit before measuring. Define what data should look like, what agreement means, what uncertainty you expect, and what data pattern would change your mind before the experiment is run.</p>
+<hr>
+<p><em>ASEN 3501 — Tier 3 FAQ | E3 Weeks 11–15</em></p>
+      </section>
+      <section class="content-card markdown-body" style="padding:1.5rem; margin-top:1.5rem">
+        <hr style="margin-bottom:1.5rem">
+        <h1>ASEN 3501 — Tier 3 Final Lab: Student-Facing Rubric</h1>
+<h2>Paper Experimental Design and V&amp;V Plan</h2>
+<p><strong>Assessment type:</strong> Design proposal + instrumentation report + full V&amp;V plan + oral defense + peer evaluations + reflections <strong>Overall outcome:</strong> Pass/fail for each major component. All components must be passed to satisfy the Tier 3 final lab requirement.</p>
+<hr>
+<h2>Grading Philosophy</h2>
+<p>Tier 3 is graded on the quality of your experimental design process. You are not graded on whether the experiment is expensive, flashy, or guaranteed to work. You are graded on whether your reasoning is specific, evidence-based, quantitative where needed, and honest about limitations.</p>
+<p>The central question is:</p>
+<p>&gt; If someone built this experiment, would it produce data capable of informing the model &gt; claim you identified?</p>
+<hr>
+<h2>Component 1 — Experimental Design Proposal</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Criterion</th><th>Minimum to pass</th><th>Evidence of excellence</th></tr></thead><tbody><tr><td>Problem statement and intended use</td><td>States what engineering question or model claim the experiment addresses and why it matters.</td><td>Intended use is specific enough to shape the acceptance criterion and instrumentation choices.</td></tr><tr><td>Predictive model</td><td>Identifies a model, equation, simulation, scaling law, or physical argument and at least two assumptions.</td><td>Assumptions are connected to specific data patterns that would reveal model-form limitations.</td></tr><tr><td>Formal hypothesis</td><td>States a falsifiable hypothesis with expected outcome and challenge condition.</td><td>Hypothesis includes quantitative expected values or ranges and explains what result would change the design conclusion.</td></tr><tr><td>System response features</td><td>Identifies what quantities, trends, distributions, or time-series features would be measured.</td><td>Response features are chosen because they reveal something specific about the model, not merely because they are easy to measure.</td></tr><tr><td>Variables and confounders</td><td>Identifies independent/dependent variables, controls, and at least three confounding factors.</td><td>Includes a thoughtful control, randomization, blocking, or documentation strategy for each major confounder.</td></tr><tr><td>Prior art and standards</td><td>Cites ASME V&amp;V 10-2006 and at least one additional relevant source.</td><td>Sources are annotated with design implications, not just listed.</td></tr><tr><td>Initial test matrix</td><td>Proposes feasible conditions and repetitions.</td><td>Test matrix is minimal but information-rich; each condition has a stated purpose.</td></tr></tbody></table></div>
+<hr>
+<h2>Component 2 — Instrumentation Justification Report</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Criterion</th><th>Minimum to pass</th><th>Evidence of excellence</th></tr></thead><tbody><tr><td>Measurement chain</td><td>Describes the chain from physical quantity to reported result.</td><td>Identifies where bias, noise, installation effects, or processing choices enter the chain.</td></tr><tr><td>Sensor selection</td><td>Selects plausible sensors and cites specifications.</td><td>Sensor choices are justified against range, accuracy, bandwidth, installation, environment, and intended use.</td></tr><tr><td>DAQ and signal conditioning</td><td>Specifies sample rate, DAQ range/resolution, channel configuration, and filtering or anti-aliasing approach.</td><td>Nyquist reasoning, quantization, filter cutoff, and noise mitigation are connected to expected signal bandwidth and validation needs.</td></tr><tr><td>Prospective uncertainty analysis</td><td>Estimates uncertainty in the primary output and identifies dominant sources.</td><td>Uses the appropriate method, compares alternatives where useful, and interprets whether uncertainty is acceptable.</td></tr><tr><td>Sensitivity and adequacy</td><td>States whether the design can evaluate the acceptance criterion.</td><td>If inadequate, revises the design or narrows the claim with clear reasoning.</td></tr><tr><td>Beyond-provided-method investigation</td><td>Evaluates at least one method, sensor, platform, standard, or resource beyond the course catalog.</td><td>Compares the alternative technically and explains whether it improves the design, is infeasible, or changes the design rationale.</td></tr></tbody></table></div>
+<hr>
+<h2>Component 3 — Full V&amp;V Plan Document</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Section</th><th>Minimum to pass</th><th>Evidence of excellence</th></tr></thead><tbody><tr><td>Executive summary</td><td>Summarizes experiment, model, measurement plan, uncertainty result, validation metric, and adequacy conclusion.</td><td>A technical reader can understand the design decision from this page alone.</td></tr><tr><td>Purpose and intended use</td><td>Explains what the experiment informs.</td><td>Intended use constrains the validation metric, acceptance criterion, and required uncertainty.</td></tr><tr><td>Model and assumptions</td><td>Presents model and assumptions clearly.</td><td>Anticipates which assumptions are most likely to fail and how failure would appear in data.</td></tr><tr><td>Experimental design</td><td>Defines variables, controls, confounders, test matrix, and planned conditions.</td><td>Design choices reveal careful tradeoffs between feasibility and information value.</td></tr><tr><td>Instrumentation and DAQ plan</td><td>Summarizes measurement hardware and signal chain.</td><td>Choices are internally consistent and traceable to sensor specs and expected signals.</td></tr><tr><td>Calibration vs. validation</td><td>Distinguishes calibration activities from validation activities.</td><td>Explains how calibration status would affect the validation conclusion.</td></tr><tr><td>Uncertainty analysis</td><td>Shows equations, MATLAB outputs or plots, dominant sources, and interpretation.</td><td>Connects uncertainty directly to whether the validation claim can be evaluated.</td></tr><tr><td>Validation metrics and criteria</td><td>Defines numerical metric(s) and pre-data acceptance criteria.</td><td>Criteria are justified by intended use rather than chosen arbitrarily.</td></tr><tr><td>Residuals and risk assessment</td><td>Describes expected data and at least two anomalous patterns.</td><td>Anomalies are specific enough that a test team would know what to investigate first.</td></tr><tr><td>Experimentally informed model update</td><td>States how results would update the model.</td><td>Names specific parameters, assumptions, boundary conditions, or model forms that data could revise.</td></tr><tr><td>AMVF annotation</td><td>Maps the design to AMVF nodes.</td><td>Shows a coherent chain from model to experiment to uncertainty to validation to model update.</td></tr><tr><td>Safety, resources, and feasibility</td><td>Identifies hazards, resources, cost/availability, time, and constraints.</td><td>Feasibility discussion is honest and proposes realistic mitigations or scope reductions.</td></tr><tr><td>References</td><td>Provides complete citations for technical sources.</td><td>Uses standards, datasheets, handbooks, and literature as evidence rather than decoration.</td></tr></tbody></table></div>
+<hr>
+<h2>Component 4 — Oral Defense</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Criterion</th><th>Minimum to pass</th><th>Evidence of excellence</th></tr></thead><tbody><tr><td>Design overview</td><td>Explains model, experiment, measurement quantities, and intended use.</td><td>Audience understands why this experiment is worth running.</td></tr><tr><td>Instrumentation defense</td><td>Defends sensor and DAQ choices.</td><td>Can explain tradeoffs and why rejected options were not chosen.</td></tr><tr><td>Uncertainty defense</td><td>Explains dominant uncertainty sources and adequacy.</td><td>Can estimate how design changes would affect uncertainty.</td></tr><tr><td>Validation logic</td><td>Explains metric, acceptance criterion, and model-update pathway.</td><td>Can answer what data would change the model and what data would not.</td></tr><tr><td>Q&amp;A</td><td>Responds substantively to questions without relying on memorized text.</td><td>Answers reveal command of the reasoning, not just the written product.</td></tr><tr><td>Visual communication</td><td>Slides are readable, technical, and focused.</td><td>Figures and diagrams carry the argument with minimal clutter.</td></tr></tbody></table></div>
+<hr>
+<h2>Component 5 — Peer Evaluations</h2>
+<p>Peer evaluations are graded on quality. A useful critique is specific, evidence-based, and actionable.</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Criterion</th><th>Minimum to pass</th><th>Evidence of excellence</th></tr></thead><tbody><tr><td>Strength</td><td>Names a specific strength from the presentation.</td><td>Explains why the strength improves the design&#x27;s credibility.</td></tr><tr><td>Weakness</td><td>Names a specific weakness or unresolved risk.</td><td>Connects the weakness to model, instrumentation, uncertainty, validation, or feasibility.</td></tr><tr><td>Improvement</td><td>Gives one concrete recommendation.</td><td>Recommendation is technically actionable and specific to that design.</td></tr></tbody></table></div>
+<p>Generic feedback such as &quot;good presentation&quot; or &quot;use better sensors&quot; does not pass.</p>
+<hr>
+<h2>Component 6 — Reflections</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Reflection</th><th>Minimum to pass</th><th>Evidence of excellence</th></tr></thead><tbody><tr><td>CLO 6 Reflection</td><td>Describes what was investigated beyond the provided course resources and what was learned.</td><td>Shows genuine technical comparison and connects the investigation to professional growth.</td></tr><tr><td>Course Reflection</td><td>Explains how understanding of uncertainty, prediction, validation, and design changed across the course.</td><td>Uses concrete examples from E1, E2, and E3 rather than broad statements.</td></tr></tbody></table></div>
+<hr>
+<h2>Overall Pass/Fail Summary</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Component</th><th>Pass condition</th></tr></thead><tbody><tr><td>Design Proposal</td><td>Clear model-linked experiment, hypothesis, variables, confounders, prior art, and initial test matrix.</td></tr><tr><td>Instrumentation Report</td><td>Defensible sensors, DAQ/signal conditioning, uncertainty prediction, adequacy assessment, and beyond-provided investigation.</td></tr><tr><td>Full V&amp;V Plan</td><td>Complete, coherent design document connecting model, measurement, uncertainty, validation, AMVF, and feasibility.</td></tr><tr><td>Oral Defense</td><td>Student or team can defend the design choices under questioning.</td></tr><tr><td>Peer Evaluations</td><td>Specific, evidence-based, actionable feedback.</td></tr><tr><td>Reflections</td><td>Explicit CLO 6 evidence and course-level learning synthesis.</td></tr></tbody></table></div>
+<hr>
+<p><em>ASEN 3501 — Tier 3 Student Rubric | E3 Weeks 11–15</em></p>
+      </section>
+      <section class="content-card markdown-body" style="padding:1.5rem; margin-top:1.5rem">
+        <hr style="margin-bottom:1.5rem">
+        <h1>Tier 3 Final Lab — AI Brainstorming Assistant Prompt</h1>
+<p>Use this prompt with a frontier AI model when you are starting the Tier 3 final lab and need help developing a feasible paper experimental design idea.</p>
+<p>The goal is not to have the AI write your assignment. The goal is to use AI as a design partner that helps you generate, compare, narrow, and stress-test possible experiment ideas. You are responsible for verifying every technical claim, source, sensor specification, equation, and standard before using it in your submitted work.</p>
+<hr>
+<h2>Prompt To Copy Into The AI Tool</h2>
+<pre><code>
+You are helping me brainstorm and refine a paper experimental design for ASEN 3501:
+Aerospace Experimental Methods.
+
+Your role is to act as a technical design coach, not as someone who writes the assignment
+for me. Help me come up with feasible experiment ideas, compare alternatives, identify
+what I would need to measure, and check whether each idea can satisfy the assignment.
+Do not invent sources, standards, sensor specifications, or equations. If you are unsure,
+say so and tell me what I need to verify.
+
+COURSE CONTEXT
+
+This is the Tier 3 final lab for an aerospace experimental methods course. It is a paper
+design assignment. I am not expected to build and run the experiment during the course.
+I am expected to design a technically defensible experiment and V&amp;V plan.
+
+The assignment evaluates my experimental design process. The physical experiment can be
+open-ended, but it must be bounded enough to complete in the course timeframe.
+
+The experiment should be aerospace-relevant. That can include thermal behavior, vibration,
+power, thrust, flow, pressure, attitude dynamics, structural response, materials testing,
+controls, environmental effects, or another aerospace-adjacent measurement problem.
+
+The experiment must connect to a predictive model. The model can be an equation,
+simulation, scaling law, empirical relation, or physical argument that predicts something
+measurable.
+
+COURSE LEARNING OUTCOMES
+
+The experiment design should help me demonstrate these course outcomes:
+
+1. Design and conduct aerospace experiments by applying measurement fundamentals,
+ instrumentation principles, and best practices in small team environments.
+2. Apply statistical methods and uncertainty analysis to quantify experimental error and
+ establish confidence in results.
+3. Integrate theoretical models with experimental data to validate and evaluate aerospace
+ system behavior.
+4. Implement signal conditioning, sampling, and data acquisition techniques to ensure
+ accurate experimental measurements.
+5. Communicate experimental results effectively through technical reports and presentations,
+ with clear description of methods, results, and limitations.
+6. Identify, evaluate, and create experimental methods or instrumentation beyond those
+ provided by the instructor to foster independent professional growth.
+
+ASSIGNMENT REQUIREMENTS
+
+A good Tier 3 idea must include:
+
+- a predictive model claim or engineering question;
+- a measurable system response;
+- a validation purpose: how the data would inform, challenge, or improve the model;
+- a formal falsifiable hypothesis;
+- independent variables, dependent variables, controlled variables, and confounding factors;
+- a feasible test matrix with conditions and repetitions;
+- a plausible measurement chain from physical quantity to reported result;
+- sensor choices with range, resolution, accuracy, bandwidth, installation effects, and
+ environmental concerns where relevant;
+- DAQ and signal-conditioning choices: sampling rate, DAQ range/resolution, filtering or
+ anti-aliasing strategy, gain, grounding/shielding, synchronization/triggering if needed;
+- prospective uncertainty analysis before data collection;
+- validation metrics and acceptance criteria defined before data collection;
+- calibration-vs-validation distinction;
+- at least one standard, handbook, datasheet, manual, or prior publication beyond the
+ provided course materials;
+- at least one &quot;beyond-provided&quot; method, sensor, platform, standard, or analysis approach
+ that I independently investigate and evaluate;
+- safety, resource, cost, and feasibility considerations.
+
+IMPORTANT BOUNDARIES
+
+- This is a paper design, not a build-and-test assignment.
+- Keep ideas feasible for a junior/senior undergraduate aerospace lab course.
+- Avoid ideas that require extremely expensive equipment, flight testing, hazardous
+ operations, proprietary data, animal/human subjects, or months of fabrication.
+- Prefer ideas that can be described with a simple but meaningful physical model and a
+ measurable response.
+- Do not make the project larger just to make it sound impressive.
+- Do not give me final prose to submit. Ask me questions, offer options, and help me
+ reason through tradeoffs.
+
+WHAT I KNOW SO FAR
+
+My interests, available resources, or starting idea are:
+[PASTE YOUR INTERESTS, AVAILABLE HARDWARE, LAB RESOURCE CATALOG ITEMS, OR INITIAL IDEA HERE]
+
+If I have no idea yet, start from broad aerospace measurement domains and help me choose.
+
+TASK
+
+First, ask me up to five clarifying questions that would help narrow the experiment idea.
+If I do not know the answer to a question, give me reasonable options to choose from.
+
+Then generate 5 candidate paper-design experiment ideas. For each idea, give:
+
+1. Experiment title
+2. Aerospace relevance
+3. Predictive model or model claim
+4. Primary measurable response feature
+5. Candidate sensors and measurement chain
+6. DAQ/sampling/signal-conditioning concerns
+7. Main uncertainty sources
+8. Possible validation metric and acceptance criterion
+9. Confounding factors or model-form risks
+10. One beyond-provided method, sensor, standard, or resource I could investigate
+11. Why the idea is feasible or risky for this assignment
+
+After listing the 5 ideas, rank them using these criteria:
+
+- model clarity;
+- measurement feasibility;
+- uncertainty analysis feasibility;
+- ability to demonstrate CLO 4 through DAQ/signal-conditioning choices;
+- ability to demonstrate CLO 6 through independent extension;
+- scope control for the course timeframe.
+
+Then recommend the top 2 ideas and explain why.
+
+Finally, for the strongest idea, produce a &quot;next-step design worksheet&quot; with blanks I can
+fill in:
+
+- problem statement;
+- intended use;
+- predictive model;
+- hypothesis;
+- system response feature;
+- independent variable;
+- dependent variable;
+- controlled variables;
+- confounding factors;
+- proposed test matrix;
+- sensor choices;
+- DAQ/sampling plan;
+- signal conditioning plan;
+- prospective uncertainty analysis plan;
+- validation metric;
+- acceptance criterion;
+- calibration needs;
+- possible model-update pathway;
+- beyond-provided investigation;
+- safety and feasibility concerns;
+- sources I need to verify.
+
+Throughout the conversation, challenge me when my idea is too broad, not measurable, not
+tied to a model, missing uncertainty logic, or not feasible in the course timeframe.
+</code></pre>
+<hr>
+<h2>Follow-Up Prompts</h2>
+<p>Use these after the first response if you need to refine the idea.</p>
+<h3>Narrow An Overbroad Idea</h3>
+<pre><code>
+This idea is too broad. Help me narrow it to one model claim, one or two measurable response
+features, and a test matrix that could be defended as a paper design in ASEN 3501.
+Give me three narrowed versions and compare them.
+</code></pre>
+<h3>Check Whether The Idea Fits The Assignment</h3>
+<pre><code>
+Evaluate my current experiment idea against the Tier 3 assignment requirements. Make a
+two-column table: requirement and whether my idea satisfies it. For anything weak or
+missing, suggest a specific fix.
+
+Here is my idea:
+[PASTE IDEA]
+</code></pre>
+<h3>Strengthen The Model Link</h3>
+<pre><code>
+My experiment idea is interesting, but I am not sure the model connection is strong enough.
+Help me identify possible predictive models, assumptions, measurable response features,
+and data patterns that would challenge the model.
+
+Here is my idea:
+[PASTE IDEA]
+</code></pre>
+<h3>Strengthen The Measurement Chain</h3>
+<pre><code>
+Help me build the measurement chain for this paper experiment. Identify candidate sensors,
+DAQ needs, sampling rate logic, filtering or anti-aliasing concerns, noise sources,
+installation effects, and calibration needs. Flag anything I must verify from datasheets
+or standards.
+
+Here is my idea:
+[PASTE IDEA]
+</code></pre>
+<h3>Strengthen The Uncertainty Analysis</h3>
+<pre><code>
+Help me plan the prospective uncertainty analysis for this experiment. Identify input
+quantities, likely uncertainty sources, which sources may dominate, whether first-order
+propagation is enough, and whether Monte Carlo would be useful. Do not invent numeric
+sensor specifications; tell me what specs I need to look up.
+
+Here is my idea:
+[PASTE IDEA]
+</code></pre>
+<h3>Prepare For Oral Defense</h3>
+<pre><code>
+Act as a skeptical but fair instructor. Ask me 10 oral-defense questions about my Tier 3
+experimental design. Cover model choice, intended use, sensor selection, DAQ/sampling,
+uncertainty, validation metric, calibration-vs-validation, residual patterns, feasibility,
+and my beyond-provided investigation. Ask one question at a time and wait for my answer.
+</code></pre>
+<hr>
+<h2>What To Watch For In AI Responses</h2>
+<p>Do not trust an AI response just because it is fluent. Watch for:</p>
+<ul>
+<li>nonexistent standards or incorrect standard names;</li>
+<li>sensor specifications with no source;</li>
+<li>equations applied outside their assumptions;</li>
+<li>experiments that sound exciting but have no measurable response;</li>
+<li>validation criteria chosen because they sound reasonable rather than because they match</li>
+</ul>
+<p>intended use;</p>
+<ul>
+<li>DAQ and sampling plans that mention Nyquist without estimating signal bandwidth;</li>
+<li>uncertainty analysis that reports numbers without explaining adequacy;</li>
+<li>&quot;better sensor&quot; recommendations without range, accuracy, bandwidth, installation, or</li>
+</ul>
+<p>calibration comparison;</p>
+<ul>
+<li>safety and feasibility sections that read like generic boilerplate.</li>
+</ul>
+<p>The AI can help you generate options. You have to do the engineering judgment.</p>
+<hr>
+<p><em>ASEN 3501 — Tier 3 AI Assistant Prompt | E3 Weeks 11–15</em></p>
+      </section>
+    </main>
+    
+    <footer class="site-footer">
+      <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+    </footer>
+    
+    
+  
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-assignment-final_lab", "title": "Tier 3 Final Lab", "url": "labs/assignments/final_lab/index.html", "text": "# ASEN 3501 \u2014 Tier 3 Final Lab Assignment\n## Paper Experimental Design and V&V Plan\n\n**Segment:** E3 \u2014 Experimental Design & V&V Planning\n**Weeks:** 11\u201315\n**CLO Alignment:** CLO 1, CLO 2, CLO 3, CLO 4, CLO 5, CLO 6\n**Structure:** Student-chosen paper design \u2014 proposal \u2192 instrumentation plan \u2192 V&V plan \u2192 oral defense \u2192 reflection\n**Assessment:** Written design artifacts + oral defense + peer evaluations + CLO 6 reflection\n\n---\n\n## What This Assignment Is\n\nThe Tier 3 final lab is the culminating assignment of ASEN 3501. Unlike Tier 1 and Tier 2,\nyou will not be assigned a fully specified experiment. You will design one.\n\nThis is a paper design assignment. You are not expected to build and run the experiment\nduring this course. You are expected to produce a technically defensible experimental\ndesign and V&V plan: a plan detailed enough that a knowledgeable engineering team could\ndecide whether the experiment is worth building, what hardware it would require, what\ndata it would produce, and whether those data would be capable of informing the predictive\nmodel you care about.\n\nThe physical systems will differ across students and groups. One design may involve\nthermal behavior, another structural vibration, another power measurement, another\nattitude dynamics, another propulsion or fluids measurement. The equations will differ.\nThe process is the same.\n\nYou will:\n\n- define a predictive model claim or engineering question;\n- design an experiment that would produce data relevant to that claim;\n- identify variables, controls, confounding factors, and a feasible test matrix;\n- select instrumentation and DAQ/signal-conditioning choices;\n- predict measurement performance using uncertainty analysis;\n- define validation metrics and acceptance criteria before any data would be collected;\n- cite standards, handbooks, manufacturer specifications, and prior art;\n- investigate at least one method, sensor, or platform beyond the provided course resources;\n- defend the design orally to a technical audience.\n\nThis assignment evaluates your process. A polished idea with vague reasoning does not pass.\nA modest experiment with a clear model, defensible instrumentation, quantified uncertainty,\nand honest limitations can be excellent.\n\n---\n\n## Why This Assignment Exists\n\nIn Tier 1, you learned to execute and analyze experiments. In Tier 2, you learned to predict\nbefore measuring, compare results to models, interpret discrepancy, and propose improvements\nto an existing experimental setup.\n\nTier 3 asks you to take ownership of the step that comes before all of that:\n\n> What experiment should be run in the first place?\n\nThat question is harder than it sounds. An experiment is not valuable because it produces\ndata. It is valuable because it produces data that can inform a model, reduce uncertainty,\nexpose a limitation, or support an engineering decision. A test engineer has to decide\nwhat to measure, how accurately it must be measured, what hardware can do the job, what\ndata patterns would matter, and what conclusion would actually be justified.\n\nThis is also the main CLO 6 demonstration in the course. You must go beyond the methods\nand instrumentation handed to you by the instructor. That does not mean inventing a\ncapstone-scale project. It means showing independent professional judgment: finding\nresources, evaluating options, comparing alternatives, and explaining why your choices\nare appropriate for your experiment.\n\n---\n\n## Assignment Overview\n\n### Phase 1 \u2014 Experimental Design Proposal\n\n**What you do:** Choose an experiment idea, connect it to a predictive model, state a\nformal hypothesis, identify variables and confounders, and summarize relevant prior art.\n\n**What you produce:** Preliminary Experimental Design Proposal.\n\n**When:** Week 11.\n\n### Phase 2 \u2014 Instrumentation Justification\n\n**What you do:** Select sensors, DAQ configuration, signal conditioning, sampling strategy,\nand at least one beyond-provided hardware or method alternative.\n\n**What you produce:** Instrumentation Justification Report.\n\n**When:** Week 12.\n\n### Phase 3 \u2014 Full V&V Plan\n\n**What you do:** Assemble the full experiment design into a V&V plan, including system\nresponse features, validation metrics, acceptance criteria, prospective uncertainty\nanalysis, calibration-vs-validation distinction, AMVF annotation, and safety/test-plan\nconsiderations.\n\n**What you produce:** Full V&V Plan Document.\n\n**When:** Week 13.\n\n### Phase 4 \u2014 Oral Defense and Peer Review\n\n**What you do:** Defend your experimental design to a technical audience and evaluate\nother students' designs using a structured rubric.\n\n**What you produce:** Oral defense presentation and written peer evaluations.\n\n**When:** Week 14.\n\n### Phase 5 \u2014 CLO 6 and Course Reflection\n\n**What you do:** Explain what you investigated beyond the provided course materials and\nhow your understanding of uncertainty, prediction, and validation changed across the course.\n\n**What you produce:** CLO 6 Reflection and Course Reflection.\n\n**When:** Week 15.\n\n---\n\n## Choosing Your Experiment\n\nYour experiment must be open-ended enough to require design judgment but bounded enough\nto support a defensible paper design in the time available.\n\nA passing experiment idea has:\n\n1. **A predictive model.** There must be an equation, simulation, scaling law, empirical\n model, or physical argument that predicts something measurable.\n2. **A measurable system response.** You must identify what quantity or feature the\n experiment would measure.\n3. **A validation purpose.** You must explain how the data would inform, challenge, or\n improve the model.\n4. **A feasible measurement path.** You must identify plausible sensors, DAQ needs, and\n test conditions.\n5. **A bounded scope.** The experiment must be designable on paper within this course.\n\nThe course will provide a catalog of available resources and suggested starting points:\nexample physical systems, available lab resources, common sensor types, data acquisition\noptions, standards and handbooks, prior course examples, and approved reference links.\nYou may use these resources directly, adapt them, or propose a different experiment.\n\nYou may use a chatbot or other AI tool to brainstorm experiment ideas, compare sensor\noptions, draft checklists, or identify possible failure modes. You are responsible for\nevery technical claim in your submission. If an AI tool suggests a sensor, equation,\nstandard, or design option, you must verify it using a reliable source before using it\nas evidence.\n\nAn optional starting prompt is provided in `TIER3_ai_assistant_prompt.md`. Use it to\ngenerate and stress-test ideas, not to produce final assignment prose.\n\n---\n\n## Phase 1 \u2014 Experimental Design Proposal\n\n### Required sections\n\n**1. Problem statement and intended use**\nState the engineering question. What model, decision, or design context motivates the\nexperiment? What would the results be used for?\n\n**2. Predictive model**\nDescribe the model your experiment is meant to inform. Include the governing equation,\nsimulation output, empirical relation, or physical reasoning. Identify at least two\nassumptions in the model and one condition under which each assumption could fail.\n\n**3. Formal hypothesis**\nState a falsifiable hypothesis. It must specify what you expect the experiment to show,\nwhat data would support that expectation, and what data would challenge it.\n\n**4. System response features**\nIdentify the specific quantities, trends, distributions, or time-series features the\nexperiment would measure. Give expected values or ranges where possible.\n\n**5. Variables, controls, and confounders**\nIdentify independent variables, dependent variables, controlled variables, and at least\nthree plausible confounding factors. Explain how the design would control, randomize,\nblock, or document them.\n\n**6. Prior art and standards**\nCite ASME V&V 10-2006 and at least one additional relevant standard, handbook, datasheet,\ntechnical manual, or prior publication. Annotate each source: what does it contribute to\nyour design?\n\n**7. Initial test matrix**\nPropose a small, feasible test matrix: conditions, repetitions, and what each condition\nis intended to reveal. Include replication or repeated measurements where appropriate.\n\n---\n\n## Phase 2 \u2014 Instrumentation Justification Report\n\n### Required sections\n\n**1. Measurement chain**\nDraw or describe the full measurement chain from physical quantity to reported data:\nphysical phenomenon \u2192 sensor/transducer \u2192 signal conditioning \u2192 DAQ \u2192 processing \u2192\nreported quantity.\n\n**2. Sensor selection**\nSelect sensors for each primary measurement. For each sensor, cite specifications from a\nmanufacturer datasheet, standard, handbook, or other reliable source. Discuss range,\nresolution, accuracy, bandwidth, installation effects, environmental sensitivity, and\ncost or availability where relevant.\n\n**3. DAQ and signal conditioning**\nSpecify sample rate, DAQ range/resolution, channel configuration, filtering or anti-aliasing\nstrategy, gain, grounding/shielding considerations, and synchronization/triggering if\nneeded. Justify sampling rate using expected signal bandwidth and Nyquist reasoning.\n\n**4. Prospective uncertainty analysis**\nBefore the experiment exists, estimate the expected uncertainty in the primary output.\nUse first-order error propagation where appropriate. Use Monte Carlo simulation when the\nmodel is nonlinear, multi-input, or distribution assumptions matter. Identify dominant\nuncertainty sources.\n\n**5. Sensitivity and adequacy**\nState whether the proposed measurement chain is sensitive enough to evaluate the acceptance\ncriterion from your design proposal. If not, revise the design or explain why the proposed\nexperiment is not adequate.\n\n**6. Beyond-provided-method investigation**\nInvestigate at least one sensor, measurement method, platform, standard, or analysis\napproach beyond the provided course catalog. Compare it to your baseline option. Explain\nwhether it improves the design, is unnecessary, is infeasible, or changes your thinking.\n\n---\n\n## Phase 3 \u2014 Full V&V Plan Document\n\nThe V&V plan is the primary written deliverable of Tier 3. It should read like a coherent\nengineering document, not a stack of disconnected homework answers.\n\n### Required sections\n\n**1. Executive summary**\nOne page maximum. State the experiment, model, measurement strategy, primary uncertainty\nresult, validation metric, and conclusion on whether the design is adequate for its\nintended use.\n\n**2. Experiment purpose and intended use**\nExplain what decision or model question the experiment informs. State what would be learned\nfrom running it.\n\n**3. Predictive model and assumptions**\nPresent the model, assumptions, expected outputs, and likely model-form limitations.\n\n**4. Experimental design**\nDescribe variables, controls, confounders, test matrix, replication, randomization or\nblocking where applicable, and planned operating conditions.\n\n**5. Instrumentation and DAQ plan**\nSummarize sensors, DAQ configuration, signal conditioning, sampling, filtering, and\ninstallation considerations.\n\n**6. Calibration vs. validation**\nState what would need to be calibrated, how calibration status would be documented, and\nwhich parts of the experiment are validation activities rather than calibration activities.\n\n**7. Uncertainty analysis**\nPresent the prospective uncertainty analysis. Include equations, assumptions, dominant\nsources, MATLAB outputs or plots, and interpretation. Do not report uncertainty without\nexplaining what it means.\n\n**8. Validation metrics and acceptance criteria**\nDefine the numerical metric(s) used to assess model-experiment agreement. State acceptance\ncriteria before data collection. Justify why those criteria are meaningful for the intended\nuse.\n\n**9. Expected residuals and risk assessment**\nDescribe what data would look like if the model is adequate. Then describe at least two\nspecific anomalous data patterns that would suggest model-form error, measurement error,\npoor calibration, aliasing/noise, or uncontrolled confounding.\n\n**10. Experimentally informed model update**\nState how the experimental results would be used to update the model. What parameter,\nassumption, boundary condition, or functional form might change? What data pattern would\ntrigger that change?\n\n**11. AMVF annotation**\nMap your design to the Aerospace Modeling & Validation Framework. Show how the model,\nexperiment, uncertainty analysis, validation metric, and model update fit together.\n\n**12. Safety, resources, and feasibility**\nIdentify hazards, required equipment, approximate cost or availability, time requirements,\nand practical constraints. A paper design can still be infeasible; identify those limits\nhonestly.\n\n**13. References**\nCite all standards, handbooks, datasheets, papers, manuals, and AI-assisted resources used.\nAI tools are not authoritative sources. Cite them only as process aids if required by\ncourse policy; verify technical claims elsewhere.\n\n---\n\n## Phase 4 \u2014 Oral Defense\n\nYour oral defense is a technical defense of your design, not a project pitch.\n\n### Presentation format\n\nSee Canvas for exact timing. Expect approximately 10\u201312 minutes of presentation followed\nby Q&A.\n\nYour presentation must answer:\n\n1. What model or decision does this experiment inform?\n2. What would be measured, and why those quantities?\n3. Why are the selected sensors and DAQ choices adequate?\n4. What uncertainty do you expect, and what dominates it?\n5. What validation metric and acceptance criterion would be used?\n6. What data pattern would tell you the model needs to change?\n7. What did you investigate beyond the provided course resources?\n\n### Q&A expectation\n\nEvery team member must be able to defend the design. You may use notes, but you may not\nread answers directly from the written plan. The point of Q&A is to test whether you\nunderstand the reasoning behind your design choices.\n\n---\n\n## Phase 5 \u2014 Reflections\n\n### CLO 6 Reflection\n\nDescribe the method, sensor, platform, standard, or resource you investigated beyond the\nprovided course materials. Your reflection must answer:\n\n1. What did you investigate and why?\n2. What sources did you consult?\n3. What did you find?\n4. Did it change your design? If not, did it strengthen your confidence in the original\n choice?\n5. What does this investigation tell you about how you will approach unfamiliar measurement\n problems in professional practice?\n\n### Course Reflection\n\nWrite a short reflection on how your understanding changed across the course. Address:\n\n- uncertainty: what you misunderstood early and understand now;\n- prediction: how committing before data changed your reasoning;\n- validation: what it means to validate or evaluate a model;\n- experimental design: what you would do differently if you were starting Week 1 again.\n\n---\n\n## Submission Format\n\nSubmit the following, according to Canvas deadlines:\n\n1. Experimental Design Proposal\n2. Instrumentation Justification Report\n3. Full V&V Plan Document\n4. Oral Defense Slides\n5. Written Peer Evaluations\n6. CLO 6 Reflection\n7. Course Reflection\n\nUnless otherwise specified, written documents should be submitted as compiled PDFs with\nsource files included when equations, figures, or MATLAB outputs are used. MATLAB scripts\nused for uncertainty calculations must be submitted with the relevant deliverable.\n\n---\n\n## What Passing Work Looks Like\n\nPassing work is specific, traceable, and honest.\n\nIt does not need to be expensive, flashy, or complicated. It does need to show that you\ncan design an experiment by reasoning from the model to the measurement chain to the\nuncertainty to the validation claim.\n\nA weak Tier 3 project says: \"We would use better sensors and compare to theory.\"\n\nA passing Tier 3 project says: \"We need to distinguish a 6% change in the predicted\nresponse. With the proposed sensor and DAQ chain, the propagated uncertainty in the\nprimary response is approximately 2.1%, dominated by sensor bias. That is small enough\nto evaluate the acceptance criterion. If residuals show a monotonic trend with operating\ncondition, we would interpret that as model-form error rather than random measurement\nnoise and revise the assumed boundary condition.\"\n\nThat is the level of reasoning this assignment is designed to assess.\n\n---\n\n*ASEN 3501 \u2014 Tier 3 Final Lab Assignment | E3 Weeks 11\u201315*", "module_id": null, "source_type": "overview"}</script>
+</body>
+</html>
