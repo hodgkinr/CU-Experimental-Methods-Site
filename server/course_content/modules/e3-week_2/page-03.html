@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instrumentation and DAQ Design Worksheet</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../chat_widget.css">
+  <script defer src="../../chat_widget.js"></script>
+  <script defer src="../../app.js"></script>
+</head>
+<body>
+
+
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../../index.html">Aerospace Experimental Methods</a>
+        <nav class="top-nav">
+          <a href="../../index.html">Home</a>
+          <a href="../../syllabus.html">Syllabus</a>
+          <a href="../../schedule.html">Schedule</a>
+          <a href="../../labs.html">Labs</a>
+          <a href="../../results.html">Results</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <nav class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <a href="../../schedule.html">Schedule</a>
+        <a href="index.html">E3 Week 2 (Course Week 12)</a>
+        <span>Instrumentation and DAQ Design Worksheet</span>
+      </nav>
+      <section class="hero compact">
+        <p class="eyebrow">E3 Week 2 (Course Week 12) · Reading / Worksheet</p>
+        <h1>Instrumentation and DAQ Design Worksheet</h1>
+        <p class="lead">A reading-format worksheet that supports the W12 instrumentation justification report. Students document measurement quantity, expected range, required accuracy, expected bandwidth, sensor specifications, mounting effects, environmental risks, DAQ range/resolution, quantization contribution, sample rate, anti-alias filter cutoff, calibration status, dominant uncertainty source, and one beyond-provided alternative. Includes a compact dynamic-response example linking bandwidth, sample rate, filter cutoff, DAQ range, and uncertainty. ## 3. Bridge to Next Week Students have specified their experimental design and instrumentation in detail. Week 13 integrates everything into a structured V&amp;V plan that explicitly connects each component to the AMVF and to the experimentally informed model purpose — and prepares students for the oral defense in Week 14.</p>
+        <div class="meta-chips">
+          <span>4 min</span>
+          <span>Readings</span>
+          <span>1 source variant(s)</span>
+        </div>
+      </section>
+
+      <section class="module-overview-grid">
+        <article class="content-card">
+          <h2>Learning Objectives</h2>
+          <ul><li>Select sensors for an original aerospace experiment with written rationale connecting sensor specifications to accuracy requirements and intended use — CLO 1</li><li>Specify DAQ configuration and signal conditioning strategy for an original experiment, including sampling rate justified by Nyquist argument and anti-aliasing filter cutoff justified relative to signal bandwidth — CLO 1, CLO 4</li><li>Use MATLAB-based uncertainty analysis to predict the measurement performance of a proposed sensor and DAQ configuration before any hardware is selected — CLO 2</li><li>Investigate at least one sensor or measurement platform not provided in the course and evaluate whether it offers meaningful advantages for a specific measurement problem — CLO 6</li></ul>
+        </article>
+        <article class="content-card">
+          <h2>Source Variants</h2>
+          <ul class="source-link-list"><li><a href="../../normalized/E3/week_2/readings/R01_reading.md.normalized.md">Markdown</a><span>E3/week_2/readings/R01_reading.md</span></li></ul>
+        </article>
+      </section>
+      <section class="content-card lesson-body">
+        <h1>Instrumentation and DAQ Design Worksheet</h1>
+<h2>A sensor choice is only credible when the whole measurement chain closes</h2>
+<p>The easiest way to fool yourself in experimental design is to choose a sensor before you know what the measurement must prove.</p>
+<hr>
+<p>Use this worksheet before writing the Instrumentation Justification Report. The goal is not to fill every blank with impressive numbers. The goal is to make each instrumentation choice trace to intended use, expected signal behavior, uncertainty, and feasibility. If a value comes from a datasheet, standard, handbook, prior paper, or assumption, name the source.</p>
+<p>&lt;image description: A worksheet-style measurement chain running left to right: physical quantity, sensor, mounting, signal conditioning, filter, DAQ, data reduction, validation metric. Under each block is a blank field for specification, source, uncertainty contribution, and design risk. The visual communicates that instrumentation credibility comes from the complete chain, not one component.&gt;</p>
+<h2>Part 1 - Measurement Requirement</h2>
+<p><strong>Intended use</strong> — What decision or model claim will this measurement support?</p>
+<p>Response:</p>
+<p><strong>Primary measurement quantity</strong> — What physical quantity, trend, or response feature must be measured?</p>
+<p>Response:</p>
+<p><strong>Expected signal range</strong> — What minimum and maximum values do you expect? What source or model supports this estimate?</p>
+<p>Response:</p>
+<p><strong>Required accuracy or resolution</strong> — How small a difference must the experiment distinguish for the validation claim to matter?</p>
+<p>Response:</p>
+<p><strong>Expected bandwidth</strong> — Is the response steady, slowly varying, transient, oscillatory, or noisy? Estimate the highest frequency content you need to preserve.</p>
+<p>Response:</p>
+<h2>Part 2 - Sensor And Installation</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Field</th><th>Baseline sensor</th><th>Beyond-provided alternative</th></tr></thead><tbody><tr><td>Source consulted</td><td></td><td></td></tr><tr><td>Range</td><td></td><td></td></tr><tr><td>Accuracy / bias</td><td></td><td></td></tr><tr><td>Resolution / noise floor</td><td></td><td></td></tr><tr><td>Bandwidth / response time</td><td></td><td></td></tr><tr><td>Mounting or installation effects</td><td></td><td></td></tr><tr><td>Environmental risks</td><td></td><td></td></tr><tr><td>Calibration information</td><td></td><td></td></tr><tr><td>Cost / availability / feasibility</td><td></td><td></td></tr><tr><td>Effect on validation credibility</td><td></td><td></td></tr></tbody></table></div>
+<p><strong>Decision</strong> — Which option is adequate for the intended use, and why?</p>
+<p>Response:</p>
+<h2>Part 3 - DAQ And Signal Conditioning</h2>
+<p><strong>DAQ input range and resolution</strong> — What voltage or digital range will be used? What is the quantization step size?</p>
+<p>Response:</p>
+<p><strong>Gain or conditioning</strong> — Is amplification, bridge completion, excitation, shielding, grounding, or isolation required?</p>
+<p>Response:</p>
+<p><strong>Sampling rate</strong> — What sample rate will you use, and how does it relate to expected signal bandwidth?</p>
+<p>Response:</p>
+<p><strong>Filtering or anti-aliasing</strong> — What cutoff is needed before sampling? Explain the cutoff relative to signal bandwidth and sample rate.</p>
+<p>Response:</p>
+<p><strong>Dominant practical noise risk</strong> — What noise, drift, cable, grounding, vibration, temperature, or installation effect worries you most?</p>
+<p>Response:</p>
+<h2>Part 4 - Compact Mini-Example</h2>
+<p>Suppose your proposed experiment measures vibration amplitude of a small cantilevered component. Your model predicts a dominant response near 18 Hz, and prior work suggests useful information up to about 40 Hz. You choose a sample rate of 200 Hz. The Nyquist limit is 100 Hz, which is above the 40 Hz signal content with margin. A reasonable anti-alias filter might pass the measurement band while attenuating content well above it; the exact cutoff depends on the filter roll-off, not an ideal brick wall.</p>
+<p>Now check DAQ resolution. If the sensor output is expected to vary from -2 V to +2 V and the DAQ is set to a +/-10 V range, much of the ADC range is unused. A narrower input range, if available and safe from clipping, can reduce quantization uncertainty. But resolution is not total accuracy: sensor calibration, mounting, temperature drift, and signal conditioning may still dominate the uncertainty budget. The design decision is not &quot;sample fast and use many bits.&quot; The design decision is whether the complete chain can distinguish the model-relevant difference.</p>
+<p>&lt;image description: A compact dynamic-response example with a frequency spectrum labeled useful signal 0 to 40 Hz, sample rate 200 Hz, Nyquist 100 Hz, and an anti-alias filter curve with roll-off. Beside it, a DAQ range graphic compares a +/-10 V range wasting resolution with a tighter range that captures a -2 V to +2 V signal without clipping.&gt;</p>
+<h2>Part 5 - Prospective Uncertainty Starter</h2>
+<p>List the uncertainty inputs that belong in your MATLAB model:</p>
+<ul>
+<li>Sensor accuracy or calibration uncertainty:</li>
+<li>DAQ quantization contribution:</li>
+<li>Repeatability estimate:</li>
+<li>Environmental or installation effect:</li>
+<li>Geometry, mass, voltage, timing, or other model input:</li>
+<li>Assumption that still needs verification:</li>
+</ul>
+<p><strong>Adequacy statement</strong> — Based on the current information, is the proposed measurement chain likely to evaluate the acceptance criterion? If not, what must change first?</p>
+<p>Response:</p>
+<hr>
+<p><strong>The Takeaway:</strong> A complete instrumentation plan justifies the sensor, installation, conditioning, sampling, filtering, DAQ settings, and uncertainty together. Any blank link in the chain is a place where a polished experiment can stop producing trustworthy evidence.</p>
+      </section>
+      <section class="page-nav">
+        <a class="secondary-button" href="page-02.html">Previous</a>
+        <a class="primary-button next-button" href="questions.html" >Next</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+    </footer>
+
+
+
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "e3-week_2-r01", "title": "Instrumentation and DAQ Design Worksheet", "url": "modules/e3-week_2/page-03.html", "text": "E3 Week 2 (Course Week 12)\nReading / Worksheet\nInstrumentation and DAQ Design Worksheet\nA reading-format worksheet that supports the W12 instrumentation justification report. Students document measurement quantity, expected range, required accuracy, expected bandwidth, sensor specifications, mounting effects, environmental risks, DAQ range/resolution, quantization contribution, sample rate, anti-alias filter cutoff, calibration status, dominant uncertainty source, and one beyond-provided alternative. Includes a compact dynamic-response example linking bandwidth, sample rate, filter cutoff, DAQ range, and uncertainty. ## 3. Bridge to Next Week Students have specified their experimental design and instrumentation in detail. Week 13 integrates everything into a structured V&V plan that explicitly connects each component to the AMVF and to the experimentally informed model purpose \u2014 and prepares students for the oral defense in Week 14.\nSelect sensors for an original aerospace experiment with written rationale connecting sensor specifications to accuracy requirements and intended use \u2014 CLO 1\nSpecify DAQ configuration and signal conditioning strategy for an original experiment, including sampling rate justified by Nyquist argument and anti-aliasing filter cutoff justified relative to signal bandwidth \u2014 CLO 1, CLO 4\nUse MATLAB-based uncertainty analysis to predict the measurement performance of a proposed sensor and DAQ configuration before any hardware is selected \u2014 CLO 2\nInvestigate at least one sensor or measurement platform not provided in the course and evaluate whether it offers meaningful advantages for a specific measurement problem \u2014 CLO 6\nInstrumentation and DAQ Design Worksheet\n\n A sensor choice is only credible when the whole measurement chain closes\n\n The easiest way to fool yourself in experimental design is to choose a sensor before you know what the measurement must prove.\n\n Use this worksheet before writing the Instrumentation Justification Report. The goal is not to fill every blank with impressive numbers. The goal is to make each instrumentation choice trace to intended use, expected signal behavior, uncertainty, and feasibility. If a value comes from a datasheet, standard, handbook, prior paper, or assumption, name the source.\n\n <image description: A worksheet-style measurement chain running left to right: physical quantity, sensor, mounting, signal conditioning, filter, DAQ, data reduction, validation metric. Under each block is a blank field for specification, source, uncertainty contribution, and design risk. The visual communicates that instrumentation credibility comes from the complete chain, not one component.>\n\n Part 1 - Measurement Requirement\n\n Intended use \u2014 What decision or model claim will this measurement support?\n\n Response:\n\n Primary measurement quantity \u2014 What physical quantity, trend, or response feature must be measured?\n\n Response:\n\n Expected signal range \u2014 What minimum and maximum values do you expect? What source or model supports this estimate?\n\n Response:\n\n Required accuracy or resolution \u2014 How small a difference must the experiment distinguish for the validation claim to matter?\n\n Response:\n\n Expected bandwidth \u2014 Is the response steady, slowly varying, transient, oscillatory, or noisy? Estimate the highest frequency content you need to preserve.\n\n Response:\n\n Part 2 - Sensor And Installation\n\n Field Baseline sensor Beyond-provided alternative Source consulted Range Accuracy / bias Resolution / noise floor Bandwidth / response time Mounting or installation effects Environmental risks Calibration information Cost / availability / feasibility Effect on validation credibility\n\n Decision \u2014 Which option is adequate for the intended use, and why?\n\n Response:\n\n Part 3 - DAQ And Signal Conditioning\n\n DAQ input range and resolution \u2014 What voltage or digital range will be used? What is the quantization step size?\n\n Response:\n\n Gain or conditioning \u2014 Is amplification, bridge completion, excitation, shielding, grounding, or isolation required?\n\n Response:\n\n Sampling rate \u2014 What sample rate will you use, and how does it relate to expected signal bandwidth?\n\n Response:\n\n Filtering or anti-aliasing \u2014 What cutoff is needed before sampling? Explain the cutoff relative to signal bandwidth and sample rate.\n\n Response:\n\n Dominant practical noise risk \u2014 What noise, drift, cable, grounding, vibration, temperature, or installation effect worries you most?\n\n Response:\n\n Part 4 - Compact Mini-Example\n\n Suppose your proposed experiment measures vibration amplitude of a small cantilevered component. Your model predicts a dominant response near 18 Hz, and prior work suggests useful information up to about 40 Hz. You choose a sample rate of 200 Hz. The Nyquist limit is 100 Hz, which is above the 40 Hz signal content with margin. A reasonable anti-alias filter might pass the measurement band while attenuating content well above it; the exact cutoff depends on the filter roll-off, not an ideal brick wall.\n\n Now check DAQ resolution. If the sensor output is expected to vary from -2 V to +2 V and the DAQ is set to a +/-10 V range, much of the ADC range is unused. A narrower input range, if available and safe from clipping, can reduce quantization uncertainty. But resolution is not total accuracy: sensor calibration, mounting, temperature drift, and signal conditioning may still dominate the uncertainty budget. The design decision is not \"sample fast and use many bits.\" The design decision is whether the complete chain can distinguish the model-relevant difference.\n\n <image description: A compact dynamic-response example with a frequency spectrum labeled useful signal 0 to 40 Hz, sample rate 200 Hz, Nyquist 100 Hz, and an anti-alias filter curve with roll-off. Beside it, a DAQ range graphic compares a +/-10 V range wasting resolution with a tighter range that captures a -2 V to +2 V signal without clipping.>\n\n Part 5 - Prospective Uncertainty Starter\n\n List the uncertainty inputs that belong in your MATLAB model:\n\n Sensor accuracy or calibration uncertainty:\n\n DAQ quantization contribution:\n\n Repeatability estimate:\n\n Environmental or installation effect:\n\n Geometry, mass, voltage, timing, or other model input:\n\n Assumption that still needs verification:\n\n Adequacy statement \u2014 Based on the current information, is the proposed measurement chain likely to evaluate the acceptance criterion? If not, what must change first?\n\n Response:\n\n The Takeaway: A complete instrumentation plan justifies the sensor, installation, conditioning, sampling, filtering, DAQ settings, and uncertainty together. Any blank link in the chain is a place where a polished experiment can stop producing trustworthy evidence.", "module_id": "e3-week_2", "source_type": "page"}</script>
+</body>
+</html>

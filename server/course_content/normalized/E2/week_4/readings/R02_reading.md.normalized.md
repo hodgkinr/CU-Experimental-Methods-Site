@@ -1,15 +1,15 @@
 # Correlated Inputs in Monte Carlo — An Advanced Case
 ## When your uncertainties are not independent, and what to do about it
 
-Most Monte Carlo simulations you will run in this course draw each uncertain input independently — and that assumption is correct for most of the experiments you will encounter in E2.
+Most introductory Monte Carlo simulations begin with independent inputs, but independence is an assumption to inspect, not a fact supplied by the software.
 
 This reading is for the cases where it is not.
 
 ---
 
-**This reading is an advanced topic and is beyond the scope of the standard E2 workflow.** Most groups in ASEN 3501 have input uncertainties that are genuinely independent — each sensor was calibrated separately, each material property was measured from a different source, each environmental factor varies for different reasons. If that describes your experiment, you do not need the material in this reading. Standard Monte Carlo, with independent draws for each input, gives you the correct result.
+**This reading is an advanced topic and is beyond the required E2 workflow.** In E2, your required task is to identify whether inputs might share a calibration reference, environment, data-reduction step, or instrument. You are not required to calculate covariance or implement correlated sampling unless evidence and an estimate are provided.
 
-Read this if, and only if, two or more of your input uncertainties come from the same source. The most common cases: two sensor outputs that were both derived from the same calibration procedure, or two model parameters that were both estimated from the same batch of material tests. In those situations, the uncertainties on the two inputs are not independent: when one is higher than its nominal value, the other tends to be too. Sampling them independently ignores that structure. The result is a Monte Carlo distribution that is too narrow: it includes combinations (input A high, input B low simultaneously) that are physically improbable, and those combinations dilute the worst-case tail of the output distribution.
+Read this if two or more input uncertainties come from the same source. The most common cases are sensor outputs derived from the same calibration procedure or parameters estimated from the same material tests. Sampling them independently ignores that structure. The effect on output uncertainty depends on the covariance sign and on the signs and magnitudes of the model sensitivities; it can widen or narrow the output distribution.
 
 ![A two-by-two grid of scatter plots showing two-dimensional input distributions. Top left: "Independent inputs — circular cloud." Points form a roughly circular cluster centered at the origin, with no preferred direction. Top right: "Positively correlated inputs — elongated ellipse." Points form a diagonal ellipse tilted at roughly 45 degrees, indicating that when Variable 1 is above average, Variable 2 tends to be above average as well. Bottom left: "Negatively correlated inputs — elongated ellipse, opposite tilt." Ellipse tilted at negative 45 degrees. Bottom right: "Independent sampling of correlated inputs — incorrect circular cloud imposed on the true ellipse." The circular cloud is overlaid on the true ellipse outline to show how independent sampling underrepresents the high-high and low-low corners where the actual worst-case combinations live. Each panel has axis labels "Variable 1" and "Variable 2" and a brief caption describing the implication. Clean, black-and-white engineering diagram style.](../images/E2_W9_R2_image1.png)
 
@@ -33,4 +33,4 @@ Geometrically, the Cholesky factor is the matrix that stretches and rotates the 
 
 ---
 
-**The Takeaway:** Correlated inputs require correlated sampling, and the Cholesky decomposition is the standard mechanism for generating that structure in MATLAB. For most E2 experiments, independent sampling is appropriate and correct. If you have reason to believe two of your inputs are correlated — and you can quantify the correlation — apply this approach, document the correlation coefficient, and verify that the resulting output distribution is wider than the independent-sampling result in the direction of the correlated worst case.
+**The Takeaway:** First identify shared sources. Correlated sampling is an advanced option only when the dependence can be supported; its effect is not necessarily to widen the result because covariance sign and model sensitivities both matter.

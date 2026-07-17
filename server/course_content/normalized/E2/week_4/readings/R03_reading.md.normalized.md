@@ -43,7 +43,7 @@ A credible validation report distinguishes between these two independent criteri
 - Is statistical significance tested separately from engineering significance?
 - Does the report acknowledge cases where the two diverge?
 
-**Failure mode to look for:** Statistical significance treated as validation. A p-value below 0.05 tells you the difference between two means is unlikely to be random chance. It says nothing about whether the difference is large enough to matter for the intended use. A 0.3 N difference may be highly statistically significant with a large enough sample, while being irrelevant for a system designed with a 2.0 N safety margin.
+**Failure mode to look for:** Statistical significance treated as validation. A p-value below 0.05 means that, under the null model and the test assumptions, a test statistic at least as extreme as the observed one would occur with probability below 0.05. It is not the probability that the result occurred by chance or that the null hypothesis is true. It also says nothing about whether the difference is large enough to matter for the intended use. Compare a confidence interval for the difference with a pre-specified engineering region.
 
 **Also watch for:** Engineering significance asserted without a stated acceptance criterion. "The model agrees reasonably well" is not an engineering statement. "The model agrees within ±5%, and the design requirement is ±10%" is an engineering statement.
 
@@ -70,6 +70,7 @@ A credible report uses confidence intervals correctly and interprets them precis
 - Are CIs computed from the standard error of the mean (not the standard deviation of individual measurements)?
 - Is the confidence level stated explicitly?
 - Are CIs interpreted as statements about the estimation procedure, not about the probability that the true value is inside a specific interval?
+- For a two-result comparison, is the CI formed for the difference (Welch or paired as appropriate) rather than judged from separate-CI overlap?
 
 **Failure mode to look for:** "There is a 95% probability that the true value is between X and Y." This is the Bayesian posterior interpretation, not the frequentist confidence interval. The frequentist interpretation is: "If we used this procedure on 100 experiments, 95 of the resulting intervals would contain the true value." These are not the same statement. The frequentist CI is a statement about the procedure, not about any specific interval.
 

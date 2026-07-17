@@ -347,6 +347,10 @@
       },
       {
         "type": "open_response",
+        "prompt": "Residuals increase systematically with load. Name three plausible diagnostic classes, state what evidence would support your preferred explanation, and identify one competing hypothesis you would test."
+      },
+      {
+        "type": "open_response",
         "prompt": "Why doesn\u2019t a current calibration sticker automatically settle the validation question?"
       }
     ]
@@ -392,6 +396,20 @@
       {
         "type": "open_response",
         "prompt": "Why is a data-grounded improvement proposal stronger than a generic suggestion like \u201cuse better sensors\u201d?"
+      },
+      {
+        "type": "open_response",
+        "prompt": "Two independent configurations have an estimated mean difference of 0.30 N. A Welch 95% confidence interval for the difference is [0.02, 0.58] N, and the pre-specified engineering equivalence region is [\u22122.0, 2.0] N. What two conclusions should you report?"
+      },
+      {
+        "type": "multiple_choice",
+        "prompt": "Which is the correct interpretation of a p-value?",
+        "options": [
+          "The probability that the null hypothesis is true",
+          "The probability that the observed difference happened by chance",
+          "Assuming the null model and test assumptions are true, the probability of a test statistic at least as extreme as the observed one",
+          "The probability that the engineering decision is correct"
+        ]
       }
     ]
   },

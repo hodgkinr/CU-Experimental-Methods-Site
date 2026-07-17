@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab 1 Brief Report + Oral Interview</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../chat_widget.css">
+  <script defer src="../../chat_widget.js"></script>
+  <script defer src="../../app.js"></script>
+</head>
+<body>
+
+
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../../index.html">Aerospace Experimental Methods</a>
+        <nav class="top-nav">
+          <a href="../../index.html">Home</a>
+          <a href="../../syllabus.html">Syllabus</a>
+          <a href="../../schedule.html">Schedule</a>
+          <a href="../../labs.html">Labs</a>
+          <a href="../../results.html">Results</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <nav class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <a href="../../schedule.html">Schedule</a>
+        <a href="index.html">E1 Week 2 (Course Week 2)</a>
+        <span>Lab 1 Brief Report + Oral Interview</span>
+      </nav>
+      <section class="hero compact">
+        <p class="eyebrow">E1 Week 2 (Course Week 2) · Assignment</p>
+        <h1>Lab 1 Brief Report + Oral Interview</h1>
+        <p class="lead">The Lab 1 standalone deliverable. Students prepare a brief lab report (not independently graded — it is evidence of preparation) and complete a 3-minute one-on-one oral interview with a member of the teaching team. The oral interview is pass/fail. Required report sections: (1) circuit description and measurement record, (2) fluctuating digit procedure documented, (3) uncertainty propagation via partial derivatives for all three power equation forms, (4) sensitivity analysis — which form is most sensitive to which input, (5) Monte Carlo simulation results with MATLAB figures, (6) comparison of partial-derivative and Monte Carlo results stated numerically, (7) result in correct engineering form (estimate ± uncertainty, units, method), (8) plain-language explanation for a non-engineer. See `LAB1_PIV_assignment.md` for the complete student-facing specification.</p>
+        <div class="meta-chips">
+          <span>9 min</span>
+          <span>Assessments</span>
+          <span>1 source variant(s)</span>
+        </div>
+      </section>
+
+      <section class="module-overview-grid">
+        <article class="content-card">
+          <h2>Learning Objectives</h2>
+          <ul><li>Distinguish variability, measurement error, and uncertainty, and explain why the distinction matters for engineering claims — CLO 2</li><li>Apply first-order error propagation using partial derivatives to compute uncertainty in a derived quantity — CLO 2</li><li>Explain how different mathematical representations of the same physical quantity yield different sensitivities to measurement variation — CLO 2</li><li>Run a Monte Carlo simulation in MATLAB to model uncertainty in a derived quantity and interpret the resulting distribution — CLO 2</li></ul>
+        </article>
+        <article class="content-card">
+          <h2>Source Variants</h2>
+          <ul class="source-link-list"><li><a href="../../normalized/E1/week_2/assignments/lab1_PIV_faq.md.normalized.md">Markdown</a><span>E1/week_2/assignments/lab1_PIV_faq.md</span></li></ul>
+        </article>
+      </section>
+      <section class="content-card lesson-body">
+        <h1>Lab 1 (P=IV) — Frequently Asked Questions</h1>
+<h2>ASEN 3501: Aerospace Experimental Methods</h2>
+<p><em>This document answers questions that come up frequently during Lab 1 preparation, execution, and report writing. If your question isn&#x27;t here, ask your TA or the course AI tutor.</em></p>
+<hr>
+<h2>Before the lab</h2>
+<p><strong>Should I use the nominal resistance value (from the label) or the measured resistance (from a pre-assembly DMM reading) when I compute power and propagate uncertainty?</strong></p>
+<p>Both. You&#x27;re required to run the analysis both ways and compare, not pick one:</p>
+<ul>
+<li><strong>Case 1:</strong> nominal resistance and its printed tolerance (e.g., 200 Ω ± 5%)</li>
+<li><strong>Case 2:</strong> DMM-measured resistance and the DMM&#x27;s resistance-measurement accuracy spec</li>
+</ul>
+<p>These are two valid estimates of R and <code>u_R</code>, and they will generally give you slightly different P ± u_P results for P = V²/R and P = I²R. That&#x27;s expected. The point of comparing them is to check internal consistency, not to locate the true value from their overlap. The cases share measurements and are not independent. If they disagree, inspect self-heating, meter loading, non-simultaneous readings, drift, and the Type B assumptions.</p>
+<hr>
+<p><strong>My five trial readings for V (or I) aren&#x27;t just scattered. They seem to be trending steadily in one direction (e.g., drifting downward). Is something wrong?</strong></p>
+<p>Probably not. This is likely warm-up drift, not a mistake. The power supply and DMM take a few minutes to reach a stable operating point after power-on, and it&#x27;s common to see voltage readings settle gradually (for example, starting a little high right after power-on and drifting down slightly over the first several minutes) before leveling off. This is a different phenomenon from the fluctuating-digit noise described in the assignment, and a different phenomenon from instrument accuracy error. It&#x27;s a slow, directional trend rather than a random jitter around a stable value.</p>
+<p>What to do about it:</p>
+<ul>
+<li>Take your five repeated readings close together in time (within a minute or two of each</li>
+</ul>
+<p>other) rather than spread across the full lab session. This keeps your &quot;repeatability&quot; trials measuring genuine repeatability, not warm-up drift dressed up as repeatability.</p>
+<ul>
+<li>If you want to confirm the drift is coming from the power supply rather than the circuit</li>
+</ul>
+<p>or DMM, you can power-cycle the supply (off, then back on) with the circuit still connected. If the reading jumps back up toward its initial value and begins drifting again, that points to the supply as the source.</p>
+<ul>
+<li>You don&#x27;t need to model or correct for this drift mathematically. Just be aware of it,</li>
+</ul>
+<p>take your readings in a tight time window, and if you notice a strong trend, it&#x27;s worth a sentence in your report noting that you observed it and controlled for it by timing your trials closely together.</p>
+<p>If you&#x27;re using <strong>Case 2</strong> (DMM-measured resistance) for your resistor value, there&#x27;s a related wrinkle: if you measured R with the DMM <em>before</em> the resistor was in the powered circuit, that&#x27;s a &quot;cold&quot; measurement. Once current flows for a while, the resistor will self-heat slightly and its true in-circuit resistance may drift from that cold value. You don&#x27;t need to correct for this either, but it&#x27;s a reasonable thing to mention if your Case 1 and Case 2 results don&#x27;t overlap as cleanly as expected.</p>
+<hr>
+<p><strong>My propagated uncertainty came out way too large, like the same order of magnitude as P itself. What did I do wrong?</strong></p>
+<p>The most common cause is a percent-to-decimal error. The datasheet specification is given as a percentage (e.g., 0.5% of reading), which means 0.005, not 0.5. If you plug in 0.5 directly, your uncertainty will be inflated by a factor of 100. Go back to your u_V and u_I calculations and confirm you converted the percentage to a decimal before multiplying.</p>
+<hr>
+<p><strong>Do I need to memorize my report for the oral interview?</strong></p>
+<p>No. You may bring your lab report and refer to it freely. What the interviewer is assessing is whether you can explain the <em>reasoning</em> behind a result, not whether you can recall a formula from memory. If asked to walk through the partial derivative computation, it&#x27;s completely fine to look at the formula in your report. The question is whether you can explain what each term means and why the form matters.</p>
+<p>The rubric requires you to demonstrate understanding in 3 of 5 categories. See <code>LAB1_PIV_rubric_student.md</code> for what &quot;understanding&quot; looks like in each category.</p>
+<hr>
+<h2>During the lab</h2>
+<p><strong>Should I average the five voltage and current readings, or use each trial separately?</strong></p>
+<p>Use the mean of your five readings as your measured value of V and I. Compute the sample standard deviation <code>s</code> and the standard error <code>s/√5</code>. The standard error is a Type A standard-uncertainty contribution for the mean only when the observations are reasonably independent and the system is stable over the measurement window. Inspect the sequence first: a directional trend indicates drift, so do not hide it by treating the five values as stationary repeatability data. Compare the Type A contribution with the converted Type B component from the manufacturer specification; do not assume in advance which one dominates, and do not double count the same effect. Record all five individual readings in your report and use the mean values for the power calculations.</p>
+<hr>
+<h2>Monte Carlo simulation</h2>
+<p><strong>Which distribution should I use for V and I in the Monte Carlo simulation?</strong></p>
+<p>For this lab, use a <strong>uniform distribution over the original manufacturer bounds</strong>. If the datasheet calculation gives a symmetric limit <code>±a</code>, sample from <code>[measured value-a, measured value+a]</code>. The corresponding Type B standard uncertainty is <code>u_B=a/√3</code>.</p>
+<p>Do not sample from <code>[measured value-u_B, measured value+u_B]</code>; <code>u_B</code> is a standard uncertainty, not the original hard limit. A Gaussian model is appropriate only if a manufacturer, calibration certificate, or explicit instructor-approved assumption gives you a defensible <code>σ</code> or coverage basis. Do not create <code>σ=u/2</code> from an unlabeled tolerance.</p>
+<p>State the original half-width, sampled bounds, and model in Section 5.</p>
+<hr>
+<p><strong>How do I compare my Monte Carlo result with my partial-derivative result?</strong></p>
+<p>Compare like quantities. For the uniform input model, convert every manufacturer half-width with <code>u_B=a/√3</code> before Taylor-series propagation. Then compare the Monte Carlo output standard deviation with the Taylor-series combined standard uncertainty <code>u_P</code>. If you also report Monte Carlo percentile bounds, call them coverage intervals and state the percentiles; do not compare an unlabeled percentile width directly with <code>u_P</code>.</p>
+<hr>
+<h2>Report writing</h2>
+<p><strong>I computed three different values of P: 0.2425 W, 0.2447 W, and 0.2404 W. They&#x27;re close but not the same. Which one is my &quot;best estimate&quot; for Section 7?</strong></p>
+<p>Report the result from the form with the smallest propagated uncertainty. In this lab that is typically P = IV, because both V and I are directly measured inputs and the sensitivity coefficients are smaller than in the forms that involve R² terms.</p>
+<p>Your choice should be <em>consistent</em> with your Section 4 sensitivity analysis. If you concluded in Section 4 that P = IV has the smallest uncertainty, your Section 7 result should use that form. The point of the sensitivity analysis isn&#x27;t just arithmetic. It&#x27;s to make a reasoned choice about which result to report.</p>
+<p>You may report all three forms for completeness, but designate one as your primary result and explain why.</p>
+<hr>
+<p><strong>What is the difference between Type A and Type B uncertainty evaluation, and what does the coverage factor <code>k</code> mean?</strong></p>
+<p>The labels describe where the uncertainty estimate comes from:</p>
+<ul>
+<li><strong>Type A</strong> is data-driven. You evaluate it statistically from repeated observations,</li>
+</ul>
+<p>such as the sample standard deviation or the standard error of a mean.</p>
+<ul>
+<li><strong>Type B</strong> is information-driven. You evaluate it from a datasheet, calibration</li>
+</ul>
+<p>certificate, manual, prior information, or an engineering judgment.</p>
+<p>Type A does not automatically mean random, and Type B does not automatically mean systematic. Convert both kinds of input to standard uncertainties before combining them as <code>u_c</code>. If expanded uncertainty is requested, multiply by the stated coverage factor: <code>U = k u_c</code>. The factor <code>k</code> is a multiplier, not a confidence level by itself; do not call <code>k = 2</code> a 95% confidence interval unless the stated coverage basis justifies that interpretation.</p>
+<hr>
+<p><strong>Should I say &quot;95% CI&quot; or &quot;manufacturer spec bound&quot; when stating my result in engineering form in Section 7?</strong></p>
+<p>For Lab 1, use <strong>&quot;specification-based Type B standard uncertainty&quot;</strong> as your default after converting the manufacturer limit using your stated distribution assumption.</p>
+<ul>
+<li><strong>&quot;Manufacturer spec bound&quot;</strong> means the uncertainty was derived directly from the</li>
+</ul>
+<p>instrument datasheet specification, without a statistical sampling argument. This is accurate for what you did.</p>
+<ul>
+<li><strong>&quot;95% CI&quot;</strong> means you can trace the bound to a specific probability statement, either</li>
+</ul>
+<p>from repeated measurements and a t-distribution, or from a manufacturer spec that explicitly states it corresponds to 95% coverage.</p>
+<p>If a datasheet or calibration certificate gives an expanded uncertainty and coverage factor, convert with <code>u=U/k</code> and preserve that stated basis. Do not relabel a manufacturer bound as a frequentist confidence interval.</p>
+<p>The general format is: <em>P = [value] ± [uncertainty] W (combined standard uncertainty; specification-based Type B inputs; Taylor-series method)</em></p>
+<hr>
+<p><em>Lab 1 FAQ | ASEN 3501 | E1 Week 2</em> <em>Generated from simulated student gap analysis — 2026-05-26</em> <em>Questions or corrections: contact the teaching team</em></p>
+      </section>
+      <section class="page-nav">
+        <a class="secondary-button" href="page-06.html">Previous</a>
+        <a class="primary-button next-button" href="../e1-week_3/index.html" >Next</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+    </footer>
+
+
+
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "e1-week_2-lab1-piv-faq", "title": "Lab 1 Brief Report + Oral Interview", "url": "modules/e1-week_2/page-07.html", "text": "E1 Week 2 (Course Week 2)\nAssignment\nLab 1 Brief Report + Oral Interview\nThe Lab 1 standalone deliverable. Students prepare a brief lab report (not independently graded \u2014 it is evidence of preparation) and complete a 3-minute one-on-one oral interview with a member of the teaching team. The oral interview is pass/fail. Required report sections: (1) circuit description and measurement record, (2) fluctuating digit procedure documented, (3) uncertainty propagation via partial derivatives for all three power equation forms, (4) sensitivity analysis \u2014 which form is most sensitive to which input, (5) Monte Carlo simulation results with MATLAB figures, (6) comparison of partial-derivative and Monte Carlo results stated numerically, (7) result in correct engineering form (estimate \u00b1 uncertainty, units, method), (8) plain-language explanation for a non-engineer. See `LAB1_PIV_assignment.md` for the complete student-facing specification.\nDistinguish variability, measurement error, and uncertainty, and explain why the distinction matters for engineering claims \u2014 CLO 2\nApply first-order error propagation using partial derivatives to compute uncertainty in a derived quantity \u2014 CLO 2\nExplain how different mathematical representations of the same physical quantity yield different sensitivities to measurement variation \u2014 CLO 2\nRun a Monte Carlo simulation in MATLAB to model uncertainty in a derived quantity and interpret the resulting distribution \u2014 CLO 2\nLab 1 (P=IV) \u2014 Frequently Asked Questions\n\n ASEN 3501: Aerospace Experimental Methods\n\n This document answers questions that come up frequently during Lab 1 preparation, execution, and report writing. If your question isn't here, ask your TA or the course AI tutor.\n\n Before the lab\n\n Should I use the nominal resistance value (from the label) or the measured resistance (from a pre-assembly DMM reading) when I compute power and propagate uncertainty?\n\n Both. You're required to run the analysis both ways and compare, not pick one:\n\n Case 1: nominal resistance and its printed tolerance (e.g., 200 \u03a9 \u00b1 5%)\n\n Case 2: DMM-measured resistance and the DMM's resistance-measurement accuracy spec\n\n These are two valid estimates of R and u_R , and they will generally give you slightly different P \u00b1 u_P results for P = V\u00b2/R and P = I\u00b2R. That's expected. The point of comparing them is to check internal consistency, not to locate the true value from their overlap. The cases share measurements and are not independent. If they disagree, inspect self-heating, meter loading, non-simultaneous readings, drift, and the Type B assumptions.\n\n My five trial readings for V (or I) aren't just scattered. They seem to be trending steadily in one direction (e.g., drifting downward). Is something wrong?\n\n Probably not. This is likely warm-up drift, not a mistake. The power supply and DMM take a few minutes to reach a stable operating point after power-on, and it's common to see voltage readings settle gradually (for example, starting a little high right after power-on and drifting down slightly over the first several minutes) before leveling off. This is a different phenomenon from the fluctuating-digit noise described in the assignment, and a different phenomenon from instrument accuracy error. It's a slow, directional trend rather than a random jitter around a stable value.\n\n What to do about it:\n\n Take your five repeated readings close together in time (within a minute or two of each\n\n other) rather than spread across the full lab session. This keeps your \"repeatability\" trials measuring genuine repeatability, not warm-up drift dressed up as repeatability.\n\n If you want to confirm the drift is coming from the power supply rather than the circuit\n\n or DMM, you can power-cycle the supply (off, then back on) with the circuit still connected. If the reading jumps back up toward its initial value and begins drifting again, that points to the supply as the source.\n\n You don't need to model or correct for this drift mathematically. Just be aware of it,\n\n take your readings in a tight time window, and if you notice a strong trend, it's worth a sentence in your report noting that you observed it and controlled for it by timing your trials closely together.\n\n If you're using Case 2 (DMM-measured resistance) for your resistor value, there's a related wrinkle: if you measured R with the DMM before the resistor was in the powered circuit, that's a \"cold\" measurement. Once current flows for a while, the resistor will self-heat slightly and its true in-circuit resistance may drift from that cold value. You don't need to correct for this either, but it's a reasonable thing to mention if your Case 1 and Case 2 results don't overlap as cleanly as expected.\n\n My propagated uncertainty came out way too large, like the same order of magnitude as P itself. What did I do wrong?\n\n The most common cause is a percent-to-decimal error. The datasheet specification is given as a percentage (e.g., 0.5% of reading), which means 0.005, not 0.5. If you plug in 0.5 directly, your uncertainty will be inflated by a factor of 100. Go back to your u_V and u_I calculations and confirm you converted the percentage to a decimal before multiplying.\n\n Do I need to memorize my report for the oral interview?\n\n No. You may bring your lab report and refer to it freely. What the interviewer is assessing is whether you can explain the reasoning behind a result, not whether you can recall a formula from memory. If asked to walk through the partial derivative computation, it's completely fine to look at the formula in your report. The question is whether you can explain what each term means and why the form matters.\n\n The rubric requires you to demonstrate understanding in 3 of 5 categories. See LAB1_PIV_rubric_student.md for what \"understanding\" looks like in each category.\n\n During the lab\n\n Should I average the five voltage and current readings, or use each trial separately?\n\n Use the mean of your five readings as your measured value of V and I. Compute the sample standard deviation s and the standard error s/\u221a5 . The standard error is a Type A standard-uncertainty contribution for the mean only when the observations are reasonably independent and the system is stable over the measurement window. Inspect the sequence first: a directional trend indicates drift, so do not hide it by treating the five values as stationary repeatability data. Compare the Type A contribution with the converted Type B component from the manufacturer specification; do not assume in advance which one dominates, and do not double count the same effect. Record all five individual readings in your report and use the mean values for the power calculations.\n\n Monte Carlo simulation\n\n Which distribution should I use for V and I in the Monte Carlo simulation?\n\n For this lab, use a uniform distribution over the original manufacturer bounds . If the datasheet calculation gives a symmetric limit \u00b1a , sample from [measured value-a, measured value+a] . The corresponding Type B standard uncertainty is u_B=a/\u221a3 .\n\n Do not sample from [measured value-u_B, measured value+u_B] ; u_B is a standard uncertainty, not the original hard limit. A Gaussian model is appropriate only if a manufacturer, calibration certificate, or explicit instructor-approved assumption gives you a defensible \u03c3 or coverage basis. Do not create \u03c3=u/2 from an unlabeled tolerance.\n\n State the original half-width, sampled bounds, and model in Section 5.\n\n How do I compare my Monte Carlo result with my partial-derivative result?\n\n Compare like quantities. For the uniform input model, convert every manufacturer half-width with u_B=a/\u221a3 before Taylor-series propagation. Then compare the Monte Carlo output standard deviation with the Taylor-series combined standard uncertainty u_P . If you also report Monte Carlo percentile bounds, call them coverage intervals and state the percentiles; do not compare an unlabeled percentile width directly with u_P .\n\n Report writing\n\n I computed three different values of P: 0.2425 W, 0.2447 W, and 0.2404 W. They're close but not the same. Which one is my \"best estimate\" for Section 7?\n\n Report the result from the form with the smallest propagated uncertainty. In this lab that is typically P = IV, because both V and I are directly measured inputs and the sensitivity coefficients are smaller than in the forms that involve R\u00b2 terms.\n\n Your choice should be consistent with your Section 4 sensitivity analysis. If you concluded in Section 4 that P = IV has the smallest uncertainty, your Section 7 result should use that form. The point of the sensitivity analysis isn't just arithmetic. It's to make a reasoned choice about which result to report.\n\n You may report all three forms for completeness, but designate one as your primary result and explain why.\n\n What is the difference between Type A and Type B uncertainty evaluation, and what does the coverage factor k mean?\n\n The labels describe where the uncertainty estimate comes from:\n\n Type A is data-driven. You evaluate it statistically from repeated observations,\n\n such as the sample standard deviation or the standard error of a mean.\n\n Type B is information-driven. You evaluate it from a datasheet, calibration\n\n certificate, manual, prior information, or an engineering judgment.\n\n Type A does not automatically mean random, and Type B does not automatically mean systematic. Convert both kinds of input to standard uncertainties before combining them as u_c . If expanded uncertainty is requested, multiply by the stated coverage factor: U = k u_c . The factor k is a multiplier, not a confidence level by itself; do not call k = 2 a 95% confidence interval unless the stated coverage basis justifies that interpretation.\n\n Should I say \"95% CI\" or \"manufacturer spec bound\" when stating my result in engineering form in Section 7?\n\n For Lab 1, use \"specification-based Type B standard uncertainty\" as your default after converting the manufacturer limit using your stated distribution assumption.\n\n \"Manufacturer spec bound\" means the uncertainty was derived directly from the\n\n instrument datasheet specification, without a statistical sampling argument. This is accurate for what you did.\n\n \"95% CI\" means you can trace the bound to a specific probability statement, either\n\n from repeated measurements and a t-distribution, or from a manufacturer spec that explicitly states it corresponds to 95% coverage.\n\n If a datasheet or calibration certificate gives an expanded uncertainty and coverage factor, convert with u=U/k and preserve that stated basis. Do not relabel a manufacturer bound as a frequentist confidence interval.\n\n The general format is: P = [value] \u00b1 [uncertainty] W (combined standard uncertainty; specification-based Type B inputs; Taylor-series method)\n\n Lab 1 FAQ | ASEN 3501 | E1 Week 2 Generated from simulated student gap analysis \u2014 2026-05-26 Questions or corrections: contact the teaching team", "module_id": "e1-week_2", "source_type": "page"}</script>
+</body>
+</html>

@@ -6,9 +6,9 @@ slide 2: Why Standards Matter
 (Image: A technical design desk with three stacked reference sources: a standards document, a measurement handbook, and a journal article. A student design sketch sits beside them with arrows pulling requirements and assumptions from each source.)
 Talking Point: Standards are one way the profession remembers what it has already learned. They do not design your experiment for you, but they tell you what vocabulary, assumptions, tolerances, and documentation expectations other engineers will recognize. When you cite a standard, you are saying that your design is not just personally plausible. You are anchoring it in a shared professional framework.
 
-slide 3: ASME V&V 10-2006 as the Course Anchor
-(Image: A V&V plan cover page labeled "ASME V&V 10-2006" connected by arrows to boxes labeled intended use, validation metrics, uncertainty, and comparison. The AMVF flowchart is faintly visible in the background.)
-Talking Point: ASME V&V 10-2006 is the required standards anchor for E3. You do not need to memorize every clause, but you do need to understand why this kind of document exists. It gives language for verification, validation, uncertainty, and credibility of computational or predictive models. In E3, you will use it to support the structure of your V&V plan and to show that your validation logic is not improvised.
+slide 3: Choose the Standard That Fits the Claim
+(Image: A V&V plan connected to three candidate sources: ASME PTC 19.1/GUM for measurement uncertainty, ASME V&V 10 for computational solid mechanics, and ASME V&V 20 for CFD and heat transfer. Each arrow is labeled "relevance must be explained.")
+Talking Point: No single standard is the automatic anchor for every E3 project. PTC 19.1 and the GUM support measurement-uncertainty practice. ASME V&V 10-2006 is the legacy computational solid-mechanics guide; ASME V&V 20 applies to computational fluid dynamics and heat transfer. Choose the document that fits your predictive model, measurement domain, and intended use. Annotate what it contributes and what it does not establish.
 
 slide 4: Domain-Specific Standards
 (Image: Four labeled shelves in a technical library: AIAA for aerospace practices, ASME PTC for performance testing and uncertainty, ASTM for measurement procedures and material tests, and MIL-HDBK for defense/aerospace handbook guidance. Each shelf has a callout showing an example measurement domain.)
@@ -39,7 +39,7 @@ slide 10: In-Class Practice Reference Hunt
 Talking Point: We will practice with a sample measurement problem before you work on your own. The goal is to locate one standards-type reference, one handbook or technical guide, and one prior-art source that changes the design conversation. I am less interested in perfect citations today than in seeing the habit form. A professional experimentalist asks what the field already knows before proposing a measurement plan.
 
 slide 11: Closure
-Standards, handbooks, and prior art are not ornamental references at the end of a report. They shape the design by defining terms, identifying accepted practices, warning about known failure modes, and supporting your uncertainty and validation logic. In your preliminary E3 proposal, ASME V&V 10-2006 and at least one additional relevant source must appear for a reason. Next week we turn those design claims into instrumentation choices, where the same rule applies: every choice needs a technical rationale.
+Standards, handbooks, and prior art are not ornamental references at the end of a report. They shape the design by defining terms, identifying accepted practices, warning about known failure modes, and supporting your uncertainty and validation logic. In your preliminary E3 proposal, at least one relevant standard or professional guide and one additional technical source must appear for a stated reason. Next week we turn those design claims into instrumentation choices, where the same rule applies: every choice needs a technical rationale.
 
 ## Agent Notes
 - Grounded in E3 W11 Lecture 2 purpose, including ASME V&V 10-2006 and domain-specific standards.

@@ -17,7 +17,7 @@ Both. You're required to run the analysis both ways and compare, not pick one:
 - **Case 1:** nominal resistance and its printed tolerance (e.g., 200 Ω ± 5%)
 - **Case 2:** DMM-measured resistance and the DMM's resistance-measurement accuracy spec
 
-These are two independent, valid estimates of R and u_R, and they will generally give you
+These are two valid estimates of R and `u_R`, and they will generally give you
 slightly different P ± u_P results for P = V²/R and P = I²R. That's expected. The point of
 comparing them is to check internal consistency, not to locate the true value from their
 overlap. The cases share measurements and are not independent. If they disagree, inspect
@@ -25,7 +25,7 @@ self-heating, meter loading, non-simultaneous readings, drift, and the Type B as
 
 ---
 
-**My three trial readings for V (or I) aren't just scattered. They seem to be trending
+**My five trial readings for V (or I) aren't just scattered. They seem to be trending
 steadily in one direction (e.g., drifting downward). Is something wrong?**
 
 Probably not. This is likely warm-up drift, not a mistake. The power supply and DMM take
@@ -37,7 +37,7 @@ different phenomenon from instrument accuracy error. It's a slow, directional tr
 than a random jitter around a stable value.
 
 What to do about it:
-- Take your three repeated readings close together in time (within a minute or two of each
+- Take your five repeated readings close together in time (within a minute or two of each
  other) rather than spread across the full lab session. This keeps your "repeatability"
  trials measuring genuine repeatability, not warm-up drift dressed up as repeatability.
 - If you want to confirm the drift is coming from the power supply rather than the circuit
@@ -83,61 +83,44 @@ The rubric requires you to demonstrate understanding in 3 of 5 categories. See
 
 ## During the lab
 
-**Should I average the three voltage and current readings, or use each trial separately?**
+**Should I average the five voltage and current readings, or use each trial separately?**
 
-Use the mean of your three readings as your measured value of V and I. The standard error
-of the mean from three readings (σ/√3) is typically much smaller than the manufacturer
-specification uncertainty, so the spec will dominate your formal uncertainty estimate.
-Record all three individual readings in your report to demonstrate repeatability, but
-compute P and propagate uncertainty using the mean values.
+Use the mean of your five readings as your measured value of V and I. Compute the sample
+standard deviation `s` and the standard error `s/√5`. The standard error is a Type A
+standard-uncertainty contribution for the mean only when the observations are reasonably
+independent and the system is stable over the measurement window. Inspect the sequence
+first: a directional trend indicates drift, so do not hide it by treating the five values
+as stationary repeatability data. Compare the Type A contribution with the converted Type
+B component from the manufacturer specification; do not assume in advance which one
+dominates, and do not double count the same effect. Record all five individual readings in
+your report and use the mean values for the power calculations.
 
 ---
 
 ## Monte Carlo simulation
 
-**Which distribution should I use for V and I in the Monte Carlo simulation: Gaussian
-or uniform?**
+**Which distribution should I use for V and I in the Monte Carlo simulation?**
 
-Both are defensible. The choice depends on what you know about the error source:
+For this lab, use a **uniform distribution over the original manufacturer bounds**. If the
+datasheet calculation gives a symmetric limit `±a`, sample from `[measured value-a,
+measured value+a]`. The corresponding Type B standard uncertainty is `u_B=a/√3`.
 
-- **Uniform distribution** [measured value − u, measured value + u]: use this when all
- you know is a tolerance bound from the datasheet, with no information about the
- distribution shape. This is the more conservative and technically honest choice for a
- manufacturer specification.
+Do not sample from `[measured value-u_B, measured value+u_B]`; `u_B` is a standard
+uncertainty, not the original hard limit. A Gaussian model is appropriate only if a
+manufacturer, calibration certificate, or explicit instructor-approved assumption gives
+you a defensible `σ` or coverage basis. Do not create `σ=u/2` from an unlabeled tolerance.
 
-- **Gaussian distribution** with σ = u/2: use this when you are treating the manufacturer
- spec as an approximately 95% confidence bound (k=2 coverage factor), which is common
- for precision instrument specifications. The factor of 2 means σ = u/2, not σ = u.
-
-See W2_L2 slide 7 for the full reasoning. Either choice is acceptable. What matters is
-that you state your choice explicitly in Section 5 of your report and justify it in one
-sentence.
-
-If you want a single defensible default: **use uniform**. It makes fewer assumptions.
+State the original half-width, sampled bounds, and model in Section 5.
 
 ---
 
-**Why does my Monte Carlo standard deviation look like it's about half of my
-partial-derivative uncertainty? Did I do something wrong?**
+**How do I compare my Monte Carlo result with my partial-derivative result?**
 
-Probably not. This is a σ-convention issue. Here's what's happening:
-
-The partial-derivative method computes δP using the full manufacturer spec value u as the
-input uncertainty. The result δP represents the maximum bound.
-
-If you set σ = u/2 in your Gaussian Monte Carlo (treating u as a ±2σ bound), then your
-simulation input standard deviation is half the spec value. The output distribution
-standard deviation will therefore also be approximately half of δP.
-
-This isn't an error. It's a consistent consequence of your σ-convention. To make the
-two methods give comparable magnitudes directly, either:
-- Use uniform distributions (the bounds match the spec value directly), or
-- Use Gaussian with σ = u (treating the spec as a 1σ bound: less standard, but it makes
- the comparison numerically direct)
-
-The key requirement is to state your convention explicitly in Section 5 and check
-consistency when writing Section 6. The comparison should explain *why* the numbers
-relate the way they do, not just assert that they agree or disagree.
+Compare like quantities. For the uniform input model, convert every manufacturer
+half-width with `u_B=a/√3` before Taylor-series propagation. Then compare the Monte Carlo
+output standard deviation with the Taylor-series combined standard uncertainty `u_P`.
+If you also report Monte Carlo percentile bounds, call them coverage intervals and state
+the percentiles; do not compare an unlabeled percentile width directly with `u_P`.
 
 ---
 
@@ -157,6 +140,25 @@ to make a reasoned choice about which result to report.
 
 You may report all three forms for completeness, but designate one as your primary result
 and explain why.
+
+---
+
+**What is the difference between Type A and Type B uncertainty evaluation, and what
+does the coverage factor `k` mean?**
+
+The labels describe where the uncertainty estimate comes from:
+
+- **Type A** is data-driven. You evaluate it statistically from repeated observations,
+ such as the sample standard deviation or the standard error of a mean.
+- **Type B** is information-driven. You evaluate it from a datasheet, calibration
+ certificate, manual, prior information, or an engineering judgment.
+
+Type A does not automatically mean random, and Type B does not automatically mean
+systematic. Convert both kinds of input to standard uncertainties before combining them
+as `u_c`. If expanded uncertainty is requested, multiply by the stated coverage factor:
+`U = k u_c`. The factor `k` is a multiplier, not a confidence level by itself; do not
+call `k = 2` a 95% confidence interval unless the stated coverage basis justifies that
+interpretation.
 
 ---
 

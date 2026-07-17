@@ -17,6 +17,10 @@ three phases. The physical experiments differ: you'll be assigned a specific exp
 for each phase. But the analytical framework, the deliverables, and the expectations are
 identical for all students, regardless of which experiment they're assigned.
 
+Throughout all phases, use the course uncertainty convention in `E1_W2_R3_reading.md`:
+put inputs on a standard-uncertainty basis before propagation and label every reported or
+plotted interval by type, method, and coverage.
+
 Read this document carefully before you touch any hardware. The structure is intentional,
 and understanding why each phase exists will make each one more productive.
 

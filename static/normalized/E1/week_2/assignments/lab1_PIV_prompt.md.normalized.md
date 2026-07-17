@@ -42,6 +42,14 @@ to standard uncertainties before propagation. Report Taylor-series results as co
 standard uncertainty `u_c`, and, when requested, as expanded uncertainty `U = k u_c` with
 `k` stated. Report Monte Carlo percentile bounds as coverage intervals, not confidence
 intervals. Label every plotted interval with its basis.
+
+Type A and Type B describe **how an uncertainty is evaluated**, not whether an effect is
+random or systematic. A Type A evaluation uses data from repeated observations. A Type B
+evaluation uses other information, such as a datasheet, calibration certificate, manual,
+prior measurements, or engineering judgment. After converting each input to a standard-
+uncertainty basis, combine them as `u_c`. A stated coverage factor `k` is the multiplier
+used to form expanded uncertainty, `U = k u_c`; `k = 2` is not automatically a 95%
+frequentist confidence interval unless the coverage basis supports that interpretation.
 6. Explain the core concepts of this lab clearly and concisely to someone who has not taken this course.
 
 ---
@@ -74,10 +82,12 @@ For the two forms that use R (P = V²/R and P = I²R), there are two defensible 
 a value for R and its uncertainty:
 
 - **Case 1: Nominal + manufacturer tolerance.** Use the resistor's labeled nominal value
- and the tolerance printed on it (e.g., 200 Ω ± 5%) as u_R.
+ and the tolerance printed on it (e.g., 200 Ω ± 5%). Treat the printed tolerance as a
+ symmetric half-width `a_R`; with a uniform Type B model, use `u_R = a_R/√3`.
 - **Case 2: DMM-measured + instrument accuracy.** Measure the resistor's resistance
  directly with the multimeter and use the DMM's resistance-measurement accuracy
- specification (from the datasheet) as u_R.
+ specification (from the datasheet) to calculate its symmetric half-width `a_R`, then
+ convert it to `u_R = a_R/√3` under the same uniform Type B model.
 
 **You are required to compute both cases** for P = V²/R and P = I²R, not just pick one.
 This is intentional, and it's the real point of this part of the lab: Case 1 and Case 2 use
@@ -100,7 +110,7 @@ on) with the circuit still connected, the reading will usually jump back up and 
 drifting again. That's a useful check if you want to confirm the supply, rather than the
 resistor or DMM, is the source of the drift.
 
-**Practical implication for data collection:** take your three repeated V and I readings
+**Practical implication for data collection:** take your five repeated V and I readings
 close together in time (within a minute or two of each other), rather than spacing them out
 over the full lab session. This keeps your repeatability trials measuring genuine
 instrument/reading variation, rather than accidentally capturing warm-up drift and
@@ -125,12 +135,10 @@ On most benchtop multimeters, the least significant digit, the rightmost digit, 
 fluctuate during a measurement. This isn't noise in the measurement. It's the instrument's
 resolution limit combined with real variation in the signal.
 
-**The rule for recording measurements from a fluctuating display:**
+**Recording rule:** Cover the fluctuating digit with your finger. Read and record the
+stable digits. Assign an uncertainty of ±½ of the last stable digit's place value.
 
-> Cover the fluctuating digit with your finger. Read and record the stable digits. Assign
-> an uncertainty of ±½ of the last stable digit's place value.
-
-**Example:** Your voltmeter reads 4.9_3_, 4.9_2_, 4.9_4_. The units digit in the tenths
+**Example:** Your voltmeter reads 4.9<em>3</em>, 4.9<em>2</em>, 4.9<em>4</em>. The units digit in the tenths
 place is stable (4.9), but the hundredths digit fluctuates (2, 3, 4). You record **4.9 V**
 and assign an uncertainty of **±0.05 V** (half of one unit in the tenths place).
 
@@ -138,7 +146,7 @@ This is a *conservative but not overcautious* recording strategy. You aren't ign
 variation. You're bounding it at the resolution of the instrument. The tradeoff matters:
 if you assign unnecessarily large uncertainties, the systems designed around your measurements
 will be over-engineered and expensive. If you assign uncertainties that are too small, those
-systems will fail. The correct answer is the smallest defensible bound.
+systems might fail. The correct answer is the smallest defensible bound.
 
 ### Two methods, two different jobs
 
@@ -151,11 +159,7 @@ questions:
  in real time, with no datasheet in hand, just by watching the display. It's a fast,
  physical sanity check on resolution, and it's what you record and describe in Section 2
  of your report to demonstrate you can read an instrument correctly.
-- **The datasheet specification is evidence for a specification-based Type B evaluation.** It's what you use for
- every partial-derivative and Monte Carlo calculation in this lab. The reason it takes
- priority over the fluctuating digit is that a display can look perfectly stable and still
- be systematically wrong by more than the resolution suggests. The datasheet's accuracy
- spec captures that systematic error, which the fluctuating digit alone cannot.
+- **The datasheet specification is evidence for a specification-based Type B evaluation.** It's what you use for every partial-derivative and Monte Carlo calculation in this lab. The reason it takes priority over the fluctuating digit is that a display can look perfectly stable and still be systematically wrong by more than the resolution suggests. The datasheet's accuracy spec captures that systematic error, which the fluctuating digit alone cannot.
 
 If you ever find that your fluctuating-digit uncertainty is *larger* than the datasheet
 spec, that's worth a sentence of discussion in your report. It usually means the signal
@@ -180,8 +184,8 @@ coverage basis. State that assumption before propagation.
 mistake is to use 0.5 directly in the calculation, which inflates the uncertainty by a
 factor of 100. Double-check your decimal conversion before propagating.
 
-You'll receive the multimeter datasheet at the start of the lab session. Before you begin
-any measurements, locate the specification for:
+Use the bundled [Keysight 34460A/34461A/34465A/34470A datasheet](<Digital Multimeters 34460A, 34461A, 34465A (6½ digit), 34470A (7½ digit).pdf>). Before you begin any measurements,
+locate the 34461A specification for:
 - DC voltage accuracy in the range you are using
 - DC current accuracy in the range you are using
 
@@ -224,20 +228,26 @@ from the datasheet (steps 6–8), and Monte Carlo simulation in MATLAB (steps 9�
 be configured and connected differently for each. You'll measure V and I as two separate
 steps, not simultaneously.
 
-1. Build the circuit: connect the resistor to the power supply so current can flow through
- it. Record the nominal resistor value and tolerance from its label. Also measure the
- resistor's resistance directly with the DMM (easiest done before wiring it into the
- powered circuit) and record this measured value. You'll need both the nominal and
- measured values for the resistance-uncertainty comparison described above.
-2. Set the power supply to a target voltage (specified by your lab instructor).
-3. **Measure voltage first.** Configure the multimeter as a voltmeter and connect it in parallel across the resistor. Read and record V from the display using the fluctuating-digit procedure above. Take three repeated V readings, close together in time (see the warm-up note above), to check for repeatability. ![Digital multimeter configured as a voltmeter, connected in parallel across the resistor, displaying a voltage reading.](images/voltage1.png)
-4. **Then measure current.** Reconfigure the multimeter as an ammeter and reconnect it in series in the loop (this requires briefly breaking the circuit to insert the meter in the current path; it can't stay connected the way it was for the voltage measurement). Read and record I from the display using the same fluctuating-digit procedure. Take three repeated I readings, close together in time. ![Digital multimeter configured as an ammeter, connected in series with the resistor, displaying a current reading.](images/current1.png)
+### Lab configuration
+
+| Nominal resistance | Tolerance | Power rating | Supply target | Expected current | Expected power | Power-rating factor of safety |
+|---:|---:|---:|---:|---:|---:|---:|
+| 200 Ω | ±5% | 0.25 W | 5.00 V | 25 mA | 0.125 W | 2× |
+
+Keep the power supply **off** while building or changing the circuit. Before applying
+power, verify the resistor rating, DMM lead jacks, measurement mode, and wiring. The
+expected values are pre-lab checks, not substitutes for your measured values.
+
+1. Build the circuit: connect the resistor to the power supply so current can flow through it. Record the nominal resistor value and tolerance from its label. Also measure the resistor's resistance directly with the DMM (easiest done before wiring it into the powered circuit) and record this measured value. You'll need both the nominal and measured values for the resistance-uncertainty comparison described above.
+2. With the circuit verified and the supply still off, set the power supply target to **5.00 V** as specified in the Lab configuration table, then apply power.
+3. **Measure voltage first.** Configure the multimeter as a voltmeter and connect it in parallel across the resistor. Read and record V from the display using the fluctuating-digit procedure above. Take five repeated V readings, close together in time (see the warm-up note above), to check for repeatability. ![Digital multimeter configured as a voltmeter, connected in parallel across the resistor, displaying a voltage reading.](images/voltage1.png)
+4. **Then measure current.** Reconfigure the multimeter as an ammeter and reconnect it in series in the loop (this requires briefly breaking the circuit to insert the meter in the current path; it can't stay connected the way it was for the voltage measurement). Read and record I from the display using the same fluctuating-digit procedure. Take five repeated I readings, close together in time. ![Digital multimeter configured as an ammeter, connected in series with the resistor, displaying a current reading.](images/current1.png)
 5. Compute P three ways from your recorded V and I values. Note the differences.
-6. Using the manufacturer specifications from the datasheet, compute the uncertainty in V and the uncertainty in I.
-7. Apply first-order error propagation (partial derivatives) to compute the uncertainty in P for each of the three forms. Show your work: write out the partial derivatives, substitute values, and state the result as P ± u_P.
+6. Using the manufacturer specifications from the datasheet, calculate the symmetric limits `a_V` and `a_I`, then convert them to the Type B standard uncertainties `u_V = a_V/√3` and `u_I = a_I/√3` under the uniform model.
+7. Apply first-order uncertainty propagation (partial derivatives) to compute the combined standard uncertainty `u_P` for each of the three forms. Show your work: write out the partial derivatives, substitute standard uncertainties, and state the result as P ± u_P.
 8. Answer: which form of the power equation is most sensitive to uncertainty in V? In I? Where would you spend money on a better instrument if minimizing uncertainty in P was the goal?
-9. Using the same manufacturer specifications as probability distribution parameters, run a Monte Carlo simulation in MATLAB for each of the three power equation forms. Model V and I as independent random variables drawn from distributions consistent with the datasheet. Two defensible choices are: (a) a **uniform distribution** spanning [measured value − u, measured value + u], which treats the spec as a hard tolerance bound with no assumed shape. (b) A **Gaussian distribution** with σ = u/2, which treats the spec as a ±2σ (approximately 95%) coverage bound. See W2_L2 slide 7 for the reasoning behind each choice. **State your distribution choice explicitly in your report and justify it in one sentence.** Use at least 10,000 samples. Plot the resulting distribution of P for each form on the same figure with appropriate labels and captions.
-10. Compare the Monte Carlo result to your partial-derivative result. Are they consistent? If not, explain why they might differ. *Note: if you used σ = u/2 in your Gaussian simulation (treating the spec as a ±2σ bound), expect your Monte Carlo output standard deviation to be approximately half your partial-derivative δP. This isn't an error. It reflects the σ-convention you chose. State your convention explicitly and check consistency in Section 6 of your report.*
+9. Using the same manufacturer limits, run a Monte Carlo simulation in MATLAB for each of the three power measurement models. For each manufacturer input, sample uniformly over its original bounds, such as `[V-a_V, V+a_V]` and `[I-a_I, I+a_I]`. Use the corresponding original tolerance bounds for each resistance case. Do not use `u_V`, `u_I`, or `u_R` as the uniform half-widths; those symbols are standard uncertainties after division by `√3`. Use at least 10,000 samples. Plot the resulting distribution of P for each model with appropriate labels and captions. If a manufacturer or calibration source explicitly supplies a Gaussian standard deviation or coverage basis, you may use that documented model instead and must cite it; do not invent a Gaussian `σ` from an unlabeled tolerance.
+10. Compare like quantities across methods: compare the Monte Carlo output standard deviation with the Taylor-series combined standard uncertainty `u_P`, and report any Monte Carlo percentile bounds as clearly labeled coverage intervals. State whether the results are consistent and explain meaningful differences.
 
 ---
 
@@ -274,9 +284,9 @@ Where would you invest in a better instrument, and why?
 Include your MATLAB figure(s) showing the distributions of P for each equation form.
 Each figure must have a title, labeled axes with units, a legend, and a caption that states
 the key takeaway in one sentence. Include the key MATLAB code (the simulation loop and
-distribution plot — not every setup line). **State what distribution you used for V and I
-(Gaussian or uniform), and justify your choice in one sentence. State the σ-convention you
-applied (e.g., σ = u or σ = u/2) so the comparison in Section 6 is unambiguous.**
+distribution plot — not every setup line). **State the original manufacturer half-widths
+`a`, show the uniform bounds you sampled, and report the simulated output standard
+deviation and any selected percentile coverage interval.**
 
 **6. Comparison: partial derivatives vs. Monte Carlo**
 Are the results consistent? State the comparison numerically. Don't just say "yes they
@@ -285,13 +295,13 @@ other? Also briefly address: given that the DMMs were purchased in 2019, is it r
 to trust the datasheet's 2-year-column specification at face value, or should you flag
 possible drift beyond spec as an additional (unquantified) source of uncertainty? Finally,
 compare your Case 1 and Case 2 results for P = V²/R and P = I²R: do the two P ± u_P ranges
-overlap? An overlap is a good sign that the true value of P lies in that shared region.
-State whether that's what you observed.
+overlap? Treat overlap only as an internal-consistency clue under your stated assumptions;
+it does not locate the true value. State what you observed and identify shared inputs or
+effects that prevent the cases from being independent.
 
 **7. Result statement**
 State your best estimate of P in the correct engineering form:
-*P = [value] ± [uncertainty] [units] ([confidence level or method, e.g., 95% CI or
-manufacturer spec bound])*
+*P = [value] ± [uncertainty] [units] ([interval type; method; coverage basis])*
 
 **8. Plain-language explanation**
 In 3–5 sentences, explain what you did in this lab and what your result means to someone
@@ -353,7 +363,7 @@ targeted practice on the core concepts. Use it.
 - E1 Week 2 Lecture: Variability, Error, and Uncertainty
 - Coleman & Steele, *Experimentation, Validation, and Uncertainty Analysis for Engineers*,
  4th ed. — Chapter on uncertainty propagation (reference copy on course page)
-- Multimeter datasheet — provided at lab session
+- [Keysight 34460A/34461A/34465A/34470A multimeter datasheet](<Digital Multimeters 34460A, 34461A, 34465A (6½ digit), 34470A (7½ digit).pdf>) — use the 34461A accuracy tables and 2-year column
 - MATLAB starter script — available on Canvas (sets up the Monte Carlo loop structure;
  you complete the equation forms and plotting)
 - E0 Supplemental: Virtual Multimeter Simulator (optional bonus activity)
