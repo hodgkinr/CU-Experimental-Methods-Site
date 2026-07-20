@@ -281,87 +281,141 @@
 <hr>
 <p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
 <hr>
-<h2>Primary Sensor — HEDS Optical Encoder (on wheel)</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Manufacturer</td><td><code>[MISSING: see datasheet]</code></td><td>HEDS encoder.pdf (binary — not read)</td></tr><tr><td>Model number</td><td><code>[MISSING: see datasheet]</code></td><td>HEDS encoder.pdf (binary — not read)</td></tr><tr><td>Measurement</td><td>Rotation angle θ [rad]; angular velocity ω computed numerically</td><td>Source documents</td></tr><tr><td>Mounting</td><td>Mounted on the wheel; rotates with the wheel</td><td>Source documents</td></tr><tr><td>Communication</td><td>Wireless transmission to receiver on lab computer</td><td>Source documents</td></tr><tr><td>Reliable range</td><td>0.5 rad &lt; θ &lt; 15 rad (recommended by source)</td><td>.tex Step 7, .md Step 7</td></tr><tr><td>Counts per revolution</td><td><code>[MISSING: see datasheet]</code></td><td>HEDS encoder.pdf (binary — not read)</td></tr><tr><td>Output type</td><td><code>[MISSING: see datasheet]</code></td><td>HEDS encoder.pdf (binary — not read)</td></tr><tr><td>Voltage range</td><td><code>[MISSING: see datasheet]</code></td><td>HEDS encoder.pdf (binary — not read)</td></tr><tr><td>Measurement accuracy</td><td><code>[MISSING: see datasheet]</code></td><td>HEDS encoder.pdf (binary — not read)</td></tr><tr><td>Power supply</td><td>9V battery (in wheel, along training wheel bar)</td><td>.tex Appendix A</td></tr></tbody></table></div>
-<p><strong>Known issue:</strong> Wireless link is susceptible to packet drops if the transmitter on the wheel does not have clear line-of-sight to the receiver on the computer. Packet drops produce large gaps in the data record.</p>
-<p><code>[MISSING: HEDS encoder.pdf present in source directory as binary — must be read and specs extracted; add extracted datasheet to instrumentation/datasheets/]</code></p>
+<h2>Primary Sensor — Wheel Encoder</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Sensor model</td><td><code>HEDS-5505</code></td><td>instructor-provided confirmation + staged encoder PDF lineage</td></tr><tr><td>Measurement role</td><td>Rotation angle θ [rad]; angular velocity ω derived numerically</td><td>catalog + staged handout lineage</td></tr><tr><td>Mounting</td><td>On the wheel; rotates with the wheel</td><td>catalog + staged handout lineage</td></tr><tr><td>Communication</td><td>Wireless transmission to receiver on lab computer</td><td>catalog + staged handout lineage</td></tr><tr><td>Power supply</td><td>9V battery in wheel along training wheel bar</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Reliable analysis range</td><td>0.5 rad &lt; θ &lt; 15 rad</td><td>staged handout + historical code</td></tr><tr><td>Counts per revolution</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr><tr><td>Output type</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr><tr><td>Voltage range</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr><tr><td>Accuracy / resolution</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr></tbody></table></div>
+<p>The staged encoder PDF plus instructor confirmation identify the encoder as <code>HEDS-5505</code>, but a clean text extraction or manual review is still needed to fill in the actual spec values.</p>
+<p><strong>Known issue:</strong> Wireless line-of-sight matters. Packet drops can produce large gaps, plateaus, or spikes in the recorded data.</p>
 <hr>
 <h2>DAQ Hardware — NI USB-6008</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Manufacturer</td><td>National Instruments</td><td>Source documents</td></tr><tr><td>Model</td><td>USB-6008</td><td>Source documents</td></tr><tr><td>Interface</td><td>USB to computer</td><td>.tex Appendix A</td></tr><tr><td>Electronics box</td><td>Included with apparatus</td><td>.tex Appendix A</td></tr><tr><td>Required device ID</td><td>Must appear as &quot;Dev 2&quot; in NIMax</td><td>.tex Appendix A</td></tr><tr><td>Analog input channels</td><td><code>[MISSING: see NI datasheet]</code></td><td>External</td></tr><tr><td>Resolution</td><td><code>[MISSING: see NI datasheet]</code></td><td>External</td></tr><tr><td>Sampling rate</td><td><code>[MISSING: see NI datasheet]</code></td><td>External</td></tr><tr><td>Quantization uncertainty</td><td><code>[MISSING: see NI datasheet]</code></td><td>External</td></tr></tbody></table></div>
-<p><strong>Configuration note:</strong> The NI USB-6008 must be listed as &quot;Dev 2&quot; in NIMax for the LabVIEW VI to communicate with it. If it appears as a higher device number, delete stale entries and re-plug the USB cable (do not delete Dev 1, the internal PCI card).</p>
-<p><code>[MISSING: NI USB-6008 datasheet not in source directory — standard NI product; obtain from ni.com. Key specs needed: analog input channels, resolution, sampling rate, USB specification.]</code></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Manufacturer</td><td>National Instruments</td><td>staged handout lineage</td></tr><tr><td>Model</td><td>USB-6008</td><td>staged handout lineage</td></tr><tr><td>Interface</td><td>USB to computer</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Electronics box</td><td>Included with apparatus</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Required device ID</td><td>Must appear as <code>Dev 2</code> in NIMax</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Analog input channels</td><td><code>[MISSING: confirm from NI datasheet]</code></td><td>external spec not yet staged</td></tr><tr><td>Resolution</td><td><code>[MISSING: confirm from NI datasheet]</code></td><td>external spec not yet staged</td></tr><tr><td>Sampling rate</td><td><code>[MISSING: confirm from NI datasheet]</code></td><td>external spec not yet staged</td></tr><tr><td>Quantization uncertainty</td><td><code>[MISSING: confirm from NI datasheet]</code></td><td>external spec not yet staged</td></tr></tbody></table></div>
+<p><strong>Configuration note:</strong> The NI USB-6008 must be listed as <code>Dev 2</code> in NIMax for the LabVIEW VI to communicate correctly with it.</p>
 <hr>
 <h2>DAQ Software — LabVIEW VI</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Application name</td><td>UnbalancedWheel.vi</td><td>.tex Appendix A</td></tr><tr><td>Location</td><td>Shortcut in ASEN 2003 course folder on lab computer</td><td>.tex Appendix A</td></tr><tr><td>Output channels</td><td>Angular position θ [rad] vs. time; angular velocity ω [rad/s] vs. time</td><td>Source documents</td></tr><tr><td>Recording trigger</td><td>Starts automatically when wheel begins to move</td><td>.tex Appendix A</td></tr><tr><td>Stop</td><td>Manual — press stop button when wheel reaches bottom of ramp</td><td>.tex Appendix A</td></tr><tr><td>Reference video</td><td><a href="https://www.youtube.com/watch?v=28rrILZLlqM&amp;t=0s">https://www.youtube.com/watch?v=28rrILZLlqM&amp;t=0s</a> (AES Lab &quot;2003 Wheel Intro&quot;)</td><td>.tex Appendix A</td></tr></tbody></table></div>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Application name</td><td><code>UnbalancedWheel.vi</code></td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Location</td><td>Shortcut in ASEN 2003 folder on lab computer</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Output channels</td><td>θ and ω vs. time</td><td>catalog + staged handout lineage</td></tr><tr><td>Recording trigger</td><td>Data is not recorded until the wheel begins to move</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Stop condition</td><td>Stop the VI once the wheel reaches the bottom of the ramp</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Reference video</td><td><code>https://www.youtube.com/watch?v=28rrILZLlqM&amp;t=0s</code></td><td>staged 2019 <code>.tex</code></td></tr></tbody></table></div>
 <hr>
 <h2>Full DAQ Chain Summary</h2>
 <pre><code>
 Wheel rotation
- → HEDS optical encoder (on wheel)
- → Wireless transmission to receiver on lab computer
- → NI USB-6008 (electronics box)
+ → wheel encoder (HEDS-5505)
+ → wireless transmission to receiver on lab computer
+ → NI USB-6008 + electronics box
  → USB connection to computer
  → UnbalancedWheel.vi (LabVIEW)
- → Data file output (θ and ω vs. time)
+ → exported text data file (historically time, theta, omega)
 </code></pre>
-<p>Students are <strong>end-users</strong> of this DAQ chain — they operate the VI but do not configure the NI USB-6008 or program the LabVIEW VI.</p>
+<p>Students are end-users of the DAQ chain. They operate the apparatus and VI but do not program the NI device or the LabVIEW VI.</p>
 <hr>
-<h2>Additional Resources Needed</h2>
+<h2>Second-Pass Improvements From Staged Files</h2>
+<p>The staged handout confirms:</p>
 <ul>
-<li><code>[MISSING: HEDS encoder.pdf — in source directory as binary; critical for sensor specs and uncertainty estimation]</code></li>
-<li><code>[MISSING: NI USB-6008 datasheet — not in source directory; obtain from ni.com]</code></li>
-<li><code>[MISSING: Unbalance Wheel Lecture Notes.doc — in source directory as binary; may contain additional instrumentation context]</code></li>
-<li><code>[MISSING: ASEN_2003_Unbalanced_Wheel_TA_FAQs.pdf — troubleshooting notes for common operational issues; useful for procedure/notes]</code></li>
+<li>NI USB-6008 usage</li>
+<li><code>Dev 2</code> requirement in NIMax</li>
+<li>9V battery location</li>
+<li>operational dependency on wireless line-of-sight</li>
+<li>exact <code>UnbalancedWheel.vi</code> naming</li>
+</ul>
+<p>The staged encoder materials confirm the model:</p>
+<ul>
+<li><code>HEDS-5505</code></li>
+</ul>
+<p>but further manual extraction is still needed for numerical specifications.</p>
+<hr>
+<h2>Remaining Gaps</h2>
+<ul>
+<li><code>[MISSING: encoder counts/rev, output type, voltage range, and stated accuracy from the encoder PDF]</code></li>
+<li><code>[MISSING: NI USB-6008 datasheet or extracted spec values]</code></li>
 </ul>
 <hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
+<p><em>This file was updated on July 20, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
+<hr>
+<h2>Data Access Policy For The Course Site</h2>
+<p>Raw and sample data files should <strong>not</strong> be bundled into the public course site for this lab. Instead, the student-facing lab page should point to an external SharePoint location managed manually by the instructional team.</p>
+<p><strong>Student-facing data link:</strong></p>
+<ul>
+<li><a href="https://o365coloradoedu.sharepoint.com/:f:/r/sites/AEROENGR-Labspace-Labs/Shared%20Documents/Labs/Extra%20Historical%20Labs/Unbalanced%20Wheel%20Lab/ASEN%202003%20Archived%20Unbalanced%20Wheel%20Lab/Data?csf=1&amp;web=1&amp;e=UcOUdQ">Data - Link to Sharepoint - NEEDS UPDATE</a></li>
+</ul>
 <hr>
 <h2>What the VI Records</h2>
 <p>The LabVIEW VI <code>UnbalancedWheel.vi</code> outputs:</p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Channel</th><th>Symbol</th><th>Units</th><th>Description</th></tr></thead><tbody><tr><td>Angular position</td><td>θ</td><td>rad</td><td>Measured by HEDS optical encoder on wheel</td></tr><tr><td>Angular velocity</td><td>ω</td><td>rad/s</td><td>Computed numerically from encoder output</td></tr></tbody></table></div>
-<p>Both channels are recorded vs. time. The time channel is implicit (not confirmed) — verify from VI output.</p>
-<p><code>[MISSING: Data file format not specified in source documents — exact file extension (.txt, .csv, .dat), delimiter (comma, tab, space), column order, and whether time is included as a column must be verified from a VI output file before the analysis session]</code></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Channel</th><th>Symbol</th><th>Units</th><th>Description</th></tr></thead><tbody><tr><td>Time</td><td>t</td><td>s</td><td>Present in historical exported files; expected as column 1</td></tr><tr><td>Angular position</td><td>θ</td><td>rad</td><td>Measured by wheel encoder; historical exports use column 2</td></tr><tr><td>Angular velocity</td><td>ω</td><td>rad/s</td><td>Computed numerically from encoder output; historical exports use column 3</td></tr></tbody></table></div>
+<p>The staged historical solution report includes MATLAB code that loads files with:</p>
+<pre><code>
+data = load(filename);
+th_exp = data(:,2);
+w_exp = data(:,3);
+</code></pre>
+<p>This is strong evidence that the historical export format used:</p>
+<ul>
+<li>plain text numeric files readable by MATLAB <code>load(...)</code></li>
+<li>column 1 = time</li>
+<li>column 2 = theta</li>
+<li>column 3 = omega</li>
+</ul>
+<p><code>[NEEDS INSTRUCTOR REVIEW: Confirm that the current export format still matches the historical 3-column text format before publishing student instructions as final.]</code></p>
 <hr>
 <h2>Data Collection Summary</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Trial</th><th>Configuration</th><th>Count</th></tr></thead><tbody><tr><td>1–2</td><td>Balanced wheel (no eccentric mass)</td><td>2 trials</td></tr><tr><td>3–4</td><td>Unbalanced wheel (eccentric mass installed)</td><td>2 trials</td></tr></tbody></table></div>
-<p><strong>Total:</strong> 4 data files per lab session</p>
-<p><strong>Version note:</strong> The 2014 source (<code>.md</code>) called for 3 unbalanced trials; the 2018/2019 source (<code>.tex</code>) reduced this to 2. The 2018/2019 count of 2 is used here as the current standard.</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Trial</th><th>Configuration</th><th>Count</th></tr></thead><tbody><tr><td>1–2</td><td>Balanced wheel (no eccentric mass)</td><td>2 trials in the current handout lineage</td></tr><tr><td>3–4</td><td>Unbalanced wheel (eccentric mass installed)</td><td>2 trials in the current handout lineage</td></tr></tbody></table></div>
+<p><strong>Total current expectation:</strong> 4 data files per lab session</p>
+<p><strong>Historical note:</strong> the staged 2013 sample solution uses 3 balanced and 3 unbalanced trials. That older structure is useful as a reference for analysis workflow, but it should not override the more recent handout lineage without an explicit instructor decision.</p>
 <hr>
 <h2>Reliable Data Range</h2>
-<p>Per source guidance: <strong>0.5 rad &lt; θ &lt; 15 rad</strong></p>
+<p>Per the catalog, prior compilation, staged handout, and staged historical code: <strong>0.5 rad &lt; θ &lt; 15 rad</strong></p>
 <ul>
-<li><strong>θ &lt; 0.5 rad:</strong> Initial transient as wheel accelerates from rest — encoder signal less reliable in this region; wheel may not yet be rolling smoothly</li>
-<li><strong>θ &gt; 15 rad:</strong> Wheel approaching end of ramp — possible end effects; VI may have been stopped in this region</li>
+<li><strong>θ &lt; 0.5 rad:</strong> startup transient region</li>
+<li><strong>θ &gt; 15 rad:</strong> likely end-of-ramp effects or stop timing effects</li>
 </ul>
-<p>Trim all data to the reliable range before computing residuals and statistics.</p>
+<p>The staged historical MATLAB code explicitly trims data to this range.</p>
+<hr>
+<h2>File Naming Conventions</h2>
+<p>The staged historical solution uses names like:</p>
+<ul>
+<li><code>balanced_trial1.txt</code></li>
+<li><code>balanced_trial2.txt</code></li>
+<li><code>balanced_trial3.txt</code></li>
+<li><code>unbalanced_trial1.txt</code></li>
+<li><code>unbalanced_trial2.txt</code></li>
+<li><code>unbalanced_trial3.txt</code></li>
+</ul>
+<p>These names should be treated as <strong>historical examples</strong>, not necessarily the current required naming convention.</p>
+<p><code>[INSTRUCTOR TO PROVIDE: Final naming convention if the lab team wants students to use a standard export/file-naming pattern.]</code></p>
 <hr>
 <h2>Angular Acceleration</h2>
-<p><code>[NEEDS INSTRUCTOR REVIEW — whether angular acceleration computation is included in the 3501 version of this lab]</code></p>
-<p>The 2014 source (Step 7 in <code>.md</code>) asks students to compute angular acceleration from the data. The 2018/2019 source (Step 7 in <code>.tex</code>) includes an editorial comment from the instructor suggesting this step should be removed: <em>&quot;EWF: We should eliminate this last part, i.e., computing the angular acceleration. I am not sure why we have it in the assignment.&quot;</em></p>
-<p>Status: flagged for removal in 2018/2019; include only if the 3501 instructor explicitly requests it.</p>
+<p><code>[NEEDS INSTRUCTOR REVIEW — whether angular acceleration computation belongs in the 3501 version of this lab]</code></p>
+<p>The staged 2019 <code>.tex</code> still includes angular acceleration language, but also contains an instructor red-note suggesting that part should be removed.</p>
+<p>Recommendation for 3501: keep the core workflow focused on:</p>
+<ul>
+<li>loading data</li>
+<li>trimming to the reliable θ range</li>
+<li>comparing ω vs. θ</li>
+<li>computing residuals and statistics</li>
+</ul>
+<p>unless the teaching team wants angular acceleration for a specific pedagogical reason.</p>
 <hr>
 <h2>MATLAB Data Loading</h2>
-<p>The source specifies that students write a MATLAB function to:</p>
+<p>Students should write or adapt MATLAB code that:</p>
 <ul>
-<li>Load a specified data file</li>
-<li>Extract θ and ω arrays</li>
-<li>Trim to reliable range (0.5 to 15 rad)</li>
-<li>Plot ω vs. θ for one trial</li>
+<li>loads one trial file</li>
+<li>extracts θ and ω</li>
+<li>trims to the reliable range</li>
+<li>plots ω vs. θ</li>
+<li>computes residuals against the selected model</li>
 </ul>
-<p>See <code>matlab/README_agent.md</code> for the function specification.</p>
+<p>The staged historical report confirms that a simple <code>load(filename)</code> approach was used successfully for earlier text exports.</p>
+<p>See <code>matlab/README_agent.md</code> for the expected analysis workflow.</p>
 <hr>
-<h2>Missing Data</h2>
-<p><code>[MISSING_DATA: No sample data files from a prior run are present in the source directory. Sample .txt or .csv files from both balanced and unbalanced runs are needed for 3501 student reference and for testing the MATLAB loading function. These must come from the lab team.]</code></p>
-<p><code>[MISSING: Example histogram code referenced in 2014 source as &quot;Lab 4 folder on D2L&quot; is not present in the source directory. This is a MATLAB template for plotting a histogram of scaled data with a normal distribution superimposed. Must be obtained from course archives or recreated.]</code></p>
+<h2>Sample Data Status</h2>
+<p>The staged materials now include a <strong>historical sample solution report</strong>, which confirms likely file structure and analysis habits, but the staging folder still does <strong>not</strong> contain a confirmed raw balanced export file and confirmed raw unbalanced export file for direct validation.</p>
+<p>The catalog points to historical data folders, but this ingestion pass still does not copy raw data into the planning package or publish it to the site. Students should use the SharePoint folder linked above for data access.</p>
+<p><code>[MISSING_DATA: At least one confirmed current balanced trial file and one confirmed current unbalanced trial file are still needed if the team wants the data format documented with full confidence.]</code></p>
 <hr>
 <h2>Known Anomalies and Quirks</h2>
 <ul>
-<li>Wireless packet drops produce large gaps in the data record — trials with packet drops should be rerun or flagged and excluded from analysis</li>
-<li>Data at very low θ (near 0) may show startup behavior inconsistent with the rolling model; trim carefully</li>
-<li>The 4 data files from a single session should be named consistently to distinguish balanced vs. unbalanced trials</li>
+<li>Wireless packet drops can create gaps, plateaus, or spikes in the data</li>
+<li>Very low-θ data may not match the rolling model well because of startup effects</li>
+<li>Balanced and unbalanced runs should be named clearly and consistently</li>
 </ul>
 <hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
+<p><em>This file was updated on July 20, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
 <p><em>Instructor-facing only. Not for student distribution.</em></p>
 <hr>
 <h2>1. CLO Alignment</h2>
