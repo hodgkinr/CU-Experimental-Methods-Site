@@ -98,6 +98,7 @@ Numbers and equations follow conventions that are enforced uniformly in professi
 - **Space between number and unit.** Write `9.81 m/s²` not `9.81m/s²`. Write `2.4 mm` not `2.4mm`. No exceptions.
 - **Consistent units.** Do not switch between metric and imperial mid-document. If your data is in N, your results are in N.
 - **Variables are italicized; numbers and units are not.** The variable *P* represents power; the value 4.32 W is a measurement. Only variables are italicized.
+- **Inline units may remain plain text.** Use standard SI-style prose such as `4.32 W`, `9.81 m/s²`, and `t = 7 s`; do not invent a second bracketed-unit convention for ordinary sentences. For a compact reference, see the NIST unit-writing checklist: <https://physics.nist.gov/cuu/Units/checklist.html>.
 - **Equations are part of the text.** Introduce every equation in a sentence: "Power dissipated in the resistor is given by..." Equations aren't standalone objects; they are statements that the surrounding prose must set up and interpret.
 - **Every result carries uncertainty.** A number without uncertainty bounds is not an engineering result; it is a reading. State method, confidence level, and bounds every time.
 

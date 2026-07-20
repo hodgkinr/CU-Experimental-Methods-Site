@@ -181,23 +181,17 @@ graph presentation framework from E1 W2.
 A 3–5 sentence summary of what you did and what your result means, written for a non-engineer.
 This section belongs in your introduction or conclusion, not as an appendix.
 
-**11. Predict-from-specs (alternative sensor)**
-Using only the spec sheet for an alternative sensor configuration, provided by the instructor
-in the Week 4 lab session, estimate what the uncertainty in your primary derived quantity
-would have been if that alternative sensor had been used instead. Propagate the uncertainty
-from the spec sheet parameters. Sketch the expected output range with labeled axes and
-approximate uncertainty bounds. Compare qualitatively to the uncertainty you achieved with
-your actual sensor suite. This workflow is the conceptual foundation for Phase 2, where you
-will apply the same predict-from-specs procedure to a complete experiment you have never run.
+**11. Predict-from-specs**
+Using only the sensor specifications and DAQ configuration provided in your experiment-specific lab document for the primary sensor identified by the instructional team, estimate what the uncertainty in your primary derived quantity should be before you use any measured data.
+Propagate the uncertainty from the stated spec-sheet parameters.
+Sketch the expected output range with labeled axes and approximate uncertainty bounds.
+This workflow is the conceptual foundation for Phase 2, where you will apply the same predict-from-specs procedure to a complete experiment you have never run.
 
 ### Phase 1 report — format and submission
 
-- Length: No page limit. There is no credit for length. The value is in the quality of
- argument and the completeness of required sections.
-- Format: LaTeX. Submit a single `.zip` archive containing your LaTeX source (`.tex`
- file(s) and any figure files) and the compiled PDF. Figures embedded in the compiled PDF.
-- See **E0 Supplemental: Getting Started with Overleaf and LaTeX** if you haven't used
- LaTeX before.
+- Length: No page limit. There is no credit for length. The value is in the quality of argument and the completeness of required sections.
+- Format: LaTeX. Submit a single `.zip` archive containing your LaTeX source (`.tex` file(s) and any figure files) and the compiled PDF. Figures should be embedded in the compiled PDF.
+- See **E0 Supplemental: Getting Started with Overleaf and LaTeX** if you haven't used LaTeX before.
 - Submission: See Canvas for due date.
 
 ---
@@ -224,12 +218,10 @@ configuration to base your analysis on. Use only that sensor's specifications fo
 uncertainty propagation.
 
 This requires you to think about:
-- What physical quantity is being measured, and what is its expected range given the
- physical setup?
+- What physical quantity is being measured, and what is its expected range given the physical setup?
 - What is the uncertainty in each sensor measurement, given the specs?
 - How does that uncertainty propagate to the derived quantity?
-- What would a time-series or distribution plot of the output actually look like, given
- those inputs?
+- What would a time-series or distribution plot of the output actually look like, given those inputs?
 - Where are the likely failure modes, and what could produce data that looks anomalous?
 
 A test engineer answers these questions before the test runs. This is how you evaluate
@@ -239,8 +231,10 @@ time during the test.
 
 ### What you receive for Phase 2
 
-You will receive a Phase 2 Experiment Packet for your assigned experiment. It contains:
-- The theory primer for the experiment (same document the students who ran it received)
+You will receive a Phase 2 Experiment Packet for your assigned experiment.
+The theory primer in that packet is the same document the students who ran the experiment received.
+It contains:
+- The theory primer for the experiment
 - The sensor specifications (manufacturer datasheets or equivalent)
 - The DAQ configuration (sample rate, resolution, channel assignments)
 - A description of the physical setup and nominal operating conditions
@@ -253,9 +247,7 @@ student who ran the experiment. Your prediction must be made entirely from the p
 
 **1. Predicted system response**
 What do you expect the data to look like? Describe the expected trend, range, and key
-features. For example: "I expect the measured angular velocity to increase from 0 to
-approximately X rad/s over 5 seconds, with a decay phase beginning around t = 7 s due
-to friction." Commit to specific values and ranges. Vague predictions are not predictions.
+features. For example: "I expect the measured angular velocity to increase from 0 to approximately X rad/s during the first 5 s, with a decay phase beginning around t = 7 s due to friction." Commit to specific values and ranges. Vague predictions are not predictions.
 
 **2. Predicted uncertainty in the primary derived quantity**
 Apply first-order error propagation using the sensor specifications from the packet.
@@ -273,28 +265,32 @@ Justify the ranking using your propagation results.
 
 **5. Acceptance criterion**
 Define a numerical acceptance criterion: if the actual data falls within [threshold] of
-your predicted value, you will consider the prediction confirmed. State this threshold
+your predicted value, you will consider the prediction reasonably supported. State this threshold
 before you see the data.
 
 **6. Risk assessment**
 Identify one or two scenarios that would produce anomalous data, not because of a faulty
-experiment, but because of a model limitation or an edge case in the physics. Describe what
-anomalous data would look like and what you would investigate first.
+experiment, but because of a model limitation or an edge case in the physics. Use the Week 3
+anomalous-data-signature framework here: name what “wrong” would look like physically, not a
+generic equipment-failure scenario. Describe what anomalous data would look like and what you
+would investigate first.
 
 **Submission:** The prediction memo is submitted through Canvas before the data release
-date. Once submitted, your prediction is frozen. You will not be allowed to revise it after
-data is released.
+date. Once submitted, the version you turn in is frozen for the blind comparison and is the
+version that will be graded as your original commitment. After data is released, you are
+encouraged to keep iterating on your thinking, but preserve the original memo and track how
+your interpretation changes so the evolution of your reasoning remains traceable.
 
 ### Grading philosophy for Phase 2
 
 **A prediction that turns out to be wrong, but was derived from sound physical reasoning
-and committed uncertainty analysis, scores higher than a prediction that turns out to be
+and committed uncertainty analysis, is more valuable than a prediction that turns out to be
 right but was derived from vague intuition.**
 
 The grade is on the quality of your reasoning, not the accuracy of your prediction. This
 isn't arbitrary. It's the actual professional standard. An engineer who commits to a
-wrong prediction for good reasons learns from the discrepancy. An engineer who gets lucky
-learns nothing.
+wrong prediction for good reasons learns from the discrepancy and demonstrates a deeper
+attempt at understanding. An engineer who gets lucky learns nothing durable from the result.
 
 This philosophy will be stated explicitly in class before Phase 2 begins. If you have
 questions about it, ask before you submit.
@@ -358,7 +354,7 @@ A strong peer evaluation: names a specific strength with evidence, names a speci
 with evidence, and gives a concrete and actionable improvement recommendation. Vague
 evaluations ("good job, maybe add more data") receive no credit.
 
-**See `TIER1_rubric_student.md` for the presentation rubric and peer evaluation criteria.**
+**See the Tier 1 student rubric in this assignment package for the presentation rubric and peer evaluation criteria.**
 
 ---
 
@@ -388,6 +384,10 @@ evaluations ("good job, maybe add more data") receive no credit.
 - E0 Supplemental: Getting Started with Overleaf and LaTeX
 - Experiment-specific lab document (provided separately for your assigned experiment)
 - Coleman & Steele, 4th ed. — reference for uncertainty propagation
+
+## Student Package Note
+
+Use this assignment together with the **Tier 1 student rubric** included in the student-facing assignment package. The rubric gives the pass criteria and evidence standards for the written report, prediction memo, presentation, and peer evaluations.
 
 ---
 
