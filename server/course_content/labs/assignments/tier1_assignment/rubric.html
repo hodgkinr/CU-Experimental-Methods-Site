@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tier 1 Student Rubric</title>
+  <link rel="stylesheet" href="../../../style.css">
+  <script defer src="../../../app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../../../index.html">Aerospace Experimental Methods</a>
+      <nav class="top-nav">
+        <a href="../../../index.html">Home</a>
+        <a href="../../../syllabus.html">Syllabus</a>
+        <a href="../../../schedule.html">Schedule</a>
+        <a class="is-current" href="../../../labs.html">Labs</a>
+        <a href="../../../results.html">Results</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <nav class="breadcrumbs">
+      <a href="../../../index.html">Home</a>
+      <a href="../../../labs.html">Labs</a>
+      <a href="./index.html">Tier 1 Assignment</a>
+      <span>Student Rubric</span>
+    </nav>
+    <section class="hero compact">
+      <p class="eyebrow">E1 — Tier Assignment</p>
+      <h1>Tier 1 Student Rubric</h1>
+      <p class="lead">Student-facing pass criteria for the Tier 1 written, prediction, presentation, and peer-evaluation work.</p>
+    </section>
+    <section class="content-card markdown-body" style="padding:1.5rem">
+      <p><strong>Use this page with the <a href="./index.html">Tier 1 assignment instructions</a>.</strong></p>
+      <h1>ASEN 3501 — Tier 1 Lab Assignment: Student-Facing Rubric</h1>
+      <h2>Grading Criteria for All Three Phases</h2>
+      <p><strong>Assessment type:</strong> Phase 1 (written report, individual) + Phase 2 (prediction memo, individual) + Phase 3 (presentation, paired or group of 4) + Peer evaluations <strong>Overall outcome:</strong> Pass/fail for each phase independently. All three phases must be passed to satisfy the Tier 1 lab requirement.</p>
+      <hr>
+      <h2>Phase 1 — Forward Analysis Report</h2>
+      <p>The Phase 1 report is graded on two equally weighted dimensions: <strong>technical completeness</strong> and <strong>argument quality</strong>. Technical completeness is about whether required elements are present and correct. Argument quality is about whether the reasoning that connects those elements is sound, explicit, and defensible.</p>
+      <p>A report that computes everything correctly but presents results without interpretation, or without explicit uncertainty bounds, does not demonstrate Phase 1 mastery.</p>
+      <h3>Section-by-section criteria</h3>
+      <div class="table-wrapper"><table class="md-table"><thead><tr><th>Section</th><th>Minimum to pass</th><th>Evidence of excellence</th></tr></thead><tbody>
+        <tr><td>Experimental design</td><td>Hypothesis is falsifiable (specific, physically motivated). Variables correctly identified. At least one confounding factor named and addressed.</td><td>Confounding factor is non-obvious and the mitigation strategy is specific. Hypothesis is quantitative, not qualitative.</td></tr>
+        <tr><td>AMVF annotation</td><td>All major steps mapped to a framework node. Pre-lab plan and actual procedure compared — differences noted.</td><td>Annotation reveals a genuine insight about the experiment (for example, where the workflow moves from mathematical to physical model).</td></tr>
+        <tr><td>Measurement record</td><td>All measurements present with units and uncertainty. Uncertainty basis stated for each value.</td><td>Uncertainty sources are distinguished clearly: resolution, manufacturer specification, and statistical variation.</td></tr>
+        <tr><td>Multi-sensor comparison</td><td>A named validation metric is applied. Threshold stated before comparison. Numerical conclusion stated.</td><td>Student explains what the comparison reveals about sensor characteristics, not just whether they agree.</td></tr>
+        <tr><td>Uncertainty propagation</td><td>Partial derivatives shown for the primary derived quantity. Dominant error sources ranked with numerical support.</td><td>Student interprets the ranking and explains what would matter most for reducing uncertainty.</td></tr>
+        <tr><td>Model comparison</td><td>Named validation metric and acceptance criterion applied. Discrepancy considered across random variation, known measurement bias, setup or installation effects, uncontrolled inputs, data-reduction error, parameter uncertainty, and model-form discrepancy.</td><td>Preferred explanation is supported by evidence and at least one competing hypothesis is named.</td></tr>
+        <tr><td>Experimentally informed model</td><td>At least one specific proposed model change, with physical reasoning.</td><td>Proposed change is testable and includes what additional measurement would confirm or refute it.</td></tr>
+        <tr><td>MATLAB figures</td><td>All required plot elements present. Caption states the takeaway explicitly.</td><td>Figures work together as a coherent visual argument across the report.</td></tr>
+        <tr><td>Plain-language summary</td><td>Accessible to a non-engineer, with no unexplained jargon, and placed in the introduction or conclusion.</td><td>A non-engineer who reads only this section would still understand what was done and why it matters.</td></tr>
+      </tbody></table></div>
+      <hr>
+      <h2>Phase 2 — Prediction Memo</h2>
+      <p>Phase 2 is graded on <strong>reasoning quality</strong>, not prediction accuracy. A prediction that turns out to be wrong, derived from sound physical reasoning and committed uncertainty analysis, is more valuable than a prediction that turns out to be right from vague intuition because it shows a deeper attempt at understanding the system.</p>
+      <div class="table-wrapper"><table class="md-table"><thead><tr><th>Section</th><th>Minimum to pass</th><th>Evidence of excellence</th></tr></thead><tbody>
+        <tr><td>Predicted system response</td><td>Specific, quantitative prediction with committed values or ranges. Physically motivated.</td><td>Prediction explains the expected shape of the time series or distribution, not just a single number.</td></tr>
+        <tr><td>Predicted uncertainty</td><td>Partial derivatives applied to sensor specifications. Result stated as value plus or minus uncertainty.</td><td>Student identifies which input dominates and explains the implication for experiment design.</td></tr>
+        <tr><td>Predicted plot sketch</td><td>Sketch with labeled axes and uncertainty bounds. Committed before data release.</td><td>Sketch anticipates trends, peaks, plateaus, or the noise floor.</td></tr>
+        <tr><td>Dominant uncertainty sources</td><td>Ranked with numerical support from propagation.</td><td>Ranking is connected to a practical recommendation for what to improve first.</td></tr>
+        <tr><td>Acceptance criterion</td><td>Specific numerical threshold stated before data release.</td><td>Criterion is physically motivated, not arbitrary.</td></tr>
+        <tr><td>Risk assessment</td><td>At least one specific anomaly scenario identified with a physical basis.</td><td>Student explains what anomalous data would look like and how to distinguish it from a genuine physical phenomenon.</td></tr>
+      </tbody></table></div>
+      <p><strong>Grading note on prediction accuracy:</strong> After data is released, students compare their prediction to the actual results in Phase 3. The Phase 2 grade is assigned based on the memo alone, before data release. Do not revise your reasoning retrospectively.</p>
+      <hr>
+      <h2>Phase 3 — Combined Presentation</h2>
+      <p>The presentation is graded on two dimensions: <strong>your own presentation</strong> and <strong>your peer evaluations of others</strong>. Both are required to pass Phase 3.</p>
+      <h3>Presentation rubric</h3>
+      <div class="table-wrapper"><table class="md-table"><thead><tr><th>Segment</th><th>Minimum to pass</th><th>Evidence of excellence</th></tr></thead><tbody>
+        <tr><td>Segment 1 — Forward</td><td>Result presented with uncertainty. Experimentally informed model change stated.</td><td>Visual comparison between data and model is shown and annotated with a validation metric.</td></tr>
+        <tr><td>Segment 2 — Reverse</td><td>Prediction compared to actual data using the pre-defined acceptance criterion. Discrepancy interpreted physically.</td><td>Student explains what the discrepancy revealed that the forward analysis alone could not have shown.</td></tr>
+        <tr><td>Segment 3 — Synthesis</td><td>At least one cross-experiment insight that goes beyond saying both experiments show uncertainty.</td><td>Synthesis connects to a broader principle or a design implication about the phenomenon, the sensors, or the experimental approach.</td></tr>
+        <tr><td>Communication</td><td>Clear structure, audience-accessible language, and effective figures.</td><td>The audience learns something new and the presentation does not assume prior knowledge of the specific experiment.</td></tr>
+      </tbody></table></div>
+      <h3>Peer evaluation rubric</h3>
+      <p>A peer evaluation is graded on quality, not generosity. You are not rewarded for giving a positive evaluation. You are rewarded for giving a specific and useful one.</p>
+      <div class="table-wrapper"><table class="md-table"><thead><tr><th>Criterion</th><th>Minimum to pass</th><th>Evidence of excellence</th></tr></thead><tbody>
+        <tr><td>Strength</td><td>Named with a specific reference to what was said or shown.</td><td>Explains why the strength reflects real understanding.</td></tr>
+        <tr><td>Weakness</td><td>Named with a specific reference to what was missing or incorrect.</td><td>Connects the weakness to a missed learning objective, not just a presentation preference.</td></tr>
+        <tr><td>Improvement</td><td>Concrete and actionable so the presenter could implement it.</td><td>Specific to the experiment or analysis, not generic advice.</td></tr>
+      </tbody></table></div>
+      <p><strong>Minimum quality threshold:</strong> An evaluation like “great presentation, maybe add more data” does not pass. An evaluation that points to a missing uncertainty bound, explains why that blocked the comparison, and recommends a specific fix does pass.</p>
+      <hr>
+      <h2>Overall Pass/Fail Summary</h2>
+      <div class="table-wrapper"><table class="md-table"><thead><tr><th>Phase</th><th>Pass condition</th></tr></thead><tbody>
+        <tr><td>Phase 1</td><td>All required sections present with no fundamental errors in uncertainty propagation or model comparison. Experimentally informed model proposal present and physically motivated.</td></tr>
+        <tr><td>Phase 2</td><td>Prediction is committed, the derivation is traceable from sensor specifications, and the acceptance criterion is stated before data release.</td></tr>
+        <tr><td>Phase 3 — Presentation</td><td>All three segments delivered. At least one cross-experiment synthesis insight. Communication is audience-accessible.</td></tr>
+        <tr><td>Phase 3 — Peer evaluation</td><td>At least one evaluation meets the minimum quality threshold above.</td></tr>
+      </tbody></table></div>
+      <p>A student who passes all four components has satisfied the Tier 1 lab requirement.</p>
+      <hr>
+      <p><em>ASEN 3501 — Tier 1 Student Rubric | E1 Weeks 2–5</em> <em>Evergreen — grading criteria are stable across experiment assignments</em></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+  </footer>
+
+  <script id="bobpe-page-context" type="application/json">{"course_id":"asen3501-fall2026","page_id":"labs-assignment-tier1-rubric","title":"Tier 1 Student Rubric","url":"labs/assignments/tier1_assignment/rubric.html","text":"# ASEN 3501 — Tier 1 Lab Assignment: Student-Facing Rubric\n## Grading Criteria for All Three Phases\n\nUse this page with the Tier 1 assignment instructions. The rubric covers the pass criteria for the Phase 1 report, the Phase 2 prediction memo, the Phase 3 presentation, and the required peer evaluations.\n\n## Phase 1 — Forward Analysis Report\nTechnical completeness and argument quality both matter. Students must include the required sections, show uncertainty work clearly, and interpret results defensibly.\n\n## Phase 2 — Prediction Memo\nReasoning quality matters more than prediction accuracy. Students are graded on committed, traceable predictions and physically grounded uncertainty analysis.\n\n## Phase 3 — Combined Presentation\nStudents are graded on their presentation and on the quality of their peer evaluations. Cross-experiment synthesis and audience-accessible communication are required.\n\n## Overall Pass/Fail Summary\nEach phase has to pass independently for the Tier 1 lab requirement to be satisfied.","module_id":null,"source_type":"overview"}</script>
+</body>
+</html>
