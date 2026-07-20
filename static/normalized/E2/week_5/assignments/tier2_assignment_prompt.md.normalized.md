@@ -17,8 +17,8 @@
 ## What This Assignment Is
 
 The Tier 2 assignment is the primary lab sequence of E2. Every group completes the same
-assignment. The specific experiment differs — you will be assigned one of the Tier 2 canned
-aerospace experiments — but the analytical framework, the deliverables, and the expectations
+assignment. The specific experiment differs. You will be assigned one of the Tier 2 canned
+aerospace experiments, but the analytical framework, the deliverables, and the expectations
 are identical for all groups regardless of which experiment is assigned.
 
 Use the course uncertainty convention in `E1_W2_R3_reading.md`. In particular, distinguish
@@ -32,35 +32,35 @@ Those were two separate activities. In Tier 2, they are one. Before you touch an
 your group must develop a predictive model, commit to a prediction, and show it to the
 instructor or TA. Only then do you get on the equipment.
 
-That requirement is not procedural gatekeeping. It is the point — and the reason goes beyond
+That requirement is not procedural gatekeeping. It is the point, and the reason goes beyond
 grading. Predicting the data before you collect it is how you catch fundamental problems with
 your experimental setup *before* you waste time running a broken experiment. Consider a
 concrete example: suppose your group is using a differential pressure sensor with an accuracy
 of ±1 kPa to estimate airspeed from a pitot-static probe, where the expected differential
 pressures at your operating condition are on the order of 10 Pa. The sensor simply cannot
-produce meaningful results in that configuration — its uncertainty is two orders of magnitude
+produce meaningful results in that configuration. Its uncertainty is two orders of magnitude
 larger than the signal. The correct way to catch this is to predict the data ahead of time:
 run the numbers, propagate the uncertainty, and ask whether your sensor can resolve the
 quantity of interest before you ever touch the equipment. The incorrect way is to pick a
-sensor, run the experiment, stare at the data, and wonder why nothing makes sense — or worse,
-assume the pitot-static probe must be broken and schedule additional run time to repeat an
-experiment that was never going to work.
+sensor, run the experiment, stare at the data, and wonder why nothing makes sense. Worse,
+you might assume the pitot-static probe must be broken and schedule additional run time to
+repeat an experiment that was never going to work.
 
 This is not a hypothetical concern. In industry, time on an experiment is expensive.
 Professionally operated test equipment routinely costs thousands of dollars per hour of
 run time, and that clock runs whether or not your group is prepared. Your employer will
 not accept "we didn't think to check the sensor range" as the explanation for an unusable
-dataset. The habit of building a quantitative prediction before the experiment begins —
-and using that prediction to verify that the experiment is even capable of answering your
-question — is one of the most practically valuable skills you will develop in this course.
+dataset. The habit of building a quantitative prediction before the experiment begins, then
+using that prediction to verify that the experiment can answer your question, is one of the
+most practically valuable skills you will develop in this course.
 
 A test engineer who cannot predict what the data should look like before the test runs is
 not prepared to run the test. If your prediction is wildly wrong, you need to understand
-why — before you collect data that you will later be unable to interpret. If your prediction
+why before you collect data that you will later be unable to interpret. If your prediction
 is right but your reasoning was vague, you got lucky and you know it.
 
-The second thing that is different about Tier 2: after you have run the experiment and
-analyzed the data, you are required to answer a question that Tier 1 only touched on:
+The second thing that is different about Tier 2 is what happens after you have run the
+experiment and analyzed the data. You are required to answer a question that Tier 1 only touched on:
 **how would you improve this experiment?** This is not a reflection prompt. It is a
 graded deliverable with the same analytical weight as the uncertainty analysis.
 
@@ -86,9 +86,9 @@ for your particular experiment.
 
 Read both documents before your pre-lab prediction session. If you have not read the
 experiment-specific lab document before attempting the prediction, you will not be able
-to produce a defensible prediction — and you will not be cleared to access the equipment.
+to produce a defensible prediction, and you will not be cleared to access the equipment.
 
-**Come prepared — this is not optional.** There are two reasons, both real.
+**Come prepared. This is not optional.** There are two reasons, both real.
 
 First, the practical constraint: this is a large class with limited equipment and limited
 lab time. If your group is not ready to run the experiment during your allocated slot, we
@@ -97,10 +97,10 @@ who staff the lab. The slot will move on.
 
 Second, and more important for your professional development: in industry, lack of
 preparation is not an acceptable explanation for a failed experiment. Test time on
-professional-grade equipment is expensive — often thousands of dollars per hour or more
+professional-grade equipment is expensive, often thousands of dollars per hour or more
 once you account for the equipment, the facility, and the personnel. Your future employer
 will not absorb that cost because a team member did not read the manual in advance. The
-habit of thorough pre-experiment preparation is not a course requirement — it is an
+habit of thorough pre-experiment preparation is not just a course requirement. It is an
 employability skill.
 
 ---
@@ -124,7 +124,7 @@ employability skill.
 
 Before your group accesses the equipment, you must show your prediction to the lab
 instructor or TA. This is a required gate. Groups that arrive without a documented
-prediction will be asked to develop one before they may proceed — that time comes out
+prediction will be asked to develop one before they may proceed. That time comes out
 of your lab session.
 
 The prediction is a group product. All group members are expected to be able to explain
@@ -139,7 +139,7 @@ script with outputs, or a brief typed document. It must contain all of the follo
 What specific physical quantities do you expect to observe, and what are their expected
 magnitudes or ranges? Be specific: not "the force will increase" but "we expect the thrust
 force to reach approximately X N at operating condition Y, based on [physical reasoning]."
-State the expected shape of any time-series outputs — where peaks occur, whether the
+State the expected shape of any time-series outputs: where peaks occur, whether the
 response is monotonic, where you expect transient vs. steady-state behavior.
 
 **2. Theoretical model — confirm the derivation, show the working form**
@@ -152,7 +152,7 @@ Concretely, this means:
  (conservation laws, constitutive relationships, geometry). Confirm that the dimensions
  are consistent at each step.
 - Identify the assumptions embedded in the model. Every analytical model makes
- simplifying assumptions — linearity, steady state, negligible losses, idealized
+ simplifying assumptions, such as linearity, steady state, negligible losses, and idealized
  geometry. Name at least two that apply to your experiment and note what conditions
  would cause them to break down.
 - Extend the model as needed for your specific experiment conditions. The provided
@@ -162,8 +162,8 @@ Concretely, this means:
 
 In the prediction document, show the final working equation with your values substituted.
 If you needed to extend or adapt the provided theory to reach that equation, show how
-you did it. If you cannot trace the steps or explain the assumptions, that is the signal
-that you are not ready for the gate check — not a reason to skip the section.
+you did it. If you cannot trace the steps or explain the assumptions, that is a sign
+that you are not ready for the gate check. It is not a reason to skip the section.
 
 **3. Estimated uncertainty in the primary derived quantity**
 Using the sensor specifications from the experiment-specific lab document, apply first-order
@@ -178,7 +178,7 @@ numerically: "We will consider the prediction confirmed if the measured value fa
 uncertainty bounds." The acceptance criterion must be committed before data is collected.
 
 **5. Risk assessment**
-Identify at least one anomalous data pattern — beyond random scatter — that would indicate
+Identify at least one anomalous data pattern, beyond random scatter, that would indicate
 a model-form limitation rather than measurement noise. What would that pattern look like?
 What would you investigate first if you saw it?
 
@@ -207,14 +207,14 @@ DAQ configuration details.
 
 **Record your prediction before you see any data.** Your pre-lab prediction document
 is frozen at the point of the gate check. You may not revise it after the experiment
-begins. If something unexpected happens during the experiment, document it in real time —
+begins. If something unexpected happens during the experiment, document it in real time:
 when it occurred, what changed, and what you observed. These notes are primary evidence.
 
 **Note anomalies as they happen.** If the live data looks unexpected relative to your
 prediction, write it down immediately. Do not wait until the post-processing phase to
 interpret what happened. Real-time anomaly recognition is a test engineer competency,
 and your real-time notes will be evaluated in the report. A useful field-note format:
-*[time or condition] — [what was observed] — [how it differed from prediction] —
+*[time or condition] - [what was observed] - [how it differed from prediction] -
 [immediate hypothesis].* Two sentences written during the experiment are worth more
 than two paragraphs reconstructed afterward.
 
@@ -228,7 +228,7 @@ for reconstruction after the fact.
 
 > **Note if your lab session is in W6:** The formal lecture on calibration procedures
 > and calibration uncertainty (E2 W8) occurs after your lab session. For W6 lab groups,
-> focus on recording the calibration date and interval accurately — the analysis of what
+> focus on recording the calibration date and interval accurately. The analysis of what
 > that documentation means for your result is a Phase 3 activity you will complete after
 > W8. If you are unsure how to locate calibration documentation for your instrument, ask
 > the TA before the experiment begins.
@@ -240,7 +240,7 @@ for reconstruction after the fact.
 ### 3A — Prediction vs. outcome comparison
 
 Compare your committed pre-lab prediction to the measured data using your pre-defined
-acceptance criterion. The comparison must be numerical — state whether the acceptance
+acceptance criterion. The comparison must be numerical. State whether the acceptance
 criterion was met, and by how much. If the criterion was not met, classify the discrepancy:
 is it consistent with random measurement variation, known measurement bias, a setup or
 installation effect, an uncontrolled/confounding input, a data-reduction error, parameter
@@ -250,14 +250,14 @@ the combined model–experiment system; it does not by itself prove model-form e
 
 Apply residual analysis: plot the residuals (measured minus predicted) over the relevant
 independent variable. A residual plot with random scatter around zero is consistent with
-measurement noise. A systematic trend in the residuals is evidence of model-form error —
-the model is missing something structural. Identify which pattern you observe and articulate
-its implication.
+measurement noise. A systematic trend in the residuals is evidence of model-form error. It
+means the model is missing something structural. Identify which pattern you observe and
+articulate its implication.
 
 ### 3B — Uncertainty analysis on the experiment's theory
 
 This is the analytical core of Tier 2. The experiments in E2 involve more complex physical
-models than the P=IV circuit of Lab 1 — multiple inputs, nonlinear relationships, and more
+models than the P=IV circuit of Lab 1: multiple inputs, nonlinear relationships, and more
 possible sources of error. Your uncertainty analysis must reflect that complexity.
 
 Required:
@@ -272,11 +272,11 @@ Using the calibration documentation you recorded during the lab session, answer 
 following questions in 1–3 paragraphs:
 
 1. Are the primary sensors within their calibration interval? State the calibration date, the required interval, and whether the current status is compliant.
-2. If the calibration interval has elapsed — or if it is approaching — what is the practical consequence for your result? Propagate the calibration uncertainty (from the instrument documentation) into your primary output. Does the out-of-calibration condition make your result unusable for your stated intended use, or does the calibration uncertainty remain small relative to your total uncertainty budget?
+2. If the calibration interval has elapsed, or if it is approaching, what is the practical consequence for your result? Propagate the calibration uncertainty (from the instrument documentation) into your primary output. Does the out-of-calibration condition make your result unusable for your stated intended use, or does the calibration uncertainty remain small relative to your total uncertainty budget?
 3. State a conclusion: is the calibration status of this experiment adequate for the intended use, or should recalibration be performed before the next use?
 
 This is an analysis section, not a lab activity. You are evaluating whether the existing
-calibration is sufficient — not performing a new calibration.
+calibration is sufficient, not performing a new calibration.
 
 ### 3D — How would you improve this experiment?
 
@@ -316,7 +316,7 @@ than what is currently measured?
 There is no single right answer for any of these categories. The range of experiments in
 the Tier 2 pool means that for some experiments, the dominant opportunity is in
 instrumentation; for others, it is in the test matrix or the model. Your answer should
-be grounded in your specific data and your specific uncertainty analysis — not in a
+be grounded in your specific data and your specific uncertainty analysis, not in a
 generic checklist.
 
 ---
@@ -330,13 +330,13 @@ for the full content.
 
 **1. Pre-lab prediction (reproduced)**
 Reproduce your committed pre-lab prediction: system response features, predicted values,
-estimated uncertainty, acceptance criterion, and risk assessment. Do not revise it — if
+estimated uncertainty, acceptance criterion, and risk assessment. Do not revise it. If
 the prediction turned out to be wrong, that is fine. The prediction is evidence of your
 pre-experiment state of understanding.
 
 **2. Experimental setup summary**
 One paragraph describing what was measured, how, and under what conditions. Do not
-reproduce the experiment-specific lab document — summarize it. Include a simple schematic
+reproduce the experiment-specific lab document. Summarize it instead. Include a simple schematic
 or block diagram if useful.
 
 **3. Prediction vs. outcome comparison**
@@ -365,7 +365,7 @@ the graph presentation framework from E1 W2. Figures without captions receive no
 
 **8. Conclusion**
 Two to four sentences: what did the experiment reveal about the model, and is the model
-adequate for the stated intended use? State the conclusion with uncertainty bounds — not
+adequate for the stated intended use? State the conclusion with uncertainty bounds, not
 just "the model agreed."
 
 ### Format and submission
@@ -373,7 +373,7 @@ just "the model agreed."
 - Format: LaTeX. Submit a single `.zip` archive containing your LaTeX source (`.tex`
  file(s) and any figure files) and the compiled PDF, submitted to Canvas as a group.
 - Figures embedded in the compiled PDF.
-- Include a brief author contribution statement at the end — one sentence per group member
+- Include a brief author contribution statement at the end: one sentence per group member
  describing their primary contribution.
 - See **E0 Supplemental: Getting Started with Overleaf and LaTeX** for setting up a shared
  Overleaf project for group collaboration.
@@ -408,7 +408,7 @@ interpret.
 
 The talk should walk the quad chart in order: prediction vs. outcome, uncertainty analysis,
 calibration status, top improvement. You do not need slides beyond the quad chart. You may
-bring your group report as a reference document for the Q&A — the Q&A is where you will
+bring your group report as a reference document for the Q&A. The Q&A is where you will
 be expected to answer questions that go deeper than the quad chart.
 
 You will not know the exact questions in advance. Expect questions on: why you chose your
@@ -424,7 +424,7 @@ of labor exercise.
 
 Every student in the audience completes a written peer evaluation for each presentation.
 Your grade includes both your own presentation score and the quality of your peer
-evaluations. The peer evaluation criteria are identical to Tier 1 — see
+evaluations. The peer evaluation criteria are identical to Tier 1. See
 `TIER2_rubric_student.md` for the full criteria. A peer evaluation that says "good
 presentation, nice figures" receives no credit.
 
