@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E1 Week 3: Quantitative Comparison, Validation Basics &amp; Multiple Sensors</title>
+  <title>E1 Week 3 (Course Week 3)</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../../chat_widget.css">
   <script defer src="../../chat_widget.js"></script>
@@ -20,6 +20,7 @@
           <a href="../../syllabus.html">Syllabus</a>
           <a href="../../schedule.html">Schedule</a>
           <a href="../../labs.html">Labs</a>
+          <a href="../../supplemental.html">Supplemental</a>
           <a href="../../results.html">Results</a>
         </nav>
       </div>
@@ -33,8 +34,8 @@
       </nav>
       <section class="hero compact">
         <p class="eyebrow">E1 Week 3 (Course Week 3)</p>
-        <h1>E1 Week 3: Quantitative Comparison, Validation Basics &amp; Multiple Sensors</h1>
-        <p class="lead">With uncertainty quantified, Week 3 addresses the question left open by Week 2: how do you use that uncertainty to argue whether your result agrees with a model? Visual comparison of curves is insufficient — agreement must be argued numerically using a defined validation metric. Week 3 introduces structured comparison, the calibration-vs-validation distinction, and the concept of acceptable agreement. Students app...</p>
+        <h1>E1 Week 3 (Course Week 3)</h1>
+        <p class="lead">E1 Week 3 (Course Week 3) moves through ordered lectures, readings, and assessments generated from the source materials.</p>
         <div class="hero-actions">
           <a class="primary-button" href="page-01.html">Start module</a>
           <a class="secondary-button" href="../../results.html">View results</a>
@@ -43,7 +44,7 @@
       <section class="module-overview-grid">
         <article class="content-card">
           <h2>Learning Goals</h2>
-          <ul><li>Apply a named validation metric to compare a measured outcome to a model prediction within defined uncertainty bounds — CLO 2, CLO 3</li><li>Explain the distinction between calibration and validation and articulate why conflating them undermines experimental credibility — CLO 3</li><li>Evaluate agreement between two measurements of the same quantity using different sensors or methods — CLO 1, CLO 2</li><li>Identify at least one model-form limitation from residual inspection and articulate its implication — CLO 3</li><li>Write a comparative analysis memo with a named validation metric, numerical conclusion, and uncertainty-bounded argument — CLO 5</li><li>Evaluate a provided lab report — identifying what is correct, what is incorrect, what is missing, and how to improve it — demonstrating that critique quality is a primary course competency — CLO 5</li></ul>
+          <ul><li>No explicit learning goals were found in the source meta file.</li></ul>
         </article>
         <article class="content-card">
           <h2>Module Details</h2>
@@ -61,19 +62,19 @@
         <ol class="module-page-list">
           
             <li class="module-page-row">
-              <a href="page-01.html">Structured Comparison &amp; Validation Metrics</a>
+              <a href="page-01.html">Agent Notes</a>
               <span>Lecture</span>
               <span>22 min</span>
             </li>
             
             <li class="module-page-row">
-              <a href="page-02.html">Calibration vs. Validation — A Distinction That Matters</a>
+              <a href="page-02.html">Agent Notes</a>
               <span>Lecture</span>
               <span>10 min</span>
             </li>
             
             <li class="module-page-row">
-              <a href="page-03.html">Predicting What Wrong Looks Like — Anomalous Data Signatures</a>
+              <a href="page-03.html">Agent Notes</a>
               <span>Lecture</span>
               <span>13 min</span>
             </li>
@@ -110,6 +111,6 @@
     
     
   
-  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "e1-week_3-index", "title": "E1 Week 3: Quantitative Comparison, Validation Basics & Multiple Sensors", "url": "modules/e1-week_3/index.html", "text": "E1 Week 3: Quantitative Comparison, Validation Basics & Multiple Sensors\nWith uncertainty quantified, Week 3 addresses the question left open by Week 2: how do you use that uncertainty to argue whether your result agrees with a model? Visual comparison of curves is insufficient \u2014 agreement must be argued numerically using a defined validation metric. Week 3 introduces structured comparison, the calibration-vs-validation distinction, and the concept of acceptable agreement. Students app...\n\nApply a named validation metric to compare a measured outcome to a model prediction within defined uncertainty bounds \u2014 CLO 2, CLO 3\nExplain the distinction between calibration and validation and articulate why conflating them undermines experimental credibility \u2014 CLO 3\nEvaluate agreement between two measurements of the same quantity using different sensors or methods \u2014 CLO 1, CLO 2\nIdentify at least one model-form limitation from residual inspection and articulate its implication \u2014 CLO 3\nWrite a comparative analysis memo with a named validation metric, numerical conclusion, and uncertainty-bounded argument \u2014 CLO 5\nEvaluate a provided lab report \u2014 identifying what is correct, what is incorrect, what is missing, and how to improve it \u2014 demonstrating that critique quality is a primary course competency \u2014 CLO 5\nStructured Comparison & Validation Metrics Establishes that visual inspection of data is insufficient for engineering claims \u2014 agreement must be argued numerically using a defined validation metric. Covers candidate metrics (e.g., relative difference within uncertainty bounds, normalized agreement index), the concept of acceptable agreement defined before measurement, and the logical structure of a quantitative comparison argument. Students practice identifying what comparison metric is appropriate for different types of data and modeling claims. **Margin and requirements on plots:** A brief segment should cover how to show design margins and acceptance criteria on data plots \u2014 annotating the figure with a line or band representing the requirement, so that the plot itself communicates whether the result passes or fails. This is not a deep dive into systems design or design V&V; it is a practical data presentation skill that connects this course to the broader curriculum without overstepping the course scope.\nCalibration vs. Validation \u2014 A Distinction That Matters Introduces the calibration-vs-validation distinction at the conceptual level: calibration adjusts a sensor's output to match a known reference (it is a measurement activity), while validation tests whether a model makes accurate predictions (it is a modeling activity). Conflating the two is a common and consequential error. This distinction is introduced in Week 3, deepened in E2 Week 8, and operationalized in the E3 V&V plan. Students encounter a case study where a \"calibrated\" result was incorrectly treated as a \"validated\" model. This lecture covers the conceptual distinction and the error pattern only (slides 2\u20135 in the lecture outline). Anomalous data prediction content continues in Lecture 3. See `lectures/E1_week_3/E1_W3_L2_presentation_outline.txt`. *(Note: shortened by V&V Executor 2026-05-19 per instructor approval \u2014 anomalous data content moved to W3 L3.)*\nPredicting What Wrong Looks Like \u2014 Anomalous Data Signatures Extends the calibration-vs-validation distinction into predictive discipline: if you understand your model's assumptions, you can predict not just the expected data signature but the specific anomalous patterns that would indicate model-form failure. Covers the spring-mass hysteresis example (loading vs. unloading differ because energy is dissipated \u2014 linear model cannot produce this), scatter vs. systematic anomaly as a diagnostic distinction (uncertainty band as null hypothesis), and connects directly to the Tier 1 Phase 2 Prediction Memo risk assessment section. Students leave with the skill of naming, before touching hardware, what \"wrong\" would look like and what physical effect it would indicate. Closes with the arc diagram connecting W3 to W5 Phase 2, E2 W8, and E3 V&V plan. See `lectures/E1_week_3/E1_W3_L3_presentation_outline.txt`. *(New lecture, V&V Executor 2026-05-19, created from content of original W3 L2 slides 6\u201310.)*\nHow to Present a Graph \u2014 Kathryn's Framework A short handout capturing the sequential graph presentation framework introduced in E1 W2 Lecture 2. The checklist: (1) motivation \u2014 why does this graph exist; (2) axes \u2014 what is plotted, units, scale; (3) data source \u2014 where the data came from; (4) uncertainties \u2014 error bars or bounds shown and labeled; (5) trend \u2014 what pattern the data shows; (6) model comparison \u2014 how the trend compares to the predictive model; (7) discrepancy \u2014 possible causes for any gap; (8) system-level implication \u2014 what the graph tells you about the overall system. Students should apply this framework to every MATLAB figure they produce in the course. This reading reinforces the framework introduced in W2 and gives students a durable reference they can use in all subsequent deliverables.\nComparative Analysis \u2014 The Meta-Skill of Evaluating Another's Engineering Work Introduces and elaborates the four-part critique structure that students use in the W3 in-class comparative analysis exercise and in all subsequent peer evaluations (E2 W9, E3 W14\u201315): (1) what is correct and well-supported; (2) what is incorrect or unsupported; (3) what is missing that should be present; (4) what specific improvements would most strengthen the report. The reading frames comparative analysis as an engineering skill in its own right \u2014 not a softer version of writing \u2014 and explains why specificity in all four parts is required. Connects the pre-commitment principle from W3 L1 (name the criteria before you read, for the same reason you commit to a metric before you compute) to the critique context. Seeds the critique skill that recurs as a graded mechanism throughout E2 and E3. See `readings/E1_week_3/E1_W3_R2_reading.md`. *(New reading, V&V Executor 2026-05-19 per instructor APPROVE WITH MODIFICATIONS \u2014 item 8.)* ## 3. Bridge to Next Week Students have now walked the individual steps of the Phase I pipeline and practiced evaluating the quality of another's work. Week 4 completes Tier 1 Phase 1 data collection and asks students to execute the full pipeline \u2014 from hypothesis to AMVF annotation \u2014 in the Phase 1 report. **AMVF reminder (W3):** The AMVF is the organizing spine of the holistic curriculum \u2014 experimental methods is the physical modeling branch that connects mathematical models to the real world. Students should be reminded at this point that each experiment they design and execute is not an isolated activity: the question is always \"what does this experiment tell you about the system, and why does it matter to the project?\" This connection to senior projects and the broader curriculum should be made explicit here and reinforced in E2 W6 and E3 W11.\nQuestions to Think Through Before Class", "module_id": "e1-week_3", "source_type": "module_index"}</script>
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "e1-week_3-index", "title": "E1 Week 3 (Course Week 3)", "url": "modules/e1-week_3/index.html", "text": "E1 Week 3 (Course Week 3)\nE1 Week 3 (Course Week 3) moves through ordered lectures, readings, and assessments generated from the source materials.\n\nAgent Notes E1_W3_L1 \u2014 Structured Comparison & Validation Metrics ASEN 3501: Aerospace Experimental Methods | Week 3, Lecture 1 Regenerated from Iteration 5 blueprint \u2014 2026-05-14 =================================================...\nAgent Notes E1_W3_L2 \u2014 Calibration vs. Validation: A Distinction That Matters ASEN 3501: Aerospace Experimental Methods | Week 3, Lecture 2 Regenerated from Iteration 5 blueprint \u2014 2026-05-14 Revised by V&V Executor \u2014 2026-05-19...\nAgent Notes E1_W3_L3 \u2014 Predicting What Wrong Looks Like: Anomalous Data Signatures ASEN 3501: Aerospace Experimental Methods | Week 3, Lecture 3 Created by V&V Executor \u2014 2026-05-19 (split from E1_W3_L2; this lecture covers anoma...\nHow to Present a Graph \u2014 Kathryn's Framework # How to Present a Graph \u2014 Kathryn's Framework ## Eight Questions Every Engineering Figure Must Answer A graph that requires a verbal explanation has already failed. A figure in an engineering report must stand alone,...\nComparative Analysis \u2014 The Meta-Skill of Evaluating Another's Engineering Work # Comparative Analysis \u2014 The Meta-Skill of Evaluating Another's Engineering Work ## Why the ability to evaluate a report matters as much as the ability to write one The most important thing a reviewer can tell you is...\nQuestions to Think Through Before Class", "module_id": "e1-week_3", "source_type": "module_index"}</script>
 </body>
 </html>
