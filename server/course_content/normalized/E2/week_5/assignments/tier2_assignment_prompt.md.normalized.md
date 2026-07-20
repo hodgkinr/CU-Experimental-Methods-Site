@@ -76,6 +76,18 @@ nothing.
 
 ---
 
+## Learning Goals
+
+By the end of this assignment and its associated activities, you should be able to:
+
+1. Build a pre-lab prediction from theory, sensor specifications, and DAQ information before touching hardware, then explain the physical reasoning behind the expected response.
+2. Estimate whether the planned instrumentation is actually capable of resolving the quantity of interest, including the dominant uncertainty sources and the practical consequence if it is not.
+3. Compare the committed prediction to the measured outcome using a stated criterion, then distinguish ordinary measurement scatter from a meaningful model-form discrepancy.
+4. Quantify the uncertainty and calibration status of the experiment using the course reporting convention, and argue whether the setup is adequate for its intended use.
+5. Propose specific, data-grounded improvements to the experiment rather than generic suggestions, tying each recommendation back to the model, instrumentation, or measurement strategy.
+
+---
+
 ## Your Assignment
 
 You will be assigned one experiment from the Tier 2 experiment pool, in a group of
@@ -148,17 +160,9 @@ You are not expected to re-derive it from scratch. You are expected to confirm t
 the derivation is reasonable and that you understand it well enough to use it.
 
 Concretely, this means:
-- Trace the key steps of the derivation. Identify the physical principles it applies
- (conservation laws, constitutive relationships, geometry). Confirm that the dimensions
- are consistent at each step.
-- Identify the assumptions embedded in the model. Every analytical model makes
- simplifying assumptions, such as linearity, steady state, negligible losses, and idealized
- geometry. Name at least two that apply to your experiment and note what conditions
- would cause them to break down.
-- Extend the model as needed for your specific experiment conditions. The provided
- theory gives the general form. You may need to substitute in your specific geometry,
- operating condition, or boundary conditions to arrive at the numerical prediction
- your experiment will actually test. That extension is yours to do.
+- Trace the key steps of the derivation. Identify the physical principles it applies (conservation laws, constitutive relationships, geometry). Confirm that the dimensions are consistent at each step.
+- Identify the assumptions embedded in the model. Every analytical model makes simplifying assumptions, such as linearity, steady state, negligible losses, and idealized geometry. Name at least two that apply to your experiment and note what conditions would cause them to break down.
+- Extend the model as needed for your specific experiment conditions. The provided theory gives the general form. You may need to substitute in your specific geometry, operating condition, or boundary conditions to arrive at the numerical prediction your experiment will actually test. That extension is yours to do.
 
 In the prediction document, show the final working equation with your values substituted.
 If you needed to extend or adapt the provided theory to reach that equation, show how
@@ -201,9 +205,11 @@ up") will be asked to revise before proceeding.
 Follow the procedure specified in your experiment-specific lab document. The following
 apply to all Tier 2 experiments regardless of which one you are assigned.
 
-**Use MATLAB for data collection and processing.** All data files, processing scripts,
-and figure generation must be in MATLAB. See the experiment-specific lab document for
-DAQ configuration details.
+**MATLAB is the course-supported path for data collection and processing.** Many Tier 2
+experiments will use MATLAB-based DAQ workflows, and the experiment-specific lab document
+remains the source of truth for those setup details. If your group uses another tool for
+processing or figure generation, make sure the work is organized, reproducible, and fully
+compatible with the required deliverables for your experiment.
 
 **Record your prediction before you see any data.** Your pre-lab prediction document
 is frozen at the point of the gate check. You may not revise it after the experiment
@@ -226,12 +232,12 @@ than two paragraphs reconstructed afterward.
 You will analyze this documentation in Phase 3. Record it now — it will not be available
 for reconstruction after the fact.
 
-> **Note if your lab session is in W6:** The formal lecture on calibration procedures
-> and calibration uncertainty (E2 W8) occurs after your lab session. For W6 lab groups,
-> focus on recording the calibration date and interval accurately. The analysis of what
-> that documentation means for your result is a Phase 3 activity you will complete after
-> W8. If you are unsure how to locate calibration documentation for your instrument, ask
-> the TA before the experiment begins.
+**Note if your lab session is in W6:** The formal lecture on calibration procedures and
+calibration uncertainty (E2 W8) occurs after your lab session. For W6 lab groups, focus on
+recording the calibration date and interval accurately. The analysis of what that
+documentation means for your result is a Phase 3 activity you will complete after W8. If
+you are unsure how to locate calibration documentation for your instrument, ask the TA
+before the experiment begins.
 
 ---
 
@@ -444,6 +450,10 @@ presentation, nice figures" receives no credit.
 - Quad chart PowerPoint template — Canvas
 - E0 Supplemental: AI Tutor Setup and Practice
 - E0 Supplemental: Getting Started with Overleaf and LaTeX
+
+## Student Package Note
+
+Use this assignment together with the **Tier 2 student rubric** included in the student-facing assignment package. The rubric gives the pass criteria and evidence standards for the pre-lab prediction, group report, quad chart, Q&A, and peer evaluations.
 
 ---
 

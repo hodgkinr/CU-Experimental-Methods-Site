@@ -37,7 +37,7 @@ dynamics, propulsion, or fluids. The equations will differ. The process is the s
 
 You will:
 
-- define a predictive model claim or engineering question;
+- define a predictive model claim or engineering question that matters for an engineering decision;
 - design an experiment that would produce data relevant to that claim;
 - identify variables, controls, confounding factors, and a feasible test matrix;
 - select instrumentation and DAQ/signal-conditioning choices;
@@ -50,6 +50,18 @@ You will:
 This assignment evaluates your process. A polished idea with vague reasoning does not pass.
 A modest experiment with a clear model, defensible instrumentation, quantified uncertainty,
 and honest limitations can be excellent.
+
+---
+
+## Learning Goals
+
+By the end of this assignment and its associated activities, you should be able to:
+
+1. Define a technically meaningful experimental question or predictive-model claim and explain why the resulting data would matter for an engineering decision.
+2. Design a feasible experiment with clear variables, controls, confounding factors, and a bounded test matrix rather than a vague idea that cannot be executed or evaluated.
+3. Select and justify instrumentation, DAQ, and signal-conditioning choices using expected signal levels, uncertainty, and practical laboratory constraints.
+4. Build a prospective V&V plan that states response features, validation metrics, acceptance criteria, and uncertainty logic before any data would be collected.
+5. Defend the design with professional judgment, including outside sources, comparison of alternatives, and an honest account of the experiment's limitations and tradeoffs.
 
 ---
 

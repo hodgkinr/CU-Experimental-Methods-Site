@@ -26,6 +26,18 @@ and understanding why each phase exists will make each one more productive.
 
 ---
 
+## Learning Goals
+
+By the end of this assignment and its associated activities, you should be able to:
+
+1. Execute an assigned experiment, record the relevant measurements in the required engineering format, and state a defensible uncertainty basis for each primary quantity.
+2. Compare two sensor types or measurement methods for the same physical quantity and argue, with a named validation metric, whether the results are consistent enough for the intended use.
+3. Build a blind prediction from theory, sensor specifications, and DAQ information before seeing data, then state what agreement threshold and anomalous pattern would matter.
+4. Interpret discrepancies between prediction and measurement without post-hoc guesswork, using the comparison to identify model limitations, uncertainty drivers, and at least one experimentally informed improvement.
+5. Synthesize evidence across two related experiments in a short technical presentation and explain what the predictions got right, what they missed, and why.
+
+---
+
 ## Why Three Phases?
 
 Most experimental courses ask you to run an experiment and analyze the data. That is Phase 1.
