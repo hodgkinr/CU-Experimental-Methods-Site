@@ -423,9 +423,9 @@ e = ─────────────────
 <li><strong>Download:</strong> <a href="https://physlets.org/tracker/">https://physlets.org/tracker/</a></li>
 <li><strong>System requirement:</strong> Java 1.6 or higher</li>
 <li><strong>Cost:</strong> Free</li>
-<li><strong>Tutorial:</strong> <code>Bouncing_Ball_Tracker_Tutorial.PDF</code></li>
+<li><strong>Tutorial:</strong> <code>Bouncing_Ball_Tracker_Tutorial.pdf</code></li>
 </ul>
-<p>[MISSING: Referenced in 2018/2019 source as Canvas download; not in source directory. Locate from prior ASEN 2003 Canvas course and add to instrumentation/datasheets/.]</p>
+<p>[RECOVERED IN MANUAL STAGING: available in <code>manual_source_staging/bouncing_ball/tutorials/</code> and confirmed from the second-pass source review.]</p>
 <ul>
 <li><strong>Capability:</strong> Frame-by-frame tracking of ball position; exports position vs. time data</li>
 <li><strong>Resolution:</strong> Determined by camera frame rate and pixel resolution of recording</li>
@@ -437,7 +437,7 @@ e = ─────────────────
 <li><strong>Availability:</strong> ITLL lab computers only — NOT available for personal installation</li>
 <li><strong>Tutorial:</strong> <code>Bouncing_Ball_Logger_Pro.PDF</code></li>
 </ul>
-<p>[MISSING: Referenced in 2018/2019 source as Canvas download; not in source directory. Locate from prior ASEN 2003 Canvas course and add to instrumentation/datasheets/.]</p>
+<p>[MISSING: Referenced in source as a Canvas download; not recovered in the staged materials.]</p>
 <ul>
 <li><strong>Capability:</strong> Similar to Tracker; performs image tracking on video recordings</li>
 </ul>
@@ -468,133 +468,125 @@ e = ─────────────────
 </ul>
 <p>for video tracking; students should record their camera model and settings]</p>
 <ul>
-<li>[MISSING: Tutorial PDFs for Tracker and Logger Pro (Bouncing_Ball_Tracker_Tutorial.PDF and</li>
+<li>[MISSING: Logger Pro tutorial PDF (<code>Bouncing_Ball_Logger_Pro.PDF</code>) referenced as a Canvas</li>
 </ul>
-<p>Bouncing_Ball_Logger_Pro.PDF) — referenced as Canvas downloads in source]</p>
+<p>download in source]</p>
 <hr>
 <h2>Predictive Model Value — Source and Interpretation</h2>
 <p>The typical CoR range for a regulation ping-pong ball on a hard floor is <strong>0.85–0.90</strong> (dimensionless). This value reflects an experimentally established material property for standard impact conditions — it is not derivable from the method equations above and cannot be predicted from first principles using the constant-e model alone.</p>
-<p>For Phase 1 students: use this range as your predictive model anchor in Section 7. Treat e_predicted = 0.875 ± 0.025 (midpoint and half-range) and cite this file as the source.</p>
+<p>For Phase 1 students: use this range as your predictive model anchor in Section 7. Treat e_predicted = 0.875 +/- 0.025 (midpoint and half-range) and cite this file as the source.</p>
 <p>For Phase 2 students: your Phase 2 experiment packet will include this same range. It is an appropriate basis for your predicted system response — but note the distinction: this is a material reference property, not a calibrated instrument output. State explicitly that your predicted e is based on published material behavior for this ball and surface type, and that the actual value may vary with temperature, ball age, and surface compliance.</p>
 <hr>
 <h2>Uncertainty Considerations by Measurement Tool</h2>
 <p>Since measurement tool selection is a student design task, the uncertainty characteristics are also student-determined. The following are known from the source and general measurement principles:</p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Measurement</th><th>Primary error source</th><th>Notes</th></tr></thead><tbody><tr><td>Height (ruler, manual)</td><td>Ruler resolution + parallax + judgment of peak</td><td>Dominant error for Method 1</td></tr><tr><td>Time (stopwatch, manual)</td><td>Human reaction time (~0.1–0.3 s)</td><td>Dominant error for Methods 2 and 3</td></tr><tr><td>Time (video, 30 fps)</td><td>Frame rate → ±1/30 s per event</td><td>Significantly reduces reaction time error</td></tr><tr><td>Height (video tracking)</td><td>Pixel resolution + scale calibration</td><td>Depends on camera distance and reference scale</td></tr></tbody></table></div>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Measurement</th><th>Primary error source</th><th>Notes</th></tr></thead><tbody><tr><td>Height (ruler, manual)</td><td>Ruler resolution + parallax + judgment of peak</td><td>Dominant error for Method 1</td></tr><tr><td>Time (stopwatch, manual)</td><td>Human reaction time (~0.1–0.3 s)</td><td>Dominant error for Methods 2 and 3</td></tr><tr><td>Time (video, 30 fps)</td><td>Frame rate -&gt; +/-1/30 s per event</td><td>Significantly reduces reaction time error</td></tr><tr><td>Height (video tracking)</td><td>Pixel resolution + scale calibration</td><td>Depends on camera distance and reference scale</td></tr></tbody></table></div>
 <hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Bouncing Ball: Coefficient of Restitution</h1>
-<p><strong>Lab:</strong> Bouncing Ball — Coefficient of Restitution <strong>Source:</strong> ASEN 2003 Lab 2, CU Boulder (2014 and 2018/2019 versions) <strong>Compilation bin:</strong> data/</p>
+<p><em>This file was updated on July 20, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Bouncing Ball: Coefficient of Restitution</h1>
 <hr>
-<h2>Sample Dataset</h2>
-<p>[MISSING_DATA: No prior-run dataset is present in the source directory. Students generate their own data during the experiment. For 3501 use, a sample dataset from a prior run — containing heights, times, and computed e values for 10 trials of each method — would be useful as a reference or worked example for calibrating student expectations. Recommend requesting a sample dataset from the prior ASEN 2003 course team.]</p>
-<hr>
-<h2>Expected Data Structure</h2>
-<p>Each student/group collects data across three methods, two balls, and three video trials. The recommended MATLAB data structure (based on Appendix B coding guidance in source):</p>
+<h2>Data Access Policy For The Course Site</h2>
+<p>Raw and sample data files should <strong>not</strong> be bundled into the public course site for this lab. Instead, the student-facing lab page should point to an external data location managed manually by the instructional team.</p>
+<p><strong>Student-facing data link for current publication pass:</strong></p>
 <ul>
-<li>Data for each method stored as a vector of raw measurements (not just computed e values)</li>
-<li>One function computes e from raw measurements for a given method</li>
-<li>One reusable function performs statistical analysis on any vector of e values</li>
-<li>Data loading uses a loop, not repeated load() calls</li>
+<li><a href="https://o365coloradoedu.sharepoint.com/:f:/r/sites/AEROENGR-Labspace-Labs/Shared%20Documents/Labs/Extra%20Historical%20Labs/Bouncing%20Ball%20Lab/SampleData?csf=1&amp;web=1&amp;e=7rNDKj">Data - Link to Sharepoint - NEEDS UPDATE</a></li>
 </ul>
 <hr>
 <h2>What Is Measured Per Method</h2>
 <h3>Method 1 — Height of Bounce</h3>
 <p><strong>Per trial:</strong></p>
 <ul>
-<li>Initial drop height h₀ [m or inches — choose and record units consistently]</li>
-<li>Heights of successive bounces h₁, h₂, ..., hₙ until ball effectively stops [same units]</li>
-<li>Ball identification (which ball; measured characteristics recorded separately)</li>
+<li>initial drop height <code>h0</code></li>
+<li>one or more bounce heights <code>h1, h2, ... hn</code></li>
+<li>ball identity and ball characteristics</li>
 </ul>
-<p><strong>Per trial output:</strong></p>
+<p><strong>Expected output:</strong></p>
 <ul>
-<li>One or more estimates of e (one per bounce pair, or one cumulative estimate using h₀ and hₙ)</li>
+<li>one or more estimates of <code>e</code> from height ratios</li>
 </ul>
-<p><strong>Recommended format:</strong></p>
-<pre><code>
-% Column 1: h0 (m)
-% Column 2+: h1, h2, ..., hn (m)
-% Rows: one per trial
-</code></pre>
 <h3>Method 2 — Time of Adjacent Bounces</h3>
 <p><strong>Per trial:</strong></p>
 <ul>
-<li>Initial drop height h₀ [m] (for context; not used in e calculation but useful for consistency)</li>
-<li>Time duration of each bounce t₁, t₂, ..., tₙ [s]</li>
-<li>Ball identification</li>
+<li>bounce durations <code>t1, t2, ... tn</code></li>
+<li>optionally <code>h0</code> for context</li>
+<li>ball identity</li>
 </ul>
-<p><strong>Per trial output:</strong></p>
+<p><strong>Expected output:</strong></p>
 <ul>
-<li>One or more estimates of e (one per adjacent bounce pair tₙ / tₙ₋₁)</li>
+<li>one or more estimates of <code>e</code> from adjacent bounce-time ratios</li>
 </ul>
-<p><strong>Recommended format:</strong></p>
-<pre><code>
-% Column 1: t1 (s)
-% Column 2: t2 (s)
-% ...
-% Rows: one per trial
-</code></pre>
 <h3>Method 3 — Time to Stop</h3>
 <p><strong>Per trial:</strong></p>
 <ul>
-<li>Initial drop height h₀ [m]</li>
-<li>Total time from first impact to ball stopping tₛ [s]</li>
-<li>Ball identification</li>
+<li>initial drop height <code>h0</code></li>
+<li>total time to stop <code>ts</code></li>
+<li>ball identity</li>
 </ul>
-<p><strong>Per trial output:</strong></p>
+<p><strong>Expected output:</strong></p>
 <ul>
-<li>One estimate of e per trial</li>
+<li>one estimate of <code>e</code> per trial</li>
 </ul>
-<p><strong>Recommended format:</strong></p>
-<pre><code>
-% Column 1: h0 (m)
-% Column 2: ts (s)
-% Rows: one per trial
-</code></pre>
-<h3>Video Tracking (3 trials, ping-pong ball)</h3>
+<h3>Video Tracking</h3>
 <p><strong>Per trial:</strong></p>
 <ul>
-<li>Video recording file (not stored in MATLAB; archived separately)</li>
-<li>Extracted position vs. time data from Tracker or Logger Pro (exported as CSV or text)</li>
-<li>From position/time data: compute h₀, hₙ₋₁, hₙ, tₙ₋₁, tₙ, tₛ for all three methods</li>
+<li>recorded video file</li>
+<li>extracted position/time data from Tracker, Logger Pro, or another approved workflow</li>
 </ul>
-<p><strong>Per trial output:</strong></p>
+<p><strong>Expected output:</strong></p>
 <ul>
-<li>Three estimates of e (one per method) from video-extracted data</li>
+<li>video-derived estimates of <code>e</code> using the same method logic</li>
 </ul>
 <hr>
-<h2>Final Dataset Summary (Required by Source)</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Dataset</th><th>Ball</th><th>Method</th><th>Min. Trials</th><th>Notes</th></tr></thead><tbody><tr><td>Preliminary</td><td>Ping-pong</td><td>Method 1</td><td>10</td><td>Design and test measurement procedure</td></tr><tr><td>Preliminary</td><td>Ping-pong</td><td>Method 2</td><td>10</td><td>Design and test measurement procedure</td></tr><tr><td>Preliminary</td><td>Ping-pong</td><td>Method 3</td><td>10</td><td>Design and test measurement procedure</td></tr><tr><td>Video tracking</td><td>Ping-pong</td><td>All 3 (from video)</td><td>3</td><td>Via Tracker or Logger Pro</td></tr><tr><td>Refined</td><td>Ping-pong</td><td>Best method only</td><td>10</td><td>After selecting best method</td></tr><tr><td>Second ball</td><td>Student-chosen</td><td>Best method</td><td>10</td><td>Different ball type</td></tr></tbody></table></div>
-<p><strong>Total minimum trials:</strong> 53 (10+10+10+3+10+10)</p>
+<h2>Trial Structure From Source</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Dataset</th><th>Ball</th><th>Method</th><th>Min. Trials</th></tr></thead><tbody><tr><td>Preliminary</td><td>Ping-pong</td><td>Method 1</td><td>10</td></tr><tr><td>Preliminary</td><td>Ping-pong</td><td>Method 2</td><td>10</td></tr><tr><td>Preliminary</td><td>Ping-pong</td><td>Method 3</td><td>10</td></tr><tr><td>Video tracking</td><td>Ping-pong</td><td>All 3 from video</td><td>3</td></tr><tr><td>Refined</td><td>Ping-pong</td><td>Best method only</td><td>10</td></tr><tr><td>Second ball</td><td>Student-chosen</td><td>Best method</td><td>10</td></tr></tbody></table></div>
+<p><strong>Total minimum trials:</strong> 53</p>
 <hr>
-<h2>Ball Characteristics to Record</h2>
-<p>For each ball used, record before any trials begin:</p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Characteristic</th><th>Unit</th><th>Notes</th></tr></thead><tbody><tr><td>Mass</td><td>g</td><td>Measure with available scale</td></tr><tr><td>Diameter</td><td>mm</td><td>Measure with calipers or ruler</td></tr><tr><td>Material / surface</td><td>text</td><td>Rubber, plastic, felt, etc.</td></tr><tr><td>Manufacturer / type</td><td>text</td><td>Brand name if available</td></tr><tr><td>Condition</td><td>text</td><td>New, worn, deformed, etc.</td></tr></tbody></table></div>
+<h2>Historical Internal Reference Files</h2>
+<p>The existing planning compilation already contains internal CSV examples such as:</p>
+<ul>
+<li><code>method1_height_preliminary.csv</code></li>
+<li><code>method1_height_refined_and_secondball.csv</code></li>
+<li><code>method2_time_preliminary.csv</code></li>
+<li><code>method3_timetostop_preliminary.csv</code></li>
+<li><code>video_tracking_trials.csv</code></li>
+</ul>
+<p>These may be useful for internal review, but they should <strong>not</strong> be treated as the public student-facing data delivery mechanism for the course site.</p>
+<p><code>[NEEDS INSTRUCTOR REVIEW: Historical internal CSV files remain in the canonical Bouncing Ball compilation. The current downstream sync copies them into the Forward bundle even though the generated public lab page does not currently link them. Decide later whether they should remain planning-side reference artifacts or be removed entirely.]</code></p>
+<hr>
+<h2>Recommended Student Data Structure</h2>
+<p>The historical source and current compilation support a simple structure:</p>
+<ul>
+<li>raw measurements stored by method</li>
+<li>reusable MATLAB function(s) to compute <code>e</code></li>
+<li>reusable MATLAB function(s) to compute summary statistics</li>
+</ul>
+<p>For student-facing guidance, the most important rule is to preserve raw measured quantities rather than only storing computed <code>e</code> values.</p>
+<hr>
+<h2>Ball Characteristics To Record</h2>
+<p>For each ball used, record:</p>
+<ul>
+<li>mass</li>
+<li>diameter</li>
+<li>material / surface type</li>
+<li>manufacturer / type if known</li>
+<li>condition / visible wear</li>
+</ul>
 <hr>
 <h2>Known Measurement Considerations</h2>
 <ul>
-<li><strong>Height measurement (Method 1):</strong> Parallax error and difficulty identifying the exact</li>
+<li>height measurements are vulnerable to parallax and peak-height judgment error</li>
+<li>time measurements by hand are dominated by human reaction time</li>
+<li>video methods reduce reaction-time error but depend on frame rate and scale calibration</li>
+<li>the definition of &quot;stopped&quot; in Method 3 introduces systematic bias unless stated clearly</li>
+<li>ball spin is a model limitation and should be minimized</li>
 </ul>
-<p>peak height are the primary error sources. Ruler resolution is secondary to observer judgment error.</p>
-<ul>
-<li><strong>Time measurement (Methods 2 and 3):</strong> Human reaction time is typically 0.1–0.3 s and</li>
-</ul>
-<p>is the dominant error source when using a manual stopwatch. Video tracking effectively eliminates this; reaction time error is replaced by frame-rate-limited time resolution.</p>
-<ul>
-<li><strong>Ball spin:</strong> The model assumes no spin (direct central impact). Real drops on hard</li>
-</ul>
-<p>surfaces can introduce small rotational motion, particularly if the surface is not perfectly flat or the ball has surface irregularities. This is a known model limitation.</p>
-<ul>
-<li><strong>Definition of &quot;stopped&quot; (Method 3):</strong> There is no universal criterion for when a ball</li>
-</ul>
-<p>has stopped bouncing. This introduces a systematic measurement bias. Students should define their criterion explicitly and apply it consistently across all trials.</p>
-<ul>
-<li><strong>Consistency of h₀:</strong> Releasing from a slightly different height each trial introduces</li>
-</ul>
-<p>variability that is not captured in the statistical analysis unless h₀ is measured independently for each trial.</p>
 <hr>
-<h2>Units Convention</h2>
-<p>Equations 1 and 2 yield dimensionless e (ratio of lengths or times). Equation 3 requires h₀ in meters if g = 9.81 m/s² is used, or h₀ in feet if g = 32.2 ft/s² is used. Within-trial unit consistency is more important than which system is used — choose one and apply it throughout all calculations. Document units at the top of each MATLAB function.</p>
+<h2>External Data Resources</h2>
+<ul>
+<li>final student-facing data location has been provided through SharePoint</li>
+<li>if the teaching team later wants a public worked example, provide it through</li>
+</ul>
+<p>SharePoint rather than bundling raw files into the course-site build</p>
 <hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes — Bouncing Ball: Coefficient of Restitution</h1>
+<p><em>This file was updated on July 20, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes — Bouncing Ball: Coefficient of Restitution</h1>
 <p><strong>Lab:</strong> Bouncing Ball — Coefficient of Restitution <strong>Source:</strong> ASEN 2003 Lab 2, CU Boulder (2014 and 2018/2019 versions) <strong>Compilation bin:</strong> notes/ <strong>Audience:</strong> Instructor only</p>
 <hr>
 <h2>1. CLO Alignment</h2>
