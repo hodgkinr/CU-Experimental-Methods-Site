@@ -3,7 +3,7 @@
 
 Before you can evaluate someone else's validation report, you need a checklist grounded in the framework you have been building since Week 6. This reading organizes that checklist. It is written from the perspective of an evaluator, someone reading the report to determine whether its validation claim is credible, not from the perspective of the author defending it.
 
-This is the reference document for the Week 9 in-class engineering critique discussion. The sample report contains deliberate weaknesses. Your job is to identify them using the categories below, name the specific failure each represents, and propose what a corrected version would show.
+This is early preparation for the upcoming in-class engineering critique discussion. The sample report contains deliberate weaknesses. Your job is to identify them using the categories below, name the specific failure each represents, and propose what a corrected version would show.
 
 ---
 
