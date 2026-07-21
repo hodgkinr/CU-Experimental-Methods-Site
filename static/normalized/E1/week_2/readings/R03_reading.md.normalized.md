@@ -25,8 +25,6 @@ This course follows the terminology used by Coleman & Steele, *Experimentation, 
 
 **Monte Carlo coverage interval** — an interval containing a stated percentage of the simulated output distribution. Report the input distributions, dependence assumptions, sample count, and interval rule. For example: `central 95% Monte Carlo coverage interval, 2.5th–97.5th percentiles`. Do not relabel it as a frequentist confidence interval.
 
-<image description: A compact decision diagram beginning with “What are you reporting?” and branching to four boxes: spread of observations → s; precision of a mean → s/sqrt(n) or confidence interval; propagated result → uc and, if needed, U=kuc; Monte Carlo output distribution → stated percentile coverage interval. A footer reads “Always label the basis, method, and coverage.” Clean black, white, and CU-gold technical style.>
-
 For plots, replace the generic phrase **error bars** with the quantity actually shown: `±1 standard uncertainty`, `expanded uncertainty, k=2`, `95% confidence interval for the mean`, or `central 95% Monte Carlo coverage interval`. For comparisons, build an interval for the *difference* when statistical inference is needed, then compare that interval with a pre-specified engineering acceptance or equivalence region. Overlap of two separate intervals is only a visual clue, not the decision rule.
 
 ---

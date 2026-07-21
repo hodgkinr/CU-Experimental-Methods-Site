@@ -591,7 +591,7 @@
   },
   "e3-week_4": {
     "week_label": "Week 14",
-    "week_focus": "Oral defense, structured technical critique, peer evaluation, and comparative analysis of sample or AI-generated experimental design work.",
+    "week_focus": "Oral defense, structured technical critique, peer evaluation, and engineering critique of sample or AI-generated experimental design work.",
     "questions": [
       {
         "type": "multiple_choice",
@@ -615,7 +615,7 @@
       },
       {
         "type": "multiple_choice",
-        "prompt": "Why does Week 14 include comparative analysis of sample or AI-generated work?",
+        "prompt": "Why does Week 14 include engineering critique of sample or AI-generated work?",
         "options": [
           "To show that polished writing guarantees technical correctness",
           "To practice applying the same technical standards regardless of whether the work came from a peer, prior report, professional source, or AI system",

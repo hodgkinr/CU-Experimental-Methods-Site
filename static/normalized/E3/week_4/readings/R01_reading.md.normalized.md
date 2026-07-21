@@ -1,4 +1,4 @@
-# Peer Evaluation and Comparative Analysis Worksheet
+# Peer Evaluation and Engineering Critique Worksheet
 ## A technical critique is useful only when it names the evidence
 
 A good critique does not sound impressive; it helps the next engineer make a better decision.

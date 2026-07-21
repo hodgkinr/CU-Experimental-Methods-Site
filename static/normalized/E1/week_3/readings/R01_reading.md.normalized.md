@@ -1,4 +1,4 @@
-# How to Present a Graph — Kathryn's Framework
+# How to Present a Graph
 ## Eight Questions Every Engineering Figure Must Answer
 
 A graph that requires a verbal explanation has already failed. A figure in an engineering report must stand alone, answering every question a critical reader could raise without requiring the author's interpretation.
@@ -7,10 +7,12 @@ A graph that requires a verbal explanation has already failed. A figure in an en
 
 Engineering figures are the primary medium for arguing from data. A well-constructed figure makes a claim, shows the evidence for that claim, and gives the reader the tools to evaluate both, without assistance from the surrounding text. A poorly constructed figure forces the reader to work to extract meaning, often arriving at the wrong conclusion or no conclusion at all. The gap between these two outcomes is not artistic talent; it is a checklist.
 
+This mindset matters beyond ASEN 3501. In capstone and in professional engineering work, a figure often has to defend a design decision before the author is in the room to explain it.
+
 The following eight-question framework provides a sequential checklist for evaluating any engineering figure you produce, or any figure you encounter in someone else's report. Apply these questions in order: each one checks a necessary element of a complete engineering argument from data. A figure that passes all eight can stand alone. A figure that fails any one of them is incomplete.
 
 ![An annotated engineering graph showing a damped oscillation response (amplitude vs. time) from a hypothetical mass-spring-damper experiment. The figure has eight numbered callout arrows pointing to specific visual elements: (1) points to the figure caption text, which contains the motivation; (2) points to the x-axis label "Time (s)" and y-axis label "Amplitude (m)" with units visible; (3) points to the legend entry "MATLAB Mobile accelerometer — 100 Hz sampling"; (4) points to error bars shown on the data points; (5) points to an annotation showing the exponential decay trend envelope; (6) points to a dashed line labeled "Undamped model prediction"; (7) points to a text annotation reading "Residual at t=2s exceeds uncertainty band — possible energy dissipation not in model"; (8) points to the figure caption's closing sentence: "Result implies measured damping ratio ζ=0.12±0.01." Clean MATLAB-style formatting with black data points, a dashed model line in gray, and gold error bars.](../images/E1_W3_R1_image1.png)
-*Why this image is here:* It gives you a fully worked example of what a figure looks like when it carries evidence, interpretation, and model comparison all at once.
+*This image gives you a fully worked example of what a figure looks like when it carries evidence, interpretation, and model comparison all at once.
 
 ---
 
@@ -26,12 +28,12 @@ The following eight-question framework provides a sequential checklist for evalu
 
 **6. Model comparison** — How does the measured trend compare to the predictive model? The model should appear on the same figure as the data, as a line, band, or point estimate, with its own label. Placing model and data on the same axes makes the comparison visible and makes the argument spatial rather than verbal. A figure that shows only data, with the model discussed in the text, requires the reader to perform the comparison in their head. Do not outsource the argument.
 
-**7. Discrepancy** — If there is a gap between measured data and model prediction, what are the possible causes? This is one of the most frequently omitted elements in student reports and one of the most important in professional practice. A gap that falls within the uncertainty band is consistent with measurement noise; note that explicitly. A gap with systematic structure (increasing with the independent variable, or consistently signed) suggests a model-form limitation; name the physical effect that is likely missing. Annotate the figure directly when the discrepancy is specific to a region of the plot.
+**7. Discrepancy** — If there is a meaningful gap between measured data and model prediction, what are the possible causes? A gap that falls within the uncertainty band is consistent with measurement noise; note that briefly when it matters to the claim. A gap with systematic structure (increasing with the independent variable, or consistently signed) suggests a model-form limitation; name the physical effect that is likely missing. If the gap is localized to a specific part of the figure, mark that region clearly, then explain it in the caption or surrounding text. Long explanations inside the plot usually make the figure harder to read.
 
 **8. System-level implication** — What does this graph tell you about the overall system? The figure is evidence for a conclusion about the system under study. State that conclusion. A figure that ends at "the data shows X" without connecting X to a claim about the system has done half the work. The closing sentence of the caption should complete the argument: *"Result implies that the measured damping ratio (ζ = 0.12 ± 0.01) is 20% higher than the undamped model predicts, suggesting an aerodynamic drag contribution not captured by the model."*
 
 ![A vertical checklist diagram with eight rows. Each row contains a checkbox on the left and a label on the right. The labels read, top to bottom: (1) Motivation stated in caption, (2) Axes labeled with units and appropriate scale, (3) Data source identified in legend or caption, (4) Uncertainty bounds shown and labeled, (5) Trend named explicitly, (6) Model plotted on same axes as data, (7) Discrepancy annotated with physical interpretation, (8) System-level conclusion stated. The title above the checklist reads "Figure Completeness Checklist — Apply to Every MATLAB Figure." Clean sans-serif typography, black text on white, CU Boulder gold left border on the checklist box.](../images/E1_W3_R1_image2.png)
-*Why this image is here:* It converts the example above into a repeatable review tool you can apply to your own figures before anyone else has to.
+*This image converts the example above into a repeatable review tool you can apply to your own figures before anyone else has to.
 
 ---
 

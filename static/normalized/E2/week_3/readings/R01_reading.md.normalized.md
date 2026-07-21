@@ -14,7 +14,7 @@ The key distinction is between two patterns. **Random scatter** in residuals —
 **Systematic trends** in residuals are a different animal entirely. They establish that the combined model–experiment system is inadequate under the tested conditions, but they do not identify one cause by themselves. The pattern may come from model form, parameter values, setup or installation, an uncontrolled input, data reduction, or sensor behavior. Correlation with a variable is a clue to investigate, not a verdict.
 
 ![Two side-by-side residual plots, each with the independent variable (e.g., applied load, in Newtons) on the x-axis and residual value (measured minus predicted, in mm) on the y-axis. A horizontal dashed line at zero represents perfect model agreement. In the left panel (labeled "Random scatter — consistent with measurement uncertainty"), the data points scatter randomly above and below the zero line with no pattern. In the right panel (labeled "Systematic trend — model-form limitation"), the points start positive at low loads, cross zero near mid-range, and become negative at high loads, forming a gentle S-curve. Each panel has horizontal dashed uncertainty bounds at ±1σ to contextualize the magnitude of the deviations. Clean engineering plot style, black and white.](../images/E2_W8_R1_image1.png)
-*Why this image is here:* It gives you a side-by-side residual comparison so you can practice telling the difference between acceptable scatter and a pattern that signals missing physics.
+*This image gives you a side-by-side residual comparison so you can practice telling the difference between acceptable scatter and a pattern that signals missing physics.
 
 ---
 
@@ -33,7 +33,7 @@ Use a seven-class diagnostic taxonomy: **random measurement variation; known mea
 For every diagnosis, write an evidence statement and a competing-hypothesis statement: "The load-dependent trend is most consistent with support compliance because..., but temperature-dependent sensor drift remains plausible; a reference displacement measurement would distinguish them." That is stronger than naming a category from appearance alone.
 
 ![A taxonomy diagram with three branches from a central node labeled "Residual pattern observed." Branch 1 goes to "Random scatter within uncertainty bounds" → labeled "Parametric uncertainty or noise floor — model form may be adequate." Branch 2 goes to "Systematic trend (correlated with independent variable)" → labeled "Model-form error — functional form is missing something." Branch 3 goes to "Bias (residuals consistently one sign across all conditions)" → labeled "Measurement error or parameter bias — check calibration and DAQ configuration." Each branch ends with a box describing the recommended next step. Directional arrows between boxes suggest that ruling out measurement error should precede concluding model-form error. Clean, hierarchical flowchart style.](../images/E2_W8_R1_image2.png)
-*Why this image is here:* It turns residual interpretation into a decision path so the visual pattern leads naturally to the next engineering question instead of stopping at description.
+*This image turns residual interpretation into a decision path so the visual pattern leads naturally to the next engineering question instead of stopping at description.
 
 ---
 
