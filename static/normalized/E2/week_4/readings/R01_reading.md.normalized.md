@@ -1,7 +1,7 @@
 # From One Point to Many — Regression, Confidence & What They Don't Tell You
 ## Three statistical ideas that engineers consistently misapply — and what they actually mean
 
-A high R² does not mean your model is right. A 95% confidence interval does not mean there is a 95% probability the true value is inside it. A statistically significant result does not mean the result is important. If any of those three statements surprised you, read carefully. Each represents a misuse so common that it appears routinely in published engineering research.
+A high R² does not mean your model is right. A 95% confidence interval does not mean there is a 95% probability the true value is inside it. A statistically significant result does not mean the result is important. If any of those three statements surprised you, read carefully. Each represents a misuse common enough that you will see versions of it in reports, presentations, and sometimes even published technical work.
 
 ---
 

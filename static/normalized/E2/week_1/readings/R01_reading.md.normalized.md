@@ -9,6 +9,8 @@ A team runs an experiment, collects data, and builds a model that fits the data 
 
 Postdiction means building a model *after* seeing the data, then treating the fit as evidence that the model can predict. It feels like validation. It produces outputs that look like validation. But structurally, it is curve fitting, and curve fitting has no predictive content by itself. A polynomial of sufficient degree will fit any dataset perfectly. That does not mean the polynomial predicts anything.
 
+That does not mean curve fitting is useless. It is useful for exploratory analysis, empirical calibration, parameter estimation, and experimentally informed model updates. If a parameter such as friction is hard to predict from first principles, collecting data and using it to inform the model can be exactly the right engineering move. The problem is not `data -> model -> curve fitting/model updating`. The problem is pretending that this workflow is the same as `model -> data -> validation`. Both have a place, but they answer different questions.
+
 ![A side-by-side illustration contrasting genuine prediction and postdiction. On the left, a timeline arrow runs left to right: "Model developed" → "Experiment run" → "Data compared to prediction." A bold vertical line separates the model from the data, labeled "No data crosses this line." On the right, the same timeline but reversed: "Data collected" → "Model fit to data" → "Fit presented as validation." A double-headed arrow loops between the data and the model, labeled "Model adjusted until fit is good." Both panels show the same scatter plot of data and the same fitted curve — visually identical results — but one is prediction and one is postdiction. The contrast makes the invisible structural difference visible. Clean infographic style with black and gold color scheme.](../images/E2_W6_R1_image1.png)
 *This image makes the invisible methodological difference visible by showing that prediction and postdiction can look identical in the final graph while meaning very different things.
 
@@ -18,7 +20,7 @@ Psychologists have studied the cognitive mechanism behind postdiction extensivel
 
 ---
 
-These failures are not hypothetical. Engineering history is full of models that were "validated" against the same data used to build them, then broke down as soon as conditions changed. Structural load models have been validated against the test specimens they were built on. Aerodynamic performance models have been tuned to existing flight data, then used to predict configurations that behaved differently. In each case, the engineers were sincere. They believed the validation. The failure was still catastrophic.
+These failures are not only classroom hypotheticals. Documented engineering cases show why test/model agreement, model updating, and independent predictive validation have to be kept conceptually separate. NASA's [X-33 liquid-hydrogen tank failure investigation](https://ntrs.nasa.gov/citations/20020044823) describes how structural test behavior, analysis assumptions, and validation evidence all had to be re-examined after a major test article failure. In flight-test work, aerodynamic databases are sometimes updated from measured flight data using parameter estimation and regression; NRC Canada and AIAA describe this explicitly in work on [aerodynamic database update/validation from flight data](https://nrc-publications.canada.ca/eng/view/object/?id=d76879b8-d0e7-4373-8e58-f8bbc992c4e7). Those are legitimate engineering activities, but they are not the same as showing that a model predicted independent data it had not already been tuned against. The sequence still matters.
 
 Postdiction is so insidious because it is invisible from the inside. If you have already seen the data, you cannot know how much it shaped your modeling choices. You cannot subtract the contamination later. The only protection is structural: commit the model before collecting data, and document that commitment.
 
@@ -33,7 +35,7 @@ This is the same discipline you practiced in Tier 1 Phase 2. Your prediction mem
 
 When the data is released in Week 8, you will compare your committed prediction to what was actually measured. If the agreement is poor, or if your model missed, that is not a failed experiment. A poor prediction from a well-reasoned model is rich diagnostic information. It tells you something true about the physics that your model did not capture. That information is useful. A "successful validation" produced by postdiction tells you only what you already knew.
 
-In professional test engineering, prediction-before-exposure is not optional. A validation report that does not document when the model was committed relative to data collection is not credible validation. It is an anecdote. The sequence matters: model first, data second. That is the line between engineering analysis and storytelling.
+In professional test engineering, prediction-before-exposure is not optional. A validation report that does not document when the model was committed relative to data collection is not credible validation. It is an anecdote. The sequence matters: model first, data second. That is the line between engineering analysis and curve fitting.
 
 ---
 

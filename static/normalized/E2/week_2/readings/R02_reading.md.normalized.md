@@ -39,7 +39,7 @@ For most well-designed experiments, other error sources dominate quantization er
 
 The practical decision: set the input range to the smallest value that comfortably brackets your expected signal. Do not accept ±10 V defaults when your signal is ±100 mV.
 
-![A diagram illustrating quantization for two different ADC input range settings. On the left, a ±10V input range is divided into discrete levels, with a small signal occupying only the bottom fraction of the range — the signal is shown as a small-amplitude sine wave that spans only a few quantization levels. On the right, the input range is set to ±200 mV to match the signal amplitude, and the same signal now spans many quantization levels. Both panels show the step-staircase digitized output overlaid on the smooth true signal. A caption reads: "Resolution is a function of both the ADC bit depth and the ratio of signal amplitude to input range." Engineering diagram style, clean black and white with annotation labels.](../images/E2_W7_R2_image1.png)
+![A diagram illustrating quantization for two different ADC input range settings. On the left, a ±10V input range is divided into discrete levels, with a small signal occupying only the bottom fraction of the range — the signal is shown as a small-amplitude sine wave that spans only a few quantization levels. On the right, the input range is set to ±200 mV to match the signal amplitude, and the same signal now spans many quantization levels. Both panels show the step-staircase digitized output overlaid on the smooth true signal. A caption reads: "Resolution is a function of both the ADC bit depth and the ratio of signal amplitude to input range." Engineering diagram style, clean black and white with annotation labels. THIS NEEDS TO BE UPDATED: current ADC/quantization image is a placeholder and does not correctly represent the intended concept.](../images/E2_W7_R2_image1.png)
 *This image shows that DAQ resolution is not only a datasheet number; your range choice directly decides how much of that resolution the signal actually gets to use.
 
 ---
@@ -81,18 +81,18 @@ In a time-series plot, this step looks like a real physical event: a rapid rever
 
 ## Documentation Requirement
 
-Every DAQ configuration choice must be documented in your Tier 2 report with justification, not just listed as a setting. Include these entries for each choice:
+Every important DAQ setting used in your Tier 2 experiment must be documented in your report. In this course, many settings are provided by the experiment rather than chosen by your group. Your job is to record the provided configuration, explain what each setting controls, and assess whether it is sufficient or insufficient for the signal and intended use. If a setting is inadequate or leaves a tight margin, identify what change you would recommend and why.
 
 | Choice | What to document |
 |---|---|
-| Channel configuration | Single-ended or differential; reason |
-| Input range | Value; why this range was chosen for the signal amplitude |
-| Sample rate | Value; Nyquist argument; margin above minimum |
-| Anti-aliasing filter cutoff | Value; relationship to signal bandwidth and sample rate |
-| Triggering | Type; reason; pre-trigger buffer if applicable |
+| Channel configuration | Provided mode; what it implies for ground reference and noise risk |
+| Input range | Provided value; whether it brackets the expected signal and what limitation results if it does not |
+| Sample rate | Provided value; Nyquist argument; margin above minimum or limitation if margin is tight |
+| Anti-aliasing filter cutoff | Provided value; relationship to signal bandwidth and sample rate |
+| Triggering | Provided type; whether the timing method is adequate for the event |
 | Resolution | ADC bit depth; quantization step size; assessment of whether it limits the measurement |
 
-A DAQ configuration section that lists settings without justification does not show that the choices were defensible. The goal is to show that you understood what each setting controls and chose it on physical grounds.
+A DAQ configuration section that lists settings without evaluating them does not show that the measurement was understood. The goal is to show that you know what each setting controls, why it matters physically, and whether the provided setup is adequate for the experiment.
 
 ---
 
