@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Basic Statistics for Experimental Data</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../chat_widget.css">
+  <script defer src="../chat_widget.js"></script>
+  <script defer src="../app.js"></script>
+</head>
+<body>
+  
+            
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../index.html">Aerospace Experimental Methods</a>
+        <nav class="top-nav">
+          <a href="../index.html">Home</a>
+          <a href="../syllabus.html">Syllabus</a>
+          <a href="../schedule.html">Schedule</a>
+          <a href="../labs.html">Labs</a>
+          <a class="is-current" href="../supplemental.html">Supplemental</a>
+          <a href="../results.html">Results</a>
+        </nav>
+      </div>
+    </header>
+    
+            <main class="page-shell">
+              <nav class="breadcrumbs">
+                <a href="../index.html">Home</a>
+                <a href="../supplemental.html">ASEN 3501 Supplemental Materials</a>
+                <span>Basic Statistics for Experimental Data</span>
+              </nav>
+              <section class="hero compact">
+                <p class="eyebrow">Aerospace Experimental Methods · Supplemental Resource</p>
+                <h1>Basic Statistics for Experimental Data</h1>
+                <p class="lead">This page is optional support for students who have not had much statistics yet. The goal is not to turn you into a statistician before the first lab. The goal is to give you enough language to describe repeated measurements without pretending that one number tells the whole story.</p>
+              </section>
+              <section class="content-card markdown-body" style="padding:1.5rem">
+                <h1>Basic Statistics for Experimental Data</h1>
+<p>This page is optional support for students who have not had much statistics yet. The goal is not to turn you into a statistician before the first lab. The goal is to give you enough language to describe repeated measurements without pretending that one number tells the whole story.</p>
+<p>Statistics is how engineers talk about variation. If you measure the same thing several times, you will rarely get exactly the same value each time. The differences may come from instrument noise, setup variation, changing environmental conditions, or real changes in the system. Statistics helps you describe that spread, compare it to your model, and make claims that are appropriately cautious.</p>
+<h2>Center: Mean, Median, and Mode</h2>
+<p>The <strong>mean</strong> is the arithmetic average. Add the values and divide by the number of values:</p>
+<p><code>mean = (x1 + x2 + ... + xn) / n</code></p>
+<p>The mean is useful when the data are roughly balanced around a central value. It can be misleading when one or two extreme values pull the average away from most of the data.</p>
+<p>The <strong>median</strong> is the middle value after the data are sorted. If there is an even number of values, it is the average of the two middle values. The median is useful when the data include outliers.</p>
+<p>The <strong>mode</strong> is the most common value. It is useful for repeated categories or rounded measurements, but many engineering datasets have no clear mode.</p>
+<p>A good lab report does not automatically use all three. It chooses the measure of center that matches the data and explains why.</p>
+<h2>Spread: How Much Do Repeated Measurements Vary?</h2>
+<p>Two datasets can have the same mean and very different reliability. That is why center is not enough.</p>
+<p>The <strong>range</strong> is the largest value minus the smallest value. It is easy to compute, but it depends strongly on the most extreme measurements.</p>
+<p>The <strong>standard deviation</strong> describes the typical spread of individual measurements around the mean. A small standard deviation means repeated measurements cluster tightly. A large standard deviation means repeated measurements are more spread out.</p>
+<p>In this course, spread matters because uncertainty is not decorative. If the uncertainty is larger than the effect you are trying to detect, the experiment may not be sensitive enough to support the claim.</p>
+<h2>Probability: Not Certainty About One Trial</h2>
+<p>Probability describes how likely an outcome is under a stated model or assumption. It is not a guarantee about what will happen on the next trial.</p>
+<p>If a fair coin has a 50% probability of landing heads, that does not mean every two flips produce exactly one head. It means that over many flips, the fraction of heads should approach 50%.</p>
+<p>Engineering measurements work the same way. A probability statement is always tied to assumptions about the measurement process, the model, and the data.</p>
+<h2>Distributions: The Shape of Possible Values</h2>
+<p>A <strong>distribution</strong> describes the values a measurement could take and how likely those values are.</p>
+<p>The <strong>normal distribution</strong> is the familiar bell-shaped distribution. It is useful when many small, independent sources of variation combine and values cluster around a mean.</p>
+<p>The <strong>uniform distribution</strong> is flat across a range. It is useful when all you know is that a value lies somewhere between a lower and upper bound. For example, if a datasheet gives only a tolerance limit and no probability shape, a uniform distribution may be a better starting assumption than inventing a bell curve.</p>
+<p>Distributions matter because uncertainty propagation and Monte Carlo simulation both depend on what you assume the inputs can be.</p>
+<h2>Samples and Populations</h2>
+<p>A <strong>population</strong> is the full set you would like to know about. A <strong>sample</strong> is the subset you actually measured.</p>
+<p>You usually do not get to measure the entire population. You measure a sample and use it to estimate something about the larger behavior. More measurements can improve the estimate of random variation, but they do not automatically remove bias. If the instrument is miscalibrated, taking more readings with the same instrument will repeat the same problem more precisely.</p>
+<p>That distinction appears throughout ASEN 3501:</p>
+<ul>
+<li>repeated trials help characterize random error</li>
+<li>calibration checks help identify systematic bias</li>
+<li>residual plots help reveal structured patterns that a simple average can hide</li>
+</ul>
+<h2>How This Connects to the Course</h2>
+<p>When this course asks for an uncertainty interval, it is asking you to say more than &quot;my answer is about 12.&quot; It is asking:</p>
+<ul>
+<li>What value did you estimate?</li>
+<li>How much variation or uncertainty surrounds that estimate?</li>
+<li>What assumptions produced that uncertainty?</li>
+<li>Is the uncertainty small enough to support the engineering decision?</li>
+</ul>
+<p>Monte Carlo simulation is just repeated sampling from assumed input distributions. Residual plots are just a way to see whether differences between model and measurement look random, biased, or structured. Confidence language is a way to avoid overstating what the data can prove.</p>
+<p><strong>The Takeaway:</strong> Statistics is not a separate math topic sitting outside the lab. It is the language that lets you describe variation, compare evidence, and make engineering claims without pretending the measurement is more certain than it is.</p>
+              </section>
+            </main>
+            
+    <footer class="site-footer">
+      <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+    </footer>
+    
+            
+  
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "supplemental-basic-statistics", "title": "Basic Statistics for Experimental Data", "url": "supplemental/basic-statistics.html", "text": "# Basic Statistics for Experimental Data\n\nThis page is optional support for students who have not had much statistics yet. The goal is not to turn you into a statistician before the first lab. The goal is to give you enough language to describe repeated measurements without pretending that one number tells the whole story.\n\nStatistics is how engineers talk about variation. If you measure the same thing several times, you will rarely get exactly the same value each time. The differences may come from instrument noise, setup variation, changing environmental conditions, or real changes in the system. Statistics helps you describe that spread, compare it to your model, and make claims that are appropriately cautious.\n\n## Center: Mean, Median, and Mode\n\nThe **mean** is the arithmetic average. Add the values and divide by the number of values:\n\n`mean = (x1 + x2 + ... + xn) / n`\n\nThe mean is useful when the data are roughly balanced around a central value. It can be misleading when one or two extreme values pull the average away from most of the data.\n\nThe **median** is the middle value after the data are sorted. If there is an even number of values, it is the average of the two middle values. The median is useful when the data include outliers.\n\nThe **mode** is the most common value. It is useful for repeated categories or rounded measurements, but many engineering datasets have no clear mode.\n\nA good lab report does not automatically use all three. It chooses the measure of center that matches the data and explains why.\n\n## Spread: How Much Do Repeated Measurements Vary?\n\nTwo datasets can have the same mean and very different reliability. That is why center is not enough.\n\nThe **range** is the largest value minus the smallest value. It is easy to compute, but it depends strongly on the most extreme measurements.\n\nThe **standard deviation** describes the typical spread of individual measurements around the mean. A small standard deviation means repeated measurements cluster tightly. A large standard deviation means repeated measurements are more spread out.\n\nIn this course, spread matters because uncertainty is not decorative. If the uncertainty is larger than the effect you are trying to detect, the experiment may not be sensitive enough to support the claim.\n\n## Probability: Not Certainty About One Trial\n\nProbability describes how likely an outcome is under a stated model or assumption. It is not a guarantee about what will happen on the next trial.\n\nIf a fair coin has a 50% probability of landing heads, that does not mean every two flips produce exactly one head. It means that over many flips, the fraction of heads should approach 50%.\n\nEngineering measurements work the same way. A probability statement is always tied to assumptions about the measurement process, the model, and the data.\n\n## Distributions: The Shape of Possible Values\n\nA **distribution** describes the values a measurement could take and how likely those values are.\n\nThe **normal distribution** is the familiar bell-shaped distribution. It is useful when many small, independent sources of variation combine and values cluster around a mean.\n\nThe **uniform distribution** is flat across a range. It is useful when all you know is that a value lies somewhere between a lower and upper bound. For example, if a datasheet gives only a tolerance limit and no probability shape, a uniform distribution may be a better starting assumption than inventing a bell curve.\n\nDistributions matter because uncertainty propagation and Monte Carlo simulation both depend on what you assume the inputs can be.\n\n## Samples and Populations\n\nA **population** is the full set you would like to know about. A **sample** is the subset you actually measured.\n\nYou usually do not get to measure the entire population. You measure a sample and use it to estimate something about the larger behavior. More measurements can improve the estimate of random variation, but they do not automatically remove bias. If the instrument is miscalibrated, taking more readings with the same instrument will repeat the same problem more precisely.\n\nThat distinction appears throughout ASEN 3501:\n\n- repeated trials help characterize random error\n- calibration checks help identify systematic bias\n- residual plots help reveal structured patterns that a simple average can hide\n\n## How This Connects to the Course\n\nWhen this course asks for an uncertainty interval, it is asking you to say more than \"my answer is about 12.\" It is asking:\n\n- What value did you estimate?\n- How much variation or uncertainty surrounds that estimate?\n- What assumptions produced that uncertainty?\n- Is the uncertainty small enough to support the engineering decision?\n\nMonte Carlo simulation is just repeated sampling from assumed input distributions. Residual plots are just a way to see whether differences between model and measurement look random, biased, or structured. Confidence language is a way to avoid overstating what the data can prove.\n\n**The Takeaway:** Statistics is not a separate math topic sitting outside the lab. It is the language that lets you describe variation, compare evidence, and make engineering claims without pretending the measurement is more certain than it is.", "module_id": null, "source_type": "overview"}</script>
+</body>
+</html>

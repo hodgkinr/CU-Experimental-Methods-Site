@@ -22,24 +22,24 @@ In professional engineering, your reader is a technical person who has never see
 A second audience worth naming explicitly: the non-engineer. Several assignments in this course ask you to explain a technical result to someone without an engineering background. This is not dumbing down. It's a different technical skill. Plain-language communication requires you to identify the *essential idea* underneath the technical apparatus and express it without jargon. If you cannot do that, it is a signal that your own understanding is not yet complete.
 
 ![A two-panel illustration. Left panel, labeled "The Sympathetic Friend," shows a reader leaning forward, nodding, filling in a thought bubble with a complete version of an incomplete sentence: the written text trails off mid-sentence but the reader's thought bubble finishes it generously. Right panel, labeled "The Skeptical Expert," shows a reader with a red pen, question marks in their thought bubble, circling the same incomplete sentence and writing "Insufficient detail — how was this measured?" Clean editorial illustration style, black and white with one accent color.](../images/E1_W2_R2_image1.png)
-*Why this image is here:* It captures the audience shift the reading is asking for: your draft cannot rely on a friendly reader who fills in missing logic for you.
+*This image captures the audience shift the reading is asking for: your draft cannot rely on a friendly reader who fills in missing logic for you.
 
 ### Worked Example: From Engineering Form to Plain Language
 
 Here is the same result written two ways.
 
 **Engineering form (for the skeptical expert):**
-> "The measured electrical power dissipated in a 5 Ω resistor with a 12 V input is 25.7 ± 1.3 W at 95% confidence, derived using partial derivative uncertainty propagation from voltage and current measurements with a ±0.2 V voltmeter and ±0.05 A ammeter."
+"The measured electrical power dissipated in a 5 Ω resistor with a 12 V input is 25.7 ± 1.3 W at 95% confidence, derived using partial derivative uncertainty propagation from voltage and current measurements with a ±0.2 V voltmeter and ±0.05 A ammeter."
 
 This version is correct and complete. Every number is supported. Every bound is traceable to a method. A colleague can reproduce the result.
 
 **Plain-language version (for the non-engineer):**
-> "We measured how much electrical power a small resistor was consuming when connected to a 12-volt source. The result was about 26 watts. Our specification-based expanded uncertainty is about 5%, so we report a range of roughly 24 to 27 watts under the stated instrument and Type B assumptions."
+> "We measured how much electrical power a small resistor used when connected to a 12-volt source. It used about 26 watts, roughly the power used by a dim incandescent bulb. Because the meters are only specified to be accurate within a certain range, the actual value is probably somewhere between about 24 and 27 watts."
 
 **What changed and why:**
-- *Uncertainty expressed as consequence, not as a statistical bound.* "±1.3 W at 95% confidence" is meaningless to a non-engineer; "about 5%" gives a sense of scale, and "almost certainly between 24 and 27 watts" states the consequence in plain language.
+- *Uncertainty expressed as consequence, not as a statistical bound.* "±1.3 W at 95% confidence" is meaningless to a non-engineer; "between about 24 and 27 watts" states the practical consequence in plain language.
 - *Physical result grounded in an everyday reference.* "25.7 W" is a number; "roughly the energy a dim incandescent bulb uses" is a physical anchor that makes the magnitude interpretable.
-- *Technical method removed.* The non-engineer reader does not need to know about partial derivative propagation; they need to trust that the measurement was done carefully. That trust is built through the framing ("our measurement has an uncertainty of about 5%"), not through the method details.
+- *Technical method translated.* The non-engineer reader does not need the phrase "Type B uncertainty." They need to know that the range comes from documented limits on the measuring instruments, not from a guess.
 
 The skeptical expert version and the plain-language version contain the same core result. Writing both isn't redundant. It's evidence that you understand the result well enough to translate it. Several deliverables in this course require both: the Lab 1 brief report, the Phase 1 report (Section 9), and the Phase 3 presentation.
 
@@ -73,7 +73,7 @@ When you produce any figure in this course, the following elements are required,
 - **Conclusions drawn explicitly.** Do not leave the reader to extract the point. After referencing the figure, state what it shows, what it implies, and whether any anomalies require explanation.
 
 ![Two versions of the same MATLAB-style scatter plot with a best-fit line. Top version, labeled "Insufficient," has unlabeled axes ("x" and "y"), no units, a title that says "Data," and no caption below. Bottom version, labeled "Sufficient," has the same data but with fully labeled axes ("Applied Voltage (V)" and "Measured Power (W)"), a legend, error bars on data points, a figure number, and a two-sentence caption that names the trend and identifies what the error bars represent. Same data, entirely different level of communication. Clean technical diagram style.](../images/E1_W2_R2_image2.png)
-*Why this image is here:* It shows how much explanatory work a figure has to do before it can stand on its own in a technical report.
+*This image shows how much explanatory work a figure has to do before it can stand on its own in a technical report.
 
 ---
 
@@ -100,7 +100,7 @@ Numbers and equations follow conventions that are enforced uniformly in professi
 - **Space between number and unit.** Write `9.81 m/s²` not `9.81m/s²`. Write `2.4 mm` not `2.4mm`. No exceptions.
 - **Consistent units.** Do not switch between metric and imperial mid-document. If your data is in N, your results are in N.
 - **Variables are italicized; numbers and units are not.** The variable *P* represents power; the value 4.32 W is a measurement. Only variables are italicized.
-- **Inline units may remain plain text.** Use standard SI-style prose such as `4.32 W`, `9.81 m/s²`, and `t = 7 s`; do not invent a second bracketed-unit convention for ordinary sentences. For a compact reference, see the NIST unit-writing checklist: <https://physics.nist.gov/cuu/Units/checklist.html>.
+- **Inline units may remain plain text.** Use standard SI-style prose such as `4.32 W`, `9.81 m/s²`, and `t = 7 s`; do not invent a second bracketed-unit convention for ordinary sentences. For a compact reference, see the [NIST unit-writing checklist](https://physics.nist.gov/cuu/Units/checklist.html).
 - **Equations are part of the text.** Introduce every equation in a sentence: "Power dissipated in the resistor is given by..." Equations aren't standalone objects; they are statements that the surrounding prose must set up and interpret.
 - **Every result carries uncertainty.** A number without uncertainty bounds is not an engineering result; it is a reading. State method, confidence level, and bounds every time.
 
@@ -115,7 +115,7 @@ A practical three-pass approach: **First pass**, check structure. Does the docum
 This course's use of AI for drafting does not change this framework. It intensifies it. An AI-generated draft may have perfect grammar and confident tone while being subtly wrong about the physics, imprecise about the uncertainty, or logically disconnected in its conclusions. **Your job isn't to produce the draft; it is to know what right looks like so you can recognize when the draft is wrong.** The revision mindset is the professional skill this course is building.
 
 ![A horizontal flow diagram with three labeled stages. Stage 1, "Draft," shows a rough document icon with a thought bubble that says "organized my ideas." Stage 2, "Revision," shows a document with red ink marks, strikethroughs, and margin notes — labels point to specific types of edits: "structural," "claims," "language." Stage 3, "Final," shows a clean document icon with a checkmark. An arrow beneath all three stages reads: "The revision IS the work." Flat illustration style, clean typography, CU Boulder gold accent color on the arrow.](../images/E1_W2_R2_image3.png)
-*Why this image is here:* It reinforces the reading's main claim that revision is not cosmetic cleanup but the actual process of turning early thinking into usable engineering communication.
+*This image reinforces the reading's main claim that revision is not cosmetic cleanup but the actual process of turning early thinking into usable engineering communication.
 
 ---
 
