@@ -40,6 +40,7 @@ For most well-designed experiments, quantization error is dominated by other err
 The practical decision: set the input range to the smallest value that comfortably brackets your expected signal. Do not accept ±10 V defaults when your signal is ±100 mV.
 
 ![A diagram illustrating quantization for two different ADC input range settings. On the left, a ±10V input range is divided into discrete levels, with a small signal occupying only the bottom fraction of the range — the signal is shown as a small-amplitude sine wave that spans only a few quantization levels. On the right, the input range is set to ±200 mV to match the signal amplitude, and the same signal now spans many quantization levels. Both panels show the step-staircase digitized output overlaid on the smooth true signal. A caption reads: "Resolution is a function of both the ADC bit depth and the ratio of signal amplitude to input range." Engineering diagram style, clean black and white with annotation labels.](../images/E2_W7_R2_image1.png)
+*Why this image is here:* It shows that DAQ resolution is not only a datasheet number; your range choice directly decides how much of that resolution the signal actually gets to use.
 
 ---
 
@@ -74,6 +75,7 @@ Consider a counter-based displacement sensor that outputs a count value from 0 t
 In a time-series plot, this step looks like a real physical event — a rapid reversal, a discontinuity, an impulse. It is not. It is a sensor counter rollover recorded by a DAQ system that was not configured to handle unsigned output. Only knowledge of the sensor's output format and awareness of the DAQ configuration reveals the artifact for what it is. Uncertainty analysis cannot identify this type of artifact — it looks like a physical reading that is within sensor range. The defense is documentation: reading the DAQ configuration against the sensor datasheet before collecting data, not after.
 
 ![A time-series plot showing sensor output versus time. The signal generally trends upward smoothly, then abruptly drops from near-maximum to near-zero at one time instant, then continues rising. The drop is labeled "Apparent reversal event." A callout box notes: "Sensor counter rollover: 65535 → 0, recorded as negative step in signed integer format. Physical shaft motion was continuous." The x-axis is labeled "Time (s)" and the y-axis "Sensor output (counts)." The smooth expected trajectory (without the rollover) is shown as a dashed continuation curve through the drop. Clear engineering plot style with annotation.](../images/E2_W7_R2_image2.png)
+*Why this image is here:* It helps you see how a data-system artifact can masquerade as a physical event if you do not understand how the sensor and acquisition chain encode the signal.
 
 ---
 

@@ -22,6 +22,7 @@ In professional engineering, your reader is a technical person who has never see
 A second audience worth naming explicitly: the non-engineer. Several assignments in this course ask you to explain a technical result to someone without an engineering background. This is not dumbing down. It's a different technical skill. Plain-language communication requires you to identify the *essential idea* underneath the technical apparatus and express it without jargon. If you cannot do that, it is a signal that your own understanding is not yet complete.
 
 ![A two-panel illustration. Left panel, labeled "The Sympathetic Friend," shows a reader leaning forward, nodding, filling in a thought bubble with a complete version of an incomplete sentence: the written text trails off mid-sentence but the reader's thought bubble finishes it generously. Right panel, labeled "The Skeptical Expert," shows a reader with a red pen, question marks in their thought bubble, circling the same incomplete sentence and writing "Insufficient detail — how was this measured?" Clean editorial illustration style, black and white with one accent color.](../images/E1_W2_R2_image1.png)
+*Why this image is here:* It captures the audience shift the reading is asking for: your draft cannot rely on a friendly reader who fills in missing logic for you.
 
 ### Worked Example: From Engineering Form to Plain Language
 
@@ -72,6 +73,7 @@ When you produce any figure in this course, the following elements are required,
 - **Conclusions drawn explicitly.** Do not leave the reader to extract the point. After referencing the figure, state what it shows, what it implies, and whether any anomalies require explanation.
 
 ![Two versions of the same MATLAB-style scatter plot with a best-fit line. Top version, labeled "Insufficient," has unlabeled axes ("x" and "y"), no units, a title that says "Data," and no caption below. Bottom version, labeled "Sufficient," has the same data but with fully labeled axes ("Applied Voltage (V)" and "Measured Power (W)"), a legend, error bars on data points, a figure number, and a two-sentence caption that names the trend and identifies what the error bars represent. Same data, entirely different level of communication. Clean technical diagram style.](../images/E1_W2_R2_image2.png)
+*Why this image is here:* It shows how much explanatory work a figure has to do before it can stand on its own in a technical report.
 
 ---
 
@@ -113,6 +115,7 @@ A practical three-pass approach: **First pass**, check structure. Does the docum
 This course's use of AI for drafting does not change this framework. It intensifies it. An AI-generated draft may have perfect grammar and confident tone while being subtly wrong about the physics, imprecise about the uncertainty, or logically disconnected in its conclusions. **Your job isn't to produce the draft; it is to know what right looks like so you can recognize when the draft is wrong.** The revision mindset is the professional skill this course is building.
 
 ![A horizontal flow diagram with three labeled stages. Stage 1, "Draft," shows a rough document icon with a thought bubble that says "organized my ideas." Stage 2, "Revision," shows a document with red ink marks, strikethroughs, and margin notes — labels point to specific types of edits: "structural," "claims," "language." Stage 3, "Final," shows a clean document icon with a checkmark. An arrow beneath all three stages reads: "The revision IS the work." Flat illustration style, clean typography, CU Boulder gold accent color on the arrow.](../images/E1_W2_R2_image3.png)
+*Why this image is here:* It reinforces the reading's main claim that revision is not cosmetic cleanup but the actual process of turning early thinking into usable engineering communication.
 
 ---
 
