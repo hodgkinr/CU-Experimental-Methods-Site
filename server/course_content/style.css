@@ -118,6 +118,24 @@ a {
   max-width: 70ch;
 }
 
+.journey-page {
+  max-width: 980px;
+}
+
+.journey-reading {
+  padding: 1.75rem 2rem;
+}
+
+.journey-reading p {
+  font-size: 1.04rem;
+  line-height: 1.7;
+  max-width: 78ch;
+}
+
+.journey-reading h2 {
+  margin-top: 2rem;
+}
+
 .muted {
   color: #626764;
 }

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The ASEN 3501 Journey</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./chat_widget.css">
+  <script defer src="./chat_widget.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="./index.html">Aerospace Experimental Methods</a>
+      <nav class="top-nav">
+        <a href="./index.html">Home</a>
+        <a class="is-current" href="./opening.html">Opening</a>
+        <a href="./syllabus.html">Syllabus</a>
+        <a href="./schedule.html">Schedule</a>
+        <a href="./labs.html">Labs</a>
+        <a href="./supplemental.html">Supplemental</a>
+        <a href="./results.html">Results</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell journey-page">
+    <nav class="breadcrumbs">
+      <a href="./index.html">Home</a>
+      <span>The ASEN 3501 Journey</span>
+    </nav>
+
+    <section class="hero">
+      <p class="eyebrow">Course Opening</p>
+      <h1>The ASEN 3501 Journey: From Science Fair to Test Engineer</h1>
+      <p class="lead">This course is about learning how to make defensible engineering claims from physical evidence.</p>
+    </section>
+
+    <section class="content-card markdown-body journey-reading">
+      <p>Welcome to ASEN 3501: Aerospace Experimental Methods.</p>
+
+      <p>If I had to reduce this course to one question, it would be this: <strong>How do you know this prediction is right?</strong> That question is going to show up in different forms all semester. It will show up when you measure voltage and current in a simple circuit. It will show up when two sensors disagree. It will show up when your model predicts one thing and the experiment tells you something else. It will show up again at the end of the course when you design a defensible experiment and verification and validation plan for an aerospace system.</p>
+
+      <p>That question matters because engineering is not just the ability to calculate what should happen. It is the ability to substantiate a prediction of system performance using real information. A model by itself is not enough. Data by itself is not enough. Engineering judgment lives in the comparison between the two: what was predicted, what was measured, how uncertain each piece is, whether the difference matters, and what you would do next.</p>
+
+      <h2>Where This Course Fits</h2>
+
+      <p>You are taking this course in your junior year for a reason. Up to this point, much of your engineering education has focused on developing the analytical tools needed to predict behavior: physics, math, dynamics, structures, fluids, thermodynamics, controls, and computation. Those tools are essential. But in practice, every prediction eventually has to face the physical world.</p>
+
+      <p>ASEN 3501 is the physical modeling side of that bridge. It runs in parallel with computational methods because the two courses are connected. Computational methods help you generate predictions from models. Experimental methods teaches you how to test those predictions, quantify what you do and do not know, and decide whether the evidence is strong enough for the engineering decision in front of you.</p>
+
+      <p>That bridge matters again in your senior year. In capstone, you will not simply be asked to build something that looks plausible. You will be asked to make choices, defend those choices, test a system, interpret evidence, and communicate whether the system performs as intended. The habits in this course are meant to make you better prepared for that work: defining the claim, choosing the measurement, understanding the uncertainty, comparing against a model, and explaining what the result actually supports.</p>
+
+      <p>And after graduation, this is not a classroom exercise anymore. This is what engineers are paid to do. Professional engineers are often asked to answer questions where the stakes are real: Will this aircraft component survive the load case? Does this sensor measure the quantity we think it measures? Is this simulation credible enough to support a design decision? What evidence would change our mind? A test engineer is the person who can turn those questions into a defensible experiment.</p>
+
+      <h2>How The Course Works</h2>
+
+      <p>The course is flipped by design. That means you are expected to read the assigned material and watch the short primer recordings before class. We will use the beginning of class for clarification questions, then spend our time working through examples, comparisons, and lab-connected problems that help you make progress on the assignments.</p>
+
+      <p>The lab activities are the center of the course. They are where the concepts become real. You can read about uncertainty, model comparison, sensor limits, calibration, and validation, but you do not really internalize those ideas until you have to use them on a physical system, make a choice, and defend the result.</p>
+
+      <p>This course also uses open educational resources wherever possible to keep your out-of-pocket costs low. AI has also been used in the design and delivery of the course to improve feedback quality, reduce turnaround time, and create more personalized support. You will not be required to use AI, but you will be encouraged to develop fluency with it through curated resources and targeted examples, because evaluating AI-assisted technical work is becoming part of professional engineering judgment.</p>
+
+      <h2>The Sequence</h2>
+
+      <p>We begin with a deliberately simple lab: electrical power, voltage, current, and uncertainty. The setup is not simple because the course lacks ambition. It is simple because the first thing you need is the language of measurement. A number by itself is incomplete. If you report a measured value without uncertainty, method, units, and a defensible interpretation, you have not yet produced an engineering result. You have produced a reading.</p>
+
+      <p>From there, we move into Tier 1. Tier 1 takes experiments that may feel closer to science fair in complexity and uses them to build real engineering habits. You will execute an experiment, compare measurement methods or sensors, propagate uncertainty, and connect data to a theoretical model. Then you will do something more important: you will make a prediction before seeing the data. That blind prediction step matters because it forces you to commit to your reasoning before the result can influence your story.</p>
+
+      <p>In Tier 1, the main lesson is not that your prediction should be perfect. It will not be. The lesson is that discrepancy is information. When the model and measurement disagree, the right question is not "How do I explain this away?" The right question is "What does this difference reveal about the model, the measurement system, the assumptions, or the uncertainty?" That mindset is the beginning of test engineering.</p>
+
+      <p>Tier 2 raises the level. Now you are working with a more complex aerospace experiment, and the prediction-before-measurement requirement becomes central. Before your group touches the equipment, you will develop a predictive model, identify the expected measurement behavior, define what agreement would mean, and think through what patterns would indicate a problem. This is not procedural gatekeeping. It is the point. A good prediction can reveal that your sensor is inappropriate, your expected signal is too small, your sampling strategy is flawed, or your acceptance criterion is meaningless before you spend time collecting data.</p>
+
+      <p>After the Tier 2 experiment, your job is to compare prediction and outcome, diagnose the discrepancy, review calibration and measurement limits, and propose targeted improvements. Not generic improvements. Not "use better sensors" as a magic phrase. Targeted and justified improvements: what specifically limits the experiment, why that limitation matters, and what change would most improve the credibility or usefulness of the result.</p>
+
+      <p>The course culminates in Tier 3. In Tier 3, you are not handed a fully specified experiment. You design one. The deliverable is a defensible experimental design and verification and validation plan for an aerospace-grade question. You will define the model claim, identify the variables and controls, select instrumentation and data acquisition choices, estimate expected uncertainty, define validation metrics and acceptance criteria, cite relevant standards and prior art, and defend the design orally to a technical audience.</p>
+
+      <p>This final project is substantial because the professional version of this work is substantial. Before an engineering organization builds a test, someone has to decide whether the proposed experiment is worth running, what data it would produce, whether the instruments are appropriate, whether the uncertainty is small enough to answer the question, and whether the result would actually inform the model. By the end of ASEN 3501, you should be able to make that argument.</p>
+
+      <h2>The Mindset</h2>
+
+      <p>The deeper goal of this course is not to make you memorize a particular lab procedure. The goal is to change how you think when you see a claim about a physical system. You should start asking: What is the model? What does it predict? What evidence would support it? What uncertainty remains? What would make the prediction fail? What experiment would tell us something useful before we commit to a design decision?</p>
+
+      <p>That mindset is what separates engineering from observation, trial-and-error, and technical performance without judgment. Engineers do not just produce artifacts. Engineers make defensible claims about systems. They know what evidence would support those claims, what evidence would weaken them, and how much confidence the decision deserves.</p>
+
+      <p>That is the journey of this course: from simple measurements to uncertainty, from uncertainty to model comparison, from model comparison to prediction, from prediction to validation, and from validation to defensible experimental design. We start with something that looks almost like science fair. We end with the mindset of a test engineer.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+  </footer>
+
+  <script id="bobpe-page-context" type="application/json">{"course_id":"asen3501-fall2026","page_id":"opening","title":"The ASEN 3501 Journey: From Science Fair to Test Engineer","url":"opening.html","text":"The ASEN 3501 Journey: From Science Fair to Test Engineer. This course is about learning how to make defensible engineering claims from physical evidence. The central question is: How do you know this prediction is right? The journey moves from measurement and uncertainty to model comparison, blind prediction, aerospace experiment validation, targeted improvement, and a defensible experimental design and V&V plan.","module_id":null,"source_type":"overview"}</script>
+</body>
+</html>
