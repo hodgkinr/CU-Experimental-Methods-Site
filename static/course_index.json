@@ -1,6 +1,6 @@
 {
   "course_id": "asen3501-fall2026",
-  "generated_at": "2026-07-21T23:09:23.769397+00:00",
+  "generated_at": "2026-07-22T21:13:10.231160+00:00",
   "pages": [
     {
       "page_id": "home",
@@ -13,21 +13,6 @@
         {
           "chunk_id": "home-chunk-001",
           "text": "Aerospace Experimental Methods ASEN 3501 \u2014 CU Boulder Phase I: Execution & Quantification Phase II: Predictive Modeling & Comparative Validation Phase III: Experimental Design & V&V Planning",
-          "anchor": ""
-        }
-      ]
-    },
-    {
-      "page_id": "opening",
-      "title": "The ASEN 3501 Journey: From Science Fair to Test Engineer",
-      "module_id": null,
-      "url": "opening.html",
-      "source_type": "overview",
-      "text": "The ASEN 3501 Journey: From Science Fair to Test Engineer\n\nWelcome to ASEN 3501: Aerospace Experimental Methods. The course is organized around one question: How do you know this prediction is right? The journey moves from simple measurement and uncertainty, through model comparison and blind prediction, into aerospace experiment validation, targeted improvement, and finally a defensible experimental design and verification and validation plan. The course fits junior year as the physical modeling counterpart to computational methods, prepares students for senior capstone by building habits of evidence-based design defense, and develops the professional mindset of a test engineer: define the claim, choose the measurement, quantify uncertainty, compare to a model, diagnose discrepancy, and decide what evidence supports the engineering decision. The course is flipped, with reading and short primer recordings before class so in-person time can focus on clarification, examples, and lab progress. Lab activities are the center of the course. Open educational resources help keep costs low, and AI is used to improve feedback and support AI fluency, while final judgment remains the responsibility of the engineer. The sequence begins with Lab 1 on power, voltage, current, and uncertainty; continues through Tier 1 experiments that build uncertainty and model-comparison habits; raises the level in Tier 2 through prediction-before-measurement in a more complex aerospace experiment; and culminates in Tier 3, where students design a substantial experimental design and V&V plan for an aerospace-grade question.",
-      "chunks": [
-        {
-          "chunk_id": "opening-chunk-001",
-          "text": "The ASEN 3501 Journey: From Science Fair to Test Engineer\n\nWelcome to ASEN 3501: Aerospace Experimental Methods. The course is organized around one question: How do you know this prediction is right? The journey moves from simple measurement and uncertainty, through model comparison and blind prediction, into aerospace experiment validation, targeted improvement, and finally a defensible experimental design and verification and validation plan. The course fits junior year as the physical modeling counterpart to computational methods, prepares students for senior capstone by building habits of evidence-based design defense, and develops the professional mindset of a test engineer: define the claim, choose the measurement, quantify uncertainty, compare to a model, diagnose discrepancy, and decide what evidence supports the engineering decision. The course is flipped, with reading and short primer recordings before class so in-person time can focus on clarification, examples, and lab progress. Lab activities are the center of the course. Open educational resources help keep costs low, and AI is used to improve feedback and support AI fluency, while final judgment remains the responsibility of the engineer. The sequence begins with Lab 1 on power, voltage, current, and uncertainty; continues through Tier 1 experiments that build uncertainty and model-comparison habits; raises the level in Tier 2 through prediction-before-measurement in a more complex aerospace experiment; and culminates in Tier 3, where students design a substantial experimental design and V&V plan for an aerospace-grade question.",
           "anchor": ""
         }
       ]
