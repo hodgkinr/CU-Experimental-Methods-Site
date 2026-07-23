@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tier 2 Lab Assignment — Frequently Asked Questions</title>
+  <link rel="stylesheet" href="../../style.css">
+  <script defer src="../../app.js"></script>
+</head>
+<body>
+  
+    
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../../index.html">Aerospace Experimental Methods</a>
+        <nav class="top-nav">
+          <a href="../../index.html">Home</a>
+          <a href="../../opening.html">Opening</a>
+          <a href="../../syllabus.html">Syllabus</a>
+          <a href="../../schedule.html">Schedule</a>
+          <a href="../../labs.html">Labs</a>
+          <a href="../../supplemental.html">Supplemental</a>
+          <a href="../../results.html">Results</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main class="page-shell">
+      <nav class="breadcrumbs">
+        <a href="../../index.html">Home</a>
+        <a href="../../schedule.html">Schedule</a>
+        <a href="index.html">E2 Week 3 (Course Week 8)</a>
+        <span>Tier 2 Lab Assignment — Frequently Asked Questions</span>
+      </nav>
+      <section class="hero compact">
+        <p class="eyebrow">E2 Week 3 (Course Week 8) · Assessment</p>
+        <h1>Tier 2 Lab Assignment — Frequently Asked Questions</h1>
+        <p class="lead"># Tier 2 Lab Assignment — Frequently Asked Questions ## 1. Is Tier 2 an individual assignment or a group assignment? Tier 2 is a group assignment. You develop the pre-lab prediction as a group, run the experiment as a...</p>
+        <div class="meta-chips">
+          <span>4 min</span>
+          <span>Assessments</span>
+          <span>1 source variant(s)</span>
+        </div>
+      </section>
+      
+      <section class="module-overview-grid">
+        <article class="content-card">
+          <h2>Learning Objectives</h2>
+          <ul><li>Interpret model-experiment discrepancy as diagnostic information about model-form limitations rather than experimental failure — CLO 3</li><li>Distinguish between parametric uncertainty (imprecise knowledge of model parameters), model-form error (structural inadequacy of the model), and measurement error — CLO 2, CLO 3</li><li>Inspect residuals structurally — identifying systematic trends vs. random scatter — and articulate what each pattern implies about model adequacy — CLO 3</li><li>Perform a calibration status review with reference to instrument documentation and distinguish calibration activities from validation activities — CLO 1, CLO 3</li></ul>
+        </article>
+        <article class="content-card">
+          <h2>Source Variants</h2>
+          <ul class="source-link-list"><li><a href="../../normalized/E2/week_3/assignments/tier2_assignment_faq.md.normalized.md">Markdown</a><span>E2/week_3/assignments/tier2_assignment_faq.md</span></li></ul>
+        </article>
+      </section>
+      <section class="content-card lesson-body">
+        <h1>Tier 2 Lab Assignment — Frequently Asked Questions</h1>
+<h2>1. Is Tier 2 an individual assignment or a group assignment?</h2>
+<p>Tier 2 is a group assignment. You develop the pre-lab prediction as a group, run the experiment as a group, submit one group report, and present one quad chart as a group. However, every student is still responsible for understanding the full workflow and contributing meaningfully to the analysis and presentation.</p>
+<h2>2. What exactly has to be ready before we can touch the equipment?</h2>
+<p>Your group must arrive with a documented pre-lab prediction that includes all five required elements:</p>
+<ul>
+<li>system response features</li>
+<li>theoretical model / working equation</li>
+<li>estimated uncertainty in the primary derived quantity</li>
+<li>numerical acceptance criterion</li>
+<li>risk assessment</li>
+</ul>
+<p>If one of those pieces is missing, the prediction is incomplete and the group may be asked to finish it before proceeding.</p>
+<h2>3. Does the prediction have to be polished?</h2>
+<p>No. It can be handwritten, a short typed document, or a MATLAB script with clearly labeled outputs. What matters is that it is complete, legible, and defensible.</p>
+<h2>4. What makes an acceptance criterion good enough?</h2>
+<p>It must be numerical and committed before data collection. “Looks close” is not enough. A good criterion states what level of agreement would count as adequate for the intended use, such as a percent threshold or whether the measured result falls within a labeled uncertainty interval.</p>
+<h2>5. What if our prediction turns out to be wrong?</h2>
+<p>That is not automatically a problem. Tier 2 is not graded on whether your first prediction was lucky. It is graded on whether the prediction was reasoned, whether the comparison is technically honest, and whether you can explain what the discrepancy means.</p>
+<h2>6. Are we allowed to revise the prediction after we see the data?</h2>
+<p>You may refine your interpretation later, but the original prediction must remain intact. The report reproduces the committed pre-lab prediction as evidence of what you believed before the experiment ran. Do not quietly rewrite it after the fact.</p>
+<h2>7. How detailed does the calibration section need to be?</h2>
+<p>It needs more than a note that an instrument was “calibrated.” You must document the calibration date, the required interval, whether the instrument is still within that interval, and what calibration uncertainty means for your primary result. The point is to connect calibration status to the validation argument, not just to record paperwork.</p>
+<h2>8. What counts as a real improvement proposal?</h2>
+<p>A real improvement proposal is specific and tied to your evidence. It should name a quantity, sensor, DAQ choice, operating condition, model assumption, or measurement strategy that should change, and it should explain why that change follows from your data or uncertainty analysis. “Use better sensors” is too generic by itself.</p>
+<h2>9. Do we have to use MATLAB?</h2>
+<p>MATLAB is the course-supported path, especially when the experiment-specific lab document uses a MATLAB-based DAQ workflow. If your group uses another tool for processing or figure generation, the work still needs to be organized, reproducible, and compatible with the required deliverables. Follow the experiment-specific lab document for any hard setup requirements.</p>
+<h2>10. What should the quad chart actually show?</h2>
+<p>Each cell should stand on its own:</p>
+<ul>
+<li>prediction vs. outcome</li>
+<li>uncertainty analysis</li>
+<li>calibration status</li>
+<li>top improvement recommendation</li>
+</ul>
+<p>A reader who sees only one cell should still understand what that cell is claiming and why it matters.</p>
+<h2>11. How should we use the student rubric?</h2>
+<p>Use <code>TIER2_rubric_student.md</code> alongside this assignment from the beginning, not just before submission. The assignment tells you what to produce. The rubric tells you what a passing and excellent response look like in the report, the quad chart, the Q&amp;A, and the peer evaluations.</p>
+<h2>12. Are peer evaluations really graded?</h2>
+<p>Yes. Peer evaluations are graded on quality, not on generosity. A useful evaluation names a specific strength, a specific weakness, and a concrete improvement recommendation supported by evidence from the presentation.</p>
+<hr>
+<p><em>ASEN 3501 — Tier 2 FAQ | Companion to <code>TIER2_assignment.md</code> and <code>TIER2_rubric_student.md</code></em> <em>Evergreen — structure, expectations, and grading logic are stable across experiment assignments</em></p>
+      </section>
+      <section class="page-nav">
+        <a class="secondary-button" href="page-05.html">Previous</a>
+        <a class="primary-button next-button" href="../e2-week_4/index.html" >Next</a>
+      </section>
+    </main>
+    
+    <footer class="site-footer">
+      <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+    </footer>
+    
+    
+  
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "e2-week_3-tier2-assignment-faq", "title": "Tier 2 Lab Assignment \u2014 Frequently Asked Questions", "url": "modules/e2-week_3/page-06.html", "text": "E2 Week 3 (Course Week 8)\nAssessment\nTier 2 Lab Assignment \u2014 Frequently Asked Questions\n# Tier 2 Lab Assignment \u2014 Frequently Asked Questions ## 1. Is Tier 2 an individual assignment or a group assignment? Tier 2 is a group assignment. You develop the pre-lab prediction as a group, run the experiment as a...\nInterpret model-experiment discrepancy as diagnostic information about model-form limitations rather than experimental failure \u2014 CLO 3\nDistinguish between parametric uncertainty (imprecise knowledge of model parameters), model-form error (structural inadequacy of the model), and measurement error \u2014 CLO 2, CLO 3\nInspect residuals structurally \u2014 identifying systematic trends vs. random scatter \u2014 and articulate what each pattern implies about model adequacy \u2014 CLO 3\nPerform a calibration status review with reference to instrument documentation and distinguish calibration activities from validation activities \u2014 CLO 1, CLO 3\nTier 2 Lab Assignment \u2014 Frequently Asked Questions\n\n 1. Is Tier 2 an individual assignment or a group assignment?\n\n Tier 2 is a group assignment. You develop the pre-lab prediction as a group, run the experiment as a group, submit one group report, and present one quad chart as a group. However, every student is still responsible for understanding the full workflow and contributing meaningfully to the analysis and presentation.\n\n 2. What exactly has to be ready before we can touch the equipment?\n\n Your group must arrive with a documented pre-lab prediction that includes all five required elements:\n\n system response features\n\n theoretical model / working equation\n\n estimated uncertainty in the primary derived quantity\n\n numerical acceptance criterion\n\n risk assessment\n\n If one of those pieces is missing, the prediction is incomplete and the group may be asked to finish it before proceeding.\n\n 3. Does the prediction have to be polished?\n\n No. It can be handwritten, a short typed document, or a MATLAB script with clearly labeled outputs. What matters is that it is complete, legible, and defensible.\n\n 4. What makes an acceptance criterion good enough?\n\n It must be numerical and committed before data collection. \u201cLooks close\u201d is not enough. A good criterion states what level of agreement would count as adequate for the intended use, such as a percent threshold or whether the measured result falls within a labeled uncertainty interval.\n\n 5. What if our prediction turns out to be wrong?\n\n That is not automatically a problem. Tier 2 is not graded on whether your first prediction was lucky. It is graded on whether the prediction was reasoned, whether the comparison is technically honest, and whether you can explain what the discrepancy means.\n\n 6. Are we allowed to revise the prediction after we see the data?\n\n You may refine your interpretation later, but the original prediction must remain intact. The report reproduces the committed pre-lab prediction as evidence of what you believed before the experiment ran. Do not quietly rewrite it after the fact.\n\n 7. How detailed does the calibration section need to be?\n\n It needs more than a note that an instrument was \u201ccalibrated.\u201d You must document the calibration date, the required interval, whether the instrument is still within that interval, and what calibration uncertainty means for your primary result. The point is to connect calibration status to the validation argument, not just to record paperwork.\n\n 8. What counts as a real improvement proposal?\n\n A real improvement proposal is specific and tied to your evidence. It should name a quantity, sensor, DAQ choice, operating condition, model assumption, or measurement strategy that should change, and it should explain why that change follows from your data or uncertainty analysis. \u201cUse better sensors\u201d is too generic by itself.\n\n 9. Do we have to use MATLAB?\n\n MATLAB is the course-supported path, especially when the experiment-specific lab document uses a MATLAB-based DAQ workflow. If your group uses another tool for processing or figure generation, the work still needs to be organized, reproducible, and compatible with the required deliverables. Follow the experiment-specific lab document for any hard setup requirements.\n\n 10. What should the quad chart actually show?\n\n Each cell should stand on its own:\n\n prediction vs. outcome\n\n uncertainty analysis\n\n calibration status\n\n top improvement recommendation\n\n A reader who sees only one cell should still understand what that cell is claiming and why it matters.\n\n 11. How should we use the student rubric?\n\n Use TIER2_rubric_student.md alongside this assignment from the beginning, not just before submission. The assignment tells you what to produce. The rubric tells you what a passing and excellent response look like in the report, the quad chart, the Q&A, and the peer evaluations.\n\n 12. Are peer evaluations really graded?\n\n Yes. Peer evaluations are graded on quality, not on generosity. A useful evaluation names a specific strength, a specific weakness, and a concrete improvement recommendation supported by evidence from the presentation.\n\n ASEN 3501 \u2014 Tier 2 FAQ | Companion to TIER2_assignment.md and TIER2_rubric_student.md Evergreen \u2014 structure, expectations, and grading logic are stable across experiment assignments", "module_id": "e2-week_3", "source_type": "page"}</script>
+</body>
+</html>

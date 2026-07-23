@@ -320,7 +320,7 @@ sections consistently.
 See **E0 Supplemental: Getting Started with Overleaf and LaTeX** if you haven't used LaTeX
 before.
 
-**Submission:** See Canvas for the due date.
+**Submission:** See Canvas for the due date. Power interviews are scheduled during lab on Monday, Sep 14 and Wednesday, Sep 16.
 
 ---
 
@@ -374,6 +374,6 @@ targeted practice on the core concepts. Use it.
 
 ---
 
-*ASEN 3501 — Lab 1 Assignment | E1 Week 2*
+*ASEN 3501 — Lab 1 Assignment | released E1 Week 2; interviews Course Week 5*
 *Evergreen — physics content; Update-friendly — multimeter datasheet specifications,
 MATLAB starter script, power supply target voltage*

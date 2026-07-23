@@ -185,6 +185,6 @@ The general format is:
 
 ---
 
-*Lab 1 FAQ | ASEN 3501 | E1 Week 2*
+*Lab 1 FAQ | ASEN 3501 | released E1 Week 2; interviews Course Week 5*
 *Generated from simulated student gap analysis — 2026-05-26*
 *Questions or corrections: contact the teaching team*

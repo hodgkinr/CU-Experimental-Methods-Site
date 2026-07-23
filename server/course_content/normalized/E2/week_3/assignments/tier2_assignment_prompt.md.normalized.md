@@ -2,7 +2,7 @@
 ## Predict, Execute, Analyze, Improve
 
 **Segment:** E2 — Predictive Modeling & Comparative Validation
-**Weeks:** 6–10
+**Weeks:** Course Weeks 8–11
 **CLO Alignment:** CLO 1, CLO 2, CLO 3, CLO 4, CLO 5, CLO 6
 **Structure:** Group of ~3 — Pre-lab prediction → Lab execution → Analysis → Presentation
 **Assessment:** Group report + quad chart presentation (5 min talk + 5 min Q&A) + peer evaluations
@@ -121,12 +121,12 @@ employability skill.
 
 | Phase | Activity | Format | When |
 |---|---|---|---|
-| Pre-lab | Develop group prediction | Documented, shown to TA/instructor | Before W6 or W8 lab session (see Canvas) |
-| Lab | Run the experiment | In-lab | W6 and/or W8 lab sessions |
-| Analysis | Complete uncertainty analysis, calibration review, improvement proposal | Out of class | W8–W9 |
-| Report | Group lab report | Written, Canvas submission | Due W9 (see Canvas) |
-| Presentation | Quad chart + 5+5 presentation | In-class | W10 |
-| Peer evaluations | Written peer evaluations | Written, submitted same day | W10 |
+| Release / pre-lab | Develop group prediction | Documented, shown to TA/instructor | Course Week 8, before hardware access (see Canvas) |
+| Lab | Run the experiment | In-lab | Course Weeks 8–10 |
+| Analysis | Complete uncertainty analysis, calibration review, improvement proposal | Out of class | Course Weeks 9–10 |
+| Report | Group lab report | Written, Canvas submission | Due before presentations (see Canvas) |
+| Presentation | Quad chart + 5+5 presentation | In lab | Course Week 11: Mon Oct 26 and Wed Oct 28 |
+| Peer evaluations | Written peer evaluations | Written, submitted same day | Course Week 11: Mon Oct 26 and Wed Oct 28 |
 
 ---
 
@@ -457,7 +457,7 @@ Use this assignment together with the **Tier 2 student rubric** included in the 
 
 ---
 
-*ASEN 3501 — Tier 2 Lab Assignment | E2 Weeks 6–10*
+*ASEN 3501 — Tier 2 Lab Assignment | Course Weeks 8–11*
 *Evergreen — structure, phases, analytical requirements, improvement categories*
 *Update-friendly — experiment names, Canvas due dates, quad chart template,
 TA gate-check logistics, specific acceptance criterion thresholds*

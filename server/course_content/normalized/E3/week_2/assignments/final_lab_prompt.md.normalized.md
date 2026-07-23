@@ -2,7 +2,7 @@
 ## Paper Experimental Design and V&V Plan
 
 **Segment:** E3 — Experimental Design & V&V Planning
-**Weeks:** 11–15
+**Weeks:** Course Weeks 12–15
 **CLO Alignment:** CLO 1, CLO 2, CLO 3, CLO 4, CLO 5, CLO 6
 **Structure:** Student-chosen paper design — proposal → instrumentation plan → V&V plan → oral defense → reflection
 **Assessment:** Written design artifacts + oral defense + peer evaluations + CLO 6 reflection
@@ -98,7 +98,7 @@ formal hypothesis, identify variables and confounders, and summarize relevant pr
 
 **What you produce:** Preliminary Experimental Design Proposal.
 
-**When:** Week 11.
+**When:** Course Week 12, beginning Monday Nov 2.
 
 ### Phase 2 — Instrumentation Justification
 
@@ -107,7 +107,7 @@ and at least one beyond-provided hardware or method alternative.
 
 **What you produce:** Instrumentation Justification Report.
 
-**When:** Week 12.
+**When:** Course Week 12 or 13, as specified in Canvas.
 
 ### Phase 3 — Full V&V Plan
 
@@ -118,7 +118,7 @@ considerations.
 
 **What you produce:** Full V&V Plan Document.
 
-**When:** Week 13.
+**When:** Course Week 13 or 14, as specified in Canvas.
 
 ### Phase 4 — Oral Defense and Peer Review
 
@@ -127,7 +127,7 @@ other students' designs using a structured rubric.
 
 **What you produce:** Oral defense presentation and written peer evaluations.
 
-**When:** Week 14.
+**When:** Course Week 15, during final presentations on Monday Nov 30 and Wednesday Dec 2.
 
 ### Phase 5 — CLO 6 and Course Reflection
 
@@ -136,7 +136,7 @@ how your understanding of uncertainty, prediction, and validation changed across
 
 **What you produce:** CLO 6 Reflection and Course Reflection.
 
-**When:** Week 15.
+**When:** Course Week 15, by the Canvas deadline.
 
 ---
 
@@ -410,4 +410,4 @@ That is the level of reasoning this assignment assesses.
 
 ---
 
-*ASEN 3501 — Tier 3 Final Lab Assignment | E3 Weeks 11–15*
+*ASEN 3501 — Tier 3 Final Lab Assignment | Course Weeks 12–15*

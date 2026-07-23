@@ -121,4 +121,4 @@ is run.
 
 ---
 
-*ASEN 3501 — Tier 3 FAQ | E3 Weeks 11–15*
+*ASEN 3501 — Tier 3 FAQ | Course Weeks 12–15*

@@ -2,7 +2,7 @@
 ## Forward Analysis, Reverse Prediction, and Combined Synthesis
 
 **Segment:** E1 — Execution & Quantification
-**Weeks:** 2–5
+**Weeks:** Course Weeks 5–8
 **CLO Alignment:** CLO 1, CLO 2, CLO 3, CLO 5
 **Structure:** Three phases — Individual → Individual → Paired (→ Group of 4)
 **Assessment:** Phase 1 report (individual) + Phase 2 prediction memo (individual) +
@@ -90,7 +90,7 @@ developing the mindset of one.
 **What you do:** Execute the experiment, collect data, analyze uncertainty, compare to a
 predictive model, and propose at least one experimentally informed model improvement.
 **What you produce:** A Phase 1 Individual Report.
-**When:** Weeks 2–4 (see Canvas for your assigned experiment and specific due dates).
+**When:** Course Weeks 5–7 (Sep 14 through Sep 30; see Canvas for your assigned experiment and specific due dates).
 
 ### Phase 2 — Reverse Prediction (Individual, Blind)
 
@@ -100,7 +100,7 @@ not run in Phase 1.
 description for this unfamiliar experiment, predict what the data should look like.
 You do not have access to the actual data. You do not touch the hardware.
 **What you produce:** A Phase 2 Prediction Memo, submitted before data is released.
-**When:** Week 4 (prediction submitted; data released after the due date).
+**When:** Course Week 7 (prediction submitted before data release).
 
 ### Phase 3 — Combined Synthesis (Paired, with optional group of 4)
 
@@ -112,7 +112,7 @@ the predictions got right, what they missed, and why. Synthesize across both exp
 **What you produce:** A combined oral presentation (lightning talk). You and your partner
 present together. If logistics allow, your pair joins one other pair for a group of 4
 presentation.
-**When:** Week 5 (see Canvas for presentation schedule and sign-up instructions).
+**When:** Course Week 8, during the Tier 1 interview window on Monday, Oct 5 and Wednesday, Oct 7 (see Canvas for sign-up instructions).
 
 ---
 
@@ -356,7 +356,7 @@ on the same two experiments. The group of 4 presents jointly. Each pair presents
 This creates a richer synthesis: four data points, four predictions, two experiments.
 
 The instructor will confirm whether group-of-4 presentations are scheduled for your section
-before Week 4.
+before the Course Week 8 interview window.
 
 ### Peer evaluation
 
@@ -374,13 +374,13 @@ evaluations ("good job, maybe add more data") receive no credit.
 
 | Phase | Activity | Format | When |
 |---|---|---|---|
-| Pre-lab | Hypothesis, AMVF sketch, variable identification | Bring to lab | Before W2 lab session |
-| Phase 1 | Run experiment, analyze data | Lab sessions | W2–W4 |
-| Phase 1 | Individual report | Written, Canvas | Due W4 (see Canvas) |
-| Phase 2 | Receive experiment packet | — | W4 release date |
-| Phase 2 | Prediction memo (submitted before data release) | Written, Canvas | W4 deadline (before data release) |
-| Phase 3 | Paired presentation (lightning talk) | In-person, in class | W5 |
-| Phase 3 | Peer evaluations | Written, submitted same day | W5 |
+| Release | Tier 1 assignment released | Canvas / course site | Course Week 5, Monday Sep 14 |
+| Phase 1 | Run experiment, analyze data | Lab sessions | Course Weeks 5–7 |
+| Phase 1 | Individual report | Written, Canvas | Due before the Course Week 8 interview window (see Canvas) |
+| Phase 2 | Receive experiment packet | — | Course Week 7 release date |
+| Phase 2 | Prediction memo (submitted before data release) | Written, Canvas | Course Week 7 deadline (before data release) |
+| Phase 3 | Paired presentation / interview | In-person, in lab | Course Week 8: Mon Oct 5 and Wed Oct 7 |
+| Phase 3 | Peer evaluations | Written, submitted same day | Course Week 8: Mon Oct 5 and Wed Oct 7 |
 
 ---
 
@@ -403,7 +403,7 @@ Use this assignment together with the **Tier 1 student rubric** included in the 
 
 ---
 
-*ASEN 3501 — Tier 1 Lab Assignment | E1 Weeks 2–5*
+*ASEN 3501 — Tier 1 Lab Assignment | Course Weeks 5–8*
 *Evergreen — structure, phases, analytical requirements*
 *Update-friendly — experiment names, Canvas due dates, group of 4 logistics,
 experiment packet contents*
