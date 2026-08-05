@@ -1,0 +1,345 @@
+{
+  "metadata": {
+    "id": "assessments2clo",
+    "title": "Assessments to Course Learning Outcomes",
+    "course": "ASEN 3501: Aerospace Experimental Methods",
+    "theme": "University of Colorado Boulder",
+    "version": "0.1.0",
+    "last_updated": "2026-08-05",
+    "sources": [
+      "static/syllabus.html",
+      "static/normalized/E1/week_2/assignments/lab1_PIV_prompt.md.normalized.md",
+      "static/normalized/E1/week_5/assignments/tier1_assignment_prompt.md.normalized.md",
+      "static/normalized/E2/week_3/assignments/tier2_assignment_prompt.md.normalized.md",
+      "static/normalized/E3/week_2/assignments/final_lab_prompt.md.normalized.md",
+      "concept_quizzes/W1_short_answer_quiz.md",
+      "concept_quizzes/W2_short_answer_quiz.md",
+      "concept_quizzes/W3_short_answer_quiz.md",
+      "concept_quizzes/W6_short_answer_quiz.md",
+      "concept_quizzes/W8_short_answer_quiz.md",
+      "concept_quizzes/W10_short_answer_quiz.md"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "clo-1",
+      "type": "clo",
+      "label": "CLO 1",
+      "title": "Design and conduct experiments",
+      "order": 1,
+      "description": "Design and conduct aerospace experiments by applying measurement fundamentals, instrumentation principles, and best practices in small team environments."
+    },
+    {
+      "id": "clo-2",
+      "type": "clo",
+      "label": "CLO 2",
+      "title": "Apply uncertainty and statistics",
+      "order": 2,
+      "description": "Apply statistical methods and uncertainty analysis to quantify experimental error and establish confidence in results."
+    },
+    {
+      "id": "clo-3",
+      "type": "clo",
+      "label": "CLO 3",
+      "title": "Integrate models and data",
+      "order": 3,
+      "description": "Integrate theoretical models with experimental data to validate and evaluate aerospace system behavior."
+    },
+    {
+      "id": "clo-4",
+      "type": "clo",
+      "label": "CLO 4",
+      "title": "Implement signal and DAQ methods",
+      "order": 4,
+      "description": "Implement signal conditioning, sampling, and data acquisition techniques to ensure accurate experimental measurements."
+    },
+    {
+      "id": "clo-5",
+      "type": "clo",
+      "label": "CLO 5",
+      "title": "Communicate results",
+      "order": 5,
+      "description": "Communicate experimental results effectively through technical reports and presentations, with clear description of methods, results, and limitations."
+    },
+    {
+      "id": "clo-6",
+      "type": "clo",
+      "label": "CLO 6",
+      "title": "Create beyond provided methods",
+      "order": 6,
+      "description": "Identify, evaluate, and create experimental methods or instrumentation beyond those provided by the instructor to foster independent professional growth."
+    },
+    {
+      "id": "lab-1-power-uncertainty",
+      "type": "summative",
+      "label": "Lab 1",
+      "title": "Power, Voltage, and the Language of Uncertainty",
+      "order": 2,
+      "weeks": "Weeks 2-5",
+      "description": "Students build and measure a simple resistor circuit, compute power using multiple measurement models, and report uncertainty using both partial-derivative propagation and Monte Carlo simulation. The assignment pairs a brief lab report with a short oral interview so students must explain the measurement and uncertainty logic clearly."
+    },
+    {
+      "id": "tier-1",
+      "type": "summative",
+      "label": "Tier 1",
+      "title": "Forward Analysis, Reverse Prediction, and Combined Synthesis",
+      "order": 5,
+      "weeks": "Weeks 5-8",
+      "description": "Students run one assigned experiment, predict another from theory and specifications before seeing data, and then synthesize prediction-vs-measurement evidence with a partner. The sequence builds the habit of committing to a model before exposure to results and then using discrepancy as evidence."
+    },
+    {
+      "id": "tier-2",
+      "type": "summative",
+      "label": "Tier 2",
+      "title": "Predict, Execute, Analyze, Improve",
+      "order": 8,
+      "weeks": "Weeks 8-11",
+      "description": "Groups create a pre-lab prediction, pass a gate check, execute a canned aerospace experiment, analyze results against their committed criterion, and propose data-grounded improvements. The assignment emphasizes whether the instrumentation can resolve the intended quantity and whether the model is adequate for the intended use."
+    },
+    {
+      "id": "final-lab",
+      "type": "summative",
+      "label": "Final Lab",
+      "title": "Paper Experimental Design and V&V Plan",
+      "order": 12,
+      "weeks": "Weeks 12-15",
+      "description": "Students design an original aerospace experiment on paper, including a predictive model, test matrix, instrumentation plan, prospective uncertainty analysis, validation metrics, and oral defense. The result should be detailed enough for an engineering team to decide whether the experiment is worth building."
+    },
+    {
+      "id": "quiz-w1-amvf",
+      "type": "formative",
+      "label": "W1 Check",
+      "title": "AMVF and Validation Concepts",
+      "order": 1,
+      "weeks": "Week 1",
+      "description": "This concept check asks students to distinguish verification from validation, connect sensors to inferred quantities, and recognize a testable hypothesis. It establishes the modeling-and-validation language used throughout the course."
+    },
+    {
+      "id": "quiz-w2-uncertainty",
+      "type": "formative",
+      "label": "W2 Check",
+      "title": "Uncertainty Propagation and Reporting",
+      "order": 2.1,
+      "weeks": "Week 2",
+      "description": "This concept check focuses on variability, measurement error, uncertainty propagation, Monte Carlo reasoning, and complete engineering result statements. It supports the reporting conventions students use in Lab 1 and later assessments."
+    },
+    {
+      "id": "quiz-w3-validation",
+      "type": "formative",
+      "label": "W3 Check",
+      "title": "Validation Metrics and Residuals",
+      "order": 3,
+      "weeks": "Week 3",
+      "description": "This concept check asks students to move beyond visual overlap by using defined comparison metrics, calibration-vs-validation reasoning, multi-sensor evidence, and residual patterns. It prepares students to argue about agreement and discrepancy with more precision."
+    },
+    {
+      "id": "quiz-w6-prediction",
+      "type": "formative",
+      "label": "W6 Check",
+      "title": "Prediction Before Exposure",
+      "order": 6,
+      "weeks": "Week 6",
+      "description": "This concept check focuses on why postdiction weakens validation claims and why intended use, response features, acceptance criteria, and pre-lab commitment matter. It prepares students for blind prediction and pre-lab gate checks."
+    },
+    {
+      "id": "quiz-w8-model-adequacy",
+      "type": "formative",
+      "label": "W8 Check",
+      "title": "Model Adequacy and Calibration Status",
+      "order": 8.1,
+      "weeks": "Week 8",
+      "description": "This concept check asks students to interpret structured residuals, review calibration status, and propose experimentally informed model updates. It supports Tier 2 analysis after students compare committed predictions to measured outcomes."
+    },
+    {
+      "id": "quiz-w10-communication",
+      "type": "formative",
+      "label": "W10 Check",
+      "title": "Quad Chart Communication and Peer Review",
+      "order": 10,
+      "weeks": "Week 10",
+      "description": "This concept check emphasizes compact technical communication, defending conclusions through evidence, and giving specific peer review feedback. It helps students prepare for Tier 2 presentations and the transition toward original design in E3."
+    }
+  ],
+  "edges": [
+    {
+      "id": "lab1-clo1",
+      "source": "lab-1-power-uncertainty",
+      "target": "clo-1",
+      "description": "Students conduct a controlled bench experiment using a power supply, resistor, and multimeter while documenting proper measurement practice. The simple circuit keeps the focus on careful execution and defensible measurement records."
+    },
+    {
+      "id": "lab1-clo2",
+      "source": "lab-1-power-uncertainty",
+      "target": "clo-2",
+      "description": "A central objective of this assignment is to quantify uncertainty in power estimates using datasheet-based Type B inputs, first-order propagation, and Monte Carlo simulation. Students must state estimates with units, interval type, method, and coverage basis."
+    },
+    {
+      "id": "lab1-clo5",
+      "source": "lab-1-power-uncertainty",
+      "target": "clo-5",
+      "description": "The brief report and oral interview require students to explain what they measured, what uncertainty means, and what limitations remain. This directly practices concise technical communication about experimental claims."
+    },
+    {
+      "id": "tier1-clo1",
+      "source": "tier-1",
+      "target": "clo-1",
+      "description": "Students execute assigned experiments, identify variables and confounders, record measurements with uncertainty, and compare sensor methods. The assignment moves from following a procedure toward disciplined experimental conduct."
+    },
+    {
+      "id": "tier1-clo2",
+      "source": "tier-1",
+      "target": "clo-2",
+      "description": "Students propagate uncertainty for derived quantities, rank dominant error sources, and use sensor specifications before seeing data. The work reinforces uncertainty as part of the argument rather than a calculation appended at the end."
+    },
+    {
+      "id": "tier1-clo3",
+      "source": "tier-1",
+      "target": "clo-3",
+      "description": "The assignment asks students to compare measured data to predictive models and interpret discrepancies using named validation metrics. The blind prediction phase makes the model-data relationship explicit before results are available."
+    },
+    {
+      "id": "tier1-clo5",
+      "source": "tier-1",
+      "target": "clo-5",
+      "description": "Students communicate their analysis through an individual report, a prediction memo, and a combined technical presentation. The paired synthesis requires them to explain what predictions got right, what they missed, and why."
+    },
+    {
+      "id": "tier2-clo1",
+      "source": "tier-2",
+      "target": "clo-1",
+      "description": "Groups prepare, run, and document a more complex aerospace experiment under practical lab constraints. They must record calibration status, anomalies, setup decisions, and evidence while the experiment is happening."
+    },
+    {
+      "id": "tier2-clo2",
+      "source": "tier-2",
+      "target": "clo-2",
+      "description": "Students estimate uncertainty before hardware access and then revisit the uncertainty budget after collecting data. They must decide whether the measurement chain can resolve the intended quantity and identify dominant uncertainty sources."
+    },
+    {
+      "id": "tier2-clo3",
+      "source": "tier-2",
+      "target": "clo-3",
+      "description": "The committed prediction, acceptance criterion, residual analysis, and improvement proposal all connect model behavior to measured evidence. Students learn to distinguish ordinary scatter from model-form discrepancy or setup effects."
+    },
+    {
+      "id": "tier2-clo4",
+      "source": "tier-2",
+      "target": "clo-4",
+      "description": "Tier 2 makes sensor range, DAQ configuration, calibration status, and measurement-chain adequacy part of the central assignment. Students must show that instrumentation choices can support the intended validation claim."
+    },
+    {
+      "id": "tier2-clo5",
+      "source": "tier-2",
+      "target": "clo-5",
+      "description": "The group report, quad chart, Q&A, and peer evaluations require compact, defensible communication of prediction-to-outcome logic. Students practice defending conclusions by tracing evidence rather than restating claims."
+    },
+    {
+      "id": "tier2-clo6",
+      "source": "tier-2",
+      "target": "clo-6",
+      "description": "Students propose specific improvements to an existing experiment, tied to evidence from model comparison, instrumentation limits, or measurement strategy. This begins the shift from using provided methods to evaluating how methods could be better."
+    },
+    {
+      "id": "final-clo1",
+      "source": "final-lab",
+      "target": "clo-1",
+      "description": "Students design a feasible experiment with variables, controls, confounding factors, safety considerations, and a bounded test matrix. The assignment evaluates whether their planned procedure could be executed by an engineering team."
+    },
+    {
+      "id": "final-clo2",
+      "source": "final-lab",
+      "target": "clo-2",
+      "description": "Students perform prospective uncertainty analysis before any data exists and judge whether the expected measurement performance is adequate. The uncertainty work informs design decisions rather than merely describing past measurements."
+    },
+    {
+      "id": "final-clo3",
+      "source": "final-lab",
+      "target": "clo-3",
+      "description": "The final plan must define a predictive model claim, validation metrics, acceptance criteria, and expected response features. Students explain how future data would inform, challenge, or improve the model."
+    },
+    {
+      "id": "final-clo4",
+      "source": "final-lab",
+      "target": "clo-4",
+      "description": "Students specify the full measurement chain, including sensors, signal conditioning, sampling rate, DAQ range and resolution, filtering, and installation effects. These choices must be justified using expected signal levels and practical constraints."
+    },
+    {
+      "id": "final-clo5",
+      "source": "final-lab",
+      "target": "clo-5",
+      "description": "Students produce written design artifacts and defend the design orally to a technical audience. The assignment emphasizes professional communication of methods, limitations, tradeoffs, and evidence."
+    },
+    {
+      "id": "final-clo6",
+      "source": "final-lab",
+      "target": "clo-6",
+      "description": "This is the primary CLO 6 demonstration: students must investigate at least one sensor, method, platform, standard, or analysis approach beyond the provided course catalog. They compare alternatives and justify whether the outside method improves the design."
+    },
+    {
+      "id": "w1-clo1",
+      "source": "quiz-w1-amvf",
+      "target": "clo-1",
+      "description": "The Week 1 check introduces formal experiment design language by asking students to identify testable hypotheses and connect measurement to inference. That vocabulary supports later hands-on experiment design."
+    },
+    {
+      "id": "w1-clo3",
+      "source": "quiz-w1-amvf",
+      "target": "clo-3",
+      "description": "Students distinguish validation from verification and begin treating models as claims about real systems. This is the conceptual seed for later model-data comparison."
+    },
+    {
+      "id": "w2-clo2",
+      "source": "quiz-w2-uncertainty",
+      "target": "clo-2",
+      "description": "The Week 2 check gives students low-stakes practice with uncertainty terminology, propagation logic, Monte Carlo comparison, and complete result statements. It prepares them for Lab 1 uncertainty reporting."
+    },
+    {
+      "id": "w2-clo5",
+      "source": "quiz-w2-uncertainty",
+      "target": "clo-5",
+      "description": "Students practice writing an engineering result as an interpretable claim, not just a number. That habit supports clearer reports and presentations throughout the course."
+    },
+    {
+      "id": "w3-clo3",
+      "source": "quiz-w3-validation",
+      "target": "clo-3",
+      "description": "The Week 3 check focuses on validation metrics, residuals, calibration-vs-validation distinctions, and evidence-based comparison. These ideas become core tools in Tier 1 and Tier 2 model evaluation."
+    },
+    {
+      "id": "w3-clo5",
+      "source": "quiz-w3-validation",
+      "target": "clo-5",
+      "description": "Students practice making critique specific, numerical, and traceable rather than relying on visual impressions. That supports the course goal of strong technical communication and feedback."
+    },
+    {
+      "id": "w6-clo3",
+      "source": "quiz-w6-prediction",
+      "target": "clo-3",
+      "description": "The Week 6 check reinforces prediction before exposure, intended use, response features, and pre-committed acceptance criteria. These ideas are directly aligned with blind prediction and Tier 2 gate checks."
+    },
+    {
+      "id": "w8-clo3",
+      "source": "quiz-w8-model-adequacy",
+      "target": "clo-3",
+      "description": "Students interpret structured residuals and use them to diagnose possible model-form issues. The emphasis is on explaining what kind of discrepancy exists, not merely saying the model is wrong."
+    },
+    {
+      "id": "w8-clo4",
+      "source": "quiz-w8-model-adequacy",
+      "target": "clo-4",
+      "description": "The calibration-status questions connect measurement credibility to documentation, calibration intervals, and uncertainty information. That supports later decisions about whether the measurement chain is adequate."
+    },
+    {
+      "id": "w10-clo5",
+      "source": "quiz-w10-communication",
+      "target": "clo-5",
+      "description": "The Week 10 check prepares students to communicate a compact prediction-to-outcome story and defend analysis choices under questions. It also reinforces specific, actionable peer review."
+    },
+    {
+      "id": "w10-clo6",
+      "source": "quiz-w10-communication",
+      "target": "clo-6",
+      "description": "Students connect the work of improving existing experiments to the later task of designing new ones. This helps frame E3 as an independent design step rather than another provided procedure."
+    }
+  ]
+}

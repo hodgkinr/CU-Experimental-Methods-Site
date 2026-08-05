@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Assessments to CLO Ontology</title>
+  <style>
+    :root {
+      --cu-gold: #cfb87c;
+      --cu-black: #1f1f1f;
+      --cu-gray: #a2a4a3;
+      --paper: #f7f5ef;
+      --card: rgba(255, 255, 255, 0.94);
+      --border: #d5d0c4;
+      --ink: #222;
+      --muted: #646a67;
+      --clo: #1f1f1f;
+      --summative: #73706a;
+      --formative: #8d9290;
+      --focus: #cfb87c;
+      --related: #3f6f75;
+      --edge: #9b927c;
+      --shadow: 0 18px 45px rgba(44, 42, 37, 0.12);
+      --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(207, 184, 124, 0.22), transparent 31rem),
+        linear-gradient(180deg, rgba(162, 164, 163, 0.18), rgba(247, 245, 239, 0.92)),
+        var(--paper);
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      color: white;
+      background: rgba(31, 31, 31, 0.94);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .site-header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .brand {
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+
+    .status-pill {
+      border: 1px solid rgba(207, 184, 124, 0.4);
+      border-radius: 999px;
+      padding: 0.45rem 0.75rem;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .page-shell {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    .hero,
+    .ontology-frame,
+    .details-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 1.5rem;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(207, 184, 124, 0.24), rgba(255, 255, 255, 0.96)),
+        var(--card);
+    }
+
+    .eyebrow {
+      margin: 0 0 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 800;
+      font-size: 0.78rem;
+      color: #6b6148;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.9rem, 4vw, 3.1rem);
+      line-height: 1.04;
+    }
+
+    .lead {
+      max-width: 78ch;
+      margin: 0.85rem 0 0;
+      color: #3f4441;
+      font-size: 1.03rem;
+      line-height: 1.55;
+    }
+
+    .source-path {
+      display: inline-flex;
+      margin: 0.85rem 0 0;
+      padding: 0.36rem 0.62rem;
+      border: 1px solid rgba(31, 31, 31, 0.14);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      color: #5c625f;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .toolbar {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .button-row,
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+    }
+
+    .control-button {
+      border: 1px solid rgba(31, 31, 31, 0.18);
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--cu-black);
+      border-radius: 999px;
+      padding: 0.64rem 0.9rem;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .control-button[aria-pressed="true"] {
+      background: var(--cu-gold);
+      border-color: rgba(31, 31, 31, 0.24);
+    }
+
+    .legend-item {
+      display: inline-flex;
+      gap: 0.35rem;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .swatch {
+      width: 0.85rem;
+      height: 0.85rem;
+      border-radius: 50%;
+      display: inline-block;
+      border: 1px solid rgba(31, 31, 31, 0.2);
+    }
+
+    .swatch.clo {
+      background: var(--clo);
+    }
+
+    .swatch.summative {
+      background: var(--summative);
+    }
+
+    .swatch.formative {
+      background: var(--formative);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 1rem;
+      margin-top: 1rem;
+      align-items: stretch;
+    }
+
+    .ontology-frame {
+      border-radius: 8px;
+      overflow: auto;
+      min-height: 620px;
+    }
+
+    #ontologySvg {
+      display: block;
+      width: 100%;
+      min-width: 1180px;
+      min-height: 620px;
+      background:
+        linear-gradient(rgba(31, 31, 31, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31, 31, 31, 0.035) 1px, transparent 1px),
+        rgba(255, 255, 255, 0.62);
+      background-size: 28px 28px;
+    }
+
+    .layer-label {
+      fill: #6b6148;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .edge {
+      stroke: var(--edge);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      opacity: 0.22;
+      cursor: pointer;
+      transition: opacity 140ms ease, stroke-width 140ms ease, stroke 140ms ease;
+    }
+
+    .edge-hit {
+      stroke: transparent;
+      stroke-width: 16;
+      fill: none;
+      cursor: pointer;
+    }
+
+    .edge.is-active {
+      stroke: var(--focus);
+      stroke-width: 4;
+      opacity: 0.95;
+    }
+
+    .edge.is-related {
+      stroke: var(--related);
+      stroke-width: 3.4;
+      opacity: 0.75;
+    }
+
+    .node {
+      cursor: pointer;
+      outline: none;
+    }
+
+    .node-rect {
+      rx: 8;
+      stroke-width: 1.5;
+      transition: fill 140ms ease, stroke 140ms ease, filter 140ms ease, opacity 140ms ease;
+    }
+
+    .node.clo .node-rect {
+      fill: var(--clo);
+      stroke: rgba(255, 255, 255, 0.22);
+    }
+
+    .node.summative .node-rect,
+    .node.formative .node-rect {
+      fill: #d6d8d5;
+      stroke: #b9bdb9;
+      opacity: 0.78;
+    }
+
+    .node.summative:hover .node-rect,
+    .node.formative:hover .node-rect {
+      fill: #b8bab6;
+      opacity: 1;
+    }
+
+    .node.is-active .node-rect {
+      fill: var(--focus);
+      stroke: #1f1f1f;
+      filter: drop-shadow(0 8px 14px rgba(31, 31, 31, 0.22));
+      opacity: 1;
+    }
+
+    .node.is-related .node-rect {
+      fill: #3f6f75;
+      stroke: rgba(31, 31, 31, 0.35);
+      opacity: 1;
+    }
+
+    .node.is-muted .node-rect {
+      opacity: 0.32;
+    }
+
+    .node-label {
+      pointer-events: none;
+      font-size: 14px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      fill: white;
+    }
+
+    .node-title {
+      pointer-events: none;
+      font-size: 11px;
+      font-weight: 700;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      fill: rgba(255, 255, 255, 0.9);
+    }
+
+    .node.summative .node-label,
+    .node.summative .node-title,
+    .node.formative .node-label,
+    .node.formative .node-title {
+      fill: #373a38;
+    }
+
+    .node.is-active .node-label,
+    .node.is-active .node-title {
+      fill: #1f1f1f;
+    }
+
+    .node.is-related .node-label,
+    .node.is-related .node-title {
+      fill: white;
+    }
+
+    .details-panel {
+      border-radius: 8px;
+      padding: 1.1rem;
+      min-height: 620px;
+      position: sticky;
+      top: 5.2rem;
+      align-self: start;
+    }
+
+    .panel-kicker {
+      margin: 0 0 0.35rem;
+      color: #6b6148;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+      font-size: 0.76rem;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 1.35rem;
+      line-height: 1.18;
+    }
+
+    .panel-subtitle {
+      margin: 0.45rem 0 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .panel-body {
+      margin-top: 1rem;
+      line-height: 1.58;
+    }
+
+    .edge-list {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .edge-chip {
+      text-align: left;
+      border: 1px solid rgba(31, 31, 31, 0.14);
+      background: rgba(162, 164, 163, 0.12);
+      border-radius: 8px;
+      padding: 0.7rem;
+      cursor: pointer;
+      color: #303431;
+    }
+
+    .edge-chip:hover {
+      border-color: rgba(207, 184, 124, 0.75);
+      background: rgba(207, 184, 124, 0.16);
+    }
+
+    .source-note {
+      margin-top: 1rem;
+      border-top: 1px solid var(--border);
+      padding-top: 0.85rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .error {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid #b95a5a;
+      background: #fff7f3;
+      border-radius: 8px;
+      color: #6d2222;
+    }
+
+    @media (max-width: 900px) {
+      .site-header-inner,
+      .layout {
+        display: block;
+      }
+
+      .status-pill {
+        display: inline-flex;
+        margin-top: 0.75rem;
+      }
+
+      .details-panel {
+        position: static;
+        min-height: 0;
+        margin-top: 1rem;
+      }
+
+      .ontology-frame,
+      #ontologySvg {
+        min-height: 760px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <p class="brand">Aerospace Experimental Methods</p>
+      <span class="status-pill">Assessments2CLO Ontology Prototype</span>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero">
+      <p class="eyebrow">University of Colorado Boulder</p>
+      <h1>How Assessments Connect to Course Learning Outcomes</h1>
+      <p class="lead">Click a CLO, assessment, or relationship line to inspect what it means. Summative assessments are shown by default; turn on formative checks when you want to see the lower-stakes support layer.</p>
+      <p class="source-path" id="sourcePath">Source: CU-Experimental-Methods-Planning / admin / interactive_ontologies</p>
+      <div class="toolbar">
+        <div class="button-row">
+          <button class="control-button" id="toggleFormative" type="button" aria-pressed="false">Show Formative</button>
+          <button class="control-button" id="resetFocus" type="button">Reset Focus</button>
+        </div>
+        <div class="legend" aria-label="Ontology legend">
+          <span class="legend-item"><span class="swatch clo"></span>CLO</span>
+          <span class="legend-item"><span class="swatch summative"></span>Summative</span>
+          <span class="legend-item"><span class="swatch formative"></span>Formative</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section class="ontology-frame" aria-label="Assessment to CLO graph">
+        <svg id="ontologySvg" role="img" aria-labelledby="graphTitle graphDescription">
+          <title id="graphTitle">Assessments to CLO ontology graph</title>
+          <desc id="graphDescription">Course learning outcomes are arranged across the top. Summative assessments are below them. Optional formative assessments appear in a third layer.</desc>
+        </svg>
+      </section>
+
+      <aside class="details-panel" id="detailsPanel" aria-live="polite">
+        <p class="panel-kicker">Selected item</p>
+        <h2 class="panel-title">Start with a node or edge</h2>
+        <p class="panel-subtitle">The ontology is loaded from ontology.json.</p>
+        <div class="panel-body">
+          <p>Hover over assessment nodes to bring them forward. Click a node to see its description and related connections. Click a line to read how an assessment supports a specific CLO.</p>
+        </div>
+        <div class="source-note" id="sourceNote"></div>
+      </aside>
+    </div>
+    <div id="errorBox"></div>
+  </main>
+
+  <script>
+    const state = {
+      ontology: null,
+      showFormative: false,
+      focus: null
+    };
+
+    const svg = document.getElementById("ontologySvg");
+    const panel = document.getElementById("detailsPanel");
+    const toggleFormative = document.getElementById("toggleFormative");
+    const resetFocus = document.getElementById("resetFocus");
+    const errorBox = document.getElementById("errorBox");
+    const sourceNote = document.getElementById("sourceNote");
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function wrapText(text, maxChars) {
+      const words = String(text).split(/\s+/);
+      const lines = [];
+      let current = "";
+      words.forEach((word) => {
+        const next = current ? `${current} ${word}` : word;
+        if (next.length > maxChars && current) {
+          lines.push(current);
+          current = word;
+        } else {
+          current = next;
+        }
+      });
+      if (current) lines.push(current);
+      return lines.slice(0, 2);
+    }
+
+    function visibleNodes() {
+      return state.ontology.nodes
+        .filter((node) => state.showFormative || node.type !== "formative")
+        .sort((a, b) => a.order - b.order);
+    }
+
+    function visibleEdges() {
+      const ids = new Set(visibleNodes().map((node) => node.id));
+      return state.ontology.edges.filter((edge) => ids.has(edge.source) && ids.has(edge.target));
+    }
+
+    function layoutNodes(width) {
+      const nodes = visibleNodes();
+      const byType = {
+        clo: nodes.filter((node) => node.type === "clo"),
+        summative: nodes.filter((node) => node.type === "summative"),
+        formative: nodes.filter((node) => node.type === "formative")
+      };
+      const yByType = state.showFormative
+        ? { clo: 120, summative: 335, formative: 555 }
+        : { clo: 125, summative: 420, formative: 0 };
+      const nodeWidth = 150;
+      const nodeHeight = 82;
+      const positions = new Map();
+
+      Object.entries(byType).forEach(([type, group]) => {
+        const gap = 30;
+        const total = group.length * nodeWidth + Math.max(0, group.length - 1) * gap;
+        const start = Math.max(40, (width - total) / 2);
+        group.forEach((node, index) => {
+          const x = group.length === 1
+            ? width / 2
+            : start + index * (nodeWidth + gap) + nodeWidth / 2;
+          positions.set(node.id, {
+            x,
+            y: yByType[type],
+            width: nodeWidth,
+            height: nodeHeight
+          });
+        });
+      });
+      return positions;
+    }
+
+    function edgePath(sourcePos, targetPos) {
+      const sourceY = sourcePos.y - sourcePos.height / 2;
+      const targetY = targetPos.y + targetPos.height / 2;
+      const midY = (sourceY + targetY) / 2;
+      return `M ${sourcePos.x} ${sourceY} C ${sourcePos.x} ${midY}, ${targetPos.x} ${midY}, ${targetPos.x} ${targetY}`;
+    }
+
+    function relationIds(focus) {
+      const relatedNodes = new Set();
+      const relatedEdges = new Set();
+      if (!focus) return { relatedNodes, relatedEdges };
+
+      if (focus.kind === "node") {
+        visibleEdges().forEach((edge) => {
+          if (edge.source === focus.id || edge.target === focus.id) {
+            relatedEdges.add(edge.id);
+            relatedNodes.add(edge.source);
+            relatedNodes.add(edge.target);
+          }
+        });
+      }
+
+      if (focus.kind === "edge") {
+        const edge = state.ontology.edges.find((item) => item.id === focus.id);
+        if (edge) {
+          relatedEdges.add(edge.id);
+          relatedNodes.add(edge.source);
+          relatedNodes.add(edge.target);
+        }
+      }
+
+      return { relatedNodes, relatedEdges };
+    }
+
+    function renderGraph() {
+      if (!state.ontology) return;
+
+      const frame = svg.parentElement.getBoundingClientRect();
+      const width = Math.max(1180, Math.floor(frame.width));
+      const height = state.showFormative ? 690 : 620;
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.setAttribute("height", height);
+      svg.innerHTML = `
+        <title id="graphTitle">Assessments to CLO ontology graph</title>
+        <desc id="graphDescription">Course learning outcomes are arranged across the top. Summative assessments are below them. Optional formative assessments appear in a third layer.</desc>
+      `;
+
+      const positions = layoutNodes(width);
+      const edges = visibleEdges();
+      const nodes = visibleNodes();
+      const { relatedNodes, relatedEdges } = relationIds(state.focus);
+
+      const labels = [
+        { text: "Course Learning Outcomes", y: 42 },
+        { text: "Major Summative Assessments", y: state.showFormative ? 258 : 330 }
+      ];
+      if (state.showFormative) labels.push({ text: "Selected Formative Checks", y: 478 });
+
+      labels.forEach((label) => {
+        const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        text.setAttribute("class", "layer-label");
+        text.setAttribute("x", 34);
+        text.setAttribute("y", label.y);
+        text.textContent = label.text;
+        svg.appendChild(text);
+      });
+
+      const edgeLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      const hitLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      svg.appendChild(edgeLayer);
+      svg.appendChild(hitLayer);
+
+      edges.forEach((edge) => {
+        const sourcePos = positions.get(edge.source);
+        const targetPos = positions.get(edge.target);
+        if (!sourcePos || !targetPos) return;
+        const path = edgePath(sourcePos, targetPos);
+        const isActive = state.focus?.kind === "edge" && state.focus.id === edge.id;
+        const isRelated = relatedEdges.has(edge.id);
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        line.setAttribute("class", `edge${isActive ? " is-active" : ""}${isRelated && !isActive ? " is-related" : ""}`);
+        line.setAttribute("d", path);
+        line.setAttribute("fill", "none");
+        line.dataset.id = edge.id;
+        edgeLayer.appendChild(line);
+
+        const hit = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        hit.setAttribute("class", "edge-hit");
+        hit.setAttribute("d", path);
+        hit.dataset.id = edge.id;
+        hit.addEventListener("click", () => focusEdge(edge.id));
+        hitLayer.appendChild(hit);
+      });
+
+      nodes.forEach((node) => {
+        const pos = positions.get(node.id);
+        if (!pos) return;
+        const isActive = state.focus?.kind === "node" && state.focus.id === node.id;
+        const isRelated = relatedNodes.has(node.id) && !isActive;
+        const isMuted = state.focus && !isActive && !relatedNodes.has(node.id);
+        const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        group.setAttribute("class", `node ${node.type}${isActive ? " is-active" : ""}${isRelated ? " is-related" : ""}${isMuted ? " is-muted" : ""}`);
+        group.setAttribute("tabindex", "0");
+        group.setAttribute("role", "button");
+        group.setAttribute("aria-label", `${node.label}: ${node.title}`);
+        group.dataset.id = node.id;
+        group.addEventListener("click", () => focusNode(node.id));
+        group.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            focusNode(node.id);
+          }
+        });
+
+        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        rect.setAttribute("class", "node-rect");
+        rect.setAttribute("x", pos.x - pos.width / 2);
+        rect.setAttribute("y", pos.y - pos.height / 2);
+        rect.setAttribute("width", pos.width);
+        rect.setAttribute("height", pos.height);
+        group.appendChild(rect);
+
+        const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        label.setAttribute("class", "node-label");
+        label.setAttribute("x", pos.x);
+        label.setAttribute("y", pos.y - 12);
+        label.textContent = node.label;
+        group.appendChild(label);
+
+        wrapText(node.title, 21).forEach((line, index) => {
+          const title = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          title.setAttribute("class", "node-title");
+          title.setAttribute("x", pos.x);
+          title.setAttribute("y", pos.y + 10 + index * 14);
+          title.textContent = line;
+          group.appendChild(title);
+        });
+
+        svg.appendChild(group);
+      });
+    }
+
+    function renderPanelForNode(node) {
+      const edges = visibleEdges().filter((edge) => edge.source === node.id || edge.target === node.id);
+      const chips = edges.map((edge) => {
+        const otherId = edge.source === node.id ? edge.target : edge.source;
+        const other = state.ontology.nodes.find((item) => item.id === otherId);
+        return `<button class="edge-chip" type="button" data-edge="${escapeHtml(edge.id)}"><strong>${escapeHtml(other?.label || "Connection")}</strong><br>${escapeHtml(edge.description)}</button>`;
+      }).join("");
+
+      panel.innerHTML = `
+        <p class="panel-kicker">${escapeHtml(node.type === "clo" ? "Course learning outcome" : node.type)}</p>
+        <h2 class="panel-title">${escapeHtml(node.label)}: ${escapeHtml(node.title)}</h2>
+        <p class="panel-subtitle">${escapeHtml(node.weeks || state.ontology.metadata.course)}</p>
+        <div class="panel-body">
+          <p>${escapeHtml(node.description)}</p>
+        </div>
+        ${chips ? `<div class="edge-list">${chips}</div>` : ""}
+        <div class="source-note">${escapeHtml(state.ontology.metadata.title)} loaded from ontology.json.</div>
+      `;
+
+      panel.querySelectorAll("[data-edge]").forEach((button) => {
+        button.addEventListener("click", () => focusEdge(button.dataset.edge));
+      });
+    }
+
+    function renderPanelForEdge(edge) {
+      const source = state.ontology.nodes.find((node) => node.id === edge.source);
+      const target = state.ontology.nodes.find((node) => node.id === edge.target);
+      panel.innerHTML = `
+        <p class="panel-kicker">Relationship</p>
+        <h2 class="panel-title">${escapeHtml(source?.label || "Assessment")} -> ${escapeHtml(target?.label || "CLO")}</h2>
+        <p class="panel-subtitle">${escapeHtml(source?.title || "")}</p>
+        <div class="panel-body">
+          <p>${escapeHtml(edge.description)}</p>
+        </div>
+        <div class="edge-list">
+          <button class="edge-chip" type="button" data-node="${escapeHtml(source?.id || "")}"><strong>${escapeHtml(source?.label || "")}</strong><br>${escapeHtml(source?.description || "")}</button>
+          <button class="edge-chip" type="button" data-node="${escapeHtml(target?.id || "")}"><strong>${escapeHtml(target?.label || "")}</strong><br>${escapeHtml(target?.description || "")}</button>
+        </div>
+        <div class="source-note">${escapeHtml(state.ontology.metadata.title)} loaded from ontology.json.</div>
+      `;
+
+      panel.querySelectorAll("[data-node]").forEach((button) => {
+        button.addEventListener("click", () => focusNode(button.dataset.node));
+      });
+    }
+
+    function focusNode(id) {
+      const node = state.ontology.nodes.find((item) => item.id === id);
+      if (!node) return;
+      state.focus = { kind: "node", id };
+      renderGraph();
+      renderPanelForNode(node);
+    }
+
+    function focusEdge(id) {
+      const edge = state.ontology.edges.find((item) => item.id === id);
+      if (!edge) return;
+      state.focus = { kind: "edge", id };
+      renderGraph();
+      renderPanelForEdge(edge);
+    }
+
+    function resetSelection() {
+      state.focus = null;
+      renderGraph();
+      panel.innerHTML = `
+        <p class="panel-kicker">Selected item</p>
+        <h2 class="panel-title">Start with a node or edge</h2>
+        <p class="panel-subtitle">The ontology is loaded from ontology.json.</p>
+        <div class="panel-body">
+          <p>Hover over assessment nodes to bring them forward. Click a node to see its description and related connections. Click a line to read how an assessment supports a specific CLO.</p>
+        </div>
+        <div class="source-note">${escapeHtml(state.ontology.metadata.title)} loaded from ontology.json.</div>
+      `;
+    }
+
+    toggleFormative.addEventListener("click", () => {
+      state.showFormative = !state.showFormative;
+      toggleFormative.setAttribute("aria-pressed", String(state.showFormative));
+      toggleFormative.textContent = state.showFormative ? "Hide Formative" : "Show Formative";
+      if (state.focus?.kind === "node") {
+        const focused = state.ontology.nodes.find((node) => node.id === state.focus.id);
+        if (focused?.type === "formative" && !state.showFormative) state.focus = null;
+      }
+      if (state.focus?.kind === "edge") {
+        const activeEdge = state.ontology.edges.find((edge) => edge.id === state.focus.id);
+        const hiddenNode = activeEdge && state.ontology.nodes.find((node) => (node.id === activeEdge.source || node.id === activeEdge.target) && node.type === "formative");
+        if (hiddenNode && !state.showFormative) state.focus = null;
+      }
+      resetSelection();
+    });
+
+    resetFocus.addEventListener("click", resetSelection);
+    window.addEventListener("resize", () => renderGraph());
+
+    async function init() {
+      try {
+        const response = await fetch(`ontology.json?cache=${Date.now()}`, { cache: "no-store" });
+        if (!response.ok) throw new Error(`Could not load ontology.json (${response.status})`);
+        state.ontology = await response.json();
+        const cloCount = state.ontology.nodes.filter((node) => node.type === "clo").length;
+        document.getElementById("sourcePath").textContent = `Source: CU-Experimental-Methods-Planning / admin / interactive_ontologies | ${cloCount} CLOs | ${state.ontology.metadata.last_updated}`;
+        sourceNote.textContent = `${state.ontology.metadata.title} loaded from ontology.json.`;
+        resetSelection();
+      } catch (error) {
+        errorBox.innerHTML = `
+          <div class="error">
+            <strong>Ontology data could not be loaded.</strong>
+            <p>This page expects <code>ontology.json</code> to be served next to <code>index.html</code>. Preview it through a local web server, then refresh after editing the JSON.</p>
+            <p>${escapeHtml(error.message)}</p>
+          </div>
+        `;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
