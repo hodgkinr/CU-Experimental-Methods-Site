@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Coleman & Steele Course Reference Map</title>
+  <style>
+    :root {
+      --cu-gold: #cfb87c;
+      --cu-black: #1f1f1f;
+      --paper: #f8f6ef;
+      --panel: rgba(255, 255, 255, 0.95);
+      --border: #d7d0c2;
+      --ink: #222;
+      --muted: #626865;
+      --reference: #1f1f1f;
+      --concept: #406a73;
+      --course: #77736b;
+      --assignment: #8a6f3e;
+      --focus: #cfb87c;
+      --related: #3f6f75;
+      --edge: #9b927c;
+      --shadow: 0 16px 38px rgba(44, 42, 37, 0.12);
+      --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(207, 184, 124, 0.18), transparent 30rem),
+        linear-gradient(180deg, rgba(162, 164, 163, 0.16), rgba(248, 246, 239, 0.95)),
+        var(--paper);
+    }
+
+    button, input, select { font: inherit; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      color: white;
+      background: rgba(31, 31, 31, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+    }
+
+    .site-header-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0.95rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .brand { margin: 0; font-weight: 800; color: white; text-decoration: none; }
+    .top-nav { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .top-nav a { text-decoration: none; color: rgba(255, 255, 255, 0.85); padding: 0.55rem 0.85rem; border-radius: 999px; }
+    .top-nav a.is-current, .top-nav a:hover { background: rgba(207, 184, 124, 0.18); color: white; }
+
+    .page-shell { max-width: 1320px; margin: 0 auto; padding: 1.25rem 1.25rem 3rem; }
+
+    .hero, .ontology-frame, .details-panel, .map-list { background: var(--panel); border: 1px solid var(--border); box-shadow: var(--shadow); border-radius: 8px; }
+
+    .hero { padding: 1.35rem; }
+    .eyebrow { margin: 0 0 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 800; font-size: 0.78rem; color: #6b6148; }
+    h1 { margin: 0; font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.07; }
+    .lead { max-width: 84ch; margin: 0.75rem 0 0; color: #3f4441; font-size: 1.02rem; line-height: 1.5; }
+
+    .toolbar { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between; }
+    .control-group, .legend { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+    .control-button, .filter-select, .search-box {
+      border: 1px solid rgba(31, 31, 31, 0.18);
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--cu-black);
+      border-radius: 8px;
+      padding: 0.6rem 0.75rem;
+      font-weight: 750;
+    }
+    .control-button { cursor: pointer; }
+    .control-button[aria-pressed="true"] { background: var(--cu-gold); border-color: rgba(31, 31, 31, 0.24); }
+    .search-box { min-width: 240px; font-weight: 600; }
+
+    .legend-item { display: inline-flex; gap: 0.35rem; align-items: center; color: var(--muted); font-size: 0.9rem; font-weight: 700; }
+    .swatch { width: 0.85rem; height: 0.85rem; border-radius: 50%; display: inline-block; border: 1px solid rgba(31, 31, 31, 0.2); }
+    .swatch.reference { background: var(--reference); }
+    .swatch.concept { background: var(--concept); }
+    .swatch.course { background: var(--course); }
+    .swatch.assignment { background: var(--assignment); }
+
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 1rem; margin-top: 1rem; align-items: start; }
+    .ontology-frame { overflow: auto; min-height: 660px; }
+    #ontologySvg { display: block; width: 100%; min-width: 1220px; min-height: 660px; background: linear-gradient(rgba(31,31,31,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(31,31,31,0.035) 1px, transparent 1px), rgba(255,255,255,0.62); background-size: 28px 28px; }
+
+    .layer-label { fill: #6b6148; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+    .edge { stroke: var(--edge); stroke-width: 2.1; stroke-linecap: round; opacity: 0.22; cursor: pointer; transition: opacity 140ms ease, stroke-width 140ms ease, stroke 140ms ease; }
+    .edge-hit { stroke: transparent; stroke-width: 16; fill: none; cursor: pointer; }
+    .edge.is-active { stroke: var(--focus); stroke-width: 4; opacity: 0.98; }
+    .edge.is-related { stroke: var(--related); stroke-width: 3.2; opacity: 0.75; }
+    .edge.is-muted { opacity: 0.06; }
+
+    .node { cursor: pointer; outline: none; }
+    .node-rect { rx: 8; stroke-width: 1.5; transition: fill 140ms ease, stroke 140ms ease, filter 140ms ease, opacity 140ms ease; }
+    .node.reference .node-rect { fill: var(--reference); stroke: rgba(255,255,255,0.25); }
+    .node.concept .node-rect { fill: var(--concept); stroke: rgba(255,255,255,0.25); }
+    .node.course .node-rect { fill: #d7d8d5; stroke: #b8bcb8; }
+    .node.assignment .node-rect { fill: #d2c6ac; stroke: #b7aa8b; }
+    .node.is-active .node-rect { fill: var(--focus); stroke: #1f1f1f; filter: drop-shadow(0 8px 14px rgba(31,31,31,0.22)); opacity: 1; }
+    .node.is-related .node-rect { fill: var(--related); stroke: rgba(31,31,31,0.35); opacity: 1; }
+    .node.is-muted .node-rect { opacity: 0.24; }
+    .node-label { pointer-events: none; font-size: 13px; font-weight: 800; text-anchor: middle; dominant-baseline: middle; fill: white; }
+    .node-title { pointer-events: none; font-size: 10.5px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; fill: rgba(255,255,255,0.9); }
+    .node.course .node-label, .node.course .node-title, .node.assignment .node-label, .node.assignment .node-title, .node.is-active .node-label, .node.is-active .node-title { fill: #242622; }
+    .node.is-related .node-label, .node.is-related .node-title { fill: white; }
+
+    .details-panel { padding: 1rem; min-height: 660px; position: sticky; top: 5rem; }
+    .panel-kicker { margin: 0 0 0.35rem; color: #6b6148; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 800; font-size: 0.76rem; }
+    .panel-title { margin: 0; font-size: 1.3rem; line-height: 1.18; }
+    .panel-subtitle { margin: 0.42rem 0 0; color: var(--muted); font-weight: 750; }
+    .panel-body { margin-top: 1rem; line-height: 1.55; }
+    .meta-row { margin-top: 0.6rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .pill { display: inline-flex; border: 1px solid rgba(31,31,31,0.13); background: rgba(162,164,163,0.13); border-radius: 999px; padding: 0.25rem 0.48rem; color: #474c49; font-size: 0.82rem; font-weight: 750; }
+    .edge-list { margin-top: 1rem; display: grid; gap: 0.5rem; }
+    .edge-chip { text-align: left; border: 1px solid rgba(31,31,31,0.14); background: rgba(162,164,163,0.12); border-radius: 8px; padding: 0.68rem; cursor: pointer; color: #303431; }
+    .edge-chip:hover { border-color: rgba(207,184,124,0.75); background: rgba(207,184,124,0.16); }
+    .source-note { margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 0.85rem; color: var(--muted); font-size: 0.9rem; line-height: 1.45; }
+
+    .map-list { margin-top: 1rem; padding: 1rem; }
+    .map-list h2 { margin: 0 0 0.75rem; font-size: 1.15rem; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; }
+    .reading-card { border: 1px solid rgba(31,31,31,0.12); border-radius: 8px; padding: 0.8rem; background: rgba(255,255,255,0.68); }
+    .reading-card h3 { margin: 0; font-size: 1rem; line-height: 1.25; }
+    .reading-card p { margin: 0.45rem 0 0; color: #4a504d; line-height: 1.45; }
+
+    .error { margin-top: 1rem; padding: 1rem; border: 1px solid #b95a5a; background: #fff7f3; border-radius: 8px; color: #6d2222; }
+
+    @media (max-width: 960px) {
+      .site-header-inner, .layout { display: block; }
+      .top-nav { margin-top: 0.75rem; }
+      .details-panel { position: static; min-height: 0; margin-top: 1rem; }
+      .ontology-frame, #ontologySvg { min-height: 760px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../../index.html">Aerospace Experimental Methods</a>
+      <nav class="top-nav">
+        <a href="../../index.html">Home</a>
+        <a href="../../opening.html">Opening</a>
+        <a href="../../syllabus.html">Syllabus</a>
+        <a href="../../schedule.html">Schedule</a>
+        <a href="../../labs.html">Labs</a>
+        <a class="is-current" href="../../supplemental.html">Supplemental</a>
+        <a href="../../interactive_ontologies/index.html">Ontologies</a>
+        <a href="../../results.html">Results</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero">
+      <p class="eyebrow">ASEN 3501 supplemental reference</p>
+      <h1>Where Coleman & Steele Helps in the Course</h1>
+      <p class="lead">Click a reference section, concept, course week, or assignment to see how the primary reference source connects to lectures, readings, and major deliverables. This prototype points students to useful sections without reproducing the book.</p>
+      <div class="toolbar">
+        <div class="control-group">
+          <button class="control-button" id="toggleOptional" type="button" aria-pressed="false">Show Optional</button>
+          <button class="control-button" id="resetFocus" type="button">Reset Focus</button>
+          <select class="filter-select" id="phaseFilter" aria-label="Filter by phase">
+            <option value="all">All phases</option>
+            <option value="E1">E1</option>
+            <option value="E2">E2</option>
+            <option value="E3">E3</option>
+          </select>
+          <input class="search-box" id="searchBox" type="search" placeholder="Search map">
+        </div>
+        <div class="legend" aria-label="Map legend">
+          <span class="legend-item"><span class="swatch reference"></span>C&S section</span>
+          <span class="legend-item"><span class="swatch concept"></span>Concept</span>
+          <span class="legend-item"><span class="swatch course"></span>Week</span>
+          <span class="legend-item"><span class="swatch assignment"></span>Assignment</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section class="ontology-frame" aria-label="Coleman and Steele course reference graph">
+        <svg id="ontologySvg" role="img" aria-labelledby="graphTitle graphDescription">
+          <title id="graphTitle">Coleman and Steele course reference graph</title>
+          <desc id="graphDescription">Reference sections are arranged on the left, concepts in the middle, and course items on the right.</desc>
+        </svg>
+      </section>
+
+      <aside class="details-panel" id="detailsPanel" aria-live="polite">
+        <p class="panel-kicker">Selected item</p>
+        <h2 class="panel-title">Start with a node or edge</h2>
+        <p class="panel-subtitle">The map is loaded from coleman_steele_ontology.json.</p>
+        <div class="panel-body">
+          <p>Use the graph for the big picture, or search and filter to answer a practical question like which section helps with Lab 1, Tier 2, or the final V&V plan.</p>
+        </div>
+        <div class="source-note" id="sourceNote"></div>
+      </aside>
+    </div>
+
+    <section class="map-list">
+      <h2>Quick Reading Cards</h2>
+      <div class="cards" id="readingCards"></div>
+    </section>
+    <div id="errorBox"></div>
+  </main>
+
+  <script>
+    const state = { ontology: null, showOptional: false, focus: null, phase: "all", query: "" };
+    const svg = document.getElementById("ontologySvg");
+    const panel = document.getElementById("detailsPanel");
+    const sourceNote = document.getElementById("sourceNote");
+    const errorBox = document.getElementById("errorBox");
+    const readingCards = document.getElementById("readingCards");
+    const toggleOptional = document.getElementById("toggleOptional");
+    const resetFocus = document.getElementById("resetFocus");
+    const phaseFilter = document.getElementById("phaseFilter");
+    const searchBox = document.getElementById("searchBox");
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function wrapText(text, maxChars) {
+      const words = String(text).split(/\s+/);
+      const lines = [];
+      let current = "";
+      words.forEach((word) => {
+        const next = current ? `${current} ${word}` : word;
+        if (next.length > maxChars && current) {
+          lines.push(current);
+          current = word;
+        } else {
+          current = next;
+        }
+      });
+      if (current) lines.push(current);
+      return lines.slice(0, 2);
+    }
+
+    function priorityVisible(edge) { return state.showOptional || edge.priority !== "optional"; }
+
+    function nodeMatchesQuery(node) {
+      if (!state.query) return true;
+      const haystack = [node.label, node.title, node.description, node.phase, node.pages, node.student_use].join(" ").toLowerCase();
+      return haystack.includes(state.query);
+    }
+
+    function phaseAllowed(node) {
+      if (state.phase === "all") return true;
+      if (node.type === "course" || node.type === "assignment") return String(node.phase || "").includes(state.phase);
+      return true;
+    }
+
+    function visibleEdgesBase() {
+      return state.ontology.edges.filter(priorityVisible);
+    }
+
+    function visibleNodes() {
+      const edges = visibleEdgesBase();
+      const connected = new Set();
+      edges.forEach((edge) => { connected.add(edge.source); connected.add(edge.target); });
+      let nodes = state.ontology.nodes.filter((node) => connected.has(node.id) && phaseAllowed(node));
+      if (state.query) {
+        const direct = new Set(nodes.filter(nodeMatchesQuery).map((node) => node.id));
+        edges.forEach((edge) => {
+          if (direct.has(edge.source) || direct.has(edge.target)) {
+            direct.add(edge.source);
+            direct.add(edge.target);
+          }
+        });
+        nodes = nodes.filter((node) => direct.has(node.id));
+      }
+      return nodes.sort((a, b) => a.order - b.order || a.label.localeCompare(b.label));
+    }
+
+    function visibleEdges() {
+      const ids = new Set(visibleNodes().map((node) => node.id));
+      return visibleEdgesBase().filter((edge) => ids.has(edge.source) && ids.has(edge.target));
+    }
+
+    function layoutNodes(width, height) {
+      const nodes = visibleNodes();
+      const byType = {
+        reference: nodes.filter((node) => node.type === "reference"),
+        concept: nodes.filter((node) => node.type === "concept"),
+        course: nodes.filter((node) => node.type === "course" || node.type === "assignment")
+      };
+      const xByType = { reference: 145, concept: width / 2, course: width - 165 };
+      const positions = new Map();
+      Object.entries(byType).forEach(([type, group]) => {
+        const nodeWidth = type === "concept" ? 165 : 178;
+        const nodeHeight = 68;
+        const top = 88;
+        const bottom = height - 50;
+        const step = group.length > 1 ? (bottom - top) / (group.length - 1) : 0;
+        group.forEach((node, index) => {
+          positions.set(node.id, { x: xByType[type], y: group.length === 1 ? 330 : top + index * step, width: nodeWidth, height: nodeHeight });
+        });
+      });
+      return positions;
+    }
+
+    function edgePath(sourcePos, targetPos) {
+      const startX = sourcePos.x + sourcePos.width / 2;
+      const endX = targetPos.x - targetPos.width / 2;
+      const midX = (startX + endX) / 2;
+      return `M ${startX} ${sourcePos.y} C ${midX} ${sourcePos.y}, ${midX} ${targetPos.y}, ${endX} ${targetPos.y}`;
+    }
+
+    function relationIds(focus) {
+      const relatedNodes = new Set();
+      const relatedEdges = new Set();
+      if (!focus) return { relatedNodes, relatedEdges };
+      if (focus.kind === "node") {
+        const selectedNode = state.ontology.nodes.find((node) => node.id === focus.id);
+        const edges = visibleEdges();
+        if ((selectedNode?.type === "course" || selectedNode?.type === "assignment") && selectedNode.reference_ids?.length) {
+          relatedNodes.add(focus.id);
+          const exactRefs = new Set(selectedNode.reference_ids);
+          edges.forEach((edge) => {
+            if (edge.target === focus.id) {
+              relatedEdges.add(edge.id);
+              relatedNodes.add(edge.source);
+              relatedNodes.add(edge.target);
+            }
+            if (exactRefs.has(edge.source)) {
+              relatedEdges.add(edge.id);
+              relatedNodes.add(edge.source);
+              relatedNodes.add(edge.target);
+            }
+          });
+          return { relatedNodes, relatedEdges };
+        }
+
+        if (selectedNode?.type === "concept") {
+          edges.forEach((edge) => {
+            if (edge.source === focus.id || edge.target === focus.id) {
+              relatedEdges.add(edge.id);
+              relatedNodes.add(edge.source);
+              relatedNodes.add(edge.target);
+            }
+          });
+          return { relatedNodes, relatedEdges };
+        }
+
+        const nodeById = new Map(state.ontology.nodes.map((node) => [node.id, node]));
+        const queue = [focus.id];
+        const visited = new Set(queue);
+        relatedNodes.add(focus.id);
+
+        const shouldFollow = (edge, currentId) => {
+          const currentNode = nodeById.get(currentId);
+          if (!currentNode || !selectedNode) return false;
+          if (selectedNode.type === "reference") return edge.source === currentId;
+          if (selectedNode.type === "course" || selectedNode.type === "assignment") return edge.target === currentId;
+          return edge.source === currentId || edge.target === currentId;
+        };
+
+        while (queue.length) {
+          const currentId = queue.shift();
+          edges.forEach((edge) => {
+            if (!shouldFollow(edge, currentId)) return;
+            const nextId = edge.source === currentId ? edge.target : edge.source;
+            relatedEdges.add(edge.id);
+            relatedNodes.add(edge.source);
+            relatedNodes.add(edge.target);
+            if (!visited.has(nextId)) {
+              visited.add(nextId);
+              queue.push(nextId);
+            }
+          });
+        }
+      }
+      if (focus.kind === "edge") {
+        const edge = state.ontology.edges.find((item) => item.id === focus.id);
+        if (edge) {
+          relatedEdges.add(edge.id);
+          relatedNodes.add(edge.source);
+          relatedNodes.add(edge.target);
+        }
+      }
+      return { relatedNodes, relatedEdges };
+    }
+
+    function render() {
+      if (!state.ontology) return;
+      const width = 1220;
+      const nodesForHeight = visibleNodes();
+      const referenceCount = nodesForHeight.filter((node) => node.type === "reference").length;
+      const conceptCount = nodesForHeight.filter((node) => node.type === "concept").length;
+      const courseCount = nodesForHeight.filter((node) => node.type === "course" || node.type === "assignment").length;
+      const height = Math.max(660, Math.max(referenceCount, conceptCount, courseCount) * 82 + 150);
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.style.minHeight = `${height}px`;
+      svg.innerHTML = "";
+
+      const positions = layoutNodes(width, height);
+      const { relatedNodes, relatedEdges } = relationIds(state.focus);
+      const edges = visibleEdges();
+      const nodes = visibleNodes();
+
+      [["Coleman & Steele", 58, 42], ["Concept Bridge", width / 2, 42], ["Course Use", width - 165, 42]].forEach(([text, x, y]) => {
+        const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        label.setAttribute("class", "layer-label");
+        label.setAttribute("x", x);
+        label.setAttribute("y", y);
+        label.textContent = text;
+        svg.appendChild(label);
+      });
+
+      const edgeLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      svg.appendChild(edgeLayer);
+      edges.forEach((edge) => {
+        const sourcePos = positions.get(edge.source);
+        const targetPos = positions.get(edge.target);
+        if (!sourcePos || !targetPos) return;
+        const path = edgePath(sourcePos, targetPos);
+        const isActive = state.focus?.kind === "edge" && state.focus.id === edge.id;
+        const isRelated = relatedEdges.has(edge.id);
+        const muted = state.focus && !isActive && !isRelated;
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        line.setAttribute("class", `edge${isActive ? " is-active" : ""}${isRelated && !isActive ? " is-related" : ""}${muted ? " is-muted" : ""}`);
+        line.setAttribute("d", path);
+        line.setAttribute("fill", "none");
+        edgeLayer.appendChild(line);
+        const hit = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        hit.setAttribute("class", "edge-hit");
+        hit.setAttribute("d", path);
+        hit.addEventListener("click", () => selectEdge(edge.id));
+        edgeLayer.appendChild(hit);
+      });
+
+      const nodeLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      svg.appendChild(nodeLayer);
+      nodes.forEach((node) => {
+        const pos = positions.get(node.id);
+        const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        const active = state.focus?.kind === "node" && state.focus.id === node.id;
+        const related = relatedNodes.has(node.id);
+        const muted = state.focus && !active && !related;
+        g.setAttribute("class", `node ${node.type}${active ? " is-active" : ""}${related && !active ? " is-related" : ""}${muted ? " is-muted" : ""}`);
+        g.setAttribute("tabindex", "0");
+        g.setAttribute("role", "button");
+        g.setAttribute("aria-label", `${node.label}: ${node.title}`);
+        g.addEventListener("click", () => selectNode(node.id));
+        g.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); selectNode(node.id); } });
+
+        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        rect.setAttribute("class", "node-rect");
+        rect.setAttribute("x", pos.x - pos.width / 2);
+        rect.setAttribute("y", pos.y - pos.height / 2);
+        rect.setAttribute("width", pos.width);
+        rect.setAttribute("height", pos.height);
+        g.appendChild(rect);
+
+        const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        label.setAttribute("class", "node-label");
+        label.setAttribute("x", pos.x);
+        label.setAttribute("y", pos.y - 10);
+        label.textContent = node.label;
+        g.appendChild(label);
+
+        wrapText(node.title, 23).forEach((line, index) => {
+          const title = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          title.setAttribute("class", "node-title");
+          title.setAttribute("x", pos.x);
+          title.setAttribute("y", pos.y + 10 + index * 13);
+          title.textContent = line;
+          g.appendChild(title);
+        });
+        nodeLayer.appendChild(g);
+      });
+
+      renderCards();
+    }
+
+    function edgeLabel(edge) {
+      const source = state.ontology.nodes.find((node) => node.id === edge.source);
+      const target = state.ontology.nodes.find((node) => node.id === edge.target);
+      return `${source?.label || edge.source} ${edge.relationship} ${target?.label || edge.target}`;
+    }
+
+    function relatedReferenceList(nodeId) {
+      const node = state.ontology.nodes.find((item) => item.id === nodeId);
+      if (!node || (node.type !== "course" && node.type !== "assignment")) return "";
+      const explicitRefs = new Set(node.reference_ids || []);
+      const { relatedNodes } = explicitRefs.size
+        ? { relatedNodes: explicitRefs }
+        : relationIds({ kind: "node", id: nodeId });
+      const references = state.ontology.nodes
+        .filter((item) => item.type === "reference" && relatedNodes.has(item.id))
+        .sort((a, b) => a.order - b.order || a.label.localeCompare(b.label));
+      if (!references.length) return "";
+      return `
+        <div class="edge-list">
+          <p class="panel-kicker">Matched C&S sections</p>
+          ${references.map((item) => `
+            <button class="edge-chip" type="button" data-node-id="${escapeHtml(item.id)}">
+              <strong>${escapeHtml(item.label)} - ${escapeHtml(item.title)}</strong><br>
+              ${escapeHtml(item.pages)} · ${escapeHtml(item.student_use || item.description)}
+            </button>`).join("")}
+        </div>`;
+    }
+
+    function selectNode(id) {
+      state.focus = { kind: "node", id };
+      const node = state.ontology.nodes.find((item) => item.id === id);
+      const edges = visibleEdges().filter((edge) => edge.source === id || edge.target === id);
+      const meta = [node.type, node.phase, node.pages, node.student_use ? "student guidance" : null].filter(Boolean);
+      const matchedReferences = relatedReferenceList(id);
+      panel.innerHTML = `
+        <p class="panel-kicker">${escapeHtml(node.type)}</p>
+        <h2 class="panel-title">${escapeHtml(node.title)}</h2>
+        <p class="panel-subtitle">${escapeHtml(node.label)}</p>
+        <div class="meta-row">${meta.map((item) => `<span class="pill">${escapeHtml(item)}</span>`).join("")}</div>
+        <div class="panel-body"><p>${escapeHtml(node.description)}</p>${node.student_use ? `<p><strong>Student use:</strong> ${escapeHtml(node.student_use)}</p>` : ""}</div>
+        ${matchedReferences}
+        <div class="edge-list">${edges.map((edge) => `<button class="edge-chip" type="button" data-edge-id="${escapeHtml(edge.id)}"><strong>${escapeHtml(edgeLabel(edge))}</strong><br>${escapeHtml(edge.description)}</button>`).join("")}</div>
+        <div class="source-note" id="sourceNote"></div>`;
+      panel.querySelectorAll("[data-edge-id]").forEach((button) => button.addEventListener("click", () => selectEdge(button.dataset.edgeId)));
+      panel.querySelectorAll("[data-node-id]").forEach((button) => button.addEventListener("click", () => selectNode(button.dataset.nodeId)));
+      renderSourceNote();
+      render();
+    }
+
+    function selectEdge(id) {
+      state.focus = { kind: "edge", id };
+      const edge = state.ontology.edges.find((item) => item.id === id);
+      const source = state.ontology.nodes.find((node) => node.id === edge.source);
+      const target = state.ontology.nodes.find((node) => node.id === edge.target);
+      panel.innerHTML = `
+        <p class="panel-kicker">relationship</p>
+        <h2 class="panel-title">${escapeHtml(edgeLabel(edge))}</h2>
+        <p class="panel-subtitle">${escapeHtml(edge.priority)} - ${escapeHtml(edge.relationship)}</p>
+        <div class="panel-body"><p>${escapeHtml(edge.description)}</p></div>
+        <div class="edge-list">
+          <button class="edge-chip" type="button" data-node-id="${escapeHtml(source.id)}"><strong>${escapeHtml(source.label)}</strong><br>${escapeHtml(source.title)}</button>
+          <button class="edge-chip" type="button" data-node-id="${escapeHtml(target.id)}"><strong>${escapeHtml(target.label)}</strong><br>${escapeHtml(target.title)}</button>
+        </div>
+        <div class="source-note" id="sourceNote"></div>`;
+      panel.querySelectorAll("[data-node-id]").forEach((button) => button.addEventListener("click", () => selectNode(button.dataset.nodeId)));
+      renderSourceNote();
+      render();
+    }
+
+    function renderCards() {
+      const refs = visibleNodes().filter((node) => node.type === "reference");
+      readingCards.innerHTML = refs.map((node) => `
+        <article class="reading-card">
+          <h3>${escapeHtml(node.label)} - ${escapeHtml(node.title)}</h3>
+          <div class="meta-row"><span class="pill">${escapeHtml(node.pages)}</span></div>
+          <p>${escapeHtml(node.student_use || node.description)}</p>
+        </article>`).join("");
+    }
+
+    function renderSourceNote() {
+      const note = panel.querySelector("#sourceNote");
+      if (!note || !state.ontology) return;
+      const ref = state.ontology.metadata.source_reference;
+      note.innerHTML = `<strong>Source:</strong> ${escapeHtml(ref.short_name)}, ${escapeHtml(ref.full_title)} (${escapeHtml(ref.year)}). This page lists section locations and instructor-written guidance only.`;
+    }
+
+    toggleOptional.addEventListener("click", () => {
+      state.showOptional = !state.showOptional;
+      toggleOptional.setAttribute("aria-pressed", String(state.showOptional));
+      toggleOptional.textContent = state.showOptional ? "Hide Optional" : "Show Optional";
+      state.focus = null;
+      render();
+    });
+
+    resetFocus.addEventListener("click", () => { state.focus = null; render(); });
+    phaseFilter.addEventListener("change", () => { state.phase = phaseFilter.value; state.focus = null; render(); });
+    searchBox.addEventListener("input", () => { state.query = searchBox.value.trim().toLowerCase(); state.focus = null; render(); });
+
+    fetch("coleman_steele_ontology.json", { cache: "no-store" })
+      .then((response) => { if (!response.ok) throw new Error(`Could not load ontology JSON (${response.status})`); return response.json(); })
+      .then((data) => { state.ontology = data; renderSourceNote(); render(); })
+      .catch((error) => { errorBox.innerHTML = `<div class="error"><strong>Map could not load.</strong><br>${escapeHtml(error.message)}<br>Preview this through a local web server so the browser can load the JSON file.</div>`; });
+  </script>
+</body>
+</html>

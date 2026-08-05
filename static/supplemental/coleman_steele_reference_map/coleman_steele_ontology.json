@@ -1,0 +1,1461 @@
+{
+  "metadata": {
+    "id": "coleman_steele_course_reference_map",
+    "title": "Coleman & Steele Course Reference Map",
+    "course": "ASEN 3501: Aerospace Experimental Methods",
+    "theme": "University of Colorado Boulder",
+    "version": "0.3.0",
+    "last_updated": "2026-08-05",
+    "prototype_status": "Planning prototype - week-level section map",
+    "source_reference": {
+      "short_name": "Coleman & Steele, 4th ed.",
+      "full_title": "Experimentation, Validation, and Uncertainty Analysis for Engineers",
+      "edition": "4th edition",
+      "year": "2018",
+      "authors": "Hugh W. Coleman and W. Glenn Steele",
+      "local_pdf_path": "/Users/hodgkinr/Documents/GitHub/CU-Experimental-Methods-Planning/high_level_design/supporting_docs/Experimentation  Validation  and Uncertainty Analysis for Engineers - 2018 - Coleman.pdf",
+      "note": "This map cites chapter/section locations and instructor-written guidance only. It does not reproduce book content."
+    },
+    "sources": [
+      "high_level_design/supporting_docs/Experimentation  Validation  and Uncertainty Analysis for Engineers - 2018 - Coleman.pdf",
+      "blueprints/E1_week_by_week.md",
+      "blueprints/E2_week_by_week.md",
+      "blueprints/E3_week_by_week.md"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "course-w1",
+      "type": "course",
+      "label": "W1",
+      "title": "Modeling Spine, Measurement Literacy & Experiment Design",
+      "phase": "E1",
+      "order": 1,
+      "description": "Students locate measurement within the AMVF, distinguish measured from inferred quantities, and frame experimental work as an answer to a defined engineering question.",
+      "reference_ids": [
+        "cs-1-1-1-2",
+        "cs-1-3",
+        "cs-1-5",
+        "cs-9-1-9-4"
+      ]
+    },
+    {
+      "id": "course-w2",
+      "type": "course",
+      "label": "W2",
+      "title": "Uncertainty Foundations: Power, Monte Carlo & First Deliverable",
+      "phase": "E1",
+      "order": 2,
+      "description": "Students distinguish variability, error, and uncertainty; compute uncertainty in derived power estimates; compare partial-derivative and Monte Carlo approaches; and report results with interval meaning.",
+      "reference_ids": [
+        "cs-1-3",
+        "cs-1-4",
+        "cs-2-1",
+        "cs-2-3",
+        "cs-3-2",
+        "cs-3-3",
+        "cs-3-4",
+        "cs-app-b"
+      ]
+    },
+    {
+      "id": "course-lab1",
+      "type": "assignment",
+      "label": "Lab 1",
+      "title": "Power, Voltage, and the Language of Uncertainty",
+      "phase": "E1",
+      "order": 2.2,
+      "description": "Students measure a simple resistor circuit, compute power using multiple models, propagate uncertainty, run Monte Carlo, and explain a complete engineering result.",
+      "reference_ids": [
+        "cs-1-3",
+        "cs-1-4",
+        "cs-2-1",
+        "cs-2-3",
+        "cs-3-2",
+        "cs-3-3",
+        "cs-3-4",
+        "cs-app-b"
+      ]
+    },
+    {
+      "id": "course-w3",
+      "type": "course",
+      "label": "W3",
+      "title": "Quantitative Comparison, Validation Basics & Multiple Sensors",
+      "phase": "E1",
+      "order": 3,
+      "description": "Students move from visual comparison to numerical agreement claims, distinguish calibration from validation, and diagnose sensor/model disagreements.",
+      "reference_ids": [
+        "cs-5-3",
+        "cs-6-3",
+        "cs-9-1-9-4",
+        "cs-9-5-9-6"
+      ]
+    },
+    {
+      "id": "course-w4",
+      "type": "course",
+      "label": "W4",
+      "title": "Integration: Full Phase I Pipeline & Tier 1 Phase 1 Report",
+      "phase": "E1",
+      "order": 4,
+      "description": "Students read model equations as experimental design documents, rank dominant uncertainty sources, perform calibration work, and assemble the full Tier 1 Phase 1 report.",
+      "reference_ids": [
+        "cs-1-4",
+        "cs-3-1",
+        "cs-3-3",
+        "cs-4-1-4-3",
+        "cs-5-3",
+        "cs-6-1",
+        "cs-6-3"
+      ]
+    },
+    {
+      "id": "course-w5",
+      "type": "course",
+      "label": "W5",
+      "title": "Cross-Prediction, Lightning Talks & Peer Assessment",
+      "phase": "E1",
+      "order": 5,
+      "description": "Students move from analyzing their own experiment to predicting another experiment before seeing data, then communicate and critique prediction-to-measurement arguments.",
+      "reference_ids": [
+        "cs-1-1-1-2",
+        "cs-4-1-4-3",
+        "cs-6-3",
+        "cs-9-1-9-4"
+      ]
+    },
+    {
+      "id": "course-tier1",
+      "type": "assignment",
+      "label": "Tier 1",
+      "title": "Forward Analysis, Blind Prediction & Synthesis",
+      "phase": "E1/E2",
+      "order": 5.2,
+      "description": "Students execute a provided experiment, estimate uncertainty, compare models and measurements, and then make a blind prediction for another group's experiment.",
+      "reference_ids": [
+        "cs-1-4",
+        "cs-3-1",
+        "cs-3-3",
+        "cs-4-1-4-3",
+        "cs-6-3",
+        "cs-9-1-9-4"
+      ]
+    },
+    {
+      "id": "course-w6",
+      "type": "course",
+      "label": "W6",
+      "title": "Prediction Before Exposure & Formal Hypothesis Framing",
+      "phase": "E2",
+      "order": 6,
+      "description": "Students formalize prediction-before-measurement, intended use, response features, acceptance criteria, and anomalous-pattern risk assessment for complex systems.",
+      "reference_ids": [
+        "cs-1-1-1-2",
+        "cs-4-1-4-3",
+        "cs-9-1-9-4",
+        "cs-9-5-9-6"
+      ]
+    },
+    {
+      "id": "course-w7",
+      "type": "course",
+      "label": "W7",
+      "title": "Signal Conditioning, Sampling & DAQ Fundamentals",
+      "phase": "E2",
+      "order": 7,
+      "description": "Students connect sensor behavior, filtering, sampling, quantization, and DAQ configuration to the credibility of experimental data.",
+      "reference_ids": [
+        "cs-6-4",
+        "cs-app-f"
+      ]
+    },
+    {
+      "id": "course-w8",
+      "type": "course",
+      "label": "W8",
+      "title": "Model Adequacy, Discrepancy & Calibration Revisited",
+      "phase": "E2",
+      "order": 8,
+      "description": "Students interpret residuals, classify discrepancy, review calibration status, and use measured outcomes to propose model or measurement improvements.",
+      "reference_ids": [
+        "cs-5-3",
+        "cs-6-1",
+        "cs-6-3",
+        "cs-9-5-9-6",
+        "cs-9-7"
+      ]
+    },
+    {
+      "id": "course-tier2",
+      "type": "assignment",
+      "label": "Tier 2",
+      "title": "Predict, Execute, Analyze, Improve",
+      "phase": "E2",
+      "order": 8.2,
+      "description": "Groups commit to predictions before exposure, compare outcomes using uncertainty-aware metrics, diagnose discrepancy, and propose targeted improvements.",
+      "reference_ids": [
+        "cs-3-2",
+        "cs-3-3",
+        "cs-4-1-4-3",
+        "cs-6-1",
+        "cs-6-2",
+        "cs-6-3",
+        "cs-6-4",
+        "cs-8-1-8-2",
+        "cs-9-1-9-4",
+        "cs-9-7"
+      ]
+    },
+    {
+      "id": "course-w9",
+      "type": "course",
+      "label": "W9",
+      "title": "Statistical Comparison, Regression & Monte Carlo",
+      "phase": "E2",
+      "order": 9,
+      "description": "Students compare datasets, distinguish statistical from engineering significance, use regression diagnostically, and propagate uncertainty through multi-variable systems.",
+      "reference_ids": [
+        "cs-2-2",
+        "cs-3-2",
+        "cs-3-4",
+        "cs-8-1-8-2",
+        "cs-8-3-8-6",
+        "cs-app-cd"
+      ]
+    },
+    {
+      "id": "course-w10",
+      "type": "course",
+      "label": "W10",
+      "title": "Tier 2 Report, Quad Chart Presentation & Peer Review",
+      "phase": "E2",
+      "order": 10,
+      "description": "Students consolidate prediction, uncertainty, calibration, validation, and improvement evidence into a report and compact technical presentation.",
+      "reference_ids": [
+        "cs-4-4-4-6",
+        "cs-6-3",
+        "cs-9-7",
+        "cs-9-8"
+      ]
+    },
+    {
+      "id": "course-w11",
+      "type": "course",
+      "label": "W11",
+      "title": "Experimental Design Principles, Hypothesis & Prior Art",
+      "phase": "E3",
+      "order": 11,
+      "description": "Students launch the final design challenge by defining the model claim, hypothesis, variables, standards context, prior art, and the question the proposed experiment should answer.",
+      "reference_ids": [
+        "cs-1-1-1-2",
+        "cs-1-5",
+        "cs-4-1-4-3",
+        "cs-9-1-9-4"
+      ]
+    },
+    {
+      "id": "course-w12",
+      "type": "course",
+      "label": "W12",
+      "title": "Instrumentation Strategy, Signal Conditioning & Beyond-Provided Hardware",
+      "phase": "E3",
+      "order": 12,
+      "description": "Students select sensors and DAQ configuration, justify signal conditioning choices, and estimate expected measurement performance before committing to a design.",
+      "reference_ids": [
+        "cs-3-3",
+        "cs-4-1-4-3",
+        "cs-6-1",
+        "cs-6-4",
+        "cs-app-f"
+      ]
+    },
+    {
+      "id": "course-w13",
+      "type": "course",
+      "label": "W13",
+      "title": "V&V Planning, Intended Use & Oral Defense Preparation",
+      "phase": "E3",
+      "order": 13,
+      "description": "Students assemble a full V&V plan with conceptual model, response features, validation metrics, accuracy requirements, prospective uncertainty, and intended-use logic.",
+      "reference_ids": [
+        "cs-4-1-4-3",
+        "cs-4-4-4-6",
+        "cs-9-1-9-4",
+        "cs-9-5-9-6",
+        "cs-9-7",
+        "cs-9-8"
+      ]
+    },
+    {
+      "id": "course-final",
+      "type": "assignment",
+      "label": "Final",
+      "title": "Experimental Design and V&V Plan",
+      "phase": "E3",
+      "order": 13.2,
+      "description": "Students design an original experiment on paper, including model claim, instrumentation plan, prospective uncertainty analysis, validation metrics, and oral defense.",
+      "reference_ids": [
+        "cs-1-1-1-2",
+        "cs-4-1-4-3",
+        "cs-4-4-4-6",
+        "cs-6-1",
+        "cs-6-4",
+        "cs-9-1-9-4",
+        "cs-9-7",
+        "cs-9-8",
+        "cs-app-f"
+      ]
+    },
+    {
+      "id": "course-w14",
+      "type": "course",
+      "label": "W14",
+      "title": "Oral Defense, Communication & Peer Assessment",
+      "phase": "E3",
+      "order": 14,
+      "description": "Students defend their V&V plans, evaluate peer and sample work, and critique whether experimental-design claims are technically supported.",
+      "reference_ids": [
+        "cs-4-4-4-6",
+        "cs-9-5-9-6",
+        "cs-9-7",
+        "cs-9-8"
+      ]
+    },
+    {
+      "id": "course-w15",
+      "type": "course",
+      "label": "W15",
+      "title": "Integration, Reflection & Course Closure",
+      "phase": "E3",
+      "order": 15,
+      "description": "Students connect the whole course arc back to the AMVF and the central question: how do you know this prediction is right? Coleman & Steele is used here as a review anchor rather than a new reading.",
+      "reference_ids": [
+        "cs-1-1-1-2",
+        "cs-1-3",
+        "cs-9-1-9-4",
+        "cs-9-8"
+      ]
+    },
+    {
+      "id": "concept-experiment-purpose",
+      "type": "concept",
+      "label": "Purpose",
+      "title": "Experiment Purpose and Intended Use",
+      "order": 1,
+      "description": "The experiment exists to answer a specific engineering question at a useful level of certainty, not merely to collect data."
+    },
+    {
+      "id": "concept-error-taxonomy",
+      "type": "concept",
+      "label": "Errors",
+      "title": "Error Sources and Uncertainty Language",
+      "order": 2,
+      "description": "Students need a stable vocabulary for random effects, systematic effects, standard uncertainty, expanded uncertainty, and coverage basis."
+    },
+    {
+      "id": "concept-coverage",
+      "type": "concept",
+      "label": "Intervals",
+      "title": "Coverage and Confidence Intervals",
+      "order": 3,
+      "description": "Intervals must be labeled by what they mean, how they were computed, and what coverage or confidence claim they support."
+    },
+    {
+      "id": "concept-propagation",
+      "type": "concept",
+      "label": "Propagation",
+      "title": "Uncertainty Propagation",
+      "order": 4,
+      "description": "Derived engineering results inherit uncertainty through the measurement model; sensitivity matters as much as input quality."
+    },
+    {
+      "id": "concept-planning",
+      "type": "concept",
+      "label": "Planning",
+      "title": "Uncertainty as a Design Tool",
+      "order": 5,
+      "description": "Prospective uncertainty analysis can decide whether an experiment is worth running before hardware or lab time is spent."
+    },
+    {
+      "id": "concept-systematic",
+      "type": "concept",
+      "label": "Systematics",
+      "title": "Systematic Uncertainty, Calibration and Correlation",
+      "order": 6,
+      "description": "Calibration, correlated inputs, test sequence, and measurement-chain assumptions often dominate whether a validation claim is credible."
+    },
+    {
+      "id": "concept-regression",
+      "type": "concept",
+      "label": "Regression",
+      "title": "Regression and Model Fit Uncertainty",
+      "order": 7,
+      "description": "Regression is useful for describing trends and uncertainty in fitted relationships, but fit quality alone is not model validation."
+    },
+    {
+      "id": "concept-validation",
+      "type": "concept",
+      "label": "Validation",
+      "title": "Validation of Simulations",
+      "order": 8,
+      "description": "Validation asks whether model predictions are adequate for the intended use, with uncertainty in both experiment and simulation considered."
+    },
+    {
+      "id": "concept-dynamics",
+      "type": "concept",
+      "label": "Dynamics",
+      "title": "Dynamic Instrument Response",
+      "order": 9,
+      "description": "Instrument dynamics affect whether the measurement chain can capture the behavior the model claims to predict."
+    },
+    {
+      "id": "cs-1-1-1-2",
+      "type": "reference",
+      "label": "C&S 1-1 to 1-2",
+      "title": "Experimentation and Experimental Approach",
+      "pages": "pp. 2-8",
+      "order": 1.1,
+      "description": "Use these opening sections for why experiments are necessary, how uncertainty sets the useful resolution of a comparison, and what questions an experimental program must answer.",
+      "student_use": "Good for Week 1 framing, AMVF motivation, hypothesis formation, and intended-use language."
+    },
+    {
+      "id": "cs-1-3",
+      "type": "reference",
+      "label": "C&S 1-3",
+      "title": "Basic Concepts and Definitions",
+      "pages": "pp. 8-25",
+      "order": 1.3,
+      "description": "Use this section cluster for errors, uncertainties, random and systematic effects, standard uncertainties, combined uncertainty, repetition, replication, and coverage language.",
+      "student_use": "The best first stop for Lab 1 uncertainty vocabulary and oral interview preparation."
+    },
+    {
+      "id": "cs-1-4",
+      "type": "reference",
+      "label": "C&S 1-4",
+      "title": "Results from Data Reduction Equations",
+      "pages": "pp. 25-27",
+      "order": 1.4,
+      "description": "Use this when the reported result is computed from multiple measured variables rather than directly measured.",
+      "student_use": "Helpful for power equations in Lab 1 and any derived quantity in Tier 1, Tier 2, or E3."
+    },
+    {
+      "id": "cs-1-5",
+      "type": "reference",
+      "label": "C&S 1-5",
+      "title": "Guides and Standards",
+      "pages": "pp. 27-31",
+      "order": 1.5,
+      "description": "Use this to connect course uncertainty and validation practice to professional guides and standards.",
+      "student_use": "Useful in Week 1 standards framing and E3 source justification."
+    },
+    {
+      "id": "cs-2-1",
+      "type": "reference",
+      "label": "C&S 2-1",
+      "title": "Monte Carlo Coverage Intervals for a Single Measured Variable",
+      "pages": "pp. 34-35",
+      "order": 2.1,
+      "description": "Use this for the single-variable Monte Carlo interval idea before students generalize Monte Carlo to derived quantities.",
+      "student_use": "Useful when explaining what a Monte Carlo coverage interval means in Lab 1."
+    },
+    {
+      "id": "cs-2-2",
+      "type": "reference",
+      "label": "C&S 2-2",
+      "title": "Confidence Intervals for a Single Measured Variable: Random Errors",
+      "pages": "pp. 35-55",
+      "order": 2.2,
+      "description": "Use this for distributions, Gaussian assumptions, confidence intervals, samples, prediction intervals, and outlier treatment when only random errors are considered.",
+      "student_use": "Good support for interpreting repeated measurements and scatter."
+    },
+    {
+      "id": "cs-2-3",
+      "type": "reference",
+      "label": "C&S 2-3",
+      "title": "Single Measured Variable: Random and Systematic Errors",
+      "pages": "pp. 55-63",
+      "order": 2.3,
+      "description": "Use this for systematic standard uncertainty and expanded uncertainty for a single measured variable.",
+      "student_use": "Directly relevant when Lab 1 uses datasheet-based Type B inputs for voltage, current, or resistance."
+    },
+    {
+      "id": "cs-2-4",
+      "type": "reference",
+      "label": "C&S 2-4",
+      "title": "Uncertainty of Uncertainty Estimates",
+      "pages": "pp. 63-67",
+      "order": 2.4,
+      "description": "Use this as a deeper reference for uncertainty in the interval limits themselves and design implications of high-confidence intervals.",
+      "student_use": "Optional extension for students asking how certain the uncertainty estimate is."
+    },
+    {
+      "id": "cs-3-1",
+      "type": "reference",
+      "label": "C&S 3-1",
+      "title": "General vs. Detailed Uncertainty Analysis",
+      "pages": "pp. 72-73",
+      "order": 3.1,
+      "description": "Use this to distinguish rough planning-level uncertainty analysis from a more complete detailed analysis.",
+      "student_use": "Helpful when deciding how much uncertainty work is expected for a given assignment stage."
+    },
+    {
+      "id": "cs-3-2",
+      "type": "reference",
+      "label": "C&S 3-2",
+      "title": "Monte Carlo Propagation of Uncertainties",
+      "pages": "pp. 73-78",
+      "order": 3.2,
+      "description": "Use this for propagating uncertain inputs through a data reduction equation using Monte Carlo simulation.",
+      "student_use": "Directly relevant for Lab 1 Monte Carlo and later multi-input simulations."
+    },
+    {
+      "id": "cs-3-3",
+      "type": "reference",
+      "label": "C&S 3-3",
+      "title": "Taylor Series Propagation of Uncertainties",
+      "pages": "pp. 78-82",
+      "order": 3.3,
+      "description": "Use this for partial-derivative uncertainty propagation and input sensitivity in derived results.",
+      "student_use": "Directly relevant for Lab 1 power equations, Tier 1 derived quantities, and E3 prospective uncertainty."
+    },
+    {
+      "id": "cs-3-4",
+      "type": "reference",
+      "label": "C&S 3-4",
+      "title": "MCM Coverage Intervals and TSM Expanded Uncertainty",
+      "pages": "pp. 82-87",
+      "order": 3.4,
+      "description": "Use this when comparing Monte Carlo coverage intervals to Taylor series expanded uncertainty.",
+      "student_use": "Good for Lab 1 sections that compare partial-derivative and Monte Carlo results numerically."
+    },
+    {
+      "id": "cs-3-5-3-6",
+      "type": "reference",
+      "label": "C&S 3-5 to 3-6",
+      "title": "General Uncertainty Examples and Spreadsheet Implementation",
+      "pages": "pp. 87-96",
+      "order": 3.5,
+      "description": "Use this as an implementation-oriented example of uncertainty propagation for engineering calculations.",
+      "student_use": "Helpful for students who need a worked structure for MATLAB or spreadsheet-style uncertainty analysis."
+    },
+    {
+      "id": "cs-4-1-4-3",
+      "type": "reference",
+      "label": "C&S 4-1 to 4-3",
+      "title": "TSM for Experiment Planning",
+      "pages": "pp. 100-108",
+      "order": 4.1,
+      "description": "Use these sections for using Taylor series uncertainty analysis before the experiment to plan measurements and judge feasibility.",
+      "student_use": "Strong fit for Tier 1 predict-from-specs and E3 instrumentation planning."
+    },
+    {
+      "id": "cs-4-4-4-6",
+      "type": "reference",
+      "label": "C&S 4-4 to 4-6",
+      "title": "Planning Examples and Presentation of Results",
+      "pages": "pp. 109-126",
+      "order": 4.4,
+      "description": "Use these examples to see how uncertainty analysis can indicate design changes and how results can be presented from actual applications.",
+      "student_use": "Good optional support for E3 design tradeoffs and polished uncertainty reporting."
+    },
+    {
+      "id": "cs-5-1-5-2",
+      "type": "reference",
+      "label": "C&S 5-1 to 5-2",
+      "title": "Detailed Uncertainty Analysis Overview",
+      "pages": "pp. 131-137",
+      "order": 5.1,
+      "description": "Use this for the overall methodology of detailed uncertainty analysis once students move beyond introductory examples.",
+      "student_use": "Useful for Tier 2 and final project students who need a more complete workflow."
+    },
+    {
+      "id": "cs-5-3",
+      "type": "reference",
+      "label": "C&S 5-3",
+      "title": "Determining Random Uncertainty of an Experimental Result",
+      "pages": "pp. 137-146",
+      "order": 5.3,
+      "description": "Use this for repeated-trial random uncertainty in an experimental result.",
+      "student_use": "Helpful when distinguishing random scatter from systematic discrepancy in Week 3, Tier 1, or Tier 2."
+    },
+    {
+      "id": "cs-6-1",
+      "type": "reference",
+      "label": "C&S 6-1",
+      "title": "Estimating Systematic Uncertainties",
+      "pages": "pp. 149-165",
+      "order": 6.1,
+      "description": "Use this for systematic uncertainty estimates, property-value uncertainty, calibration-related uncertainty, and instrument effects.",
+      "student_use": "Direct support for datasheet/calibration reasoning in Lab 1, Tier 2, and E3."
+    },
+    {
+      "id": "cs-6-2",
+      "type": "reference",
+      "label": "C&S 6-2",
+      "title": "Correlated Systematic Error Effects",
+      "pages": "pp. 165-177",
+      "order": 6.2,
+      "description": "Use this when multiple inputs share an error source or calibration basis and independence assumptions may fail.",
+      "student_use": "Recommended for advanced Tier 2/E3 uncertainty budgets with correlated inputs."
+    },
+    {
+      "id": "cs-6-3",
+      "type": "reference",
+      "label": "C&S 6-3",
+      "title": "Comparative Testing",
+      "pages": "pp. 177-183",
+      "order": 6.3,
+      "description": "Use this for difference or ratio comparisons between test results.",
+      "student_use": "Useful for multi-sensor comparisons, Tier 1 synthesis, and Tier 2 improvement claims."
+    },
+    {
+      "id": "cs-6-4",
+      "type": "reference",
+      "label": "C&S 6-4",
+      "title": "Additional Considerations in Experiment Execution",
+      "pages": "pp. 183-194",
+      "order": 6.4,
+      "description": "Use this for test point choice, test sequence, DOE relationship, jitter programs, transient testing, and digital DAQ error comments.",
+      "student_use": "Useful for Week 7 DAQ awareness, Tier 2 execution critique, and E3 test planning."
+    },
+    {
+      "id": "cs-7-1-7-5",
+      "type": "reference",
+      "label": "C&S 7",
+      "title": "Comprehensive Detailed Uncertainty Examples",
+      "pages": "pp. 199-235",
+      "order": 7,
+      "description": "Use this as a complete example bank for replication levels, balance checks, debugging, heat-exchanger tests, and comparative tests.",
+      "student_use": "Optional but valuable when students want to see full engineering examples rather than isolated formulas."
+    },
+    {
+      "id": "cs-8-1-8-2",
+      "type": "reference",
+      "label": "C&S 8-1 to 8-2",
+      "title": "Regression Overview and Reporting Regression Uncertainty",
+      "pages": "pp. 240-246",
+      "order": 8.1,
+      "description": "Use this for what regression uncertainty means and how regression uncertainty should be reported.",
+      "student_use": "Best first stop for Week 9 regression interpretation."
+    },
+    {
+      "id": "cs-8-3-8-6",
+      "type": "reference",
+      "label": "C&S 8-3 to 8-6",
+      "title": "Least Squares, Regression Examples, and Flow-Test Application",
+      "pages": "pp. 246-273",
+      "order": 8.3,
+      "description": "Use this for least-squares regression, uncertainty in coefficients and predicted values, multivariate regression, and an applied flow-test example.",
+      "student_use": "Useful for Tier 2 reports with trend fitting or response-curve comparisons."
+    },
+    {
+      "id": "cs-9-1-9-4",
+      "type": "reference",
+      "label": "C&S 9-1 to 9-4",
+      "title": "Validation Methodology, Nomenclature, and Approach",
+      "pages": "pp. 277-284",
+      "order": 9.1,
+      "description": "Use this for validation vocabulary, validation-variable framing, and the overall structure of a validation comparison.",
+      "student_use": "Good conceptual anchor for Week 3, Tier 2 prediction gates, and the final V&V plan."
+    },
+    {
+      "id": "cs-9-5-9-6",
+      "type": "reference",
+      "label": "C&S 9-5 to 9-6",
+      "title": "Verification and Interpretation of Validation Results",
+      "pages": "pp. 284-286",
+      "order": 9.5,
+      "description": "Use this for the verification-versus-validation distinction and interpretation of validation comparison results.",
+      "student_use": "Helpful when students need to explain whether disagreement matters."
+    },
+    {
+      "id": "cs-9-7",
+      "type": "reference",
+      "label": "C&S 9-7",
+      "title": "Estimating Validation Uncertainty",
+      "pages": "pp. 286-297",
+      "order": 9.7,
+      "description": "Use this for estimating validation uncertainty when the experimental validation value is directly measured or determined through a data reduction equation.",
+      "student_use": "Direct support for Tier 2 validation reports and final V&V plan uncertainty adequacy."
+    },
+    {
+      "id": "cs-9-8",
+      "type": "reference",
+      "label": "C&S 9-8",
+      "title": "Some Practical Points",
+      "pages": "pp. 297-299",
+      "order": 9.8,
+      "description": "Use this for practical judgment around validation studies and their interpretation.",
+      "student_use": "Good short closing reference for final V&V plan critique."
+    },
+    {
+      "id": "cs-app-b",
+      "type": "reference",
+      "label": "C&S App. B",
+      "title": "Taylor Series Method Derivation",
+      "pages": "pp. 311-322",
+      "order": 10,
+      "description": "Use this as the mathematical backup for the Taylor series propagation equation and coverage-factor assumptions.",
+      "student_use": "Optional derivation support for Lab 1, Tier 2, or E3."
+    },
+    {
+      "id": "cs-app-cd",
+      "type": "reference",
+      "label": "C&S App. C-D",
+      "title": "Monte Carlo Model Comparison and Coverage Intervals",
+      "pages": "pp. 325-338",
+      "order": 11,
+      "description": "Use this as a deeper reference for Monte Carlo uncertainty models and shortest coverage interval logic.",
+      "student_use": "Optional extension for Monte Carlo-heavy analyses."
+    },
+    {
+      "id": "cs-app-f",
+      "type": "reference",
+      "label": "C&S App. F",
+      "title": "Dynamic Response of Instrument Systems",
+      "pages": "pp. 353-362",
+      "order": 12,
+      "description": "Use this to connect instrument dynamic response to sampling, filtering, and whether the sensor can represent the physical signal.",
+      "student_use": "Helpful during DAQ/signal conditioning weeks and E3 sensor selection."
+    }
+  ],
+  "edges": [
+    {
+      "id": "cs-1-1-purpose",
+      "source": "cs-1-1-1-2",
+      "target": "concept-experiment-purpose",
+      "relationship": "explains",
+      "priority": "required",
+      "description": "Sections 1-1 and 1-2 frame why experiments are needed, what question the experiment answers, and how the required accuracy follows from intended use."
+    },
+    {
+      "id": "cs-1-3-errors",
+      "source": "cs-1-3",
+      "target": "concept-error-taxonomy",
+      "relationship": "introduces",
+      "priority": "required",
+      "description": "Section 1-3 is the main introductory vocabulary source for errors, uncertainties, systematic and random effects, repetition, replication, and coverage."
+    },
+    {
+      "id": "cs-1-4-prop",
+      "source": "cs-1-4",
+      "target": "concept-propagation",
+      "relationship": "introduces",
+      "priority": "required",
+      "description": "Section 1-4 introduces the idea that experimental results are often computed from multiple measured variables through a data reduction equation."
+    },
+    {
+      "id": "cs-1-5-standards",
+      "source": "cs-1-5",
+      "target": "concept-experiment-purpose",
+      "relationship": "anchors",
+      "priority": "recommended",
+      "description": "Section 1-5 helps connect course practices to guides and standards used in experimental uncertainty analysis and validation."
+    },
+    {
+      "id": "cs-2-1-coverage",
+      "source": "cs-2-1",
+      "target": "concept-coverage",
+      "relationship": "explains",
+      "priority": "recommended",
+      "description": "Section 2-1 gives the single-variable Monte Carlo coverage interval idea students later use in computational uncertainty work."
+    },
+    {
+      "id": "cs-2-2-coverage",
+      "source": "cs-2-2",
+      "target": "concept-coverage",
+      "relationship": "explains",
+      "priority": "required",
+      "description": "Section 2-2 supports confidence interval language, distributions, sample reasoning, prediction intervals, and outlier treatment for random effects."
+    },
+    {
+      "id": "cs-2-3-coverage",
+      "source": "cs-2-3",
+      "target": "concept-coverage",
+      "relationship": "explains",
+      "priority": "required",
+      "description": "Section 2-3 connects systematic standard uncertainty and expanded uncertainty to a single measured variable."
+    },
+    {
+      "id": "cs-2-3-errors",
+      "source": "cs-2-3",
+      "target": "concept-error-taxonomy",
+      "relationship": "deepens",
+      "priority": "required",
+      "description": "Section 2-3 gives students a more precise way to handle systematic uncertainty inputs from specifications and calibration information."
+    },
+    {
+      "id": "cs-2-4-coverage",
+      "source": "cs-2-4",
+      "target": "concept-coverage",
+      "relationship": "deepens",
+      "priority": "optional",
+      "description": "Section 2-4 is an advanced note on uncertainty in uncertainty estimates and the consequences for high-confidence design decisions."
+    },
+    {
+      "id": "cs-3-1-prop",
+      "source": "cs-3-1",
+      "target": "concept-propagation",
+      "relationship": "frames",
+      "priority": "recommended",
+      "description": "Section 3-1 helps students decide whether an assignment needs a general or detailed uncertainty analysis."
+    },
+    {
+      "id": "cs-3-2-prop",
+      "source": "cs-3-2",
+      "target": "concept-propagation",
+      "relationship": "explains",
+      "priority": "required",
+      "description": "Section 3-2 is the primary reference for Monte Carlo propagation through a data reduction equation."
+    },
+    {
+      "id": "cs-3-3-prop",
+      "source": "cs-3-3",
+      "target": "concept-propagation",
+      "relationship": "explains",
+      "priority": "required",
+      "description": "Section 3-3 is the primary reference for Taylor series/partial-derivative uncertainty propagation."
+    },
+    {
+      "id": "cs-3-4-prop",
+      "source": "cs-3-4",
+      "target": "concept-propagation",
+      "relationship": "compares",
+      "priority": "required",
+      "description": "Section 3-4 supports comparing Monte Carlo coverage intervals with Taylor series expanded uncertainty."
+    },
+    {
+      "id": "cs-3-5-prop",
+      "source": "cs-3-5-3-6",
+      "target": "concept-propagation",
+      "relationship": "models",
+      "priority": "recommended",
+      "description": "Sections 3-5 and 3-6 provide implementation-style examples students can adapt to MATLAB or spreadsheet workflows."
+    },
+    {
+      "id": "cs-4-1-planning",
+      "source": "cs-4-1-4-3",
+      "target": "concept-planning",
+      "relationship": "explains",
+      "priority": "required",
+      "description": "Sections 4-1 through 4-3 are the main source for applying uncertainty analysis during experiment planning."
+    },
+    {
+      "id": "cs-4-4-planning",
+      "source": "cs-4-4-4-6",
+      "target": "concept-planning",
+      "relationship": "models",
+      "priority": "recommended",
+      "description": "Sections 4-4 through 4-6 show how planning uncertainty analysis can motivate experimental design changes and result presentation choices."
+    },
+    {
+      "id": "cs-5-1-random",
+      "source": "cs-5-1-5-2",
+      "target": "concept-error-taxonomy",
+      "relationship": "deepens",
+      "priority": "recommended",
+      "description": "Sections 5-1 and 5-2 provide the broader workflow for detailed uncertainty analysis."
+    },
+    {
+      "id": "cs-5-3-random",
+      "source": "cs-5-3",
+      "target": "concept-error-taxonomy",
+      "relationship": "explains",
+      "priority": "recommended",
+      "description": "Section 5-3 supports random uncertainty estimates in experimental results from repeated observations."
+    },
+    {
+      "id": "cs-6-1-systematic",
+      "source": "cs-6-1",
+      "target": "concept-systematic",
+      "relationship": "explains",
+      "priority": "required",
+      "description": "Section 6-1 is the main source for estimating systematic uncertainties, including property and calibration-related examples."
+    },
+    {
+      "id": "cs-6-1-errors",
+      "source": "cs-6-1",
+      "target": "concept-error-taxonomy",
+      "relationship": "deepens",
+      "priority": "recommended",
+      "description": "Section 6-1 gives students more concrete examples of systematic uncertainty sources beyond the introductory vocabulary."
+    },
+    {
+      "id": "cs-6-2-systematic",
+      "source": "cs-6-2",
+      "target": "concept-systematic",
+      "relationship": "deepens",
+      "priority": "recommended",
+      "description": "Section 6-2 supports correlated systematic uncertainty reasoning when error sources are not independent."
+    },
+    {
+      "id": "cs-6-3-systematic",
+      "source": "cs-6-3",
+      "target": "concept-systematic",
+      "relationship": "applies_to_comparison",
+      "priority": "recommended",
+      "description": "Section 6-3 supports comparative testing with differences and ratios, which maps well to multi-sensor and multi-condition comparisons."
+    },
+    {
+      "id": "cs-6-4-systematic",
+      "source": "cs-6-4",
+      "target": "concept-systematic",
+      "relationship": "supports_execution",
+      "priority": "recommended",
+      "description": "Section 6-4 connects uncertainty reasoning to test sequence, test point choice, transient testing, and DAQ-related execution concerns."
+    },
+    {
+      "id": "cs-6-4-dynamics",
+      "source": "cs-6-4",
+      "target": "concept-dynamics",
+      "relationship": "supports",
+      "priority": "recommended",
+      "description": "Section 6-4 includes practical execution considerations that bridge into DAQ and transient measurement decisions."
+    },
+    {
+      "id": "cs-7-examples",
+      "source": "cs-7-1-7-5",
+      "target": "concept-systematic",
+      "relationship": "models",
+      "priority": "optional",
+      "description": "Chapter 7 provides comprehensive examples of detailed uncertainty analysis, debugging, balance checks, and comparative tests."
+    },
+    {
+      "id": "cs-8-1-reg",
+      "source": "cs-8-1-8-2",
+      "target": "concept-regression",
+      "relationship": "explains",
+      "priority": "required",
+      "description": "Sections 8-1 and 8-2 are the most direct source for regression uncertainty and responsible reporting of fitted relationships."
+    },
+    {
+      "id": "cs-8-3-reg",
+      "source": "cs-8-3-8-6",
+      "target": "concept-regression",
+      "relationship": "models",
+      "priority": "recommended",
+      "description": "Sections 8-3 through 8-6 provide least-squares methods, coefficient uncertainty, prediction uncertainty, multivariate regression, and an applied flow-test example."
+    },
+    {
+      "id": "cs-9-1-val",
+      "source": "cs-9-1-9-4",
+      "target": "concept-validation",
+      "relationship": "explains",
+      "priority": "required",
+      "description": "Sections 9-1 through 9-4 are the primary entry point for validation methodology, nomenclature, and approach."
+    },
+    {
+      "id": "cs-9-5-val",
+      "source": "cs-9-5-9-6",
+      "target": "concept-validation",
+      "relationship": "interprets",
+      "priority": "required",
+      "description": "Sections 9-5 and 9-6 support verification-versus-validation distinctions and interpretation of validation results."
+    },
+    {
+      "id": "cs-9-7-val",
+      "source": "cs-9-7",
+      "target": "concept-validation",
+      "relationship": "quantifies",
+      "priority": "required",
+      "description": "Section 9-7 is the key source for estimating validation uncertainty in direct and data-reduction-equation cases."
+    },
+    {
+      "id": "cs-9-8-val",
+      "source": "cs-9-8",
+      "target": "concept-validation",
+      "relationship": "grounds",
+      "priority": "recommended",
+      "description": "Section 9-8 provides practical points for interpreting validation work."
+    },
+    {
+      "id": "appb-prop",
+      "source": "cs-app-b",
+      "target": "concept-propagation",
+      "relationship": "derives",
+      "priority": "optional",
+      "description": "Appendix B is the backup for students who want the derivation and assumptions behind Taylor series uncertainty propagation."
+    },
+    {
+      "id": "appcd-mc",
+      "source": "cs-app-cd",
+      "target": "concept-propagation",
+      "relationship": "deepens",
+      "priority": "optional",
+      "description": "Appendices C and D are optional extensions for Monte Carlo uncertainty modeling and interval construction."
+    },
+    {
+      "id": "appf-dyn",
+      "source": "cs-app-f",
+      "target": "concept-dynamics",
+      "relationship": "explains",
+      "priority": "recommended",
+      "description": "Appendix F connects instrument dynamics to whether a measured signal is faithful to the physical behavior."
+    },
+    {
+      "id": "experiment-purpose-w1",
+      "source": "concept-experiment-purpose",
+      "target": "course-w1",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W1 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "error-taxonomy-w1",
+      "source": "concept-error-taxonomy",
+      "target": "course-w1",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W1 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-w1",
+      "source": "concept-validation",
+      "target": "course-w1",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W1 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "error-taxonomy-w2",
+      "source": "concept-error-taxonomy",
+      "target": "course-w2",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W2 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "coverage-w2",
+      "source": "concept-coverage",
+      "target": "course-w2",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W2 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "propagation-w2",
+      "source": "concept-propagation",
+      "target": "course-w2",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W2 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "error-taxonomy-lab1",
+      "source": "concept-error-taxonomy",
+      "target": "course-lab1",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Lab 1 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "coverage-lab1",
+      "source": "concept-coverage",
+      "target": "course-lab1",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Lab 1 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "propagation-lab1",
+      "source": "concept-propagation",
+      "target": "course-lab1",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Lab 1 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "error-taxonomy-w3",
+      "source": "concept-error-taxonomy",
+      "target": "course-w3",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W3 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "systematic-w3",
+      "source": "concept-systematic",
+      "target": "course-w3",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W3 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-w3",
+      "source": "concept-validation",
+      "target": "course-w3",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W3 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "propagation-w4",
+      "source": "concept-propagation",
+      "target": "course-w4",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W4 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "planning-w4",
+      "source": "concept-planning",
+      "target": "course-w4",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W4 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "systematic-w4",
+      "source": "concept-systematic",
+      "target": "course-w4",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W4 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "experiment-purpose-w5",
+      "source": "concept-experiment-purpose",
+      "target": "course-w5",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W5 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "planning-w5",
+      "source": "concept-planning",
+      "target": "course-w5",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W5 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-w5",
+      "source": "concept-validation",
+      "target": "course-w5",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W5 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "propagation-tier1",
+      "source": "concept-propagation",
+      "target": "course-tier1",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Tier 1 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "planning-tier1",
+      "source": "concept-planning",
+      "target": "course-tier1",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Tier 1 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "systematic-tier1",
+      "source": "concept-systematic",
+      "target": "course-tier1",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Tier 1 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-tier1",
+      "source": "concept-validation",
+      "target": "course-tier1",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Tier 1 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "experiment-purpose-w6",
+      "source": "concept-experiment-purpose",
+      "target": "course-w6",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W6 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "planning-w6",
+      "source": "concept-planning",
+      "target": "course-w6",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W6 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-w6",
+      "source": "concept-validation",
+      "target": "course-w6",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W6 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "systematic-w7",
+      "source": "concept-systematic",
+      "target": "course-w7",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W7 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "dynamics-w7",
+      "source": "concept-dynamics",
+      "target": "course-w7",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W7 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "error-taxonomy-w8",
+      "source": "concept-error-taxonomy",
+      "target": "course-w8",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W8 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "systematic-w8",
+      "source": "concept-systematic",
+      "target": "course-w8",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W8 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-w8",
+      "source": "concept-validation",
+      "target": "course-w8",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W8 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "propagation-tier2",
+      "source": "concept-propagation",
+      "target": "course-tier2",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Tier 2 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "planning-tier2",
+      "source": "concept-planning",
+      "target": "course-tier2",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Tier 2 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "systematic-tier2",
+      "source": "concept-systematic",
+      "target": "course-tier2",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Tier 2 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "regression-tier2",
+      "source": "concept-regression",
+      "target": "course-tier2",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Tier 2 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-tier2",
+      "source": "concept-validation",
+      "target": "course-tier2",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Tier 2 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "coverage-w9",
+      "source": "concept-coverage",
+      "target": "course-w9",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W9 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "propagation-w9",
+      "source": "concept-propagation",
+      "target": "course-w9",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W9 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "regression-w9",
+      "source": "concept-regression",
+      "target": "course-w9",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W9 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "systematic-w10",
+      "source": "concept-systematic",
+      "target": "course-w10",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W10 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-w10",
+      "source": "concept-validation",
+      "target": "course-w10",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W10 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "experiment-purpose-w11",
+      "source": "concept-experiment-purpose",
+      "target": "course-w11",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W11 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "planning-w11",
+      "source": "concept-planning",
+      "target": "course-w11",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W11 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-w11",
+      "source": "concept-validation",
+      "target": "course-w11",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W11 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "propagation-w12",
+      "source": "concept-propagation",
+      "target": "course-w12",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W12 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "planning-w12",
+      "source": "concept-planning",
+      "target": "course-w12",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W12 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "systematic-w12",
+      "source": "concept-systematic",
+      "target": "course-w12",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W12 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "dynamics-w12",
+      "source": "concept-dynamics",
+      "target": "course-w12",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W12 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "planning-w13",
+      "source": "concept-planning",
+      "target": "course-w13",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W13 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-w13",
+      "source": "concept-validation",
+      "target": "course-w13",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W13 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "experiment-purpose-final",
+      "source": "concept-experiment-purpose",
+      "target": "course-final",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Final uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "planning-final",
+      "source": "concept-planning",
+      "target": "course-final",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Final uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "systematic-final",
+      "source": "concept-systematic",
+      "target": "course-final",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Final uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-final",
+      "source": "concept-validation",
+      "target": "course-final",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Final uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "dynamics-final",
+      "source": "concept-dynamics",
+      "target": "course-final",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "Final uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-w14",
+      "source": "concept-validation",
+      "target": "course-w14",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W14 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "experiment-purpose-w15",
+      "source": "concept-experiment-purpose",
+      "target": "course-w15",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W15 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "error-taxonomy-w15",
+      "source": "concept-error-taxonomy",
+      "target": "course-w15",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W15 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    },
+    {
+      "id": "validation-w15",
+      "source": "concept-validation",
+      "target": "course-w15",
+      "relationship": "supports",
+      "priority": "required",
+      "description": "W15 uses this concept as part of its Coleman & Steele reading map. Click the course node for the specific matched sections."
+    }
+  ]
+}
