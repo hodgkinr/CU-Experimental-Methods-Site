@@ -69,15 +69,27 @@
       margin: 0;
       font-weight: 800;
       letter-spacing: 0.03em;
+      color: white;
+      text-decoration: none;
     }
 
-    .status-pill {
-      border: 1px solid rgba(207, 184, 124, 0.4);
+    .top-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.85);
+      padding: 0.55rem 0.85rem;
       border-radius: 999px;
-      padding: 0.45rem 0.75rem;
-      color: rgba(255, 255, 255, 0.88);
-      font-size: 0.86rem;
-      white-space: nowrap;
+    }
+
+    .top-nav a.is-current,
+    .top-nav a:hover {
+      background: rgba(207, 184, 124, 0.18);
+      color: white;
     }
 
     .page-shell {
@@ -441,8 +453,17 @@
 <body>
   <header class="site-header">
     <div class="site-header-inner">
-      <p class="brand">Aerospace Experimental Methods</p>
-      <span class="status-pill">Assessments2CLO Ontology Prototype</span>
+      <a class="brand" href="../index.html">Aerospace Experimental Methods</a>
+      <nav class="top-nav">
+        <a href="../index.html">Home</a>
+        <a href="../opening.html">Opening</a>
+        <a href="../syllabus.html">Syllabus</a>
+        <a href="../schedule.html">Schedule</a>
+        <a href="../labs.html">Labs</a>
+        <a href="../supplemental.html">Supplemental</a>
+        <a class="is-current" href="./index.html">Ontologies</a>
+        <a href="../results.html">Results</a>
+      </nav>
     </div>
   </header>
 
@@ -451,7 +472,7 @@
       <p class="eyebrow">University of Colorado Boulder</p>
       <h1>How Assessments Connect to Course Learning Outcomes</h1>
       <p class="lead">Click a CLO, assessment, or relationship line to inspect what it means. Summative assessments are shown by default; turn on formative checks when you want to see the lower-stakes support layer.</p>
-      <p class="source-path" id="sourcePath">Source: CU-Experimental-Methods-Planning / admin / interactive_ontologies</p>
+      <p class="source-path" id="sourcePath">Ontology data loading...</p>
       <div class="toolbar">
         <div class="button-row">
           <button class="control-button" id="toggleFormative" type="button" aria-pressed="false">Show Formative</button>
@@ -814,7 +835,7 @@
         if (!response.ok) throw new Error(`Could not load ontology.json (${response.status})`);
         state.ontology = await response.json();
         const cloCount = state.ontology.nodes.filter((node) => node.type === "clo").length;
-        document.getElementById("sourcePath").textContent = `Source: CU-Experimental-Methods-Planning / admin / interactive_ontologies | ${cloCount} CLOs | ${state.ontology.metadata.last_updated}`;
+        document.getElementById("sourcePath").textContent = `Ontology data: ${cloCount} CLOs | ${state.ontology.metadata.last_updated}`;
         sourceNote.textContent = `${state.ontology.metadata.title} loaded from ontology.json.`;
         resetSelection();
       } catch (error) {
