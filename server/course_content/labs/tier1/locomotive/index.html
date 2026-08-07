@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Locomotive Crank</title>
+  <link rel="stylesheet" href="../../../style.css">
+  <link rel="stylesheet" href="../../../chat_widget.css">
+  <script defer src="../../../chat_widget.js"></script>
+  <script defer src="../../../app.js"></script>
+</head>
+<body>
+  
+    
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../../../index.html">Aerospace Experimental Methods</a>
+        <nav class="top-nav">
+          <a href="../../../index.html">Home</a>
+          <a href="../../../opening.html">Opening</a>
+          <a href="../../../syllabus.html">Syllabus</a>
+          <a href="../../../schedule.html">Schedule</a>
+          <a class="is-current" href="../../../labs.html">Labs</a>
+          <a href="../../../supplemental.html">Supplemental</a>
+          <a href="../../../interactive_ontologies/index.html">Ontologies</a>
+          <a href="../../../results.html">Results</a>
+        </nav>
+      </div>
+    </header>
+    
+    <main class="page-shell">
+      <nav class="breadcrumbs">
+        <a href="../../../index.html">Home</a>
+        <a href="../../../labs.html">Labs</a>
+        <a href="../../../labs/tier1_candidates.html">Tier 1 Candidates</a>
+        <span>Locomotive Crank</span>
+      </nav>
+      <section class="hero compact">
+        <p class="eyebrow">Tier 1 Candidate</p>
+        <h1>Locomotive Crank</h1>
+        <p class="lead">Compare measured collar velocity from a crank-slider apparatus against a geometry-based kinematic model across multiple motor voltages.</p>
+      </section>
+      <section class="experiment-scaffold">
+        <h2>Lab Content</h2>
+        <p class="muted" style="margin-bottom:1rem">Lab content compiled from source materials. Sections marked as incomplete will be updated as additional source files become available.</p>
+        <div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure - Locomotive Crank: Kinematic Model Validation</h1>
+<hr>
+<h2>Overview</h2>
+<p>This lab investigates a locomotive crank apparatus: a motorized disk drives a rigid connecting bar, which moves a collar along a vertical slide. Students analyze rotary encoder and linear potentiometer data collected at multiple motor voltages, then compare measured collar velocity against a geometry-based kinematic model.</p>
+<p><strong>The lab has two distinct parts that must be done in sequence:</strong></p>
+<ol>
+<li><strong>Pre-Lab:</strong> Review and verify the provided kinematic derivation, then implement the MATLAB model.</li>
+<li><strong>Analysis Lab:</strong> Load provided data, calibrate/interpret the measurements, compare model and experiment, and analyze residuals.</li>
+</ol>
+<p>This 3501 version should focus on measurement, model implementation, residual analysis, and uncertainty/error-source reasoning. It should not require students to generate a full derivation from scratch.</p>
+<hr>
+<h2>Part 1 - Pre-Lab: Provided Unverified Derivation and MATLAB Setup</h2>
+<p><code>[STUDENT TASK - review the provided derivation, verify the geometry and sign conventions that matter for your analysis, and implement the MATLAB model before analysis begins]</code></p>
+<p>Before working with the data:</p>
+<ul>
+<li>Review the provided derivation in <code>model/derivation_agent.md</code></li>
+<li>Confirm the definitions of theta, beta, r, l, and d</li>
+<li>Check the sign convention for positive disk rotation and positive collar velocity</li>
+<li>Verify that the final model is purely kinematic; gravity, friction, and inertia should not appear in the velocity relationship</li>
+<li>Implement an <code>LCSMODEL</code>-style MATLAB function that computes collar velocity from geometry, disk angle, and disk angular velocity</li>
+<li>Run a model-only sanity plot of collar velocity versus disk angle before loading experimental data</li>
+</ul>
+<p>Suggested function signature:</p>
+<pre><code>
+v_mod = LCSMODEL(r, d, l, theta, omega)
+</code></pre>
+<p>where <code>theta</code> and <code>omega</code> may be vectors from the measured data.</p>
+<hr>
+<h2>Part 2 - Apparatus And Data Context</h2>
+<p>The current catalog describes the apparatus as a motorized disk connected to a vertically sliding collar by a rigid bar.</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Item</th><th>Role</th></tr></thead><tbody><tr><td>Locomotive crank apparatus</td><td>Motorized disk, connecting bar, and vertical collar</td></tr><tr><td>Rotary encoder</td><td>Measures disk angular position theta</td></tr><tr><td>Linear potentiometer</td><td>Measures vertical collar position</td></tr><tr><td>NI MyDAQ</td><td>Data acquisition interface for the historical/current LabVIEW workflow</td></tr><tr><td>Regulated DC power supply</td><td>Drives the motor; do not exceed 11 V</td></tr><tr><td>Rulers</td><td>Used to measure r, l, and d</td></tr><tr><td>MATLAB</td><td>Used for model implementation, data processing, plots, and residual statistics</td></tr></tbody></table></div>
+<p>The catalog lists representative Spring 2025 dimensions:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Meaning</th><th>Representative value</th></tr></thead><tbody><tr><td>r</td><td>Radius from disk center to crank pin A</td><td>7.5 cm +/- 0.05 cm</td></tr><tr><td>l</td><td>Connecting-bar length from A to B</td><td>26 cm +/- 0.05 cm</td></tr><tr><td>d</td><td>Horizontal distance from vertical slide to disk center</td><td>15.5 cm +/- 0.05 cm</td></tr></tbody></table></div>
+<p><code>[INSTRUCTOR REVIEW - confirm whether students should use these representative values or values measured from the specific apparatus/data set used in ASEN 3501.]</code></p>
+<hr>
+<h2>Part 3 - Experimental Procedure Context</h2>
+<p>The catalog includes a detailed Summer 2026 procedure and Spring 2025 appendix. The important procedure points for the student-facing 3501 analysis are:</p>
+<ol>
+<li>Verify the MyDAQ is recognized as <code>MyDAQ1</code> in NI MAX.</li>
+<li>Connect the power supply with correct polarity so the crank rotates counterclockwise.</li>
+<li>Set the current limit to 5 A.</li>
+<li>Do not exceed 11 V.</li>
+<li>Place the collar at its lowest position before starting the VI; this establishes the theta reference.</li>
+<li>Calibrate the potentiometer using measured slide displacement and high/low voltage readings.</li>
+<li>Record data for roughly 8-10 rotations at each selected voltage.</li>
+<li>Save files using a voltage-aware naming convention such as <code>Test2_5pt6V</code>.</li>
+</ol>
+<p>For ASEN 3501, students may work from provided data rather than collecting live data. If live data collection is used, the same safety and setup constraints above apply.</p>
+<hr>
+<h2>Part 4 - Data Analysis Workflow</h2>
+<ol>
+<li>Load each data file.</li>
+<li>Convert or normalize theta so it starts in a consistent range and increases continuously.</li>
+<li>Use only the first six revolutions unless the instructional team specifies otherwise.</li>
+<li>Compute model velocity at the experimentally measured theta values. Do not evaluate the model only on a separate <code>linspace</code> grid when computing residuals.</li>
+<li>Plot measured collar velocity and modeled collar velocity versus theta for each voltage.</li>
+<li>Compute signed residuals:</li>
+</ol>
+<pre><code>
+residual = v_exp - v_mod
+</code></pre>
+<ol>
+<li>Plot residuals versus time and versus theta.</li>
+<li>Compute mean and standard deviation of residuals for each voltage.</li>
+<li>Discuss whether residual structure looks random or systematic.</li>
+</ol>
+<p>Residuals versus theta are especially important because mechanical play in the linkage can create periodic error locked to crank angle.</p>
+<hr>
+<h2>Known Pitfalls And Common Issues</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Issue</th><th>Why it matters</th><th>Mitigation</th></tr></thead><tbody><tr><td>Collar not reset before VI start</td><td>Offsets the theta reference</td><td>Reset collar to the lowest position before starting acquisition</td></tr><tr><td>Clockwise crank rotation</td><td>Breaks the assumed sign convention</td><td>Reverse power-supply polarity if needed</td></tr><tr><td>Model evaluated on wrong theta grid</td><td>Residuals no longer compare matched measurements</td><td>Evaluate model at measured theta values</td></tr><tr><td>Inconsistent plot axes</td><td>Hides voltage-to-voltage comparison</td><td>Use consistent axis limits across subplots</td></tr><tr><td>Residuals only plotted versus time</td><td>Can hide periodic systematic error</td><td>Plot residuals versus theta as well</td></tr><tr><td>Treating friction/gravity as model inputs</td><td>This is a kinematic model</td><td>Keep the governing equation geometric</td></tr></tbody></table></div>
+<hr>
+<p><em>This file was updated on August 7, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Provided Unverified Derivation - Locomotive Crank Kinematics</h1>
+<hr>
+<h2>Student Instruction</h2>
+<p>The following derivation is provided so that this lab can focus on data analysis and model validation rather than deriving the crank-slider kinematics from scratch. Treat it as <strong>provided but unverified</strong>. Review the geometry, sign conventions, and algebra before using the final equation in your analysis.</p>
+<p>Verification is the right word here: students are not being asked to create an original derivation, but they are responsible for checking whether the provided derivation is internally consistent and appropriate for the data they analyze.</p>
+<hr>
+<h2>Geometry And Variables</h2>
+<p>The apparatus consists of:</p>
+<ul>
+<li>A disk rotating about fixed point O</li>
+<li>A crank pin A located a radius <code>r</code> from O</li>
+<li>A rigid connecting bar of length <code>l</code> from A to the sliding collar point B</li>
+<li>A vertical slide for B</li>
+<li>A horizontal offset <code>d</code> from the vertical slide to the disk centerline</li>
+</ul>
+<p>Variables:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Meaning</th></tr></thead><tbody><tr><td>theta</td><td>Disk angle</td></tr><tr><td>beta</td><td>Connecting-bar angle from the vertical slide</td></tr><tr><td>omega_D</td><td>Disk angular velocity, <code>theta_dot</code></td></tr><tr><td>omega_B</td><td>Connecting-bar angular velocity, <code>beta_dot</code></td></tr><tr><td>v_B_y</td><td>Vertical velocity of the collar</td></tr></tbody></table></div>
+<p>The derivation source PDF is retained in <code>derivation/ASEN2003 Lab3 Locomotive Derivation.pdf</code>.</p>
+<hr>
+<h2>Position Relations</h2>
+<p>Using unit vectors <code>i</code> to the right and <code>j</code> upward, the crank-pin position relative to O is written as:</p>
+<pre><code>
+r_A = -r sin(theta) i + r cos(theta) j
+</code></pre>
+<p>The collar point B relative to A is:</p>
+<pre><code>
+r_B/A = -l sin(beta) i - l cos(beta) j
+</code></pre>
+<p>The horizontal constraint gives:</p>
+<pre><code>
+sin(beta) = (d - r sin(theta)) / l
+</code></pre>
+<p>Students should check this relation against the physical geometry and the chosen positive direction for theta.</p>
+<hr>
+<h2>Bar Angular Velocity</h2>
+<p>Differentiate the horizontal constraint:</p>
+<pre><code>
+sin(beta) = (d - r sin(theta)) / l
+</code></pre>
+<p>which gives:</p>
+<pre><code>
+cos(beta) beta_dot = -(r/l) cos(theta) theta_dot
+</code></pre>
+<p>Since <code>theta_dot = omega_D</code>,</p>
+<pre><code>
+omega_B = beta_dot = -(r cos(theta) / (l cos(beta))) omega_D
+</code></pre>
+<p>The derivation PDF also reaches an equivalent magnitude relationship through rigid-body velocity relations. Students should verify the sign convention they use in MATLAB, especially if their theta direction or positive collar velocity direction differs from the diagram.</p>
+<hr>
+<h2>Collar Velocity</h2>
+<p>The collar is constrained to move vertically, so the horizontal velocity of B is zero. The vertical velocity follows from differentiating the B position or from the two-point rigid-body velocity relation.</p>
+<p>Starting from:</p>
+<pre><code>
+r_B = d i + (r cos(theta) - l cos(beta)) j
+</code></pre>
+<p>differentiate:</p>
+<pre><code>
+v_B_y = -r sin(theta) theta_dot + l sin(beta) beta_dot
+</code></pre>
+<p>Substitute <code>theta_dot = omega_D</code> and the expression for <code>beta_dot</code>:</p>
+<pre><code>
+v_B_y = -r omega_D sin(theta)
+ - r omega_D cos(theta) tan(beta)
+</code></pre>
+<p>Final compact form:</p>
+<pre><code>
+v_B_y = -omega_D r [sin(theta) + cos(theta) tan(beta)]
+</code></pre>
+<p>with:</p>
+<pre><code>
+beta = asin((d - r sin(theta)) / l)
+</code></pre>
+<hr>
+<h2>Verification Checklist</h2>
+<p>Before using the model, verify:</p>
+<ul>
+<li><code>abs((d - r sin(theta))/l) &lt;= 1</code> over the analyzed theta range</li>
+<li><code>theta</code>, <code>beta</code>, and trigonometric functions use radians in MATLAB</li>
+<li><code>r</code>, <code>l</code>, <code>d</code>, and <code>v_B_y</code> use consistent units</li>
+<li>Positive velocity direction matches the plotted experimental collar velocity</li>
+<li>The model is evaluated at the measured <code>theta_exp</code>, not only a separate model grid</li>
+<li>Residuals are computed as signed differences using a stated convention</li>
+</ul>
+<hr>
+<h2>Important Limitation</h2>
+<p>This is a kinematic model. It predicts collar velocity from geometry and disk angular velocity. It does not model motor dynamics, friction, gravity, structural flex, or mechanical slack. Those effects should appear in the residual discussion, not as terms in the provided velocity equation unless the instructional team intentionally extends the model.</p>
+<hr>
+<p><em>This file was created on August 7, 2026 by Codex GPT-5</em></p>
+<h1>Model Equations - Locomotive Crank</h1>
+<hr>
+<h2>Governing Kinematic Model</h2>
+<p>Use the geometric constraint:</p>
+<pre><code>
+sin(beta) = (d - r sin(theta)) / l
+</code></pre>
+<p>and:</p>
+<pre><code>
+beta = asin((d - r sin(theta)) / l)
+</code></pre>
+<p>The collar velocity model is:</p>
+<pre><code>
+v_mod = -omega r [sin(theta) + cos(theta) tan(beta)]
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>v_mod</code> is the modeled vertical collar velocity</li>
+<li><code>omega</code> is the measured disk angular velocity</li>
+<li><code>theta</code> is the measured disk angle</li>
+<li><code>r</code> is the disk-center-to-pin radius</li>
+<li><code>l</code> is the connecting-bar length</li>
+<li><code>d</code> is the horizontal offset from slide to disk center</li>
+</ul>
+<p>Use radians for <code>theta</code> and <code>beta</code>.</p>
+<hr>
+<h2>MATLAB-Oriented Implementation</h2>
+<pre><code>
+beta = asin((d - r .* sin(theta)) ./ l);
+v_mod = -omega .* r .* (sin(theta) + cos(theta) .* tan(beta));
+</code></pre>
+<p>If <code>r</code>, <code>l</code>, and <code>d</code> are entered in centimeters, <code>v_mod</code> will be in centimeters per second when <code>omega</code> is in radians per second. If the experimental velocity is in millimeters per second, convert units before computing residuals.</p>
+<hr>
+<h2>Residual Definition</h2>
+<p>Use a signed residual and state the convention:</p>
+<pre><code>
+residual = v_exp - v_mod
+</code></pre>
+<p>Recommended statistics for each voltage:</p>
+<ul>
+<li>mean residual</li>
+<li>residual standard deviation</li>
+<li>number of samples</li>
+<li>notes about outliers or discarded startup/end effects</li>
+</ul>
+<hr>
+<h2>Expected Behavior</h2>
+<ul>
+<li>Higher motor voltage should increase the magnitude of disk angular velocity.</li>
+<li>Higher disk angular velocity should increase the magnitude of collar velocity.</li>
+<li>The shape of velocity versus theta should remain similar across voltage settings.</li>
+<li>Residuals versus theta may show periodic structure due to mechanical play in the linkage.</li>
+</ul>
+<hr>
+<p><em>This file was created on August 7, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Instrumentation Summary - Locomotive Crank</h1>
+<hr>
+<h2>Apparatus</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Component</th><th>Purpose</th><th>Student-facing note</th></tr></thead><tbody><tr><td>Motorized disk</td><td>Drives crank angle theta</td><td>Positive rotation should match the model sign convention</td></tr><tr><td>Crank pin and connecting bar</td><td>Converts disk rotation into collar translation</td><td>Linkage play is a likely systematic error source</td></tr><tr><td>Vertical collar/slide</td><td>Translating output of the mechanism</td><td>Collar position and velocity are compared to model predictions</td></tr><tr><td>Rotary encoder</td><td>Measures disk angular position</td><td>Used to determine theta and angular velocity</td></tr><tr><td>Linear potentiometer</td><td>Measures collar displacement</td><td>Requires calibration from voltage to displacement</td></tr><tr><td>NI MyDAQ</td><td>Historical/current acquisition interface</td><td>Verify device name in NI MAX if collecting live data</td></tr><tr><td>DC power supply</td><td>Motor power</td><td>Current limit 5 A; do not exceed 11 V</td></tr></tbody></table></div>
+<hr>
+<h2>Representative Geometric Measurements</h2>
+<p>From the catalog:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Value</th><th>Notes</th></tr></thead><tbody><tr><td>r</td><td>7.5 cm +/- 0.05 cm</td><td>Disk center to crank pin A</td></tr><tr><td>l</td><td>26 cm +/- 0.05 cm</td><td>Connecting bar length A to B</td></tr><tr><td>d</td><td>15.5 cm +/- 0.05 cm</td><td>Horizontal distance from slide to disk center</td></tr></tbody></table></div>
+<p><code>[INSTRUCTOR REVIEW - confirm whether these are the official values for the ASEN 3501 data set or whether students should use measurements packaged with the selected data files.]</code></p>
+<hr>
+<h2>Potentiometer Calibration</h2>
+<p>The catalog procedure says students historically calibrated the potentiometer by measuring slide displacement and recording voltage at the highest and lowest collar positions. Expected calibration is approximately:</p>
+<pre><code>
+48-51 mm/V
+</code></pre>
+<p>If calibration falls outside this range during live collection, the procedure recommends remeasuring the slide displacement and voltage endpoints.</p>
+<hr>
+<h2>Acquisition Notes</h2>
+<ul>
+<li>The crank must rotate counterclockwise for the standard procedure.</li>
+<li>The collar must start at its lowest position before the VI starts.</li>
+<li>The VI start condition sets the theta reference.</li>
+<li>The power supply should not exceed 11 V.</li>
+<li>Loose connections and linkage play can produce noisy or systematically biased data.</li>
+</ul>
+<hr>
+<p><em>This file was created on August 7, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes - Locomotive Crank</h1>
+<hr>
+<h2>Data Access Policy For The Course Site</h2>
+<p>Raw and sample data files should <strong>not</strong> be bundled into the planning repo or the public course site. Students should access the course-ready data through the student-facing SharePoint snapshot.</p>
+<p><strong>Student-facing data link:</strong></p>
+<ul>
+<li><a href="https://o365coloradoedu.sharepoint.com/:f:/s/AEROENGR-Labspace-Labs/IgCS03L73tkoTofqTbux2WJqAVuy_WLtfhCLBClcxS-y5II?e=FeorrR">Locomotive Crank student-facing data folder</a></li>
+</ul>
+<p>Catalog source links for instructional-team review:</p>
+<ul>
+<li><a href="https://o365coloradoedu.sharepoint.com/:f:/r/sites/AEROENGR-Labspace-Labs/Shared%20Documents/Labs/Extra%20Historical%20Labs/2803_Locomotive%20Crank%20Lab/Locomotive%20Crank%20Summer%202026/Summer%202026%20Data?csf=1&amp;web=1&amp;e=PoOECH">Locomotive Crank Data Summer 2026</a></li>
+<li><a href="https://o365coloradoedu.sharepoint.com/sites/AEROENGR-Labspace-Labs/Shared%20Documents/Labs/Extra%20Historical%20Labs/2803_Locomotive%20Crank%20Lab/Locomotive_Data_2020.zip">Locomotive_Data_2020.zip</a></li>
+</ul>
+<p><code>[ACTION_FOR_INSTRUCTIONAL_TEAM: Download and review the Summer 2026 Locomotive Crank data from the catalog source link, then upload the selected student-facing files to the Locomotive Crank SharePoint folder linked above.]</code></p>
+<hr>
+<h2>Data Dictionary</h2>
+<p>The catalog describes LabVIEW/MyDAQ data files saved by the locomotive crank VI. Naming convention examples include:</p>
+<pre><code>
+Test2_5pt6V
+</code></pre>
+<p>Expected variables after processing with the historical <code>LCSDATA</code> workflow:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Variable</th><th>Description</th><th>Units</th><th>Notes</th></tr></thead><tbody><tr><td>theta_exp</td><td>Disk angular position</td><td>degrees or radians, depending on processing stage</td><td>Normalize consistently before modeling</td></tr><tr><td>w_exp</td><td>Disk angular velocity</td><td>deg/s or rad/s</td><td>Convert to rad/s before using trigonometric model</td></tr><tr><td>v_exp</td><td>Vertical collar velocity</td><td>mm/s or cm/s</td><td>Match units with model output</td></tr><tr><td>time</td><td>Timestamp</td><td>s</td><td>Used for residual plots versus time</td></tr></tbody></table></div>
+<p>The catalog notes that <code>LCSDATA</code> historically returns the first six revolutions after normalizing theta.</p>
+<hr>
+<h2>Data Sets Mentioned In Catalog</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Data source</th><th>Use</th></tr></thead><tbody><tr><td>Summer 2026 data folder</td><td>Preferred source for current ASEN 3501 preparation, pending instructor review</td></tr><tr><td>2020 archived zip</td><td>Historical reference or fallback</td></tr><tr><td>Video demonstrations</td><td>Procedure/context reference, not primary analysis data</td></tr></tbody></table></div>
+<p>Do not copy these raw files into planning or site. Use SharePoint for student-facing distribution.</p>
+<hr>
+<h2>Analysis Notes</h2>
+<ul>
+<li>Compute model values at the measured <code>theta_exp</code> values.</li>
+<li>Use consistent units before residual calculations.</li>
+<li>Use consistent axis limits across voltage subplots.</li>
+<li>Plot residuals versus both time and theta.</li>
+<li>Residuals versus theta are expected to reveal more systematic structure than residuals versus time.</li>
+<li>The catalog identifies linkage play/slop as a major physical error source.</li>
+</ul>
+<hr>
+<p><em>This file was created on August 7, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes - Locomotive Crank</h1>
+<hr>
+<h2>Catalog Fit For ASEN 3501</h2>
+<p>This lab is a strong fit for model comparison and residual analysis because the governing model is geometric and accessible, while the real apparatus can still produce structured residuals through mechanical play, calibration offsets, and sign/unit mistakes.</p>
+<p>The lab is less focused on experimental design unless students are asked to choose voltage cases, justify trimming rules, or propose improved instrumentation/procedure controls.</p>
+<hr>
+<h2>Student-Facing Emphasis</h2>
+<p>Recommended emphasis for ASEN 3501:</p>
+<ul>
+<li>implement and verify a provided model</li>
+<li>process measured data consistently</li>
+<li>compare measured and modeled collar velocity</li>
+<li>identify systematic residual structure</li>
+<li>explain likely physical and measurement causes of mismatch</li>
+</ul>
+<p>Avoid making the lab primarily about deriving crank-slider kinematics from scratch. Dynamics is prerequisite knowledge, but the course objective here is experimental methods and model-data comparison.</p>
+<hr>
+<h2>Instructor-Only Notes From Catalog</h2>
+<p>Common conceptual issues:</p>
+<ul>
+<li>Students may try to include friction, gravity, mass, or inertia in a purely kinematic model.</li>
+<li>The primary real-world error source is likely play/slop in the physical connections.</li>
+<li>Residuals plotted versus theta are more revealing than residuals plotted only versus time.</li>
+</ul>
+<p>Common procedural issues:</p>
+<ul>
+<li>Not resetting the collar to the lowest position before starting the VI.</li>
+<li>Exceeding 11 V on the supply.</li>
+<li>Running the crank in the wrong direction.</li>
+<li>Failing to use consistent units in MATLAB.</li>
+</ul>
+<hr>
+<h2>Student-Facing Data Location</h2>
+<p>The student-facing Locomotive Crank data folder has been added to <code>data/data_notes_agent.md</code>. Raw data should stay in SharePoint rather than being committed to planning or site.</p>
+<p><code>[ACTION_FOR_INSTRUCTIONAL_TEAM: Upload the selected Summer 2026 Locomotive Crank files to the linked student-facing SharePoint folder.]</code></p>
+<hr>
+<p><em>This file was created on August 7, 2026 by Codex GPT-5</em></p></div></div>
+      </section>
+    </main>
+    
+    <footer class="site-footer">
+      <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+    </footer>
+    
+    
+  
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier1-locomotive", "title": "Locomotive Crank", "url": "labs/tier1/locomotive/index.html", "text": "Locomotive Crank Compare measured collar velocity from a crank-slider apparatus against a geometry-based kinematic model across multiple motor voltages.", "module_id": null, "source_type": "overview"}</script>
+</body>
+</html>

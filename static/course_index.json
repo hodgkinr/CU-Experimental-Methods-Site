@@ -1,6 +1,6 @@
 {
   "course_id": "asen3501-fall2026",
-  "generated_at": "2026-08-07T22:23:21.448017+00:00",
+  "generated_at": "2026-08-07T22:48:01.741866+00:00",
   "pages": [
     {
       "page_id": "home",
@@ -1463,6 +1463,21 @@
       ]
     },
     {
+      "page_id": "labs-tier1-locomotive",
+      "title": "Locomotive Crank",
+      "module_id": null,
+      "url": "labs/tier1/locomotive/index.html",
+      "source_type": "overview",
+      "text": "Locomotive Crank Compare measured collar velocity from a crank-slider apparatus against a geometry-based kinematic model across multiple motor voltages.",
+      "chunks": [
+        {
+          "chunk_id": "labs-tier1-locomotive-chunk-001",
+          "text": "Locomotive Crank Compare measured collar velocity from a crank-slider apparatus against a geometry-based kinematic model across multiple motor voltages.",
+          "anchor": ""
+        }
+      ]
+    },
+    {
       "page_id": "labs-tier2-aeroelasticity",
       "title": "Aeroelasticity",
       "module_id": null,
@@ -1483,11 +1498,11 @@
       "module_id": null,
       "url": "labs/tier1_candidates.html",
       "source_type": "overview",
-      "text": "Tier 1 Lab Candidates Student-selectable experiments for the Phase I (E1) lab. Each experiment is a self-contained measurement challenge at the middle/high school difficulty level. Bouncing Ball \u2014 Coefficient of Restitution Buoyancy Balloon Spin Modules Unbalanced Wheel",
+      "text": "Tier 1 Lab Candidates Student-selectable experiments for the Phase I (E1) lab. Each experiment is a self-contained measurement challenge at the middle/high school difficulty level. Bouncing Ball \u2014 Coefficient of Restitution Buoyancy Balloon Spin Modules Unbalanced Wheel Locomotive Crank",
       "chunks": [
         {
           "chunk_id": "labs-tier1-candidates-chunk-001",
-          "text": "Tier 1 Lab Candidates Student-selectable experiments for the Phase I (E1) lab. Each experiment is a self-contained measurement challenge at the middle/high school difficulty level. Bouncing Ball \u2014 Coefficient of Restitution Buoyancy Balloon Spin Modules Unbalanced Wheel",
+          "text": "Tier 1 Lab Candidates Student-selectable experiments for the Phase I (E1) lab. Each experiment is a self-contained measurement challenge at the middle/high school difficulty level. Bouncing Ball \u2014 Coefficient of Restitution Buoyancy Balloon Spin Modules Unbalanced Wheel Locomotive Crank",
           "anchor": ""
         }
       ]
