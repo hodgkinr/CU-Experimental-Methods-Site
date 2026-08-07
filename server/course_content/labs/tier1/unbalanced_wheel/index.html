@@ -38,7 +38,7 @@
       <section class="hero compact">
         <p class="eyebrow">Tier 1 Candidate</p>
         <h1>Unbalanced Wheel</h1>
-        <p class="lead">Measure vibration signatures from an unbalanced rotating wheel and correlate with model predictions.</p>
+        <p class="lead">Analyze encoder data from balanced and unbalanced wheels rolling down a ramp, then compare measured angular velocity to energy-based model predictions.</p>
       </section>
       <section class="experiment-scaffold">
         <h2>Lab Content</h2>
@@ -46,18 +46,20 @@
         <div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
 <hr>
 <h2>Overview</h2>
-<p>This lab investigates the dynamics of a cylindrical wheel rolling down a ramp under two configurations: balanced (no eccentric mass) and unbalanced (eccentric mass installed). Students build and validate a four-model hierarchy before arriving at the apparatus.</p>
+<p>This lab investigates the dynamics of a cylindrical wheel rolling down a ramp under two configurations: balanced (no eccentric mass) and unbalanced (eccentric mass installed). Students analyze encoder data and compare it against a provided four-model hierarchy.</p>
 <p><strong>The lab has two distinct parts that must be done in sequence:</strong></p>
 <ol>
-<li><strong>Pre-Lab (before the lab session):</strong> Derive all four models and implement the MATLAB function. This must be complete before you handle the apparatus.</li>
+<li><strong>Pre-Lab (before the lab session):</strong> Review and verify the provided model derivation, then implement the MATLAB function. This must be complete before you handle the apparatus.</li>
 <li><strong>In-Lab:</strong> Run the apparatus, collect data, and perform analysis.</li>
 </ol>
 <hr>
-<h2>Part 1 — Pre-Lab: Model Derivation and MATLAB Setup</h2>
-<p><code>[STUDENT TASK — derive all four models and implement MATLAB function before the lab session]</code></p>
+<h2>Part 1 — Pre-Lab: Provided Unverified Derivation and MATLAB Setup</h2>
+<p><code>[STUDENT TASK — review the provided derivation, verify the steps that matter for your analysis, and implement the MATLAB model before the lab session]</code></p>
 <p>Before arriving at the apparatus:</p>
 <ul>
-<li>Derive MODEL_1 through MODEL_4 (see <code>model/derivation_agent.md</code>)</li>
+<li>Review the provided MODEL_1 through MODEL_4 derivation (see <code>model/derivation_agent.md</code>)</li>
+<li>Verify that the assumptions, signs, energy terms, and inertia terms are consistent with your dynamics knowledge</li>
+<li>Record any correction or unresolved concern in your analysis notes</li>
 <li>Implement <code>computeModel.m</code> (or equivalent) and verify correct operation</li>
 <li>Plot expected ω vs. θ for all four models (0 ≤ θ ≤ 15 rad) before starting the experiment</li>
 </ul>
@@ -140,7 +142,23 @@
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Issue</th><th>Cause</th><th>Fix</th></tr></thead><tbody><tr><td>Large gaps, plateaus, or spikes in data</td><td>Packet loss or poor run quality</td><td>Keep students to the side of the ramp; discard and re-run bad trials</td></tr><tr><td>Encoder data goes negative</td><td>Wheel spinning opposite expected sign</td><td>Place electronics box on the left side when viewed from top of ramp looking down</td></tr><tr><td>Wheel rolls backward off ramp</td><td>Eccentric mass behind vertical at start</td><td>Reposition mass to perpendicular-to-ramp position at top of wheel</td></tr><tr><td>Noisy or unreliable data at low θ</td><td>Startup transient as wheel accelerates from rest</td><td>Trim analysis range to θ &gt; 0.5 rad</td></tr><tr><td>Noisy or unreliable data at high θ</td><td>End-of-ramp effects</td><td>Trim analysis range to θ &lt; 15 rad</td></tr></tbody></table></div>
 <p><code>[REFERENCE: ASEN_2003_Unbalanced_Wheel_TA_FAQs.pdf in the catalog contains additional troubleshooting examples, including good/bad run figures.]</code></p>
 <hr>
-<p><em>This file was updated on August 7, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Model Derivation — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
+<p><em>This file was updated on August 7, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Provided Unverified Derivation — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
+<hr>
+<h2>How Students Should Use This Derivation</h2>
+<p>This derivation is provided so the lab can focus on experimental data analysis, model implementation, and model-data comparison rather than on dynamics derivation from a blank page. It is <strong>not</strong> externally verified.</p>
+<p>Students should verify the derivation before using it as the basis for their analysis. Verification means checking the assumptions, signs, units, limiting cases, and energy terms well enough to decide whether the model is appropriate for comparison with the measured data.</p>
+<p>Recommended verification checks:</p>
+<ul>
+<li>Confirm the rolling-without-slip constraint: <code>v_cm = R*omega</code></li>
+<li>Confirm the ramp-height relation: <code>h = R*theta*sin(beta)</code></li>
+<li>Confirm that all kinetic-energy terms have units of joules</li>
+<li>Confirm that the friction moment contributes negative work: <code>-Q*theta</code></li>
+<li>Check the unbalanced-mass potential term by evaluating <code>theta = 0</code></li>
+<li>Check the difference between the point-mass model and rigid-body model</li>
+<li>Check whether the provided rigid-body inertia term is being counted once,</li>
+</ul>
+<p>not double-counted with translational kinetic energy</p>
+<p>The goal is not to re-create the derivation from scratch. The goal is to be able to defend the model you use when you compare it with data.</p>
 <hr>
 <h2>Section 1 — Physical Setup and Coordinate System</h2>
 <p>A cylindrical wheel (mass M, radius R, radius of gyration κ) rolls down a ramp (slope angle β) without slipping. A trailing support apparatus (mass M₀) is rigidly attached to the wheel; it translates but does not rotate. An eccentric mass (mass m) can be bolted to the wheel at radius r from the wheel center.</p>
@@ -177,13 +195,38 @@
 <li>Trailing apparatus translates but does not rotate</li>
 <li>No friction at the axle</li>
 </ul>
-<p><code>[STUDENT TASK — derive ω(θ) using work-energy. Result is a closed-form expression for angular velocity as a function of angular position.]</code></p>
+<p>Using work-energy:</p>
+<pre><code>
+(M + M0)*g*R*theta*sin(beta) = 0.5*((M + M0)*R^2 + M*kappa^2)*omega^2
+</code></pre>
+<p>Solving for angular velocity:</p>
+<pre><code>
+omega_1(theta) = sqrt(
+ 2*(M + M0)*g*R*theta*sin(beta)
+ / ((M + M0)*R^2 + M*kappa^2)
+)
+</code></pre>
 <p><strong>Parameters used:</strong> M, M₀, R, κ, β, g</p>
 <hr>
 <h2>Section 4 — MODEL_2: Balanced Wheel, Constant Friction Moment</h2>
 <p><strong>Modification of MODEL_1:</strong> Add a constant negative moment −Q applied to the shaft of the wheel. Q represents friction at the axle; its value is unknown and must be determined empirically.</p>
 <p><strong>Assumptions:</strong> Same as MODEL_1 plus constant negative moment −Q.</p>
-<p><code>[STUDENT TASK — derive ω(θ, Q) using work-energy with the friction moment included.]</code></p>
+<p>The friction moment does negative work:</p>
+<pre><code>
+W_Q = -Q*theta
+</code></pre>
+<p>The energy equation becomes:</p>
+<pre><code>
+(M + M0)*g*R*theta*sin(beta) - Q*theta
+ = 0.5*((M + M0)*R^2 + M*kappa^2)*omega^2
+</code></pre>
+<p>Solving for angular velocity:</p>
+<pre><code>
+omega_2(theta, Q) = sqrt(
+ 2*((M + M0)*g*R*theta*sin(beta) - Q*theta)
+ / ((M + M0)*R^2 + M*kappa^2)
+)
+</code></pre>
 <p><strong>Empirical determination of Q:</strong></p>
 <ul>
 <li>Q is not known from first principles; it must be fit to balanced experimental data</li>
@@ -197,13 +240,43 @@
 <p><strong>Modification of MODEL_2:</strong> Add the eccentric mass m at radius r, modeled as a point particle (all mass concentrated at a point — no rotational inertia about its own center).</p>
 <p><strong>Assumptions:</strong> Same as MODEL_2 plus eccentric mass modeled as particle at radius r.</p>
 <p>The eccentric mass center moves in a circle of radius r about the wheel center. Its velocity has two components that depend on both ω and the current angular position θ.</p>
-<p><code>[STUDENT TASK — derive ω(θ, Q) using work-energy. The extra mass at radius r contributes both translational KE and additional gravitational PE terms that vary with θ.]</code></p>
+<p>The extra mass changes height both because the wheel center moves down the ramp and because the mass rotates around the wheel center. Relative to the initial configuration:</p>
+<pre><code>
+Delta_h_extra = R*theta*sin(beta) - r*cos(theta + beta) + r*cos(beta)
+</code></pre>
+<p>The translational speed of the eccentric mass contributes the factor:</p>
+<pre><code>
+v_extra^2 = omega^2*(R^2 + 2*R*r*cos(theta) + r^2)
+</code></pre>
+<p>Combining the balanced-wheel energy, the eccentric-mass potential-energy change, the eccentric-mass translational kinetic energy, and the friction work:</p>
+<pre><code>
+omega_3(theta, Q) = sqrt(
+ 2*((M + M0)*g*R*theta*sin(beta)
+ + m*g*(R*theta*sin(beta) - r*cos(theta + beta) + r*cos(beta))
+ - Q*theta)
+ / ((M + M0)*R^2 + M*kappa^2 + m*(R^2 + 2*R*r*cos(theta) + r^2))
+)
+</code></pre>
 <p><strong>Parameters used:</strong> M, M₀, m, R, r, κ, β, g, Q (from MODEL_2)</p>
 <hr>
 <h2>Section 6 — MODEL_4: Unbalanced Wheel, Eccentric Mass as Rigid Body</h2>
 <p><strong>Modification of MODEL_3:</strong> Model the eccentric mass as a rigid body (solid cylinder/rod) rather than a point particle. This adds a rotational kinetic energy term for the eccentric mass rotating about its own center of mass.</p>
 <p>Moment of inertia of the eccentric mass about its own center: I_extra = (1/2) · m · r_extra² where r_extra = 0.019 m</p>
-<p><code>[STUDENT TASK — derive ω(θ, Q) including the rotational KE of the eccentric mass. Compare with MODEL_3 — note the additional inertia term and assess its significance.]</code></p>
+<p>The rigid-body version uses the same numerator as MODEL_3. The difference is the additional rotational kinetic energy of the eccentric mass about its own center:</p>
+<pre><code>
+I_extra = 0.5*m*r_extra^2
+</code></pre>
+<pre><code>
+omega_4(theta, Q) = sqrt(
+ 2*((M + M0)*g*R*theta*sin(beta)
+ + m*g*(R*theta*sin(beta) - r*cos(theta + beta) + r*cos(beta))
+ - Q*theta)
+ / ((M + M0)*R^2 + M*kappa^2
+ + m*(R^2 + 2*R*r*cos(theta) + r^2)
+ + I_extra)
+)
+</code></pre>
+<p>Verification note: the sample report describes the rigid-body model using the parallel-axis theorem. Students should check whether the orbital contribution <code>m*r^2</code> is already included in <code>v_extra^2</code> before adding any additional parallel-axis term.</p>
 <p><strong>Parameters used:</strong> M, M₀, m, R, r, r_extra, κ, β, g, Q (from MODEL_2)</p>
 <hr>
 <h2>Section 7 — Residual Analysis Framework</h2>
@@ -220,9 +293,10 @@
 <ul>
 <li>Taylor, J.R. (1997). <em>An Introduction to Error Analysis</em>. University Science Books. (Residual statistics and error analysis framework)</li>
 <li>Meriam, J.L. &amp; Kraige, L.G. <em>Engineering Mechanics: Dynamics</em>. (Work-energy methods for rigid bodies)</li>
+<li>Sample report: <code>derivation/ReportSolution.docx</code></li>
 </ul>
 <hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p>
+<p><em>This file was updated on August 7, 2026 by Codex GPT-5</em></p>
 <h1>Model Equations — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
 <p>Quick reference sheet. All symbols are defined. No derivation prose — see <code>derivation_agent.md</code> for full context.</p>
 <hr>
@@ -244,23 +318,52 @@
 <p>Starting from rest: KE_initial = 0</p>
 <hr>
 <h2>MODEL_1 — Balanced Wheel, No Friction</h2>
-<p><code>[STUDENT TASK — result is ω(θ)]</code></p>
+<pre><code>
+omega_1(theta) = sqrt(
+ 2*(M + M0)*g*R*theta*sin(beta)
+ / ((M + M0)*R^2 + M*kappa^2)
+)
+</code></pre>
 <p>Parameters: M, M₀, R, κ, β, g</p>
 <hr>
 <h2>MODEL_2 — Balanced Wheel, Constant Friction Moment Q</h2>
-<p><code>[STUDENT TASK — result is ω(θ, Q)]</code></p>
+<pre><code>
+omega_2(theta, Q) = sqrt(
+ 2*((M + M0)*g*R*theta*sin(beta) - Q*theta)
+ / ((M + M0)*R^2 + M*kappa^2)
+)
+</code></pre>
 <p>Parameters: M, M₀, R, κ, β, g, Q</p>
 <p>Q is unknown; determined empirically by fitting MODEL_2 to balanced experimental data (try ≥5 values; same Q for both balanced trials).</p>
 <hr>
 <h2>MODEL_3 — Unbalanced Wheel, Eccentric Mass as Particle</h2>
-<p><code>[STUDENT TASK — result is ω(θ, Q)]</code></p>
+<pre><code>
+omega_3(theta, Q) = sqrt(
+ 2*((M + M0)*g*R*theta*sin(beta)
+ + m*g*(R*theta*sin(beta) - r*cos(theta + beta) + r*cos(beta))
+ - Q*theta)
+ / ((M + M0)*R^2 + M*kappa^2 + m*(R^2 + 2*R*r*cos(theta) + r^2))
+)
+</code></pre>
 <p>Parameters: M, M₀, m, R, r, κ, β, g, Q (from MODEL_2)</p>
 <p>The eccentric mass contributes translational KE and a θ-dependent gravitational PE term.</p>
 <hr>
 <h2>MODEL_4 — Unbalanced Wheel, Eccentric Mass as Rigid Body</h2>
-<p><code>[STUDENT TASK — result is ω(θ, Q)]</code></p>
+<pre><code>
+I_extra = 0.5*m*r_extra^2
+
+omega_4(theta, Q) = sqrt(
+ 2*((M + M0)*g*R*theta*sin(beta)
+ + m*g*(R*theta*sin(beta) - r*cos(theta + beta) + r*cos(beta))
+ - Q*theta)
+ / ((M + M0)*R^2 + M*kappa^2
+ + m*(R^2 + 2*R*r*cos(theta) + r^2)
+ + I_extra)
+)
+</code></pre>
 <p>Parameters: M, M₀, m, R, r, r_extra, κ, β, g, Q (from MODEL_2)</p>
 <p>Differs from MODEL_3 by addition of I_extra · ω² / 2 term (rotational KE of eccentric mass about its own center).</p>
+<p>Verification note: check that the <code>m*r^2</code> orbital term is not double-counted when comparing the point-mass and rigid-body versions.</p>
 <hr>
 <h2>Equation 5 — Residual</h2>
 <p>ε_i = ω_observed,i − ω_predicted(θ_i) [rad/s]</p>
@@ -280,7 +383,7 @@
 <p>ε_scaled,i = ε_i / σ [dimensionless]</p>
 <p>Plot histogram of ε_scaled; superimpose N(0,1) for normality assessment.</p>
 <hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
+<p><em>This file was updated on August 7, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
 <hr>
 <h2>Primary Sensor — Wheel Encoder</h2>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Sensor model</td><td><code>HEDS-5505</code></td><td>instructor-provided confirmation + staged encoder PDF lineage</td></tr><tr><td>Measurement role</td><td>Encoder counts used to derive rotation angle θ [rad] and angular velocity ω [rad/s]</td><td>updated lab catalog + staged handout lineage</td></tr><tr><td>Mounting</td><td>On the wheel; rotates with the wheel</td><td>catalog + staged handout lineage</td></tr><tr><td>Communication</td><td>ESP32 wireless/web-interface data acquisition</td><td>updated lab catalog</td></tr><tr><td>Current export fields</td><td>Index, Time [ms], QuadEncoder [counts], LS7184Encoder [counts]</td><td>updated lab catalog</td></tr><tr><td>Reliable analysis range</td><td>0.5 rad &lt; θ &lt; 15 rad</td><td>staged handout + historical code</td></tr><tr><td>Counts per revolution</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr><tr><td>Output type</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr><tr><td>Voltage range</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr><tr><td>Accuracy / resolution</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr></tbody></table></div>
@@ -476,6 +579,6 @@ Wheel rotation
     
     
   
-  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier1-unbalanced_wheel", "title": "Unbalanced Wheel", "url": "labs/tier1/unbalanced_wheel/index.html", "text": "Unbalanced Wheel Measure vibration signatures from an unbalanced rotating wheel and correlate with model predictions.", "module_id": null, "source_type": "overview"}</script>
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier1-unbalanced_wheel", "title": "Unbalanced Wheel", "url": "labs/tier1/unbalanced_wheel/index.html", "text": "Unbalanced Wheel Analyze encoder data from balanced and unbalanced wheels rolling down a ramp, then compare measured angular velocity to energy-based model predictions.", "module_id": null, "source_type": "overview"}</script>
 </body>
 </html>

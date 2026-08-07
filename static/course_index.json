@@ -1,6 +1,6 @@
 {
   "course_id": "asen3501-fall2026",
-  "generated_at": "2026-08-07T22:05:59.935718+00:00",
+  "generated_at": "2026-08-07T22:23:21.448017+00:00",
   "pages": [
     {
       "page_id": "home",
@@ -1453,11 +1453,11 @@
       "module_id": null,
       "url": "labs/tier1/unbalanced_wheel/index.html",
       "source_type": "overview",
-      "text": "Unbalanced Wheel Measure vibration signatures from an unbalanced rotating wheel and correlate with model predictions.",
+      "text": "Unbalanced Wheel Analyze encoder data from balanced and unbalanced wheels rolling down a ramp, then compare measured angular velocity to energy-based model predictions.",
       "chunks": [
         {
           "chunk_id": "labs-tier1-unbalanced_wheel-chunk-001",
-          "text": "Unbalanced Wheel Measure vibration signatures from an unbalanced rotating wheel and correlate with model predictions.",
+          "text": "Unbalanced Wheel Analyze encoder data from balanced and unbalanced wheels rolling down a ramp, then compare measured angular velocity to energy-based model predictions.",
           "anchor": ""
         }
       ]
