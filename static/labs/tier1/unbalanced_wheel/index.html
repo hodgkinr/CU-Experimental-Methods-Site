@@ -63,7 +63,7 @@
 <hr>
 <h2>Part 2 — Apparatus Setup</h2>
 <h3>Equipment List</h3>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Item</th><th>Description</th></tr></thead><tbody><tr><td>Wheel apparatus</td><td>Cylindrical mass with training wheel supports and wireless encoder</td></tr><tr><td>NI USB-6008</td><td>DAQ unit with electronics box</td></tr><tr><td>Eccentric mass</td><td>Solid rod, radius 0.019 m</td></tr><tr><td>Ramp</td><td>Foldable, with adjustable feet and center supports</td></tr><tr><td>Allen wrench</td><td>For ramp assembly</td></tr><tr><td>Ramp nuts, bolts, and screws</td><td>Hardware for ramp feet</td></tr><tr><td>Wooden door stops (2)</td><td>To hold wheel at top of ramp</td></tr><tr><td>Foam mat</td><td>Placed at end of ramp to stop wheel</td></tr><tr><td>9V battery</td><td>Powers wireless encoder; stored along training wheel bar</td></tr></tbody></table></div>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Item</th><th>Description</th></tr></thead><tbody><tr><td>Wheel apparatus</td><td>Cylindrical mass with training wheel supports and wireless encoder</td></tr><tr><td>ESP32 DAQ system</td><td>Wireless encoder acquisition system with web interface</td></tr><tr><td>Eccentric mass</td><td>Solid rod, radius 0.019 m</td></tr><tr><td>Ramp</td><td>Foldable, with adjustable feet and center supports</td></tr><tr><td>Allen wrench</td><td>For ramp assembly</td></tr><tr><td>Ramp nuts, bolts, and screws</td><td>Hardware for ramp feet</td></tr><tr><td>Wooden door stops (2)</td><td>To hold wheel at top of ramp</td></tr><tr><td>Foam mat</td><td>Placed at end of ramp to stop wheel</td></tr><tr><td>Student cellphone</td><td>Used to connect to the ESP32 web interface and save CSV data</td></tr></tbody></table></div>
 <p><code>[SETUP_PHOTO NEEDED: Full ramp and wheel apparatus — wheel at top, training wheel trailing, doorstops in place, foam mat at bottom, electronics box visible]</code></p>
 <h3>Ramp Assembly</h3>
 <ol>
@@ -73,43 +73,39 @@
 <li>Flip ramp over to upright position</li>
 <li>Place foam mat at the end (bottom) of the ramp</li>
 </ol>
-<h3>Computer and DAQ Setup</h3>
+<h3>ESP32 and Encoder Setup</h3>
 <ol>
-<li>Log into the lab computer</li>
-<li>Plug the USB-A end of the NI USB-6008 cable into the computer</li>
-<li>Insert the 9V battery into the wheel along the training wheel bar</li>
-<li>Open NIMax on the computer</li>
-<li>Click the &quot;NI DAQmx Devices&quot; tab</li>
-<li>Verify the NI USB-6008 is listed as &quot;Dev 2&quot;</li>
+<li>Turn on the ESP32 DAQ system and verify the red light is on</li>
+<li>Use a cellphone to connect to the ESP32 encoder monitor web interface</li>
+<li>Confirm the web interface is displaying encoder data before releasing the wheel</li>
+<li>If the encoder data goes negative, the wheel is spinning the wrong way</li>
+<li>To help ensure the sign is correct, place the electronics box on the left side of the wheel when looking from the top of the ramp toward the bottom</li>
 </ol>
-<p><code>[SETUP_PHOTO NEEDED: NIMax screen showing NI USB-6008 listed as Dev 2]</code></p>
-<p><strong>If the USB-6008 is not listed as Dev 2:</strong></p>
-<ul>
-<li>Right-click the NI USB-6008 (or any device showing a red X) and select &quot;Delete&quot;</li>
-<li>The only remaining device should be &quot;Dev 1&quot; (internal PCI card) — <strong>do not delete Dev 1</strong></li>
-<li>Unplug and re-plug the USB cable; verify it now appears as &quot;Dev 2&quot; with no higher device numbers</li>
-</ul>
-<p><strong>Note:</strong> The device must be listed as &quot;Dev 2&quot; for <code>UnbalancedWheel.vi</code> to communicate with it.</p>
-<p><code>[SETUP_PHOTO NEEDED: NI USB-6008 and electronics box with connections labeled]</code></p>
+<p><code>[SETUP_PHOTO NEEDED: ESP32/electronics box placement, red light on, and web interface showing live encoder data]</code></p>
 <hr>
 <h2>Part 3 — Running the Experiment</h2>
-<p><strong>Reference video:</strong> AES Laboratory and Shops Videos — &quot;2003 Wheel Intro&quot; <a href="https://www.youtube.com/watch?v=28rrILZLlqM&amp;t=0s">https://www.youtube.com/watch?v=28rrILZLlqM&amp;t=0s</a></p>
-<p><code>[SAFETY: (1) Wireless transmitter on the wheel must face the wireless receiver on the computer — if line-of-sight is obstructed, packet drops will cause large gaps in the data. (2) Eccentric mass must be positioned at the top of the wheel, perpendicular to the ramp surface, at θ = 0 — the wheel can roll backward off the ramp if the mass is placed behind the vertical position. (3) Assign one person to catch the wheel at the end of the ramp for every trial. (4) Do not attempt to delete Dev 1 (internal PCI card) in NIMax.]</code></p>
-<h3>Opening the VI</h3>
+<p><strong>Reference materials from the updated lab catalog:</strong></p>
+<ul>
+<li>Encoder monitor procedure: <code>AES-Encoder_Raw_vs_Buffer</code></li>
+<li>Setup videos: balanced setup, balanced run, unbalanced setup, unbalanced run</li>
+</ul>
+<p><code>[SAFETY: (1) All students must stand to the side of the ramp during each run. (2) Assign one person to stop the wheel at the end of the ramp for every trial. (3) Eccentric mass must be positioned perpendicular to the ramp at θ = 0 before release. (4) Keep the training wheel behind the big blue wheel. (5) Move the apparatus carefully: do not slam the wheel onto the ground, do not pick it up by the training wheel, and pick it up by the blue wheel only.]</code></p>
+<h3>Opening the Encoder Monitor</h3>
 <ol>
-<li>Open <code>UnbalancedWheel.vi</code> — use the shortcut in the ASEN 2003 course folder on the lab computer</li>
-<li>The VI runs but does not record data until the wheel begins to move</li>
+<li>Open the ESP32 encoder monitor web interface on the connected cellphone</li>
+<li>Verify that the encoder values update before each trial</li>
+<li>Prepare to save the CSV file after each run</li>
 </ol>
 <h3>Balanced Wheel Trials (2 trials)</h3>
 <ol>
 <li>Center the wheel on the ramp with the bottom of the wheel at the blue tape line; training wheel should be trailing</li>
 <li>Use the two wooden door stops to hold the wheel in place</li>
-<li><strong>Check:</strong> wireless transmitter on the wheel faces the receiver on the computer; clear line of sight between them</li>
+<li><strong>Check:</strong> all students are standing to the side, the ESP32 red light is on, and encoder sign is correct</li>
 <li>Station one team member at the bottom of the ramp to catch the wheel</li>
-<li>Click the run button (white arrow, upper left of VI) — VI begins running but is not yet recording</li>
+<li>Start data acquisition from the ESP32 web interface</li>
 <li>Remove both door stops simultaneously to release the wheel from rest</li>
-<li>Press the stop button on the VI once the wheel reaches the bottom of the ramp</li>
-<li>Repeat steps 3–9 for the second balanced trial</li>
+<li>Stop/save the data once the wheel reaches the bottom of the ramp</li>
+<li>Repeat steps 1-7 for the second balanced trial</li>
 </ol>
 <h3>Unbalanced Wheel Trials (2 trials)</h3>
 <ol>
@@ -123,24 +119,26 @@
 <li><strong>CRITICAL:</strong> If the mass is placed behind the vertical position, the wheel will roll backward off the ramp</li>
 </ul>
 <ol>
-<li>Repeat steps 3–9 (with the eccentric mass installed) for two unbalanced trials</li>
+<li>Repeat the balanced-trial release and save workflow with the eccentric mass installed for two unbalanced trials</li>
 </ol>
 <hr>
 <h2>Part 4 — Data Files</h2>
 <ul>
-<li>The VI records angular position θ [rad] and angular velocity ω [rad/s] vs. time as the wheel rolls</li>
-<li>Data recording begins automatically when the wheel starts moving</li>
-<li>Stop the VI promptly when the wheel reaches the bottom to avoid capturing end-of-ramp effects</li>
+<li>The ESP32 encoder monitor saves raw encoder CSV data to the cellphone</li>
+<li>Current CSV columns are: Index, Time [ms], QuadEncoder [counts], LS7184Encoder [counts]</li>
+<li>Save data promptly when the wheel reaches the bottom to avoid capturing end-of-ramp effects</li>
 <li>Reliable data range: 0.5 rad &lt; θ &lt; 15 rad (see <code>data/data_notes_agent.md</code>)</li>
 <li>Save all 4 trial files; name files consistently so balanced and unbalanced trials can be identified</li>
+<li>Rename files using the catalog convention: <code>encoder_data_test#_balanced.csv</code> and <code>encoder_data_test#_unbalanced.csv</code></li>
+<li>Student-facing sample data should be accessed through the <a href="https://o365coloradoedu.sharepoint.com/:f:/r/sites/AEROENGR-Labspace-Labs/Shared%20Documents/Labs/01_Junior%20Level%20Labs/3501%20-%20Experimental%20Methods/Summer%202026%20-%20Course%20Development/Tier%201%20Lab%20Snapshots%20-%20STUDENT%20FACING/Unbalanced%20Wheel?d=w62fd27c495c14e6282446c9f6737c28b&amp;csf=1&amp;web=1&amp;e=z9P8Yt">Unbalanced Wheel student-facing data folder</a>, not from files bundled into the course site</li>
 </ul>
-<p><code>[MISSING: Data file format (extension, delimiter, column order) not specified in source — verify from VI output before analysis session]</code></p>
+<p><code>[STUDENT ANALYSIS DECISION: If both QuadEncoder and LS7184Encoder are included in the exported CSV, compare the channels and justify which one is used for final θ and ω calculations.]</code></p>
 <hr>
 <h2>Known Pitfalls and Common Issues</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Issue</th><th>Cause</th><th>Fix</th></tr></thead><tbody><tr><td>Large gaps in data</td><td>Wireless packet drops</td><td>Reposition wheel so transmitter faces receiver; clear any obstructions</td></tr><tr><td>VI fails to communicate</td><td>USB-6008 not listed as Dev 2</td><td>Re-run NIMax device verification steps above</td></tr><tr><td>Wheel rolls backward off ramp</td><td>Eccentric mass behind vertical at start</td><td>Reposition mass to perpendicular-to-ramp position at top of wheel</td></tr><tr><td>Noisy or unreliable data at low θ</td><td>Startup transient as wheel accelerates from rest</td><td>Trim analysis range to θ &gt; 0.5 rad</td></tr><tr><td>Noisy or unreliable data at high θ</td><td>End-of-ramp effects</td><td>Trim analysis range to θ &lt; 15 rad</td></tr></tbody></table></div>
-<p><code>[MISSING: ASEN_2003_Unbalanced_Wheel_TA_FAQs.pdf present in source directory as binary — this document contains additional troubleshooting notes; extract and add when accessible]</code></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Issue</th><th>Cause</th><th>Fix</th></tr></thead><tbody><tr><td>Large gaps, plateaus, or spikes in data</td><td>Packet loss or poor run quality</td><td>Keep students to the side of the ramp; discard and re-run bad trials</td></tr><tr><td>Encoder data goes negative</td><td>Wheel spinning opposite expected sign</td><td>Place electronics box on the left side when viewed from top of ramp looking down</td></tr><tr><td>Wheel rolls backward off ramp</td><td>Eccentric mass behind vertical at start</td><td>Reposition mass to perpendicular-to-ramp position at top of wheel</td></tr><tr><td>Noisy or unreliable data at low θ</td><td>Startup transient as wheel accelerates from rest</td><td>Trim analysis range to θ &gt; 0.5 rad</td></tr><tr><td>Noisy or unreliable data at high θ</td><td>End-of-ramp effects</td><td>Trim analysis range to θ &lt; 15 rad</td></tr></tbody></table></div>
+<p><code>[REFERENCE: ASEN_2003_Unbalanced_Wheel_TA_FAQs.pdf in the catalog contains additional troubleshooting examples, including good/bad run figures.]</code></p>
 <hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Model Derivation — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
+<p><em>This file was updated on August 7, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Model Derivation — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
 <hr>
 <h2>Section 1 — Physical Setup and Coordinate System</h2>
 <p>A cylindrical wheel (mass M, radius R, radius of gyration κ) rolls down a ramp (slope angle β) without slipping. A trailing support apparatus (mass M₀) is rigidly attached to the wheel; it translates but does not rotate. An eccentric mass (mass m) can be bolted to the wheel at radius r from the wheel center.</p>
@@ -283,39 +281,38 @@
 <p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
 <hr>
 <h2>Primary Sensor — Wheel Encoder</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Sensor model</td><td><code>HEDS-5505</code></td><td>instructor-provided confirmation + staged encoder PDF lineage</td></tr><tr><td>Measurement role</td><td>Rotation angle θ [rad]; angular velocity ω derived numerically</td><td>catalog + staged handout lineage</td></tr><tr><td>Mounting</td><td>On the wheel; rotates with the wheel</td><td>catalog + staged handout lineage</td></tr><tr><td>Communication</td><td>Wireless transmission to receiver on lab computer</td><td>catalog + staged handout lineage</td></tr><tr><td>Power supply</td><td>9V battery in wheel along training wheel bar</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Reliable analysis range</td><td>0.5 rad &lt; θ &lt; 15 rad</td><td>staged handout + historical code</td></tr><tr><td>Counts per revolution</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr><tr><td>Output type</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr><tr><td>Voltage range</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr><tr><td>Accuracy / resolution</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr></tbody></table></div>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Sensor model</td><td><code>HEDS-5505</code></td><td>instructor-provided confirmation + staged encoder PDF lineage</td></tr><tr><td>Measurement role</td><td>Encoder counts used to derive rotation angle θ [rad] and angular velocity ω [rad/s]</td><td>updated lab catalog + staged handout lineage</td></tr><tr><td>Mounting</td><td>On the wheel; rotates with the wheel</td><td>catalog + staged handout lineage</td></tr><tr><td>Communication</td><td>ESP32 wireless/web-interface data acquisition</td><td>updated lab catalog</td></tr><tr><td>Current export fields</td><td>Index, Time [ms], QuadEncoder [counts], LS7184Encoder [counts]</td><td>updated lab catalog</td></tr><tr><td>Reliable analysis range</td><td>0.5 rad &lt; θ &lt; 15 rad</td><td>staged handout + historical code</td></tr><tr><td>Counts per revolution</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr><tr><td>Output type</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr><tr><td>Voltage range</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr><tr><td>Accuracy / resolution</td><td><code>[MISSING: confirm from datasheet extraction]</code></td><td>staged encoder PDF not fully text-extracted</td></tr></tbody></table></div>
 <p>The staged encoder PDF plus instructor confirmation identify the encoder as <code>HEDS-5505</code>, but a clean text extraction or manual review is still needed to fill in the actual spec values.</p>
-<p><strong>Known issue:</strong> Wireless line-of-sight matters. Packet drops can produce large gaps, plateaus, or spikes in the recorded data.</p>
+<p><strong>Known issue:</strong> packet loss or poor acquisition can produce large gaps, plateaus, or spikes in the recorded data.</p>
 <hr>
-<h2>DAQ Hardware — NI USB-6008</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Manufacturer</td><td>National Instruments</td><td>staged handout lineage</td></tr><tr><td>Model</td><td>USB-6008</td><td>staged handout lineage</td></tr><tr><td>Interface</td><td>USB to computer</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Electronics box</td><td>Included with apparatus</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Required device ID</td><td>Must appear as <code>Dev 2</code> in NIMax</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Analog input channels</td><td><code>[MISSING: confirm from NI datasheet]</code></td><td>external spec not yet staged</td></tr><tr><td>Resolution</td><td><code>[MISSING: confirm from NI datasheet]</code></td><td>external spec not yet staged</td></tr><tr><td>Sampling rate</td><td><code>[MISSING: confirm from NI datasheet]</code></td><td>external spec not yet staged</td></tr><tr><td>Quantization uncertainty</td><td><code>[MISSING: confirm from NI datasheet]</code></td><td>external spec not yet staged</td></tr></tbody></table></div>
-<p><strong>Configuration note:</strong> The NI USB-6008 must be listed as <code>Dev 2</code> in NIMax for the LabVIEW VI to communicate correctly with it.</p>
+<h2>DAQ Hardware — ESP32 System</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Platform</td><td>ESP32 DAQ system</td><td>updated lab catalog</td></tr><tr><td>Interface</td><td>ESP32 web interface accessed from a cellphone</td><td>updated lab catalog</td></tr><tr><td>Status indicator</td><td>Red light should be on before collection</td><td>updated lab catalog</td></tr><tr><td>Export format</td><td>CSV downloaded from encoder monitor website</td><td>updated lab catalog</td></tr><tr><td>Default filename</td><td><code>encoder_data_#</code></td><td>updated lab catalog</td></tr><tr><td>Student rename convention</td><td><code>encoder_data_test#_(un)balanced.csv</code></td><td>updated lab catalog</td></tr><tr><td>Encoder channels</td><td>QuadEncoder and LS7184Encoder counts</td><td>updated lab catalog</td></tr></tbody></table></div>
+<p><strong>Configuration note:</strong> if the web interface shows encoder data going negative, the wheel is spinning in the wrong direction. The catalog recommends placing the electronics box on the left side of the wheel when looking from the top of the ramp toward the bottom.</p>
 <hr>
-<h2>DAQ Software — LabVIEW VI</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Application name</td><td><code>UnbalancedWheel.vi</code></td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Location</td><td>Shortcut in ASEN 2003 folder on lab computer</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Output channels</td><td>θ and ω vs. time</td><td>catalog + staged handout lineage</td></tr><tr><td>Recording trigger</td><td>Data is not recorded until the wheel begins to move</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Stop condition</td><td>Stop the VI once the wheel reaches the bottom of the ramp</td><td>staged 2019 <code>.tex</code></td></tr><tr><td>Reference video</td><td><code>https://www.youtube.com/watch?v=28rrILZLlqM&amp;t=0s</code></td><td>staged 2019 <code>.tex</code></td></tr></tbody></table></div>
+<h2>DAQ Software — ESP32 Encoder Monitor</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Application</td><td>ESP32 encoder monitor web interface</td><td>updated lab catalog</td></tr><tr><td>Procedure reference</td><td><code>AES-Encoder_Raw_vs_Buffer</code> GitHub repository</td><td>updated lab catalog</td></tr><tr><td>Output channels</td><td>Index, Time, QuadEncoder, LS7184Encoder</td><td>updated lab catalog</td></tr><tr><td>Collection device</td><td>Student cellphone</td><td>updated lab catalog</td></tr><tr><td>Stop condition</td><td>Save data once the wheel reaches the bottom of the ramp</td><td>updated lab catalog</td></tr></tbody></table></div>
 <hr>
 <h2>Full DAQ Chain Summary</h2>
 <pre><code>
 Wheel rotation
  → wheel encoder (HEDS-5505)
- → wireless transmission to receiver on lab computer
- → NI USB-6008 + electronics box
- → USB connection to computer
- → UnbalancedWheel.vi (LabVIEW)
- → exported text data file (historically time, theta, omega)
+ → ESP32 DAQ system
+ → ESP32 web interface on cellphone
+ → CSV export (Index, Time, QuadEncoder, LS7184Encoder)
+ → MATLAB processing to compute theta and omega
 </code></pre>
-<p>Students are end-users of the DAQ chain. They operate the apparatus and VI but do not program the NI device or the LabVIEW VI.</p>
+<p>Students are end-users of the DAQ chain. They operate the apparatus and encoder monitor but do not program the ESP32 during this lab.</p>
 <hr>
-<h2>Second-Pass Improvements From Staged Files</h2>
-<p>The staged handout confirms:</p>
+<h2>Historical Hardware Notes</h2>
+<p>Older handouts and solution files refer to:</p>
 <ul>
 <li>NI USB-6008 usage</li>
 <li><code>Dev 2</code> requirement in NIMax</li>
-<li>9V battery location</li>
-<li>operational dependency on wireless line-of-sight</li>
-<li>exact <code>UnbalancedWheel.vi</code> naming</li>
+<li><code>UnbalancedWheel.vi</code></li>
+<li>processed text exports with time, theta, and omega columns</li>
 </ul>
-<p>The staged encoder materials confirm the model:</p>
+<p>Those details are useful for interpreting archived materials, but the updated Summer 2026 catalog indicates that the current student workflow is ESP32-based.</p>
+<p>The staged encoder materials confirm the encoder model:</p>
 <ul>
 <li><code>HEDS-5505</code></li>
 </ul>
@@ -324,35 +321,23 @@ Wheel rotation
 <h2>Remaining Gaps</h2>
 <ul>
 <li><code>[MISSING: encoder counts/rev, output type, voltage range, and stated accuracy from the encoder PDF]</code></li>
-<li><code>[MISSING: NI USB-6008 datasheet or extracted spec values]</code></li>
+<li><code>[STUDENT ANALYSIS DECISION: compare exported encoder count channels and justify which one is used for final theta/omega calculations]</code></li>
 </ul>
 <hr>
-<p><em>This file was updated on July 20, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
+<p><em>This file was updated on August 7, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
 <hr>
 <h2>Data Access Policy For The Course Site</h2>
 <p>Raw and sample data files should <strong>not</strong> be bundled into the public course site for this lab. Instead, the student-facing lab page should point to an external SharePoint location managed manually by the instructional team.</p>
 <p><strong>Student-facing data link:</strong></p>
 <ul>
-<li><a href="https://o365coloradoedu.sharepoint.com/:f:/r/sites/AEROENGR-Labspace-Labs/Shared%20Documents/Labs/Extra%20Historical%20Labs/Unbalanced%20Wheel%20Lab/ASEN%202003%20Archived%20Unbalanced%20Wheel%20Lab/Data?csf=1&amp;web=1&amp;e=UcOUdQ">Data - Link to Sharepoint - NEEDS UPDATE</a></li>
+<li><a href="https://o365coloradoedu.sharepoint.com/:f:/r/sites/AEROENGR-Labspace-Labs/Shared%20Documents/Labs/01_Junior%20Level%20Labs/3501%20-%20Experimental%20Methods/Summer%202026%20-%20Course%20Development/Tier%201%20Lab%20Snapshots%20-%20STUDENT%20FACING/Unbalanced%20Wheel?d=w62fd27c495c14e6282446c9f6737c28b&amp;csf=1&amp;web=1&amp;e=z9P8Yt">Unbalanced Wheel student-facing data folder</a></li>
 </ul>
 <hr>
-<h2>What the VI Records</h2>
-<p>The LabVIEW VI <code>UnbalancedWheel.vi</code> outputs:</p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Channel</th><th>Symbol</th><th>Units</th><th>Description</th></tr></thead><tbody><tr><td>Time</td><td>t</td><td>s</td><td>Present in historical exported files; expected as column 1</td></tr><tr><td>Angular position</td><td>θ</td><td>rad</td><td>Measured by wheel encoder; historical exports use column 2</td></tr><tr><td>Angular velocity</td><td>ω</td><td>rad/s</td><td>Computed numerically from encoder output; historical exports use column 3</td></tr></tbody></table></div>
-<p>The staged historical solution report includes MATLAB code that loads files with:</p>
-<pre><code>
-data = load(filename);
-th_exp = data(:,2);
-w_exp = data(:,3);
-</code></pre>
-<p>This is strong evidence that the historical export format used:</p>
-<ul>
-<li>plain text numeric files readable by MATLAB <code>load(...)</code></li>
-<li>column 1 = time</li>
-<li>column 2 = theta</li>
-<li>column 3 = omega</li>
-</ul>
-<p><code>[NEEDS INSTRUCTOR REVIEW: Confirm that the current export format still matches the historical 3-column text format before publishing student instructions as final.]</code></p>
+<h2>What the Current ESP32 System Records</h2>
+<p>The current Summer 2026 hardware uses an ESP32 web interface. The encoder monitor website saves CSV files to a student&#x27;s phone using names such as <code>encoder_data_#</code>.</p>
+<p>Per the updated lab catalog, the current CSV columns are:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Channel</th><th>Symbol</th><th>Units</th><th>Description</th></tr></thead><tbody><tr><td>Index</td><td>—</td><td>unitless</td><td>Sample counter</td></tr><tr><td>Time</td><td>t</td><td>ms</td><td>Timestamp at capture</td></tr><tr><td>QuadEncoder</td><td>—</td><td>pulse count</td><td>Current relative position of the quadrature encoder</td></tr><tr><td>LS7184Encoder</td><td>—</td><td>pulse count</td><td>Current relative position of the step/direction encoder</td></tr></tbody></table></div>
+<p>The older LabVIEW/NI export used a different processed format (<code>time, theta, omega</code>). That format should be treated as historical reference only for this 3501 planning package unless the teaching team intentionally provides old-hardware data.</p>
 <hr>
 <h2>Data Collection Summary</h2>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Trial</th><th>Configuration</th><th>Count</th></tr></thead><tbody><tr><td>1–2</td><td>Balanced wheel (no eccentric mass)</td><td>2 trials in the current handout lineage</td></tr><tr><td>3–4</td><td>Unbalanced wheel (eccentric mass installed)</td><td>2 trials in the current handout lineage</td></tr></tbody></table></div>
@@ -368,17 +353,16 @@ w_exp = data(:,3);
 <p>The staged historical MATLAB code explicitly trims data to this range.</p>
 <hr>
 <h2>File Naming Conventions</h2>
-<p>The staged historical solution uses names like:</p>
+<p>The current encoder monitor website automatically saves files as:</p>
 <ul>
-<li><code>balanced_trial1.txt</code></li>
-<li><code>balanced_trial2.txt</code></li>
-<li><code>balanced_trial3.txt</code></li>
-<li><code>unbalanced_trial1.txt</code></li>
-<li><code>unbalanced_trial2.txt</code></li>
-<li><code>unbalanced_trial3.txt</code></li>
+<li><code>encoder_data_#</code></li>
 </ul>
-<p>These names should be treated as <strong>historical examples</strong>, not necessarily the current required naming convention.</p>
-<p><code>[INSTRUCTOR TO PROVIDE: Final naming convention if the lab team wants students to use a standard export/file-naming pattern.]</code></p>
+<p>After saving, rename files using the updated catalog convention:</p>
+<ul>
+<li><code>encoder_data_test#_balanced.csv</code></li>
+<li><code>encoder_data_test#_unbalanced.csv</code></li>
+</ul>
+<p>Use test numbers that make the two balanced trials and two unbalanced trials unambiguous.</p>
 <hr>
 <h2>Angular Acceleration</h2>
 <p><code>[NEEDS INSTRUCTOR REVIEW — whether angular acceleration computation belongs in the 3501 version of this lab]</code></p>
@@ -395,19 +379,23 @@ w_exp = data(:,3);
 <h2>MATLAB Data Loading</h2>
 <p>Students should write or adapt MATLAB code that:</p>
 <ul>
-<li>loads one trial file</li>
-<li>extracts θ and ω</li>
+<li>loads one CSV trial file from the ESP32 encoder monitor</li>
+<li>converts encoder counts and timestamps into θ and ω as required by the current analysis workflow</li>
 <li>trims to the reliable range</li>
 <li>plots ω vs. θ</li>
 <li>computes residuals against the selected model</li>
 </ul>
-<p>The staged historical report confirms that a simple <code>load(filename)</code> approach was used successfully for earlier text exports.</p>
+<p>The historical <code>load(filename)</code> workflow applies to old processed text exports. For current CSV files, use a CSV-aware reader and the current data dictionary above.</p>
 <p>See <code>matlab/README_agent.md</code> for the expected analysis workflow.</p>
 <hr>
 <h2>Sample Data Status</h2>
-<p>The staged materials now include a <strong>historical sample solution report</strong>, which confirms likely file structure and analysis habits, but the staging folder still does <strong>not</strong> contain a confirmed raw balanced export file and confirmed raw unbalanced export file for direct validation.</p>
-<p>The catalog points to historical data folders, but this ingestion pass still does not copy raw data into the planning package or publish it to the site. Students should use the SharePoint folder linked above for data access.</p>
-<p><code>[MISSING_DATA: At least one confirmed current balanced trial file and one confirmed current unbalanced trial file are still needed if the team wants the data format documented with full confidence.]</code></p>
+<p>The updated lab catalog distinguishes between:</p>
+<ul>
+<li>historical old-hardware data</li>
+<li>Summer 2026 new-hardware sample data</li>
+</ul>
+<p>This planning package should not copy raw data into the planning repo or publish raw data into the site repo. Students should use the SharePoint folder linked above for data access.</p>
+<p><code>[ACTION_FOR_INSTRUCTIONAL_TEAM: Download the Summer 2026 new-hardware sample data from the lab catalog source link, review it, and upload the student-facing files to the Unbalanced Wheel SharePoint folder linked above.]</code></p>
 <hr>
 <h2>Known Anomalies and Quirks</h2>
 <ul>
@@ -416,12 +404,12 @@ w_exp = data(:,3);
 <li>Balanced and unbalanced runs should be named clearly and consistently</li>
 </ul>
 <hr>
-<p><em>This file was updated on July 20, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
+<p><em>This file was updated on August 7, 2026 by Codex GPT-5</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
 <p><em>Instructor-facing only. Not for student distribution.</em></p>
 <hr>
 <h2>1. CLO Alignment</h2>
 <p>Source: <code>ASEN2003_L4_RollingWheels_agent_analyzed.md</code> and <code>ASEN2003_L4_RollingWheels_lab_summary.json</code></p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>CLO</th><th>Level</th><th>Evidence</th></tr></thead><tbody><tr><td>CLO 1</td><td>Strong (conduct and instrumentation); None (design)</td><td>Students operate the physical apparatus and use LabVIEW to collect angular position and velocity data for multiple trials. Hands-on encoder use. Experimental procedure is fully prescribed — no design component.</td></tr><tr><td>CLO 2</td><td>Strong</td><td>Explicit residual statistics required: mean, standard deviation, uncertainty of mean, histogram of scaled residuals, N, outlier count. One of the most rigorous statistical analysis tasks in the available source labs. Directly addresses systematic bias vs. random error distinction.</td></tr><tr><td>CLO 3</td><td>Strong</td><td>Four-model hierarchy; empirical model refinement (Q determination from balanced data); rigorous model-vs-experiment comparison; direct evaluation of modeling assumptions (particle vs. rigid body for eccentric mass). Textbook example of AMVF-style comparative validation.</td></tr><tr><td>CLO 4</td><td>Partial (end-user)</td><td>Students operate a complete DAQ chain (encoder → wireless → NI USB-6008 → LabVIEW VI) but do not configure it. No hands-on engagement with DAQ programming or signal conditioning principles.</td></tr><tr><td>CLO 5</td><td>Strong</td><td>Report requires: derivations (handwritten or typeset), MATLAB code, model comparison plots, residual plots, statistics table, quantitative error discussion. The statistics table is a professional-format communication of analytical results.</td></tr><tr><td>CLO 6</td><td>None</td><td>No experimental design or novel method creation. Students apply and evaluate pre-defined models using a standard setup.</td></tr></tbody></table></div>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>CLO</th><th>Level</th><th>Evidence</th></tr></thead><tbody><tr><td>CLO 1</td><td>Strong (conduct and instrumentation); None (design)</td><td>Students operate the physical apparatus and use the ESP32 encoder monitor to collect encoder data for multiple trials. Hands-on encoder use. Experimental procedure is fully prescribed — no design component.</td></tr><tr><td>CLO 2</td><td>Strong</td><td>Explicit residual statistics required: mean, standard deviation, uncertainty of mean, histogram of scaled residuals, N, outlier count. One of the most rigorous statistical analysis tasks in the available source labs. Directly addresses systematic bias vs. random error distinction.</td></tr><tr><td>CLO 3</td><td>Strong</td><td>Four-model hierarchy; empirical model refinement (Q determination from balanced data); rigorous model-vs-experiment comparison; direct evaluation of modeling assumptions (particle vs. rigid body for eccentric mass). Textbook example of AMVF-style comparative validation.</td></tr><tr><td>CLO 4</td><td>Partial (end-user)</td><td>Students operate a complete DAQ chain (encoder → ESP32 DAQ system → web interface → CSV export) but do not configure or program it. No hands-on engagement with DAQ programming or signal conditioning principles.</td></tr><tr><td>CLO 5</td><td>Strong</td><td>Report requires: derivations (handwritten or typeset), MATLAB code, model comparison plots, residual plots, statistics table, quantitative error discussion. The statistics table is a professional-format communication of analytical results.</td></tr><tr><td>CLO 6</td><td>None</td><td>No experimental design or novel method creation. Students apply and evaluate pre-defined models using a standard setup.</td></tr></tbody></table></div>
 <hr>
 <h2>2. Lab Character</h2>
 <p>Source: <code>ASEN2003_L4_RollingWheels_lab_summary.json</code></p>
@@ -465,7 +453,7 @@ w_exp = data(:,3);
 <p>This is a concrete, well-structured example of using experimental data to improve a model — a strong CLO 3 anchor.</p>
 <p><strong>CLO 2 anchor:</strong> The residual analysis (mean, std dev, uncertainty of mean, histogram, outlier count) is the most complete statistical analysis task among the source labs reviewed in this compilation series (aeroelasticity, bouncing ball, buoyancy balloon, spin modules, unbalanced wheel). It maps directly to CLO 2 and to Coleman &amp; Steele&#x27;s framework for model-experiment comparison.</p>
 <p><strong>Angular acceleration:</strong> The 2014 source asks students to compute angular acceleration from data; the 2018/2019 source includes an instructor editorial comment flagging this for removal. The 3501 version should decide explicitly — include only if there is a specific CLO reason (currently not justified by CLO 2 or 3; not part of the residual framework). See <code>data/data_notes_agent.md</code> for the flagged step.</p>
-<p><strong>Binary resources:</strong> The source directory contains four binary files (encoder datasheet, TA FAQs, lecture notes draft docx) that represent significant additional content. These would substantially improve the procedure, instrumentation, and notes sections of this compilation. Prioritize extracting these when accessible.</p>
+<p><strong>Binary and linked resources:</strong> The catalog includes historical handouts, TA FAQs, encoder references, setup videos, hardware images, and Summer 2026 sample data/code. These are useful for procedure, instrumentation, and notes, but raw data should stay in SharePoint rather than being copied into the planning or site repositories.</p>
 <hr>
 <h2>5. Prior Course Context</h2>
 <ul>
@@ -476,7 +464,7 @@ w_exp = data(:,3);
 <li><strong>Later improvements:</strong> Prof. Larson, Trudy Schwartz, Matt Rhode</li>
 </ul>
 <hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div>
+<p><em>This file was updated on August 7, 2026 by Codex GPT-5</em></p></div></div>
       </section>
     </main>
     
