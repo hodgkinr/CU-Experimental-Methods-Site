@@ -360,6 +360,17 @@ a {
   box-shadow: 0 10px 24px rgba(44, 42, 37, 0.08);
 }
 
+.markdown-image-right {
+  float: right;
+  width: min(34%, 260px);
+  min-width: 190px;
+  margin: 0.25rem 0 1.25rem 1.5rem;
+}
+
+.markdown-body hr {
+  clear: both;
+}
+
 .video-thumb-card {
   display: block;
   margin: 1.5rem 0;
@@ -896,6 +907,13 @@ a {
 }
 
 @media (max-width: 760px) {
+  .markdown-image-right {
+    float: none;
+    width: min(100%, 260px);
+    min-width: 0;
+    margin: 1rem auto;
+  }
+
   .site-header-inner {
     flex-direction: column;
     align-items: flex-start;
