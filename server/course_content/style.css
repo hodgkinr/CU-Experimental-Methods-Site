@@ -362,8 +362,9 @@ a {
 
 .markdown-image-right {
   float: right;
-  width: min(34%, 260px);
-  min-width: 190px;
+  width: 22%;
+  min-width: 120px;
+  max-width: 180px;
   margin: 0.25rem 0 1.25rem 1.5rem;
 }
 
@@ -908,10 +909,10 @@ a {
 
 @media (max-width: 760px) {
   .markdown-image-right {
-    float: none;
-    width: min(100%, 260px);
-    min-width: 0;
-    margin: 1rem auto;
+    width: 130px;
+    min-width: 100px;
+    max-width: 38%;
+    margin: 0.25rem 0 1rem 1rem;
   }
 
   .site-header-inner {
