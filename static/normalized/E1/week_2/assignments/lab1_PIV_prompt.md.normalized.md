@@ -224,6 +224,8 @@ estimates independent.
 The procedure has three parts: building and measuring (steps 1–5), uncertainty analysis
 from the datasheet (steps 6–8), and Monte Carlo simulation in MATLAB (steps 9–10).
 
+[Video walkthrough: lab procedure steps 1-4](https://youtu.be/9Wi809HprnU)
+
 **Note:** a single multimeter can't measure voltage and current at the same time. It must
 be configured and connected differently for each. You'll measure V and I as two separate
 steps, not simultaneously.
