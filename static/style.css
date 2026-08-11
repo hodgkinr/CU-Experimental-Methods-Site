@@ -1126,3 +1126,19 @@ a {
   color: #626764;
   flex: 1;
 }
+
+/* Planning-owned course link styling */
+.content-card a,
+.markdown-body a {
+  color: var(--cu-gold);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.content-card a:hover,
+.markdown-body a:hover {
+  color: #8B6F00;
+}
+
