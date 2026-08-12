@@ -23,7 +23,7 @@ async function init() {
   if (progressFromUrl) {
     await loadProgressCode(progressFromUrl, "URL progress code");
   } else {
-    showMessage("Paste a signed progress code to view the badge board.", false);
+    showMessage("No progress code is loaded. Use your personalized Canvas link, or paste a signed code here.", false);
   }
 }
 
