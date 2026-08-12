@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Badge Progress</title>
+    <link rel="stylesheet" href="./badge-progress/css/badges.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#badge-board">Skip to badge board</a>
+
+    <header class="site-header">
+      <div>
+        <p class="eyebrow">ASEN 3501 Aerospace Experimental Methods</p>
+        <h1>Your Experimentalist Progress</h1>
+        <p class="intro">
+          An anonymous competency profile showing CLO badge progress, mastery depth,
+          and required course gates through the selected checkpoint.
+        </p>
+      </div>
+      <div class="status-panel" aria-live="polite">
+        <span id="packet-status" class="status-pill">Awaiting code</span>
+        <span id="checkpoint-status">No checkpoint loaded</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="entry-panel" aria-labelledby="load-heading">
+        <div>
+          <h2 id="load-heading">Load Progress</h2>
+          <p>
+            Use a signed progress code or open a personalized link with the
+            progress code already included.
+          </p>
+        </div>
+        <form id="progress-form" class="progress-form">
+          <label for="progress-code">Enter Progress Code</label>
+          <div class="entry-row">
+            <textarea id="progress-code" rows="3" spellcheck="false" autocomplete="off"></textarea>
+            <button type="submit">Load Progress</button>
+          </div>
+        </form>
+        <div id="message" class="message" role="status" aria-live="polite"></div>
+      </section>
+
+      <section class="timeline-panel" aria-labelledby="timeline-heading">
+        <div class="section-heading">
+          <div>
+            <h2 id="timeline-heading">Progress Timeline</h2>
+            <p id="timeline-description">Move between grading updates to see the profile change.</p>
+          </div>
+          <output id="timeline-output" for="timeline">Current</output>
+        </div>
+        <input id="timeline" type="range" min="0" max="0" value="0" step="1" aria-describedby="timeline-description">
+        <div id="timeline-labels" class="timeline-labels" aria-label="Checkpoint shortcuts"></div>
+      </section>
+
+      <section class="summary-grid" aria-label="Progress summary">
+        <div>
+          <span id="badges-earned" class="summary-number">0 of 6</span>
+          <span class="summary-label">CLO Badges Earned</span>
+        </div>
+        <div>
+          <span id="badges-mastered" class="summary-number">0</span>
+          <span class="summary-label">CLOs at Mastery</span>
+        </div>
+        <div>
+          <span id="requirements-passed" class="summary-number">0 of 5</span>
+          <span class="summary-label">Major Requirements Passed</span>
+        </div>
+      </section>
+
+      <section id="badge-board" class="badge-board-section" aria-labelledby="board-heading">
+        <div class="section-heading">
+          <div>
+            <h2 id="board-heading">Experimentalist Badge Board</h2>
+            <p>Each badge is earned independently when all configured sub-CLOs reach proficiency.</p>
+          </div>
+        </div>
+        <div id="badge-board-grid" class="badge-grid"></div>
+      </section>
+
+      <section class="requirements-section" aria-labelledby="requirements-heading">
+        <div class="section-heading">
+          <div>
+            <h2 id="requirements-heading">Major Course Requirements</h2>
+            <p>These pass/fail gates are shown separately from CLO badge mastery.</p>
+          </div>
+        </div>
+        <div id="requirements-list" class="requirements-list"></div>
+      </section>
+    </main>
+
+    <template id="badge-template">
+      <article class="badge-card">
+        <button class="badge-toggle" type="button">
+          <span class="badge-media">
+            <img alt="">
+            <span class="mastery-symbol" aria-hidden="true">★</span>
+          </span>
+          <span class="badge-copy">
+            <span class="badge-kicker"></span>
+            <span class="badge-title"></span>
+            <span class="badge-status"></span>
+            <span class="badge-mastery"></span>
+          </span>
+        </button>
+        <div class="subclo-panel" hidden></div>
+      </article>
+    </template>
+
+    <script type="module" src="./badge-progress/js/app.js"></script>
+  </body>
+</html>

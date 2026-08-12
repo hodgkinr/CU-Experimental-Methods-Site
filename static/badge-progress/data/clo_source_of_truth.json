@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0.0",
+  "course": {
+    "id": "ASEN 3501",
+    "title": "Aerospace Experimental Methods",
+    "institution": "University of Colorado Boulder"
+  },
+  "source_of_truth": {
+    "status": "canonical",
+    "scope": [
+      "course learning outcomes",
+      "sub-CLO bookkeeping categories",
+      "CLO-based grading levels",
+      "internal assessment tracking notes"
+    ],
+    "student_facing_note": "Use the parent CLO language for syllabus and site materials unless the course design later decides to expose sub-CLOs.",
+    "internal_note": "Sub-CLOs are intended primarily for Canvas setup, assessment tracking, grader calibration, AI-assisted consistency checks, and future gamification."
+  },
+  "performance_levels": [
+    {
+      "level": 0,
+      "id": "no_evidence",
+      "name": "No Evidence",
+      "student_facing": false,
+      "description": "No relevant evidence has been submitted or observed."
+    },
+    {
+      "level": 1,
+      "id": "attempted",
+      "name": "Attempted",
+      "student_facing": true,
+      "description": "Relevant work has been submitted, but the evidence is not yet on track toward full proficiency."
+    },
+    {
+      "level": 2,
+      "id": "developing",
+      "name": "Developing",
+      "student_facing": true,
+      "description": "Evidence is on track, but full proficiency has not yet been demonstrated."
+    },
+    {
+      "level": 3,
+      "id": "proficient",
+      "name": "Proficient",
+      "student_facing": true,
+      "description": "Full proficiency has been demonstrated at an acceptable level for ASEN 3501."
+    },
+    {
+      "level": 4,
+      "id": "mastery",
+      "name": "Mastery",
+      "student_facing": true,
+      "description": "Full proficiency has been demonstrated consistently, clearly, independently, and with strong engineering judgment."
+    }
+  ],
+  "assessment_tracking": {
+    "core_assessment_pass_rule": "Every core assessment must receive a pass. A pass means every associated sub-CLO is at least Developing/on track for that assessment.",
+    "human_grader_workflow": "Human graders assign 1-3 for every pertinent sub-CLO on an assessment and flag secondary review when there is reason to consider Mastery.",
+    "ai_use_note": "AI evaluation may be used for coursewide consistency checks, but human graders retain responsibility for grading decisions.",
+    "mastery_review_trigger": "Use a secondary review flag when evidence may warrant level 4 Mastery."
+  },
+  "clos": [
+    {
+      "id": "CLO1",
+      "title": "Design and Conduct Aerospace Experiments",
+      "statement": "Design and conduct aerospace experiments by applying measurement fundamentals, instrumentation principles, and best practices in small team environments.",
+      "sub_clos": [
+        {
+          "id": "CLO1.1",
+          "title": "Design by Applying Measurement Fundamentals",
+          "description": "Design aerospace experiments with appropriate attention to how measurement fundamentals affect the experiment design."
+        },
+        {
+          "id": "CLO1.2",
+          "title": "Conduct by Applying Measurement Fundamentals",
+          "description": "Conduct aerospace experiments by taking measurements appropriately and understanding what measurement practice requires."
+        },
+        {
+          "id": "CLO1.3",
+          "title": "Design by Applying Instrumentation Principles",
+          "description": "Design aerospace experiments with appropriate attention to how instrumentation choices affect the experiment and its defensible claims."
+        },
+        {
+          "id": "CLO1.4",
+          "title": "Conduct by Applying Instrumentation Principles",
+          "description": "Conduct aerospace experiments while understanding how different instruments affect the experiment and what each instrument output means."
+        },
+        {
+          "id": "CLO1.5",
+          "title": "Small-Team Best Practices",
+          "description": "Apply best practices in small team environments while planning, conducting, documenting, and communicating experimental work."
+        }
+      ]
+    },
+    {
+      "id": "CLO2",
+      "title": "Uncertainty and Confidence",
+      "statement": "Apply statistical methods and uncertainty analysis to quantify experimental error and establish confidence in results.",
+      "sub_clos": [
+        {
+          "id": "CLO2.1",
+          "title": "Quantify Experimental Uncertainty",
+          "description": "Apply appropriate methods and analysis to quantify experimental uncertainty."
+        },
+        {
+          "id": "CLO2.2",
+          "title": "Establish Confidence in Results",
+          "description": "Use uncertainty and statistical reasoning appropriately to establish confidence in experimental results."
+        }
+      ]
+    },
+    {
+      "id": "CLO3",
+      "title": "Models and Data",
+      "statement": "Integrate theoretical models with experimental data to validate and evaluate aerospace system behavior.",
+      "sub_clos": [
+        {
+          "id": "CLO3.1",
+          "title": "Validate Models with Data",
+          "description": "Integrate theoretical models with experimental data to evaluate whether a model is valid for its intended use."
+        },
+        {
+          "id": "CLO3.2",
+          "title": "Evaluate Aerospace System Behavior",
+          "description": "Use models and experimental data together to evaluate and explain aerospace system behavior."
+        }
+      ]
+    },
+    {
+      "id": "CLO4",
+      "title": "Signal Conditioning, Sampling, and DAQ",
+      "statement": "Implement signal conditioning, sampling, and data acquisition techniques to ensure accurate experimental measurements.",
+      "sub_clos": [
+        {
+          "id": "CLO4.1",
+          "title": "Signal Conditioning",
+          "description": "Explain and apply how signal conditioning influences accurate experimental measurement."
+        },
+        {
+          "id": "CLO4.2",
+          "title": "Sampling",
+          "description": "Explain and apply how sampling choices influence accurate experimental measurement."
+        },
+        {
+          "id": "CLO4.3",
+          "title": "Data Acquisition",
+          "description": "Explain and apply how data acquisition choices influence accurate experimental measurement."
+        }
+      ]
+    },
+    {
+      "id": "CLO5",
+      "title": "Technical Communication",
+      "statement": "Communicate experimental results effectively through technical reports and presentations, with clear description of methods, results, and limitations.",
+      "sub_clos": [
+        {
+          "id": "CLO5.1",
+          "title": "Written Communication",
+          "description": "Communicate experimental methods, results, limitations, and defensible conclusions effectively in written technical reports."
+        },
+        {
+          "id": "CLO5.2",
+          "title": "Oral Communication",
+          "description": "Communicate experimental methods, results, limitations, and defensible conclusions effectively in oral presentations."
+        }
+      ]
+    },
+    {
+      "id": "CLO6",
+      "title": "Independent Experimental Methods",
+      "statement": "Identify, evaluate, and create experimental methods or instrumentation beyond those provided by the instructor to foster independent professional growth.",
+      "sub_clos": [
+        {
+          "id": "CLO6.1",
+          "title": "Identify Methods Beyond Those Provided",
+          "description": "Identify experimental methods or instrumentation beyond those provided by the instructor."
+        },
+        {
+          "id": "CLO6.2",
+          "title": "Evaluate Methods Beyond Those Provided",
+          "description": "Evaluate experimental methods or instrumentation beyond those provided by the instructor."
+        },
+        {
+          "id": "CLO6.3",
+          "title": "Create Methods Beyond Those Provided",
+          "description": "Create or synthesize experimental methods or instrumentation beyond those provided by the instructor."
+        }
+      ]
+    }
+  ]
+}
