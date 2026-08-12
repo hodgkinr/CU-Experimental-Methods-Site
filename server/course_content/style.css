@@ -76,6 +76,10 @@ a {
   color: white;
 }
 
+html.embed-mode .site-header {
+  display: none;
+}
+
 .page-shell {
   max-width: 1200px;
   margin: 0 auto;
