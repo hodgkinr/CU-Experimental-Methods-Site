@@ -1,5 +1,5 @@
 {
-  "e1-week_1": {
+  "e1-week_2": {
     "week_label": "Week 1",
     "week_focus": "AMVF, verification vs. validation, measurement vs. inference, and formal experiment design.",
     "questions": [
@@ -43,7 +43,7 @@
       }
     ]
   },
-  "e1-week_2": {
+  "e1-week_3": {
     "week_label": "Week 2",
     "week_focus": "Variability, measurement error, uncertainty propagation, Monte Carlo reasoning, and correct engineering result statements.",
     "questions": [
@@ -87,7 +87,7 @@
       }
     ]
   },
-  "e1-week_3": {
+  "e1-week_4": {
     "week_label": "Week 3",
     "week_focus": "Validation metrics, calibration vs. validation, multi-sensor comparison, residuals, and critique quality.",
     "questions": [
@@ -131,7 +131,7 @@
       }
     ]
   },
-  "e1-week_4": {
+  "e1-week_5": {
     "week_label": "Week 4",
     "week_focus": "Reading models to design tests, ranking error sources, sensor selection logic, and integrating the full Phase I pipeline.",
     "questions": [
@@ -175,7 +175,7 @@
       }
     ]
   },
-  "e1-week_5": {
+  "e2-week_1": {
     "week_label": "Week 5",
     "week_focus": "Prediction before data release, committed reasoning, discrepancy interpretation, and cross-prediction.",
     "questions": [
@@ -219,7 +219,7 @@
       }
     ]
   },
-  "e2-week_1": {
+  "e2-week_2": {
     "week_label": "Week 6",
     "week_focus": "Prediction before exposure, postdiction, intended use, formal response features, and pre-lab commitment.",
     "questions": [
@@ -263,7 +263,7 @@
       }
     ]
   },
-  "e2-week_2": {
+  "e2-week_3": {
     "week_label": "Week 7",
     "week_focus": "Sampling, aliasing, signal bandwidth, anti-aliasing filters, and DAQ justification.",
     "questions": [
@@ -307,7 +307,7 @@
       }
     ]
   },
-  "e2-week_3": {
+  "e2-week_4": {
     "week_label": "Week 8",
     "week_focus": "Model adequacy, residual taxonomy, calibration status review, and experimentally informed model updates.",
     "questions": [
@@ -355,7 +355,7 @@
       }
     ]
   },
-  "e2-week_4": {
+  "e2-week_5": {
     "week_label": "Week 9",
     "week_focus": "Statistical vs. engineering significance, regression limits, confidence intervals, and data-grounded improvement proposals.",
     "questions": [
@@ -413,7 +413,7 @@
       }
     ]
   },
-  "e2-week_5": {
+  "e3-week_1": {
     "week_label": "Week 10",
     "week_focus": "Quad chart communication, defending analysis choices, peer review quality, and transition from improving existing experiments to designing new ones.",
     "questions": [
@@ -457,7 +457,7 @@
       }
     ]
   },
-  "e3-week_1": {
+  "e3-week_2": {
     "week_label": "Week 11",
     "week_focus": "Experimental design vocabulary, hypothesis formulation, variables, confounding, replication, prior art, and standards as design evidence.",
     "questions": [
@@ -501,7 +501,7 @@
       }
     ]
   },
-  "e3-week_2": {
+  "e3-week_3": {
     "week_label": "Week 12",
     "week_focus": "Sensor selection, dynamic range, resolution versus accuracy, mounting and environmental effects, DAQ and signal conditioning choices, and beyond-provided-hardware investigation.",
     "questions": [
@@ -545,7 +545,7 @@
       }
     ]
   },
-  "e3-week_3": {
+  "e3-week_4": {
     "week_label": "Week 13",
     "week_focus": "V&V plan structure, intended use, response features, validation metrics, calibration versus validation, and prospective MATLAB uncertainty analysis.",
     "questions": [
@@ -589,7 +589,7 @@
       }
     ]
   },
-  "e3-week_4": {
+  "e3-week_5": {
     "week_label": "Week 14",
     "week_focus": "Oral defense, structured technical critique, peer evaluation, and engineering critique of sample or AI-generated experimental design work.",
     "questions": [
@@ -630,50 +630,6 @@
       {
         "type": "open_response",
         "prompt": "Explain how good critique is different from simply being negative in Week 14."
-      }
-    ]
-  },
-  "e3-week_5": {
-    "week_label": "Week 15",
-    "week_focus": "Course arc integration, AMVF mapping, CLO 6 reflection, experimentally informed models, and the closing question: how do you know this prediction is right?",
-    "questions": [
-      {
-        "type": "multiple_choice",
-        "prompt": "Which sequence best describes the course arc?",
-        "options": [
-          "Learn to measure, learn to predict, learn to design",
-          "Learn to memorize, learn to copy, learn to avoid uncertainty",
-          "Learn to present, learn to present again, learn to present faster",
-          "Learn to validate models without experiments"
-        ]
-      },
-      {
-        "type": "multiple_choice",
-        "prompt": "What is the strongest Week 15 answer to \"How do you know this prediction is right?\"",
-        "options": [
-          "\"Because the model looks reasonable\"",
-          "\"Because the data matched once\"",
-          "\"Because we designed an experiment around the model's intended use, quantified uncertainty, committed to validation metrics before measuring, compared honestly, and used discrepancies to improve the model\"",
-          "\"Because the sensor had many decimal places\""
-        ]
-      },
-      {
-        "type": "multiple_choice",
-        "prompt": "What is the purpose of the CLO 6 reflection?",
-        "options": [
-          "To list every website the student visited",
-          "To describe what method, sensor, platform, or standard the student investigated beyond provided materials, why it mattered, what was learned, and how it affected professional judgment",
-          "To prove that the beyond-provided option was always adopted",
-          "To replace the technical V&V plan"
-        ]
-      },
-      {
-        "type": "open_response",
-        "prompt": "In one short paragraph, explain how E1, E2, and E3 each connect to the AMVF."
-      },
-      {
-        "type": "open_response",
-        "prompt": "What does \"experimentally informed model\" mean by the end of the course?"
       }
     ]
   }

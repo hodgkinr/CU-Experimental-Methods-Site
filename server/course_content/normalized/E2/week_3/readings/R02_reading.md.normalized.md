@@ -1,109 +1,99 @@
-# Evaluating a Validation Report — A Checklist for the Engineering Critique Discussion
-## What a credible validation report does that an inadequate one does not
+# DAQ Configuration Choices & Practical Setup — A Decision Reference
+## Every configuration choice is a claim about your signal. Treat it that way.
 
-Before you can evaluate someone else's validation report, you need a checklist grounded in the framework you have been building since Week 6. This reading organizes that checklist. It is written from the perspective of an evaluator, someone reading the report to determine whether its validation claim is credible, not from the perspective of the author defending it.
+A data acquisition system handed to you with factory defaults is not a neutral tool. It is a collection of someone else's assumptions about what you are measuring.
 
-This is early preparation for the upcoming in-class engineering critique discussion. The sample report contains deliberate weaknesses. Your job is to identify them using the categories below, name the specific failure each represents, and propose what a corrected version would show.
+**Quick-Reference: DAQ Configuration Decisions**
 
----
-
-## Category 1: The Prediction Commitment
-
-A credible validation report documents that the model was committed before the data was collected. The evaluator asks these questions:
-
-- Is there a pre-experiment prediction with a specific numerical value or range?
-- Is there a committed acceptance criterion with a stated threshold?
-- Is the prediction dated or timestamped before data collection?
-
-**Failure mode to look for:** The prediction is present, but the acceptance criterion appears in the discussion section after the data is analyzed. This signals that the criterion may have been chosen to match the outcome rather than to define success in advance. The cure is a committed criterion in the pre-lab prediction document, signed before data collection begins.
-
-**Also watch for:** The prediction matches the data suspiciously well across all conditions. A model calibrated to a dataset will fit it well. Without evidence that the model was committed before data collection, a good fit shows only curve-fitting skill.
-
----
-
-## Category 2: Residual Analysis
-
-A credible validation report presents residuals explicitly, not just the overlay of prediction and data.
-
-- Are residuals plotted versus the independent variable, rather than only shown as a percentage error?
-- Is the shape of the residual pattern described as random or systematic?
-- Is the residual magnitude compared to the propagated uncertainty band?
-
-**Failure mode to look for:** R² reported as the primary validation metric without a residual plot. A high R² means the model explains variance in the data. It does not mean the residuals are random, and it does not mean the model is adequate for the intended use. A polynomial of sufficient degree achieves R² = 1 on any dataset. The diagnostic content is in the residuals, not the R² value.
-
-**Also watch for:** Residuals described as "within scatter" or "within experimental error" without showing the uncertainty band. The reader cannot evaluate that qualitative assessment. The author's definition of "acceptable scatter" may or may not match the propagated uncertainty, and it may have been chosen after examining the data.
-
----
-
-## Category 3: Statistical vs. Engineering Significance
-
-A credible validation report distinguishes between these two independent criteria.
-
-- Is the acceptance criterion stated in engineering terms, with a specific threshold, physical units, and intended use?
-- Is statistical significance tested separately from engineering significance?
-- Does the report acknowledge cases where the two diverge?
-
-**Failure mode to look for:** Statistical significance treated as validation. A p-value below 0.05 means that, under the null model and the test assumptions, a test statistic at least as extreme as the observed one would occur with probability below 0.05. It is not the probability that the result occurred by chance or that the null hypothesis is true. It also says nothing about whether the difference is large enough to matter for the intended use. Compare a confidence interval for the difference with a pre-specified engineering region.
-
-**Also watch for:** Engineering significance asserted without a stated acceptance criterion. "The model agrees reasonably well" is not an engineering statement. "The model agrees within ±5%, and the design requirement is ±10%" is an engineering statement.
-
----
-
-## Category 4: Uncertainty Budget and Calibration Status
-
-A credible validation report documents the dominant uncertainty sources with a propagated budget.
-
-- Are the dominant uncertainty sources identified and ranked?
-- Is calibration uncertainty included in the budget, not just random measurement noise?
-- Is the calibration status of each primary sensor stated, including date, interval, and compliance?
-
-**Failure mode to look for:** The uncertainty budget includes only Type A (random) uncertainty. Systematic sources are absent, including calibration uncertainty, model input uncertainty, and environmental drift. This produces an artificially narrow uncertainty band that makes the model look better than the measurement system can actually support.
-
-**Also watch for:** Calibration status listed as "calibrated" without documentation of when, by whom, and against what standard. "Calibrated" is not a calibration record. The record should include the calibration date, calibration interval, and the resulting uncertainty in the measurand.
-
----
-
-## Category 5: Confidence Intervals
-
-A credible report uses confidence intervals correctly and interprets them precisely.
-
-- Are CIs computed from the standard error of the mean, not the standard deviation of individual measurements?
-- Is the confidence level stated explicitly?
-- Are CIs interpreted as statements about the estimation procedure, not about the probability that the true value is inside a specific interval?
-- For a two-result comparison, is the CI formed for the difference, using Welch or paired methods as appropriate, rather than judged from separate-CI overlap?
-
-**Failure mode to look for:** "There is a 95% probability that the true value is between X and Y." This is the Bayesian posterior interpretation, not the frequentist confidence interval. The frequentist interpretation is: "If we used this procedure on 100 experiments, 95 of the resulting intervals would contain the true value." These are not the same statement. The frequentist CI is a statement about the procedure, not about any specific interval.
-
-**Also watch for:** Reporting the standard deviation of repeated measurements and calling it the confidence interval. The SD describes individual measurement scatter. The CI of the mean narrows as n increases because more measurements improve your estimate of the mean.
-
----
-
-## Category 6: Improvement Proposal Quality
-
-A credible improvement proposal is grounded in the data and uncertainty analysis, not generic.
-
-- Does the proposal name a specific sensor, parameter, model term, or test condition?
-- Is the proposal motivated by something in the data, such as a residual trend, a dominant uncertainty source, or a calibration gap?
-- Does the proposal estimate the improvement quantitatively, even roughly?
-
-**Failure mode to look for:** "More trials would reduce uncertainty." This is always true and says nothing. A credible proposal is: "The load cell contributes 68% of the total uncertainty budget. Replacing the LCL-010 (u_cal = ±0.12 N) with a higher-precision alternative (estimated u_cal = ±0.03 N) would reduce the combined uncertainty by approximately 40%. That reduction is sufficient to resolve the acceptance criterion at the current model-data discrepancy of 0.18 N."
-
----
-
-## Summary: What Separates Credible from Inadequate
-
-| Dimension | Inadequate | Credible |
+| Choice | Key Question | Decision Rule |
 |---|---|---|
-| Prediction commitment | Present but criterion appears post-hoc | Committed criterion with date, before data |
-| Residual analysis | R² only, or percent error only | Residual plot vs. independent variable, compared to uncertainty band |
-| Statistical vs. engineering significance | p < 0.05 treated as validation | Both tested separately; divergence acknowledged |
-| Uncertainty budget | Random noise only | All sources: random, calibration, model input |
-| Calibration status | "Calibrated" with no documentation | Date, interval, compliance, propagated u_cal |
-| CI interpretation | "95% probability true value is in range" | Correct frequentist statement |
-| Improvement proposal | Generic ("more trials") | Specific, grounded in data, with rough quantitative estimate |
+| Channel configuration | Is the signal source floating or subject to ground loop noise? | Default differential; use single-ended only for large signals with shared ground and short cables |
+| Input range | What is the expected signal amplitude? | Set to the smallest range that comfortably brackets the signal; do not accept ±10 V defaults for millivolt signals |
+| Sample rate | What is the signal bandwidth, and what anti-aliasing margin is required? | Sample at 5× to 10× the signal bandwidth; document the Nyquist argument explicitly |
+| Anti-aliasing filter cutoff | What is the transition band of the filter relative to the chosen sample rate? | Set cutoff at ≤ 0.4 × sample rate; document relationship to signal bandwidth |
+| Triggering | Does the event onset need to be captured, or is the signal slowly varying? | Hardware trigger for transient events; software trigger acceptable for quasi-static signals |
 
-**For the discussion:** For each identified failure, state (1) the specific text or figure that shows the problem, (2) which category it falls into from the table above, and (3) what a corrected version would show. Observations without category names and proposed corrections do not count as analysis.
+Understanding those assumptions is not optional bookkeeping. Channel configuration, resolution, sample rate, and triggering all constrain what the system can represent faithfully. Each constraint adds its own error source to the measurement. This reading is a reference document. Use it when setting up your Tier 2 experiment and again when drafting the DAQ configuration justification section of the Tier 2 group report. Unlike the companion reading (R1), which builds physical intuition for aliasing and sampling, this reading is deliberately dense. It is meant to be consulted, not just read once.
 
 ---
 
-**The Takeaway:** A validation report is a credibility argument, not a results summary. Every claim in it must answer this question: how do you know? The framework you have built in Weeks 6-9 gives you the complete toolkit for asking that question systematically: prediction commitment, residual analysis, uncertainty propagation, statistical comparison, and calibration status.
+## Channel Configuration: Single-Ended vs. Differential
+
+Most DAQ systems offer two channel configuration modes. The difference matters whenever noise or ground potential is a concern.
+
+**Single-ended configuration** measures voltage between the signal line and a shared system ground. It uses twice as many channels for a given number of signals compared to differential, which makes it attractive when channel count is limited. The vulnerability is ground-referencing error. Any noise voltage that appears between the sensor's ground reference and the DAQ system's ground reference gets measured as signal. In environments with multiple power supplies, motors, or long cable runs, this error, called a **ground loop**, can swamp a low-level sensor signal.
+
+**Differential configuration** measures voltage between two dedicated signal lines. It rejects any voltage that appears equally on both, which is called **common-mode rejection**. Differential inputs are the right choice when your signal source is floating, or when the signal amplitude is small enough that ground loop noise is a significant fraction of the signal. A **floating signal source** has no connection to the local measurement ground. Battery-powered sensors and isolated transducers are common examples, and their reference point may drift relative to the DAQ ground. Most precision measurement applications use differential configuration for this reason, including strain gauges, thermocouples, and load cells.
+
+The practical decision: single-ended is acceptable when the signal is large (volts, not millivolts), cable runs are short, and all equipment shares a common ground. In any other case, default to differential.
+
+---
+
+## Resolution: Quantization Error and Its Contribution to Uncertainty
+
+Every analog-to-digital converter (**ADC**) maps a continuous voltage range onto a finite number of discrete digital levels. A 12-bit ADC divides its input range into 2¹² = 4,096 discrete levels. A 16-bit ADC divides the same range into 65,536 levels. The voltage difference between adjacent levels is the **quantization step size**, also called the **least significant bit (LSB)** voltage.
+
+For a ±10 V input range on a 12-bit ADC, the quantization step size is 20 V / 4,096 ≈ 4.9 mV. That is the smallest voltage change the system can detect. Any signal change smaller than one LSB is invisible. It either rounds up to the next level or rounds down. The resulting **quantization error** contributes to the total measurement uncertainty.
+
+For most well-designed experiments, other error sources dominate quantization error, including sensor noise, thermal drift, and amplifier noise. But there are important exceptions. If you are measuring a slowly varying, low-amplitude signal and your input range is far wider than the signal amplitude, the effective resolution shrinks dramatically. Examples include structural creep, thermal expansion, and very low-level acoustic vibration. A signal that occupies only 1% of the ADC input range is being measured with roughly 100 times worse effective resolution than the ADC specification implies.
+
+The practical decision: set the input range to the smallest value that comfortably brackets your expected signal. Do not accept ±10 V defaults when your signal is ±100 mV.
+
+![A diagram illustrating quantization for two different ADC input range settings. On the left, a ±10V input range is divided into discrete levels, with a small signal occupying only the bottom fraction of the range — the signal is shown as a small-amplitude sine wave that spans only a few quantization levels. On the right, the input range is set to ±200 mV to match the signal amplitude, and the same signal now spans many quantization levels. Both panels show the step-staircase digitized output overlaid on the smooth true signal. A caption reads: "Resolution is a function of both the ADC bit depth and the ratio of signal amplitude to input range." Engineering diagram style, clean black and white with annotation labels. THIS NEEDS TO BE UPDATED: current ADC/quantization image is a placeholder and does not correctly represent the intended concept.](../images/E2_W7_R2_image1.png)
+*This image shows that DAQ resolution is not only a datasheet number; your range choice directly decides how much of that resolution the signal actually gets to use.
+
+---
+
+## Sample Rate: Nyquist Argument Plus Engineering Margin
+
+The Nyquist-Shannon sampling theorem (covered in R1) establishes a lower bound: sample at least twice the highest frequency in your signal. In practice, that lower bound is a starting point, not a design target.
+
+A signal sampled at exactly twice its highest frequency requires a perfect, infinitely sharp anti-aliasing filter. That filter does not exist in hardware. Real anti-aliasing filters have a transition band, a frequency range where attenuation rolls off gradually from passband to stopband. To accommodate this transition band, the practical rule is to sample at a rate **5× to 10× the signal bandwidth**, not 2×. This margin relaxes the filter requirements and provides buffer against uncertainty in the exact upper frequency of the signal.
+
+When documenting your sample rate choice in the Tier 2 report, include four pieces. First, give the estimated signal bandwidth, based on physical reasoning rather than the data. Second, state the anti-aliasing filter cutoff frequency. Third, give the chosen sampling rate and its margin over the Nyquist minimum. Fourth, note any known limitations if the margin is tight.
+
+---
+
+## Triggering and Synchronization
+
+Many aerospace experiments involve transient events, such as a structure loaded to failure, a motor spun up to operating speed, or a thermal cycle initiated. In these cases, data collection must be synchronized to the event.
+
+**Software triggering** starts acquisition when a command is issued. The delay between the command and the first sample is on the order of milliseconds. That is acceptable for slow-varying signals and problematic for transient events. **Hardware triggering** starts acquisition when an analog voltage crosses a threshold or a digital line goes high, with sub-microsecond response. Any experiment where data-collection timing matters relative to the physical event requires hardware triggering.
+
+**Pre-trigger buffers** allow the DAQ system to capture data that occurred before the trigger event. The system records continuously, and the trigger selects the retention window. This is essential for capturing the onset of a transient before the threshold condition is detected.
+
+For example, suppose you want to capture the onset of a structural impact. Hardware triggering on a load cell threshold ensures data collection starts the moment the load exceeds a set value, not a few milliseconds later when the computer catches up. For slowly varying signals, such as thermal measurements and quasi-static loading, software triggering is usually sufficient.
+
+---
+
+## A Worked Example: The Bit-Rollover Artifact
+
+This example requires knowing that some sensors count events as unsigned integers (always positive, values 0 to 65,535) while many DAQ systems record data as signed integers (positive and negative). When a sensor wraps from its maximum count back to zero, a signed integer recording sees a large negative jump.
+
+Consider a counter-based displacement sensor that outputs a count value from 0 to 65,535 (a 16-bit unsigned integer) representing a full rotation. The sensor counts up as the shaft rotates in one direction. If the shaft reverses just past the 65,535 count, the next reading is 0, a rollover. When a DAQ system stores that output as a signed 16-bit integer, the jump from 65,535 to 0 appears in the data as a sudden, large negative-going step.
+
+In a time-series plot, this step looks like a real physical event: a rapid reversal, a discontinuity, an impulse. It is not. It is a sensor counter rollover recorded by a DAQ system that was not configured to handle unsigned output. Only knowledge of the sensor's output format and awareness of the DAQ configuration reveals the artifact. Uncertainty analysis cannot identify this type of artifact because it looks like a physical reading within sensor range. The defense is documentation: read the DAQ configuration against the sensor datasheet before collecting data, not after.
+
+![A time-series plot showing sensor output versus time. The signal generally trends upward smoothly, then abruptly drops from near-maximum to near-zero at one time instant, then continues rising. The drop is labeled "Apparent reversal event." A callout box notes: "Sensor counter rollover: 65535 → 0, recorded as negative step in signed integer format. Physical shaft motion was continuous." The x-axis is labeled "Time (s)" and the y-axis "Sensor output (counts)." The smooth expected trajectory (without the rollover) is shown as a dashed continuation curve through the drop. Clear engineering plot style with annotation.](../images/E2_W7_R2_image2.png)
+*This image helps you see how a data-system artifact can masquerade as a physical event if you do not understand how the sensor and acquisition chain encode the signal.
+
+---
+
+## Documentation Requirement
+
+Every important DAQ setting used in your Tier 2 experiment must be documented in your report. In this course, many settings are provided by the experiment rather than chosen by your group. Your job is to record the provided configuration, explain what each setting controls, and assess whether it is sufficient or insufficient for the signal and intended use. If a setting is inadequate or leaves a tight margin, identify what change you would recommend and why.
+
+| Choice | What to document |
+|---|---|
+| Channel configuration | Provided mode; what it implies for ground reference and noise risk |
+| Input range | Provided value; whether it brackets the expected signal and what limitation results if it does not |
+| Sample rate | Provided value; Nyquist argument; margin above minimum or limitation if margin is tight |
+| Anti-aliasing filter cutoff | Provided value; relationship to signal bandwidth and sample rate |
+| Triggering | Provided type; whether the timing method is adequate for the event |
+| Resolution | ADC bit depth; quantization step size; assessment of whether it limits the measurement |
+
+A DAQ configuration section that lists settings without evaluating them does not show that the measurement was understood. The goal is to show that you know what each setting controls, why it matters physically, and whether the provided setup is adequate for the experiment.
+
+---
+
+**The Takeaway:** DAQ configuration is not a setup task to complete before the real work begins. It is part of measurement design, and every undocumented default is an undocumented assumption about your signal that may or may not be valid for your experiment.
