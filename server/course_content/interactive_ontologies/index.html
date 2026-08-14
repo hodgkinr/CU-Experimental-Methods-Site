@@ -93,9 +93,10 @@
     }
 
     .page-shell {
-      max-width: 1240px;
+      width: 100%;
+      max-width: none;
       margin: 0 auto;
-      padding: 1.5rem 1.25rem 3rem;
+      padding: 1.25rem clamp(0.75rem, 2vw, 1.5rem) 3rem;
     }
 
     .hero,
@@ -211,23 +212,21 @@
 
     .layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 340px;
-      gap: 1rem;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.85rem;
       margin-top: 1rem;
-      align-items: stretch;
     }
 
     .ontology-frame {
       border-radius: 8px;
-      overflow: auto;
-      min-height: 620px;
+      overflow: hidden;
+      min-height: 470px;
     }
 
     #ontologySvg {
       display: block;
       width: 100%;
-      min-width: 1180px;
-      min-height: 620px;
+      height: 470px;
       background:
         linear-gradient(rgba(31, 31, 31, 0.035) 1px, transparent 1px),
         linear-gradient(90deg, rgba(31, 31, 31, 0.035) 1px, transparent 1px),
@@ -355,10 +354,7 @@
     .details-panel {
       border-radius: 8px;
       padding: 1.1rem;
-      min-height: 620px;
-      position: sticky;
-      top: 5.2rem;
-      align-self: start;
+      min-height: 0;
     }
 
     .panel-kicker {
@@ -427,8 +423,7 @@
     }
 
     @media (max-width: 900px) {
-      .site-header-inner,
-      .layout {
+      .site-header-inner {
         display: block;
       }
 
@@ -437,15 +432,10 @@
         margin-top: 0.75rem;
       }
 
-      .details-panel {
-        position: static;
-        min-height: 0;
-        margin-top: 1rem;
-      }
-
       .ontology-frame,
       #ontologySvg {
-        min-height: 760px;
+        min-height: 420px;
+        height: 420px;
       }
     }
   </style>
@@ -471,17 +461,15 @@
     <section class="hero">
       <p class="eyebrow">University of Colorado Boulder</p>
       <h1>How Assessments Connect to Course Learning Outcomes</h1>
-      <p class="lead">Click a CLO, assessment, or relationship line to inspect what it means. Summative assessments are shown by default; turn on formative checks when you want to see the lower-stakes support layer.</p>
+      <p class="lead">Click a CLO, assessment, or relationship line to inspect what it means. The graph focuses on the major summative assessment layer so the full ontology fits cleanly in the window.</p>
       <p class="source-path" id="sourcePath">Ontology data loading...</p>
       <div class="toolbar">
         <div class="button-row">
-          <button class="control-button" id="toggleFormative" type="button" aria-pressed="false">Show Formative</button>
           <button class="control-button" id="resetFocus" type="button">Reset Focus</button>
         </div>
         <div class="legend" aria-label="Ontology legend">
           <span class="legend-item"><span class="swatch clo"></span>CLO</span>
           <span class="legend-item"><span class="swatch summative"></span>Summative</span>
-          <span class="legend-item"><span class="swatch formative"></span>Formative</span>
         </div>
       </div>
     </section>
@@ -490,12 +478,12 @@
       <section class="ontology-frame" aria-label="Assessment to CLO graph">
         <svg id="ontologySvg" role="img" aria-labelledby="graphTitle graphDescription">
           <title id="graphTitle">Assessments to CLO ontology graph</title>
-          <desc id="graphDescription">Course learning outcomes are arranged across the top. Summative assessments are below them. Optional formative assessments appear in a third layer.</desc>
+          <desc id="graphDescription">Course learning outcomes are arranged across the top. Summative assessments are below them.</desc>
         </svg>
       </section>
 
       <aside class="details-panel" id="detailsPanel" aria-live="polite">
-        <p class="panel-kicker">Selected item</p>
+        <p class="panel-kicker">Course Learning Outcome</p>
         <h2 class="panel-title">Start with a node or edge</h2>
         <p class="panel-subtitle">The ontology is loaded from ontology.json.</p>
         <div class="panel-body">
@@ -510,13 +498,11 @@
   <script>
     const state = {
       ontology: null,
-      showFormative: false,
       focus: null
     };
 
     const svg = document.getElementById("ontologySvg");
     const panel = document.getElementById("detailsPanel");
-    const toggleFormative = document.getElementById("toggleFormative");
     const resetFocus = document.getElementById("resetFocus");
     const errorBox = document.getElementById("errorBox");
     const sourceNote = document.getElementById("sourceNote");
@@ -549,7 +535,7 @@
 
     function visibleNodes() {
       return state.ontology.nodes
-        .filter((node) => state.showFormative || node.type !== "formative")
+        .filter((node) => node.type !== "formative")
         .sort((a, b) => a.order - b.order);
     }
 
@@ -565,9 +551,7 @@
         summative: nodes.filter((node) => node.type === "summative"),
         formative: nodes.filter((node) => node.type === "formative")
       };
-      const yByType = state.showFormative
-        ? { clo: 120, summative: 335, formative: 555 }
-        : { clo: 125, summative: 420, formative: 0 };
+      const yByType = { clo: 105, summative: 325, formative: 0 };
       const nodeWidth = 150;
       const nodeHeight = 82;
       const positions = new Map();
@@ -629,13 +613,14 @@
       if (!state.ontology) return;
 
       const frame = svg.parentElement.getBoundingClientRect();
-      const width = Math.max(1180, Math.floor(frame.width));
-      const height = state.showFormative ? 690 : 620;
+      const width = Math.max(920, Math.floor(frame.width));
+      const height = window.matchMedia("(max-width: 900px)").matches ? 420 : 470;
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
       svg.setAttribute("height", height);
+      svg.style.height = `${height}px`;
       svg.innerHTML = `
         <title id="graphTitle">Assessments to CLO ontology graph</title>
-        <desc id="graphDescription">Course learning outcomes are arranged across the top. Summative assessments are below them. Optional formative assessments appear in a third layer.</desc>
+        <desc id="graphDescription">Course learning outcomes are arranged across the top. Summative assessments are below them.</desc>
       `;
 
       const positions = layoutNodes(width);
@@ -645,9 +630,8 @@
 
       const labels = [
         { text: "Course Learning Outcomes", y: 42 },
-        { text: "Major Summative Assessments", y: state.showFormative ? 258 : 330 }
+        { text: "Major Summative Assessments", y: 248 }
       ];
-      if (state.showFormative) labels.push({ text: "Selected Formative Checks", y: 478 });
 
       labels.forEach((label) => {
         const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -743,7 +727,7 @@
       }).join("");
 
       panel.innerHTML = `
-        <p class="panel-kicker">${escapeHtml(node.type === "clo" ? "Course learning outcome" : node.type)}</p>
+        <p class="panel-kicker">${escapeHtml(node.type === "clo" ? "Course Learning Outcome" : node.type)}</p>
         <h2 class="panel-title">${escapeHtml(node.label)}: ${escapeHtml(node.title)}</h2>
         <p class="panel-subtitle">${escapeHtml(node.weeks || state.ontology.metadata.course)}</p>
         <div class="panel-body">
@@ -800,7 +784,7 @@
       state.focus = null;
       renderGraph();
       panel.innerHTML = `
-        <p class="panel-kicker">Selected item</p>
+        <p class="panel-kicker">Course Learning Outcome</p>
         <h2 class="panel-title">Start with a node or edge</h2>
         <p class="panel-subtitle">The ontology is loaded from ontology.json.</p>
         <div class="panel-body">
@@ -809,22 +793,6 @@
         <div class="source-note">${escapeHtml(state.ontology.metadata.title)} loaded from ontology.json.</div>
       `;
     }
-
-    toggleFormative.addEventListener("click", () => {
-      state.showFormative = !state.showFormative;
-      toggleFormative.setAttribute("aria-pressed", String(state.showFormative));
-      toggleFormative.textContent = state.showFormative ? "Hide Formative" : "Show Formative";
-      if (state.focus?.kind === "node") {
-        const focused = state.ontology.nodes.find((node) => node.id === state.focus.id);
-        if (focused?.type === "formative" && !state.showFormative) state.focus = null;
-      }
-      if (state.focus?.kind === "edge") {
-        const activeEdge = state.ontology.edges.find((edge) => edge.id === state.focus.id);
-        const hiddenNode = activeEdge && state.ontology.nodes.find((node) => (node.id === activeEdge.source || node.id === activeEdge.target) && node.type === "formative");
-        if (hiddenNode && !state.showFormative) state.focus = null;
-      }
-      resetSelection();
-    });
 
     resetFocus.addEventListener("click", resetSelection);
     window.addEventListener("resize", () => renderGraph());
