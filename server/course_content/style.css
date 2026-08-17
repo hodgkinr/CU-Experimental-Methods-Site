@@ -1197,3 +1197,16 @@ html.embed-mode .site-header {
   display: block;
 }
 
+/* Planning-owned reading page polish */
+.reading-page-polish .lead {
+  max-width: none;
+}
+
+.reading-page-polish .reading-learning-objectives {
+  width: 100%;
+}
+
+.reading-page-polish .reading-learning-objectives ul {
+  margin-bottom: 0;
+}
+
