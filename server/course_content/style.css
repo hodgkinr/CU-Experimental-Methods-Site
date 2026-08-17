@@ -1146,3 +1146,54 @@ html.embed-mode .site-header {
   color: #8B6F00;
 }
 
+/* Planning-owned embedded lecture slide prototype */
+.lecture-slide-prototype .lead {
+  max-width: none;
+}
+
+.lecture-slide-prototype .lecture-learning-objectives,
+.lecture-slide-prototype .lecture-slides-card,
+.lecture-slide-prototype .embedded-slides-card {
+  width: 100%;
+}
+
+.lecture-slide-prototype .slides-link-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.2rem 0.8rem;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.lecture-slide-prototype .slides-icon {
+  grid-row: span 2;
+  color: var(--cu-gold);
+  font-size: 1.4rem;
+}
+
+.lecture-slide-prototype .slides-link-label {
+  font-weight: 800;
+}
+
+.lecture-slide-prototype .slides-link-hint {
+  color: #626764;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.lecture-slide-prototype .embedded-slides-frame {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--cu-border);
+  border-radius: 12px;
+  background: #1f1f1f;
+}
+
+.lecture-slide-prototype .embedded-slides-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
