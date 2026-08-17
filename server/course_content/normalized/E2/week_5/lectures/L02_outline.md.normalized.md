@@ -1,3 +1,5 @@
+# slide 1: Title Slide
+
 slide 1: Title Slide
 Title: Regression, Goodness-of-Fit & Monte Carlo for Multi-Variable Systems
 Talking Point: In Week 2, you ran Monte Carlo simulation for a scalar derived quantity — electrical power computed from current and voltage — and you compared the result to the partial derivative propagation method. That was an introduction to the conceptual tool. In Week 9, we return to Monte Carlo with a harder problem: a multi-variable aerospace system where several inputs have correlated uncertainty, and where the model relationship between inputs and outputs is nonlinear. We also introduce regression as a tool for assessing model adequacy across a full dataset — not at a single operating point, but across all the conditions you tested. These two tools complete the E2 statistical analysis toolkit, and they map directly to sections of your Tier 2 group report.

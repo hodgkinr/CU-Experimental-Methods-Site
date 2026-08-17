@@ -1,45 +1,47 @@
+# slide 1: Title Slide
+
 slide 1: Title Slide
-Title: V&V Plan Components & Intended Use as Framing Constraint
-Talking Point: Week 13 is where E3 becomes a complete engineering argument. You have a proposed experiment, references, and instrumentation choices; now you have to organize them into a V&V plan. The plan is not paperwork after design. It is the logic that explains why the design would produce useful evidence.
+Title: Sensor Selection Tradeoffs & Matching Sensors to Intended Use
+Talking Point: Today we make the E3 design problem concrete: how do you choose a sensor when the experiment is yours? The answer is not "pick the familiar one" or "pick the most expensive one." The answer is to match the sensor to the model question, the accuracy requirement, and the environment in which the measurement must survive.
 
-slide 2: What a V&V Plan Does
-(Image: A structured V&V plan document shown as a spine with sections branching off: conceptual model, hypothesis, response features, validation metrics, accuracy requirements, uncertainty, calibration, AMVF mapping, intended use.)
-Talking Point: A V&V plan tells a reviewer what model is being evaluated, what evidence will be collected, how agreement will be judged, and why that judgment is sufficient for the intended use. It is prospective, meaning it is written before the data exists. That matters because it prevents us from moving the goalposts after seeing results. A good V&V plan makes the comparison honest before the experiment begins.
+slide 2: Sensor Choice Is a Validation Choice
+(Image: A validation chain from model prediction to physical response to sensor to DAQ to comparison metric. The sensor box is enlarged and labeled "this choice shapes what validation is possible.")
+Talking Point: Sensor selection is not a shopping step after the real design work is done. It is part of the validation logic. If the sensor cannot resolve the difference that matters for the intended use, the experiment cannot support the claim. If the sensor changes the system while measuring it, the data may describe the sensor installation more than the original system.
 
-slide 3: Intended Use Comes First
-(Image: Three model-use cards for the same system: classroom trend explanation, preliminary design sizing, and safety-critical decision. Each card has a different acceptable agreement threshold and required evidence level.)
-Talking Point: Intended use is the framing constraint for the entire plan. The same model can be adequate for one purpose and inadequate for another. If the model is only being used to rank concepts, rough agreement may be enough. If it is being used to make a high-consequence design decision, the validation evidence must be much stronger. Without intended use, "valid" has no engineering meaning.
+slide 3: Start with the Required Measurement
+(Image: A requirements card showing "quantity: force," "range: 0-50 N," "needed agreement: +/-2 N," "bandwidth: 0-20 Hz," and "environment: vibration and temperature drift." Several candidate sensors sit below the card, with only one highlighted.)
+Talking Point: Before comparing datasheets, write the measurement requirement. What quantity do you need, over what range, with what accuracy, at what bandwidth, and in what environment? The intended use sets the required fidelity. A sensor that is excellent for a slow calibration load may be useless for a dynamic vibration measurement.
 
-slide 4: Conceptual Model and Formal Hypothesis
-(Image: A conceptual model sketch with input variables, assumptions, governing relationship, and predicted response. Beside it is a hypothesis card that states expected trend, confirming data pattern, and challenging data pattern.)
-Talking Point: The conceptual model describes what you believe the system is and which physics matter. The hypothesis turns that model into a testable claim. I want the hypothesis to say more than "the model will match the data." It should identify what pattern, parameter, trend, or response feature the experiment is designed to confirm or challenge. That is how the experiment informs the model rather than simply stamps it pass or fail.
+slide 4: Dynamic Range
+(Image: A number line from tiny signals to large signals with three sensors represented as windows of measurable range. One sensor saturates at high input, one loses low signals in noise, and one covers the relevant band with margin.)
+Talking Point: Dynamic range is the span between the smallest and largest signal a sensor can measure usefully. If your signal exceeds the range, the output saturates. If your signal is too small relative to the sensor noise floor or resolution, the measurement becomes meaningless. In E3, your design needs to show that the expected response fits inside the sensor's useful range with margin.
 
-slide 5: System Response Features
-(Image: A complex response curve with three highlighted features: peak value, slope in a linear region, and resonant frequency. Each feature is connected to a different model assumption.)
-Talking Point: A system response feature is the specific thing in the data that the model must predict. It might be a peak force, a time constant, a slope, a frequency, an efficiency, or a threshold. Choosing the response feature is one of the most important design decisions because it decides what evidence counts. If your response feature is vague, your validation metric will be vague too.
+slide 5: Resolution Is Not Accuracy
+(Image: A target diagram with two instruments. One has tightly clustered shots offset from the bullseye labeled "high resolution, poor accuracy." Another has coarser but centered shots labeled "lower resolution, better accuracy." A small digital readout shows many decimal places with a warning label.)
+Talking Point: Resolution is the smallest change the sensor or DAQ can display. Accuracy is closeness to the true value. A device can report many decimal places and still be biased. In your instrumentation justification, do not treat a high-resolution number as proof of accuracy. You need the datasheet accuracy, calibration information, and uncertainty propagation to know whether the measurement supports the model comparison.
 
-slide 6: Validation Metrics
-(Image: A table mapping response features to metrics: percent error for peak value, RMSE for curve agreement, confidence interval overlap for means, residual trend for model form. A warning note says "metric must match the question.")
-Talking Point: The validation metric is how you measure agreement. Different response features need different metrics. A single peak value might use percent difference with uncertainty bounds. A full curve might use residual analysis or RMSE. A repeated condition might use confidence intervals. The metric should be chosen because it answers the intended-use question, not because it is familiar.
+slide 6: Mounting Effects
+(Image: A strain gauge, accelerometer, and pressure tap shown in three mini-panels. Each panel has a correct installation and an incorrect installation, with arrows showing altered load path, mass loading, or flow disturbance.)
+Talking Point: Sensors are physical objects, and installing them can change the thing you are trying to measure. A strain gauge depends on bonding and alignment. An accelerometer adds mass and can alter dynamics. A pressure tap can disturb a flow if the geometry is poor. Mounting effects are often the difference between a measurement that is technically defensible and one that only appears precise.
 
-slide 7: Accuracy Requirements and Acceptable Agreement
-(Image: A prediction-data comparison plot with a shaded acceptable agreement band set before testing. A lock icon labels the band "committed before measurement.")
-Talking Point: Accuracy requirements define how close is close enough. This is where engineering significance enters the V&V plan. A statistically detectable difference may still be acceptable, and a statistically inconclusive result may reveal that the experiment is too weak. The acceptable agreement criterion must be stated before data collection because it represents the intended use, not the result you hope to get.
+slide 7: Environmental Contamination
+(Image: A sensor signal trace surrounded by interference sources labeled temperature drift, vibration cross-axis sensitivity, electromagnetic noise, humidity, and cable motion. Each source injects a different colored disturbance into the signal.)
+Talking Point: Real laboratories are not clean mathematical spaces. Temperature, vibration, electromagnetic interference, humidity, and cable motion can all contaminate a measurement. Some contamination looks random, but some produces systematic bias. Your design should identify the likely environmental threats and specify how you will reduce, monitor, or account for them.
 
-slide 8: Calibration Is Not Validation
-(Image: Two separate loops. One loop shows sensor output compared to a known reference labeled calibration. The other shows model prediction compared to independent system response data labeled validation. A red X blocks an arrow that tries to substitute calibration for validation.)
-Talking Point: Calibration and validation answer different questions. Calibration asks whether an instrument reports a known quantity correctly. Validation asks whether a model predicts system behavior adequately for its intended use. A calibrated sensor is necessary for many experiments, but it does not validate the model. Your V&V plan must identify which activities are calibration activities and which are validation activities.
+slide 8: Resource Constraints Are Real Constraints
+(Image: A trade-space plot with axes technical performance and feasibility. Candidate sensors are plotted with tags for cost, lead time, available DAQ compatibility, calibration effort, and student access.)
+Talking Point: The best theoretical sensor is not always the best design choice. Cost, availability, lead time, calibration access, compatibility with available DAQ hardware, and setup complexity are legitimate engineering constraints. A strong E3 proposal can choose a less glamorous sensor if it explains why that sensor is adequate for the intended use. Adequacy is the standard, not luxury.
 
-slide 9: Hierarchical Validation
-(Image: A pyramid with component tests at the bottom, subsystem tests in the middle, and full system validation at the top. Arrows show evidence building upward, with uncertainty increasing as complexity grows.)
-Talking Point: Hierarchical validation means building credibility from simpler pieces toward more complex systems. You may validate a sensor calibration, then a component response, then a subsystem prediction, and only later a full-system behavior. E3 projects are small, but the logic still applies. Your planned experiment should state what level of the hierarchy it addresses and what it does not claim.
+slide 9: Beyond Provided Hardware
+(Image: A comparison table between a course-provided sensor and an externally researched alternative. Rows include range, accuracy, bandwidth, mounting burden, cost, calibration, and expected effect on validation credibility.)
+Talking Point: CLO 6 asks you to investigate at least one method, sensor, or platform beyond what was handed to you. That does not mean you must adopt it. It means you must evaluate it seriously. Sometimes the outside option will improve the design; sometimes it will reveal that the provided option is already sufficient. Either conclusion is acceptable if the comparison is technical and specific.
 
-slide 10: AMVF Annotation
-(Image: The AMVF flowchart with sticky-note annotations attached to nodes: conceptual model, physical realization, data, uncertainty quantification, comparison, model update. Each sticky note references a V&V plan section.)
-Talking Point: The AMVF annotation is your map showing where each part of the plan lives in the course framework. It should identify the model branch, the physical experiment branch, the uncertainty work, the comparison metric, and the model-improvement step. This is not just a decorative figure. It is a check that your plan has all the logical pieces connected.
+slide 10: Matching Sensor to Intended Use
+(Image: Three validation scenarios for the same physical quantity: rough trend check, design decision threshold, and certification-level claim. Each scenario maps to increasingly stringent sensor accuracy and documentation requirements.)
+Talking Point: Intended use determines how good the measurement needs to be. A sensor adequate for seeing a trend may not be adequate for deciding whether a design passes a requirement. A sensor adequate for a classroom demonstration may not support a high-consequence validation claim. In E3, you must state the intended use before claiming that the instrumentation is good enough.
 
 slide 11: Closure
-A V&V plan is a promise about how evidence will be created and interpreted. Intended use sets the standard, the conceptual model and hypothesis define the claim, response features and metrics define the comparison, and uncertainty analysis tells us whether the planned evidence is strong enough. In the next lecture we focus on that uncertainty analysis as a design tool. That is the moment where your proposed experiment either earns credibility or shows you what must be redesigned.
+Sensor selection is a chain of justification: measurement requirement, expected range, accuracy need, dynamic behavior, installation effects, environmental threats, and feasibility. The right sensor is the one that makes the validation comparison credible for the intended use, not the one with the nicest catalog page. In the next lecture, we connect the sensor to the rest of the measurement chain: signal conditioning, sampling, filtering, and DAQ choices.
 
 ## Agent Notes
-- Grounded in E3 W13 Lecture 1 purpose: V&V plan structure, intended use, response features, validation metrics, calibration versus validation, hierarchy, AMVF.
+- Grounded in E3 W12 Lecture 1 purpose: dynamic range, resolution versus accuracy, mounting, environmental contamination, resource constraints, intended use.

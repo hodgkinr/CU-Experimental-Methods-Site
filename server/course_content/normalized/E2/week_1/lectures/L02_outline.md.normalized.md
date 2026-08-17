@@ -1,3 +1,5 @@
+# The Exploratory Example — A Complete Prediction-to-Outcome Walkthrough
+
 E1_W5_L2 — The Exploratory Example — A Complete Prediction-to-Outcome Walkthrough
 ASEN 3501: Aerospace Experimental Methods | Week 5, Lecture 2
 Generated from Iteration 5 blueprint — 2026-05-14

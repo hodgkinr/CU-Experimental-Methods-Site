@@ -1,3 +1,5 @@
+# From Model to Experiment: Reading the Equations to Design the Test
+
 E1_W4_L1 — From Model to Experiment: Reading the Equations to Design the Test
 ASEN 3501: Aerospace Experimental Methods | Week 4, Lecture 1
 Generated from Iteration 5 blueprint — 2026-05-14

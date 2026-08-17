@@ -1,3 +1,5 @@
+# slide 1: Title Slide
+
 slide 1: Title Slide
 Title: Analog Signal Conditioning — Filtering, Noise & Gain
 Talking Point: In the last lecture, we established that choosing a sample rate is a modeling commitment — you are claiming that the physical signal has no meaningful content above the Nyquist frequency. But the sample rate is only part of the story. Between the physical sensor and the DAQ digitizer, the signal passes through a conditioning chain: it gets amplified, filtered, and modified in ways that can improve the measurement — or corrupt it — depending on the choices made. This lecture covers that chain: what each stage does, why it is there, and the most important design decisions you need to make and document before any data is collected.

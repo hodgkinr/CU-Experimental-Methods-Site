@@ -1,3 +1,5 @@
+# slide 1: Title Slide
+
 slide 1: Title Slide
 Title: Formal Experimental Design — Variables, Replication & Control
 Talking Point: Today we move from running experiments that someone else designed to designing experiments ourselves. The core question is no longer just "what did the data say?" but "what experiment would produce data that can actually inform the model?" Experimental design is modeling in hardware, and every choice we make reveals what we think matters.

@@ -1,3 +1,5 @@
+# slide 1: Title Slide
+
 slide 1: Title Slide
 Title: Comparing Datasets — Intervals for Differences & Engineering Equivalence
 Talking Point: Every comparison we have made in this course so far has been between a model prediction and a single experimental measurement, or between a single measurement and an accepted reference value. Week 9 extends the toolkit to a harder and more common case: comparing two or more datasets — multiple test conditions, multiple groups, multiple configurations — and making a quantitative, defensible statement about whether they are meaningfully different. This is the question that drives most real engineering decisions: is Configuration A statistically distinguishable from Configuration B? Is the treatment effect real, or is it within the noise? The statistical tools we cover today give you the vocabulary to answer those questions without relying on visual inspection.

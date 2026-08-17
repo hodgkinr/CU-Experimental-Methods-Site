@@ -1,95 +1,30 @@
-# Peer Evaluation and Engineering Critique Worksheet
-## A technical critique is useful only when it names the evidence
+# How to Write a Test Plan
+## The document that decides what evidence will count before evidence exists
 
-A good critique does not sound impressive; it helps the next engineer make a better decision.
-
----
-
-Week 14 asks you to evaluate experimental designs from two directions. First, you will evaluate peer oral defenses. Second, you may evaluate sample, prior-student, professional, or AI-generated experimental design work. Use the same technical standard for both. The question is not whether the work is polished, confident, or easy to like. The question is whether the design would produce data capable of informing the model claim it identifies.
-
-<image description: A clean worksheet-style visual with two side-by-side panels. The left panel is labeled peer oral defense and shows a student presentation slide with callouts for hypothesis, instrumentation, uncertainty, and validation metric. The right panel is labeled sample or AI-generated design and shows a polished report page with the same callouts. A shared rubric bar underneath says same engineering standard, different source of work.>
-
-Use the prompts below while you listen, read, or review. Write in complete but compact engineering sentences. Avoid praise that could apply to any presentation. Avoid critique that only says something is missing. Name the consequence: why does the missing or weak element affect model credibility, measurement quality, uncertainty, feasibility, or intended use?
-
-## Part 1 - What Is Being Claimed?
-
-**Model or decision being informed** — What model, requirement, parameter, design decision, or engineering question does this experiment address?
-
-Response:
-
-**Hypothesis testability** — Is the hypothesis specific enough that future data could support or challenge it? What exact result would count as a challenge?
-
-Response:
-
-**System response feature** — What quantity, trend, time-series feature, distribution, residual pattern, or threshold is being measured? Is it the right evidence for the model claim?
-
-Response:
-
-## Part 2 - Is The Measurement Chain Credible?
-
-**Instrumentation adequacy** — Are the sensors matched to the required range, accuracy, bandwidth, environment, and installation constraints? Name the strongest instrumentation choice and the weakest one.
-
-Response:
-
-**DAQ, sampling, and filtering** — Is the sample rate justified by expected signal bandwidth? Is filtering or anti-aliasing addressed where it matters? Is DAQ range or resolution connected to uncertainty rather than just named?
-
-Response:
-
-**Calibration versus validation** — Does the design distinguish checking an instrument against a known reference from validating the predictive model against independent system behavior?
-
-Response:
-
-## Part 3 - Does The Uncertainty Support The Claim?
-
-**Dominant uncertainty source** — What appears to dominate the uncertainty budget? Is the source identified with enough evidence to be believable?
-
-Response:
-
-**Adequacy conclusion** — Is the predicted uncertainty small enough to evaluate the acceptance criterion or intended-use decision? If the work does not answer this, say so directly.
-
-Response:
-
-**Validation metric and acceptance criterion** — Is the metric matched to the response feature? Is the criterion defined before data collection, and is it justified by intended use rather than convenience?
-
-Response:
-
-<image description: A compact critique matrix with rows labeled hypothesis, measurement chain, uncertainty, validation metric, feasibility, and model update. Columns are labeled evidence present, concern, consequence, and recommended improvement. One row is partially filled to show how a vague concern becomes an actionable engineering critique.>
-
-## Part 4 - Feasibility, Safety, And Model Update
-
-**Feasibility and safety** — Are resources, hazards, operating limits, time, and practical constraints specific enough that a reviewer could decide whether the experiment is buildable and responsible?
-
-Response:
-
-**Experimentally informed model update** — Does the design state what data pattern would change a parameter, assumption, boundary condition, or model form? If not, what update pathway is missing?
-
-Response:
-
-## Part 5 - Your Required Critique
-
-**One specific strength** — Name one feature of the work that improves the design's credibility. Explain why it matters technically.
-
-Response:
-
-**One specific weakness or unresolved risk** — Name one issue that would most limit confidence in the design. Connect it to model, instrumentation, uncertainty, validation, feasibility, or communication.
-
-Response:
-
-**One actionable improvement** — Give one concrete change the team or author could make. A strong recommendation names what to change, where, and why it would improve the design.
-
-Response:
-
-## AI-Generated Or Sample Work Check
-
-If the work being reviewed was AI-generated or otherwise supplied as sample work, add this final check:
-
-- What looked plausible on the surface?
-- What technical claim needed verification from a source?
-- What was correct, incorrect, missing, or unsupported?
-- What is the single most important revision before this work could be trusted?
-
-Response:
+A test plan is what keeps an experiment from becoming a well-instrumented improvisation.
 
 ---
 
-**The Takeaway:** Your critique is graded on engineering judgment. Specific, evidence-based, actionable feedback is a technical contribution; generic approval or vague dissatisfaction is not.
+In engineering practice, a test plan is written before the test happens. That timing is the point. A final report explains what was done and what was found. A **test plan** explains what will be done, why it will be done, what evidence will count, what resources are required, and how the results will connect to a requirement, model, or decision. In E3, the full deliverable is a V&V plan. Professional test planning is the broader document family it belongs to. Learning the structure helps you write a V&V plan that feels like engineering work instead of a long explanation after the fact.
+
+![A split document visual. On the left is a test plan labeled before testing, with sections objective, scope, test items, approach, criteria, resources, schedule, and traceability. On the right is a final report labeled after testing, with sections data, results, discussion, limitations, and conclusions. A large arrow between them says planned evidence becomes reported evidence.](../images/E3_W13_R1_image1.png)
+*This image shows that a final report is not invented after the fact; it is the planned evidence trail made visible after testing is complete.
+
+A strong test plan begins with an **objective**. The objective should be more specific than "test the system." It should identify the model, requirement, or design decision the test supports. For E3, an objective might be: "Measure the thrust response of a small propeller-motor system across voltage settings to determine whether the predictive model estimates thrust within the accuracy required for preliminary power-system sizing." That sentence names the response, model, and intended use. It also hints at the validation criterion.
+
+Next comes **scope**. Scope defines what the test includes and what it deliberately excludes. This is not bureaucratic filler. Scope protects the interpretation of results. If your paper design measures steady-state behavior but not transient response, say that. If your proposed test applies only to a narrow range of Reynolds numbers, specimen geometries, or load levels, say that too. A clear scope statement prevents a reader from treating limited evidence as universal proof.
+
+The plan should identify **test items** and **test approach**. Test items are the physical objects, specimens, models, or configurations under evaluation. The test approach describes the setup, variables, instrumentation, data collection sequence, and reduction method. For E3, this is where your earlier design work appears: independent variables, dependent variables, controlled variables, confounding factors, replication, randomization or blocking, sensors, DAQ settings, filtering, and calibration activities.
+
+![A test approach flow diagram showing requirement or model claim leading to test setup, instrumentation chain, data collection, data reduction, validation metric, and model update decision. Each stage has a small checkbox for evidence needed before testing.](../images/E3_W13_R1_image2.png)
+*This image ties the reporting structure back to the execution chain so you can see where traceability has to be established before the test ever begins.
+
+The plan also needs **criteria**. Some test plans use pass/fail criteria tied to requirements. A V&V plan may instead use acceptable agreement criteria tied to intended use. Either way, the criterion must be written before data collection. If the acceptable error is plus or minus 5 percent, say why that level matters. If the validation metric is confidence interval overlap, residual trend, RMSE, or percent difference, name it before the result exists.
+
+Resource planning belongs in the document too. Engineers need to know what equipment, people, time, calibration records, software, and safety approvals are required. This may feel less exciting than uncertainty propagation, but it is where many tests fail. A beautiful validation metric is useless if the sensor cannot be acquired, the calibration cannot be checked, or the test sequence cannot fit in the available time.
+
+Finally, a test plan should include **traceability**. Traceability means every major test activity connects back to a requirement, model claim, response feature, or validation objective. If a measurement does not trace to the objective, ask why it is being collected. If a model claim has no measurement tied to it, ask how it will be evaluated. Traceability keeps the plan from turning into data collection for its own sake.
+
+---
+
+**The Takeaway:** A test plan is a prospective argument about evidence. It defines the objective, scope, approach, criteria, resources, and traceability before the test begins, which is exactly the habit your E3 V&V plan is meant to build.

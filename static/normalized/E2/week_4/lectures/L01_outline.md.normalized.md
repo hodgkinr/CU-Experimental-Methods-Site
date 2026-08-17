@@ -1,3 +1,5 @@
+# slide 1: Title Slide
+
 slide 1: Title Slide
 Title: Model-Form Error & Discrepancy as Diagnostic Information
 Talking Point: This lecture addresses what I consider the hardest conceptual shift of Phase II, and I want to state it plainly at the start. When the data comes back from your Tier 2 experiment and it does not match your prediction perfectly — and it will not — your first instinct is going to be to explain the discrepancy away. To say the sensors drifted, or something went wrong with the setup, or there was noise. That instinct is wrong. Discrepancy is not failure. Discrepancy is data about the model, and the structure of the discrepancy tells you something specific and true about what the model is missing. That is the subject of this lecture: learning to read the gap between prediction and measurement as information rather than embarrassment.

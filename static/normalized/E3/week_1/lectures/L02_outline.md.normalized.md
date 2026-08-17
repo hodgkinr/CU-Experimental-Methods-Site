@@ -1,3 +1,5 @@
+# slide 1: Title Slide
+
 slide 1: Title Slide
 Title: Engineering Standards, Handbooks & Prior Art
 Talking Point: In the last lecture we talked about how to structure an experimental design. Now we add the professional layer: standards, handbooks, and prior work. Engineering design is not supposed to start from a blank page, and experimental design is no different.

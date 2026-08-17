@@ -1,3 +1,5 @@
+# slide 1: Title Slide
+
 slide 1: Title Slide
 Title: Formal Hypothesis Framing for Complex Systems
 Talking Point: In Week 1, you wrote a hypothesis for a simple canned experiment — one primary output, a clean physical model, and a straightforward comparison. This lecture extends that vocabulary to the systems you are going to work with in E2: more parameters, more potential failure modes, and less obvious predictions. The formal hypothesis framing tools are the same ones you already know, but the complexity of applying them has gone up, and the consequences of being vague — vague system response features, vague acceptance criteria — are more visible when the system is more complex. By the end of this lecture, you will have the full vocabulary for committing to a prediction that is worth something.

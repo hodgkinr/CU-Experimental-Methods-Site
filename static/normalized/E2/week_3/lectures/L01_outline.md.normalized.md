@@ -1,3 +1,5 @@
+# slide 1: Title Slide
+
 slide 1: Title Slide
 Title: Nyquist Sampling, Aliasing & Signal Bandwidth
 Talking Point: Before you can run a credible measurement on a complex aerospace system, you need to understand what you are asking the digital measurement system to do. A sensor converts a physical quantity into an analog electrical signal — a continuous stream of information about the world. A data acquisition system takes discrete snapshots of that signal at a fixed rate. Everything about whether those snapshots faithfully represent the original signal depends on one thing: how fast you sample relative to how fast the signal changes. That relationship is governed by the Nyquist-Shannon sampling theorem, and when it is violated, the result is not noise — it is a plausible-looking signal that is completely wrong. That is the subject of this lecture.

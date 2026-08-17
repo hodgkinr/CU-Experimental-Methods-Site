@@ -1,3 +1,5 @@
+# What a Good Prediction Looks Like — Committing Before You Look
+
 E1_W5_L1 — What a Good Prediction Looks Like — Committing Before You Look
 ASEN 3501: Aerospace Experimental Methods | Week 5, Lecture 1
 Generated from Iteration 5 blueprint — 2026-05-14

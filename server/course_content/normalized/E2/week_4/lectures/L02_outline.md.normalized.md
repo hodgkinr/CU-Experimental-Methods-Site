@@ -1,3 +1,5 @@
+# slide 1: Title Slide
+
 slide 1: Title Slide
 Title: Calibration Revisited — Formal Procedure & Calibration Status Review
 Talking Point: We introduced the calibration-versus-validation distinction in Week 3 of E1, and you have been applying that distinction conceptually ever since. This lecture deepens it. Calibration is not just a concept — it is a formal procedure with its own uncertainty budget, and the uncertainty it introduces propagates directly into your final measurement outcome. In Phase II, every group is required to document the calibration status of their instruments and assess whether that status is adequate for the intended use of the experiment. This lecture gives you the formal tools to do that correctly.

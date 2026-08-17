@@ -1,3 +1,5 @@
+# slide 1: Title Slide
+
 slide 1: Title Slide
 Title: Why Prediction Must Precede Measurement
 Talking Point: Welcome to Phase II. Everything we did in E1 — measuring, propagating uncertainty, comparing to a model — was preparation for the discipline we are about to practice: prediction before exposure. In Phase I you were reactive analysts. In Phase II you become disciplined modelers, and the single most important habit of a disciplined modeler is this — you commit to what you expect before you see what happened. That is what this lecture is about, and it is the governing principle of everything we do in Weeks 6 through 10.
