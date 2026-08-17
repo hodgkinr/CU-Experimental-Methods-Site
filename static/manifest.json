@@ -16,10 +16,10 @@
           "slug": "e1-week_1",
           "label": "E1 Week 1 (Course Week 0)",
           "order": 0,
-          "headline": "E1 Week 1 (Course Week 0)",
+          "headline": "E1 Week 0: Course Introduction & AMVF Reference",
           "learning_goals": [],
           "weekly_flow": "",
-          "summary": "E1 Week 1 (Course Week 0) moves through ordered lectures, readings, and assessments generated from the source materials.",
+          "summary": "The course opens with orientation, expectations, the proficiency model, and the first shared reference point for the entire course: the Aerospace Modeling & Validation Framework (AMVF). Students encounter the professional vocabulary of modeling, verification, validation, and uncertainty before the first lab sequence begins. The goal is to establish the course frame without overloading the first week with the later...",
           "items": {
             "lectures": [
               {
@@ -49,8 +49,8 @@
                     "summary": "# ASEN 3501 First Day Course Orientation First day course orientation slides for the Aug 17 intro week."
                   }
                 ],
-                "summary": "# ASEN 3501 First Day Course Orientation First day course orientation slides for the Aug 17 intro week.",
-                "purpose": "",
+                "summary": "Establish course expectations, the pass/fail proficiency model, the lab sequence, and the first-week orientation to experimental methods.",
+                "purpose": "Establish course expectations, the pass/fail proficiency model, the lab sequence, and the first-week orientation to experimental methods.",
                 "type_label": "Lecture",
                 "learning_goals": [],
                 "estimated_minutes": 4,
@@ -68,7 +68,7 @@
                 "module_key": "week_1",
                 "module_slug": "e1-week_1",
                 "category": "readings",
-                "title": "AMVF Reference: Engineering Standards and the Professional Vocabulary of Validation",
+                "title": "AMVF Reference, ASME V&V 10-2006 & Engineering Standards as Professional Resources",
                 "slug": "r01",
                 "order": 1,
                 "variants": [
@@ -81,8 +81,8 @@
                     "summary": "# AMVF Reference: Engineering Standards and the Professional Vocabulary of Validation ## Measurement Uncertainty Standards, ASME V&V Guides, and the Handbooks Behind the Framework Every claim an engineer makes about a..."
                   }
                 ],
-                "summary": "# AMVF Reference: Engineering Standards and the Professional Vocabulary of Validation ## Measurement Uncertainty Standards, ASME V&V Guides, and the Handbooks Behind the Framework Every claim an engineer makes about a...",
-                "purpose": "",
+                "summary": "A curated set of pointers to engineering standards and professional handbooks that ground the AMVF in professional practice. The AMVF used in this course is not itself a published standard; it is a junior-year teaching synthesis built from the same professional foundations students will keep encountering in computational methods, later discipline-specific work, and capstone design. ASME V&V 10 is named explicitly as the primary solid-mechanics standards anchor for the AMVF conversation in this course, with ASME V&V 20 serving as the companion fluid/heat-transfer reference. Additional pointers include AIAA measurement standards, ASME PTC measurement uncertainty standards, and relevant instrumentation handbooks. Students are not expected to read all of these in depth. The purpose is to establish that such resources exist, that professional experimentalists use them, and that students should explain what a cited standard contributes to an experiment rather than citing it mechanically.",
+                "purpose": "A curated set of pointers to engineering standards and professional handbooks that ground the AMVF in professional practice. The AMVF used in this course is not itself a published standard; it is a junior-year teaching synthesis built from the same professional foundations students will keep encountering in computational methods, later discipline-specific work, and capstone design. ASME V&V 10 is named explicitly as the primary solid-mechanics standards anchor for the AMVF conversation in this course, with ASME V&V 20 serving as the companion fluid/heat-transfer reference. Additional pointers include AIAA measurement standards, ASME PTC measurement uncertainty standards, and relevant instrumentation handbooks. Students are not expected to read all of these in depth. The purpose is to establish that such resources exist, that professional experimentalists use them, and that students should explain what a cited standard contributes to an experiment rather than citing it mechanically.",
                 "type_label": "Reading",
                 "learning_goals": [],
                 "estimated_minutes": 15,
@@ -95,7 +95,20 @@
             ],
             "assessments": []
           },
-          "activity_meta": []
+          "activity_meta": [
+            {
+              "category": "lectures",
+              "type_label": "Lecture",
+              "title": "ASEN 3501 First Day Course Orientation",
+              "purpose": "Establish course expectations, the pass/fail proficiency model, the lab sequence, and the first-week orientation to experimental methods."
+            },
+            {
+              "category": "readings",
+              "type_label": "Reading",
+              "title": "AMVF Reference, ASME V&V 10-2006 & Engineering Standards as Professional Resources",
+              "purpose": "A curated set of pointers to engineering standards and professional handbooks that ground the AMVF in professional practice. The AMVF used in this course is not itself a published standard; it is a junior-year teaching synthesis built from the same professional foundations students will keep encountering in computational methods, later discipline-specific work, and capstone design. ASME V&V 10 is named explicitly as the primary solid-mechanics standards anchor for the AMVF conversation in this course, with ASME V&V 20 serving as the companion fluid/heat-transfer reference. Additional pointers include AIAA measurement standards, ASME PTC measurement uncertainty standards, and relevant instrumentation handbooks. Students are not expected to read all of these in depth. The purpose is to establish that such resources exist, that professional experimentalists use them, and that students should explain what a cited standard contributes to an experiment rather than citing it mechanically."
+            }
+          ]
         },
         {
           "course_key": "E1",
@@ -294,12 +307,6 @@
               "type_label": "Lab",
               "title": "Tier 1 Phase 1 \u2014 Design Session (Canned Experiment Introduction)",
               "purpose": "Students are introduced to their assigned canned experiment and complete the formal design phase before any data is collected. This is the required pre-lab work for the Tier 1 Phase 1 lab. Required elements regardless of which canned experiment is assigned: (1) a formal hypothesis \u2014 one sentence, falsifiable, with brief physical reasoning; (2) identification of independent and dependent variables, control conditions, and at least one confounding factor; (3) an annotated AMVF diagram mapping the planned experimental workflow to framework nodes; (4) acknowledgment that the experiment will use at least two sensors to measure the same physical quantity; (5) a plan to use experimental results to inform and improve the predictive model (not just compare). Students bring this pre-lab work to the W2 lab session where data collection begins."
-            },
-            {
-              "category": "readings",
-              "type_label": "Reading",
-              "title": "AMVF Reference, ASME V&V 10-2006 & Engineering Standards as Professional Resources",
-              "purpose": "A curated set of pointers to engineering standards and professional handbooks that ground the AMVF in professional practice. The AMVF used in this course is not itself a published standard; it is a junior-year teaching synthesis built from the same professional foundations students will keep encountering in computational methods, later discipline-specific work, and capstone design. ASME V&V 10 is named explicitly as the primary solid-mechanics standards anchor for the AMVF conversation in this course, with ASME V&V 20 serving as the companion fluid/heat-transfer reference. Additional pointers include AIAA measurement standards, ASME PTC measurement uncertainty standards, and relevant instrumentation handbooks. Students are not expected to read all of these in depth. The purpose is to establish that such resources exist, that professional experimentalists use them, and that students should explain what a cited standard contributes to an experiment rather than citing it mechanically."
             },
             {
               "category": "assessments",
@@ -926,7 +933,7 @@
           "slug": "e1-week_5",
           "label": "E1 Week 5 (Course Week 4)",
           "order": 4,
-          "headline": "E1 Week 4: Integration Lab: Full Phase I Pipeline",
+          "headline": "E1 Week 4: Model-to-Experiment Integration",
           "learning_goals": [
             "Read a physical model's equations to identify what must be measured, how precisely, and under what conditions \u2014 connecting model structure to experimental design requirements \u2014 CLO 1, CLO 3",
             "Rank the contributions of multiple error sources in a measurement chain and articulate where improving one input would most reduce total uncertainty in the derived output \u2014 CLO 2",
@@ -936,7 +943,7 @@
             "Produce a complete Tier 1 Phase 1 Individual Report with all required sections, AMVF annotation, and properly captioned MATLAB figures \u2014 CLO 5"
           ],
           "weekly_flow": "",
-          "summary": "Week 4 is the integration week. No new concepts are introduced. Students execute the complete Phase I pipeline \u2014 hypothesis, sensor selection, installation, measurement, MATLAB-based uncertainty propagation, and quantitative model comparison \u2014 as a single uninterrupted, documented workflow. Every analytical decision connects to the AMVF. The integration difficulty is intentional: students discover which steps they...",
+          "summary": "Week 4 integrates the Phase I pipeline while adding the final E1 lecture and reading sequence: reading equations to design the test, and reasoning about multiple sensors or multiple sources when measurements disagree. Students connect model structure to measurement choices, sensor rationale, uncertainty propagation, and quantitative model comparison as a single documented workflow. The Phase I report remains the m...",
           "items": {
             "lectures": [
               {
@@ -1066,10 +1073,10 @@
           "slug": "e2-week_1",
           "label": "E2 Week 1 (Course Week 5)",
           "order": 0,
-          "headline": "E2 Week 1 (Course Week 5)",
+          "headline": "E2 Week 5: Transition 1: Prediction Framing & Discrepancy as Data",
           "learning_goals": [],
           "weekly_flow": "",
-          "summary": "E2 Week 1 (Course Week 5) moves through ordered lectures, readings, and assessments generated from the source materials.",
+          "summary": "E2 now opens with the prediction-before-measurement bridge that previously closed E1. Students learn what makes a prediction defensible, see a complete prediction-to-outcome walkthrough, and read discrepancy as data rather than failure. This week prepares students for the formal Tier 2 prediction gate by making pre-commitment, uncertainty-bounded expectations, and discrepancy interpretation visible before the more...",
           "items": {
             "lectures": [
               {
@@ -1099,8 +1106,8 @@
                     "summary": "# What a Good Prediction Looks Like \u2014 Committing Before You Look E1_W5_L1 \u2014 What a Good Prediction Looks Like \u2014 Committing Before You Look ASEN 3501: Aerospace Experimental Methods | Week 5, Lecture 1 Generated from I..."
                   }
                 ],
-                "summary": "# What a Good Prediction Looks Like \u2014 Committing Before You Look E1_W5_L1 \u2014 What a Good Prediction Looks Like \u2014 Committing Before You Look ASEN 3501: Aerospace Experimental Methods | Week 5, Lecture 1 Generated from I...",
-                "purpose": "",
+                "summary": "Directly primes students for the Tier 1 Phase 2 prediction memo, which they will begin in this week's lab session. The lecture opens with the distinction that separates a prediction from a guess: a prediction is falsifiable, committed in writing before data is seen, and derived from reasoning that can be evaluated independently of whether the prediction turned out to be correct. The lecture walks through the five elements that every defensible prediction must contain \u2014 (1) system response features with committed specific values or ranges (not vague directional claims), (2) an uncertainty estimate derived from the available sensor specs using the propagation methods from E1 W2, (3) a sketch of the expected output with axes, units, and uncertainty bounds drawn before any data is seen, (4) a ranked list of dominant uncertainty sources with estimated magnitudes, (5) a named acceptance criterion stated as a numerical threshold. Each element is illustrated using a worked example from an experiment the class has not used \u2014 the instructor walks through how to extract a prediction from theory and specs alone, without touching hardware. **The grading philosophy:** This lecture must communicate the Phase 2 grading standard explicitly: a prediction that turns out to be wrong but was derived from sound physical reasoning and complete committed analysis is more valuable than a prediction that turns out to be right but was derived from vague intuition. The goal of pre-commitment is not to be correct \u2014 it is to be honest about what you knew before you saw the data, so the discrepancy teaches you something. This philosophy echoes through E2 and E3: it is the professional norm for test engineers, and students should hear it named clearly before Phase 2 begins.",
+                "purpose": "Directly primes students for the Tier 1 Phase 2 prediction memo, which they will begin in this week's lab session. The lecture opens with the distinction that separates a prediction from a guess: a prediction is falsifiable, committed in writing before data is seen, and derived from reasoning that can be evaluated independently of whether the prediction turned out to be correct. The lecture walks through the five elements that every defensible prediction must contain \u2014 (1) system response features with committed specific values or ranges (not vague directional claims), (2) an uncertainty estimate derived from the available sensor specs using the propagation methods from E1 W2, (3) a sketch of the expected output with axes, units, and uncertainty bounds drawn before any data is seen, (4) a ranked list of dominant uncertainty sources with estimated magnitudes, (5) a named acceptance criterion stated as a numerical threshold. Each element is illustrated using a worked example from an experiment the class has not used \u2014 the instructor walks through how to extract a prediction from theory and specs alone, without touching hardware. **The grading philosophy:** This lecture must communicate the Phase 2 grading standard explicitly: a prediction that turns out to be wrong but was derived from sound physical reasoning and complete committed analysis is more valuable than a prediction that turns out to be right but was derived from vague intuition. The goal of pre-commitment is not to be correct \u2014 it is to be honest about what you knew before you saw the data, so the discrepancy teaches you something. This philosophy echoes through E2 and E3: it is the professional norm for test engineers, and students should hear it named clearly before Phase 2 begins.",
                 "type_label": "Lecture",
                 "learning_goals": [],
                 "estimated_minutes": 22,
@@ -1137,8 +1144,8 @@
                     "summary": "# The Exploratory Example \u2014 A Complete Prediction-to-Outcome Walkthrough E1_W5_L2 \u2014 The Exploratory Example \u2014 A Complete Prediction-to-Outcome Walkthrough ASEN 3501: Aerospace Experimental Methods | Week 5, Lecture 2..."
                   }
                 ],
-                "summary": "# The Exploratory Example \u2014 A Complete Prediction-to-Outcome Walkthrough E1_W5_L2 \u2014 The Exploratory Example \u2014 A Complete Prediction-to-Outcome Walkthrough ASEN 3501: Aerospace Experimental Methods | Week 5, Lecture 2...",
-                "purpose": "",
+                "summary": "The instructor walks through a complete prediction-to-outcome comparison for an experiment from the Tier 1 pool that no student in the room ran as their Phase 1. This is not a polished demonstration \u2014 it is a transparent modeling exercise, done in real time, with the instructor narrating every decision. The sequence mirrors exactly what students must do in Phase 2 and Phase 3: read the theory primer and sensor specs \u2192 identify the primary output and its expected range \u2192 apply partial derivative propagation to estimate uncertainty \u2192 sketch the expected time-series or distribution with committed bounds \u2192 define an acceptance criterion \u2192 then reveal the actual data and compare. The comparison includes explicit narration of what the discrepancy reveals: is the gap within the propagated uncertainty band (consistent with measurement noise), or does the residual show a systematic trend (evidence of a model-form limitation)? The instructor names which category applies and explains the physical interpretation. **Bridge to E2:** This lecture closes E1 by making explicit what E2 will demand. In E1, students ran their own experiments and separately predicted someone else's. In E2, prediction before exposure is not an exercise \u2014 it is the required gate before any hardware access. The canned experiments in E2 are more complex, the models have more parameters, and the consequences of a vague pre-commitment are more visible. What students practiced in Tier 1 Phase 2 is the same skill, now applied under higher stakes. The instructor should close this lecture \u2014 and E1 \u2014 with the question that opens E2: *what would you need to know, before touching any hardware, to make a prediction you could defend?*",
+                "purpose": "The instructor walks through a complete prediction-to-outcome comparison for an experiment from the Tier 1 pool that no student in the room ran as their Phase 1. This is not a polished demonstration \u2014 it is a transparent modeling exercise, done in real time, with the instructor narrating every decision. The sequence mirrors exactly what students must do in Phase 2 and Phase 3: read the theory primer and sensor specs \u2192 identify the primary output and its expected range \u2192 apply partial derivative propagation to estimate uncertainty \u2192 sketch the expected time-series or distribution with committed bounds \u2192 define an acceptance criterion \u2192 then reveal the actual data and compare. The comparison includes explicit narration of what the discrepancy reveals: is the gap within the propagated uncertainty band (consistent with measurement noise), or does the residual show a systematic trend (evidence of a model-form limitation)? The instructor names which category applies and explains the physical interpretation. **Bridge to E2:** This lecture closes E1 by making explicit what E2 will demand. In E1, students ran their own experiments and separately predicted someone else's. In E2, prediction before exposure is not an exercise \u2014 it is the required gate before any hardware access. The canned experiments in E2 are more complex, the models have more parameters, and the consequences of a vague pre-commitment are more visible. What students practiced in Tier 1 Phase 2 is the same skill, now applied under higher stakes. The instructor should close this lecture \u2014 and E1 \u2014 with the question that opens E2: *what would you need to know, before touching any hardware, to make a prediction you could defend?*",
                 "type_label": "Lecture",
                 "learning_goals": [],
                 "estimated_minutes": 21,
@@ -1169,8 +1176,8 @@
                     "summary": "# Discrepancy Is Data \u2014 Interpreting What the Gap Tells You ## Three Categories of Mismatch, and What Each One Reveals About Your Model The most instructive moment in any experiment is not when your result matches the..."
                   }
                 ],
-                "summary": "# Discrepancy Is Data \u2014 Interpreting What the Gap Tells You ## Three Categories of Mismatch, and What Each One Reveals About Your Model The most instructive moment in any experiment is not when your result matches the...",
-                "purpose": "",
+                "summary": "A short reading that frames discrepancy between a committed prediction and measured data not as failure but as information. Three categories of discrepancy are described and distinguished: (1) the gap falls within the propagated uncertainty band \u2014 consistent with measurement noise, no model revision required; (2) the gap is larger than the uncertainty band but has no systematic structure \u2014 suggests the uncertainty was underestimated, prompting a review of which error sources were omitted; (3) the gap shows a systematic trend (residuals increase with the independent variable, or have a consistent sign) \u2014 evidence of a model-form limitation, where the model is missing a physical effect. The reading gives brief examples of each: a bounce ball trajectory where air resistance is ignored produces a systematically optimistic prediction at long times (category 3); a pendulum period measurement with an over-optimistic stopwatch uncertainty bound produces a gap that looks large but may simply reflect an underestimated error source (category 2); and a spring-mass natural frequency estimate where scatter is within the uncertainty band (category 1). Students are expected to apply this taxonomy in both the Tier 1 Phase 2 comparison and the Phase 3 synthesis segment. This reading bridges directly to E2 W8, where the same taxonomy is formalized using residual plots and applied to the more complex Tier 2 canned experiments.",
+                "purpose": "A short reading that frames discrepancy between a committed prediction and measured data not as failure but as information. Three categories of discrepancy are described and distinguished: (1) the gap falls within the propagated uncertainty band \u2014 consistent with measurement noise, no model revision required; (2) the gap is larger than the uncertainty band but has no systematic structure \u2014 suggests the uncertainty was underestimated, prompting a review of which error sources were omitted; (3) the gap shows a systematic trend (residuals increase with the independent variable, or have a consistent sign) \u2014 evidence of a model-form limitation, where the model is missing a physical effect. The reading gives brief examples of each: a bounce ball trajectory where air resistance is ignored produces a systematically optimistic prediction at long times (category 3); a pendulum period measurement with an over-optimistic stopwatch uncertainty bound produces a gap that looks large but may simply reflect an underestimated error source (category 2); and a spring-mass natural frequency estimate where scatter is within the uncertainty band (category 1). Students are expected to apply this taxonomy in both the Tier 1 Phase 2 comparison and the Phase 3 synthesis segment. This reading bridges directly to E2 W8, where the same taxonomy is formalized using residual plots and applied to the more complex Tier 2 canned experiments.",
                 "type_label": "Reading",
                 "learning_goals": [],
                 "estimated_minutes": 18,
@@ -1183,7 +1190,26 @@
             ],
             "assessments": []
           },
-          "activity_meta": []
+          "activity_meta": [
+            {
+              "category": "lectures",
+              "type_label": "Lecture",
+              "title": "What a Good Prediction Looks Like \u2014 Committing Before You Look",
+              "purpose": "Directly primes students for the Tier 1 Phase 2 prediction memo, which they will begin in this week's lab session. The lecture opens with the distinction that separates a prediction from a guess: a prediction is falsifiable, committed in writing before data is seen, and derived from reasoning that can be evaluated independently of whether the prediction turned out to be correct. The lecture walks through the five elements that every defensible prediction must contain \u2014 (1) system response features with committed specific values or ranges (not vague directional claims), (2) an uncertainty estimate derived from the available sensor specs using the propagation methods from E1 W2, (3) a sketch of the expected output with axes, units, and uncertainty bounds drawn before any data is seen, (4) a ranked list of dominant uncertainty sources with estimated magnitudes, (5) a named acceptance criterion stated as a numerical threshold. Each element is illustrated using a worked example from an experiment the class has not used \u2014 the instructor walks through how to extract a prediction from theory and specs alone, without touching hardware. **The grading philosophy:** This lecture must communicate the Phase 2 grading standard explicitly: a prediction that turns out to be wrong but was derived from sound physical reasoning and complete committed analysis is more valuable than a prediction that turns out to be right but was derived from vague intuition. The goal of pre-commitment is not to be correct \u2014 it is to be honest about what you knew before you saw the data, so the discrepancy teaches you something. This philosophy echoes through E2 and E3: it is the professional norm for test engineers, and students should hear it named clearly before Phase 2 begins."
+            },
+            {
+              "category": "lectures",
+              "type_label": "Lecture",
+              "title": "The Exploratory Example \u2014 A Complete Prediction-to-Outcome Walkthrough",
+              "purpose": "The instructor walks through a complete prediction-to-outcome comparison for an experiment from the Tier 1 pool that no student in the room ran as their Phase 1. This is not a polished demonstration \u2014 it is a transparent modeling exercise, done in real time, with the instructor narrating every decision. The sequence mirrors exactly what students must do in Phase 2 and Phase 3: read the theory primer and sensor specs \u2192 identify the primary output and its expected range \u2192 apply partial derivative propagation to estimate uncertainty \u2192 sketch the expected time-series or distribution with committed bounds \u2192 define an acceptance criterion \u2192 then reveal the actual data and compare. The comparison includes explicit narration of what the discrepancy reveals: is the gap within the propagated uncertainty band (consistent with measurement noise), or does the residual show a systematic trend (evidence of a model-form limitation)? The instructor names which category applies and explains the physical interpretation. **Bridge to E2:** This lecture closes E1 by making explicit what E2 will demand. In E1, students ran their own experiments and separately predicted someone else's. In E2, prediction before exposure is not an exercise \u2014 it is the required gate before any hardware access. The canned experiments in E2 are more complex, the models have more parameters, and the consequences of a vague pre-commitment are more visible. What students practiced in Tier 1 Phase 2 is the same skill, now applied under higher stakes. The instructor should close this lecture \u2014 and E1 \u2014 with the question that opens E2: *what would you need to know, before touching any hardware, to make a prediction you could defend?*"
+            },
+            {
+              "category": "readings",
+              "type_label": "Reading",
+              "title": "Discrepancy Is Data \u2014 Interpreting What the Gap Tells You",
+              "purpose": "A short reading that frames discrepancy between a committed prediction and measured data not as failure but as information. Three categories of discrepancy are described and distinguished: (1) the gap falls within the propagated uncertainty band \u2014 consistent with measurement noise, no model revision required; (2) the gap is larger than the uncertainty band but has no systematic structure \u2014 suggests the uncertainty was underestimated, prompting a review of which error sources were omitted; (3) the gap shows a systematic trend (residuals increase with the independent variable, or have a consistent sign) \u2014 evidence of a model-form limitation, where the model is missing a physical effect. The reading gives brief examples of each: a bounce ball trajectory where air resistance is ignored produces a systematically optimistic prediction at long times (category 3); a pendulum period measurement with an over-optimistic stopwatch uncertainty bound produces a gap that looks large but may simply reflect an underestimated error source (category 2); and a spring-mass natural frequency estimate where scatter is within the uncertainty band (category 1). Students are expected to apply this taxonomy in both the Tier 1 Phase 2 comparison and the Phase 3 synthesis segment. This reading bridges directly to E2 W8, where the same taxonomy is formalized using residual plots and applied to the more complex Tier 2 canned experiments."
+            }
+          ]
         },
         {
           "course_key": "E2",
@@ -2106,7 +2132,7 @@
             "Produce a preliminary experimental design proposal including problem statement, hypothesis, variable identification, relevant standards cited, and prior art summary \u2014 CLO 1, CLO 5, CLO 6"
           ],
           "weekly_flow": "",
-          "summary": "E3 opens by formalizing something students have been doing implicitly since Week 1: making decisions about what to measure, how many times, and under what conditions. Week 10 makes experimental design explicit \u2014 independent and dependent variables, replication, randomization, control, confounding factors, and a structured introduction to design of experiments concepts at the exposure level. Hypothesis formulation...",
+          "summary": "E3 opens by formalizing something students have been doing implicitly since Week 1: making decisions about what to measure, how many times, and under what conditions. Course Week 10 makes experimental design explicit \u2014 independent and dependent variables, replication, randomization, control, confounding factors, and a structured introduction to design of experiments concepts at the exposure level. Hypothesis formu...",
           "items": {
             "lectures": [
               {
@@ -2136,8 +2162,8 @@
                     "summary": "# slide 1: Title Slide slide 1: Title Slide Title: Formal Experimental Design \u2014 Variables, Replication & Control Talking Point: Today we move from running experiments that someone else designed to designing experiment..."
                   }
                 ],
-                "summary": "Formalizes what students have been doing implicitly since Week 1: making decisions about what to measure, how many times, and under what conditions. Covers independent and dependent variables, controlled variables and the challenge of maintaining control in physical experiments, confounding factors and how they masquerade as causal effects, replication as the only defense against random error, randomization and blocking as defenses against systematic bias, and a light exposure to design of experiments (DOE) concepts \u2014 factorial designs and Taguchi methods at the awareness level, not the mastery level. The central reframe: experimental design is modeling in hardware. Every design decision encodes an assumption about what matters. **AMVF framing (W10):** This lecture should open with an explicit return to the AMVF \u2014 reminding students that the entire course has been building toward this moment. The question \"what does this experiment tell you about the system, and why does it matter?\" first asked in E1 W3 and revisited in E2 W6 is now the question students must answer for themselves, for their own designed experiment. This is the connection between ASEN 3501 and the senior design project: the experiment exists to inform a model, the model exists to support an engineering decision, and the decision exists to move a project forward.",
-                "purpose": "Formalizes what students have been doing implicitly since Week 1: making decisions about what to measure, how many times, and under what conditions. Covers independent and dependent variables, controlled variables and the challenge of maintaining control in physical experiments, confounding factors and how they masquerade as causal effects, replication as the only defense against random error, randomization and blocking as defenses against systematic bias, and a light exposure to design of experiments (DOE) concepts \u2014 factorial designs and Taguchi methods at the awareness level, not the mastery level. The central reframe: experimental design is modeling in hardware. Every design decision encodes an assumption about what matters. **AMVF framing (W10):** This lecture should open with an explicit return to the AMVF \u2014 reminding students that the entire course has been building toward this moment. The question \"what does this experiment tell you about the system, and why does it matter?\" first asked in E1 W3 and revisited in E2 W6 is now the question students must answer for themselves, for their own designed experiment. This is the connection between ASEN 3501 and the senior design project: the experiment exists to inform a model, the model exists to support an engineering decision, and the decision exists to move a project forward.",
+                "summary": "Formalizes what students have been doing implicitly since Week 1: making decisions about what to measure, how many times, and under what conditions. Covers independent and dependent variables, controlled variables and the challenge of maintaining control in physical experiments, confounding factors and how they masquerade as causal effects, replication as the only defense against random error, randomization and blocking as defenses against systematic bias, and a light exposure to design of experiments (DOE) concepts \u2014 factorial designs and Taguchi methods at the awareness level, not the mastery level. The central reframe: experimental design is modeling in hardware. Every design decision encodes an assumption about what matters. **AMVF framing (W11):** This lecture should open with an explicit return to the AMVF \u2014 reminding students that the entire course has been building toward this moment. The question \"what does this experiment tell you about the system, and why does it matter?\" first asked in E1 W3 and revisited in E2 W6 is now the question students must answer for themselves, for their own designed experiment. This is the connection between ASEN 3501 and the senior design project: the experiment exists to inform a model, the model exists to support an engineering decision, and the decision exists to move a project forward.",
+                "purpose": "Formalizes what students have been doing implicitly since Week 1: making decisions about what to measure, how many times, and under what conditions. Covers independent and dependent variables, controlled variables and the challenge of maintaining control in physical experiments, confounding factors and how they masquerade as causal effects, replication as the only defense against random error, randomization and blocking as defenses against systematic bias, and a light exposure to design of experiments (DOE) concepts \u2014 factorial designs and Taguchi methods at the awareness level, not the mastery level. The central reframe: experimental design is modeling in hardware. Every design decision encodes an assumption about what matters. **AMVF framing (W11):** This lecture should open with an explicit return to the AMVF \u2014 reminding students that the entire course has been building toward this moment. The question \"what does this experiment tell you about the system, and why does it matter?\" first asked in E1 W3 and revisited in E2 W6 is now the question students must answer for themselves, for their own designed experiment. This is the connection between ASEN 3501 and the senior design project: the experiment exists to inform a model, the model exists to support an engineering decision, and the decision exists to move a project forward.",
                 "type_label": "Lecture",
                 "learning_goals": [
                   "Apply formal experimental design vocabulary \u2014 independent and dependent variables, replication, randomization, blocking, control, and confounding factors \u2014 to an aerospace measurement problem \u2014 CLO 1",
@@ -2216,8 +2242,8 @@
                     "summary": "# Engineering Standards & Handbooks Resources ## How professional experimentalists avoid starting from a blank page The fastest way to make a weak experimental design sound sophisticated is to invent all of it yoursel..."
                   }
                 ],
-                "summary": "A curated, annotated list of engineering standards resources and handbooks relevant to aerospace experimental methods \u2014 organized by measurement domain (fluid mechanics, structural, thermal, vibration). ASME V&V 10-2006 is listed first as the primary course standard. Additional pointers include AIAA standards, ASME PTC documents, ASTM measurement standards, relevant MIL-HDBK documents, and recommended handbooks (including Coleman & Steele 4th edition for uncertainty). Serves as the reference resource for both the W10 preliminary proposal and the W12 instrumentation justification report. Should be reviewed and updated annually as standards are revised.",
-                "purpose": "A curated, annotated list of engineering standards resources and handbooks relevant to aerospace experimental methods \u2014 organized by measurement domain (fluid mechanics, structural, thermal, vibration). ASME V&V 10-2006 is listed first as the primary course standard. Additional pointers include AIAA standards, ASME PTC documents, ASTM measurement standards, relevant MIL-HDBK documents, and recommended handbooks (including Coleman & Steele 4th edition for uncertainty). Serves as the reference resource for both the W10 preliminary proposal and the W12 instrumentation justification report. Should be reviewed and updated annually as standards are revised.",
+                "summary": "A curated, annotated list of engineering standards resources and handbooks relevant to aerospace experimental methods \u2014 organized by measurement domain (fluid mechanics, structural, thermal, vibration). ASME V&V 10-2006 is listed first as the primary course standard. Additional pointers include AIAA standards, ASME PTC documents, ASTM measurement standards, relevant MIL-HDBK documents, and recommended handbooks (including Coleman & Steele 4th edition for uncertainty). Serves as the reference resource for both the W11 preliminary proposal and the W12 instrumentation justification report. Should be reviewed and updated annually as standards are revised.",
+                "purpose": "A curated, annotated list of engineering standards resources and handbooks relevant to aerospace experimental methods \u2014 organized by measurement domain (fluid mechanics, structural, thermal, vibration). ASME V&V 10-2006 is listed first as the primary course standard. Additional pointers include AIAA standards, ASME PTC documents, ASTM measurement standards, relevant MIL-HDBK documents, and recommended handbooks (including Coleman & Steele 4th edition for uncertainty). Serves as the reference resource for both the W11 preliminary proposal and the W12 instrumentation justification report. Should be reviewed and updated annually as standards are revised.",
                 "type_label": "Reading",
                 "learning_goals": [
                   "Apply formal experimental design vocabulary \u2014 independent and dependent variables, replication, randomization, blocking, control, and confounding factors \u2014 to an aerospace measurement problem \u2014 CLO 1",
@@ -2251,8 +2277,8 @@
                     "summary": "# Experimental Design Proposal Worksheet ## Before choosing hardware, prove the question is measurable A proposal is not an idea with formatting; it is a test of whether your idea can become evidence. --- Use this wor..."
                   }
                 ],
-                "summary": "A reading-format worksheet that helps students turn the W10 design challenge launch into a preliminary proposal. Students define the model claim, intended use, predictive model, response feature, hypothesis, variables, controls, confounders, control/randomization/blocking strategy, initial test matrix, scope boundary, and annotated source evidence. Includes a three-row annotated-source template for ASME V&V 10-2006, a datasheet or handbook, and a prior paper or application note. ## 3. Bridge to Next Week Students have defined their hypothesis, identified what is already known, and established the standards context for their design. Week 12 asks them to specify how they will measure \u2014 selecting sensors, DAQ configuration, and signal conditioning strategy \u2014 and to go beyond the provided course hardware to investigate what the broader instrumentation landscape offers for their specific measurement problem.",
-                "purpose": "A reading-format worksheet that helps students turn the W10 design challenge launch into a preliminary proposal. Students define the model claim, intended use, predictive model, response feature, hypothesis, variables, controls, confounders, control/randomization/blocking strategy, initial test matrix, scope boundary, and annotated source evidence. Includes a three-row annotated-source template for ASME V&V 10-2006, a datasheet or handbook, and a prior paper or application note. ## 3. Bridge to Next Week Students have defined their hypothesis, identified what is already known, and established the standards context for their design. Week 12 asks them to specify how they will measure \u2014 selecting sensors, DAQ configuration, and signal conditioning strategy \u2014 and to go beyond the provided course hardware to investigate what the broader instrumentation landscape offers for their specific measurement problem.",
+                "summary": "A reading-format worksheet that helps students turn the W11 design challenge launch into a preliminary proposal. Students define the model claim, intended use, predictive model, response feature, hypothesis, variables, controls, confounders, control/randomization/blocking strategy, initial test matrix, scope boundary, and annotated source evidence. Includes a three-row annotated-source template for ASME V&V 10-2006, a datasheet or handbook, and a prior paper or application note. ## 3. Bridge to Next Week Students have defined their hypothesis, identified what is already known, and established the standards context for their design. Week 12 asks them to specify how they will measure \u2014 selecting sensors, DAQ configuration, and signal conditioning strategy \u2014 and to go beyond the provided course hardware to investigate what the broader instrumentation landscape offers for their specific measurement problem.",
+                "purpose": "A reading-format worksheet that helps students turn the W11 design challenge launch into a preliminary proposal. Students define the model claim, intended use, predictive model, response feature, hypothesis, variables, controls, confounders, control/randomization/blocking strategy, initial test matrix, scope boundary, and annotated source evidence. Includes a three-row annotated-source template for ASME V&V 10-2006, a datasheet or handbook, and a prior paper or application note. ## 3. Bridge to Next Week Students have defined their hypothesis, identified what is already known, and established the standards context for their design. Week 12 asks them to specify how they will measure \u2014 selecting sensors, DAQ configuration, and signal conditioning strategy \u2014 and to go beyond the provided course hardware to investigate what the broader instrumentation landscape offers for their specific measurement problem.",
                 "type_label": "Reading / Worksheet",
                 "learning_goals": [
                   "Apply formal experimental design vocabulary \u2014 independent and dependent variables, replication, randomization, blocking, control, and confounding factors \u2014 to an aerospace measurement problem \u2014 CLO 1",
@@ -2346,7 +2372,7 @@
               "category": "lectures",
               "type_label": "Lecture",
               "title": "Formal Experimental Design \u2014 Variables, Replication & Control",
-              "purpose": "Formalizes what students have been doing implicitly since Week 1: making decisions about what to measure, how many times, and under what conditions. Covers independent and dependent variables, controlled variables and the challenge of maintaining control in physical experiments, confounding factors and how they masquerade as causal effects, replication as the only defense against random error, randomization and blocking as defenses against systematic bias, and a light exposure to design of experiments (DOE) concepts \u2014 factorial designs and Taguchi methods at the awareness level, not the mastery level. The central reframe: experimental design is modeling in hardware. Every design decision encodes an assumption about what matters. **AMVF framing (W10):** This lecture should open with an explicit return to the AMVF \u2014 reminding students that the entire course has been building toward this moment. The question \"what does this experiment tell you about the system, and why does it matter?\" first asked in E1 W3 and revisited in E2 W6 is now the question students must answer for themselves, for their own designed experiment. This is the connection between ASEN 3501 and the senior design project: the experiment exists to inform a model, the model exists to support an engineering decision, and the decision exists to move a project forward."
+              "purpose": "Formalizes what students have been doing implicitly since Week 1: making decisions about what to measure, how many times, and under what conditions. Covers independent and dependent variables, controlled variables and the challenge of maintaining control in physical experiments, confounding factors and how they masquerade as causal effects, replication as the only defense against random error, randomization and blocking as defenses against systematic bias, and a light exposure to design of experiments (DOE) concepts \u2014 factorial designs and Taguchi methods at the awareness level, not the mastery level. The central reframe: experimental design is modeling in hardware. Every design decision encodes an assumption about what matters. **AMVF framing (W11):** This lecture should open with an explicit return to the AMVF \u2014 reminding students that the entire course has been building toward this moment. The question \"what does this experiment tell you about the system, and why does it matter?\" first asked in E1 W3 and revisited in E2 W6 is now the question students must answer for themselves, for their own designed experiment. This is the connection between ASEN 3501 and the senior design project: the experiment exists to inform a model, the model exists to support an engineering decision, and the decision exists to move a project forward."
             },
             {
               "category": "lectures",
@@ -2370,13 +2396,13 @@
               "category": "readings",
               "type_label": "Reading",
               "title": "Engineering Standards & Handbooks Resources",
-              "purpose": "A curated, annotated list of engineering standards resources and handbooks relevant to aerospace experimental methods \u2014 organized by measurement domain (fluid mechanics, structural, thermal, vibration). ASME V&V 10-2006 is listed first as the primary course standard. Additional pointers include AIAA standards, ASME PTC documents, ASTM measurement standards, relevant MIL-HDBK documents, and recommended handbooks (including Coleman & Steele 4th edition for uncertainty). Serves as the reference resource for both the W10 preliminary proposal and the W12 instrumentation justification report. Should be reviewed and updated annually as standards are revised."
+              "purpose": "A curated, annotated list of engineering standards resources and handbooks relevant to aerospace experimental methods \u2014 organized by measurement domain (fluid mechanics, structural, thermal, vibration). ASME V&V 10-2006 is listed first as the primary course standard. Additional pointers include AIAA standards, ASME PTC documents, ASTM measurement standards, relevant MIL-HDBK documents, and recommended handbooks (including Coleman & Steele 4th edition for uncertainty). Serves as the reference resource for both the W11 preliminary proposal and the W12 instrumentation justification report. Should be reviewed and updated annually as standards are revised."
             },
             {
               "category": "readings",
               "type_label": "Reading / Worksheet",
               "title": "Experimental Design Proposal Worksheet",
-              "purpose": "A reading-format worksheet that helps students turn the W10 design challenge launch into a preliminary proposal. Students define the model claim, intended use, predictive model, response feature, hypothesis, variables, controls, confounders, control/randomization/blocking strategy, initial test matrix, scope boundary, and annotated source evidence. Includes a three-row annotated-source template for ASME V&V 10-2006, a datasheet or handbook, and a prior paper or application note. ## 3. Bridge to Next Week Students have defined their hypothesis, identified what is already known, and established the standards context for their design. Week 12 asks them to specify how they will measure \u2014 selecting sensors, DAQ configuration, and signal conditioning strategy \u2014 and to go beyond the provided course hardware to investigate what the broader instrumentation landscape offers for their specific measurement problem."
+              "purpose": "A reading-format worksheet that helps students turn the W11 design challenge launch into a preliminary proposal. Students define the model claim, intended use, predictive model, response feature, hypothesis, variables, controls, confounders, control/randomization/blocking strategy, initial test matrix, scope boundary, and annotated source evidence. Includes a three-row annotated-source template for ASME V&V 10-2006, a datasheet or handbook, and a prior paper or application note. ## 3. Bridge to Next Week Students have defined their hypothesis, identified what is already known, and established the standards context for their design. Week 12 asks them to specify how they will measure \u2014 selecting sensors, DAQ configuration, and signal conditioning strategy \u2014 and to go beyond the provided course hardware to investigate what the broader instrumentation landscape offers for their specific measurement problem."
             }
           ]
         },
@@ -2386,10 +2412,10 @@
           "slug": "e3-week_2",
           "label": "E3 Week 2 (Course Week 11)",
           "order": 1,
-          "headline": "E3 Week 2 (Course Week 11)",
+          "headline": "E3 Week 11: In-Class Exam",
           "learning_goals": [],
           "weekly_flow": "",
-          "summary": "E3 Week 2 (Course Week 11) moves through ordered lectures, readings, and assessments generated from the source materials.",
+          "summary": "Course Week 11 is reserved for the in-class exam and consolidation of proficiency evidence. No new lecture or reading sequence is introduced in this week.",
           "items": {
             "lectures": [],
             "readings": [],
@@ -2426,7 +2452,14 @@
               }
             ]
           },
-          "activity_meta": []
+          "activity_meta": [
+            {
+              "category": "assessments",
+              "type_label": "In-Class Exam",
+              "title": "Proficiency Checkpoint",
+              "purpose": "Provide an in-person summative checkpoint for students to demonstrate proficiency on course outcomes before the final design-and-validation sequence concludes."
+            }
+          ]
         },
         {
           "course_key": "E3",
@@ -2588,8 +2621,8 @@
                     "summary": "# V&V Plan and Oral Defense Worksheet ## Turn the plan into an argument you can defend out loud A V&V plan is not finished when every section exists; it is finished when every section helps answer the same question. -..."
                   }
                 ],
-                "summary": "A reading-format worksheet that helps students convert the W13 V&V plan lectures into a complete written plan and oral defense preparation artifact. It maps each required V&V plan section to its evidence requirement, lists common failure modes, and provides skeptical oral-defense questions covering model claim, intended use, response features, validation metrics, calibration versus validation, uncertainty adequacy, DAQ/sampling, residual patterns, feasibility, safety, CLO 6, and AI-assisted claim verification. ## 3. Bridge to Next Week Students have specified their experimental design and instrumentation in detail. Week 13 integrates everything into a structured V&V plan that explicitly connects each component to the AMVF and to the experimentally informed model purpose \u2014 and prepares students for the oral defense in Week 14.",
-                "purpose": "A reading-format worksheet that helps students convert the W13 V&V plan lectures into a complete written plan and oral defense preparation artifact. It maps each required V&V plan section to its evidence requirement, lists common failure modes, and provides skeptical oral-defense questions covering model claim, intended use, response features, validation metrics, calibration versus validation, uncertainty adequacy, DAQ/sampling, residual patterns, feasibility, safety, CLO 6, and AI-assisted claim verification. ## 3. Bridge to Next Week Students have specified their experimental design and instrumentation in detail. Week 13 integrates everything into a structured V&V plan that explicitly connects each component to the AMVF and to the experimentally informed model purpose \u2014 and prepares students for the oral defense in Week 14.",
+                "summary": "A reading-format worksheet that helps students convert the W13 V&V plan lectures into a complete written plan and oral defense preparation artifact. It maps each required V&V plan section to its evidence requirement, lists common failure modes, and provides skeptical oral-defense questions covering model claim, intended use, response features, validation metrics, calibration versus validation, uncertainty adequacy, DAQ/sampling, residual patterns, feasibility, safety, CLO 6, and AI-assisted claim verification.",
+                "purpose": "A reading-format worksheet that helps students convert the W13 V&V plan lectures into a complete written plan and oral defense preparation artifact. It maps each required V&V plan section to its evidence requirement, lists common failure modes, and provides skeptical oral-defense questions covering model claim, intended use, response features, validation metrics, calibration versus validation, uncertainty adequacy, DAQ/sampling, residual patterns, feasibility, safety, CLO 6, and AI-assisted claim verification.",
                 "type_label": "Reading / Worksheet",
                 "learning_goals": [
                   "Select sensors for an original aerospace experiment with written rationale connecting sensor specifications to accuracy requirements and intended use \u2014 CLO 1",
@@ -2637,6 +2670,12 @@
               "type_label": "Reading / Worksheet",
               "title": "Instrumentation and DAQ Design Worksheet",
               "purpose": "A reading-format worksheet that supports the W12 instrumentation justification report. Students document measurement quantity, expected range, required accuracy, expected bandwidth, sensor specifications, mounting effects, environmental risks, DAQ range/resolution, quantization contribution, sample rate, anti-alias filter cutoff, calibration status, dominant uncertainty source, and one beyond-provided alternative. Includes a compact dynamic-response example linking bandwidth, sample rate, filter cutoff, DAQ range, and uncertainty."
+            },
+            {
+              "category": "readings",
+              "type_label": "Reading / Worksheet",
+              "title": "V&V Plan and Oral Defense Worksheet",
+              "purpose": "A reading-format worksheet that helps students convert the W13 V&V plan lectures into a complete written plan and oral defense preparation artifact. It maps each required V&V plan section to its evidence requirement, lists common failure modes, and provides skeptical oral-defense questions covering model claim, intended use, response features, validation metrics, calibration versus validation, uncertainty adequacy, DAQ/sampling, residual patterns, feasibility, safety, CLO 6, and AI-assisted claim verification."
             },
             {
               "category": "readings",
@@ -2808,8 +2847,8 @@
                     "summary": "# Basics of an Experimental Safety Plan ## Credible experiments include credible control of what can go wrong An experiment that cannot explain its hazards is not ready to leave the page. --- Safety planning is someti..."
                   }
                 ],
-                "summary": "Introduces the components of a basic experimental safety plan as a professional engineering document \u2014 distinct from both the test plan and the V&V plan, but a required accompaniment to any physical experiment. Covers: hazard identification (what can go wrong, and how), risk assessment (likelihood and consequence), mitigation measures (engineering controls, administrative controls, PPE), emergency procedures, and sign-off or approval requirements. Connects to the E3 design challenge: students designing an experiment for real hardware must be able to articulate what safety considerations apply to their test setup. Placed in Week 13 alongside the test plan reading so students understand the full documentation ecosystem around a planned experiment before they finalize their V&V plan and prepare for the oral defense. ## 3. Bridge to Next Week The written V&V plan is complete. Week 14 is the communication week \u2014 students deliver their oral defenses, evaluate each other's designs and provided sample work, and practice the critical analysis skills that allow them to assess not just their own work but the work of the broader experimental engineering community.",
-                "purpose": "Introduces the components of a basic experimental safety plan as a professional engineering document \u2014 distinct from both the test plan and the V&V plan, but a required accompaniment to any physical experiment. Covers: hazard identification (what can go wrong, and how), risk assessment (likelihood and consequence), mitigation measures (engineering controls, administrative controls, PPE), emergency procedures, and sign-off or approval requirements. Connects to the E3 design challenge: students designing an experiment for real hardware must be able to articulate what safety considerations apply to their test setup. Placed in Week 13 alongside the test plan reading so students understand the full documentation ecosystem around a planned experiment before they finalize their V&V plan and prepare for the oral defense. ## 3. Bridge to Next Week The written V&V plan is complete. Week 14 is the communication week \u2014 students deliver their oral defenses, evaluate each other's designs and provided sample work, and practice the critical analysis skills that allow them to assess not just their own work but the work of the broader experimental engineering community.",
+                "summary": "Introduces the components of a basic experimental safety plan as a professional engineering document \u2014 distinct from both the test plan and the V&V plan, but a required accompaniment to any physical experiment. Covers: hazard identification (what can go wrong, and how), risk assessment (likelihood and consequence), mitigation measures (engineering controls, administrative controls, PPE), emergency procedures, and sign-off or approval requirements. Connects to the E3 design challenge: students designing an experiment for real hardware must be able to articulate what safety considerations apply to their test setup. Placed in Week 13 alongside the test plan reading so students understand the full documentation ecosystem around a planned experiment before they finalize their V&V plan and prepare for the oral defense.",
+                "purpose": "Introduces the components of a basic experimental safety plan as a professional engineering document \u2014 distinct from both the test plan and the V&V plan, but a required accompaniment to any physical experiment. Covers: hazard identification (what can go wrong, and how), risk assessment (likelihood and consequence), mitigation measures (engineering controls, administrative controls, PPE), emergency procedures, and sign-off or approval requirements. Connects to the E3 design challenge: students designing an experiment for real hardware must be able to articulate what safety considerations apply to their test setup. Placed in Week 13 alongside the test plan reading so students understand the full documentation ecosystem around a planned experiment before they finalize their V&V plan and prepare for the oral defense.",
                 "type_label": "Reading",
                 "learning_goals": [
                   "Produce a structured V&V plan with all required components: conceptual model, formal hypothesis, system response features, validation metrics, accuracy requirements, calibration vs. validation distinction, and AMVF annotation \u2014 CLO 1, CLO 2, CLO 3",
@@ -2843,9 +2882,9 @@
                     "summary": "# Peer Evaluation and Engineering Critique Worksheet ## A technical critique is useful only when it names the evidence A good critique does not sound impressive; it helps the next engineer make a better decision. ---..."
                   }
                 ],
-                "summary": "# Peer Evaluation and Engineering Critique Worksheet ## A technical critique is useful only when it names the evidence A good critique does not sound impressive; it helps the next engineer make a better decision. ---...",
-                "purpose": "",
-                "type_label": "Reading",
+                "summary": "A reading-format worksheet used during W14 oral defenses and sample-work critique. Students apply the same engineering standard to peer work and AI-generated or instructor-selected sample work: hypothesis testability, instrumentation adequacy, DAQ/sampling/filtering defensibility, uncertainty support for the validation claim, validation metric and intended-use fit, feasibility and safety, experimentally informed model update pathway, one specific strength, one specific weakness, and one actionable improvement. The worksheet makes critique quality auditable and keeps feedback tied to technical evidence rather than surface polish. ## 3. Bridge to Next Week The written V&V plan is complete. Week 14 is the communication week \u2014 students deliver their oral defenses, evaluate each other's designs and provided sample work, and practice the critical analysis skills that allow them to assess not just their own work but the work of the broader experimental engineering community.",
+                "purpose": "A reading-format worksheet used during W14 oral defenses and sample-work critique. Students apply the same engineering standard to peer work and AI-generated or instructor-selected sample work: hypothesis testability, instrumentation adequacy, DAQ/sampling/filtering defensibility, uncertainty support for the validation claim, validation metric and intended-use fit, feasibility and safety, experimentally informed model update pathway, one specific strength, one specific weakness, and one actionable improvement. The worksheet makes critique quality auditable and keeps feedback tied to technical evidence rather than surface polish. ## 3. Bridge to Next Week The written V&V plan is complete. Week 14 is the communication week \u2014 students deliver their oral defenses, evaluate each other's designs and provided sample work, and practice the critical analysis skills that allow them to assess not just their own work but the work of the broader experimental engineering community.",
+                "type_label": "Reading / Worksheet",
                 "learning_goals": [
                   "Produce a structured V&V plan with all required components: conceptual model, formal hypothesis, system response features, validation metrics, accuracy requirements, calibration vs. validation distinction, and AMVF annotation \u2014 CLO 1, CLO 2, CLO 3",
                   "Apply MATLAB-based uncertainty analysis to quantify predicted measurement performance and interpret what that performance level means for the experiment's ability to inform and improve the predictive model \u2014 CLO 2, CLO 3",
@@ -2897,7 +2936,13 @@
               "category": "readings",
               "type_label": "Reading",
               "title": "Basics of an Experimental Safety Plan",
-              "purpose": "Introduces the components of a basic experimental safety plan as a professional engineering document \u2014 distinct from both the test plan and the V&V plan, but a required accompaniment to any physical experiment. Covers: hazard identification (what can go wrong, and how), risk assessment (likelihood and consequence), mitigation measures (engineering controls, administrative controls, PPE), emergency procedures, and sign-off or approval requirements. Connects to the E3 design challenge: students designing an experiment for real hardware must be able to articulate what safety considerations apply to their test setup. Placed in Week 13 alongside the test plan reading so students understand the full documentation ecosystem around a planned experiment before they finalize their V&V plan and prepare for the oral defense. ## 3. Bridge to Next Week The written V&V plan is complete. Week 14 is the communication week \u2014 students deliver their oral defenses, evaluate each other's designs and provided sample work, and practice the critical analysis skills that allow them to assess not just their own work but the work of the broader experimental engineering community."
+              "purpose": "Introduces the components of a basic experimental safety plan as a professional engineering document \u2014 distinct from both the test plan and the V&V plan, but a required accompaniment to any physical experiment. Covers: hazard identification (what can go wrong, and how), risk assessment (likelihood and consequence), mitigation measures (engineering controls, administrative controls, PPE), emergency procedures, and sign-off or approval requirements. Connects to the E3 design challenge: students designing an experiment for real hardware must be able to articulate what safety considerations apply to their test setup. Placed in Week 13 alongside the test plan reading so students understand the full documentation ecosystem around a planned experiment before they finalize their V&V plan and prepare for the oral defense."
+            },
+            {
+              "category": "readings",
+              "type_label": "Reading / Worksheet",
+              "title": "Peer Evaluation and Engineering Critique Worksheet",
+              "purpose": "A reading-format worksheet used during W14 oral defenses and sample-work critique. Students apply the same engineering standard to peer work and AI-generated or instructor-selected sample work: hypothesis testability, instrumentation adequacy, DAQ/sampling/filtering defensibility, uncertainty support for the validation claim, validation metric and intended-use fit, feasibility and safety, experimentally informed model update pathway, one specific strength, one specific weakness, and one actionable improvement. The worksheet makes critique quality auditable and keeps feedback tied to technical evidence rather than surface polish. ## 3. Bridge to Next Week The written V&V plan is complete. Week 14 is the communication week \u2014 students deliver their oral defenses, evaluate each other's designs and provided sample work, and practice the critical analysis skills that allow them to assess not just their own work but the work of the broader experimental engineering community."
             }
           ]
         },
@@ -2907,7 +2952,7 @@
           "slug": "e3-week_5",
           "label": "E3 Week 5 (Course Week 14)",
           "order": 4,
-          "headline": "E3 Week 14: Oral Defense, Communication & Peer Assessment",
+          "headline": "E3 Week 14: Course Conclusion / Preserved Reflection Material",
           "learning_goals": [
             "Deliver a structured oral defense of an experimental design and V&V plan to a technical audience, responding to questions about instrumentation choices, uncertainty analysis, and validation logic \u2014 CLO 5",
             "Evaluate a peer's experimental design using a structured rubric, identifying specific strengths, genuine weaknesses, and concrete improvement recommendations \u2014 CLO 5, CLO 6",
@@ -2915,7 +2960,7 @@
             "Analyze sample experimental design work \u2014 from prior course iterations, professional reports, or AI-generated content \u2014 using the same evaluation rubric applied to peer presentations, demonstrating that critique quality is independent of the source of the work being evaluated \u2014 CLO 5, CLO 6"
           ],
           "weekly_flow": "",
-          "summary": "Technical credibility is only as good as its communication. Week 14 centers on oral defense of the V&V plans developed in Week 13: students present their experimental design, instrumentation rationale, uncertainty analysis, and validation plan to the class in a formal presentation setting. Audience members \u2014 both peers and the instructor \u2014 provide structured written evaluations that assess the presentation on spec...",
+          "summary": "The current homepage sequence has Course Week 14 as a conclusion week without a new lecture or reading sequence. The original reflection and CLO 6 closure material remains preserved in the detailed blueprint as content that may need a deliberate home if it should return to the active course sequence.",
           "items": {
             "lectures": [],
             "readings": [],
@@ -2938,13 +2983,7 @@
               "category": "assessments",
               "type_label": "Discussion / Assessment",
               "title": "Engineering Critique of Sample Experimental Design Work",
-              "purpose": "Students evaluate 1\u20132 sample experimental design reports or presentations \u2014 including AI-generated content, reports from prior course iterations, or adapted professional reports \u2014 using the same evaluation rubric applied to peer presentations. This exercise develops independent critical judgment that is not influenced by social dynamics or familiarity with the author. The inclusion of AI-generated content is intentional: students must apply the same technical standards to AI-generated work as to human-produced work, and must be able to identify where AI generation produces plausible-sounding but technically incorrect or incomplete arguments. Graded on quality of critique. Students are explicitly evaluated on their ability to discriminate between what is correct, what is incorrect, and what is missing \u2014 regardless of how polished the surface presentation appears."
-            },
-            {
-              "category": "readings",
-              "type_label": "Reading / Worksheet",
-              "title": "Peer Evaluation and Engineering Critique Worksheet",
-              "purpose": "A reading-format worksheet used during W14 oral defenses and sample-work critique. Students apply the same engineering standard to peer work and AI-generated or instructor-selected sample work: hypothesis testability, instrumentation adequacy, DAQ/sampling/filtering defensibility, uncertainty support for the validation claim, validation metric and intended-use fit, feasibility and safety, experimentally informed model update pathway, one specific strength, one specific weakness, and one actionable improvement. The worksheet makes critique quality auditable and keeps feedback tied to technical evidence rather than surface polish. ## 3. Bridge to Next Week The oral defenses and peer evaluations are complete. Week 15 is not another deliverable week \u2014 it is a reflection and integration week where students step back from the work they have produced and map it explicitly to the course framework, articulate what they learned about themselves as experimentalists, and close the arc that opened with a single question in Week 1."
+              "purpose": "Students evaluate 1\u20132 sample experimental design reports or presentations \u2014 including AI-generated content, reports from prior course iterations, or adapted professional reports \u2014 using the same evaluation rubric applied to peer presentations. This exercise develops independent critical judgment that is not influenced by social dynamics or familiarity with the author. The inclusion of AI-generated content is intentional: students must apply the same technical standards to AI-generated work as to human-produced work, and must be able to identify where AI generation produces plausible-sounding but technically incorrect or incomplete arguments. Graded on quality of critique. Students are explicitly evaluated on their ability to discriminate between what is correct, what is incorrect, and what is missing \u2014 regardless of how polished the surface presentation appears. ## 3. Bridge to Next Week The oral defenses and peer evaluations are complete. Week 15 is not another deliverable week \u2014 it is a reflection and integration week where students step back from the work they have produced and map it explicitly to the course framework, articulate what they learned about themselves as experimentalists, and close the arc that opened with a single question in Week 1."
             }
           ]
         }
@@ -2956,8 +2995,8 @@
     {
       "module_slug": "e1-week_1",
       "label": "E1 Week 1 (Course Week 0)",
-      "headline": "E1 Week 1 (Course Week 0)",
-      "summary": "E1 Week 1 (Course Week 0) moves through ordered lectures, readings, and assessments generated from the source materials.",
+      "headline": "E1 Week 0: Course Introduction & AMVF Reference",
+      "summary": "The course opens with orientation, expectations, the proficiency model, and the first shared reference point for the entire course: the Aerospace Modeling & Validation Framework (AMVF). Students encounter the professional vocabulary of modeling, verification, validation, and uncertainty before the first lab sequence begins. The goal is to establish the course frame without overloading the first week with the later...",
       "item_count": 2,
       "quiz_count": 0
     },
@@ -2988,16 +3027,16 @@
     {
       "module_slug": "e1-week_5",
       "label": "E1 Week 5 (Course Week 4)",
-      "headline": "E1 Week 4: Integration Lab: Full Phase I Pipeline",
-      "summary": "Week 4 is the integration week. No new concepts are introduced. Students execute the complete Phase I pipeline \u2014 hypothesis, sensor selection, installation, measurement, MATLAB-based uncertainty propagation, and quantitative model comparison \u2014 as a single uninterrupted, documented workflow. Every analytical decision connects to the AMVF. The integration difficulty is intentional: students discover which steps they...",
+      "headline": "E1 Week 4: Model-to-Experiment Integration",
+      "summary": "Week 4 integrates the Phase I pipeline while adding the final E1 lecture and reading sequence: reading equations to design the test, and reasoning about multiple sensors or multiple sources when measurements disagree. Students connect model structure to measurement choices, sensor rationale, uncertainty propagation, and quantitative model comparison as a single documented workflow. The Phase I report remains the m...",
       "item_count": 2,
       "quiz_count": 0
     },
     {
       "module_slug": "e2-week_1",
       "label": "E2 Week 1 (Course Week 5)",
-      "headline": "E2 Week 1 (Course Week 5)",
-      "summary": "E2 Week 1 (Course Week 5) moves through ordered lectures, readings, and assessments generated from the source materials.",
+      "headline": "E2 Week 5: Transition 1: Prediction Framing & Discrepancy as Data",
+      "summary": "E2 now opens with the prediction-before-measurement bridge that previously closed E1. Students learn what makes a prediction defensible, see a complete prediction-to-outcome walkthrough, and read discrepancy as data rather than failure. This week prepares students for the formal Tier 2 prediction gate by making pre-commitment, uncertainty-bounded expectations, and discrepancy interpretation visible before the more...",
       "item_count": 3,
       "quiz_count": 0
     },
@@ -3037,15 +3076,15 @@
       "module_slug": "e3-week_1",
       "label": "E3 Week 1 (Course Week 10)",
       "headline": "E3 Week 10: Experimental Design Principles, Hypothesis Formulation & Prior Art",
-      "summary": "E3 opens by formalizing something students have been doing implicitly since Week 1: making decisions about what to measure, how many times, and under what conditions. Week 10 makes experimental design explicit \u2014 independent and dependent variables, replication, randomization, control, confounding factors, and a structured introduction to design of experiments concepts at the exposure level. Hypothesis formulation...",
+      "summary": "E3 opens by formalizing something students have been doing implicitly since Week 1: making decisions about what to measure, how many times, and under what conditions. Course Week 10 makes experimental design explicit \u2014 independent and dependent variables, replication, randomization, control, confounding factors, and a structured introduction to design of experiments concepts at the exposure level. Hypothesis formu...",
       "item_count": 6,
       "quiz_count": 0
     },
     {
       "module_slug": "e3-week_2",
       "label": "E3 Week 2 (Course Week 11)",
-      "headline": "E3 Week 2 (Course Week 11)",
-      "summary": "E3 Week 2 (Course Week 11) moves through ordered lectures, readings, and assessments generated from the source materials.",
+      "headline": "E3 Week 11: In-Class Exam",
+      "summary": "Course Week 11 is reserved for the in-class exam and consolidation of proficiency evidence. No new lecture or reading sequence is introduced in this week.",
       "item_count": 1,
       "quiz_count": 0
     },
@@ -3068,8 +3107,8 @@
     {
       "module_slug": "e3-week_5",
       "label": "E3 Week 5 (Course Week 14)",
-      "headline": "E3 Week 14: Oral Defense, Communication & Peer Assessment",
-      "summary": "Technical credibility is only as good as its communication. Week 14 centers on oral defense of the V&V plans developed in Week 13: students present their experimental design, instrumentation rationale, uncertainty analysis, and validation plan to the class in a formal presentation setting. Audience members \u2014 both peers and the instructor \u2014 provide structured written evaluations that assess the presentation on spec...",
+      "headline": "E3 Week 14: Course Conclusion / Preserved Reflection Material",
+      "summary": "The current homepage sequence has Course Week 14 as a conclusion week without a new lecture or reading sequence. The original reflection and CLO 6 closure material remains preserved in the detailed blueprint as content that may need a deliberate home if it should return to the active course sequence.",
       "item_count": 0,
       "quiz_count": 0
     }
