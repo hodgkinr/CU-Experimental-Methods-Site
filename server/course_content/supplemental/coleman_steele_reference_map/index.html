@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <script>if(new URLSearchParams(location.search).get('embed')==='1'){document.documentElement.classList.add('embed-mode');}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-store, max-age=0">
   <meta http-equiv="Pragma" content="no-cache">
@@ -65,6 +66,9 @@
     .top-nav { display: flex; flex-wrap: wrap; gap: 0.35rem; }
     .top-nav a { text-decoration: none; color: rgba(255, 255, 255, 0.85); padding: 0.55rem 0.85rem; border-radius: 999px; }
     .top-nav a.is-current, .top-nav a:hover { background: rgba(207, 184, 124, 0.18); color: white; }
+
+    html.embed-mode .site-header { display: none; }
+    html.embed-mode .page-shell { padding-top: 0; }
 
     .page-shell { max-width: 1320px; margin: 0 auto; padding: 1.25rem 1.25rem 3rem; }
 
