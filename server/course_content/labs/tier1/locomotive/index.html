@@ -67,11 +67,11 @@
 <p>Before working with the data:</p>
 <ul>
 <li>Review the provided derivation in <code>model/derivation_agent.md</code></li>
-<li>Confirm the definitions of theta, beta, r, l, and d</li>
+<li>Confirm the definitions of theta, beta, r, l, and d against the provided diagram (see below)</li>
 <li>Check the sign convention for positive disk rotation and positive collar velocity</li>
 <li>Verify that the final model is purely kinematic; gravity, friction, and inertia should not appear in the velocity relationship</li>
 <li>Implement an <code>LCSMODEL</code>-style MATLAB function that computes collar velocity from geometry, disk angle, and disk angular velocity</li>
-<li>Run a model-only sanity plot of collar velocity versus disk angle before loading experimental data</li>
+<li>Run a model-only sanity plot of collar velocity versus simulated disk angle (i.e. 0:0.1:2*pi) before loading experimental data</li>
 </ul>
 <p>Suggested function signature:</p>
 <pre><code>
