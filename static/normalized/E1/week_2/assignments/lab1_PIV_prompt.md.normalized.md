@@ -1,13 +1,4 @@
 # ASEN 3501 — Lab 1: Power, Voltage, and the Language of Uncertainty
-## Student-Facing Assignment
-
-**Segment:** E1 — Execution & Quantification
-**Week:** 2
-**CLO Alignment:** CLO 1, CLO 2, CLO 5
-**Assessment:** Brief lab report (support document) + 3-minute oral interview
-**Estimated time:** 3–5 hours total (in-lab activity: ~1 hour; report preparation: 2–4 hours)
-
----
 
 ## Why This Lab Exists
 
@@ -22,6 +13,11 @@ core question: *given that your instruments have limits, what can you actually c
 the power dissipated in this circuit?*
 
 That question, and the rigorous way to answer it, is the foundation this course is built on.
+
+## Estimated Time
+
+Plan for 3-5 lab sections of contact time and 3-5 hours of preparation outside of
+devoted lab time.
 
 ---
 
@@ -371,11 +367,3 @@ targeted practice on the core concepts. Use it.
 - E0 Supplemental: Virtual Multimeter Simulator (optional bonus activity)
 - E0 Supplemental: AI Tutor Setup and Practice
 - E0 Supplemental: Getting Started with Overleaf and LaTeX
-- For multimeter technique when measuring voltage and current as separate steps in the
- same circuit: https://www.youtube.com/watch?v=Y6xnLkiUMn8
-
----
-
-*ASEN 3501 — Lab 1 Assignment | released E1 Week 2; interviews Course Week 5*
-*Evergreen — physics content; Update-friendly — multimeter datasheet specifications,
-MATLAB starter script, power supply target voltage*
