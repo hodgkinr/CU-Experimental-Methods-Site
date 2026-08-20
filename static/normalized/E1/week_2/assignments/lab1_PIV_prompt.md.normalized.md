@@ -134,7 +134,7 @@ resolution limit combined with real variation in the signal.
 **Recording rule:** Cover the fluctuating digit with your finger. Read and record the
 stable digits. Assign an uncertainty of ±½ of the last stable digit's place value.
 
-**Example:** Your voltmeter reads 4.9<em>3</em>, 4.9<em>2</em>, 4.9<em>4</em>. The units digit in the tenths
+**Example:** Your voltmeter reads 4.93, 4.92, 4.94. The units digit in the tenths
 place is stable (4.9), but the hundredths digit fluctuates (2, 3, 4). You record **4.9 V**
 and assign an uncertainty of **±0.05 V** (half of one unit in the tenths place).
 
