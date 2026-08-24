@@ -362,7 +362,7 @@ targeted practice on the core concepts. Use it.
 - Coleman & Steele, *Experimentation, Validation, and Uncertainty Analysis for Engineers*,
  4th ed. — Chapter on uncertainty propagation (reference copy on course page)
 - [Keysight 34460A/34461A/34465A/34470A multimeter datasheet](<Digital Multimeters 34460A, 34461A, 34465A (6½ digit), 34470A (7½ digit).pdf>) — use the 34461A accuracy tables and 2-year column
-- MATLAB starter script — available on Canvas (sets up the Monte Carlo loop structure;
+- MATLAB starter script — COMING SOON to Canvas (sets up the Monte Carlo loop structure;
  you complete the equation forms and plotting)
 - E0 Supplemental: Virtual Multimeter Simulator (optional bonus activity)
 - E0 Supplemental: AI Tutor Setup and Practice
