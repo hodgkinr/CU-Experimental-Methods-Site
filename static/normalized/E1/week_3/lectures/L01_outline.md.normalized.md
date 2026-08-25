@@ -8,7 +8,7 @@ Regenerated from Iteration 5 blueprint — 2026-05-14
 
 slide 1: Title Slide
 Title: Variability, Error, and Uncertainty
-Talking Point: I want to open this lecture with a quote from Carl Richards — a financial advisor, not an engineer, but someone who understood something deeply true about working with imperfect information: "Error is what's left over after you think you've thought of everything." That sentence captures the epistemic situation of every experimentalist. You designed a careful procedure. You installed your sensors correctly. You checked your calibration. And your data still varies. What is that variation? Is it your instrument? Is it the physical system? Is it noise? Is it a problem — or is it information? This lecture gives you the vocabulary to answer those questions precisely, and the answers determine every claim you will ever make from experimental data.
+Talking Point: I want to open this lecture with a quote from Carl Richards — a financial advisor, not an engineer, but someone who understood something deeply true about working with imperfect information: "Error is what's left over after you think you've thought of everything." That sentence captures the epistemic situation of every experimentalist. You designed a careful procedure. You installed your sensors correctly. You checked your calibration. And your data still varies. What is that variation? Is it your instrument? Is it the physical system? Is it noise? Is it a problem — or is it information? This lecture gives you the vocabulary to answer those questions precisely, and the answers determine every claim you will make from experimental data.
 
 ================================================================================
 

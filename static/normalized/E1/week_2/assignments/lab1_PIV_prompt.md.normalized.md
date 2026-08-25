@@ -33,7 +33,7 @@ By the end of this lab and its associated activities, you should be able to:
 
 ### Course reporting convention
 
-Use `E1_W2_R3_reading.md` for every uncertainty statement. Convert all elemental inputs
+Use the week 2 readings for more information on the convention for reporting uncertainty. Convert all elemental inputs
 to standard uncertainties before propagation. Report Taylor-series results as combined
 standard uncertainty `u_c`, and, when requested, as expanded uncertainty `U = k u_c` with
 `k` stated. Report Monte Carlo percentile bounds as coverage intervals, not confidence
@@ -335,7 +335,7 @@ engineering background, isn't just a report-writing exercise. It's one of the ca
 the interviewer may probe (see Category 5 in the student rubric), so it's worth practicing
 your plain-language explanation out loud, not just writing it in Section 8.
 
-**See the separate file `LAB1_PIV_rubric_student.md` for the question categories and what
+**See the rubric below for the question categories and what
 a passing response looks like.** Prepare by reviewing that document before your interview.
 
 ### Preparing with the course AI tutor
@@ -362,8 +362,8 @@ targeted practice on the core concepts. Use it.
 - Coleman & Steele, *Experimentation, Validation, and Uncertainty Analysis for Engineers*,
  4th ed. — Chapter on uncertainty propagation (reference copy on course page)
 - [Keysight 34460A/34461A/34465A/34470A multimeter datasheet](<Digital Multimeters 34460A, 34461A, 34465A (6½ digit), 34470A (7½ digit).pdf>) — use the 34461A accuracy tables and 2-year column
+- NIST Technical Note 1297 *Guidelines for Evaluating and Expressing the Uncertainty of NIST Measurement Results Cover [TN1297](https://www.nist.gov/pml/nist-technical-note-1297/nist-guidelines-evaluating-and-expressing-uncertainty-nist-measurement)
 - MATLAB starter script — COMING SOON to Canvas (sets up the Monte Carlo loop structure;
  you complete the equation forms and plotting)
-- E0 Supplemental: Virtual Multimeter Simulator (optional bonus activity)
-- E0 Supplemental: AI Tutor Setup and Practice
-- E0 Supplemental: Getting Started with Overleaf and LaTeX
+- E0 Supplemental: COMING SOON AI Tutor Setup and Practice
+- E0 Supplemental: COMING SOON Getting Started with Overleaf and LaTeX
