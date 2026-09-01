@@ -1,8 +1,9 @@
 # Predicting What Wrong Looks Like: Anomalous Data Signatures
 
-E1_W3_L3 — Predicting What Wrong Looks Like: Anomalous Data Signatures
-ASEN 3501: Aerospace Experimental Methods | Week 3, Lecture 3
+E1_W4_L2 — Predicting What Wrong Looks Like: Anomalous Data Signatures
+ASEN 3501: Aerospace Experimental Methods | Week 4, Lecture 2
 Created by V&V Executor — 2026-05-19 (split from E1_W3_L2; this lecture covers anomalous data prediction content from original W3 L2 slides 6-10, now renumbered 2-6)
+Moved to E1 Week 4 Lecture 2 — 2026-08-31.
 
 ================================================================================
 
@@ -50,8 +51,8 @@ The extension of the calibration-versus-validation distinction — committing be
 ## Agent Notes
 - Created by V&V Executor (2026-05-19) as part of the split of original E1_W3_L2.
 - Content source: original E1_W3_L2 slides 6-10 (Predicting What Right Looks Like; Predicting What Wrong Looks Like; Scatter vs. Anomaly; Connecting to Phase 2; The Arc). Now renumbered as slides 2-6. New title slide (slide 1) and new closure (slide 7) written for this lecture.
-- Per instructor annotation on CONSOLIDATE_E1_20260518.md: "Split this lecture into two lectures. So Week 3 has three lectures. W3 L2 and W3 L3 can be on the shorter side of a typical lecture."
+- Per instructor annotation on CONSOLIDATE_E1_20260518.md: "Split this lecture into two lectures. So Week 3 has three lectures. W3 L2 and W3 L3 can be on the shorter side of a typical lecture." Later moved to E1 W4 L2.
 - Slide 3 (Anomalous Data Signatures) updated from original W3 L2 slide 7: added explicit definition of "hysteresis" in the talking point and image description ("output depends on history — loading and unloading follow different paths because energy is dissipated"), per not-consolidated approved item: E1_W3_L2 slide 7 — define hysteresis before spring-mass example.
 - Slide count: 7 (title + 5 content + closure). Intentionally shorter per instructor instruction.
-- Blueprint updated: E1_week_by_week.md revised to include this lecture as W3 L3.
+- Blueprint updated: E1_week_by_week.md revised to include this lecture as W4 L2.
 - The original W3 L2 Agent Note about the course arc diagram (slide 10) is preserved here as slide 6 — the arc diagram remains with the anomalous data content rather than being moved to W4 L1.

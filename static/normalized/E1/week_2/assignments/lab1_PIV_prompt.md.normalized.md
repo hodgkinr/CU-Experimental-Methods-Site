@@ -335,8 +335,7 @@ engineering background, isn't just a report-writing exercise. It's one of the ca
 the interviewer may probe (see Category 5 in the student rubric), so it's worth practicing
 your plain-language explanation out loud, not just writing it in Section 8.
 
-**See the rubric below for the question categories and what
-a passing response looks like.** Prepare by reviewing that document before your interview.
+**See the rubric below for the question categories and what a passing response looks like.** Prepare by reviewing that document before your interview.
 
 ### Preparing with the course AI tutor
 

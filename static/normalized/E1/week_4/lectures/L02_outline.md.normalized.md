@@ -3,13 +3,13 @@
 E1_W3_L2 — Calibration vs. Validation: A Distinction That Matters
 ASEN 3501: Aerospace Experimental Methods | Week 3, Lecture 2
 Regenerated from Iteration 5 blueprint — 2026-05-14
-Revised by V&V Executor — 2026-05-19 (split: anomalous data content moved to new E1_W3_L3; this lecture now covers calibration vs. validation only, slides 1-5 + closure)
+Revised by V&V Executor — 2026-05-19 (split: anomalous data content moved out of W3 L2; this lecture now covers calibration vs. validation only, slides 1-5 + closure)
 
 ================================================================================
 
 slide 1: Title Slide
 Title: Calibration vs. Validation — A Distinction That Matters
-Talking Point: I want to discuss two words that get conflated constantly in engineering practice — calibration and validation. Both sound like they are about making sure something is right. Both involve comparing a result to some reference. But they are asking completely different questions about completely different things, and conflating them can produce conclusions that are not just imprecise but genuinely wrong. By the end of this lecture I want these two words to mean something precise and distinct to you. The second part of this conceptual thread — predicting what anomalous data looks like before you run the experiment — continues in Lecture 3.
+Talking Point: I want to discuss two words that get conflated constantly in engineering practice — calibration and validation. Both sound like they are about making sure something is right. Both involve comparing a result to some reference. But they are asking completely different questions about completely different things, and conflating them can produce conclusions that are not just imprecise but genuinely wrong. By the end of this lecture I want these two words to mean something precise and distinct to you. The second part of this conceptual thread — predicting what anomalous data looks like before you run the experiment — continues in Week 4, Lecture 2.
 
 ================================================================================
 
@@ -38,13 +38,13 @@ Talking Point: Here is the error pattern I want you to recognize. An engineer ca
 ================================================================================
 
 slide 6: Closure
-Calibration and validation are both essential, and they are not the same. Calibration improves the accuracy of your measurement by correcting for sensor bias — it is a measurement activity. Validation tests the predictive fidelity of your model by comparing independent measurements to model predictions — it is a modeling activity. Conflating them produces false confidence in models that have not actually been tested. In Lecture 3, we build on this distinction and answer a connected question: if you understand what your model assumes, what specific data signatures would tell you the model is wrong — before you see the data? That predictive discipline is what transforms an experiment from a data-collection exercise into a hypothesis test.
+Calibration and validation are both essential, and they are not the same. Calibration improves the accuracy of your measurement by correcting for sensor bias — it is a measurement activity. Validation tests the predictive fidelity of your model by comparing independent measurements to model predictions — it is a modeling activity. Conflating them produces false confidence in models that have not actually been tested. In Week 4, Lecture 2, we build on this distinction and answer a connected question: if you understand what your model assumes, what specific data signatures would tell you the model is wrong — before you see the data? That predictive discipline is what transforms an experiment from a data-collection exercise into a hypothesis test.
 
 ================================================================================
 
 ## Agent Notes
 - Regenerated from Iteration 5 blueprint (2026-05-14).
-- V&V Executor revision (2026-05-19): Split from original W3 L2 (11 slides). This file retains calibration vs. validation content only (slides 1-5 + closure). The anomalous data prediction content (original slides 6-10) is now E1_W3_L3_presentation_outline.txt (new file, created same date). Per instructor annotation: "Split this lecture into two lectures. So Week 3 has three lectures. W3 L2 and W3 L3 can be on the shorter side of a typical lecture."
+- V&V Executor revision (2026-05-19): Split from original W3 L2 (11 slides). This file retains calibration vs. validation content only (slides 1-5 + closure). The anomalous data prediction content (original slides 6-10) now lives in E1 Week 4, Lecture 2 as E1_W4_L2_presentation_outline.txt.
 - Slide count: 6 (title + 4 content + closure). Intentionally shorter per instructor instruction.
 - V&V Executor 2026-05-19 (not-consolidated): Slide 4 talking point — added hold-out principle analogy: "studying for a test using the test answers and then claiming the test proves your understanding."
-- Blueprint updated: E1_week_by_week.md revised to add W3 L3 as a third lecture in Week 3.
+- Blueprint updated: E1_week_by_week.md now places the anomalous data signatures lecture in Week 4 as E1_W4_L2.
