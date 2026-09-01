@@ -148,14 +148,14 @@
 <h2>How Students Should Use This Derivation</h2>
 <p>This derivation is provided so the lab can focus on experimental data analysis, model implementation, and model-data comparison rather than on dynamics derivation from a blank page. It is <strong>not</strong> externally verified.</p>
 <p>Students should verify the derivation before using it as the basis for their analysis. Verification means checking the assumptions, signs, units, limiting cases, and energy terms well enough to decide whether the model is appropriate for comparison with the measured data.</p>
-<p>The current setup uses the outside Aero building ramp. The ramp angle <code>β</code> must be measured for that setup before numerical model predictions are finalized.</p>
+<p>The current setup uses the outside Aero building ramp. The ramp angle β must be measured for that setup before numerical model predictions are finalized.</p>
 <p>Recommended verification checks:</p>
 <ul>
-<li>Confirm the rolling-without-slip constraint: $v_{cm} = R\omega$</li>
-<li>Confirm the ramp-height relation: $h = R\theta\sin(\beta)$ using the current ramp angle</li>
+<li>Confirm the rolling-without-slip constraint: v_cm = Rω</li>
+<li>Confirm the ramp-height relation: h = Rθ sin(β) using the current ramp angle</li>
 <li>Confirm that all kinetic-energy terms have units of joules</li>
-<li>Confirm that the friction moment contributes negative work: $-Q\theta$</li>
-<li>Check the unbalanced-mass potential term by evaluating <code>theta = 0</code></li>
+<li>Confirm that the friction moment contributes negative work: −Qθ</li>
+<li>Check the unbalanced-mass potential term by evaluating θ = 0</li>
 <li>Check the difference between the point-mass model and rigid-body model</li>
 <li>Check whether the provided rigid-body inertia term is being counted once,</li>
 </ul>
@@ -166,27 +166,27 @@
 <p>A cylindrical wheel rolls down the outside Aero building ramp without slipping. A trailing support apparatus is rigidly attached to the wheel; it translates but does not rotate. An eccentric mass can be bolted to the wheel to create the unbalanced configuration.</p>
 <p><strong>Coordinate system:</strong></p>
 <ul>
-<li><code>theta</code> = rotation angle, measured clockwise from the perpendicular vector into the ramp</li>
-<li><code>theta = 0</code> = position when the wheel starts moving from rest</li>
-<li>For unbalanced trials: eccentric mass is positioned perpendicular to the ramp surface at <code>theta = 0</code></li>
+<li>θ = rotation angle, measured clockwise from the perpendicular vector into the ramp</li>
+<li>θ = 0 is the position when the wheel starts moving from rest</li>
+<li>For unbalanced trials: eccentric mass is positioned perpendicular to the ramp surface at θ = 0</li>
 </ul>
 <p><strong>Rolling constraint:</strong></p>
-<p>$$v_{cm} = R\omega$$</p>
-<p>where <code>v_cm</code> is the velocity of the wheel center and <code>omega = dtheta/dt</code>.</p>
+<p>v_cm = Rω</p>
+<p>where v_cm is the velocity of the wheel center and ω = dθ/dt.</p>
 <p><strong>System Parameters:</strong></p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Value</th><th>Units</th><th>Description</th></tr></thead><tbody><tr><td><code>M</code></td><td>11.7</td><td>kg</td><td>Mass of cylindrical wheel</td></tr><tr><td><code>M0</code></td><td>0.7</td><td>kg</td><td>Mass of trailing support apparatus</td></tr><tr><td><code>m</code></td><td>3.4</td><td>kg</td><td>Mass of eccentric mass</td></tr><tr><td><code>R</code></td><td>0.235</td><td>m</td><td>Radius of cylinder</td></tr><tr><td><code>kappa</code></td><td>0.203</td><td>m</td><td>Radius of gyration of wheel</td></tr><tr><td><code>I</code></td><td><code>M*kappa^2</code></td><td>kg*m^2</td><td>Moment of inertia of wheel about its center</td></tr><tr><td><code>beta</code></td><td><strong>TBD</strong></td><td>deg</td><td>Outside-ramp slope angle; measure before deployment</td></tr><tr><td><code>r</code></td><td>0.178</td><td>m</td><td>Distance from wheel center to eccentric mass center</td></tr><tr><td><code>r_extra</code></td><td>0.019</td><td>m</td><td>Radius of eccentric mass, modeled as a solid rod</td></tr><tr><td><code>g</code></td><td>9.81</td><td>m/s^2</td><td>Gravitational acceleration</td></tr></tbody></table></div>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Value</th><th>Units</th><th>Description</th></tr></thead><tbody><tr><td>M</td><td>11.7</td><td>kg</td><td>Mass of cylindrical wheel</td></tr><tr><td>M₀</td><td>0.7</td><td>kg</td><td>Mass of trailing support apparatus</td></tr><tr><td>m</td><td>3.4</td><td>kg</td><td>Mass of eccentric mass</td></tr><tr><td>R</td><td>0.235</td><td>m</td><td>Radius of cylinder</td></tr><tr><td>κ</td><td>0.203</td><td>m</td><td>Radius of gyration of wheel</td></tr><tr><td>I</td><td>Mκ²</td><td>kg·m²</td><td>Moment of inertia of wheel about its center</td></tr><tr><td>β</td><td><strong>TBD</strong></td><td>deg</td><td>Outside-ramp slope angle; measure before deployment</td></tr><tr><td>r</td><td>0.178</td><td>m</td><td>Distance from wheel center to eccentric mass center</td></tr><tr><td>r_extra</td><td>0.019</td><td>m</td><td>Radius of eccentric mass, modeled as a solid rod</td></tr><tr><td>g</td><td>9.81</td><td>m/s²</td><td>Gravitational acceleration</td></tr></tbody></table></div>
 <hr>
 <h2>Section 2 — Work-Energy Principle</h2>
 <p>The work-energy principle applied to the complete system is:</p>
-<p>$$W_{net} = \Delta KE = KE_{final} - KE_{initial}$$</p>
-<p>The wheel starts from rest, so <code>KE_initial = 0</code> for all trials.</p>
+<p>W_net = ΔKE = KE_final − KE_initial</p>
+<p>The wheel starts from rest, so KE_initial = 0 for all trials.</p>
 <p>The kinetic energy of the rolling system includes:</p>
 <ul>
-<li>rotational kinetic energy of the wheel: $\frac{1}{2}I\omega^2$</li>
-<li>translational kinetic energy of the wheel center: $\frac{1}{2}Mv_{cm}^2$</li>
-<li>translational kinetic energy of the trailing apparatus: $\frac{1}{2}M_0v_{cm}^2$</li>
+<li>rotational kinetic energy of the wheel: ½Iω²</li>
+<li>translational kinetic energy of the wheel center: ½Mv_cm²</li>
+<li>translational kinetic energy of the trailing apparatus: ½M₀v_cm²</li>
 </ul>
-<p>Using the rolling constraint, all kinetic-energy terms can be written in terms of <code>omega</code>.</p>
+<p>Using the rolling constraint, all kinetic-energy terms can be written in terms of ω.</p>
 <p>For the unbalanced configuration, the eccentric mass adds translational kinetic energy and, in MODEL_4, rotational kinetic energy about its own center.</p>
 <hr>
 <h2>Section 3 — MODEL_1: Balanced Wheel, No Friction</h2>
@@ -198,51 +198,51 @@
 <li>No friction at the axle</li>
 </ul>
 <p>Energy equation:</p>
-<p>$$ (M + M_0)gR\theta\sin(\beta) = \frac{1}{2}\left[(M + M_0)R^2 + M\kappa^2\right]\omega^2 $$</p>
+<p>(M + M₀)gRθ sin(β) = ½[(M + M₀)R² + Mκ²]ω²</p>
 <p>Solving for angular velocity:</p>
-<p>$$ \omega_1(\theta) = \sqrt{\frac{2(M + M_0)gR\theta\sin(\beta)}{(M + M_0)R^2 + M\kappa^2}} $$</p>
+<p>ω₁(θ) = √{2(M + M₀)gRθ sin(β) / [(M + M₀)R² + Mκ²]}</p>
 <hr>
 <h2>Section 4 — MODEL_2: Balanced Wheel, Constant Friction Moment</h2>
-<p><strong>Modification of MODEL_1:</strong> Add a constant negative moment <code>Q</code> applied to the shaft of the wheel. <code>Q</code> represents friction at the axle; its value is unknown and must be determined empirically.</p>
+<p><strong>Modification of MODEL_1:</strong> Add a constant negative moment Q applied to the shaft of the wheel. Q represents friction at the axle; its value is unknown and must be determined empirically.</p>
 <p>The friction moment does negative work:</p>
-<p>$$W_Q = -Q\theta$$</p>
+<p>W_Q = −Qθ</p>
 <p>The energy equation becomes:</p>
-<p>$$ (M + M_0)gR\theta\sin(\beta) - Q\theta = \frac{1}{2}\left[(M + M_0)R^2 + M\kappa^2\right]\omega^2 $$</p>
+<p>(M + M₀)gRθ sin(β) − Qθ = ½[(M + M₀)R² + Mκ²]ω²</p>
 <p>Solving for angular velocity:</p>
-<p>$$ \omega_2(\theta,Q) = \sqrt{\frac{2\left[(M + M_0)gR\theta\sin(\beta) - Q\theta\right]}{(M + M_0)R^2 + M\kappa^2}} $$</p>
-<p><strong>Empirical determination of <code>Q</code>:</strong></p>
+<p>ω₂(θ, Q) = √{2[(M + M₀)gRθ sin(β) − Qθ] / [(M + M₀)R² + Mκ²]}</p>
+<p><strong>Empirical determination of Q:</strong></p>
 <ul>
-<li><code>Q</code> is not known from first principles; fit it to balanced experimental data</li>
-<li>Try 5 or more values of <code>Q</code></li>
+<li>Q is not known from first principles; fit it to balanced experimental data</li>
+<li>Try 5 or more values of Q</li>
 <li>Identify a value that reasonably matches both balanced trials</li>
-<li>Carry the same <code>Q</code> into MODEL_3 and MODEL_4 unchanged</li>
+<li>Carry the same Q into MODEL_3 and MODEL_4 unchanged</li>
 </ul>
 <hr>
 <h2>Section 5 — MODEL_3: Unbalanced Wheel, Eccentric Mass as Particle</h2>
-<p><strong>Modification of MODEL_2:</strong> Add the eccentric mass <code>m</code> at radius <code>r</code>, modeled as a point particle.</p>
-<p>The eccentric mass center moves in a circle of radius <code>r</code> about the wheel center. Its velocity has two components that depend on both <code>omega</code> and the current angular position <code>theta</code>.</p>
+<p><strong>Modification of MODEL_2:</strong> Add the eccentric mass m at radius r, modeled as a point particle.</p>
+<p>The eccentric mass center moves in a circle of radius r about the wheel center. Its velocity has two components that depend on both ω and the current angular position θ.</p>
 <p>The extra mass changes height both because the wheel center moves down the ramp and because the mass rotates around the wheel center. Relative to the initial configuration:</p>
-<p>$$\Delta h_{extra} = R\theta\sin(\beta) - r\cos(\theta + \beta) + r\cos(\beta)$$</p>
+<p>Δh_extra = Rθ sin(β) − r cos(θ + β) + r cos(β)</p>
 <p>The translational speed of the eccentric mass contributes:</p>
-<p>$$v_{extra}^2 = \omega^2\left(R^2 + 2Rr\cos(\theta) + r^2\right)$$</p>
+<p>v_extra² = ω²(R² + 2Rr cos(θ) + r²)</p>
 <p>Combining balanced-wheel energy, eccentric-mass potential-energy change, eccentric-mass translational kinetic energy, and friction work:</p>
-<p>$$ \omega_3(\theta,Q) = \sqrt{\frac{2\left[(M + M_0)gR\theta\sin(\beta) + mg\left(R\theta\sin(\beta) - r\cos(\theta + \beta) + r\cos(\beta)\right) - Q\theta\right]}{(M + M_0)R^2 + M\kappa^2 + m\left(R^2 + 2Rr\cos(\theta) + r^2\right)}} $$</p>
+<p>ω₃(θ, Q) = √{2[(M + M₀)gRθ sin(β) + mg(Rθ sin(β) − r cos(θ + β) + r cos(β)) − Qθ] / [(M + M₀)R² + Mκ² + m(R² + 2Rr cos(θ) + r²)]}</p>
 <hr>
 <h2>Section 6 — MODEL_4: Unbalanced Wheel, Eccentric Mass as Rigid Body</h2>
 <p><strong>Modification of MODEL_3:</strong> Model the eccentric mass as a rigid body rather than a point particle. This adds a rotational kinetic-energy term for the eccentric mass about its own center of mass.</p>
-<p>$$I_{extra} = \frac{1}{2}mr_{extra}^2$$</p>
+<p>I_extra = ½mr_extra²</p>
 <p>The rigid-body version uses the same numerator as MODEL_3. The difference is the additional rotational kinetic energy of the eccentric mass about its own center:</p>
-<p>$$ \omega_4(\theta,Q) = \sqrt{\frac{2\left[(M + M_0)gR\theta\sin(\beta) + mg\left(R\theta\sin(\beta) - r\cos(\theta + \beta) + r\cos(\beta)\right) - Q\theta\right]}{(M + M_0)R^2 + M\kappa^2 + m\left(R^2 + 2Rr\cos(\theta) + r^2\right) + I_{extra}}} $$</p>
+<p>ω₄(θ, Q) = √{2[(M + M₀)gRθ sin(β) + mg(Rθ sin(β) − r cos(θ + β) + r cos(β)) − Qθ] / [(M + M₀)R² + Mκ² + m(R² + 2Rr cos(θ) + r²) + I_extra]}</p>
 <p>Verification note: students should check whether the orbital contribution associated with the eccentric mass is already included before adding any additional parallel-axis term.</p>
 <hr>
 <h2>Section 7 — Residual Analysis Checks</h2>
 <p>After fitting models to data, use residual statistics to help judge agreement.</p>
 <p><strong>Residual definition:</strong></p>
-<p>$$\epsilon_i = \omega_{observed,i} - \omega_{predicted}(\theta_i)$$</p>
+<p>ε_i = ω_observed,i − ω_predicted(θ_i)</p>
 <p><strong>Important:</strong> Do not take the absolute value of residuals. A non-zero mean residual may indicate systematic bias in the model or setup.</p>
-<p><strong>Evaluation rule:</strong> Evaluate the model at the experimentally measured <code>theta_i</code> values. Residuals must compare matched model and experimental points.</p>
+<p><strong>Evaluation rule:</strong> Evaluate the model at the experimentally measured θ_i values. Residuals must compare matched model and experimental points.</p>
 <p><strong>Useful checks:</strong></p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Check</th><th>Formula or method</th><th>What it helps you notice</th></tr></thead><tbody><tr><td>Mean residual</td><td>$\bar{\epsilon} = \frac{1}{N}\sum_i \epsilon_i$</td><td>Possible systematic bias</td></tr><tr><td>Standard deviation</td><td>$\sigma_\epsilon = std(\epsilon)$</td><td>Random spread around the model</td></tr><tr><td>Uncertainty of mean</td><td>$\sigma_\epsilon / \sqrt{N}$</td><td>Precision of the mean residual estimate</td></tr><tr><td>N</td><td>count of observations</td><td>Amount of data in the reliable range</td></tr><tr><td>Outlier count</td><td>count of unusually large residuals</td><td>Whether a few points dominate the mismatch</td></tr><tr><td>Scaled histogram</td><td>plot $\epsilon_i / \sigma_\epsilon$</td><td>Whether residuals look random or structured</td></tr></tbody></table></div>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Check</th><th>Formula or method</th><th>What it helps you notice</th></tr></thead><tbody><tr><td>Mean residual</td><td>ε̄ = (1/N)Σ ε_i</td><td>Possible systematic bias</td></tr><tr><td>Standard deviation</td><td>σ_ε = std(ε)</td><td>Random spread around the model</td></tr><tr><td>Uncertainty of mean</td><td>σ_ε / √N</td><td>Precision of the mean residual estimate</td></tr><tr><td>N</td><td>count of observations</td><td>Amount of data in the reliable range</td></tr><tr><td>Outlier count</td><td>count of unusually large residuals</td><td>Whether a few points dominate the mismatch</td></tr><tr><td>Scaled histogram</td><td>plot ε_i / σ_ε</td><td>Whether residuals look random or structured</td></tr></tbody></table></div>
 <p>These checks guide interpretation; they do not automatically prove which model is correct.</p>
 <hr>
 <h2>References</h2>
@@ -253,45 +253,45 @@
 </ul>
 <hr>
 <h1>Model Equations — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
-<p>Quick reference sheet. All symbols are defined. No derivation prose — see <a href="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/model/derivation_agent.md">@@FORWARD_MD_0@@</a> for full context.</p>
-<p><strong>Deployment note:</strong> the current setup uses the outside Aero building ramp. The ramp angle <code>β</code> must be measured for that setup before students use numerical predictions.</p>
+<p>Quick reference sheet. All symbols are defined. No derivation prose — see <a href="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/model/derivation_agent.md">derivation_agent.md</a> for full context.</p>
+<p><strong>Deployment note:</strong> the current setup uses the outside Aero building ramp. The ramp angle β must be measured for that setup before students use numerical predictions.</p>
 <hr>
 <h2>System Parameters</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Value</th><th>Units</th><th>Definition</th></tr></thead><tbody><tr><td><code>M</code></td><td>11.7</td><td>kg</td><td>Mass of cylinder</td></tr><tr><td><code>M0</code></td><td>0.7</td><td>kg</td><td>Mass of trailing support apparatus</td></tr><tr><td><code>m</code></td><td>3.4</td><td>kg</td><td>Mass of eccentric mass</td></tr><tr><td><code>R</code></td><td>0.235</td><td>m</td><td>Radius of cylinder</td></tr><tr><td><code>kappa</code></td><td>0.203</td><td>m</td><td>Radius of gyration of wheel</td></tr><tr><td><code>r</code></td><td>0.178</td><td>m</td><td>Distance from wheel center to eccentric mass center</td></tr><tr><td><code>r_extra</code></td><td>0.019</td><td>m</td><td>Radius of eccentric mass, modeled as a solid rod</td></tr><tr><td><code>beta</code></td><td><strong>TBD</strong></td><td>deg</td><td>Outside-ramp slope angle; measure before deployment</td></tr><tr><td><code>g</code></td><td>9.81</td><td>m/s^2</td><td>Gravitational acceleration</td></tr><tr><td><code>Q</code></td><td>fit from data</td><td>N*m</td><td>Constant friction moment at axle</td></tr><tr><td><code>theta</code></td><td>measured</td><td>rad</td><td>Rotation angle; zero when wheel starts from rest</td></tr><tr><td><code>omega</code></td><td>measured/model output</td><td>rad/s</td><td>Angular velocity</td></tr></tbody></table></div>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Value</th><th>Units</th><th>Definition</th></tr></thead><tbody><tr><td>M</td><td>11.7</td><td>kg</td><td>Mass of cylinder</td></tr><tr><td>M₀</td><td>0.7</td><td>kg</td><td>Mass of trailing support apparatus</td></tr><tr><td>m</td><td>3.4</td><td>kg</td><td>Mass of eccentric mass</td></tr><tr><td>R</td><td>0.235</td><td>m</td><td>Radius of cylinder</td></tr><tr><td>κ</td><td>0.203</td><td>m</td><td>Radius of gyration of wheel</td></tr><tr><td>r</td><td>0.178</td><td>m</td><td>Distance from wheel center to eccentric mass center</td></tr><tr><td>r_extra</td><td>0.019</td><td>m</td><td>Radius of eccentric mass, modeled as a solid rod</td></tr><tr><td>β</td><td><strong>TBD</strong></td><td>deg</td><td>Outside-ramp slope angle; measure before deployment</td></tr><tr><td>g</td><td>9.81</td><td>m/s²</td><td>Gravitational acceleration</td></tr><tr><td>Q</td><td>fit from data</td><td>N·m</td><td>Constant friction moment at axle</td></tr><tr><td>θ</td><td>measured</td><td>rad</td><td>Rotation angle; zero when wheel starts from rest</td></tr><tr><td>ω</td><td>measured/model output</td><td>rad/s</td><td>Angular velocity</td></tr></tbody></table></div>
 <hr>
 <h2>Core Relations</h2>
 <p>Moment of inertia of the balanced wheel:</p>
-<p>$$I = M\kappa^2$$</p>
+<p>I = Mκ²</p>
 <p>Moment of inertia of the eccentric mass about its own center:</p>
-<p>$$I_{extra} = \frac{1}{2} m r_{extra}^2$$</p>
+<p>I_extra = ½ m r_extra²</p>
 <p>Rolling constraint:</p>
-<p>$$v_{cm} = R\omega$$</p>
+<p>v_cm = Rω</p>
 <p>Work-energy principle:</p>
-<p>$$W_{net} = \Delta KE = KE_{final} - KE_{initial}$$</p>
-<p>For this lab, the wheel starts from rest, so <code>KE_initial = 0</code>.</p>
+<p>W_net = ΔKE = KE_final − KE_initial</p>
+<p>For this lab, the wheel starts from rest, so KE_initial = 0.</p>
 <hr>
 <h2>MODEL_1 — Balanced Wheel, No Friction</h2>
-<p>$$ \omega_1(\theta) = \sqrt{\frac{2(M + M_0)gR\theta\sin(\beta)}{(M + M_0)R^2 + M\kappa^2}} $$</p>
-<p>Uses: <code>M</code>, <code>M0</code>, <code>R</code>, <code>kappa</code>, <code>beta</code>, and <code>g</code>.</p>
+<p>ω₁(θ) = √{2(M + M₀)gRθ sin(β) / [(M + M₀)R² + Mκ²]}</p>
+<p>Uses: M, M₀, R, κ, β, and g.</p>
 <hr>
 <h2>MODEL_2 — Balanced Wheel, Constant Friction Moment</h2>
-<p>$$ \omega_2(\theta,Q) = \sqrt{\frac{2\left[(M + M_0)gR\theta\sin(\beta) - Q\theta\right]}{(M + M_0)R^2 + M\kappa^2}} $$</p>
-<p><code>Q</code> is unknown. Fit it from balanced experimental data by trying multiple values and selecting a value that matches both balanced trials reasonably well. Carry the same <code>Q</code> into MODEL_3 and MODEL_4.</p>
+<p>ω₂(θ, Q) = √{2[(M + M₀)gRθ sin(β) − Qθ] / [(M + M₀)R² + Mκ²]}</p>
+<p>Q is unknown. Fit it from balanced experimental data by trying multiple values and selecting a value that matches both balanced trials reasonably well. Carry the same Q into MODEL_3 and MODEL_4.</p>
 <hr>
 <h2>MODEL_3 — Unbalanced Wheel, Eccentric Mass as Particle</h2>
-<p>$$ \omega_3(\theta,Q) = \sqrt{\frac{2\left[(M + M_0)gR\theta\sin(\beta) + mg\left(R\theta\sin(\beta) - r\cos(\theta + \beta) + r\cos(\beta)\right) - Q\theta\right]}{(M + M_0)R^2 + M\kappa^2 + m\left(R^2 + 2Rr\cos(\theta) + r^2\right)}} $$</p>
+<p>ω₃(θ, Q) = √{2[(M + M₀)gRθ sin(β) + mg(Rθ sin(β) − r cos(θ + β) + r cos(β)) − Qθ] / [(M + M₀)R² + Mκ² + m(R² + 2Rr cos(θ) + r²)]}</p>
 <p>Uses the MODEL_2 friction moment and adds the eccentric mass as a point particle.</p>
 <hr>
 <h2>MODEL_4 — Unbalanced Wheel, Eccentric Mass as Rigid Body</h2>
-<p>$$ I_{extra} = \frac{1}{2}mr_{extra}^2 $$</p>
-<p>$$ \omega_4(\theta,Q) = \sqrt{\frac{2\left[(M + M_0)gR\theta\sin(\beta) + mg\left(R\theta\sin(\beta) - r\cos(\theta + \beta) + r\cos(\beta)\right) - Q\theta\right]}{(M + M_0)R^2 + M\kappa^2 + m\left(R^2 + 2Rr\cos(\theta) + r^2\right) + I_{extra}}} $$</p>
+<p>I_extra = ½ m r_extra²</p>
+<p>ω₄(θ, Q) = √{2[(M + M₀)gRθ sin(β) + mg(Rθ sin(β) − r cos(θ + β) + r cos(β)) − Qθ] / [(M + M₀)R² + Mκ² + m(R² + 2Rr cos(θ) + r²) + I_extra]}</p>
 <p>MODEL_4 differs from MODEL_3 by adding the eccentric mass&#x27;s rotational kinetic energy about its own center.</p>
 <p><strong>Verification check:</strong> make sure the orbital term associated with the eccentric mass is not double-counted when comparing MODEL_3 and MODEL_4.</p>
 <hr>
 <h2>Residual Checks</h2>
 <p>Use a signed residual and state the convention:</p>
-<p>$$\epsilon_i = \omega_{observed,i} - \omega_{predicted}(\theta_i)$$</p>
-<p>Evaluate the model at the same measured <code>theta_i</code> values used for the observed data. Do not compare observed data to a model curve evaluated only on a separate uniform plotting grid.</p>
+<p>ε_i = ω_observed,i − ω_predicted(θ_i)</p>
+<p>Evaluate the model at the same measured θ_i values used for the observed data. Do not compare observed data to a model curve evaluated only on a separate uniform plotting grid.</p>
 <p>Useful checks include:</p>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Check</th><th>What it helps you notice</th></tr></thead><tbody><tr><td>Mean residual</td><td>Possible systematic bias if the mean is far from zero</td></tr><tr><td>Residual standard deviation</td><td>Typical random spread around the model</td></tr><tr><td>Uncertainty of the mean</td><td>How precisely the mean residual is estimated</td></tr><tr><td>Number of observations</td><td>Whether the comparison used enough points in the reliable range</td></tr><tr><td>Outlier count</td><td>Whether a few points dominate the apparent mismatch</td></tr><tr><td>Scaled residual histogram</td><td>Whether the residuals look roughly random or have structure</td></tr></tbody></table></div>
 <p>These checks do not tell you the answer by themselves. Use them to decide what the data suggest about model adequacy, setup effects, and measurement limitations.</p>

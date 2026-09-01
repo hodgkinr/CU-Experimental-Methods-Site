@@ -138,77 +138,54 @@ residual = v_exp - v_mod
 <p>The apparatus consists of:</p>
 <ul>
 <li>A disk rotating about fixed point O</li>
-<li>A crank pin A located a radius <code>r</code> from O</li>
-<li>A rigid connecting bar of length <code>l</code> from A to the sliding collar point B</li>
+<li>A crank pin A located a radius r from O</li>
+<li>A rigid connecting bar of length l from A to the sliding collar point B</li>
 <li>A vertical slide for B</li>
-<li>A horizontal offset <code>d</code> from the vertical slide to the disk centerline</li>
+<li>A horizontal offset d from the vertical slide to the disk centerline</li>
 </ul>
 <p>Variables:</p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Meaning</th></tr></thead><tbody><tr><td>theta</td><td>Disk angle</td></tr><tr><td>beta</td><td>Connecting-bar angle from the vertical slide</td></tr><tr><td>omega_D</td><td>Disk angular velocity, <code>theta_dot</code></td></tr><tr><td>omega_B</td><td>Connecting-bar angular velocity, <code>beta_dot</code></td></tr><tr><td>v_B_y</td><td>Vertical velocity of the collar</td></tr></tbody></table></div>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Meaning</th></tr></thead><tbody><tr><td>θ</td><td>Disk angle</td></tr><tr><td>β</td><td>Connecting-bar angle from the vertical slide</td></tr><tr><td>ω_D</td><td>Disk angular velocity, dθ/dt</td></tr><tr><td>ω_B</td><td>Connecting-bar angular velocity, dβ/dt</td></tr><tr><td>v_B,y</td><td>Vertical velocity of the collar</td></tr></tbody></table></div>
 <p>The derivation source PDF is retained in <code>derivation/ASEN2003 Lab3 Locomotive Derivation.pdf</code>.</p>
 <hr>
 <h2>Position Relations</h2>
-<p>Using unit vectors <code>i</code> to the right and <code>j</code> upward, the crank-pin position relative to O is written as:</p>
-<pre><code>
-r_A = -r sin(theta) i + r cos(theta) j
-</code></pre>
+<p>Using unit vectors i to the right and j upward, the crank-pin position relative to O is written as:</p>
+<p>r_A = −r sin(θ)i + r cos(θ)j</p>
 <p>The collar point B relative to A is:</p>
-<pre><code>
-r_B/A = -l sin(beta) i - l cos(beta) j
-</code></pre>
+<p>r_B/A = −l sin(β)i − l cos(β)j</p>
 <p>The horizontal constraint gives:</p>
-<pre><code>
-sin(beta) = (d - r sin(theta)) / l
-</code></pre>
-<p>Students should check this relation against the physical geometry and the chosen positive direction for theta.</p>
+<p>sin(β) = (d − r sin(θ)) / l</p>
+<p>Students should check this relation against the physical geometry and the chosen positive direction for θ.</p>
 <hr>
 <h2>Bar Angular Velocity</h2>
 <p>Differentiate the horizontal constraint:</p>
-<pre><code>
-sin(beta) = (d - r sin(theta)) / l
-</code></pre>
+<p>sin(β) = (d − r sin(θ)) / l</p>
 <p>which gives:</p>
-<pre><code>
-cos(beta) beta_dot = -(r/l) cos(theta) theta_dot
-</code></pre>
-<p>Since <code>theta_dot = omega_D</code>,</p>
-<pre><code>
-omega_B = beta_dot = -(r cos(theta) / (l cos(beta))) omega_D
-</code></pre>
+<p>cos(β) dβ/dt = −(r/l) cos(θ) dθ/dt</p>
+<p>Since dθ/dt = ω_D,</p>
+<p>ω_B = dβ/dt = −[r cos(θ) / (l cos(β))]ω_D</p>
 <p>The derivation PDF also reaches an equivalent magnitude relationship through rigid-body velocity relations. Students should verify the sign convention they use in MATLAB, especially if their theta direction or positive collar velocity direction differs from the diagram.</p>
 <hr>
 <h2>Collar Velocity</h2>
 <p>The collar is constrained to move vertically, so the horizontal velocity of B is zero. The vertical velocity follows from differentiating the B position or from the two-point rigid-body velocity relation.</p>
 <p>Starting from:</p>
-<pre><code>
-r_B = d i + (r cos(theta) - l cos(beta)) j
-</code></pre>
+<p>r_B = di + [r cos(θ) − l cos(β)]j</p>
 <p>differentiate:</p>
-<pre><code>
-v_B_y = -r sin(theta) theta_dot + l sin(beta) beta_dot
-</code></pre>
-<p>Substitute <code>theta_dot = omega_D</code> and the expression for <code>beta_dot</code>:</p>
-<pre><code>
-v_B_y = -r omega_D sin(theta)
- - r omega_D cos(theta) tan(beta)
-</code></pre>
+<p>v_B,y = −r sin(θ)dθ/dt + l sin(β)dβ/dt</p>
+<p>Substitute dθ/dt = ω_D and the expression for dβ/dt:</p>
+<p>v_B,y = −rω_D sin(θ) − rω_D cos(θ)tan(β)</p>
 <p>Final compact form:</p>
-<pre><code>
-v_B_y = -omega_D r [sin(theta) + cos(theta) tan(beta)]
-</code></pre>
+<p>v_B,y = −ω_Dr[sin(θ) + cos(θ)tan(β)]</p>
 <p>with:</p>
-<pre><code>
-beta = asin((d - r sin(theta)) / l)
-</code></pre>
+<p>β = sin⁻¹[(d − r sin(θ)) / l]</p>
 <hr>
 <h2>Verification Checklist</h2>
 <p>Before using the model, verify:</p>
 <ul>
-<li><code>abs((d - r sin(theta))/l) &lt;= 1</code> over the analyzed theta range</li>
-<li><code>theta</code>, <code>beta</code>, and trigonometric functions use radians in MATLAB</li>
-<li><code>r</code>, <code>l</code>, <code>d</code>, and <code>v_B_y</code> use consistent units</li>
+<li>|(d − r sin(θ))/l| ≤ 1 over the analyzed theta range</li>
+<li>θ, β, and trigonometric functions use radians in MATLAB</li>
+<li>r, l, d, and v_B,y use consistent units</li>
 <li>Positive velocity direction matches the plotted experimental collar velocity</li>
-<li>The model is evaluated at the measured <code>theta_exp</code>, not only a separate model grid</li>
+<li>The model is evaluated at the measured theta values, not only a separate model grid</li>
 <li>Residuals are computed as signed differences using a stated convention</li>
 </ul>
 <hr>
@@ -219,32 +196,32 @@ beta = asin((d - r sin(theta)) / l)
 <hr>
 <h2>Governing Kinematic Model</h2>
 <p>Use the geometric constraint:</p>
-<p>$$\sin(\beta) = \frac{d - r\sin(\theta)}{l}$$</p>
+<p>sin(β) = (d − r sin(θ)) / l</p>
 <p>which gives:</p>
-<p>$$\beta = \sin^{-1}\left(\frac{d - r\sin(\theta)}{l}\right)$$</p>
+<p>β = sin⁻¹[(d − r sin(θ)) / l]</p>
 <p>The collar velocity model is:</p>
-<p>$$v_{mod} = -\omega r\left[\sin(\theta) + \cos(\theta)\tan(\beta)\right]$$</p>
+<p>v_mod = −ωr[sin(θ) + cos(θ)tan(β)]</p>
 <p>where:</p>
 <ul>
-<li><code>v_mod</code> is the modeled vertical collar velocity</li>
-<li><code>omega</code> is the measured disk angular velocity</li>
-<li><code>theta</code> is the measured disk angle</li>
-<li><code>r</code> is the disk-center-to-pin radius</li>
-<li><code>l</code> is the connecting-bar length</li>
-<li><code>d</code> is the horizontal offset from slide to disk center</li>
+<li>v_mod is the modeled vertical collar velocity</li>
+<li>ω is the measured disk angular velocity</li>
+<li>θ is the measured disk angle</li>
+<li>r is the disk-center-to-pin radius</li>
+<li>l is the connecting-bar length</li>
+<li>d is the horizontal offset from slide to disk center</li>
 </ul>
-<p>Use radians for <code>theta</code> and <code>beta</code>.</p>
+<p>Use radians for θ and β.</p>
 <hr>
 <h2>MATLAB-Oriented Implementation</h2>
 <pre><code>
 beta = asin((d - r .* sin(theta)) ./ l);
 v_mod = -omega .* r .* (sin(theta) + cos(theta) .* tan(beta));
 </code></pre>
-<p>If <code>r</code>, <code>l</code>, and <code>d</code> are entered in centimeters, <code>v_mod</code> will be in centimeters per second when <code>omega</code> is in radians per second. If the experimental velocity is in millimeters per second, convert units before computing residuals.</p>
+<p>If r, l, and d are entered in centimeters, v_mod will be in centimeters per second when ω is in radians per second. If the experimental velocity is in millimeters per second, convert units before computing residuals.</p>
 <hr>
 <h2>Residual Analysis Checks</h2>
 <p>Use a signed residual and state the convention:</p>
-<p>$$residual = v_{exp} - v_{mod}$$</p>
+<p>residual = v_exp − v_mod</p>
 <p>For residuals, evaluate the model at the measured theta values. Do not compare experimental points to a model curve that was evaluated only on a separate smooth plotting grid.</p>
 <p>Useful checks for each voltage include:</p>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Check</th><th>What it helps you notice</th></tr></thead><tbody><tr><td>Mean residual</td><td>Possible systematic offset between model and measurement</td></tr><tr><td>Residual standard deviation</td><td>Typical scatter around the model</td></tr><tr><td>Number of samples</td><td>Whether enough points remain after trimming startup/end effects</td></tr><tr><td>Outlier notes</td><td>Whether a few unusual points dominate the comparison</td></tr><tr><td>Residuals versus theta</td><td>Periodic structure tied to linkage geometry or mechanical play</td></tr><tr><td>Residuals versus time</td><td>Drift, startup behavior, or time-dependent effects</td></tr></tbody></table></div>

@@ -17,20 +17,20 @@ Verification is the right word here: students are not being asked to create an o
 The apparatus consists of:
 
 - A disk rotating about fixed point O
-- A crank pin A located a radius `r` from O
-- A rigid connecting bar of length `l` from A to the sliding collar point B
+- A crank pin A located a radius r from O
+- A rigid connecting bar of length l from A to the sliding collar point B
 - A vertical slide for B
-- A horizontal offset `d` from the vertical slide to the disk centerline
+- A horizontal offset d from the vertical slide to the disk centerline
 
 Variables:
 
 | Symbol | Meaning |
 |--------|---------|
-| theta | Disk angle |
-| beta | Connecting-bar angle from the vertical slide |
-| omega_D | Disk angular velocity, `theta_dot` |
-| omega_B | Connecting-bar angular velocity, `beta_dot` |
-| v_B_y | Vertical velocity of the collar |
+| θ | Disk angle |
+| β | Connecting-bar angle from the vertical slide |
+| ω_D | Disk angular velocity, dθ/dt |
+| ω_B | Connecting-bar angular velocity, dβ/dt |
+| v_B,y | Vertical velocity of the collar |
 
 The derivation source PDF is retained in `derivation/ASEN2003 Lab3 Locomotive Derivation.pdf`.
 
@@ -38,25 +38,19 @@ The derivation source PDF is retained in `derivation/ASEN2003 Lab3 Locomotive De
 
 ## Position Relations
 
-Using unit vectors `i` to the right and `j` upward, the crank-pin position relative to O is written as:
+Using unit vectors i to the right and j upward, the crank-pin position relative to O is written as:
 
-```text
-r_A = -r sin(theta) i + r cos(theta) j
-```
+r_A = −r sin(θ)i + r cos(θ)j
 
 The collar point B relative to A is:
 
-```text
-r_B/A = -l sin(beta) i - l cos(beta) j
-```
+r_B/A = −l sin(β)i − l cos(β)j
 
 The horizontal constraint gives:
 
-```text
-sin(beta) = (d - r sin(theta)) / l
-```
+sin(β) = (d − r sin(θ)) / l
 
-Students should check this relation against the physical geometry and the chosen positive direction for theta.
+Students should check this relation against the physical geometry and the chosen positive direction for θ.
 
 ---
 
@@ -64,21 +58,15 @@ Students should check this relation against the physical geometry and the chosen
 
 Differentiate the horizontal constraint:
 
-```text
-sin(beta) = (d - r sin(theta)) / l
-```
+sin(β) = (d − r sin(θ)) / l
 
 which gives:
 
-```text
-cos(beta) beta_dot = -(r/l) cos(theta) theta_dot
-```
+cos(β) dβ/dt = −(r/l) cos(θ) dθ/dt
 
-Since `theta_dot = omega_D`,
+Since dθ/dt = ω_D,
 
-```text
-omega_B = beta_dot = -(r cos(theta) / (l cos(beta))) omega_D
-```
+ω_B = dβ/dt = −[r cos(θ) / (l cos(β))]ω_D
 
 The derivation PDF also reaches an equivalent magnitude relationship through rigid-body velocity relations. Students should verify the sign convention they use in MATLAB, especially if their theta direction or positive collar velocity direction differs from the diagram.
 
@@ -90,34 +78,23 @@ The collar is constrained to move vertically, so the horizontal velocity of B is
 
 Starting from:
 
-```text
-r_B = d i + (r cos(theta) - l cos(beta)) j
-```
+r_B = di + [r cos(θ) − l cos(β)]j
 
 differentiate:
 
-```text
-v_B_y = -r sin(theta) theta_dot + l sin(beta) beta_dot
-```
+v_B,y = −r sin(θ)dθ/dt + l sin(β)dβ/dt
 
-Substitute `theta_dot = omega_D` and the expression for `beta_dot`:
+Substitute dθ/dt = ω_D and the expression for dβ/dt:
 
-```text
-v_B_y = -r omega_D sin(theta)
-        - r omega_D cos(theta) tan(beta)
-```
+v_B,y = −rω_D sin(θ) − rω_D cos(θ)tan(β)
 
 Final compact form:
 
-```text
-v_B_y = -omega_D r [sin(theta) + cos(theta) tan(beta)]
-```
+v_B,y = −ω_Dr[sin(θ) + cos(θ)tan(β)]
 
 with:
 
-```text
-beta = asin((d - r sin(theta)) / l)
-```
+β = sin⁻¹[(d − r sin(θ)) / l]
 
 ---
 
@@ -125,11 +102,11 @@ beta = asin((d - r sin(theta)) / l)
 
 Before using the model, verify:
 
-- `abs((d - r sin(theta))/l) <= 1` over the analyzed theta range
-- `theta`, `beta`, and trigonometric functions use radians in MATLAB
-- `r`, `l`, `d`, and `v_B_y` use consistent units
+- |(d − r sin(θ))/l| ≤ 1 over the analyzed theta range
+- θ, β, and trigonometric functions use radians in MATLAB
+- r, l, d, and v_B,y use consistent units
 - Positive velocity direction matches the plotted experimental collar velocity
-- The model is evaluated at the measured `theta_exp`, not only a separate model grid
+- The model is evaluated at the measured theta values, not only a separate model grid
 - Residuals are computed as signed differences using a stated convention
 
 ---
