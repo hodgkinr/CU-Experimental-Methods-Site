@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>if(new URLSearchParams(location.search).get('embed')==='1'){document.documentElement.classList.add('embed-mode');}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taylor-Series and Monte Carlo Uncertainty Propagation</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../chat_widget.css">
+  <script defer src="../chat_widget.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\(', '\)']],
+        displayMath: [['\[', '\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="../app.js"></script>
+</head>
+<body>
+  
+            
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="../index.html">Aerospace Experimental Methods</a>
+        <nav class="top-nav">
+          <a href="../index.html">Home</a>
+          <a href="../opening.html">Opening</a>
+          <a href="../syllabus.html">Syllabus</a>
+          <a href="../schedule.html">Schedule</a>
+          <a href="../labs.html">Labs</a>
+          <a class="is-current" href="../supplemental.html">Supplemental</a>
+          <a href="../interactive_ontologies/index.html">Ontologies</a>
+          <a href="../badges.html">Badges</a>
+        </nav>
+      </div>
+    </header>
+    
+            <main class="page-shell">
+              <section class="hero compact">
+                <p class="eyebrow">Aerospace Experimental Methods · Supplemental Resource</p>
+                <h1>Taylor-Series and Monte Carlo Uncertainty Propagation</h1>
+                <p class="lead">When you report or propagate measurement uncertainty, you may have several different sources contributing to the uncertainty in a measured variable. For example, a voltage measurement might include:</p>
+              </section>
+              <section class="content-card markdown-body" style="padding:1.5rem">
+                <h1>Taylor-Series and Monte Carlo Uncertainty Propagation</h1>
+<h2>Key idea: both methods should account for the same uncertainty sources</h2>
+<p>When you report or propagate measurement uncertainty, you may have several different sources contributing to the uncertainty in a measured variable. For example, a voltage measurement might include:</p>
+<ul>
+<li><strong>Manufacturer accuracy</strong> from the instrument specification</li>
+<li><strong>Experimental or observation uncertainty</strong> associated with how the measurement is made</li>
+<li><strong>Standard error of the mean (SEM)</strong> associated with repeat measurements</li>
+</ul>
+<p>You already account for these different sources when using the traditional Taylor-series uncertainty method. Your Monte Carlo analysis should do the same.</p>
+<p>The important difference is <strong>how the uncertainty is propagated</strong>.</p>
+<ul>
+<li>In the <strong>Taylor-series method</strong>, each source is first represented as a <strong>standard uncertainty</strong>, and those standard uncertainties are propagated analytically.</li>
+<li>In the <strong>Monte Carlo method</strong>, each source is represented by an appropriate <strong>probability distribution</strong>, samples are drawn from those distributions, and the samples are propagated numerically through the measurement equation.</li>
+</ul>
+<p>The two methods should begin with the <strong>same physical uncertainty information</strong>.</p>
+<hr>
+<h2>1. Review: combining uncertainty with the Taylor-series method</h2>
+<p>Suppose a measured voltage is</p>
+<p>\[ \bar V = 10.0\ \text{V} \]</p>
+<p>and the measurement has three independent uncertainty sources.</p>
+<h3>Manufacturer accuracy</h3>
+<p>Suppose the instrument manufacturer specifies</p>
+<p>\[ \pm 0.10\ \text{V}. \]</p>
+<p>If all values within that range are considered equally plausible, the uncertainty is represented by a rectangular (uniform) distribution with half-width</p>
+<p>\[ a_{\text{mfg}} = 0.10\ \text{V}. \]</p>
+<p>The corresponding <strong>standard uncertainty</strong> is</p>
+<p>\[ u_{\text{mfg}} = \frac{a_{\text{mfg}}}{\sqrt{3}} = \frac{0.10}{\sqrt{3}}. \]</p>
+<h3>Standard error of the mean</h3>
+<p>Suppose repeated measurements give</p>
+<p>\[ u_{\text{SEM}} = 0.03\ \text{V}. \]</p>
+<p>This is already expressed as a standard uncertainty, so no rectangular-distribution conversion is needed.</p>
+<h3>Observation uncertainty</h3>
+<p>Suppose the experimenter estimates an observation uncertainty of</p>
+<p>\[ \pm 0.05\ \text{V}. \]</p>
+<p>If this is also treated as a rectangular distribution,</p>
+<p>\[ u_{\text{obs}} = \frac{0.05}{\sqrt{3}}. \]</p>
+<h3>Combined standard uncertainty</h3>
+<p>For independent sources, the combined standard uncertainty is</p>
+<p>\[ u_c(V) = \sqrt{ u_{\text{mfg}}^2 + u_{\text{SEM}}^2 + u_{\text{obs}}^2 }. \]</p>
+<p>For these values,</p>
+<p>\[ u_c(V) \approx 0.071\ \text{V}. \]</p>
+<p>This quantity is the <strong>combined standard uncertainty</strong>.</p>
+<hr>
+<h2>Important: \(u_c\) is NOT the uniform-distribution half-width \(a\)</h2>
+<p>This is one of the most important distinctions in this topic.</p>
+<p>For a rectangular distribution,</p>
+<p>\[ u = \frac{a}{\sqrt{3}}, \]</p>
+<p>where</p>
+<ul>
+<li>\(a\) is the <strong>half-width or bound</strong> of the rectangular distribution, and</li>
+<li>\(u\) is the <strong>standard uncertainty</strong> (the standard deviation of that distribution).</li>
+</ul>
+<p>Therefore,</p>
+<p>\[ \boxed{u_c \neq a} \]</p>
+<p>in general.</p>
+<p>The combined uncertainty \(u_c\) should <strong>not</strong> be interpreted as saying that the true value is uniformly distributed between</p>
+<p>\[ \bar V-u_c \quad\text{and}\quad \bar V+u_c. \]</p>
+<p>Doing that would incorrectly treat a <strong>standard uncertainty</strong> as if it were a <strong>hard rectangular bound</strong>.</p>
+<p>This is why a Monte Carlo simulation should not normally be constructed by simply generating</p>
+<p>\[ V \sim U(\bar V-u_c,\bar V+u_c). \]</p>
+<p>That distribution would have a standard deviation of</p>
+<p>\[ \frac{u_c}{\sqrt{3}}, \]</p>
+<p>not \(u_c\), and would therefore represent a different amount of uncertainty.</p>
+<hr>
+<h2>2. The preferred Monte Carlo approach</h2>
+<p>The most appropriate Monte Carlo approach is to go back to the <strong>individual uncertainty sources</strong>.</p>
+<p>For this example, the three sources can be modeled as</p>
+<p>\[ \epsilon_{\text{mfg}} \sim U(-0.10,\,+0.10), \]</p>
+<p>\[ \epsilon_{\text{SEM}} \sim N(0,\,0.03), \]</p>
+<p>and</p>
+<p>\[ \epsilon_{\text{obs}} \sim U(-0.05,\,+0.05). \]</p>
+<p>For each Monte Carlo trial, MATLAB draws one random sample from each source and constructs a simulated voltage:</p>
+<p>\[ V_i = \bar V + \epsilon_{\text{mfg},i} + \epsilon_{\text{SEM},i} + \epsilon_{\text{obs},i}. \]</p>
+<p>This process is repeated many times, for example</p>
+<p>\[ N=100{,}000. \]</p>
+<p>The resulting collection</p>
+<p>\[ V_1,V_2,\ldots,V_N \]</p>
+<p>forms the Monte Carlo distribution of the measured voltage.</p>
+<p>The standard deviation of this simulated distribution should be approximately</p>
+<p>\[ \sigma_{\text{MC}} \approx u_c. \]</p>
+<p>For this linear, additive example, the Taylor-series and Monte Carlo approaches should therefore give nearly the same combined standard uncertainty.</p>
+<hr>
+<h2>3. What the provided MATLAB script is doing</h2>
+<p>The provided MATLAB example follows exactly this process.</p>
+<h3>Step 1 - define the nominal measurement</h3>
+<p>The script starts with</p>
+<p>\[ V_{\text{mean}}=10.0\ \text{V}. \]</p>
+<h3>Step 2 - convert bounded uncertainties into standard uncertainties</h3>
+<p>For the Taylor-series calculation, the manufacturer and observation limits are converted using</p>
+<p>\[ u=\frac{a}{\sqrt{3}}. \]</p>
+<p>The SEM is already treated as a standard uncertainty.</p>
+<h3>Step 3 - calculate the analytical combined uncertainty</h3>
+<p>The script calculates</p>
+<p>\[ u_c = \sqrt{ u_{\text{mfg}}^2+ u_{\text{SEM}}^2+ u_{\text{obs}}^2 }. \]</p>
+<p>This is the traditional analytical result.</p>
+<h3>Step 4 - generate Monte Carlo samples</h3>
+<p>Instead of sampling from a distribution based on \(u_c\), the code samples each uncertainty source separately:</p>
+<pre><code>
+manufacturer error -&gt; uniform distribution
+SEM error -&gt; normal distribution
+observation error -&gt; uniform distribution
+</code></pre>
+<p>Each simulated voltage is then calculated from the sum of those sampled errors.</p>
+<h3>Step 5 - compare the two results</h3>
+<p>The code calculates the standard deviation of the Monte Carlo voltage distribution and compares it directly to the analytical value \(u_c\).</p>
+<p>For this example, they should be very close.</p>
+<p>The histogram also shows the full shape of the Monte Carlo output distribution. The red curve in the example plot is a normal distribution with</p>
+<p>\[ \mu = V_{\text{mean}} \]</p>
+<p>and</p>
+<p>\[ \sigma = u_c. \]</p>
+<p>Because several independent uncertainty sources are being added together, the final Monte Carlo distribution is approximately normal even though two of the individual uncertainty sources are rectangular.</p>
+<hr>
+<h2>Taylor-series vs. Monte Carlo: the main distinction</h2>
+<p>A useful way to think about the two approaches is:</p>
+<h3>Taylor-series propagation</h3>
+<ol>
+<li>Identify each uncertainty source.</li>
+<li>Convert each source to a standard uncertainty \(u_i\).</li>
+<li>Propagate the uncertainties mathematically.</li>
+<li>Report the resulting combined standard uncertainty \(u_c\).</li>
+</ol>
+<p>For independent additive uncertainties,</p>
+<p>\[ u_c=\sqrt{u_1^2+u_2^2+\cdots}. \]</p>
+<h3>Monte Carlo propagation</h3>
+<ol>
+<li>Identify the <strong>same uncertainty sources</strong>.</li>
+<li>Assign an appropriate probability distribution to each source.</li>
+<li>Randomly sample each distribution many times.</li>
+<li>Propagate each set of samples through the measurement equation.</li>
+<li>Examine the resulting output distribution.</li>
+</ol>
+<p>The Monte Carlo method therefore retains more information about the <strong>shape of each uncertainty source</strong>.</p>
+<hr>
+<h2>Why use Monte Carlo if the answers are nearly identical here?</h2>
+<p>For this simple example,</p>
+<p>\[ V = \bar V + \epsilon_1+ \epsilon_2+ \epsilon_3, \]</p>
+<p>the measurement equation is linear and the uncertainty sources are independent. The Taylor-series method works extremely well, so Monte Carlo and analytical propagation should agree.</p>
+<p>Monte Carlo becomes especially useful when:</p>
+<ul>
+<li>the measurement equation is <strong>nonlinear</strong>,</li>
+<li>uncertainty sources have unusual or strongly non-normal distributions,</li>
+<li>the resulting output uncertainty is <strong>asymmetric</strong>,</li>
+<li>variables are constrained by physical limits,</li>
+<li>or the first-order Taylor approximation is no longer adequate.</li>
+</ul>
+<p>In those cases, Monte Carlo can reveal features of the uncertainty distribution that a single value of \(u_c\) cannot.</p>
+<hr>
+<h2>Bottom line</h2>
+<p>\[ \boxed{\text{Do not create a Monte Carlo distribution from } \bar V\pm u_c \text{ as though }u_c\text{ were a rectangular half-width.}} \]</p>
+<p>Instead,</p>
+<p>\[ \boxed{\text{sample from the individual uncertainty-source distributions and combine them.}} \]</p>
+<p>The Taylor-series method and Monte Carlo method are <strong>two different ways of propagating the same underlying uncertainty information</strong>.</p>
+<p>The provided MATLAB script demonstrates this directly: the analytical calculation combines the source standard uncertainties in quadrature, while the Monte Carlo calculation samples the corresponding source distributions and propagates those samples numerically.</p>
+              </section>
+            </main>
+            
+    <footer class="site-footer">
+      <p>Generated by <code>Forward/generate_html_course.py</code> with relative-link navigation and client-side quiz state.</p>
+    </footer>
+    
+            
+  
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "supplemental-monte-carlo-taylor-series-uncertainty", "title": "Taylor-Series and Monte Carlo Uncertainty Propagation", "url": "supplemental/monte-carlo-taylor-series-uncertainty.html", "text": "# Taylor-Series and Monte Carlo Uncertainty Propagation\n\n## Key idea: both methods should account for the same uncertainty sources\n\nWhen you report or propagate measurement uncertainty, you may have several different sources contributing to the uncertainty in a measured variable. For example, a voltage measurement might include:\n\n- **Manufacturer accuracy** from the instrument specification\n- **Experimental or observation uncertainty** associated with how the measurement is made\n- **Standard error of the mean (SEM)** associated with repeat measurements\n\nYou already account for these different sources when using the traditional Taylor-series uncertainty method. Your Monte Carlo analysis should do the same.\n\nThe important difference is **how the uncertainty is propagated**.\n\n- In the **Taylor-series method**, each source is first represented as a **standard uncertainty**, and those standard uncertainties are propagated analytically.\n- In the **Monte Carlo method**, each source is represented by an appropriate **probability distribution**, samples are drawn from those distributions, and the samples are propagated numerically through the measurement equation.\n\nThe two methods should begin with the **same physical uncertainty information**.\n\n---\n\n## 1. Review: combining uncertainty with the Taylor-series method\n\nSuppose a measured voltage is\n\n\\[\n\\bar V = 10.0\\ \\text{V}\n\\]\n\nand the measurement has three independent uncertainty sources.\n\n### Manufacturer accuracy\n\nSuppose the instrument manufacturer specifies\n\n\\[\n\\pm 0.10\\ \\text{V}.\n\\]\n\nIf all values within that range are considered equally plausible, the uncertainty is represented by a rectangular (uniform) distribution with half-width\n\n\\[\na_{\\text{mfg}} = 0.10\\ \\text{V}.\n\\]\n\nThe corresponding **standard uncertainty** is\n\n\\[\nu_{\\text{mfg}} = \\frac{a_{\\text{mfg}}}{\\sqrt{3}}\n= \\frac{0.10}{\\sqrt{3}}.\n\\]\n\n### Standard error of the mean\n\nSuppose repeated measurements give\n\n\\[\nu_{\\text{SEM}} = 0.03\\ \\text{V}.\n\\]\n\nThis is already expressed as a standard uncertainty, so no rectangular-distribution conversion is needed.\n\n### Observation uncertainty\n\nSuppose the experimenter estimates an observation uncertainty of\n\n\\[\n\\pm 0.05\\ \\text{V}.\n\\]\n\nIf this is also treated as a rectangular distribution,\n\n\\[\nu_{\\text{obs}} = \\frac{0.05}{\\sqrt{3}}.\n\\]\n\n### Combined standard uncertainty\n\nFor independent sources, the combined standard uncertainty is\n\n\\[\nu_c(V)\n=\n\\sqrt{\nu_{\\text{mfg}}^2\n+\nu_{\\text{SEM}}^2\n+\nu_{\\text{obs}}^2\n}.\n\\]\n\nFor these values,\n\n\\[\nu_c(V) \\approx 0.071\\ \\text{V}.\n\\]\n\nThis quantity is the **combined standard uncertainty**.\n\n---\n\n## Important: \\(u_c\\) is NOT the uniform-distribution half-width \\(a\\)\n\nThis is one of the most important distinctions in this topic.\n\nFor a rectangular distribution,\n\n\\[\nu = \\frac{a}{\\sqrt{3}},\n\\]\n\nwhere\n\n- \\(a\\) is the **half-width or bound** of the rectangular distribution, and\n- \\(u\\) is the **standard uncertainty** (the standard deviation of that distribution).\n\nTherefore,\n\n\\[\n\\boxed{u_c \\neq a}\n\\]\n\nin general.\n\nThe combined uncertainty \\(u_c\\) should **not** be interpreted as saying that the true value is uniformly distributed between\n\n\\[\n\\bar V-u_c\n\\quad\\text{and}\\quad\n\\bar V+u_c.\n\\]\n\nDoing that would incorrectly treat a **standard uncertainty** as if it were a **hard rectangular bound**.\n\nThis is why a Monte Carlo simulation should not normally be constructed by simply generating\n\n\\[\nV \\sim U(\\bar V-u_c,\\bar V+u_c).\n\\]\n\nThat distribution would have a standard deviation of\n\n\\[\n\\frac{u_c}{\\sqrt{3}},\n\\]\n\nnot \\(u_c\\), and would therefore represent a different amount of uncertainty.\n\n---\n\n## 2. The preferred Monte Carlo approach\n\nThe most appropriate Monte Carlo approach is to go back to the **individual uncertainty sources**.\n\nFor this example, the three sources can be modeled as\n\n\\[\n\\epsilon_{\\text{mfg}}\n\\sim\nU(-0.10,\\,+0.10),\n\\]\n\n\\[\n\\epsilon_{\\text{SEM}}\n\\sim\nN(0,\\,0.03),\n\\]\n\nand\n\n\\[\n\\epsilon_{\\text{obs}}\n\\sim\nU(-0.05,\\,+0.05).\n\\]\n\nFor each Monte Carlo trial, MATLAB draws one random sample from each source and constructs a simulated voltage:\n\n\\[\nV_i\n=\n\\bar V\n+\n\\epsilon_{\\text{mfg},i}\n+\n\\epsilon_{\\text{SEM},i}\n+\n\\epsilon_{\\text{obs},i}.\n\\]\n\nThis process is repeated many times, for example\n\n\\[\nN=100{,}000.\n\\]\n\nThe resulting collection\n\n\\[\nV_1,V_2,\\ldots,V_N\n\\]\n\nforms the Monte Carlo distribution of the measured voltage.\n\nThe standard deviation of this simulated distribution should be approximately\n\n\\[\n\\sigma_{\\text{MC}} \\approx u_c.\n\\]\n\nFor this linear, additive example, the Taylor-series and Monte Carlo approaches should therefore give nearly the same combined standard uncertainty.\n\n---\n\n## 3. What the provided MATLAB script is doing\n\nThe provided MATLAB example follows exactly this process.\n\n### Step 1 - define the nominal measurement\n\nThe script starts with\n\n\\[\nV_{\\text{mean}}=10.0\\ \\text{V}.\n\\]\n\n### Step 2 - convert bounded uncertainties into standard uncertainties\n\nFor the Taylor-series calculation, the manufacturer and observation limits are converted using\n\n\\[\nu=\\frac{a}{\\sqrt{3}}.\n\\]\n\nThe SEM is already treated as a standard uncertainty.\n\n### Step 3 - calculate the analytical combined uncertainty\n\nThe script calculates\n\n\\[\nu_c\n=\n\\sqrt{\nu_{\\text{mfg}}^2+\nu_{\\text{SEM}}^2+\nu_{\\text{obs}}^2\n}.\n\\]\n\nThis is the traditional analytical result.\n\n### Step 4 - generate Monte Carlo samples\n\nInstead of sampling from a distribution based on \\(u_c\\), the code samples each uncertainty source separately:\n\n```text\nmanufacturer error -> uniform distribution\nSEM error -> normal distribution\nobservation error -> uniform distribution\n```\n\nEach simulated voltage is then calculated from the sum of those sampled errors.\n\n### Step 5 - compare the two results\n\nThe code calculates the standard deviation of the Monte Carlo voltage distribution and compares it directly to the analytical value \\(u_c\\).\n\nFor this example, they should be very close.\n\nThe histogram also shows the full shape of the Monte Carlo output distribution. The red curve in the example plot is a normal distribution with\n\n\\[\n\\mu = V_{\\text{mean}}\n\\]\n\nand\n\n\\[\n\\sigma = u_c.\n\\]\n\nBecause several independent uncertainty sources are being added together, the final Monte Carlo distribution is approximately normal even though two of the individual uncertainty sources are rectangular.\n\n---\n\n## Taylor-series vs. Monte Carlo: the main distinction\n\nA useful way to think about the two approaches is:\n\n### Taylor-series propagation\n\n1. Identify each uncertainty source.\n2. Convert each source to a standard uncertainty \\(u_i\\).\n3. Propagate the uncertainties mathematically.\n4. Report the resulting combined standard uncertainty \\(u_c\\).\n\nFor independent additive uncertainties,\n\n\\[\nu_c=\\sqrt{u_1^2+u_2^2+\\cdots}.\n\\]\n\n### Monte Carlo propagation\n\n1. Identify the **same uncertainty sources**.\n2. Assign an appropriate probability distribution to each source.\n3. Randomly sample each distribution many times.\n4. Propagate each set of samples through the measurement equation.\n5. Examine the resulting output distribution.\n\nThe Monte Carlo method therefore retains more information about the **shape of each uncertainty source**.\n\n---\n\n## Why use Monte Carlo if the answers are nearly identical here?\n\nFor this simple example,\n\n\\[\nV\n=\n\\bar V\n+\n\\epsilon_1+\n\\epsilon_2+\n\\epsilon_3,\n\\]\n\nthe measurement equation is linear and the uncertainty sources are independent. The Taylor-series method works extremely well, so Monte Carlo and analytical propagation should agree.\n\nMonte Carlo becomes especially useful when:\n\n- the measurement equation is **nonlinear**,\n- uncertainty sources have unusual or strongly non-normal distributions,\n- the resulting output uncertainty is **asymmetric**,\n- variables are constrained by physical limits,\n- or the first-order Taylor approximation is no longer adequate.\n\nIn those cases, Monte Carlo can reveal features of the uncertainty distribution that a single value of \\(u_c\\) cannot.\n\n---\n\n## Bottom line\n\n\\[\n\\boxed{\\text{Do not create a Monte Carlo distribution from } \\bar V\\pm u_c\n\\text{ as though }u_c\\text{ were a rectangular half-width.}}\n\\]\n\nInstead,\n\n\\[\n\\boxed{\\text{sample from the individual uncertainty-source distributions and combine them.}}\n\\]\n\nThe Taylor-series method and Monte Carlo method are **two different ways of propagating the same underlying uncertainty information**.\n\nThe provided MATLAB script demonstrates this directly: the analytical calculation combines the source standard uncertainties in quadrature, while the Monte Carlo calculation samples the corresponding source distributions and propagates those samples numerically.", "module_id": null, "source_type": "overview"}</script>
+</body>
+</html>

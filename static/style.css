@@ -1131,6 +1131,37 @@ html.embed-mode .site-header {
   flex: 1;
 }
 
+/* Planning-owned math and Canvas embed styling */
+.markdown-body mjx-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding: 0.1rem 0;
+}
+
+.markdown-body mjx-container[display="true"] {
+  margin: 1rem 0;
+}
+
+html.embed-mode body {
+  background: transparent;
+}
+
+html.embed-mode .page-shell {
+  padding: 0;
+  max-width: none;
+}
+
+html.embed-mode .hero.compact {
+  display: none;
+}
+
+html.embed-mode .content-card {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 /* Planning-owned course link styling */
 .content-card a,
 .markdown-body a {
