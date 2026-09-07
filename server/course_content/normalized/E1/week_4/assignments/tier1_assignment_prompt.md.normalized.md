@@ -31,10 +31,9 @@ and understanding why each phase exists will make each one more productive.
 By the end of this assignment and its associated activities, you should be able to:
 
 1. Execute an assigned experiment, record the relevant measurements in the required engineering format, and state a defensible uncertainty basis for each primary quantity.
-2. Compare two sensor types or measurement methods for the same physical quantity and argue, with a named validation metric, whether the results are consistent enough for the intended use.
-3. Build a blind prediction from theory, sensor specifications, and DAQ information before seeing data, then state what agreement threshold and anomalous pattern would matter.
-4. Interpret discrepancies between prediction and measurement without post-hoc guesswork, using the comparison to identify model limitations, uncertainty drivers, and at least one experimentally informed improvement.
-5. Synthesize evidence across two related experiments in a short technical presentation and explain what the predictions got right, what they missed, and why.
+2. Build a blind prediction from theory, sensor specifications, and DAQ information before seeing data, then state what agreement threshold and anomalous pattern would matter.
+3. Interpret discrepancies between prediction and measurement without post-hoc guesswork, using the comparison to identify model limitations, uncertainty drivers, and at least one experimentally informed improvement.
+4. Synthesize evidence across two related experiments in a short technical presentation and explain what the predictions got right, what they missed, and why.
 
 ---
 
@@ -90,7 +89,7 @@ developing the mindset of one.
 **What you do:** Execute the experiment, collect data, analyze uncertainty, compare to a
 predictive model, and propose at least one experimentally informed model improvement.
 **What you produce:** A Phase 1 Individual Report.
-**When:** Course Weeks 5–7 (Sep 14 through Sep 30; see Canvas for your assigned experiment and specific due dates).
+**When:** Course Weeks 5–6, with the Phase 1 report due Friday, Sep 25 at 5:00 pm.
 
 ### Phase 2 — Reverse Prediction (Individual, Blind)
 
@@ -100,7 +99,7 @@ not run in Phase 1.
 description for this unfamiliar experiment, predict what the data should look like.
 You do not have access to the actual data. You do not touch the hardware.
 **What you produce:** A Phase 2 Prediction Memo, submitted before data is released.
-**When:** Course Week 7 (prediction submitted before data release).
+**When:** Course Week 7, with the Phase 2 prediction memo due Friday, Oct 2 before data release.
 
 ### Phase 3 — Combined Synthesis (Paired, with optional group of 4)
 
@@ -112,7 +111,7 @@ the predictions got right, what they missed, and why. Synthesize across both exp
 **What you produce:** A combined oral presentation (lightning talk). You and your partner
 present together. If logistics allow, your pair joins one other pair for a group of 4
 presentation.
-**When:** Course Week 8, during the Tier 1 interview window on Monday, Oct 5 and Wednesday, Oct 7 (see Canvas for sign-up instructions).
+**When:** Course Week 9, during the Tier 1 presentation/interview window on Monday, Oct 12 and Wednesday, Oct 14.
 
 ---
 
@@ -125,16 +124,15 @@ your data to a predictive model, and use the data to improve that model.
 
 ### Before the lab session and during the lab session
 
-Complete items 1–4 before you arrive; items 5–8 are in-lab steps. Items 1–4 aren't graded as a separate pre-lab deliverable. They're required inputs to your Phase 1 report, and students who arrive without them typically need significantly more time to complete the lab.
+Complete items 1–4 before you arrive; items 5–7 are in-lab steps. Items 1–4 aren't graded as a separate pre-lab deliverable. They're required inputs to your Phase 1 report, and students who arrive without them typically need significantly more time to complete the lab.
 
 1. **Read the experiment-specific lab document** for your assigned experiment. This document (provided separately) contains the theory primer, sensor specifications, and equipment list for your experiment. It is not this document.
 2. **Write a hypothesis**: a one-sentence, falsifiable prediction of the experimental outcome. A hypothesis is not "I think it will work." It is "I predict the measured value of [quantity] will be [value or range], because [brief physical reasoning]."
 3. **Sketch an AMVF diagram** for your experiment. Map each step of your planned procedure to a node in the Aerospace Modeling & Validation Framework. You don't need to be perfect. You'll refine this after the lab.
 4. **Identify your independent and dependent variables.** Identify at least one control condition and at least one potential confounding factor.
-5. **Use at least two sensor types or measurement methods** to measure the same physical quantity. This is required, not optional. The comparison between sensors is part of the analysis.
-6. **Record your measurements** using the correct format: value, units, uncertainty. Every measurement in your report must carry an uncertainty estimate with a stated basis (e.g., manufacturer spec, resolution, or statistical bound).
-7. **Use MATLAB** for data collection, processing, and plotting. MATLAB Mobile is available for phone-based data acquisition where applicable to your experiment. The experiment-specific lab document will indicate whether MATLAB Mobile is used.
-8. **Note anomalies in real time.** If your data looks unexpected, write it down immediately: when it happened, what changed, and what you observed. These notes are evidence.
+5. **Record your measurements** using the correct format: value, units, uncertainty. Every measurement in your report must carry an uncertainty estimate with a stated basis (e.g., manufacturer spec, resolution, or statistical bound).
+6. **Use MATLAB** for data collection, processing, and plotting.
+7. **Note anomalies in real time.** If your data looks unexpected, write it down immediately: when it happened, what changed, and what you observed. These notes are evidence.
 
 ### Phase 1 report — required sections
 
@@ -162,38 +160,34 @@ analysis in the sections that follow.
 Your recorded values for all primary measurements, with units and uncertainty for each.
 Describe the basis for each uncertainty estimate. Present in a table.
 
-**5. Multi-sensor comparison**
-Side-by-side comparison of the measurements from your two sensor types or methods. Apply a
-named validation metric to determine whether they agree. State the metric, the threshold,
-and the conclusion numerically, not just visually.
+**5. Uncertainty propagation**
+For the primary derived quantity in your experiment: apply uncertainty propagation using
+partial derivatives or Monte Carlo, as appropriate for the model and experiment. Identify
+and rank the dominant error sources. Show your work clearly enough that another engineer
+could trace how the uncertainty was determined.
 
-**6. Uncertainty propagation**
-For the primary derived quantity in your experiment: apply first-order error propagation
-using partial derivatives to compute uncertainty. Identify and rank the dominant error
-sources. Show your work.
-
-**7. Model comparison**
+**6. Model comparison**
 Compare your experimental result (with uncertainty bounds) to your predictive model. Use a
 named validation metric. State whether the comparison meets your pre-defined acceptance
 criterion. Interpret any discrepancy: is it attributable to measurement uncertainty, model
 form limitations, or both?
 
-**8. Experimentally informed model**
+**7. Experimentally informed model**
 Identify at least one way your experimental results suggest the predictive model should be
 updated or refined. This isn't about accepting or rejecting the model. It's about using
 the data to make the model better. Describe specifically what you would change, and what
 physical reasoning supports that change.
 
-**9. MATLAB figures**
+**8. MATLAB figures**
 All plots must have: title, labeled axes with units, legend if multiple datasets, uncertainty
 bounds where applicable, and a caption that states the takeaway in one sentence. Apply the
-graph presentation framework from E1 W2.
+graph presentation framework from the readings.
 
-**10. Plain-language summary**
+**9. Plain-language summary**
 A 3–5 sentence summary of what you did and what your result means, written for a non-engineer.
 This section belongs in your introduction or conclusion, not as an appendix.
 
-**11. Predict-from-specs**
+**10. Predict-from-specs**
 Using only the sensor specifications and DAQ configuration provided in your experiment-specific lab document for the primary sensor identified by the instructional team, estimate what the uncertainty in your primary derived quantity should be before you use any measured data.
 Propagate the uncertainty from the stated spec-sheet parameters.
 Sketch the expected output range with labeled axes and approximate uncertainty bounds.
@@ -202,9 +196,10 @@ This workflow is the conceptual foundation for Phase 2, where you will apply the
 ### Phase 1 report — format and submission
 
 - Length: No page limit. There is no credit for length. The value is in the quality of argument and the completeness of required sections.
-- Format: LaTeX. Submit a single `.zip` archive containing your LaTeX source (`.tex` file(s) and any figure files) and the compiled PDF. Figures should be embedded in the compiled PDF.
-- See **E0 Supplemental: Getting Started with Overleaf and LaTeX** if you haven't used LaTeX before.
+- Format: PDF. Submit one PDF through Canvas. Figures should be embedded in the PDF.
 - Submission: See Canvas for due date.
+
+This report will be graded for completeness. It also sets the stage for your Phase 2 prediction memo and Phase 3 synthesis presentation, so treat it as the evidence base you will return to later.
 
 ---
 
@@ -223,11 +218,9 @@ In Phase 2, the order is reversed. You start with the experimental setup on pape
 backwards to the expected output. You are building a model of the experiment itself, not
 just of the physical phenomenon. You are essentially reverse-engineering the experiment.
 
-Note that in Phase 2 you are predicting the output of a single, specified sensor: the one
-described in your experiment packet. Phase 1 required you to use two sensors and compare
-them; Phase 2 is a prediction exercise, and your packet will identify which sensor and
-configuration to base your analysis on. Use only that sensor's specifications for your
-uncertainty propagation.
+In Phase 2 you are predicting the output of a single, specified sensor configuration: the one
+described in your experiment packet. Use the provided sensor specifications and DAQ
+configuration as the basis for your uncertainty propagation.
 
 This requires you to think about:
 - What physical quantity is being measured, and what is its expected range given the physical setup?
@@ -289,23 +282,19 @@ would investigate first.
 
 **Submission:** The prediction memo is submitted through Canvas before the data release
 date. Once submitted, the version you turn in is frozen for the blind comparison and is the
-version that will be graded as your original commitment. After data is released, you are
-encouraged to keep iterating on your thinking, but preserve the original memo and track how
-your interpretation changes so the evolution of your reasoning remains traceable.
+version used for the Phase 2 completeness check. After data is released, you are encouraged
+to keep iterating on your thinking, but preserve the original memo and track how your
+interpretation changes so the evolution of your reasoning remains traceable.
 
-### Grading philosophy for Phase 2
+### Phase 2 completion gate
 
-**A prediction that turns out to be wrong, but was derived from sound physical reasoning
-and committed uncertainty analysis, is more valuable than a prediction that turns out to be
-right but was derived from vague intuition.**
+Phase 2 is reviewed for completeness against the required memo elements above. The memo is
+not graded on whether your prediction turns out to match the data; it is checked to confirm
+that you are prepared for the Phase 3 comparison.
 
-The grade is on the quality of your reasoning, not the accuracy of your prediction. This
-isn't arbitrary. It's the actual professional standard. An engineer who commits to a
-wrong prediction for good reasons learns from the discrepancy and demonstrates a deeper
-attempt at understanding. An engineer who gets lucky learns nothing durable from the result.
-
-This philosophy will be stated explicitly in class before Phase 2 begins. If you have
-questions about it, ask before you submit.
+Students who submit a complete Phase 2 report by the deadline will be assigned a Phase 3
+partner. If your Phase 2 report is incomplete at the deadline, you will need to complete it
+before you can be paired for Phase 3.
 
 ---
 
@@ -355,8 +344,8 @@ on the same two experiments. The group of 4 presents jointly. Each pair presents
 1 and 2 from their own perspective, and the full group of 4 delivers Segment 3 together.
 This creates a richer synthesis: four data points, four predictions, two experiments.
 
-The instructor will confirm whether group-of-4 presentations are scheduled for your section
-before the Course Week 8 interview window.
+The instructor will confirm whether group-of-4 presentations are scheduled for your group
+based on the number of completed Phase 2 submissions.
 
 ### Peer evaluation
 
@@ -375,35 +364,15 @@ evaluations ("good job, maybe add more data") receive no credit.
 | Phase | Activity | Format | When |
 |---|---|---|---|
 | Release | Tier 1 assignment released | Canvas / course site | Course Week 5, Monday Sep 14 |
-| Phase 1 | Run experiment, analyze data | Lab sessions | Course Weeks 5–7 |
-| Phase 1 | Individual report | Written, Canvas | Due before the Course Week 8 interview window (see Canvas) |
+| Phase 1 | Run experiment, analyze data | Lab sessions | Course Weeks 5–6 |
+| Phase 1 | Individual report | Written, Canvas | Due Friday, Sep 25 at 5:00 pm |
 | Phase 2 | Receive experiment packet | — | Course Week 7 release date |
-| Phase 2 | Prediction memo (submitted before data release) | Written, Canvas | Course Week 7 deadline (before data release) |
-| Phase 3 | Paired presentation / interview | In-person, in lab | Course Week 8: Mon Oct 5 and Wed Oct 7 |
-| Phase 3 | Peer evaluations | Written, submitted same day | Course Week 8: Mon Oct 5 and Wed Oct 7 |
+| Phase 2 | Prediction memo (submitted before data release) | Written, Canvas | Due Friday, Oct 2 before data release |
+| Phase 3 | Paired presentation / interview | In-person, in lab | Course Week 9: Monday, Oct 12 and Wednesday, Oct 14 |
+| Phase 3 | Peer evaluations | Written, submitted same day | Course Week 9: Monday, Oct 12 and Wednesday, Oct 14 |
 
 ---
-
-## Resources
-
-- E1 Week 2 Lecture: Error Propagation, Sensitivity Analysis & Monte Carlo
-- E1 Week 3 Lecture: Structured Comparison & Validation Metrics
-- E1 Week 3 Reading: How to Present a Graph — Kathryn's Framework
-- E1 Week 4 Lab: Full Phase I Pipeline (this is Phase 1 of the Tier 1 assignment)
-- E1 Week 5 Discussion: Lightning Talks & Peer Assessment
-- E0 Supplemental: Technical Writing Basics and Presentation Best Practices
-- E0 Supplemental: AI Tutor Setup and Practice
-- E0 Supplemental: Getting Started with Overleaf and LaTeX
-- Experiment-specific lab document (provided separately for your assigned experiment)
-- Coleman & Steele, 4th ed. — reference for uncertainty propagation
 
 ## Student Package Note
 
 Use this assignment together with the **Tier 1 student rubric** included in the student-facing assignment package. The rubric gives the pass criteria and evidence standards for the written report, prediction memo, presentation, and peer evaluations.
-
----
-
-*ASEN 3501 — Tier 1 Lab Assignment | Course Weeks 5–8*
-*Evergreen — structure, phases, analytical requirements*
-*Update-friendly — experiment names, Canvas due dates, group of 4 logistics,
-experiment packet contents*

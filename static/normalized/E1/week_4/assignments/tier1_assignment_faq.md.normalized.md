@@ -26,21 +26,14 @@ Bring the Phase 1 pre-lab work listed in the assignment:
 These are not graded as a separate pre-lab submission, but they are required inputs to the Phase 1 report.
 Students who arrive without them usually lose time during the lab.
 
-## 4. Do I really need two sensors or two measurement methods in Phase 1?
-
-Yes.
-That comparison is required, not optional.
-Tier 1 is designed to make you compare independent ways of measuring the same quantity, then argue numerically whether they agree.
-A visual overlay by itself is not enough; your report must apply a named validation metric and state the threshold and conclusion clearly.
-
-## 5. What is the predict-from-specs task in Phase 1?
+## 4. What is the predict-from-specs task in Phase 1?
 
 Phase 1 includes one predict-from-specs exercise.
 Use the supplied sensor specifications and DAQ information for the primary sensor identified in your experiment-specific lab materials.
 Before relying on measured data, propagate those specification-based uncertainties forward to estimate the uncertainty in your primary derived quantity, then sketch the expected output range with labeled axes and uncertainty bounds.
 This is practice for the larger Phase 2 prediction workflow.
 
-## 6. What is in the Phase 2 Experiment Packet?
+## 5. What is in the Phase 2 Experiment Packet?
 
 The packet includes:
 - the theory primer for the experiment
@@ -52,33 +45,33 @@ The packet includes:
 It does **not** include the actual data, any plots, any results, or any lab report.
 Your prediction must come entirely from the packet.
 
-## 7. What does “blind” mean in Phase 2?
+## 6. What does “blind” mean in Phase 2?
 
 It means you commit to the prediction before you see the data.
 That commitment is the point of the exercise.
 If the comparison is made after the data is already known, the prediction loses its evidentiary value.
 
-## 8. If my prediction memo is frozen, am I allowed to change my mind later?
+## 7. If my prediction memo is frozen, am I allowed to change my mind later?
 
 You may continue refining your thinking after the data is released, but the version you submit before data release is the original commitment used for the blind comparison.
 Keep that original memo intact.
 If your interpretation evolves later, track the change clearly so the evolution of your reasoning is traceable.
 
-## 9. Is Phase 2 graded on whether my prediction is correct?
+## 8. Is Phase 2 graded on whether my prediction is correct?
 
 No.
-Phase 2 is graded on the quality of your reasoning, not on raw prediction accuracy.
-A prediction built from sound physical reasoning, explicit uncertainty analysis, and a clear acceptance criterion is more valuable than a lucky right answer with vague logic behind it.
-The memo should show how you thought, not just what number you guessed.
+Phase 2 is reviewed for completeness, not prediction accuracy.
+The memo is a readiness gate for Phase 3: it shows that you have made a complete blind prediction before seeing the data.
+Students who submit a complete Phase 2 report by the deadline will be assigned a Phase 3 partner.
 
-## 10. What counts as a good risk assessment in Phase 2?
+## 9. What counts as a good risk assessment in Phase 2?
 
 A good risk assessment names what “wrong” would look like physically.
 It should identify an anomalous data pattern that would suggest a model limitation or physics edge case, not a generic equipment failure.
 Use the Week 3 anomalous-data-signature framework here.
 For example, a useful risk statement might name hysteresis, a systematic trend, or a shape change in the response that the model cannot explain.
 
-## 11. What should the Phase 2 prediction memo include?
+## 10. What should the Phase 2 prediction memo include?
 
 The memo must include all six required elements:
 - predicted system response
@@ -90,13 +83,13 @@ The memo must include all six required elements:
 
 If one of these is missing, the prediction is incomplete.
 
-## 12. How strict is the acceptance criterion requirement?
+## 11. How strict is the acceptance criterion requirement?
 
 It must be numerical and stated before data release.
 “Close to the prediction” is not enough.
 You need to define what counts as adequate agreement before you compare the prediction to the actual data.
 
-## 13. What happens in Phase 3?
+## 12. What happens in Phase 3?
 
 Phase 3 is the paired comparison and synthesis presentation.
 You and your partner present:
@@ -106,21 +99,16 @@ You and your partner present:
 
 If logistics allow, two pairs may be combined into a group of 4 for the presentation, but the core comparison structure stays the same.
 
-## 14. Are peer evaluations really graded?
+## 13. Are peer evaluations really graded?
 
 Yes.
 Peer evaluation is a required part of Phase 3.
 A strong peer evaluation names a specific strength, a specific weakness, and a concrete improvement recommendation, each supported by evidence from the presentation.
 Generic praise or vague criticism does not satisfy the requirement.
 
-## 15. Where should I look if I want the exact pass criteria?
+## 14. Where should I look if I want the exact pass criteria?
 
 Use `TIER1_rubric_student.md` alongside the assignment.
 The assignment tells you what to produce.
 The student rubric tells you what a passing response looks like in each phase.
 You should read both before you begin data collection.
-
----
-
-*ASEN 3501 — Tier 1 FAQ | Companion to `TIER1_assignment.md` and `TIER1_rubric_student.md`*
-*Evergreen — structure, expectations, and grading logic are stable across experiment assignments*
