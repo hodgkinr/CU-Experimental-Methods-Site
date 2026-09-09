@@ -51,8 +51,7 @@
         <p class="muted" style="margin-bottom:1rem">Lab content compiled from source materials. Sections marked as incomplete will be updated as additional source files become available.</p>
         <div class="scaffold-section compiled"><h3>30,000 Ft View</h3><div class="compiled-content"><p>In this experiment you will model the rotation of a wheel as it rolls down a ramp in two configurations: balanced and unbalanced. You will use energy methods to predict the wheel rotation rate, compare those predictions to encoder measurements, and determine an estimate for a friction term when the data support doing so.</p></div></div><div class="scaffold-section compiled"><h3>Overview</h3><div class="compiled-content"><h1>Overview - Unbalanced Wheel</h1>
 <p>In this lab, you will analyze the motion of a wheel rolling down the outside Aero building ramp in two configurations: balanced and unbalanced. The unbalanced configuration includes an eccentric mass, which changes the wheel&#x27;s rotational behavior.</p>
-<p><img class="markdown-image" src="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/overview/Unbalanced_Wheel.jpg" alt="Balanced and Unbalanced Wheel Apparatus"></p>
-<p><strong>Image update note:</strong> Replace this image with the current hardware photo showing the updated electronics box when available.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/ue1ZKAT318w" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
 <p>Your job is to compare measured angular velocity from encoder data against a provided model hierarchy. The focus is not on inventing the dynamics model from scratch. Instead, you will review the provided unverified derivation, implement the model carefully, process the data, and evaluate how well each model explains the observed motion.</p>
 <p>By the end of the lab, you should be able to:</p>
 <ul>
@@ -62,7 +61,7 @@
 <li>compute residuals between measurements and model predictions</li>
 <li>explain whether model mismatch appears random, systematic, or tied to known apparatus limits</li>
 </ul>
-<p>The sample data for this lab is provided through SharePoint rather than bundled into the course site.</p></div></div><div class="scaffold-section compiled"><h3>Unverified Derivation</h3><div class="compiled-content"><h1>Provided Unverified Derivation — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
+<p><img class="markdown-image" src="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/overview/Unbalanced_Wheel.jpg" alt="Balanced and Unbalanced Wheel Apparatus"></p></div></div><div class="scaffold-section compiled"><h3>Unverified Derivation</h3><div class="compiled-content"><h1>Provided Unverified Derivation — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
 <hr>
 <h2>How Students Should Use This Derivation</h2>
 <p>This derivation is provided so the lab can focus on experimental data analysis, model implementation, and model-data comparison rather than on dynamics derivation from a blank page. It is <strong>not</strong> externally verified.</p>
@@ -227,7 +226,7 @@
 <h2>Part 1 — Pre-Lab: Provided Unverified Derivation and MATLAB Setup</h2>
 <p>Before arriving at the apparatus:</p>
 <ul>
-<li>Review the provided MODEL_1 through MODEL_4 derivation: <a href="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/model/derivation_agent.md">@@FORWARD_MD_0@@</a></li>
+<li>Review the provided MODEL_1 through MODEL_4 derivation/</li>
 <li>Verify that the assumptions, signs, energy terms, and inertia terms are consistent with your dynamics knowledge</li>
 <li>Record any correction or unresolved concern in your analysis notes</li>
 <li>Implement <code>computeModel.m</code> or an equivalent model function and verify correct operation</li>
@@ -303,6 +302,8 @@
 </ul>
 <p>If both <code>QuadEncoder</code> and <code>LS7184Encoder</code> are included in the exported CSV, compare the channels and justify which one you use for final theta and omega calculations.</p>
 <p><strong>Access-control note for deployment:</strong> the student-facing data folder should not contain solution scripts such as <code>encoder_plot_SOLUTIONS.m</code>. Keep solution files in staff-only storage.</p>
+<hr>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/7LkPGFA0u8s" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
 <hr>
 <h2>Known Pitfalls and Common Issues</h2>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Issue</th><th>Cause</th><th>Fix</th></tr></thead><tbody><tr><td>Encoder data does not update</td><td>Phone is not connected to ESP32 Wi-Fi, web interface is not loaded, or DAQ is not powered</td><td>Reconnect to <strong>Unbalanced Wheel</strong>, reload the web interface, and verify power before releasing the wheel</td></tr><tr><td>Encoder data goes negative</td><td>Wheel orientation or sign convention is reversed</td><td>Place the electronics box on the left side when viewed from the top of the ramp looking down</td></tr><tr><td>Large gaps, plateaus, or spikes in data</td><td>Packet loss or poor acquisition</td><td>Discard and re-run bad trials before leaving the lab</td></tr><tr><td>Noisy or unreliable data at low theta</td><td>Startup transient as wheel accelerates from rest</td><td>Trim analysis range to theta &gt; 0.5 rad unless instructed otherwise</td></tr><tr><td>Noisy or unreliable data near the end of the run</td><td>Stopping or ramp-end effects</td><td>Stop analysis before the end-effect region; use the assigned reliable range</td></tr></tbody></table></div>

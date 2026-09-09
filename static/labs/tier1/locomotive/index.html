@@ -242,6 +242,8 @@ residual = v_exp - v_mod
 </ol>
 <p>Residuals versus theta are especially important because mechanical play in the linkage can create periodic error locked to crank angle.</p>
 <hr>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/szNYqTf2AM8" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<hr>
 <h2>Known Pitfalls And Common Issues</h2>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Issue</th><th>Why it matters</th><th>Mitigation</th></tr></thead><tbody><tr><td>Collar not reset before VI start</td><td>Offsets the theta reference</td><td>Reset collar to the lowest position before starting acquisition</td></tr><tr><td>Clockwise crank rotation</td><td>Breaks the assumed sign convention</td><td>Reverse power-supply polarity if needed</td></tr><tr><td>Model evaluated on wrong theta values</td><td>Residuals no longer compare matched measurements</td><td>Evaluate model at measured theta values</td></tr><tr><td>Inconsistent plot axes</td><td>Hides voltage-to-voltage comparison</td><td>Use consistent axis limits across subplots</td></tr><tr><td>Residuals only plotted versus time</td><td>Can hide periodic systematic error</td><td>Plot residuals versus theta as well</td></tr><tr><td>Treating friction/gravity as model inputs</td><td>This is a kinematic model</td><td>Keep the governing equation geometric</td></tr></tbody></table></div>
 <hr></div></div><div class="scaffold-section compiled"><h3>Instrumentation and DAQ Details</h3><div class="compiled-content"><h1>Instrumentation Summary - Locomotive Crank</h1>
