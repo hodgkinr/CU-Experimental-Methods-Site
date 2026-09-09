@@ -1,6 +1,6 @@
 {
   "course_id": "asen3501-fall2026",
-  "generated_at": "2026-09-09T14:03:26.052117+00:00",
+  "generated_at": "2026-09-09T14:28:11.870710+00:00",
   "pages": [
     {
       "page_id": "home",
@@ -1663,11 +1663,11 @@
       "module_id": null,
       "url": "labs/tier1/spin_modules/index.html",
       "source_type": "overview",
-      "text": "Spin Modules Characterize the rotational dynamics of a spinning module using sensor data.",
+      "text": "Spin Modules Calibrate the spin module rate gyro and estimate reaction wheel and spacecraft body moments of inertia from rotational motion data, with reference-value comparisons marked as placeholders until confirmed.",
       "chunks": [
         {
           "chunk_id": "labs-tier1-spin_modules-chunk-001",
-          "text": "Spin Modules Characterize the rotational dynamics of a spinning module using sensor data.",
+          "text": "Spin Modules Calibrate the spin module rate gyro and estimate reaction wheel and spacecraft body moments of inertia from rotational motion data, with reference-value comparisons marked as placeholders until confirmed.",
           "anchor": ""
         }
       ]
@@ -1678,11 +1678,11 @@
       "module_id": null,
       "url": "labs/tier1/unbalanced_wheel/index.html",
       "source_type": "overview",
-      "text": "Unbalanced Wheel Analyze encoder data from balanced and unbalanced wheels rolling down a ramp, then compare measured angular velocity to energy-based model predictions.",
+      "text": "Unbalanced Wheel Model balanced and unbalanced wheel rotation using energy methods, compare predicted rotation rates to encoder measurements, and estimate a friction term when appropriate.",
       "chunks": [
         {
           "chunk_id": "labs-tier1-unbalanced_wheel-chunk-001",
-          "text": "Unbalanced Wheel Analyze encoder data from balanced and unbalanced wheels rolling down a ramp, then compare measured angular velocity to energy-based model predictions.",
+          "text": "Unbalanced Wheel Model balanced and unbalanced wheel rotation using energy methods, compare predicted rotation rates to encoder measurements, and estimate a friction term when appropriate.",
           "anchor": ""
         }
       ]
@@ -1693,11 +1693,11 @@
       "module_id": null,
       "url": "labs/tier1/locomotive/index.html",
       "source_type": "overview",
-      "text": "Locomotive Crank Compare measured collar velocity from a crank-slider apparatus against a geometry-based kinematic model across multiple motor voltages.",
+      "text": "Locomotive Crank Model the collar velocity of a locomotive crank from geometry, rotation angle, and rotation rate, then compare the model to measured collar velocity.",
       "chunks": [
         {
           "chunk_id": "labs-tier1-locomotive-chunk-001",
-          "text": "Locomotive Crank Compare measured collar velocity from a crank-slider apparatus against a geometry-based kinematic model across multiple motor voltages.",
+          "text": "Locomotive Crank Model the collar velocity of a locomotive crank from geometry, rotation angle, and rotation rate, then compare the model to measured collar velocity.",
           "anchor": ""
         }
       ]
@@ -1708,11 +1708,11 @@
       "module_id": null,
       "url": "labs/tier1/MTS/index.html",
       "source_type": "overview",
-      "text": "MTS EXCEED Tension Testing Compare MTS crosshead displacement against Epsilon 3542 extensometer strain during uniaxial tensile testing, then evaluate apparent material properties and system compliance.",
+      "text": "MTS EXCEED Tension Testing Estimate Young's modulus from MTS extensometer strain and crosshead displacement, compare to a provided theoretical/reference modulus, and evaluate system compliance and load-cell requirements.",
       "chunks": [
         {
           "chunk_id": "labs-tier1-MTS-chunk-001",
-          "text": "MTS EXCEED Tension Testing Compare MTS crosshead displacement against Epsilon 3542 extensometer strain during uniaxial tensile testing, then evaluate apparent material properties and system compliance.",
+          "text": "MTS EXCEED Tension Testing Estimate Young's modulus from MTS extensometer strain and crosshead displacement, compare to a provided theoretical/reference modulus, and evaluate system compliance and load-cell requirements.",
           "anchor": ""
         }
       ]

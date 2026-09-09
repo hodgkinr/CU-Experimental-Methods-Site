@@ -44,12 +44,12 @@
       <section class="hero compact">
         <p class="eyebrow">Tier 1 Candidate</p>
         <h1>Unbalanced Wheel</h1>
-        <p class="lead">Analyze encoder data from balanced and unbalanced wheels rolling down a ramp, then compare measured angular velocity to energy-based model predictions.</p>
+        <p class="lead">Model balanced and unbalanced wheel rotation using energy methods, compare predicted rotation rates to encoder measurements, and estimate a friction term when appropriate.</p>
       </section>
       <section class="experiment-scaffold">
         <h2>Lab Content</h2>
         <p class="muted" style="margin-bottom:1rem">Lab content compiled from source materials. Sections marked as incomplete will be updated as additional source files become available.</p>
-        <div class="scaffold-section compiled"><h3>Overview</h3><div class="compiled-content"><h1>Overview - Unbalanced Wheel</h1>
+        <div class="scaffold-section compiled"><h3>30,000 Ft View</h3><div class="compiled-content"><p>In this experiment you will model the rotation of a wheel as it rolls down a ramp in two configurations: balanced and unbalanced. You will use energy methods to predict the wheel rotation rate, compare those predictions to encoder measurements, and determine an estimate for a friction term when the data support doing so.</p></div></div><div class="scaffold-section compiled"><h3>Overview</h3><div class="compiled-content"><h1>Overview - Unbalanced Wheel</h1>
 <p>In this lab, you will analyze the motion of a wheel rolling down the outside Aero building ramp in two configurations: balanced and unbalanced. The unbalanced configuration includes an eccentric mass, which changes the wheel&#x27;s rotational behavior.</p>
 <p><img class="markdown-image" src="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/overview/Unbalanced_Wheel.jpg" alt="Balanced and Unbalanced Wheel Apparatus"></p>
 <p><strong>Image update note:</strong> Replace this image with the current hardware photo showing the updated electronics box when available.</p>
@@ -62,99 +62,7 @@
 <li>compute residuals between measurements and model predictions</li>
 <li>explain whether model mismatch appears random, systematic, or tied to known apparatus limits</li>
 </ul>
-<p>The sample data for this lab is provided through SharePoint rather than bundled into the course site.</p></div></div><div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
-<hr>
-<h2>Overview</h2>
-<p>This lab investigates the dynamics of a cylindrical wheel rolling down the outside Aero building ramp in two configurations: balanced (no eccentric mass) and unbalanced (eccentric mass installed). Students analyze encoder data from the ESP32 data-acquisition system and compare the measured angular velocity against a provided four-model hierarchy.</p>
-<p><strong>The lab has two distinct parts that must be done in sequence:</strong></p>
-<ol>
-<li><strong>Pre-Lab (before the lab session):</strong> Review and verify the provided model derivation, then implement the MATLAB function. This must be complete before you handle the apparatus.</li>
-<li><strong>In-Lab:</strong> Connect to the ESP32 encoder monitor, run the apparatus on the outside ramp, collect data, and perform analysis.</li>
-</ol>
-<hr>
-<h2>Part 1 — Pre-Lab: Provided Unverified Derivation and MATLAB Setup</h2>
-<p>Before arriving at the apparatus:</p>
-<ul>
-<li>Review the provided MODEL_1 through MODEL_4 derivation: <a href="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/model/derivation_agent.md">@@FORWARD_MD_0@@</a></li>
-<li>Verify that the assumptions, signs, energy terms, and inertia terms are consistent with your dynamics knowledge</li>
-<li>Record any correction or unresolved concern in your analysis notes</li>
-<li>Implement <code>computeModel.m</code> or an equivalent model function and verify correct operation</li>
-<li>Plot expected angular velocity versus theta for all four models over the reliable analysis range before starting the experiment</li>
-</ul>
-<p>Pre-lab verification: the MATLAB model plots should show reasonable physical behavior before any experimental data is loaded. Treat the expected trend as a sanity check, not as a conclusion about the real data.</p>
-<hr>
-<h2>Part 2 — Hardware and Materials</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Item</th><th>Description</th></tr></thead><tbody><tr><td>Unbalanced wheel apparatus</td><td>Cylindrical wheel with training wheel supports, mounted encoder, electronics box, and removable eccentric mass</td></tr><tr><td>Eccentric mass</td><td>Solid rod mounted to create the unbalanced configuration</td></tr><tr><td>Outside Aero building ramp</td><td>Fixed ramp used for the current setup; no foldable ramp assembly is required</td></tr><tr><td>5 V phone charger</td><td>Powers the electronics mounted on the wheel</td></tr><tr><td>USB-C to USB-C cables (2)</td><td>Used for charging/power and data-transfer support as directed by the teaching team</td></tr><tr><td>Encoder</td><td>Mounted on the wheel and used to derive angular position and angular velocity</td></tr><tr><td>ESP32 DAQ system</td><td>Wireless encoder acquisition system with local web interface</td></tr><tr><td>Student cellphone</td><td>Used to connect to the ESP32 Wi-Fi network, view encoder data, and save CSV files</td></tr><tr><td>MATLAB</td><td>Used for data processing, model implementation, plots, and residual statistics</td></tr></tbody></table></div>
-<p>The current setup uses the outside ramp. Do not assemble the older foldable ramp hardware, and do not use older ramp assembly instructions unless the teaching team explicitly redirects the lab.</p>
-<hr>
-<h2>Part 3 — ESP32 and Encoder Setup</h2>
-<ol>
-<li>Turn on or connect power to the ESP32 DAQ system and verify that the electronics are powered.</li>
-<li>On a cellphone, connect to the ESP32 Wi-Fi network named <strong>Unbalanced Wheel</strong>.</li>
-<li>Open a browser on the phone and go to <strong>[ESP32 WEB INTERFACE URL PLACEHOLDER — confirm exact local address before deployment]</strong>.</li>
-<li>Confirm that the encoder monitor page loads before moving the wheel.</li>
-<li>Slowly turn the wheel by hand. The web interface should show two encoder graphs or channels updating with positive values for the expected rolling direction.</li>
-<li>If the displayed encoder data are static, negative in the expected rolling direction, or obviously discontinuous, stop and ask the teaching team before collecting trials.</li>
-<li>Place the electronics box on the left side of the wheel when looking from the top of the ramp toward the bottom. This orientation helps preserve the expected encoder sign convention.</li>
-</ol>
-<p>&quot;Displaying encoder data&quot; means the web interface is actively updating the exported encoder channels as the wheel turns. Do not release the wheel until you have seen the encoder values respond to gentle hand motion.</p>
-<hr>
-<h2>Part 4 — Running the Experiment</h2>
-<p><strong>Reference materials from the updated lab catalog:</strong></p>
-<ul>
-<li>Encoder monitor procedure: <strong>[AES-Encoder_Raw_vs_Buffer PROCEDURE LINK PLACEHOLDER — replace with rendered student-facing link]</strong></li>
-<li>Full unbalanced wheel procedure video: <strong>[FINAL PROCEDURE VIDEO PLACEHOLDER — add Nat&#x27;s edited video when available]</strong></li>
-<li>Student-facing test procedure: <strong>[SHAREPOINT STUDENT PROCEDURE PLACEHOLDER]</strong></li>
-<li>Teaching-team test procedure: <strong>[SHAREPOINT TE PROCEDURE PLACEHOLDER]</strong></li>
-<li>Sample data notes: <a href="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/data/data_notes_agent.md">@@FORWARD_MD_0@@</a></li>
-</ul>
-<p>Safety requirements:</p>
-<ul>
-<li>All students must stand to the side of the ramp during each run.</li>
-<li>Assign one person to receive or stop the wheel at the bottom of the ramp for every trial.</li>
-<li>Keep the training wheel behind the large wheel in the intended rolling direction.</li>
-<li>Move the apparatus carefully: lift by the main wheel body, not by the training wheel or electronics.</li>
-<li>For unbalanced trials, place the eccentric mass perpendicular to the ramp surface at theta = 0 before release.</li>
-</ul>
-<h3>Opening the Encoder Monitor</h3>
-<ol>
-<li>Open the ESP32 encoder monitor web interface on the connected cellphone.</li>
-<li>Verify that the encoder values update before each trial.</li>
-<li>Prepare to save the CSV file immediately after each run.</li>
-</ol>
-<h3>Balanced Wheel Trials (2 trials)</h3>
-<ol>
-<li>Center the wheel at the marked starting location on the outside ramp with the training wheel trailing.</li>
-<li>Confirm that all students are standing to the side, the electronics are powered, and the encoder sign is correct.</li>
-<li>Start data acquisition from the ESP32 web interface.</li>
-<li>Release the wheel smoothly from rest.</li>
-<li>Stop and save the data once the wheel reaches the bottom of the ramp.</li>
-<li>Repeat steps 1-5 for the second balanced trial.</li>
-</ol>
-<h3>Unbalanced Wheel Trials (2 trials)</h3>
-<ol>
-<li>Install the solid rod eccentric mass on the wheel.</li>
-<li>Position the eccentric mass at the top of the wheel, perpendicular to the ramp surface, at theta = 0.</li>
-<li>Confirm that the electronics are still powered and the encoder monitor is updating.</li>
-<li>Repeat the balanced-trial release and save workflow for two unbalanced trials.</li>
-</ol>
-<hr>
-<h2>Part 5 — Data Files</h2>
-<ul>
-<li>The ESP32 encoder monitor saves raw encoder CSV data to the cellphone.</li>
-<li>Current CSV columns are: Index, Time [ms], QuadEncoder [counts], LS7184Encoder [counts].</li>
-<li>Save data promptly when the wheel reaches the bottom to avoid capturing stopping effects after the useful run.</li>
-<li>Reliable data range: 0.5 rad &lt; theta &lt; 15 rad, unless the teaching team updates this range for the outside-ramp setup. See <a href="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/data/data_notes_agent.md">@@FORWARD_MD_0@@</a>.</li>
-<li>Save all 4 trial files; name files consistently so balanced and unbalanced trials can be identified.</li>
-<li>Rename files using the catalog convention: <code>encoder_data_test#_balanced.csv</code> and <code>encoder_data_test#_unbalanced.csv</code>.</li>
-<li>Student-facing sample data should be accessed through the <a href="https://o365coloradoedu.sharepoint.com/:f:/r/sites/AEROENGR-Labspace-Labs/Shared%20Documents/Labs/01_Junior%20Level%20Labs/3501%20-%20Experimental%20Methods/Summer%202026%20-%20Course%20Development/Tier%201%20Lab%20Snapshots%20-%20STUDENT%20FACING/Unbalanced%20Wheel?d=w62fd27c495c14e6282446c9f6737c28b&amp;csf=1&amp;web=1&amp;e=z9P8Yt">Unbalanced Wheel Data Folder</a>, not from files bundled into the course site.</li>
-</ul>
-<p>If both <code>QuadEncoder</code> and <code>LS7184Encoder</code> are included in the exported CSV, compare the channels and justify which one you use for final theta and omega calculations.</p>
-<p><strong>Access-control note for deployment:</strong> the student-facing data folder should not contain solution scripts such as <code>encoder_plot_SOLUTIONS.m</code>. Keep solution files in staff-only storage.</p>
-<hr>
-<h2>Known Pitfalls and Common Issues</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Issue</th><th>Cause</th><th>Fix</th></tr></thead><tbody><tr><td>Encoder data does not update</td><td>Phone is not connected to ESP32 Wi-Fi, web interface is not loaded, or DAQ is not powered</td><td>Reconnect to <strong>Unbalanced Wheel</strong>, reload the web interface, and verify power before releasing the wheel</td></tr><tr><td>Encoder data goes negative</td><td>Wheel orientation or sign convention is reversed</td><td>Place the electronics box on the left side when viewed from the top of the ramp looking down</td></tr><tr><td>Large gaps, plateaus, or spikes in data</td><td>Packet loss or poor acquisition</td><td>Discard and re-run bad trials before leaving the lab</td></tr><tr><td>Noisy or unreliable data at low theta</td><td>Startup transient as wheel accelerates from rest</td><td>Trim analysis range to theta &gt; 0.5 rad unless instructed otherwise</td></tr><tr><td>Noisy or unreliable data near the end of the run</td><td>Stopping or ramp-end effects</td><td>Stop analysis before the end-effect region; use the assigned reliable range</td></tr></tbody></table></div>
-<hr></div></div><div class="scaffold-section compiled"><h3>Unverified Derivation</h3><div class="compiled-content"><h1>Provided Unverified Derivation — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
+<p>The sample data for this lab is provided through SharePoint rather than bundled into the course site.</p></div></div><div class="scaffold-section compiled"><h3>Unverified Derivation</h3><div class="compiled-content"><h1>Provided Unverified Derivation — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
 <hr>
 <h2>How Students Should Use This Derivation</h2>
 <p>This derivation is provided so the lab can focus on experimental data analysis, model implementation, and model-data comparison rather than on dynamics derivation from a blank page. It is <strong>not</strong> externally verified.</p>
@@ -306,6 +214,131 @@
 <p>Useful checks include:</p>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Check</th><th>What it helps you notice</th></tr></thead><tbody><tr><td>Mean residual</td><td>Possible systematic bias if the mean is far from zero</td></tr><tr><td>Residual standard deviation</td><td>Typical random spread around the model</td></tr><tr><td>Uncertainty of the mean</td><td>How precisely the mean residual is estimated</td></tr><tr><td>Number of observations</td><td>Whether the comparison used enough points in the reliable range</td></tr><tr><td>Outlier count</td><td>Whether a few points dominate the apparent mismatch</td></tr><tr><td>Scaled residual histogram</td><td>Whether the residuals look roughly random or have structure</td></tr></tbody></table></div>
 <p>These checks do not tell you the answer by themselves. Use them to decide what the data suggest about model adequacy, setup effects, and measurement limitations.</p>
+<hr></div></div><div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
+<hr>
+<h2>Overview</h2>
+<p>This lab investigates the dynamics of a cylindrical wheel rolling down the outside Aero building ramp in two configurations: balanced (no eccentric mass) and unbalanced (eccentric mass installed). Students analyze encoder data from the ESP32 data-acquisition system and compare the measured angular velocity against a provided four-model hierarchy.</p>
+<p><strong>The lab has two distinct parts that must be done in sequence:</strong></p>
+<ol>
+<li><strong>Pre-Lab (before the lab session):</strong> Review and verify the provided model derivation, then implement the MATLAB function. This must be complete before you handle the apparatus.</li>
+<li><strong>In-Lab:</strong> Connect to the ESP32 encoder monitor, run the apparatus on the outside ramp, collect data, and perform analysis.</li>
+</ol>
+<hr>
+<h2>Part 1 — Pre-Lab: Provided Unverified Derivation and MATLAB Setup</h2>
+<p>Before arriving at the apparatus:</p>
+<ul>
+<li>Review the provided MODEL_1 through MODEL_4 derivation: <a href="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/model/derivation_agent.md">@@FORWARD_MD_0@@</a></li>
+<li>Verify that the assumptions, signs, energy terms, and inertia terms are consistent with your dynamics knowledge</li>
+<li>Record any correction or unresolved concern in your analysis notes</li>
+<li>Implement <code>computeModel.m</code> or an equivalent model function and verify correct operation</li>
+<li>Plot expected angular velocity versus theta for all four models over the reliable analysis range before starting the experiment</li>
+</ul>
+<p>Pre-lab verification: the MATLAB model plots should show reasonable physical behavior before any experimental data is loaded. Treat the expected trend as a sanity check, not as a conclusion about the real data.</p>
+<hr>
+<h2>Part 2 — Hardware and Materials</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Item</th><th>Description</th></tr></thead><tbody><tr><td>Unbalanced wheel apparatus</td><td>Cylindrical wheel with training wheel supports, mounted encoder, electronics box, and removable eccentric mass</td></tr><tr><td>Eccentric mass</td><td>Solid rod mounted to create the unbalanced configuration</td></tr><tr><td>Outside Aero building ramp</td><td>Fixed ramp used for the current setup; no foldable ramp assembly is required</td></tr><tr><td>5 V phone charger</td><td>Powers the electronics mounted on the wheel</td></tr><tr><td>USB-C to USB-C cables (2)</td><td>Used for charging/power and data-transfer support as directed by the teaching team</td></tr><tr><td>Encoder</td><td>Mounted on the wheel and used to derive angular position and angular velocity</td></tr><tr><td>ESP32 DAQ system</td><td>Wireless encoder acquisition system with local web interface</td></tr><tr><td>Student cellphone</td><td>Used to connect to the ESP32 Wi-Fi network, view encoder data, and save CSV files</td></tr><tr><td>MATLAB</td><td>Used for data processing, model implementation, plots, and residual statistics</td></tr></tbody></table></div>
+<p>The current setup uses the outside ramp. Do not assemble the older foldable ramp hardware, and do not use older ramp assembly instructions unless the teaching team explicitly redirects the lab.</p>
+<hr>
+<h2>Part 3 — ESP32 and Encoder Setup</h2>
+<ol>
+<li>Turn on or connect power to the ESP32 DAQ system and verify that the electronics are powered.</li>
+<li>On a cellphone, connect to the ESP32 Wi-Fi network named <strong>Unbalanced Wheel</strong>.</li>
+<li>Open a browser on the phone and go to <strong>[ESP32 WEB INTERFACE URL PLACEHOLDER — confirm exact local address before deployment]</strong>.</li>
+<li>Confirm that the encoder monitor page loads before moving the wheel.</li>
+<li>Slowly turn the wheel by hand. The web interface should show two encoder graphs or channels updating with positive values for the expected rolling direction.</li>
+<li>If the displayed encoder data are static, negative in the expected rolling direction, or obviously discontinuous, stop and ask the teaching team before collecting trials.</li>
+<li>Place the electronics box on the left side of the wheel when looking from the top of the ramp toward the bottom. This orientation helps preserve the expected encoder sign convention.</li>
+</ol>
+<p>&quot;Displaying encoder data&quot; means the web interface is actively updating the exported encoder channels as the wheel turns. Do not release the wheel until you have seen the encoder values respond to gentle hand motion.</p>
+<hr>
+<h2>Part 4 — Running the Experiment</h2>
+<p><strong>Reference materials from the updated lab catalog:</strong></p>
+<ul>
+<li>Encoder monitor procedure: <strong>[AES-Encoder_Raw_vs_Buffer PROCEDURE LINK PLACEHOLDER — replace with rendered student-facing link]</strong></li>
+<li>Full unbalanced wheel procedure video: <strong>[FINAL PROCEDURE VIDEO PLACEHOLDER — add Nat&#x27;s edited video when available]</strong></li>
+<li>Student-facing test procedure: <strong>[SHAREPOINT STUDENT PROCEDURE PLACEHOLDER]</strong></li>
+<li>Teaching-team test procedure: <strong>[SHAREPOINT TE PROCEDURE PLACEHOLDER]</strong></li>
+<li>Sample data notes: <a href="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/data/data_notes_agent.md">@@FORWARD_MD_0@@</a></li>
+</ul>
+<p>Safety requirements:</p>
+<ul>
+<li>All students must stand to the side of the ramp during each run.</li>
+<li>Assign one person to receive or stop the wheel at the bottom of the ramp for every trial.</li>
+<li>Keep the training wheel behind the large wheel in the intended rolling direction.</li>
+<li>Move the apparatus carefully: lift by the main wheel body, not by the training wheel or electronics.</li>
+<li>For unbalanced trials, place the eccentric mass perpendicular to the ramp surface at theta = 0 before release.</li>
+</ul>
+<h3>Opening the Encoder Monitor</h3>
+<ol>
+<li>Open the ESP32 encoder monitor web interface on the connected cellphone.</li>
+<li>Verify that the encoder values update before each trial.</li>
+<li>Prepare to save the CSV file immediately after each run.</li>
+</ol>
+<h3>Balanced Wheel Trials (2 trials)</h3>
+<ol>
+<li>Center the wheel at the marked starting location on the outside ramp with the training wheel trailing.</li>
+<li>Confirm that all students are standing to the side, the electronics are powered, and the encoder sign is correct.</li>
+<li>Start data acquisition from the ESP32 web interface.</li>
+<li>Release the wheel smoothly from rest.</li>
+<li>Stop and save the data once the wheel reaches the bottom of the ramp.</li>
+<li>Repeat steps 1-5 for the second balanced trial.</li>
+</ol>
+<h3>Unbalanced Wheel Trials (2 trials)</h3>
+<ol>
+<li>Install the solid rod eccentric mass on the wheel.</li>
+<li>Position the eccentric mass at the top of the wheel, perpendicular to the ramp surface, at theta = 0.</li>
+<li>Confirm that the electronics are still powered and the encoder monitor is updating.</li>
+<li>Repeat the balanced-trial release and save workflow for two unbalanced trials.</li>
+</ol>
+<hr>
+<h2>Part 5 — Data Files</h2>
+<ul>
+<li>The ESP32 encoder monitor saves raw encoder CSV data to the cellphone.</li>
+<li>Current CSV columns are: Index, Time [ms], QuadEncoder [counts], LS7184Encoder [counts].</li>
+<li>Save data promptly when the wheel reaches the bottom to avoid capturing stopping effects after the useful run.</li>
+<li>Reliable data range: 0.5 rad &lt; theta &lt; 15 rad, unless the teaching team updates this range for the outside-ramp setup. See <a href="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/data/data_notes_agent.md">@@FORWARD_MD_0@@</a>.</li>
+<li>Save all 4 trial files; name files consistently so balanced and unbalanced trials can be identified.</li>
+<li>Rename files using the catalog convention: <code>encoder_data_test#_balanced.csv</code> and <code>encoder_data_test#_unbalanced.csv</code>.</li>
+<li>Student-facing sample data should be accessed through the <a href="https://o365coloradoedu.sharepoint.com/:f:/r/sites/AEROENGR-Labspace-Labs/Shared%20Documents/Labs/01_Junior%20Level%20Labs/3501%20-%20Experimental%20Methods/Summer%202026%20-%20Course%20Development/Tier%201%20Lab%20Snapshots%20-%20STUDENT%20FACING/Unbalanced%20Wheel?d=w62fd27c495c14e6282446c9f6737c28b&amp;csf=1&amp;web=1&amp;e=z9P8Yt">Unbalanced Wheel Data Folder</a>, not from files bundled into the course site.</li>
+</ul>
+<p>If both <code>QuadEncoder</code> and <code>LS7184Encoder</code> are included in the exported CSV, compare the channels and justify which one you use for final theta and omega calculations.</p>
+<p><strong>Access-control note for deployment:</strong> the student-facing data folder should not contain solution scripts such as <code>encoder_plot_SOLUTIONS.m</code>. Keep solution files in staff-only storage.</p>
+<hr>
+<h2>Known Pitfalls and Common Issues</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Issue</th><th>Cause</th><th>Fix</th></tr></thead><tbody><tr><td>Encoder data does not update</td><td>Phone is not connected to ESP32 Wi-Fi, web interface is not loaded, or DAQ is not powered</td><td>Reconnect to <strong>Unbalanced Wheel</strong>, reload the web interface, and verify power before releasing the wheel</td></tr><tr><td>Encoder data goes negative</td><td>Wheel orientation or sign convention is reversed</td><td>Place the electronics box on the left side when viewed from the top of the ramp looking down</td></tr><tr><td>Large gaps, plateaus, or spikes in data</td><td>Packet loss or poor acquisition</td><td>Discard and re-run bad trials before leaving the lab</td></tr><tr><td>Noisy or unreliable data at low theta</td><td>Startup transient as wheel accelerates from rest</td><td>Trim analysis range to theta &gt; 0.5 rad unless instructed otherwise</td></tr><tr><td>Noisy or unreliable data near the end of the run</td><td>Stopping or ramp-end effects</td><td>Stop analysis before the end-effect region; use the assigned reliable range</td></tr></tbody></table></div>
+<hr></div></div><div class="scaffold-section compiled"><h3>Instrumentation and DAQ Details</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary</h1>
+<hr>
+<h2>Primary Sensor — HEDS-5505</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Sensor model</td><td><code>HEDS-5505</code></td><td>instructor-provided confirmation + staged encoder PDF lineage</td></tr><tr><td>Measurement role</td><td>Encoder counts used to derive rotation angle theta [rad] and angular velocity omega [rad/s]</td><td>updated lab catalog + staged handout lineage</td></tr><tr><td>Mounting</td><td>On the wheel; rotates with the wheel</td><td>catalog + staged handout lineage</td></tr><tr><td>Communication</td><td>ESP32 wireless/web-interface data acquisition</td><td>updated lab catalog</td></tr><tr><td>Current export fields</td><td>Index, Time [ms], QuadEncoder [counts], LS7184Encoder [counts]</td><td>updated lab catalog</td></tr><tr><td>Reliable analysis range</td><td>0.5 rad &lt; theta &lt; 15 rad, unless updated for outside-ramp setup</td><td>staged handout + historical code</td></tr><tr><td>Counts per revolution</td><td>Use the value provided in the assigned encoder documentation</td><td>Needed to convert counts to angle</td></tr><tr><td>Output type</td><td>Quadrature and step/direction count channels are exported by the current interface</td><td>Compare channels before choosing final analysis input</td></tr><tr><td>Voltage range</td><td>Use the provided DAQ/encoder documentation</td><td>Needed for instrumentation checks</td></tr><tr><td>Accuracy / resolution</td><td>Use the provided encoder documentation and observed count resolution</td><td>Needed for uncertainty calculations</td></tr></tbody></table></div>
+<p>The staged encoder PDF plus instructor confirmation identify the encoder as <code>HEDS-5505</code>, but a clean text extraction or manual review is still needed to fill in the actual spec values.</p>
+<p><strong>Known issue:</strong> packet loss or poor acquisition can produce large gaps, plateaus, or spikes in the recorded data.</p>
+<hr>
+<h2>DAQ Hardware — ESP32 System</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Platform</td><td>ESP32 DAQ system</td><td>updated lab catalog</td></tr><tr><td>Interface</td><td>ESP32 web interface accessed from a cellphone</td><td>updated lab catalog</td></tr><tr><td>Wi-Fi network</td><td><code>Unbalanced Wheel</code></td><td>TE review note; confirm before deployment</td></tr><tr><td>Browser URL</td><td><strong>[ESP32 WEB INTERFACE URL PLACEHOLDER — confirm exact local address before deployment]</strong></td><td>needed before student release</td></tr><tr><td>Power</td><td>5 V phone charger mounted/connected with current setup</td><td>TE review note</td></tr><tr><td>Export format</td><td>CSV downloaded from encoder monitor website</td><td>updated lab catalog</td></tr><tr><td>Default filename</td><td><code>encoder_data_#</code></td><td>updated lab catalog</td></tr><tr><td>Student rename convention</td><td><code>encoder_data_test#_(un)balanced.csv</code></td><td>updated lab catalog</td></tr><tr><td>Encoder channels</td><td>QuadEncoder and LS7184Encoder counts</td><td>updated lab catalog</td></tr></tbody></table></div>
+<p><strong>Configuration check:</strong> with the phone connected to the ESP32 web interface, turn the wheel gently by hand. The encoder graphs or channel values should update with positive values for the expected rolling direction before any trial is released.</p>
+<hr>
+<h2>DAQ Software — ESP32 Encoder Monitor</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Application</td><td>ESP32 encoder monitor web interface</td><td>updated lab catalog</td></tr><tr><td>Procedure reference</td><td><strong>[AES-Encoder_Raw_vs_Buffer PROCEDURE LINK PLACEHOLDER — replace with rendered student-facing link]</strong></td><td>updated lab catalog</td></tr><tr><td>Output channels</td><td>Index, Time, QuadEncoder, LS7184Encoder</td><td>updated lab catalog</td></tr><tr><td>Collection device</td><td>Student cellphone</td><td>updated lab catalog</td></tr><tr><td>Stop condition</td><td>Save data once the wheel reaches the bottom of the outside ramp</td><td>updated lab catalog + TE review note</td></tr></tbody></table></div>
+<hr>
+<h2>Full DAQ Chain Summary</h2>
+<pre><code>
+Wheel rotation
+ -&gt; HEDS-5505 wheel encoder
+ -&gt; ESP32 DAQ system
+ -&gt; ESP32 web interface on cellphone
+ -&gt; CSV export (Index, Time, QuadEncoder, LS7184Encoder)
+ -&gt; MATLAB processing to compute theta and omega
+</code></pre>
+<p>Students are end-users of the DAQ chain. They operate the apparatus and encoder monitor but do not program the ESP32 during this lab.</p>
+<hr>
+<h2>Remaining Gaps</h2>
+<ul>
+<li>Confirm the exact ESP32 web-interface URL for the student procedure.</li>
+<li>Confirm the outside-ramp angle <code>beta</code> and update the model files before deployment.</li>
+<li>Use the provided encoder documentation and exported data columns to justify angle conversion and uncertainty assumptions.</li>
+<li>Compare exported encoder count channels and justify which one is used for final theta/omega calculations.</li>
+<li>Keep solution scripts and solution reports in staff-only storage unless intentionally released.</li>
+</ul>
 <hr></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Sample Data - Unbalanced Wheel</h1>
 <hr>
 <h2>Data Access</h2>
@@ -362,39 +395,6 @@
 <li>Very low-θ data may not match the rolling model well because of startup effects</li>
 <li>Balanced and unbalanced runs should be named clearly and consistently</li>
 </ul>
-<hr></div></div><div class="scaffold-section compiled"><h3>Instrumentation and DAQ Details</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary</h1>
-<hr>
-<h2>Primary Sensor — HEDS-5505</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Sensor model</td><td><code>HEDS-5505</code></td><td>instructor-provided confirmation + staged encoder PDF lineage</td></tr><tr><td>Measurement role</td><td>Encoder counts used to derive rotation angle theta [rad] and angular velocity omega [rad/s]</td><td>updated lab catalog + staged handout lineage</td></tr><tr><td>Mounting</td><td>On the wheel; rotates with the wheel</td><td>catalog + staged handout lineage</td></tr><tr><td>Communication</td><td>ESP32 wireless/web-interface data acquisition</td><td>updated lab catalog</td></tr><tr><td>Current export fields</td><td>Index, Time [ms], QuadEncoder [counts], LS7184Encoder [counts]</td><td>updated lab catalog</td></tr><tr><td>Reliable analysis range</td><td>0.5 rad &lt; theta &lt; 15 rad, unless updated for outside-ramp setup</td><td>staged handout + historical code</td></tr><tr><td>Counts per revolution</td><td>Use the value provided in the assigned encoder documentation</td><td>Needed to convert counts to angle</td></tr><tr><td>Output type</td><td>Quadrature and step/direction count channels are exported by the current interface</td><td>Compare channels before choosing final analysis input</td></tr><tr><td>Voltage range</td><td>Use the provided DAQ/encoder documentation</td><td>Needed for instrumentation checks</td></tr><tr><td>Accuracy / resolution</td><td>Use the provided encoder documentation and observed count resolution</td><td>Needed for uncertainty calculations</td></tr></tbody></table></div>
-<p>The staged encoder PDF plus instructor confirmation identify the encoder as <code>HEDS-5505</code>, but a clean text extraction or manual review is still needed to fill in the actual spec values.</p>
-<p><strong>Known issue:</strong> packet loss or poor acquisition can produce large gaps, plateaus, or spikes in the recorded data.</p>
-<hr>
-<h2>DAQ Hardware — ESP32 System</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Platform</td><td>ESP32 DAQ system</td><td>updated lab catalog</td></tr><tr><td>Interface</td><td>ESP32 web interface accessed from a cellphone</td><td>updated lab catalog</td></tr><tr><td>Wi-Fi network</td><td><code>Unbalanced Wheel</code></td><td>TE review note; confirm before deployment</td></tr><tr><td>Browser URL</td><td><strong>[ESP32 WEB INTERFACE URL PLACEHOLDER — confirm exact local address before deployment]</strong></td><td>needed before student release</td></tr><tr><td>Power</td><td>5 V phone charger mounted/connected with current setup</td><td>TE review note</td></tr><tr><td>Export format</td><td>CSV downloaded from encoder monitor website</td><td>updated lab catalog</td></tr><tr><td>Default filename</td><td><code>encoder_data_#</code></td><td>updated lab catalog</td></tr><tr><td>Student rename convention</td><td><code>encoder_data_test#_(un)balanced.csv</code></td><td>updated lab catalog</td></tr><tr><td>Encoder channels</td><td>QuadEncoder and LS7184Encoder counts</td><td>updated lab catalog</td></tr></tbody></table></div>
-<p><strong>Configuration check:</strong> with the phone connected to the ESP32 web interface, turn the wheel gently by hand. The encoder graphs or channel values should update with positive values for the expected rolling direction before any trial is released.</p>
-<hr>
-<h2>DAQ Software — ESP32 Encoder Monitor</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value</th><th>Source</th></tr></thead><tbody><tr><td>Application</td><td>ESP32 encoder monitor web interface</td><td>updated lab catalog</td></tr><tr><td>Procedure reference</td><td><strong>[AES-Encoder_Raw_vs_Buffer PROCEDURE LINK PLACEHOLDER — replace with rendered student-facing link]</strong></td><td>updated lab catalog</td></tr><tr><td>Output channels</td><td>Index, Time, QuadEncoder, LS7184Encoder</td><td>updated lab catalog</td></tr><tr><td>Collection device</td><td>Student cellphone</td><td>updated lab catalog</td></tr><tr><td>Stop condition</td><td>Save data once the wheel reaches the bottom of the outside ramp</td><td>updated lab catalog + TE review note</td></tr></tbody></table></div>
-<hr>
-<h2>Full DAQ Chain Summary</h2>
-<pre><code>
-Wheel rotation
- -&gt; HEDS-5505 wheel encoder
- -&gt; ESP32 DAQ system
- -&gt; ESP32 web interface on cellphone
- -&gt; CSV export (Index, Time, QuadEncoder, LS7184Encoder)
- -&gt; MATLAB processing to compute theta and omega
-</code></pre>
-<p>Students are end-users of the DAQ chain. They operate the apparatus and encoder monitor but do not program the ESP32 during this lab.</p>
-<hr>
-<h2>Remaining Gaps</h2>
-<ul>
-<li>Confirm the exact ESP32 web-interface URL for the student procedure.</li>
-<li>Confirm the outside-ramp angle <code>beta</code> and update the model files before deployment.</li>
-<li>Use the provided encoder documentation and exported data columns to justify angle conversion and uncertainty assumptions.</li>
-<li>Compare exported encoder count channels and justify which one is used for final theta/omega calculations.</li>
-<li>Keep solution scripts and solution reports in staff-only storage unless intentionally released.</li>
-</ul>
 <hr></div></div><div class="scaffold-section compiled"><h3>FAQs</h3><div class="compiled-content"><h1>FAQs - Unbalanced Wheel</h1>
 <h2>Do I need to derive the model from scratch?</h2>
 <p>No. You are given a provided unverified derivation. You should review and verify the reasoning, signs, assumptions, and units before using it, but the main lab task is model implementation and comparison against data.</p>
@@ -422,6 +422,6 @@ residual = omega_observed - omega_predicted
     
     
   
-  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier1-unbalanced_wheel", "title": "Unbalanced Wheel", "url": "labs/tier1/unbalanced_wheel/index.html", "text": "Unbalanced Wheel Analyze encoder data from balanced and unbalanced wheels rolling down a ramp, then compare measured angular velocity to energy-based model predictions.", "module_id": null, "source_type": "overview"}</script>
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier1-unbalanced_wheel", "title": "Unbalanced Wheel", "url": "labs/tier1/unbalanced_wheel/index.html", "text": "Unbalanced Wheel Model balanced and unbalanced wheel rotation using energy methods, compare predicted rotation rates to encoder measurements, and estimate a friction term when appropriate.", "module_id": null, "source_type": "overview"}</script>
 </body>
 </html>

@@ -44,29 +44,179 @@
       <section class="hero compact">
         <p class="eyebrow">Tier 1 Candidate</p>
         <h1>MTS EXCEED Tension Testing</h1>
-        <p class="lead">Compare MTS crosshead displacement against Epsilon 3542 extensometer strain during uniaxial tensile testing, then evaluate apparent material properties and system compliance.</p>
+        <p class="lead">Estimate Young&#x27;s modulus from MTS extensometer strain and crosshead displacement, compare to a provided theoretical/reference modulus, and evaluate system compliance and load-cell requirements.</p>
       </section>
       <section class="experiment-scaffold">
         <h2>Lab Content</h2>
         <p class="muted" style="margin-bottom:1rem">Lab content compiled from source materials. Sections marked as incomplete will be updated as additional source files become available.</p>
-        <div class="scaffold-section compiled"><h3>Overview</h3><div class="compiled-content"><h1>Overview - MTS EXCEED Tension Testing</h1>
+        <div class="scaffold-section compiled"><h3>30,000 Ft View</h3><div class="compiled-content"><p>In this experiment you will use tensile-test data from the MTS EXCEED system to estimate Young&#x27;s modulus in two ways: once using local extensometer strain and once using crosshead displacement. You will compare those experimental moduli to a theoretical/reference modulus when provided, and use the difference between the two measurement paths to reason about system compliance. Load-cell information is required for the final stress calculation and is currently a placeholder until the teaching team confirms the installed load cell specifications.</p></div></div><div class="scaffold-section compiled"><h3>Overview</h3><div class="compiled-content"><h1>Overview - MTS EXCEED Tension Testing</h1>
 <p>In this lab, you will characterize the elastic-plastic deformation and mechanical response of structural metal alloy specimens using the MTS EXCEED electromechanical testing system. The provided source PDF identifies uniaxial tensile testing as the method used to estimate material parameters including Young&#x27;s modulus, yield strength, ultimate tensile strength, and ductility.</p>
 <p>A major focus of the lab is comparing two different displacement or strain measurements:</p>
 <ul>
 <li>raw crosshead displacement from the testing machine, which can include frame compliance, load-cell elasticity, grip motion, and specimen slip</li>
 <li>localized strain from an Epsilon 3542 axial extensometer mounted on the specimen gage section</li>
 </ul>
-<p>Your job is to use the MTS TestSuite Elite (TW Elite) exported data to evaluate how the measurement method changes apparent material properties and to reason about machine compliance.</p>
+<p>Your job is to use the MTS TestSuite Elite (TW Elite) exported data to form two experimental estimates of Young&#x27;s modulus: one based on local extensometer strain and one based on crosshead displacement. You will compare those estimates to a theoretical/reference modulus when it is provided, and use the difference between measurement paths to reason about machine compliance.</p>
 <p>By the end of the lab, you should be able to:</p>
 <ul>
 <li>safely operate the MTS EXCEED load frame, manual jog paddle, emergency stop, and protective interlock systems under teaching-team supervision</li>
 <li>connect and verify the Epsilon 3542 axial extensometer using its TEDS calibration profile</li>
 <li>conduct or analyze a uniaxial tensile test to failure while monitoring load, crosshead displacement, time, and extensometer strain</li>
-<li>convert load and specimen dimensions into engineering stress</li>
-<li>compare crosshead-based nominal strain against extensometer-based local strain</li>
+<li>use load-cell data and specimen dimensions to compute engineering stress</li>
+<li>estimate Young&#x27;s modulus using both crosshead-based nominal strain and extensometer-based local strain</li>
+<li>compare experimental modulus estimates to a theoretical/reference modulus when provided</li>
 <li>use the provided, unverified compliance model to estimate or discuss system compliance and apparent modulus</li>
 </ul>
-<p>The exact student-facing sample data folder is not provided in the current PDF. Use the placeholder in the Sample Data section until the teaching team adds the final SharePoint link.</p></div></div><div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure - MTS EXCEED Tension Testing</h1>
+<p>The exact student-facing sample data folder is not provided in the current PDF. Use the placeholder in the Sample Data section until the teaching team adds the final SharePoint link.</p></div></div><div class="scaffold-section compiled"><h3>Unverified Derivation</h3><div class="compiled-content"><h1>Unverified Derivation - MTS EXCEED Compliance Model</h1>
+<hr>
+<h2>How Students Should Use This Derivation</h2>
+<p>This derivation is provided so the laboratory exercise can focus on experimental data analysis, model implementation, and model-data comparison. It is not externally verified by the laboratory staff in the current source PDF.</p>
+<p>Students are required to verify the derivation and assumptions before using it in final analysis. Verification means checking dimensions, elastic variables, boundary conditions, and whether a simple series-compliance model is adequate for the physical MTS EXCEED testing apparatus.</p>
+<hr>
+<h2>Stress Definition</h2>
+<p>An axial load <code>P</code> is applied to a specimen with initial width <code>w</code> and thickness <code>t</code>.</p>
+<pre><code>
+A0 = w t
+sigma = P / A0
+</code></pre>
+<p>where:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Meaning</th><th>Units</th></tr></thead><tbody><tr><td><code>A0</code></td><td>Initial cross-sectional area</td><td>area units consistent with <code>w</code> and <code>t</code></td></tr><tr><td><code>P</code></td><td>Applied axial load</td><td>force</td></tr><tr><td><code>sigma</code></td><td>Engineering stress</td><td>force / area</td></tr></tbody></table></div>
+<hr>
+<h2>Two Strain Measures</h2>
+<p>The source PDF distinguishes two measures of strain.</p>
+<h3>Nominal Crosshead Strain</h3>
+<p>Nominal strain is derived from total crosshead displacement relative to the initial free grip-to-grip specimen length:</p>
+<pre><code>
+epsilon_n = delta_total / Lg
+</code></pre>
+<h3>Extensometer Strain</h3>
+<p>Extensometer strain is measured locally by the Epsilon extensometer over its fixed gage length:</p>
+<pre><code>
+epsilon_e = DeltaLe / L0
+</code></pre>
+<p>For the Epsilon 3542 axial extensometer in this PDF:</p>
+<pre><code>
+L0 = 1.000 in
+</code></pre>
+<hr>
+<h2>Total Crosshead Displacement Model</h2>
+<p>The crosshead displacement includes more than specimen stretch. The source PDF identifies machine frame compliance, load-cell elasticity, grip/specimen interface motion, and possible specimen slip as contributors.</p>
+<pre><code>
+delta_total = delta_specimen + delta_compliance + delta_slip
+</code></pre>
+<p>Assuming the system is in the linear-elastic regime before material yield and no slip occurs:</p>
+<pre><code>
+delta_slip = 0
+delta_compliance = P Cm
+delta_specimen = P Lg / (A0 E)
+</code></pre>
+<p>where:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Meaning</th><th>Units</th></tr></thead><tbody><tr><td><code>Cm</code></td><td>Machine compliance parameter</td><td>displacement / force, such as in/lb or mm/N</td></tr><tr><td><code>E</code></td><td>Material elastic modulus from a better local strain measurement</td><td>stress units</td></tr><tr><td><code>Lg</code></td><td>Free grip-to-grip specimen length</td><td>length</td></tr></tbody></table></div>
+<p>Substituting into the total displacement model gives:</p>
+<pre><code>
+delta_total = P Lg / (A0 E) + P Cm
+</code></pre>
+<p>Dividing by load:</p>
+<pre><code>
+delta_total / P = Lg / (A0 E) + Cm
+</code></pre>
+<p>Solving for machine compliance:</p>
+<pre><code>
+Cm = delta_total / P - Lg / (A0 E)
+Cm = epsilon_n Lg / P - Lg / (A0 E)
+</code></pre>
+<hr>
+<h2>Apparent Elastic Modulus Relation</h2>
+<p>If students compute elastic modulus using nominal strain from crosshead displacement, they obtain an apparent modulus <code>Eapp</code>. The source PDF gives the series-spring relation:</p>
+<pre><code>
+1 / Eapp = 1 / E + Cm (A0 / Lg)
+</code></pre>
+<p>The PDF states that students should plot <code>1/Eapp</code> against <code>A0/Lg</code> across multiple specimens or free lengths, then check whether the slope gives a consistent <code>Cm</code> and the intercept matches <code>1/E</code> from the extensometer.</p>
+<p><strong>Placeholder requiring teaching-team decision:</strong> the current PDF only gives one nominal specimen width and thickness for the basic ASEN 3501 setup. If students are expected to estimate <code>Cm</code> from a slope, the assigned data must include multiple specimens, multiple free lengths, or another explicit method for compliance estimation.</p>
+<hr>
+<h2>Verification Checks</h2>
+<p>Before relying on this model, verify:</p>
+<ul>
+<li><code>sigma = P/A0</code> uses consistent force and area units</li>
+<li><code>epsilon_n</code> and <code>epsilon_e</code> are dimensionless</li>
+<li><code>Cm</code> has units of displacement per force</li>
+<li>the no-slip assumption is reasonable for the selected elastic-region data</li>
+<li>the elastic-region data are selected before yield</li>
+<li>crosshead displacement and extensometer strain are not treated as interchangeable measurements</li>
+<li>preload and grip seating steps do not hide or erase real specimen load history</li>
+</ul>
+<hr>
+<h1>Model Equations - MTS EXCEED Tension Testing</h1>
+<p>Quick reference sheet. All symbols are defined. See <a href="../../../assets/assignments/lab_compilations/tier1_lab_MTS/model/derivation_agent.md">derivation_agent.md</a> for the unverified derivation and assumptions.</p>
+<hr>
+<h2>Specimen Geometry</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Meaning</th><th>Source status</th></tr></thead><tbody><tr><td><code>w</code></td><td>Initial specimen width</td><td>PDF gives 0.500 in for ASEN 3501 aluminum specimen</td></tr><tr><td><code>t</code></td><td>Initial specimen thickness</td><td>PDF gives 0.250 in for ASEN 3501 aluminum specimen</td></tr><tr><td><code>A0</code></td><td>Initial cross-sectional area</td><td>Computed as <code>w t</code></td></tr><tr><td><code>Lg</code></td><td>Initial free grip-to-grip specimen length</td><td>Placeholder - not specified in PDF</td></tr><tr><td><code>L0</code></td><td>Extensometer gage length</td><td>PDF gives 1.000 in</td></tr></tbody></table></div>
+<pre><code>
+A0 = w t
+</code></pre>
+<hr>
+<h2>Stress and Strain</h2>
+<pre><code>
+sigma = P / A0
+
+epsilon_n = delta_total / Lg
+
+epsilon_e = DeltaLe / L0
+</code></pre>
+<p>where:</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Meaning</th></tr></thead><tbody><tr><td><code>P</code></td><td>Applied axial load</td></tr><tr><td><code>sigma</code></td><td>Engineering stress</td></tr><tr><td><code>delta_total</code></td><td>Crosshead displacement</td></tr><tr><td><code>epsilon_n</code></td><td>Nominal crosshead-based strain</td></tr><tr><td><code>DeltaLe</code></td><td>Local extensometer displacement change</td></tr><tr><td><code>epsilon_e</code></td><td>Local extensometer strain</td></tr></tbody></table></div>
+<hr>
+<h2>Compliance Model</h2>
+<pre><code>
+delta_total = delta_specimen + delta_compliance + delta_slip
+</code></pre>
+<p>For the simplified elastic, no-slip case:</p>
+<pre><code>
+delta_slip = 0
+
+delta_compliance = P Cm
+
+delta_specimen = P Lg / (A0 E)
+</code></pre>
+<p>Therefore:</p>
+<pre><code>
+delta_total = P Lg / (A0 E) + P Cm
+
+delta_total / P = Lg / (A0 E) + Cm
+
+Cm = delta_total / P - Lg / (A0 E)
+
+Cm = epsilon_n Lg / P - Lg / (A0 E)
+</code></pre>
+<hr>
+<h2>Apparent Modulus Relation</h2>
+<pre><code>
+1 / Eapp = 1 / E + Cm (A0 / Lg)
+</code></pre>
+<p>The source PDF says to plot <code>1/Eapp</code> against <code>A0/Lg</code> across multiple specimens or free lengths to evaluate whether the slope gives a consistent <code>Cm</code> and the intercept matches <code>1/E</code> from extensometer data.</p>
+<p><strong>Placeholder requiring teaching-team decision:</strong> if only one specimen geometry is assigned, specify whether students should estimate <code>Cm</code> from a single run, compare apparent and extensometer-based modulus qualitatively, or use a provided compliance value.</p>
+<hr>
+<h2>Young&#x27;s Modulus Comparison</h2>
+<p>The student-facing comparison should use two experimental modulus estimates when the required data are available:</p>
+<pre><code>
+E_extensometer = slope of sigma versus epsilon_e in the selected elastic region
+
+E_crosshead = slope of sigma versus epsilon_n in the selected elastic region
+
+modulus_error = E_experimental - E_reference
+</code></pre>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Status</th></tr></thead><tbody><tr><td><code>E_extensometer</code></td><td>Compute from load-cell stress and extensometer strain</td></tr><tr><td><code>E_crosshead</code></td><td>Compute from load-cell stress and crosshead-based nominal strain</td></tr><tr><td><code>E_reference</code></td><td>Placeholder - theoretical/reference modulus must be provided by teaching team</td></tr><tr><td>Load-cell calibration/specification</td><td>Placeholder - required for final stress uncertainty and confidence in <code>P</code></td></tr></tbody></table></div>
+<p>Do not invent the reference modulus or load-cell specifications.</p>
+<hr>
+<h2>Suggested Residual or Difference Checks</h2>
+<p>The PDF does not prescribe a residual convention. For ASEN 3501 consistency, the teaching team may choose one of the following; leave the final convention explicit in the student handout.</p>
+<pre><code>
+strain_difference = epsilon_n - epsilon_e
+
+stress_model_difference = sigma_crosshead_based - sigma_extensometer_based
+</code></pre>
+<p><strong>Placeholder:</strong> final residual definition and required summary statistics are not specified in the PDF.</p>
+<hr></div></div><div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure - MTS EXCEED Tension Testing</h1>
 <hr>
 <h2>Overview</h2>
 <p>This lab investigates uniaxial tensile testing using the MTS EXCEED electromechanical load frame and MTS TestSuite Elite (TW Elite). Students use an Epsilon 3542 axial extensometer when assigned, export raw CSV telemetry, and compare machine crosshead displacement with local extensometer strain.</p>
@@ -226,143 +376,41 @@
 <hr>
 <h2>Known Pitfalls and Common Issues</h2>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Issue</th><th>Likely cause from source PDF</th><th>Corrective action</th></tr></thead><tbody><tr><td>Controller status offline or red warning</td><td>Main chassis power is off or software communication stalled</td><td>Turn the lower-right power knob on and refresh the controller status</td></tr><tr><td>Extensometer strain missing or unresponsive</td><td>Bendix connector is unplugged or connected to the wrong adapter port</td><td>Verify the connector is seated in Port J9</td></tr><tr><td>TEDS calibration path error</td><td>Incorrect TED source file or mismatched serial number</td><td>Confirm the <code>_Strain1</code> Epsilon 3542 profile path; ask teaching staff if it does not match</td></tr><tr><td>Extensometer reading noisy, erratic, or jumping</td><td>Extensometer sliding, loose clamps, or mismatched inserts</td><td>Stop, reinstall the zeroing pin, reseat clamps, and check blade inserts</td></tr><tr><td>Massive preload before the test begins</td><td>Load cell was zeroed after tightening the top grip</td><td>Do not zero load after tightening; loosen, zero, and re-clamp correctly</td></tr><tr><td>Extensometer moved during setup</td><td>It was jostled after installation</td><td>Reinstall the zeroing pin and repeat the extensometer installation</td></tr></tbody></table></div>
-<hr></div></div><div class="scaffold-section compiled"><h3>Unverified Derivation</h3><div class="compiled-content"><h1>Unverified Derivation - MTS EXCEED Compliance Model</h1>
+<hr></div></div><div class="scaffold-section compiled"><h3>Instrumentation and DAQ Details</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary - MTS EXCEED Tension Testing</h1>
 <hr>
-<h2>How Students Should Use This Derivation</h2>
-<p>This derivation is provided so the laboratory exercise can focus on experimental data analysis, model implementation, and model-data comparison. It is not externally verified by the laboratory staff in the current source PDF.</p>
-<p>Students are required to verify the derivation and assumptions before using it in final analysis. Verification means checking dimensions, elastic variables, boundary conditions, and whether a simple series-compliance model is adequate for the physical MTS EXCEED testing apparatus.</p>
+<h2>Primary Sensor - Epsilon 3542 Axial Extensometer</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value from source PDF</th><th>Source status</th></tr></thead><tbody><tr><td>Sensor model</td><td>Epsilon 3542 axial extensometer</td><td>Confirmed in PDF</td></tr><tr><td>Part number</td><td>3542-0100-025-ST</td><td>Confirmed in PDF</td></tr><tr><td>Measurement role</td><td>Local axial strain on specimen gage section</td><td>Confirmed in PDF</td></tr><tr><td>Gage length</td><td>1.000 in (25.4 mm)</td><td>Confirmed in PDF</td></tr><tr><td>Measuring range</td><td>+25% / -10% strain</td><td>Confirmed in PDF</td></tr><tr><td>Temperature range</td><td>-40 deg C to 100 deg C (-40 deg F to 210 deg F)</td><td>Confirmed in PDF</td></tr><tr><td>Connection</td><td>6-pin Bendix connector with Ethernet adapter to chassis Port J9</td><td>Confirmed in PDF</td></tr><tr><td>Calibration/TEDS path</td><td><code>C:\MTSTestSuite\Devices\_Strain1(epsilon3542_E103626).ted</code> or approved variation</td><td>Confirmed as example path in PDF</td></tr></tbody></table></div>
 <hr>
-<h2>Stress Definition</h2>
-<p>An axial load <code>P</code> is applied to a specimen with initial width <code>w</code> and thickness <code>t</code>.</p>
-<pre><code>
-A0 = w t
-sigma = P / A0
-</code></pre>
-<p>where:</p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Meaning</th><th>Units</th></tr></thead><tbody><tr><td><code>A0</code></td><td>Initial cross-sectional area</td><td>area units consistent with <code>w</code> and <code>t</code></td></tr><tr><td><code>P</code></td><td>Applied axial load</td><td>force</td></tr><tr><td><code>sigma</code></td><td>Engineering stress</td><td>force / area</td></tr></tbody></table></div>
+<h2>Secondary Sensor Listed in Source PDF - Epsilon 3575 Transverse Extensometer</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value from source PDF</th><th>Source status</th></tr></thead><tbody><tr><td>Sensor model</td><td>Epsilon 3575 transverse extensometer</td><td>Listed in PDF</td></tr><tr><td>Part number</td><td>3575-100T-ST</td><td>Listed across page break in PDF extraction; confirm before release</td></tr><tr><td>Measurement role</td><td>Transverse lateral strain for Poisson&#x27;s ratio calculations</td><td>Listed in PDF</td></tr><tr><td>Measuring range</td><td>+/-0.100 in</td><td>Listed in PDF</td></tr><tr><td>Specimen limit</td><td>Fits specimens up to 1 in (25 mm) width or diameter</td><td>Listed in PDF</td></tr><tr><td>Temperature range</td><td>-40 deg C to 100 deg C (-40 deg F to 210 deg F)</td><td>Listed in PDF</td></tr><tr><td>Connection</td><td>6-pin Bendix connector for MTS machine compatibility</td><td>Listed in PDF</td></tr></tbody></table></div>
+<p><strong>Placeholder requiring teaching-team decision:</strong> the procedure text focuses on the axial extensometer. It does not state whether the transverse extensometer is part of the Tier 1 student activity.</p>
 <hr>
-<h2>Two Strain Measures</h2>
-<p>The source PDF distinguishes two measures of strain.</p>
-<h3>Nominal Crosshead Strain</h3>
-<p>Nominal strain is derived from total crosshead displacement relative to the initial free grip-to-grip specimen length:</p>
-<pre><code>
-epsilon_n = delta_total / Lg
-</code></pre>
-<h3>Extensometer Strain</h3>
-<p>Extensometer strain is measured locally by the Epsilon extensometer over its fixed gage length:</p>
-<pre><code>
-epsilon_e = DeltaLe / L0
-</code></pre>
-<p>For the Epsilon 3542 axial extensometer in this PDF:</p>
-<pre><code>
-L0 = 1.000 in
-</code></pre>
+<h2>Biaxial Sensor Listed in Source PDF - Epsilon 3550 Torsional/Axial Conversion</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value from source PDF</th><th>Source status</th></tr></thead><tbody><tr><td>Model</td><td>Epsilon 3550 conversion with axial channel added to torsional extensometer</td><td>Listed in PDF</td></tr><tr><td>Measurement role</td><td>Simultaneous torsional and axial strain characterization</td><td>Listed in PDF</td></tr><tr><td>Axial gage length</td><td>1.000 in (25.4 mm)</td><td>Listed in PDF</td></tr><tr><td>Axial range</td><td>+/-10% strain</td><td>Listed in PDF</td></tr><tr><td>Shear strain angle</td><td>+/-3 deg</td><td>Listed in PDF</td></tr><tr><td>Temperature range</td><td>-40 deg C to 100 deg C (-40 deg F to 210 deg F)</td><td>Listed in PDF</td></tr><tr><td>Connector interface</td><td>MTS connector on axial channel; Instron connector remains on torsional channel</td><td>Listed in PDF</td></tr></tbody></table></div>
+<p><strong>Placeholder requiring teaching-team decision:</strong> the procedure does not indicate that torsional or biaxial testing is part of the Tier 1 student activity.</p>
 <hr>
-<h2>Total Crosshead Displacement Model</h2>
-<p>The crosshead displacement includes more than specimen stretch. The source PDF identifies machine frame compliance, load-cell elasticity, grip/specimen interface motion, and possible specimen slip as contributors.</p>
-<pre><code>
-delta_total = delta_specimen + delta_compliance + delta_slip
-</code></pre>
-<p>Assuming the system is in the linear-elastic regime before material yield and no slip occurs:</p>
-<pre><code>
-delta_slip = 0
-delta_compliance = P Cm
-delta_specimen = P Lg / (A0 E)
-</code></pre>
-<p>where:</p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Meaning</th><th>Units</th></tr></thead><tbody><tr><td><code>Cm</code></td><td>Machine compliance parameter</td><td>displacement / force, such as in/lb or mm/N</td></tr><tr><td><code>E</code></td><td>Material elastic modulus from a better local strain measurement</td><td>stress units</td></tr><tr><td><code>Lg</code></td><td>Free grip-to-grip specimen length</td><td>length</td></tr></tbody></table></div>
-<p>Substituting into the total displacement model gives:</p>
-<pre><code>
-delta_total = P Lg / (A0 E) + P Cm
-</code></pre>
-<p>Dividing by load:</p>
-<pre><code>
-delta_total / P = Lg / (A0 E) + Cm
-</code></pre>
-<p>Solving for machine compliance:</p>
-<pre><code>
-Cm = delta_total / P - Lg / (A0 E)
-Cm = epsilon_n Lg / P - Lg / (A0 E)
-</code></pre>
+<h2>DAQ and Testing Platform - MTS EXCEED System</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value from source PDF</th></tr></thead><tbody><tr><td>Load frame</td><td>MTS EXCEED electromechanical tensile testing system</td></tr><tr><td>Load cell model/range/calibration</td><td>Placeholder - required for final stress calculation and uncertainty analysis</td></tr><tr><td>Control software</td><td>MTS TestSuite Elite (TW Elite)</td></tr><tr><td>Manual setup control</td><td>Paddle located to the right of the EXCEED machine</td></tr><tr><td>Communications</td><td>Recessed Port J9 with Bendix-to-Ethernet adapter for extensometer connection</td></tr><tr><td>Main power</td><td>Rotary switch on lower-right side of chassis</td></tr><tr><td>Grip assembly</td><td>Manual or pneumatic wedge grips with flat or round inserts</td></tr><tr><td>Top-grip preload</td><td>178-222 N (40-50 lbf) after top grip clamping</td></tr><tr><td>Grip seating force change</td><td>445-660 N (100-150 lbf) during manual crosshead cycle</td></tr><tr><td>Safety systems</td><td>Protective front acrylic shield, interlocks, and emergency stop</td></tr><tr><td>Test rate</td><td>0.0005 in/s for the ASEN 3501 basic axial loading specimen in the PDF</td></tr><tr><td>Data acquisition rate</td><td>10.0 Hz for the ASEN 3501 basic axial loading specimen in the PDF</td></tr></tbody></table></div>
 <hr>
-<h2>Apparent Elastic Modulus Relation</h2>
-<p>If students compute elastic modulus using nominal strain from crosshead displacement, they obtain an apparent modulus <code>Eapp</code>. The source PDF gives the series-spring relation:</p>
+<h2>Full Measurement Chain</h2>
 <pre><code>
-1 / Eapp = 1 / E + Cm (A0 / Lg)
+Specimen axial deformation
+ -&gt; Epsilon 3542 axial extensometer strain channel, if used
+ -&gt; MTS EXCEED controller / TW Elite
+ -&gt; CSV export with Index, Time, Crosshead, Load, and Strain
+ -&gt; MATLAB or Python processing for stress, strain, modulus, and compliance comparison
 </code></pre>
-<p>The PDF states that students should plot <code>1/Eapp</code> against <code>A0/Lg</code> across multiple specimens or free lengths, then check whether the slope gives a consistent <code>Cm</code> and the intercept matches <code>1/E</code> from the extensometer.</p>
-<p><strong>Placeholder requiring teaching-team decision:</strong> the current PDF only gives one nominal specimen width and thickness for the basic ASEN 3501 setup. If students are expected to estimate <code>Cm</code> from a slope, the assigned data must include multiple specimens, multiple free lengths, or another explicit method for compliance estimation.</p>
+<p>The crosshead channel is also a measurement, but it includes machine and grip motion as well as specimen deformation. Treat it as a different measurement path from local extensometer strain.</p>
 <hr>
-<h2>Verification Checks</h2>
-<p>Before relying on this model, verify:</p>
+<h2>Remaining Gaps</h2>
 <ul>
-<li><code>sigma = P/A0</code> uses consistent force and area units</li>
-<li><code>epsilon_n</code> and <code>epsilon_e</code> are dimensionless</li>
-<li><code>Cm</code> has units of displacement per force</li>
-<li>the no-slip assumption is reasonable for the selected elastic-region data</li>
-<li>the elastic-region data are selected before yield</li>
-<li>crosshead displacement and extensometer strain are not treated as interchangeable measurements</li>
-<li>preload and grip seating steps do not hide or erase real specimen load history</li>
+<li>Final student-facing data folder link.</li>
+<li>Final decision on whether students run both simplified and extensometer templates.</li>
+<li>Final specimen material list beyond the aluminum specimen dimensions in the PDF.</li>
+<li>Final required method for yield strength, UTS, ductility, true stress, and true strain.</li>
+<li>Confirm installed load cell model, capacity, calibration date/status, and uncertainty information.</li>
+<li>Final uncertainty requirements for load, dimensions, crosshead displacement, and extensometer strain.</li>
 </ul>
-<hr>
-<h1>Model Equations - MTS EXCEED Tension Testing</h1>
-<p>Quick reference sheet. All symbols are defined. See <a href="../../../assets/assignments/lab_compilations/tier1_lab_MTS/model/derivation_agent.md">derivation_agent.md</a> for the unverified derivation and assumptions.</p>
-<hr>
-<h2>Specimen Geometry</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Meaning</th><th>Source status</th></tr></thead><tbody><tr><td><code>w</code></td><td>Initial specimen width</td><td>PDF gives 0.500 in for ASEN 3501 aluminum specimen</td></tr><tr><td><code>t</code></td><td>Initial specimen thickness</td><td>PDF gives 0.250 in for ASEN 3501 aluminum specimen</td></tr><tr><td><code>A0</code></td><td>Initial cross-sectional area</td><td>Computed as <code>w t</code></td></tr><tr><td><code>Lg</code></td><td>Initial free grip-to-grip specimen length</td><td>Placeholder - not specified in PDF</td></tr><tr><td><code>L0</code></td><td>Extensometer gage length</td><td>PDF gives 1.000 in</td></tr></tbody></table></div>
-<pre><code>
-A0 = w t
-</code></pre>
-<hr>
-<h2>Stress and Strain</h2>
-<pre><code>
-sigma = P / A0
-
-epsilon_n = delta_total / Lg
-
-epsilon_e = DeltaLe / L0
-</code></pre>
-<p>where:</p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Meaning</th></tr></thead><tbody><tr><td><code>P</code></td><td>Applied axial load</td></tr><tr><td><code>sigma</code></td><td>Engineering stress</td></tr><tr><td><code>delta_total</code></td><td>Crosshead displacement</td></tr><tr><td><code>epsilon_n</code></td><td>Nominal crosshead-based strain</td></tr><tr><td><code>DeltaLe</code></td><td>Local extensometer displacement change</td></tr><tr><td><code>epsilon_e</code></td><td>Local extensometer strain</td></tr></tbody></table></div>
-<hr>
-<h2>Compliance Model</h2>
-<pre><code>
-delta_total = delta_specimen + delta_compliance + delta_slip
-</code></pre>
-<p>For the simplified elastic, no-slip case:</p>
-<pre><code>
-delta_slip = 0
-
-delta_compliance = P Cm
-
-delta_specimen = P Lg / (A0 E)
-</code></pre>
-<p>Therefore:</p>
-<pre><code>
-delta_total = P Lg / (A0 E) + P Cm
-
-delta_total / P = Lg / (A0 E) + Cm
-
-Cm = delta_total / P - Lg / (A0 E)
-
-Cm = epsilon_n Lg / P - Lg / (A0 E)
-</code></pre>
-<hr>
-<h2>Apparent Modulus Relation</h2>
-<pre><code>
-1 / Eapp = 1 / E + Cm (A0 / Lg)
-</code></pre>
-<p>The source PDF says to plot <code>1/Eapp</code> against <code>A0/Lg</code> across multiple specimens or free lengths to evaluate whether the slope gives a consistent <code>Cm</code> and the intercept matches <code>1/E</code> from extensometer data.</p>
-<p><strong>Placeholder requiring teaching-team decision:</strong> if only one specimen geometry is assigned, specify whether students should estimate <code>Cm</code> from a single run, compare apparent and extensometer-based modulus qualitatively, or use a provided compliance value.</p>
-<hr>
-<h2>Suggested Residual or Difference Checks</h2>
-<p>The PDF does not prescribe a residual convention. For ASEN 3501 consistency, the teaching team may choose one of the following; leave the final convention explicit in the student handout.</p>
-<pre><code>
-strain_difference = epsilon_n - epsilon_e
-
-stress_model_difference = sigma_crosshead_based - sigma_extensometer_based
-</code></pre>
-<p><strong>Placeholder:</strong> final residual definition and required summary statistics are not specified in the PDF.</p>
 <hr></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Sample Data - MTS EXCEED Tension Testing</h1>
 <hr>
 <h2>Data Access</h2>
@@ -397,46 +445,15 @@ exceed_data_test#_simplified.csv
 <li>compute or import crosshead-based nominal strain</li>
 <li>use extensometer strain when available</li>
 <li>select the linear-elastic region before estimating modulus or compliance</li>
+<li>estimate Young&#x27;s modulus from stress versus extensometer strain</li>
+<li>estimate Young&#x27;s modulus from stress versus crosshead-based nominal strain</li>
+<li>compare both experimental modulus estimates to the theoretical/reference modulus when provided</li>
 <li>compare crosshead-based and extensometer-based strain or modulus</li>
 </ul>
-<p><strong>Placeholder:</strong> the source PDF does not specify final requirements for yield strength, ultimate tensile strength, ductility, true stress, true strain, filtering, or uncertainty propagation. Add those requirements before student release if they are expected.</p>
+<p><strong>Placeholder:</strong> the source PDF does not provide the final theoretical/reference modulus, load-cell specifications, or final requirements for yield strength, ultimate tensile strength, ductility, true stress, true strain, filtering, or uncertainty propagation. Add those requirements before student release if they are expected.</p>
 <hr>
 <h2>Academic Integrity Note</h2>
 <p>The source PDF states that high-level analysis solutions and teacher-facing scripts, such as <code>exceed_plot_SOLUTIONS.m</code>, must be kept in secure staff-only directories and must not be distributed to students.</p>
-<hr></div></div><div class="scaffold-section compiled"><h3>Instrumentation and DAQ Details</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary - MTS EXCEED Tension Testing</h1>
-<hr>
-<h2>Primary Sensor - Epsilon 3542 Axial Extensometer</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value from source PDF</th><th>Source status</th></tr></thead><tbody><tr><td>Sensor model</td><td>Epsilon 3542 axial extensometer</td><td>Confirmed in PDF</td></tr><tr><td>Part number</td><td>3542-0100-025-ST</td><td>Confirmed in PDF</td></tr><tr><td>Measurement role</td><td>Local axial strain on specimen gage section</td><td>Confirmed in PDF</td></tr><tr><td>Gage length</td><td>1.000 in (25.4 mm)</td><td>Confirmed in PDF</td></tr><tr><td>Measuring range</td><td>+25% / -10% strain</td><td>Confirmed in PDF</td></tr><tr><td>Temperature range</td><td>-40 deg C to 100 deg C (-40 deg F to 210 deg F)</td><td>Confirmed in PDF</td></tr><tr><td>Connection</td><td>6-pin Bendix connector with Ethernet adapter to chassis Port J9</td><td>Confirmed in PDF</td></tr><tr><td>Calibration/TEDS path</td><td><code>C:\MTSTestSuite\Devices\_Strain1(epsilon3542_E103626).ted</code> or approved variation</td><td>Confirmed as example path in PDF</td></tr></tbody></table></div>
-<hr>
-<h2>Secondary Sensor Listed in Source PDF - Epsilon 3575 Transverse Extensometer</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value from source PDF</th><th>Source status</th></tr></thead><tbody><tr><td>Sensor model</td><td>Epsilon 3575 transverse extensometer</td><td>Listed in PDF</td></tr><tr><td>Part number</td><td>3575-100T-ST</td><td>Listed across page break in PDF extraction; confirm before release</td></tr><tr><td>Measurement role</td><td>Transverse lateral strain for Poisson&#x27;s ratio calculations</td><td>Listed in PDF</td></tr><tr><td>Measuring range</td><td>+/-0.100 in</td><td>Listed in PDF</td></tr><tr><td>Specimen limit</td><td>Fits specimens up to 1 in (25 mm) width or diameter</td><td>Listed in PDF</td></tr><tr><td>Temperature range</td><td>-40 deg C to 100 deg C (-40 deg F to 210 deg F)</td><td>Listed in PDF</td></tr><tr><td>Connection</td><td>6-pin Bendix connector for MTS machine compatibility</td><td>Listed in PDF</td></tr></tbody></table></div>
-<p><strong>Placeholder requiring teaching-team decision:</strong> the procedure text focuses on the axial extensometer. It does not state whether the transverse extensometer is part of the Tier 1 student activity.</p>
-<hr>
-<h2>Biaxial Sensor Listed in Source PDF - Epsilon 3550 Torsional/Axial Conversion</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value from source PDF</th><th>Source status</th></tr></thead><tbody><tr><td>Model</td><td>Epsilon 3550 conversion with axial channel added to torsional extensometer</td><td>Listed in PDF</td></tr><tr><td>Measurement role</td><td>Simultaneous torsional and axial strain characterization</td><td>Listed in PDF</td></tr><tr><td>Axial gage length</td><td>1.000 in (25.4 mm)</td><td>Listed in PDF</td></tr><tr><td>Axial range</td><td>+/-10% strain</td><td>Listed in PDF</td></tr><tr><td>Shear strain angle</td><td>+/-3 deg</td><td>Listed in PDF</td></tr><tr><td>Temperature range</td><td>-40 deg C to 100 deg C (-40 deg F to 210 deg F)</td><td>Listed in PDF</td></tr><tr><td>Connector interface</td><td>MTS connector on axial channel; Instron connector remains on torsional channel</td><td>Listed in PDF</td></tr></tbody></table></div>
-<p><strong>Placeholder requiring teaching-team decision:</strong> the procedure does not indicate that torsional or biaxial testing is part of the Tier 1 student activity.</p>
-<hr>
-<h2>DAQ and Testing Platform - MTS EXCEED System</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Property</th><th>Value from source PDF</th></tr></thead><tbody><tr><td>Load frame</td><td>MTS EXCEED electromechanical tensile testing system</td></tr><tr><td>Control software</td><td>MTS TestSuite Elite (TW Elite)</td></tr><tr><td>Manual setup control</td><td>Paddle located to the right of the EXCEED machine</td></tr><tr><td>Communications</td><td>Recessed Port J9 with Bendix-to-Ethernet adapter for extensometer connection</td></tr><tr><td>Main power</td><td>Rotary switch on lower-right side of chassis</td></tr><tr><td>Grip assembly</td><td>Manual or pneumatic wedge grips with flat or round inserts</td></tr><tr><td>Top-grip preload</td><td>178-222 N (40-50 lbf) after top grip clamping</td></tr><tr><td>Grip seating force change</td><td>445-660 N (100-150 lbf) during manual crosshead cycle</td></tr><tr><td>Safety systems</td><td>Protective front acrylic shield, interlocks, and emergency stop</td></tr><tr><td>Test rate</td><td>0.0005 in/s for the ASEN 3501 basic axial loading specimen in the PDF</td></tr><tr><td>Data acquisition rate</td><td>10.0 Hz for the ASEN 3501 basic axial loading specimen in the PDF</td></tr></tbody></table></div>
-<hr>
-<h2>Full Measurement Chain</h2>
-<pre><code>
-Specimen axial deformation
- -&gt; Epsilon 3542 axial extensometer strain channel, if used
- -&gt; MTS EXCEED controller / TW Elite
- -&gt; CSV export with Index, Time, Crosshead, Load, and Strain
- -&gt; MATLAB or Python processing for stress, strain, modulus, and compliance comparison
-</code></pre>
-<p>The crosshead channel is also a measurement, but it includes machine and grip motion as well as specimen deformation. Treat it as a different measurement path from local extensometer strain.</p>
-<hr>
-<h2>Remaining Gaps</h2>
-<ul>
-<li>Final student-facing data folder link.</li>
-<li>Final decision on whether students run both simplified and extensometer templates.</li>
-<li>Final specimen material list beyond the aluminum specimen dimensions in the PDF.</li>
-<li>Final required method for yield strength, UTS, ductility, true stress, and true strain.</li>
-<li>Final uncertainty requirements for load, dimensions, crosshead displacement, and extensometer strain.</li>
-</ul>
 <hr></div></div><div class="scaffold-section compiled"><h3>FAQs</h3><div class="compiled-content"><h1>FAQs - MTS EXCEED Tension Testing</h1>
 <h2>Do I need to derive the compliance model from scratch?</h2>
 <p>No. The derivation is provided, but it is explicitly unverified. Your task is to check the assumptions, units, and physical meaning before using it.</p>
@@ -453,7 +470,11 @@ Specimen axial deformation
 <h2>Where are the sample data files?</h2>
 <p><strong>[MTS EXCEED STUDENT DATA FOLDER PLACEHOLDER - add final SharePoint link]</strong>. The current PDF says sample data and starter templates are distributed through departmental SharePoint and the course site, but it does not provide the final link.</p>
 <h2>Are yield strength, UTS, and ductility required?</h2>
-<p>The overview names these as tensile-test material parameters, but the current PDF does not specify the final student deliverable method for computing them. Treat that as a teaching-team placeholder until the final assignment requirements are added.</p></div></div>
+<p>The overview names these as tensile-test material parameters, but the current PDF does not specify the final student deliverable method for computing them. Treat that as a teaching-team placeholder until the final assignment requirements are added.</p>
+<h2>What modulus comparison should I make?</h2>
+<p>Use the tensile-test data to estimate Young&#x27;s modulus from extensometer strain and from crosshead displacement, then compare those values to the theoretical/reference modulus when your instructor provides it.</p>
+<h2>Why does the load cell matter?</h2>
+<p>The load cell provides the force used to compute engineering stress. The installed load-cell model, range, calibration status, and uncertainty are still placeholders in this compilation.</p></div></div>
       </section>
     </main>
     
@@ -463,6 +484,6 @@ Specimen axial deformation
     
     
   
-  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier1-MTS", "title": "MTS EXCEED Tension Testing", "url": "labs/tier1/MTS/index.html", "text": "MTS EXCEED Tension Testing Compare MTS crosshead displacement against Epsilon 3542 extensometer strain during uniaxial tensile testing, then evaluate apparent material properties and system compliance.", "module_id": null, "source_type": "overview"}</script>
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier1-MTS", "title": "MTS EXCEED Tension Testing", "url": "labs/tier1/MTS/index.html", "text": "MTS EXCEED Tension Testing Estimate Young's modulus from MTS extensometer strain and crosshead displacement, compare to a provided theoretical/reference modulus, and evaluate system compliance and load-cell requirements.", "module_id": null, "source_type": "overview"}</script>
 </body>
 </html>
