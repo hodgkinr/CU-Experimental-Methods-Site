@@ -108,7 +108,7 @@ Generic praise or vague criticism does not satisfy the requirement.
 
 ## 14. Where should I look if I want the exact pass criteria?
 
-Use `TIER1_rubric_student.md` alongside the assignment.
+Use the rubric alongside the assignment.
 The assignment tells you what to produce.
 The student rubric tells you what a passing response looks like in each phase.
 You should read both before you begin data collection.

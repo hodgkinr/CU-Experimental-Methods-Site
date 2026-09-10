@@ -1,13 +1,6 @@
 # ASEN 3501 — Tier 1 Lab Assignment
 ## Forward Analysis, Reverse Prediction, and Combined Synthesis
 
-**Segment:** E1 — Execution & Quantification
-**Weeks:** Course Weeks 5–8
-**CLO Alignment:** CLO 1, CLO 2, CLO 3, CLO 5
-**Structure:** Three phases — Individual → Individual → Paired (→ Group of 4)
-**Assessment:** Phase 1 report (individual) + Phase 2 prediction memo (individual) +
-Phase 3 combined presentation (paired or group of 4)
-
 ---
 
 ## What This Assignment Is
@@ -17,7 +10,7 @@ three phases. The physical experiments differ: you'll be assigned a specific exp
 for each phase. But the analytical framework, the deliverables, and the expectations are
 identical for all students, regardless of which experiment they're assigned.
 
-Throughout all phases, use the course uncertainty convention in `E1_W2_R3_reading.md`:
+Throughout all phases, use the course uncertainty convention:
 put inputs on a standard-uncertainty basis before propagation and label every reported or
 plotted interval by type, method, and coverage.
 
@@ -70,7 +63,7 @@ deliberate. The goal is not to mimic the full test engineer workflow, but to dev
 prediction-first mindset by working through it in the most challenging form: predicting an
 experiment you have no direct experience with.
 
-Think of Phase 3 as reverse-engineering the experiment. You are reconstructing what the data
+Think of Phase 2 and 3 as reverse-engineering the experiment. You are reconstructing what the data
 should look like from the physics and the instrument chain alone, without the shortcut of
 having been in the room when the data was collected. This mindset, building a forward model
 before you have the answer, is exactly what you'll need when you design your own experiment
@@ -99,7 +92,7 @@ not run in Phase 1.
 description for this unfamiliar experiment, predict what the data should look like.
 You do not have access to the actual data. You do not touch the hardware.
 **What you produce:** A Phase 2 Prediction Memo, submitted before data is released.
-**When:** Course Week 7, with the Phase 2 prediction memo due Friday, Oct 2 before data release.
+**When:** Course Week 6, with the Phase 2 prediction memo due Friday, Oct 2 before data release.
 
 ### Phase 3 — Combined Synthesis (Paired, with optional group of 4)
 
@@ -111,7 +104,7 @@ the predictions got right, what they missed, and why. Synthesize across both exp
 **What you produce:** A combined oral presentation (lightning talk). You and your partner
 present together. If logistics allow, your pair joins one other pair for a group of 4
 presentation.
-**When:** Course Week 9, during the Tier 1 presentation/interview window on Monday, Oct 12 and Wednesday, Oct 14.
+**When:** Course Week 7-8, during the Tier 1 presentation/interview window on Monday, Oct 12 and Wednesday, Oct 14.
 
 ---
 
@@ -275,7 +268,7 @@ before you see the data.
 
 **6. Risk assessment**
 Identify one or two scenarios that would produce anomalous data, not because of a faulty
-experiment, but because of a model limitation or an edge case in the physics. Use the Week 3
+experiment, but because of a model limitation or an edge case in the physics. Use the
 anomalous-data-signature framework here: name what “wrong” would look like physically, not a
 generic equipment-failure scenario. Describe what anomalous data would look like and what you
 would investigate first.
@@ -363,16 +356,12 @@ evaluations ("good job, maybe add more data") receive no credit.
 
 | Phase | Activity | Format | When |
 |---|---|---|---|
-| Release | Tier 1 assignment released | Canvas / course site | Course Week 5, Monday Sep 14 |
+| Release | Tier 1 assignment released | Canvas / course site | Course Week 4 |
 | Phase 1 | Run experiment, analyze data | Lab sessions | Course Weeks 5–6 |
 | Phase 1 | Individual report | Written, Canvas | Due Friday, Sep 25 at 5:00 pm |
-| Phase 2 | Receive experiment packet | — | Course Week 7 release date |
+| Phase 2 | Receive experiment packet | — | Course Week 6 |
 | Phase 2 | Prediction memo (submitted before data release) | Written, Canvas | Due Friday, Oct 2 before data release |
-| Phase 3 | Paired presentation / interview | In-person, in lab | Course Week 9: Monday, Oct 12 and Wednesday, Oct 14 |
-| Phase 3 | Peer evaluations | Written, submitted same day | Course Week 9: Monday, Oct 12 and Wednesday, Oct 14 |
+| Phase 3 | Paired presentation / interview | In-person, in lab | Course Week 8 |
+| Phase 3 | Peer evaluations | Written, submitted same day | Course Week 8 |
 
 ---
-
-## Student Package Note
-
-Use this assignment together with the **Tier 1 student rubric** included in the student-facing assignment package. The rubric gives the pass criteria and evidence standards for the written report, prediction memo, presentation, and peer evaluations.
