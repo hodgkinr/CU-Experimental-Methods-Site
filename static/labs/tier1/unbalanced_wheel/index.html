@@ -50,18 +50,18 @@
         <div class="scaffold-section compiled"><h3>30,000 Ft View</h3><div class="compiled-content"><p>In this experiment you will model the rotation of a wheel as it rolls down a ramp in two configurations: balanced and unbalanced. You will use energy methods to predict the wheel rotation rate, compare those predictions to encoder measurements, and determine an estimate for a friction term when the data support doing so.</p></div></div><div class="scaffold-section compiled"><h3>Overview</h3><div class="compiled-content"><h1>Overview - Unbalanced Wheel</h1>
 <p>In this lab, you will analyze the motion of a wheel rolling down the outside Aero building ramp in two configurations: balanced and unbalanced. The unbalanced configuration includes an eccentric mass, which changes the wheel&#x27;s rotational behavior.</p>
 <div class="video-embed"><iframe src="https://www.youtube.com/embed/ue1ZKAT318w" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
-<p>Your job is to compare measured angular velocity from encoder data against a provided model hierarchy. The focus is not on inventing the dynamics model from scratch. Instead, you will review the provided unverified derivation, implement the model carefully, process the data, and evaluate how well each model explains the observed motion.</p>
+<p>Your job is to compare measured angular velocity from encoder data against a provided model. The focus is not on inventing the dynamics model from scratch. Instead, you will review the provided unverified derivation, implement the model carefully, process the data, and evaluate how well each model explains the observed motion.</p>
 <p>By the end of the lab, you should be able to:</p>
 <ul>
 <li>convert encoder counts and timestamps into angular position and angular velocity</li>
 <li>compare balanced and unbalanced wheel behavior</li>
-<li>estimate or apply a friction term from balanced-wheel data</li>
+<li>estimate or apply a friction term</li>
 <li>compute residuals between measurements and model predictions</li>
 <li>explain whether model mismatch appears random, systematic, or tied to known apparatus limits</li>
 </ul>
 <p><img class="markdown-image" src="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/overview/Unbalanced_Wheel.jpg" alt="Balanced and Unbalanced Wheel Apparatus"></p></div></div><div class="scaffold-section compiled"><h3>Unverified Derivation</h3><div class="compiled-content"><h1>Provided Unverified Derivation — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
 <hr>
-<h2>How Students Should Use This Derivation</h2>
+<h2>How To Use This Derivation</h2>
 <p>This derivation is provided so the lab can focus on experimental data analysis, model implementation, and model-data comparison rather than on dynamics derivation from a blank page. It is <strong>not</strong> externally verified.</p>
 <p>Students should verify the derivation before using it as the basis for their analysis. Verification means checking the assumptions, signs, units, limiting cases, and energy terms well enough to decide whether the model is appropriate for comparison with the measured data.</p>
 <p>The current setup uses the outside Aero building ramp. The ramp angle β must be measured for that setup before numerical model predictions are finalized.</p>
@@ -73,9 +73,7 @@
 <li>Confirm that the friction moment contributes negative work: −Qθ</li>
 <li>Check the unbalanced-mass potential term by evaluating θ = 0</li>
 <li>Check the difference between the point-mass model and rigid-body model</li>
-<li>Check whether the provided rigid-body inertia term is being counted once,</li>
 </ul>
-<p>not double-counted with translational kinetic energy</p>
 <p>The goal is not to re-create the derivation from scratch. The goal is to be able to defend the model you use when you compare it with data.</p>
 <hr>
 <h2>Section 1 — Physical Setup and Coordinate System</h2>
@@ -90,7 +88,7 @@
 <p>v_cm = Rω</p>
 <p>where v_cm is the velocity of the wheel center and ω = dθ/dt.</p>
 <p><strong>System Parameters:</strong></p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Value</th><th>Units</th><th>Description</th></tr></thead><tbody><tr><td>M</td><td>11.7</td><td>kg</td><td>Mass of cylindrical wheel</td></tr><tr><td>M₀</td><td>0.7</td><td>kg</td><td>Mass of trailing support apparatus</td></tr><tr><td>m</td><td>3.4</td><td>kg</td><td>Mass of eccentric mass</td></tr><tr><td>R</td><td>0.235</td><td>m</td><td>Radius of cylinder</td></tr><tr><td>κ</td><td>0.203</td><td>m</td><td>Radius of gyration of wheel</td></tr><tr><td>I</td><td>Mκ²</td><td>kg·m²</td><td>Moment of inertia of wheel about its center</td></tr><tr><td>β</td><td><strong>TBD</strong></td><td>deg</td><td>Outside-ramp slope angle; measure before deployment</td></tr><tr><td>r</td><td>0.178</td><td>m</td><td>Distance from wheel center to eccentric mass center</td></tr><tr><td>r_extra</td><td>0.019</td><td>m</td><td>Radius of eccentric mass, modeled as a solid rod</td></tr><tr><td>g</td><td>9.81</td><td>m/s²</td><td>Gravitational acceleration</td></tr></tbody></table></div>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Value</th><th>Units</th><th>Description</th></tr></thead><tbody><tr><td>M</td><td>11.7</td><td>kg</td><td>Mass of cylindrical wheel</td></tr><tr><td>M₀</td><td>0.7</td><td>kg</td><td>Mass of trailing support apparatus</td></tr><tr><td>m</td><td>3.4</td><td>kg</td><td>Mass of eccentric mass</td></tr><tr><td>R</td><td>0.235</td><td>m</td><td>Radius of cylinder</td></tr><tr><td>κ</td><td>0.203</td><td>m</td><td>Radius of gyration of wheel</td></tr><tr><td>I</td><td>Mκ²</td><td>kg·m²</td><td>Moment of inertia of wheel about its center</td></tr><tr><td>β</td><td><strong>TBD</strong></td><td>deg</td><td>Outside-ramp slope angle</td></tr><tr><td>r</td><td>0.178</td><td>m</td><td>Distance from wheel center to eccentric mass center</td></tr><tr><td>r_extra</td><td>0.019</td><td>m</td><td>Radius of eccentric mass, modeled as a solid rod</td></tr><tr><td>g</td><td>9.81</td><td>m/s²</td><td>Gravitational acceleration</td></tr></tbody></table></div>
 <hr>
 <h2>Section 2 — Work-Energy Principle</h2>
 <p>The work-energy principle applied to the complete system is:</p>
@@ -161,16 +159,7 @@
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Check</th><th>Formula or method</th><th>What it helps you notice</th></tr></thead><tbody><tr><td>Mean residual</td><td>ε̄ = (1/N)Σ ε_i</td><td>Possible systematic bias</td></tr><tr><td>Standard deviation</td><td>σ_ε = std(ε)</td><td>Random spread around the model</td></tr><tr><td>Uncertainty of mean</td><td>σ_ε / √N</td><td>Precision of the mean residual estimate</td></tr><tr><td>N</td><td>count of observations</td><td>Amount of data in the reliable range</td></tr><tr><td>Outlier count</td><td>count of unusually large residuals</td><td>Whether a few points dominate the mismatch</td></tr><tr><td>Scaled histogram</td><td>plot ε_i / σ_ε</td><td>Whether residuals look random or structured</td></tr></tbody></table></div>
 <p>These checks guide interpretation; they do not automatically prove which model is correct.</p>
 <hr>
-<h2>References</h2>
-<ul>
-<li>Taylor, J.R. (1997). <em>An Introduction to Error Analysis</em>. University Science Books. (Residual statistics and error analysis framework)</li>
-<li>Meriam, J.L. &amp; Kraige, L.G. <em>Engineering Mechanics: Dynamics</em>. (Work-energy methods for rigid bodies)</li>
-<li>Sample report: keep staff-only unless intentionally released by the teaching team</li>
-</ul>
-<hr>
 <h1>Model Equations — Unbalanced Wheel: Inertia Distribution and Rolling Dynamics</h1>
-<p>Quick reference sheet. All symbols are defined. No derivation prose — see <a href="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/model/derivation_agent.md">derivation_agent.md</a> for full context.</p>
-<p><strong>Deployment note:</strong> the current setup uses the outside Aero building ramp. The ramp angle β must be measured for that setup before students use numerical predictions.</p>
 <hr>
 <h2>System Parameters</h2>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Value</th><th>Units</th><th>Definition</th></tr></thead><tbody><tr><td>M</td><td>11.7</td><td>kg</td><td>Mass of cylinder</td></tr><tr><td>M₀</td><td>0.7</td><td>kg</td><td>Mass of trailing support apparatus</td></tr><tr><td>m</td><td>3.4</td><td>kg</td><td>Mass of eccentric mass</td></tr><tr><td>R</td><td>0.235</td><td>m</td><td>Radius of cylinder</td></tr><tr><td>κ</td><td>0.203</td><td>m</td><td>Radius of gyration of wheel</td></tr><tr><td>r</td><td>0.178</td><td>m</td><td>Distance from wheel center to eccentric mass center</td></tr><tr><td>r_extra</td><td>0.019</td><td>m</td><td>Radius of eccentric mass, modeled as a solid rod</td></tr><tr><td>β</td><td><strong>TBD</strong></td><td>deg</td><td>Outside-ramp slope angle; measure before deployment</td></tr><tr><td>g</td><td>9.81</td><td>m/s²</td><td>Gravitational acceleration</td></tr><tr><td>Q</td><td>fit from data</td><td>N·m</td><td>Constant friction moment at axle</td></tr><tr><td>θ</td><td>measured</td><td>rad</td><td>Rotation angle; zero when wheel starts from rest</td></tr><tr><td>ω</td><td>measured/model output</td><td>rad/s</td><td>Angular velocity</td></tr></tbody></table></div>
@@ -240,7 +229,7 @@
 <ol>
 <li>Turn on or connect power to the ESP32 DAQ system and verify that the electronics are powered.</li>
 <li>On a cellphone, connect to the ESP32 Wi-Fi network named <strong>Unbalanced Wheel</strong>.</li>
-<li>Open a browser on the phone and go to <strong>[ESP32 WEB INTERFACE URL PLACEHOLDER — confirm exact local address before deployment]</strong>.</li>
+<li>Open a browser on the phone and go to the appropriate webpage as given by the lab staff.</li>
 <li>Confirm that the encoder monitor page loads before moving the wheel.</li>
 <li>Slowly turn the wheel by hand. The web interface should show two encoder graphs or channels updating with positive values for the expected rolling direction.</li>
 <li>If the displayed encoder data are static, negative in the expected rolling direction, or obviously discontinuous, stop and ask the teaching team before collecting trials.</li>
@@ -249,14 +238,6 @@
 <p>&quot;Displaying encoder data&quot; means the web interface is actively updating the exported encoder channels as the wheel turns. Do not release the wheel until you have seen the encoder values respond to gentle hand motion.</p>
 <hr>
 <h2>Part 4 — Running the Experiment</h2>
-<p><strong>Reference materials from the updated lab catalog:</strong></p>
-<ul>
-<li>Encoder monitor procedure: <strong>[AES-Encoder_Raw_vs_Buffer PROCEDURE LINK PLACEHOLDER — replace with rendered student-facing link]</strong></li>
-<li>Full unbalanced wheel procedure video: <strong>[FINAL PROCEDURE VIDEO PLACEHOLDER — add Nat&#x27;s edited video when available]</strong></li>
-<li>Student-facing test procedure: <strong>[SHAREPOINT STUDENT PROCEDURE PLACEHOLDER]</strong></li>
-<li>Teaching-team test procedure: <strong>[SHAREPOINT TE PROCEDURE PLACEHOLDER]</strong></li>
-<li>Sample data notes: <a href="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/data/data_notes_agent.md">@@FORWARD_MD_0@@</a></li>
-</ul>
 <p>Safety requirements:</p>
 <ul>
 <li>All students must stand to the side of the ramp during each run.</li>
@@ -293,13 +274,11 @@
 <li>The ESP32 encoder monitor saves raw encoder CSV data to the cellphone.</li>
 <li>Current CSV columns are: Index, Time [ms], QuadEncoder [counts], LS7184Encoder [counts].</li>
 <li>Save data promptly when the wheel reaches the bottom to avoid capturing stopping effects after the useful run.</li>
-<li>Reliable data range: 0.5 rad &lt; theta &lt; 15 rad, unless the teaching team updates this range for the outside-ramp setup. See <a href="../../../assets/assignments/lab_compilations/tier1_lab_unbalanced_wheel/data/data_notes_agent.md">@@FORWARD_MD_0@@</a>.</li>
+<li>Reliable data range: 0.5 rad &lt; theta &lt; 15 rad, unless the teaching team updates this range for the outside-ramp setup.</li>
 <li>Save all 4 trial files; name files consistently so balanced and unbalanced trials can be identified.</li>
 <li>Rename files using the catalog convention: <code>encoder_data_test#_balanced.csv</code> and <code>encoder_data_test#_unbalanced.csv</code>.</li>
-<li>Student-facing sample data should be accessed through the <a href="https://o365coloradoedu.sharepoint.com/:f:/r/sites/AEROENGR-Labspace-Labs/Shared%20Documents/Labs/01_Junior%20Level%20Labs/3501%20-%20Experimental%20Methods/Summer%202026%20-%20Course%20Development/Tier%201%20Lab%20Snapshots%20-%20STUDENT%20FACING/Unbalanced%20Wheel?d=w62fd27c495c14e6282446c9f6737c28b&amp;csf=1&amp;web=1&amp;e=z9P8Yt">Unbalanced Wheel Data Folder</a>, not from files bundled into the course site.</li>
 </ul>
 <p>If both <code>QuadEncoder</code> and <code>LS7184Encoder</code> are included in the exported CSV, compare the channels and justify which one you use for final theta and omega calculations.</p>
-<p><strong>Access-control note for deployment:</strong> the student-facing data folder should not contain solution scripts such as <code>encoder_plot_SOLUTIONS.m</code>. Keep solution files in staff-only storage.</p>
 <hr>
 <div class="video-embed"><iframe src="https://www.youtube.com/embed/7LkPGFA0u8s" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
 <hr>
@@ -340,13 +319,6 @@ Wheel rotation
 </ul>
 <hr></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Sample Data - Unbalanced Wheel</h1>
 <hr>
-<h2>Data Access</h2>
-<p>Use the SharePoint folder containing sample data:</p>
-<ul>
-<li><a href="https://o365coloradoedu.sharepoint.com/:f:/r/sites/AEROENGR-Labspace-Labs/Shared%20Documents/Labs/01_Junior%20Level%20Labs/3501%20-%20Experimental%20Methods/Summer%202026%20-%20Course%20Development/Tier%201%20Lab%20Snapshots%20-%20STUDENT%20FACING/Unbalanced%20Wheel?d=w62fd27c495c14e6282446c9f6737c28b&amp;csf=1&amp;web=1&amp;e=z9P8Yt">Unbalanced Wheel Data Folder</a></li>
-</ul>
-<p>Do not expect raw data files to be attached directly to this course page. The student-facing folder should contain data and starter materials only, not solution scripts such as <code>encoder_plot_SOLUTIONS.m</code>.</p>
-<hr>
 <h2>What the Current ESP32 System Records</h2>
 <p>The current Summer 2026 hardware uses an ESP32 web interface. The encoder monitor website saves CSV files to a student&#x27;s phone using names such as <code>encoder_data_#</code>.</p>
 <p>Per the updated lab catalog, the current CSV columns are:</p>
@@ -362,7 +334,6 @@ Wheel rotation
 <li><strong>θ &lt; 0.5 rad:</strong> startup transient region</li>
 <li><strong>θ &gt; 15 rad:</strong> likely stopping or ramp-end effects; confirm the final cutoff for the outside-ramp setup</li>
 </ul>
-<p>The staged historical MATLAB code explicitly trims data to this range.</p>
 <hr>
 <h2>File Naming Conventions</h2>
 <p>The current encoder monitor website automatically saves files as:</p>
@@ -385,8 +356,6 @@ Wheel rotation
 <li>plots ω vs. θ</li>
 <li>computes residuals against the selected model</li>
 </ul>
-<p>The historical <code>load(filename)</code> workflow applies to old processed text exports. For current CSV files, use a CSV-aware reader and the current data dictionary above.</p>
-<p>See <code>matlab/README_agent.md</code> for the expected analysis workflow.</p>
 <hr>
 <h2>Known Anomalies and Quirks</h2>
 <ul>
@@ -409,9 +378,7 @@ residual = omega_observed - omega_predicted
 <h2>Why are the raw data files not on the site?</h2>
 <p>Large or frequently updated data files are distributed through SharePoint. Use the student-facing data folder linked in the Sample Data section.</p>
 <h2>What should I discuss if the model does not match perfectly?</h2>
-<p>Discuss likely physical and measurement causes: encoder noise, wireless packet drops, release variability, start/end transients, friction modeling, and whether the eccentric mass is better treated as a point mass or rigid body.</p>
-<h2>Why does the page mention placeholders for videos or ESP32 links?</h2>
-<p>The lab now uses the updated outside-ramp and ESP32 setup. Some final procedure resources are still being staged, so placeholders mark links the teaching team needs to replace before student release.</p></div></div>
+<p>Discuss likely physical and measurement causes: encoder noise, wireless packet drops, release variability, start/end transients, friction modeling, and whether the eccentric mass is better treated as a point mass or rigid body.</p></div></div>
       </section>
     </main>
     
