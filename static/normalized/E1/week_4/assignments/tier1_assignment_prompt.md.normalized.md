@@ -106,6 +106,15 @@ present together. If logistics allow, your pair joins one other pair for a group
 presentation.
 **When:** Course Week 7-8, during the Tier 1 presentation/interview window on Monday, Oct 12 and Wednesday, Oct 14.
 
+### Experiment Pool Mapping
+
+| Section | Last Name | Phase 1 | Phase 2 |
+|---|---|---|---|
+| 011 | A-K | Unbalanced Wheel | Locomotive |
+| 011 | L-K | Locomotive | Unbalanced Wheel |
+| 012 | A-L | Unbalanced Wheel | Locomotive |
+| 012 | M-Z | Locomotive | Unbalanced Wheel |
+
 ---
 
 ## Phase 1 — Forward Analysis: Full Instructions
