@@ -17,9 +17,7 @@ To faithfully capture a signal with frequency content up to some maximum frequen
 
 What happens when you sample slower than the Nyquist rate? The same thing that happened to the helicopter blades. High-frequency content in the signal does not disappear. It folds back into the measured spectrum and appears as a false low-frequency signal. A physical vibration or electrical signal at 500 Hz, sampled at 600 samples per second, will appear in your data as an incorrect 100 Hz oscillation. That 100 Hz component is not present in the real physical system. It is an artifact of sampling, and it looks exactly like a real signal. There is no asterisk next to it, no error flag, no warning in the data file.
 
-![A three-panel diagram illustrating aliasing. Panel 1 shows a smooth, high-frequency sinusoidal signal (the true physical signal, labeled "True signal: 500 Hz") plotted as a continuous curve. Vertical dashed lines mark the sampling instants — spaced too far apart to capture the full waveform. Panel 2 shows the same sampling instants with open circles on the true signal curve — the sampled values. Panel 3 shows those sampled values connected by a smooth curve, producing an apparent low-frequency sinusoid labeled "Aliased result: 100 Hz." All three panels are stacked vertically, aligned on the same time axis, showing that the same sampling instants produce both the true signal and the aliased artifact depending on how they are connected.](../images/E2_W7_R1_image1.png)
-
-**Image update note:** This image needs to be updated. The current aliasing image is a placeholder and does not correctly represent the intended sampled points.
+![A three-panel aliasing diagram generated from one continuous 500 Hz cosine and its actual samples at 200 samples per second. The bottom panel shows a 100 Hz cosine passing through exactly the same sampled values, because 500 Hz equals two sampling-rate intervals plus a 100 Hz remainder.](../images/E2_W7_R1_image1_updated.png)
 
 *This image should let you watch a high-frequency signal turn into a believable but false low-frequency story, which is exactly why aliasing is so dangerous in practice.*
 
