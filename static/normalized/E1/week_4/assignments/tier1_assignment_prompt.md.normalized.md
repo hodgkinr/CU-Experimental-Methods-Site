@@ -111,7 +111,7 @@ presentation.
 | Section | Last Name | Phase 1 | Phase 2 |
 |---|---|---|---|
 | 011 | A-K | Unbalanced Wheel | Locomotive |
-| 011 | L-K | Locomotive | Unbalanced Wheel |
+| 011 | L-Z | Locomotive | Unbalanced Wheel |
 | 012 | A-L | Unbalanced Wheel | Locomotive |
 | 012 | M-Z | Locomotive | Unbalanced Wheel |
 
