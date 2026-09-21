@@ -258,8 +258,8 @@ features. For example: "I expect the measured angular velocity to increase from 
 
 **2. Predicted uncertainty in the primary derived quantity**
 Apply first-order error propagation using the sensor specifications from the packet.
-Compute u for the primary derived quantity. Show the partial derivatives. State the result
-as: *[quantity] = [predicted value] ± [predicted uncertainty] [units].*
+Compute u for the primary derived quantity. Show the uncertainty analysis. State the result
+as: *[quantity] = [predicted value] ± [predicted uncertainty] [units], method*
 
 **3. Predicted plot sketch**
 Sketch (by hand or in MATLAB) what you expect a plot of the primary output quantity vs.
@@ -367,9 +367,9 @@ evaluations ("good job, maybe add more data") receive no credit.
 |---|---|---|---|
 | Release | Tier 1 assignment released | Canvas / course site | Course Week 4 |
 | Phase 1 | Run experiment, analyze data | Lab sessions | Course Weeks 5–6 |
-| Phase 1 | Individual report | Written, Canvas | Due Friday, Sep 25 at 5:00 pm |
+| Phase 1 | Individual report | Written, Canvas | Due Friday, Oct 2 at 5:00 pm |
 | Phase 2 | Receive experiment packet | — | Course Week 6 |
-| Phase 2 | Prediction memo (submitted before data release) | Written, Canvas | Due Friday, Oct 2 before data release |
+| Phase 2 | Prediction memo (submitted before data release) | Written, Canvas | Due Friday, Oct 2 at 5:00 |
 | Phase 3 | Paired presentation / interview | In-person, in lab | Course Week 8 |
 | Phase 3 | Peer evaluations | Written, submitted same day | Course Week 8 |
 
