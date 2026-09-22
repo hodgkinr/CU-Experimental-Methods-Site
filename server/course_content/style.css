@@ -1152,7 +1152,8 @@ html.embed-mode .page-shell {
   max-width: none;
 }
 
-html.embed-mode .hero.compact {
+html.embed-mode .hero.compact,
+html.embed-mode .reading-page-polish .reading-learning-objectives {
   display: none;
 }
 
