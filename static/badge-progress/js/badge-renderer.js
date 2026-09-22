@@ -1,9 +1,9 @@
-import { PROTOTYPE_STATE_LEVELS } from "./course-config.js";
+import { BADGE_STATE_THRESHOLDS, PROTOTYPE_STATE_LEVELS } from "./course-config.js";
 
 export function getBadgeStatus(clo, subCLOStates) {
   const states = clo.subCLOs.map((sub) => subCLOStates[sub.id] ?? 0);
-  const earned = states.every((state) => state >= 2);
-  const masteryCount = states.filter((state) => state === 3).length;
+  const earned = states.every((state) => state >= BADGE_STATE_THRESHOLDS.proficient);
+  const masteryCount = states.filter((state) => state >= BADGE_STATE_THRESHOLDS.mastery).length;
   const total = states.length;
   const mastered = earned && masteryCount === total;
   const partial = earned && masteryCount > 0 && !mastered;
@@ -14,7 +14,7 @@ export function getBadgeStatus(clo, subCLOStates) {
     partial,
     masteryCount,
     total,
-    stateLabel: mastered ? "Mastery" : earned ? "Proficient Badge Earned" : "Developing / Not Yet Earned",
+    stateLabel: mastered ? "Mastery" : earned ? "Proficient" : "Not Yet Proficient",
     ratio: total ? masteryCount / total : 0
   };
 }
@@ -111,7 +111,7 @@ function renderSubCLOPanel(clo, subCLOStates, status) {
   return `
     <strong>${escapeHtml(clo.id)} - ${escapeHtml(clo.title)}</strong>
     <p>${escapeHtml(clo.statement)}</p>
-    <p><strong>Badge status:</strong> ${escapeHtml(status.stateLabel)}. <strong>Mastery progress:</strong> ${status.masteryCount} of ${status.total}.</p>
+    <p><strong>Badge status:</strong> ${escapeHtml(status.stateLabel)}. <strong>Mastery progress:</strong> ${status.masteryCount} of ${status.total} sub-CLOs.</p>
     <ul class="subclo-list">${rows}</ul>
   `;
 }

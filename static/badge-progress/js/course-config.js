@@ -5,6 +5,11 @@ export const PROTOTYPE_STATE_LEVELS = Object.freeze({
   3: { label: "Mastery", shortLabel: "Mastery" }
 });
 
+export const BADGE_STATE_THRESHOLDS = Object.freeze({
+  proficient: 2,
+  mastery: 3
+});
+
 export const COURSE_CONFIG = Object.freeze({
   schemaVersion: "asen3501-badge-config-v1",
   course: {
