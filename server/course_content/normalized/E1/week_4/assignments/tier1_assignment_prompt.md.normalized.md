@@ -82,7 +82,7 @@ developing the mindset of one.
 **What you do:** Execute the experiment, collect data, analyze uncertainty, compare to a
 predictive model, and propose at least one experimentally informed model improvement.
 **What you produce:** A Phase 1 Individual Report.
-**When:** Course Weeks 5–6, with the Phase 1 report due Friday, Sep 25 at 5:00 pm.
+**When:** Course Weeks 5–6, with the Phase 1 report due along with the Phase 2 prediction memo.
 
 ### Phase 2 — Reverse Prediction (Individual, Blind)
 

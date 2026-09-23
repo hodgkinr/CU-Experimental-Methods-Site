@@ -15,6 +15,12 @@ In Phase 1, you run one assigned experiment from the Tier 1 pool.
 In Phase 2, you receive a different experiment packet and predict that experiment before seeing any data.
 In Phase 3, you compare your Phase 2 prediction to the real data from that second experiment, and your partner does the same for yours.
 
+## 2.1 How many experimental runs do I analyze?
+
+You should analyze at least two different runs of the same experiment, you're welcome to analyze more.
+For example, if you took three sets of data on the locomotive crank at different voltages you should analyze them all. Similarly for the unbalanced wheel.
+You should then plot those different experiments together on the same plot BUT do not attempt to combine them statistically. For example the max residual for the first run of the locomotive should not be combined with the max residual for the third run. Keep them separate.
+
 ## 3. What exactly do I need before I arrive for the Phase 1 lab session?
 
 Bring the Phase 1 pre-lab work listed in the assignment:
