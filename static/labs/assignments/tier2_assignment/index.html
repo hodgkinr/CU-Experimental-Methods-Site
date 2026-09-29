@@ -48,23 +48,19 @@
         <h1>ASEN 3501 - Tier 2 Experimental Investigation</h1>
 <h2>Define the Test Envelope: Predict, Measure, Quantify, Recommend</h2>
 <p><strong>Role:</strong> You are an engineering consultant hired to evaluate an aerospace experiment.</p>
-<p><strong>Client question:</strong> At what test conditions can this experiment produce results that are reliable enough for its intended use? Which conditions should be avoided, and what change to the instrumentation or setup would move the useful test envelope?</p>
-<p><strong>Format:</strong> Large group, one assigned laboratory branch, four in-person lab working days, two common lectures, one technical report, and one short client briefing.</p>
-<p><strong>Laboratory choices:</strong></p>
+<p><strong>Client question:</strong> At what test conditions can this experiment produce results that are reliable enough for its intended use? Which conditions should be avoided, and what improvement(s) to the instrumentation or setup would move the useful test envelope?</p>
+<p><strong>Format:</strong> Large group, one assigned laboratory branch, four in-person lab working days, two in-person lectures, one technical report, and one short client briefing.</p>
+<p><strong>Experiment assignments:</strong></p>
 <ul>
-<li>Aeroelasticity branch: wind-tunnel pressure measurements, lift estimation, and finite-wing</li>
+<li><strong>Aeroelasticity:</strong> Test an infinite wing at assigned angles of attack and wind-tunnel velocities, then use the supplied finite-wing dataset to predict tip deflection at its single measured condition.</li>
+<li><strong>Spin Modules:</strong> Calibrate the gyro, estimate reaction-wheel and spacecraft-body inertia, estimate rotational resistance, and predict rotational dynamics.</li>
 </ul>
-<p>tip-deflection prediction.</p>
-<ul>
-<li>Spin-module branch: gyro calibration, reaction-wheel and spacecraft-body inertia</li>
-</ul>
-<p>estimation, and rotational-dynamics prediction with an experimentally estimated resistance model.</p>
 <h2>Why Tier 2 is different from Tier 1</h2>
 <p>Tier 1 focused on understanding an existing experiment and performing pointwise analysis. Tier 2 asks you to evaluate the experiment as a measurement system over a range of possible test conditions.</p>
 <p>The central question is no longer only:</p>
 <p>&gt; What value did we measure at this condition?</p>
 <p>It is:</p>
-<p>&gt; How does the quality of the derived result change as the test condition changes, and &gt; what should an engineer do about that?</p>
+<p>&gt; How does the quality of the derived result change as the test condition changes, and what &gt; should an engineer do about that?</p>
 <p>You will use a physics-based prediction, sensor specifications, calibration information, and measured data to construct a <strong>condition-dependent uncertainty envelope</strong>. The envelope will show where the experiment is informative and where sensor resolution, calibration, friction, signal processing, or model assumptions make the result difficult to interpret.</p>
 <p>The assignment is motivated by the uncertainty-analysis approach used in ASEN 6011, Experimental Fluid Mechanics, taught by Professor John Farnsworth. Students interested in experimental methods, fluid mechanics, aerospace testing, or measurement science are strongly encouraged to consider ASEN 6011. That course develops these ideas in substantially greater depth, both through its assignments and through the broader course sequence.</p>
 <h2>Learning goals</h2>
@@ -75,33 +71,20 @@
 <li>Explain normalized standard uncertainty using dimensionless sensitivity coefficients.</li>
 <li>Use Monte Carlo analysis to propagate realistic sensor and parameter distributions.</li>
 <li>Identify appropriate and inappropriate test conditions from an uncertainty envelope.</li>
-<li>Propose a specific, quantitatively justified change to the experiment that would move the</li>
-</ol>
-<p>useful test envelope.</p>
-<ol>
+<li>Propose a specific, quantitatively justified improvement to the experiment that would move the useful test envelope.</li>
 <li>Distinguish measurement uncertainty from model-form discrepancy and setup limitations.</li>
 </ol>
 <h2>Vocabulary for this assignment</h2>
 <p>Use the following terms consistently:</p>
 <ul>
 <li><strong>Standard uncertainty:</strong> A one-standard-deviation uncertainty estimate for a quantity.</li>
-<li><strong>Relative standard uncertainty:</strong> Standard uncertainty divided by the nominal quantity,</li>
+<li><strong>Relative standard uncertainty:</strong> Standard uncertainty divided by the nominal quantity, such as \(u_y/|y|\).</li>
+<li><strong>Condition-dependent uncertainty envelope:</strong> A plot of absolute or relative standard uncertainty versus a test condition, such as freestream velocity or applied torque.</li>
+<li><strong>Sensitivity coefficient:</strong> The dimensionless factor that describes how a fractional input change affects a fractional output change.</li>
+<li><strong>Useful test envelope:</strong> The region where the predicted result has acceptable uncertainty, the hardware is operating within limits, and the model remains appropriate.</li>
 </ul>
-<p>such as u_y/|y|.</p>
-<ul>
-<li><strong>Condition-dependent uncertainty envelope:</strong> A plot of absolute or relative standard</li>
-</ul>
-<p>uncertainty versus a test condition, such as freestream velocity or applied torque.</p>
-<ul>
-<li><strong>Sensitivity coefficient:</strong> The dimensionless factor that describes how a fractional input</li>
-</ul>
-<p>change affects a fractional output change.</p>
-<ul>
-<li><strong>Useful test envelope:</strong> The region where the predicted result has acceptable uncertainty,</li>
-</ul>
-<p>the hardware is operating within limits, and the model remains appropriate.</p>
 <p>The phrase “sensitivity of the uncertainty” is understandable but imprecise. In your report, use <strong>condition-dependent uncertainty envelope</strong> for the overall plot and <strong>dimensionless sensitivity coefficient</strong> for the mathematical factors.</p>
-<h2>Two common lectures</h2>
+<h2>Two in-person lectures</h2>
 <h3>Lecture 1 - From Tier 1 pointwise uncertainty to an uncertainty envelope</h3>
 <p>This lecture makes the cognitive transition from a single Monte Carlo analysis at one data point to an aerospace test-condition study. It introduces:</p>
 <ul>
@@ -109,10 +92,7 @@
 <li>the difference between pointwise random variation and setup-level or calibration errors;</li>
 <li>normalized standard uncertainty;</li>
 <li>dimensionless sensitivity coefficients;</li>
-<li>why a fixed sensor resolution can be insignificant at one condition and dominant at</li>
-</ul>
-<p>another;</p>
-<ul>
+<li>why a fixed sensor resolution can be insignificant at one condition and dominant at another;</li>
 <li>how to compare Taylor-series propagation and Monte Carlo propagation;</li>
 <li>how an uncertainty curve becomes an engineering recommendation.</li>
 </ul>
@@ -124,10 +104,7 @@
 <li>distinguishing low relative uncertainty from physically meaningful or safe operation;</li>
 <li>selecting test points efficiently when lab time is limited;</li>
 <li>separating instrumentation changes from model changes;</li>
-<li>predicting how a sensor range, resolution, calibration, or sampling choice would move the</li>
-</ul>
-<p>useful test envelope;</p>
-<ul>
+<li>predicting how a sensor range, resolution, calibration, or sampling choice would move the useful test envelope;</li>
 <li>writing a recommendation that a client could act on.</li>
 </ul>
 <h2>Four-day laboratory plan</h2>
@@ -137,27 +114,14 @@
 <h2>Phase 1 - Consulting brief and pre-test prediction</h2>
 <p>Before collecting primary data, submit or show the instructor/TA a short prediction brief. This is a working document, not a polished report. It must contain:</p>
 <ol>
-<li><strong>Client objective:</strong> What quantity will the client use the experiment to estimate or</li>
-</ol>
-<p>predict?</p>
-<ol>
-<li><strong>Measurement chain:</strong> What physical quantity is measured by each sensor, and how does it</li>
-</ol>
-<p>enter the data-reduction equation?</p>
-<ol>
+<li><strong>Client objective:</strong> What quantity will the client use the experiment to estimate or predict?</li>
+<li><strong>Measurement chain:</strong> What physical quantity is measured by each sensor, and how does it enter the data-reduction equation?</li>
 <li><strong>Predicted response:</strong> Give numerical values or curves over the planned test range.</li>
-<li><strong>Initial uncertainty envelope:</strong> Use the supplied specifications to estimate where the</li>
-</ol>
-<p>result should be reliable or unreliable.</p>
-<ol>
+<li><strong>Initial uncertainty envelope:</strong> Use the supplied specifications to estimate where the result should be reliable or unreliable.</li>
 <li><strong>Committed test matrix:</strong> Identify the conditions you will test and why they are useful.</li>
-<li><strong>Acceptance criterion:</strong> Define what agreement between prediction and measurement would</li>
+<li><strong>Acceptance criterion:</strong> Define what agreement between prediction and measurement would be adequate for the stated client objective.</li>
+<li><strong>Risk forecast:</strong> Describe one data pattern that would indicate a setup, sensor, or model problem rather than ordinary scatter.</li>
 </ol>
-<p>be adequate for the stated client objective.</p>
-<ol>
-<li><strong>Risk forecast:</strong> Describe one data pattern that would indicate a setup, sensor, or model</li>
-</ol>
-<p>problem rather than ordinary scatter.</p>
 <p>The prediction is frozen when the group begins its primary test. A wrong prediction is useful evidence; silently rewriting it after seeing the data is not.</p>
 <h2>Phase 2 - Laboratory execution</h2>
 <p>Follow the branch-specific procedure. During testing:</p>
@@ -166,21 +130,17 @@
 <li>record sensor range, units, calibration information, and any changes to the setup;</li>
 <li>note anomalies while they happen;</li>
 <li>preserve raw data and a clear file naming convention;</li>
-<li>use the uncertainty envelope to decide whether a repeat or additional test point is worth</li>
+<li>use the uncertainty envelope to decide whether a repeat or additional test point is worth the available time;</li>
+<li>do not spend the final lab day collecting points that your own analysis predicts will be dominated by resolution or model limitations unless the purpose is to demonstrate that limitation.</li>
 </ul>
-<p>the available time;</p>
-<ul>
-<li>do not spend the final lab day collecting points that your own analysis predicts will be</li>
-</ul>
-<p>dominated by resolution or model limitations unless the purpose is to demonstrate that limitation.</p>
 <h2>Phase 3 - Required analysis</h2>
 <h3>3.1 Prediction versus measurement</h3>
-<p>Compare the committed prediction with the measured result. Use residuals or equivalent comparison plots. State whether the acceptance criterion was met and classify important discrepancies as likely measurement variation, calibration or bias, setup effect, data- reduction issue, parameter uncertainty, or model-form discrepancy.</p>
+<p>Compare the committed prediction with the measured result. Use residuals or equivalent comparison plots. State whether the acceptance criterion was met and classify important discrepancies as likely measurement variation, calibration or bias, setup effect, data-reduction issue, parameter uncertainty, or model-form discrepancy.</p>
 <h3>3.2 Condition-dependent uncertainty envelope</h3>
 <p>For the primary derived quantity, produce both:</p>
 <ul>
-<li>absolute standard uncertainty versus test condition; and</li>
-<li>relative standard uncertainty u_y/|y| versus test condition.</li>
+<li>absolute scaled systematic standard uncertainty versus test condition; and</li>
+<li>relative systematic standard uncertainty \(\mathrm{NSU}_{y,\mathrm{sys}}=b_{y,\mathrm{sys}}/|y|\) versus test condition.</li>
 </ul>
 <p>Identify:</p>
 <ul>
@@ -193,14 +153,10 @@
 <p>Use the method required by your branch document. In general, the report should include:</p>
 <ul>
 <li>a normalized sensitivity derivation for the main data-reduction equation;</li>
-<li>a Monte Carlo implementation with at least 10,000 trials per representative condition or</li>
-</ul>
-<p>a justified convergence study;</p>
-<ul>
+<li>a Monte Carlo implementation with at least 10,000 trials per representative condition or a justified convergence study;</li>
 <li>a comparison of the two methods at selected conditions;</li>
-<li>an explanation of any disagreement based on nonlinearity, bounded distributions, shared</li>
+<li>an explanation of any disagreement based on nonlinearity, bounded distributions, shared parameters, or invalid samples.</li>
 </ul>
-<p>parameters, or invalid samples.</p>
 <p>Monte Carlo is not a substitute for understanding the data-reduction equation. It is a way to propagate the model and uncertainty distributions without manually differentiating every equation.</p>
 <h3>3.4 Client recommendation and setup modification</h3>
 <p>Your group must recommend:</p>
@@ -210,58 +166,32 @@
 <li>the dominant reason for each decision; and</li>
 <li>at least one specific setup alteration that would move the useful test envelope.</li>
 </ol>
-<p>The alteration may involve sensor range, sensor resolution, calibration, signal conditioning, sampling, test-point selection, geometry, or an additional measurement. Estimate the effect of the change quantitatively. “Use a better sensor” is not sufficient.</p>
+<p>The alteration may involve sensor range, sensor resolution, calibration, signal conditioning, sampling, test-point selection, geometry, or an additional measurement. Estimate the effect of the improvement quantitatively. “Use a better sensor” is not sufficient.</p>
 <h2>Branch requirements</h2>
 <h3>Aeroelasticity branch</h3>
-<p>The primary quantity is finite-wing tip deflection predicted from aerodynamic loading. Students will:</p>
+<p>The primary quantity is finite-wing tip deflection predicted from aerodynamic loading, but the student-collected aerodynamic dataset comes from the infinite-wing model. Students will:</p>
 <ol>
-<li>Use differential-pressure, atmospheric-pressure, and temperature information to predict</li>
+<li>Use the supplied differential-pressure, atmospheric-pressure, and temperature information to calculate freestream velocity and dynamic pressure.</li>
+<li>Test the infinite wing at the assigned angles of attack and wind-tunnel velocities.</li>
+<li>Use the infinite-wing pressure distribution to estimate sectional \(C_l\), lift, and a baseline load distribution.</li>
+<li>Use the instructor-provided finite-wing dataset, collected at one assigned angle of attack and airspeed, to estimate the finite-wing load distribution and predict tip deflection.</li>
+<li>Convert the aerodynamic load distribution to structural loading and tip deflection using the supplied beam equations and geometry.</li>
+<li>Propagate uncertainty to lift and tip deflection as a function of freestream velocity, while treating the finite-wing dataset as a single-condition validation dataset.</li>
+<li>Recommend a useful wind-tunnel velocity and angle-of-attack envelope, plus an instrumentation or setup improvement that would move it.</li>
 </ol>
-<p>freestream velocity and dynamic pressure.</p>
-<ol>
-<li>Use the infinite-wing pressure distribution to estimate sectional C_l and a baseline</li>
-</ol>
-<p>load distribution.</p>
-<ol>
-<li>Use the finite-wing/spanwise information to estimate the actual spanwise lift distribution.</li>
-<li>Convert the lift distribution to structural load intensity and predict tip deflection using</li>
-</ol>
-<p>the supplied beam equations.</p>
-<ol>
-<li>Compare infinite-wing and finite-wing predictions with measured data.</li>
-<li>Propagate uncertainty to lift and tip deflection as a function of freestream velocity or</li>
-</ol>
-<p>another instructor-approved operating condition.</p>
-<ol>
-<li>Recommend a useful wind-tunnel velocity envelope and a sensor or setup change that would</li>
-</ol>
-<p>move it.</p>
-<p>Students are not required to derive the whiffle-tree geometry or repeat the structural derivation. The instructor provides the structural equations and the needed geometry.</p>
+<p>The Tier 2 experiment uses the PILOT low-speed wind tunnel only. Students are not required to derive the whiffle-tree geometry or repeat the structural derivation; the instructor provides the structural equations and the needed geometry.</p>
 <h3>Spin-module branch</h3>
 <p>The primary quantities are calibrated angular rate, reaction-wheel inertia, spacecraft-body inertia, and predicted rotational response.</p>
 <p>Students will:</p>
 <ol>
 <li>Calibrate the gyro against the encoder reference over the assigned rate range.</li>
-<li>Use reaction-wheel torque and angular acceleration data to estimate reaction-wheel inertia.</li>
-<li>Use base-motor torque and spacecraft angular acceleration data to estimate spacecraft-body</li>
+<li>Use reaction-wheel torque and angular-acceleration data to estimate reaction-wheel inertia.</li>
+<li>Use base-motor torque and spacecraft angular-acceleration data to estimate spacecraft-body inertia.</li>
+<li>Conduct or analyze a coast-down segment to estimate the lumped resistance parameters \(c\) and \(\tau_0\), or use instructor-provided estimates if time or hardware availability requires.</li>
+<li>Use \(I\dot{\omega}+c\omega+\tau_0\operatorname{sgn}(\omega)=\tau_{\mathrm{applied}}\) to predict rotational performance.</li>
+<li>Propagate uncertainty versus applied torque for spin-up and inertia testing, and versus angular rate for gyro or coast-down testing.</li>
+<li>Recommend useful and inappropriate torque/rate conditions and a setup improvement that would move the useful test envelope.</li>
 </ol>
-<p>inertia.</p>
-<ol>
-<li>Conduct or analyze a coast-down segment to estimate lumped resistance parameters c and</li>
-</ol>
-<p>tau_0, or use instructor-provided estimates if time or hardware availability requires.</p>
-<ol>
-<li>Use</li>
-</ol>
-<p>I<em>omega_dot + c</em>omega + tau_0*sgn(omega) = tau_applied to predict rotational performance.</p>
-<ol>
-<li>Propagate uncertainty versus applied torque for spin-up/inertia testing and versus angular</li>
-</ol>
-<p>rate for gyro or coast-down testing.</p>
-<ol>
-<li>Recommend useful and inappropriate torque/rate conditions and a setup change that would</li>
-</ol>
-<p>move the useful test envelope.</p>
 <p>The minimum Tier 2 spin dataset is gyro calibration, multiple reaction-wheel torque trials, multiple base-motor torque trials, and one coast-down or instructor-provided resistance characterization. Torque constants, sample data, exact sensor specifications, and final test limits remain instructor-provided placeholders until verified.</p>
 <h2>Deliverables</h2>
 <h3>1. Technical report</h3>
@@ -291,48 +221,21 @@
 <li>recommended setup change and expected effect;</li>
 <li>final test-envelope recommendation.</li>
 </ul>
-<p>Each group gives a short briefing followed by questions. The purpose is technical decision- making, not a complete reproduction of the report.</p>
+<p>Each group gives a short briefing followed by questions. The purpose is technical decision-making, not a complete reproduction of the report.</p>
 <h3>3. Individual evidence</h3>
 <p>Each student must be able to explain the measurement chain, the normalized uncertainty, the Monte Carlo result, and the group recommendation. The instructor may use a short individual check or targeted question during the briefing.</p>
-<h2>Scope control for four lab days</h2>
-<p>The following are intentionally not required unless the instructor assigns them as enrichment:</p>
-<ul>
-<li>complete whiffle-tree structural design;</li>
-<li>deriving all beam equations from first principles;</li>
-<li>full aerodynamic model development beyond the supplied equations;</li>
-<li>reaction-wheel saturation-time studies;</li>
-<li>solar-panel comparison;</li>
-<li>exhaustive sensor calibration-status research;</li>
-<li>testing every possible operating condition;</li>
-<li>deriving Taylor-series partial derivatives for every intermediate quantity.</li>
-</ul>
-<p>The goal is a defensible engineering recommendation, not a complete redesign of either laboratory.</p>
-<h2>Resources</h2>
-<ul>
-<li>&#x27;TIER2_normalized_uncertainty_guide.md&#x27;</li>
-<li>&#x27;TIER2_power_lab_bridge.md&#x27;</li>
-<li>&#x27;TIER2_teaching_sequence.md&#x27;</li>
-<li>the assigned branch document in &#x27;lab_compilations/&#x27;</li>
-<li>Tier 1 uncertainty resources, especially the pointwise Monte Carlo and residual-analysis</li>
-</ul>
-<p>documents</p>
-<ul>
-<li>ASEN 6011 HW04 solution, provided as instructor background and motivation, not as a</li>
-</ul>
-<p>student-facing worked solution</p>
-<p><em>ASEN 3501 - Tier 2 Experimental Investigation | Working draft for instructor review</em></p>
       </section>
       <section class="content-card markdown-body" style="padding:1.5rem; margin-top:1.5rem">
         <hr style="margin-bottom:1.5rem">
         <h1>Tier 2 Experimental Investigation - Frequently Asked Questions</h1>
 <h2>1. What is the consulting scenario?</h2>
-<p>Your group is acting as an engineering consulting team. The client wants to know which conditions produce useful data, which conditions should be avoided, and what setup change would improve the experiment.</p>
+<p>Your group is acting as an engineering consulting team. The client wants to know which conditions produce useful data, which conditions should be avoided, and what improvement(s) would improve the experiment.</p>
 <h2>2. How is this different from Tier 1?</h2>
 <p>Tier 1 emphasized pointwise analysis. Tier 2 asks you to repeat the uncertainty analysis across a range of test conditions and use the resulting uncertainty envelope to make a test decision.</p>
 <h2>3. What is the uncertainty envelope?</h2>
-<p>It is a plot of absolute or relative standard uncertainty versus a test condition. Examples include freestream velocity for the wind tunnel and applied torque for spin-up testing.</p>
+<p>It is a plot of scaled systematic standard uncertainty or normalized systematic standard uncertainty versus a test condition. Examples include freestream velocity for the wind tunnel and applied torque for spin-up testing.</p>
 <h2>4. What should we call the new idea?</h2>
-<p>Use <strong>condition-dependent uncertainty envelope</strong> for the plot and <strong>dimensionless sensitivity coefficient</strong> for the mathematical factors. Use <strong>relative standard uncertainty</strong> for u_y/|y| at one condition.</p>
+<p>Use <strong>condition-dependent uncertainty envelope</strong> for the plot and <strong>dimensionless sensitivity coefficient</strong> for the mathematical factors. Use <strong>relative standard uncertainty</strong> for \(\mathrm{NSU}_{y,\mathrm{sys}}=b_{y,\mathrm{sys}}/|y|\) at one condition.</p>
 <h2>5. Is this an individual or group assignment?</h2>
 <p>The experiment and report are group work. Every student must understand the full measurement chain and be able to explain the group&#x27;s uncertainty envelope and recommendation.</p>
 <h2>6. How much testing do we have?</h2>
@@ -342,9 +245,9 @@
 <h2>8. What if the prediction is wrong?</h2>
 <p>That is useful. The grade is based on whether the prediction was reasoned and specific and whether you diagnose the discrepancy honestly. Do not rewrite the original prediction after seeing the data.</p>
 <h2>9. Do we need to derive every structural equation?</h2>
-<p>No. In the aeroelasticity branch, the instructor provides the beam, load-to-deflection, and geometry equations needed to predict tip deflection. Students focus on the aerodynamic measurement chain, finite-wing load estimate, uncertainty, and test recommendation.</p>
+<p>No. In the aeroelasticity branch, the instructor provides the beam, load-to-deflection, and geometry equations needed to predict tip deflection. Students focus on the aerodynamic measurement chain, the infinite-wing test matrix, the supplied single-condition finite-wing load estimate, uncertainty, and test recommendation.</p>
 <h2>10. What exactly is required for the aeroelasticity branch?</h2>
-<p>Use wind-tunnel pressure, atmospheric, and temperature information to estimate freestream conditions; compare infinite-wing and finite-wing lift/load estimates; predict tip deflection; and determine how uncertainty changes across the approved velocity range.</p>
+<p>Test the infinite wing at multiple assigned angles of attack and velocities using pressure, atmospheric, temperature, and angle-of-attack information. Use the supplied finite-wing dataset at one assigned angle of attack and airspeed to predict tip deflection, then determine how uncertainty changes across the approved velocity range.</p>
 <h2>11. What exactly is required for the spin-module branch?</h2>
 <p>Calibrate the gyro, estimate reaction-wheel and spacecraft-body inertia from torque trials, and characterize coast-down resistance either experimentally or from instructor-provided data. Then predict rotational response and map uncertainty versus the appropriate rate or torque condition.</p>
 <h2>12. Should spin-module uncertainty be plotted versus rate or torque?</h2>
@@ -366,7 +269,7 @@
 <h2>17. What if a sensor specification or sample dataset is missing?</h2>
 <p>Use the clearly labeled instructor placeholder and state how the missing information affects your conclusion. Do not invent a sensor specification or torque constant.</p>
 <h2>18. What should the client briefing show?</h2>
-<p>Show the client question, predicted result, measured comparison, uncertainty envelope with useful and inappropriate regions marked, recommended setup alteration, and final test- envelope recommendation.</p>
+<p>Show the client question, predicted result, measured comparison, uncertainty envelope with useful and inappropriate regions marked, recommended setup alteration, and final test-envelope recommendation.</p>
 <h2>19. Why mention ASEN 6011?</h2>
 <p>The assignment is motivated by the uncertainty-analysis perspective used in Professor John Farnsworth&#x27;s ASEN 6011 Experimental Fluid Mechanics course. Students who want a deeper treatment of uncertainty propagation, experimental fluid mechanics, and measurement-system design are encouraged to consider taking ASEN 6011.</p>
 <p><em>ASEN 3501 - Tier 2 FAQ | Working draft</em></p>
@@ -381,10 +284,10 @@
 <h3>Aeroelasticity</h3>
 <p>Include:</p>
 <ul>
-<li>freestream velocity/dynamic-pressure prediction from the pressure and atmospheric sensors;</li>
-<li>infinite-wing sectional lift estimate;</li>
-<li>finite-wing/spanwise load estimate;</li>
-<li>supplied structural calculation for tip deflection;</li>
+<li>freestream velocity/dynamic-pressure prediction from the pressure, atmospheric, temperature, and angle-of-attack measurements;</li>
+<li>infinite-wing sectional lift estimate across the assigned angle-of-attack and velocity matrix;</li>
+<li>finite-wing/spanwise load estimate from the supplied dataset at one assigned angle of attack and airspeed;</li>
+<li>supplied structural calculation for tip deflection at the finite-wing condition;</li>
 <li>uncertainty propagated to lift and tip deflection;</li>
 <li>comparison with measured data;</li>
 <li>velocity-dependent test recommendation.</li>
@@ -418,185 +321,174 @@
         <hr style="margin-bottom:1.5rem">
         <h1>Tier 2 Student Guide - From Pointwise Uncertainty to a Test Envelope</h1>
 <h2>The question Tier 2 adds</h2>
-<p>In Tier 1, you often asked:</p>
-<p>&gt; What is the uncertainty in this result at this data point?</p>
-<p>In Tier 2, ask:</p>
-<p>&gt; How does the uncertainty change when the test condition changes?</p>
-<p>Examples:</p>
-<ul>
-<li>How does airspeed uncertainty change with freestream velocity?</li>
-<li>How does tip-deflection uncertainty change with wind-tunnel velocity?</li>
-<li>How does inferred inertia or predicted angular acceleration uncertainty change with applied torque?</li>
-<li>How does gyro-rate uncertainty change with angular rate?</li>
-</ul>
-<p>The output is an <strong>uncertainty envelope</strong>: a curve showing the uncertainty of the derived quantity across a useful range of test conditions.</p>
-<h2>Three different quantities</h2>
-<p>Keep these quantities separate:</p>
+<p>In Tier 1, you often asked: what is the uncertainty in this result at this data point? In Tier 2, ask: how does the uncertainty change when the test condition changes?</p>
+<p>Examples include airspeed uncertainty versus freestream velocity, tip-deflection uncertainty versus wind-tunnel velocity, inertia or angular-acceleration uncertainty versus applied torque, and gyro-rate uncertainty versus angular rate.</p>
+<p>The output is a <strong>condition-dependent uncertainty envelope</strong>: a curve showing the uncertainty of a derived quantity across a useful range of test conditions.</p>
+<h2>Keep three quantities separate</h2>
 <ol>
-<li><strong>The measured input</strong>, such as voltage, differential pressure, current, or angular rate.</li>
-<li><strong>The derived output</strong>, such as power, airspeed, lift, inertia, or tip deflection.</li>
-<li><strong>The test condition</strong>, the quantity you vary or use to organize the study, such as</li>
+<li><strong>Measured inputs:</strong> quantities such as voltage, differential pressure, current, resistance, angular rate, or encoder angle.</li>
+<li><strong>Derived output:</strong> a quantity calculated from the inputs, such as power, airspeed, lift, inertia, or tip deflection.</li>
+<li><strong>Test condition:</strong> the quantity varied or used to organize the study, such as resistance, freestream velocity, applied torque, or angular rate.</li>
 </ol>
-<p>freestream velocity, applied torque, or angular rate.</p>
 <p>The uncertainty in the derived output is not necessarily constant as the test condition changes.</p>
-<h2>Normalized standard uncertainty</h2>
-<p>Suppose a derived quantity is</p>
+<h2>From Taylor-series propagation to normalized uncertainty</h2>
+<p>Suppose the derived quantity is</p>
 <p>\[ y=f(x_1,x_2,\ldots,x_n). \]</p>
-<p>The first-order uncertainty estimate is</p>
-<p>\[ u_y^2 \approx \sum_i \left( \frac{\partial y}{\partial x_i}u_{x_i} \right)^2, \]</p>
-<p>when the inputs are treated as independent. If covariance is important, covariance terms must also be included.</p>
-<p>Divide by the nominal output magnitude \(|y|\):</p>
-<p>\[ \left(\frac{u_y}{|y|}\right)^2 \approx \sum_i \left[ \frac{x_i}{y} \frac{\partial y}{\partial x_i} \right]^2 \left(\frac{u_{x_i}}{|x_i|}\right)^2. \]</p>
-<p>The dimensionless quantity</p>
-<p>\[ S_i = \frac{x_i}{y} \frac{\partial y}{\partial x_i} \]</p>
-<p>is the <strong>dimensionless sensitivity coefficient</strong>. It describes how a fractional change in input \(x_i\) affects a fractional change in output \(y\):</p>
-<p>\[ \frac{\Delta y}{y} \approx S_i\frac{\Delta x_i}{x_i}. \]</p>
-<p>This is the mathematical reason normalization is useful. It separates:</p>
+<p>For systematic standard uncertainties in the inputs, the first-order Taylor-series estimate is</p>
+<p>\[ b_{y,\mathrm{sys}}^2 \approx \sum_i\left(\frac{\partial y}{\partial x_i}b_{x_i,\mathrm{sys}}\right)^2, \]</p>
+<p>When the input uncertainties are treated as independent. If a covariance matrix is supplied, add the appropriate covariance terms instead of assuming independence.</p>
+<p>Here \(b_{x_i,\mathrm{sys}}\) means the systematic standard uncertainty assigned to input \(x_i\). It may combine accuracy, calibration, resolution, quantization, gain, offset, or other setup-level components.</p>
+<h3>Step 1: Divide by the nominal output magnitude</h3>
+<p>The absolute result \(b_{y,\mathrm{sys}}\) has the units of \(y\). Divide by the nominal output magnitude \(|y|\) to obtain a dimensionless output uncertainty:</p>
+<p>\[ \frac{b_{y,\mathrm{sys}}}{|y|} \approx \frac{1}{|y|}\sqrt{\sum_i\left(\frac{\partial y}{\partial x_i}b_{x_i,\mathrm{sys}}\right)^2}. \]</p>
+<p>For one input contribution, insert \(|x_i|/|x_i|=1\) so the input uncertainty is also written in normalized form:</p>
+<p>\[ \frac{\left|\frac{\partial y}{\partial x_i}\right|b_{x_i,\mathrm{sys}}}{|y|} = \left|\frac{x_i}{|y|}\frac{\partial y}{\partial x_i}\right| \frac{b_{x_i,\mathrm{sys}}}{|x_i|}. \]</p>
+<p>This is the normalization step that is easy to skip when it is written too compactly. The factor \(x_i/|x_i|\) is only a sign factor. Because uncertainty contributions are squared, the sign does not affect the combined standard uncertainty, but it does matter when interpreting whether an input increase makes the output increase or decrease.</p>
+<h3>Step 2: Define the dimensionless sensitivity coefficient</h3>
+<p>Define the signed dimensionless sensitivity coefficient as</p>
+<p>\[ S_i=\frac{x_i}{y}\frac{\partial y}{\partial x_i}. \]</p>
+<p>It describes the local fractional response of the model:</p>
+<p>\[ \frac{\Delta y}{y}\approx S_i\frac{\Delta x_i}{x_i}. \]</p>
+<p>The magnitude \(|S_i|\) is used when ranking uncertainty contributions. For independent inputs, the normalized systematic standard uncertainty is therefore</p>
+<p>\[ \mathrm{NSU}_{y,\mathrm{sys}} = \frac{b_{y,\mathrm{sys}}}{|y|} \approx \sqrt{\sum_i\left[S_i\frac{b_{x_i,\mathrm{sys}}}{|x_i|}\right]^2}. \]</p>
+<p>For a particular input, define its normalized contribution to the output as</p>
+<p>\[ \mathrm{NSU}_{x_i\rightarrow y} = |S_i|\frac{b_{x_i,\mathrm{sys}}}{|x_i|}. \]</p>
+<p>This separates two ideas:</p>
 <ul>
-<li>the <strong>sensitivity of the model</strong>, \(S_i\); from</li>
-<li>the <strong>relative quality of the measurement</strong>, \(u_{x_i}/|x_i|\).</li>
+<li>\(S_i\) is the sensitivity of the data-reduction equation.</li>
+<li>\(b_{x_i,\mathrm{sys}}/|x_i|\) is the relative quality of the measurement at the current test condition.</li>
 </ul>
-<h2>A percentage interpretation</h2>
-<p>If \(S_i=2\), a 1% input error contributes approximately 2% output error.</p>
-<p>If \(S_i=1/2\), a 1% input error contributes approximately 0.5% output error.</p>
-<p>If \(S_i=-1\), a 1% increase in the input produces approximately a 1% decrease in the output. The sign matters for physical interpretation, but independent uncertainty contributions are squared when combined.</p>
-<h2>Why the uncertainty depends on test condition</h2>
-<p>Suppose a sensor has a fixed resolution uncertainty \(u_x=a\). Its relative uncertainty is</p>
-<p>\[ \frac{u_x}{|x|}=\frac{a}{|x|}. \]</p>
-<p>At small signal values, the fixed resolution is a large fraction of the measurement. At large signal values, the same resolution may be negligible.</p>
-<p>This creates the common shape of a measurement-system uncertainty envelope:</p>
+<h3>Step 3: Scale the normalized result back to output units</h3>
+<p>The normalized curve is dimensionless, but a client also needs to know the expected uncertainty in the units of the reported result. Multiply by the nominal output magnitude:</p>
+<p>\[ \mathrm{SSU}_{y,\mathrm{sys}}(q) = |y(q)|\,\mathrm{NSU}_{y,\mathrm{sys}}(q) = b_{y,\mathrm{sys}}(q), \]</p>
+<p>where \(q\) is the test condition. We will call \(\mathrm{SSU}_{y,\mathrm{sys}}\) the <strong>scaled systematic standard uncertainty</strong>. It has the units of the output: m/s for airspeed, N for lift, m for deflection, kg·m² for inertia, or W for power.</p>
+<p>The two plots answer different questions:</p>
 <ul>
-<li>a high relative uncertainty region at low signal;</li>
-<li>a lower-uncertainty region where the signal is well resolved;</li>
-<li>a high-uncertainty or invalid region at large signal if the sensor saturates, the model</li>
+<li>\(\mathrm{NSU}_{y,\mathrm{sys}}(q)\) asks, “What fraction of the result is uncertain?”</li>
+<li>\(\mathrm{SSU}_{y,\mathrm{sys}}(q)\) asks, “How large is the uncertainty in physical units?”</li>
 </ul>
-<p>breaks down, or another uncertainty source becomes dominant.</p>
-<h2>Absolute versus relative uncertainty</h2>
-<p>Always inspect both:</p>
-<p>\[ u_y \qquad\text{and}\qquad \frac{u_y}{|y|}. \]</p>
-<p>Relative uncertainty is useful for deciding whether a result is precise enough for its intended use. Absolute uncertainty is useful for understanding the physical size of the error. Relative uncertainty can become very large near \(y=0\), even when the absolute uncertainty is modest.</p>
-<p>Do not call a condition “good” only because its relative uncertainty is small. It must also be physically valid, safe, within the instrument range, and relevant to the client question.</p>
-<h2>A practical uncertainty-budget workflow</h2>
-<p>For each representative test condition:</p>
+<h2>What do you do with the sensitivity coefficients?</h2>
+<p>For each test condition:</p>
 <ol>
-<li>Write the data-reduction equation.</li>
-<li>List every uncertain input that enters that equation.</li>
-<li>Convert each specification or repeatability estimate into a standard uncertainty.</li>
-<li>State the assumed distribution and why it is reasonable.</li>
-<li>Calculate the dimensionless sensitivity coefficient or use Monte Carlo.</li>
-<li>Rank the contributions.</li>
-<li>Repeat over the planned test-condition range.</li>
-<li>Mark the useful, marginal, invalid, and unsafe regions.</li>
+<li>Evaluate the nominal inputs and the nominal output from the data-reduction equation.</li>
+<li>Calculate or estimate the systematic standard uncertainty of each input.</li>
+<li>Calculate \(S_i\) for every input that appears in the equation.</li>
+<li>Calculate each \(\mathrm{NSU}_{x_i\rightarrow y}\) contribution.</li>
+<li>Combine the contributions by root-sum-square to obtain \(\mathrm{NSU}_{y,\mathrm{sys}}\).</li>
+<li>Multiply by \(|y|\) to obtain \(\mathrm{SSU}_{y,\mathrm{sys}}\) in output units.</li>
+<li>Repeat over the full test-condition range and plot both curves.</li>
 </ol>
+<p>The low point in the scaled curve is not automatically the best test condition. A useful condition must also be physically valid, safe, within the instrument range, relevant to the client question, and supported by a model that still applies.</p>
+<h2>Example of the interpretation</h2>
+<p>Suppose a sensor has a fixed resolution uncertainty \(a_x\) and a proportional accuracy \(g_x|x|\). If \(a_x\) is the full width of a rectangular resolution interval, a convenient standard-uncertainty model is</p>
+<p>\[ b_{x,\mathrm{sys}}=\sqrt{\left(\frac{a_x}{\sqrt{12}}\right)^2+\left(g_x|x|\right)^2}. \]</p>
+<p>Then</p>
+<p>\[ \frac{b_{x,\mathrm{sys}}}{|x|} = \sqrt{\left(\frac{a_x}{\sqrt{12}|x|}\right)^2+g_x^2}. \]</p>
+<p>At small signal magnitude, the fixed-resolution term dominates. At larger signal magnitude, the proportional term becomes more important. That transition often creates a low-uncertainty region in the test envelope.</p>
 <h2>Monte Carlo connection</h2>
-<p>Monte Carlo uses the same measurement model without requiring every partial derivative.</p>
-<p>For each nominal test condition:</p>
+<p>Monte Carlo uses the same measurement model without requiring every partial derivative. For each nominal test condition:</p>
 <ol>
-<li>Set the centers of the input distributions to the nominal measurements or model values.</li>
+<li>Set the centers of the input distributions to the nominal values.</li>
 <li>Draw one plausible value for each uncertain input.</li>
 <li>Evaluate the data-reduction equation.</li>
 <li>Repeat many times.</li>
-<li>Compute the mean, standard deviation, and selected percentiles of the output.</li>
-<li>Plot the result as a function of test condition.</li>
+<li>Compute the output standard deviation and divide by the nominal output magnitude.</li>
+<li>Repeat for the full test-condition range.</li>
 </ol>
-<p>Monte Carlo does not remove the need to decide what each uncertainty distribution means. A Gaussian distribution, a bounded rectangular distribution, and a repeated-measurement distribution represent different physical assumptions.</p>
-<p>For setup-level calibration or scale-factor uncertainty, draw one value per virtual experiment and keep it common across the synthetic data from that experiment. Do not automatically redraw a calibration bias independently at every time sample.</p>
-<h2>Interpreting the final plot</h2>
-<p>Your report should use the plot to make a decision, not merely describe its shape.</p>
-<p>For each region, answer:</p>
-<ul>
-<li>What uncertainty source dominates?</li>
-<li>Is the result precise enough for the intended use?</li>
-<li>Is the condition physically valid and safe?</li>
-<li>Would another test point provide more useful information?</li>
-<li>What change to the setup would shift the boundary?</li>
-</ul>
-<p>The final product is an engineering recommendation supported by a curve.</p>
-<h2>What to call the result</h2>
-<p>Use these terms in your report:</p>
-<ul>
-<li><strong>Relative standard uncertainty:</strong> \(u_y/|y|\) at a particular condition.</li>
-<li><strong>Condition-dependent uncertainty envelope:</strong> the curve of uncertainty versus condition.</li>
-<li><strong>Useful test envelope:</strong> the subset of the curve that satisfies the precision, validity,</li>
-</ul>
-<p>and hardware requirements.</p>
-<ul>
-<li><strong>Dimensionless sensitivity coefficient:</strong> the model factor \(S_i\).</li>
-</ul>
-<p>Avoid using “sensitivity of the uncertainty” as the main technical label. It can describe the idea informally, but the terms above are more precise.</p>
+<p>For a proportional Gaussian error and a bounded rectangular resolution error, one synthetic measurement can be represented as</p>
+<p>\[ x^*=x+g_x|x|Z+\frac{a_x}{2}U, \]</p>
+<p>where \(Z\) is a standard normal draw and \(U\) is a uniform draw between \(-1\) and \(1\). The standard deviation of the resulting output samples estimates \(\mathrm{SSU}_{y,\mathrm{sys}}\); dividing by \(|y|\) estimates \(\mathrm{NSU}_{y,\mathrm{sys}}\).</p>
+<p>Monte Carlo does not eliminate the need to define what each distribution means. Use a common draw for a setup-level calibration bias across a virtual experiment when that bias should remain correlated across samples; do not redraw that bias independently at every time sample.</p>
+<p>The Taylor-series and Monte Carlo curves should agree when the uncertainties are small and the model is locally linear. Differences can occur when the uncertainty is large, the distributions are bounded, the output is near zero, inputs are correlated, or the model is strongly nonlinear.</p>
+<h2>How to turn the curves into a test decision</h2>
+<p>For each region of the plot, identify the dominant input contribution, compare the output uncertainty with the client’s acceptance criterion, check hardware and model limits, and decide whether an additional test point would be useful. Then propose a specific improvement, such as a different sensor range, improved resolution, a better calibration, a different sampling strategy, or an additional measurement. Quantify how the proposed improvement changes the two curves.</p>
+<p>Use <strong>relative standard uncertainty</strong> only for a value at one condition, <strong>condition-dependent uncertainty envelope</strong> for the curve over a range of conditions, <strong>scaled systematic standard uncertainty</strong> for the output-unit curve, and <strong>dimensionless sensitivity coefficient</strong> for the model factor \(S_i\). Avoid using \(r\) for relative uncertainty in this assignment because \(R\) is also used for electrical resistance.</p>
 <p><em>Student support document - Tier 2 working draft</em></p>
       </section>
       <section class="content-card markdown-body" style="padding:1.5rem; margin-top:1.5rem">
         <hr style="margin-bottom:1.5rem">
-        <h1>Tier 2 Student Guide - The Power Lab as a Bridge to Normalized Uncertainty</h1>
-<p>This short example connects the familiar power measurement from Tier 1 to the Tier 2 question: how does uncertainty change with the test condition?</p>
-<h2>Start with a familiar model</h2>
-<p>Suppose electrical power is calculated from voltage and current:</p>
-<p>\[ P=VI. \]</p>
-<p>The first-order uncertainty estimate is</p>
-<p>\[ u_P^2 \approx (V u_I)^2+(I u_V)^2. \]</p>
-<p>Divide by \(P^2=(VI)^2\):</p>
-<p>\[ \left(\frac{u_P}{P}\right)^2 \approx \left(\frac{u_I}{I}\right)^2+ \left(\frac{u_V}{V}\right)^2. \]</p>
-<p>The normalized result says that the two fractional input uncertainties contribute directly to the fractional power uncertainty. Each variable has a dimensionless sensitivity coefficient of 1.</p>
-<p>If the voltage and current instruments have the same relative standard uncertainty \(r\), then</p>
-<p>\[ \frac{u_P}{P}=\sqrt{2}\,r. \]</p>
-<p>This is the same idea that will later appear in the wind-tunnel and spin-module equations.</p>
-<h2>Compare a different data-reduction equation</h2>
-<p>The same power can also be calculated as</p>
-<p>\[ P=I^2R. \]</p>
-<p>The normalized uncertainty is</p>
-<p>\[ \left(\frac{u_P}{P}\right)^2 \approx \left(2\frac{u_I}{I}\right)^2+ \left(\frac{u_R}{R}\right)^2. \]</p>
-<p>The sensitivity coefficients are now:</p>
-<p>\[ S_I=2, \qquad S_R=1. \]</p>
-<p>If all three relative uncertainties are \(r\),</p>
-<p>\[ \frac{u_P}{P}=\sqrt{5}\,r. \]</p>
-<p>The instrument choice matters because the data-reduction equation weights the inputs differently. This is a simple example of an experiment-design decision.</p>
-<h2>What changes when the test condition changes?</h2>
-<p>Suppose the current instrument has a fixed absolute resolution \(a_I\). Then</p>
-<p>\[ \frac{u_I}{I}=\frac{a_I}{|I|}. \]</p>
-<p>At low current, the same resolution creates a large relative uncertainty. At larger current, it creates a smaller relative uncertainty. The power uncertainty therefore depends on the operating condition even if the instrument itself has not changed.</p>
-<p>If the current instrument instead has an uncertainty proportional to the reading,</p>
-<p>\[ u_I=r_I|I|, \]</p>
-<p>then its relative contribution is approximately constant:</p>
-<p>\[ \frac{u_I}{|I|}=r_I. \]</p>
-<p>Real measurement systems commonly include both fixed and proportional terms.</p>
-<h2>A power-lab uncertainty envelope</h2>
-<p>Imagine that the lab can operate over a range of currents. For each current:</p>
+        <h1>Tier 2 Student Guide - The Power Lab as a Bridge to a Test Envelope</h1>
+<p>This example connects the familiar Tier 1 power measurement to the Tier 2 question: how does the uncertainty change when the test condition changes? Here the test condition is the resistance \(R\), not the current. The resistance can be changed by replacing the load resistor while the electrical measurement system remains the same.</p>
+<p>The example follows the structure of the ASEN 6011 uncertainty-analysis approach used as motivation for this assignment, but the equations, workflow, and plots below are written for this course.</p>
+<h2>Start with three valid power data-reduction equations</h2>
+<p>For a resistor with voltage \(V\), current \(I\), and resistance \(R\), the same nominal power can be written three ways:</p>
+<p>\[ P_1=VI,\qquad P_2=I^2R,\qquad P_3=\frac{V^2}{R}. \]</p>
+<p>These are physically equivalent when \(V=IR\), but they do not have the same uncertainty propagation because each equation uses a different pair of measured quantities.</p>
+<p>The dimensionless sensitivity coefficients are</p>
+<p>\[ \begin{array}{c|ccc} \text{data-reduction equation} &amp; S_V &amp; S_I &amp; S_R\\ \hline P_1=VI &amp; 1 &amp; 1 &amp; 0\\ P_2=I^2R &amp; 0 &amp; 2 &amp; 1\\ P_3=V^2/R &amp; 2 &amp; 0 &amp; -1 \end{array} \]</p>
+<p>For example, \(S_R=-1\) in \(P_3=V^2/R\) means that a fractional increase in \(R\) produces an approximately equal fractional decrease in \(P_3\), holding \(V\) fixed. The negative sign disappears when that contribution is squared in an uncertainty budget.</p>
+<p>If the voltmeter, ammeter, and ohmmeter have the same constant relative systematic standard uncertainty \(q\), then</p>
+<p>\[ \mathrm{NSU}_{P_1,\mathrm{sys}}=\sqrt{q^2+q^2}=\sqrt{2}\,q, \]</p>
+<p>\[ \mathrm{NSU}_{P_2,\mathrm{sys}}=\sqrt{(2q)^2+q^2}=\sqrt{5}\,q, \]</p>
+<p>\[ \mathrm{NSU}_{P_3,\mathrm{sys}}=\sqrt{(2q)^2+q^2}=\sqrt{5}\,q. \]</p>
+<p>This reproduces the central comparison from the motivating homework: \(P=VI\) has the smallest relative uncertainty when all three instruments have equal relative accuracy.</p>
+<h2>Make resistance the changing test condition</h2>
+<p>Choose a voltage level \(V_0\) that is safe for the circuit and use a set of resistors spanning the intended test range. For an illustrative constant-voltage study,</p>
+<p>\[ V(R)=V_0,\qquad I(R)=\frac{V_0}{R},\qquad P(R)=\frac{V_0^2}{R}. \]</p>
+<p>The actual laboratory may have a different source behavior. Use the measured or instructor-provided \(V(R)\) and calculate the nominal current and power from the selected model. The important point is that \(R\) is the independent test condition, while \(V\), \(I\), and \(P\) generally change with \(R\).</p>
+<h2>Assign systematic standard uncertainties to the instruments</h2>
+<p>Use the supplied specifications to construct an uncertainty model for each measured variable. A useful placeholder model combines a proportional accuracy term with a fixed rectangular resolution term:</p>
+<p>\[ b_{V,\mathrm{sys}}(R)=\sqrt{\left(\frac{a_V}{\sqrt{12}}\right)^2+\left(g_V|V(R)|\right)^2}, \]</p>
+<p>\[ b_{I,\mathrm{sys}}(R)=\sqrt{\left(\frac{a_I}{\sqrt{12}}\right)^2+\left(g_I|I(R)|\right)^2}, \]</p>
+<p>\[ b_{R,\mathrm{sys}}(R)=\sqrt{\left(\frac{a_R}{\sqrt{12}}\right)^2+\left(g_R|R|\right)^2}. \]</p>
+<p>Here \(a_V\), \(a_I\), and \(a_R\) are the full widths of the corresponding rectangular resolution intervals, and \(g_V\), \(g_I\), and \(g_R\) are proportional accuracy coefficients. Replace these placeholders with the actual instrument specifications. If a datasheet gives a standard uncertainty directly, use that value instead of dividing by \(\sqrt{12}\).</p>
+<p>The normalized systematic uncertainties of the inputs are</p>
+<p>\[ n_V(R)=\frac{b_{V,\mathrm{sys}}(R)}{|V(R)|},\qquad n_I(R)=\frac{b_{I,\mathrm{sys}}(R)}{|I(R)|},\qquad n_R(R)=\frac{b_{R,\mathrm{sys}}(R)}{|R|}. \]</p>
+<p>These three curves show how the quality of each measurement changes as the resistor changes. In particular, a fixed current resolution becomes a larger fraction of the current as \(R\) increases and \(I\) decreases.</p>
+<h2>Produce the normalized and scaled power curves</h2>
+<p>For each candidate data-reduction equation, multiply the input normalized uncertainty by the magnitude of its sensitivity coefficient:</p>
+<p>\[ n_{V\rightarrow P_1}=n_V,\qquad n_{I\rightarrow P_1}=n_I, \]</p>
+<p>\[ n_{I\rightarrow P_2}=2n_I,\qquad n_{R\rightarrow P_2}=n_R, \]</p>
+<p>\[ n_{V\rightarrow P_3}=2n_V,\qquad n_{R\rightarrow P_3}=n_R. \]</p>
+<p>Combine the active contributions by root-sum-square:</p>
+<p>\[ \mathrm{NSU}_{P_1,\mathrm{sys}}(R)=\sqrt{n_V^2+n_I^2}, \]</p>
+<p>\[ \mathrm{NSU}_{P_2,\mathrm{sys}}(R)=\sqrt{(2n_I)^2+n_R^2}, \]</p>
+<p>\[ \mathrm{NSU}_{P_3,\mathrm{sys}}(R)=\sqrt{(2n_V)^2+n_R^2}. \]</p>
+<p>These are the <strong>normalized systematic standard uncertainty</strong> curves. They answer: what fraction of the reported power is uncertain at each resistance?</p>
+<p>Scale each normalized curve by the nominal power:</p>
+<p>\[ \mathrm{SSU}_{P_k,\mathrm{sys}}(R)=|P_k(R)|\,\mathrm{NSU}_{P_k,\mathrm{sys}}(R),\qquad k\in\{1,2,3\}. \]</p>
+<p>These are the <strong>scaled systematic standard uncertainty</strong> curves. They answer: how many watts of uncertainty should be attached to the reported power at each resistance?</p>
+<h2>MATLAB starter code for the two requested plots</h2>
+<p>The following code creates one figure with three panels: scaled power uncertainty versus \(R\), normalized input uncertainties for \(V\), \(I\), and \(R\), and normalized power uncertainty for the three data-reduction equations. Replace the illustrative placeholders with the supplied specifications.</p>
+<p>~~~matlab % Tier 2 power bridge: resistance as the test condition R = logspace(0, 3, 250); % [ohm] replace with assigned range V0 = 5.0; % [V] replace with safe operating value V = V0 .<em> ones(size(R)); % replace if V changes with R I = V ./ R; % nominal current [A] P1 = V .</em> I; % P = V I P2 = I.^2 .* R; % P = I^2 R P3 = V.^2 ./ R; % P = V^2 / R</p>
+<p>% Instrument placeholders. % a_x is the full width of a rectangular resolution interval. aV = NaN; gV = NaN; % voltmeter [V], [fraction] aI = NaN; gI = NaN; % ammeter [A], [fraction] aR = NaN; gR = NaN; % ohmmeter [ohm], [fraction]</p>
+<p>bV = sqrt((aV/sqrt(12)).^2 + (gV.<em>abs(V)).^2); bI = sqrt((aI/sqrt(12)).^2 + (gI.</em>abs(I)).^2); bR = sqrt((aR/sqrt(12)).^2 + (gR.*abs(R)).^2);</p>
+<p>nV = bV ./ abs(V); nI = bI ./ abs(I); nR = bR ./ abs(R);</p>
+<p>nsuP1 = sqrt(nV.^2 + nI.^2); nsuP2 = sqrt((2.<em>nI).^2 + nR.^2); nsuP3 = sqrt((2.</em>nV).^2 + nR.^2);</p>
+<p>ssuP1 = abs(P1) .<em> nsuP1; % [W] ssuP2 = abs(P2) .</em> nsuP2; % [W] ssuP3 = abs(P3) .* nsuP3; % [W]</p>
+<p>figure; tiledlayout(1,3);</p>
+<p>nexttile; loglog(R, ssuP1, &#x27;LineWidth&#x27;, 1.5); hold on; loglog(R, ssuP2, &#x27;LineWidth&#x27;, 1.5); loglog(R, ssuP3, &#x27;LineWidth&#x27;, 1.5); grid on; xlabel(&#x27;Resistance R [ohm]&#x27;); ylabel(&#x27;Scaled systematic standard uncertainty in power [W]&#x27;); legend(&#x27;P = VI&#x27;, &#x27;P = I^2R&#x27;, &#x27;P = V^2/R&#x27;, &#x27;Location&#x27;, &#x27;best&#x27;);</p>
+<p>nexttile; loglog(R, nV, &#x27;LineWidth&#x27;, 1.5); hold on; loglog(R, nI, &#x27;LineWidth&#x27;, 1.5); loglog(R, nR, &#x27;LineWidth&#x27;, 1.5); grid on; xlabel(&#x27;Resistance R [ohm]&#x27;); ylabel(&#x27;Input normalized systematic uncertainty&#x27;); legend(&#x27;V&#x27;, &#x27;I&#x27;, &#x27;R&#x27;, &#x27;Location&#x27;, &#x27;best&#x27;);</p>
+<p>nexttile; loglog(R, nsuP1, &#x27;LineWidth&#x27;, 1.5); hold on; loglog(R, nsuP2, &#x27;LineWidth&#x27;, 1.5); loglog(R, nsuP3, &#x27;LineWidth&#x27;, 1.5); grid on; xlabel(&#x27;Resistance R [ohm]&#x27;); ylabel(&#x27;Normalized systematic standard uncertainty in power&#x27;); legend(&#x27;P = VI&#x27;, &#x27;P = I^2R&#x27;, &#x27;P = V^2/R&#x27;, &#x27;Location&#x27;, &#x27;best&#x27;); ~~~</p>
+<p>The first plot is the scaled systematic standard uncertainty in power versus resistance. The second plot is the requested comparison of normalized systematic uncertainties in the three measured quantities \(V\), \(I\), and \(R\). The third plot shows how the data-reduction equation weights those input uncertainties.</p>
+<h2>What the plots mean</h2>
+<p>At low resistance, the current is larger and a fixed current resolution is a smaller fraction of the reading. At high resistance, the current is smaller and the same current resolution may dominate \(n_I\). The resistance measurement may show the opposite behavior if its fixed resolution is most important at low \(R\). The best test region is where the scaled power uncertainty is acceptably small, the normalized uncertainty is below the client threshold, the electrical limits are satisfied, and the selected data-reduction equation is appropriate.</p>
+<p>Do not choose a resistor only because it minimizes relative uncertainty. A very high resistance may produce too little current for the ammeter, while a very low resistance may exceed the source or resistor power rating.</p>
+<h2>Monte Carlo version of the same power study</h2>
+<p>Monte Carlo should reproduce the same two curves without manually differentiating the power equations. At each resistance:</p>
 <ol>
-<li>calculate the nominal power;</li>
-<li>calculate the relative uncertainty in the chosen data-reduction equation;</li>
-<li>identify the dominant term;</li>
-<li>mark any current range where the instrument saturates or the resistor model is invalid.</li>
+<li>Set the nominal \(V\), \(I\), and \(R\).</li>
+<li>Draw proportional Gaussian errors and bounded resolution errors for the measured quantities.</li>
+<li>Compute \(P_1^<em>=V^</em>I^<em>\), \(P_2^</em>=(I^<em>)^2R^</em>\), and \(P_3^<em>=(V^</em>)^2/R^*\).</li>
+<li>Use the standard deviation of each power sample set as the Monte Carlo estimate of \(\mathrm{SSU}_{P_k,\mathrm{sys}}\).</li>
+<li>Divide by the nominal power to obtain the corresponding \(\mathrm{NSU}_{P_k,\mathrm{sys}}\).</li>
+<li>Plot the Monte Carlo curves on top of the Taylor-series curves and explain any differences.</li>
 </ol>
-<p>The result is a plot of relative standard uncertainty versus current. The engineering question is not simply “what is the smallest number?” It is:</p>
-<p>&gt; Which current range gives enough signal, acceptable uncertainty, and safe operation for &gt; the intended use?</p>
-<h2>Monte Carlo version</h2>
-<p>For \(P=VI\), a Monte Carlo implementation can:</p>
-<ol>
-<li>choose a nominal \(V\) and \(I\);</li>
-<li>draw \(V^\ast\) and \(I^\ast\) from the stated input distributions;</li>
-<li>calculate \(P^\ast=V^\ast I^\ast\);</li>
-<li>repeat many times;</li>
-<li>calculate the standard deviation of \(P^\ast\);</li>
-<li>divide by the nominal power to obtain a relative standard uncertainty;</li>
-<li>repeat for the full current or voltage range.</li>
-</ol>
-<p>The Monte Carlo result should approximately agree with the normalized Taylor-series result when the uncertainties are small and the model is locally linear. Differences can occur when uncertainty is large, distributions are bounded, signals approach zero, or inputs are correlated.</p>
+<p>For example, one resistance point can be simulated with:</p>
+<p>~~~matlab N = 10000; j = 100; % one selected index in the R array</p>
+<p>Vstar = V(j) + gV<em>abs(V(j))</em>randn(N,1) + (aV/2)<em>(2</em>rand(N,1)-1); Istar = I(j) + gI<em>abs(I(j))</em>randn(N,1) + (aI/2)<em>(2</em>rand(N,1)-1); Rstar = R(j) + gR<em>abs(R(j))</em>randn(N,1) + (aR/2)<em>(2</em>rand(N,1)-1);</p>
+<p>P1star = Vstar .<em> Istar; P2star = Istar.^2 .</em> Rstar; P3star = Vstar.^2 ./ Rstar;</p>
+<p>ssuP1_mc = std(P1star); ssuP2_mc = std(P2star); ssuP3_mc = std(P3star); ~~~</p>
+<p>Use independent draws only when the physical uncertainty sources are independent. If the same calibration error affects multiple readings, preserve that correlation in the Monte Carlo model.</p>
 <h2>The Tier 2 translation</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Power example</th><th>Wind tunnel</th><th>Spin module</th></tr></thead><tbody><tr><td>Current or voltage</td><td>Differential pressure, atmospheric pressure, temperature</td><td>Current, gyro rate, encoder rate</td></tr><tr><td>Power \(P\)</td><td>Airspeed, lift, or tip deflection</td><td>Angular acceleration, inertia, or predicted rate</td></tr><tr><td>Current range</td><td>Freestream-velocity range</td><td>Applied-torque or angular-rate range</td></tr><tr><td>Low-signal problem</td><td>Small differential pressure at low speed</td><td>Small net torque or low gyro rate</td></tr><tr><td>Setup change</td><td>Pressure-sensor range/resolution or calibration</td><td>Torque sensor/current range, gyro calibration, sampling, or resistance characterization</td></tr></tbody></table></div>
-<p>The analysis is not complete until the group makes the final test decision:</p>
-<ul>
-<li>which conditions are appropriate;</li>
-<li>which conditions are inappropriate or low-value;</li>
-<li>which uncertainty source causes the boundary; and</li>
-<li>what setup change would move the boundary.</li>
-</ul>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Power example</th><th>Aeroelasticity</th><th>Spin Modules</th></tr></thead><tbody><tr><td>Test condition \(R\)</td><td>Freestream velocity or angle of attack</td><td>Applied torque or angular rate</td></tr><tr><td>Measured inputs \(V,I,R\)</td><td>Differential pressure, atmospheric pressure, temperature, angle of attack</td><td>Current, gyro rate, encoder rate, motor torque constant</td></tr><tr><td>Derived output \(P\)</td><td>Airspeed, lift, or finite-wing tip deflection</td><td>Angular acceleration, inertia, or predicted rate</td></tr><tr><td>Low-signal problem</td><td>Small differential pressure at low speed</td><td>Small net torque or low gyro rate</td></tr><tr><td>Improvement</td><td>Pressure-sensor range, resolution, calibration, or sampling</td><td>Current/torque range, gyro calibration, sampling, or resistance characterization</td></tr></tbody></table></div>
+<p>The analysis is not complete until the group identifies the dominant input, marks the useful and inappropriate regions, and proposes a specific improvement that moves the test envelope.</p>
 <p><em>Student support document - Tier 2 working draft</em></p>
       </section>
     </main>
     
     
   
-  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-assignment-tier2_assignment", "title": "Tier 2 Assignment", "url": "labs/assignments/tier2_assignment/index.html", "text": "# ASEN 3501 - Tier 2 Experimental Investigation\n## Define the Test Envelope: Predict, Measure, Quantify, Recommend\n\n**Role:** You are an engineering consultant hired to evaluate an aerospace experiment.\n\n**Client question:** At what test conditions can this experiment produce results that are\nreliable enough for its intended use? Which conditions should be avoided, and what change\nto the instrumentation or setup would move the useful test envelope?\n\n**Format:** Large group, one assigned laboratory branch, four in-person lab working days,\ntwo common lectures, one technical report, and one short client briefing.\n\n**Laboratory choices:**\n\n- Aeroelasticity branch: wind-tunnel pressure measurements, lift estimation, and finite-wing\n tip-deflection prediction.\n- Spin-module branch: gyro calibration, reaction-wheel and spacecraft-body inertia\n estimation, and rotational-dynamics prediction with an experimentally estimated\n resistance model.\n\n## Why Tier 2 is different from Tier 1\n\nTier 1 focused on understanding an existing experiment and performing pointwise analysis.\nTier 2 asks you to evaluate the experiment as a measurement system over a range of possible\ntest conditions.\n\nThe central question is no longer only:\n\n> What value did we measure at this condition?\n\nIt is:\n\n> How does the quality of the derived result change as the test condition changes, and\n> what should an engineer do about that?\n\nYou will use a physics-based prediction, sensor specifications, calibration information,\nand measured data to construct a **condition-dependent uncertainty envelope**. The envelope\nwill show where the experiment is informative and where sensor resolution, calibration,\nfriction, signal processing, or model assumptions make the result difficult to interpret.\n\nThe assignment is motivated by the uncertainty-analysis approach used in ASEN 6011,\nExperimental Fluid Mechanics, taught by Professor John Farnsworth. Students interested in\nexperimental methods, fluid mechanics, aerospace testing, or measurement science are\nstrongly encouraged to consider ASEN 6011. That course develops these ideas in substantially\ngreater depth, both through its assignments and through the broader course sequence.\n\n## Learning goals\n\nBy the end of Tier 2, you should be able to:\n\n1. Build a predictive measurement model before collecting data.\n2. Trace uncertainty from sensor and DAQ information to an aerospace quantity of interest.\n3. Explain normalized standard uncertainty using dimensionless sensitivity coefficients.\n4. Use Monte Carlo analysis to propagate realistic sensor and parameter distributions.\n5. Identify appropriate and inappropriate test conditions from an uncertainty envelope.\n6. Propose a specific, quantitatively justified change to the experiment that would move the\n useful test envelope.\n7. Distinguish measurement uncertainty from model-form discrepancy and setup limitations.\n\n## Vocabulary for this assignment\n\nUse the following terms consistently:\n\n- **Standard uncertainty:** A one-standard-deviation uncertainty estimate for a quantity.\n- **Relative standard uncertainty:** Standard uncertainty divided by the nominal quantity,\n such as u_y/|y|.\n- **Condition-dependent uncertainty envelope:** A plot of absolute or relative standard\n uncertainty versus a test condition, such as freestream velocity or applied torque.\n- **Sensitivity coefficient:** The dimensionless factor that describes how a fractional input\n change affects a fractional output change.\n- **Useful test envelope:** The region where the predicted result has acceptable uncertainty,\n the hardware is operating within limits, and the model remains appropriate.\n\nThe phrase \u201csensitivity of the uncertainty\u201d is understandable but imprecise. In your report,\nuse **condition-dependent uncertainty envelope** for the overall plot and **dimensionless\nsensitivity coefficient** for the mathematical factors.\n\n## Two common lectures\n\n### Lecture 1 - From Tier 1 pointwise uncertainty to an uncertainty envelope\n\nThis lecture makes the cognitive transition from a single Monte Carlo analysis at one data\npoint to an aerospace test-condition study. It introduces:\n\n- the complete measurement chain from physical system to sensor to DAQ to derived result;\n- the difference between pointwise random variation and setup-level or calibration errors;\n- normalized standard uncertainty;\n- dimensionless sensitivity coefficients;\n- why a fixed sensor resolution can be insignificant at one condition and dominant at\n another;\n- how to compare Taylor-series propagation and Monte Carlo propagation;\n- how an uncertainty curve becomes an engineering recommendation.\n\nThe power-measurement bridge in 'TIER2_power_lab_bridge.md' should be completed before or\nduring this lecture.\n\n### Lecture 2 - From an uncertainty curve to a test decision\n\nThis lecture focuses on engineering judgment. It addresses:\n\n- defining an acceptable test result before collecting data;\n- distinguishing low relative uncertainty from physically meaningful or safe operation;\n- selecting test points efficiently when lab time is limited;\n- separating instrumentation changes from model changes;\n- predicting how a sensor range, resolution, calibration, or sampling choice would move the\n useful test envelope;\n- writing a recommendation that a client could act on.\n\n## Four-day laboratory plan\n\nThe exact scheduling of groups may vary, but the assignment is designed around four in-person\nworking days.\n\n| Day | Common purpose | Expected branch work | Required evidence |\n|---|---|---|---|\n| 1 | Understand and plan | Inspect setup, confirm sensors and limits, freeze prediction, begin calibration or baseline measurements | Measurement-chain diagram, prediction, initial test matrix |\n| 2 | Collect primary data | Wind-tunnel pressure/airspeed data, or gyro and spin-up data | Raw data, field notes, condition log |\n| 3 | Complete the model and uncertainty sweep | Finite-wing/deflection analysis, or coast-down/resistance characterization and Monte Carlo sweep | Preliminary uncertainty envelope and identified gaps |\n| 4 | Validate and recommend | Targeted repeat/check measurements, finalize comparisons, test or quantify proposed setup change | Final evidence for test-envelope recommendation |\n\nLarge groups should divide the work into parallel roles, but every student must understand\nthe complete measurement chain and the final recommendation.\n\n## Phase 1 - Consulting brief and pre-test prediction\n\nBefore collecting primary data, submit or show the instructor/TA a short prediction brief.\nThis is a working document, not a polished report. It must contain:\n\n1. **Client objective:** What quantity will the client use the experiment to estimate or\n predict?\n2. **Measurement chain:** What physical quantity is measured by each sensor, and how does it\n enter the data-reduction equation?\n3. **Predicted response:** Give numerical values or curves over the planned test range.\n4. **Initial uncertainty envelope:** Use the supplied specifications to estimate where the\n result should be reliable or unreliable.\n5. **Committed test matrix:** Identify the conditions you will test and why they are useful.\n6. **Acceptance criterion:** Define what agreement between prediction and measurement would\n be adequate for the stated client objective.\n7. **Risk forecast:** Describe one data pattern that would indicate a setup, sensor, or model\n problem rather than ordinary scatter.\n\nThe prediction is frozen when the group begins its primary test. A wrong prediction is useful\nevidence; silently rewriting it after seeing the data is not.\n\n## Phase 2 - Laboratory execution\n\nFollow the branch-specific procedure. During testing:\n\n- record the actual condition, not only the commanded condition;\n- record sensor range, units, calibration information, and any changes to the setup;\n- note anomalies while they happen;\n- preserve raw data and a clear file naming convention;\n- use the uncertainty envelope to decide whether a repeat or additional test point is worth\n the available time;\n- do not spend the final lab day collecting points that your own analysis predicts will be\n dominated by resolution or model limitations unless the purpose is to demonstrate that\n limitation.\n\n## Phase 3 - Required analysis\n\n### 3.1 Prediction versus measurement\n\nCompare the committed prediction with the measured result. Use residuals or equivalent\ncomparison plots. State whether the acceptance criterion was met and classify important\ndiscrepancies as likely measurement variation, calibration or bias, setup effect, data-\nreduction issue, parameter uncertainty, or model-form discrepancy.\n\n### 3.2 Condition-dependent uncertainty envelope\n\nFor the primary derived quantity, produce both:\n\n- absolute standard uncertainty versus test condition; and\n- relative standard uncertainty u_y/|y| versus test condition.\n\nIdentify:\n\n- the low-uncertainty region;\n- the high-uncertainty region;\n- the dominant uncertainty source in each region;\n- any regions that are physically invalid, unsafe, saturated, or outside model validity.\n\n### 3.3 Taylor-series and Monte Carlo methods\n\nUse the method required by your branch document. In general, the report should include:\n\n- a normalized sensitivity derivation for the main data-reduction equation;\n- a Monte Carlo implementation with at least 10,000 trials per representative condition or\n a justified convergence study;\n- a comparison of the two methods at selected conditions;\n- an explanation of any disagreement based on nonlinearity, bounded distributions, shared\n parameters, or invalid samples.\n\nMonte Carlo is not a substitute for understanding the data-reduction equation. It is a way\nto propagate the model and uncertainty distributions without manually differentiating every\nequation.\n\n### 3.4 Client recommendation and setup modification\n\nYour group must recommend:\n\n1. appropriate test conditions;\n2. inappropriate or low-value test conditions;\n3. the dominant reason for each decision; and\n4. at least one specific setup alteration that would move the useful test envelope.\n\nThe alteration may involve sensor range, sensor resolution, calibration, signal conditioning,\nsampling, test-point selection, geometry, or an additional measurement. Estimate the effect of\nthe change quantitatively. \u201cUse a better sensor\u201d is not sufficient.\n\n## Branch requirements\n\n### Aeroelasticity branch\n\nThe primary quantity is finite-wing tip deflection predicted from aerodynamic loading.\nStudents will:\n\n1. Use differential-pressure, atmospheric-pressure, and temperature information to predict\n freestream velocity and dynamic pressure.\n2. Use the infinite-wing pressure distribution to estimate sectional C_l and a baseline\n load distribution.\n3. Use the finite-wing/spanwise information to estimate the actual spanwise lift distribution.\n4. Convert the lift distribution to structural load intensity and predict tip deflection using\n the supplied beam equations.\n5. Compare infinite-wing and finite-wing predictions with measured data.\n6. Propagate uncertainty to lift and tip deflection as a function of freestream velocity or\n another instructor-approved operating condition.\n7. Recommend a useful wind-tunnel velocity envelope and a sensor or setup change that would\n move it.\n\nStudents are not required to derive the whiffle-tree geometry or repeat the structural\nderivation. The instructor provides the structural equations and the needed geometry.\n\n### Spin-module branch\n\nThe primary quantities are calibrated angular rate, reaction-wheel inertia, spacecraft-body\ninertia, and predicted rotational response.\n\nStudents will:\n\n1. Calibrate the gyro against the encoder reference over the assigned rate range.\n2. Use reaction-wheel torque and angular acceleration data to estimate reaction-wheel inertia.\n3. Use base-motor torque and spacecraft angular acceleration data to estimate spacecraft-body\n inertia.\n4. Conduct or analyze a coast-down segment to estimate lumped resistance parameters c and\n tau_0, or use instructor-provided estimates if time or hardware availability requires.\n5. Use\n I*omega_dot + c*omega + tau_0*sgn(omega) = tau_applied\n to predict rotational performance.\n6. Propagate uncertainty versus applied torque for spin-up/inertia testing and versus angular\n rate for gyro or coast-down testing.\n7. Recommend useful and inappropriate torque/rate conditions and a setup change that would\n move the useful test envelope.\n\nThe minimum Tier 2 spin dataset is gyro calibration, multiple reaction-wheel torque trials,\nmultiple base-motor torque trials, and one coast-down or instructor-provided resistance\ncharacterization. Torque constants, sample data, exact sensor specifications, and final\ntest limits remain instructor-provided placeholders until verified.\n\n## Deliverables\n\n### 1. Technical report\n\nSubmit one group report containing:\n\n1. consulting objective and intended use;\n2. committed pre-test prediction;\n3. measurement-chain diagram and assumptions;\n4. test matrix and actual test conditions;\n5. prediction-versus-measurement comparison;\n6. normalized sensitivity derivation;\n7. Monte Carlo method and distribution assumptions;\n8. absolute and relative uncertainty envelopes;\n9. dominant-source interpretation;\n10. appropriate/inappropriate test-condition recommendations;\n11. one quantitatively justified setup alteration;\n12. limitations, unresolved placeholders, and conclusion;\n13. individual contribution statement.\n\nThe report should be concise enough that a client could find the recommendation quickly.\n\n### 2. Client briefing\n\nPrepare one quad chart or equivalent single-page briefing with:\n\n- client question and predicted result;\n- uncertainty envelope with useful and inappropriate regions marked;\n- comparison with measured data;\n- recommended setup change and expected effect;\n- final test-envelope recommendation.\n\nEach group gives a short briefing followed by questions. The purpose is technical decision-\nmaking, not a complete reproduction of the report.\n\n### 3. Individual evidence\n\nEach student must be able to explain the measurement chain, the normalized uncertainty, the\nMonte Carlo result, and the group recommendation. The instructor may use a short individual\ncheck or targeted question during the briefing.\n\n## Scope control for four lab days\n\nThe following are intentionally not required unless the instructor assigns them as enrichment:\n\n- complete whiffle-tree structural design;\n- deriving all beam equations from first principles;\n- full aerodynamic model development beyond the supplied equations;\n- reaction-wheel saturation-time studies;\n- solar-panel comparison;\n- exhaustive sensor calibration-status research;\n- testing every possible operating condition;\n- deriving Taylor-series partial derivatives for every intermediate quantity.\n\nThe goal is a defensible engineering recommendation, not a complete redesign of either\nlaboratory.\n\n## Resources\n\n- 'TIER2_normalized_uncertainty_guide.md'\n- 'TIER2_power_lab_bridge.md'\n- 'TIER2_teaching_sequence.md'\n- the assigned branch document in 'lab_compilations/'\n- Tier 1 uncertainty resources, especially the pointwise Monte Carlo and residual-analysis\n documents\n- ASEN 6011 HW04 solution, provided as instructor background and motivation, not as a\n student-facing worked solution\n\n*ASEN 3501 - Tier 2 Experimental Investigation | Working draft for instructor review*", "module_id": null, "source_type": "overview"}</script>
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-assignment-tier2_assignment", "title": "Tier 2 Assignment", "url": "labs/assignments/tier2_assignment/index.html", "text": "# ASEN 3501 - Tier 2 Experimental Investigation\n## Define the Test Envelope: Predict, Measure, Quantify, Recommend\n\n**Role:** You are an engineering consultant hired to evaluate an aerospace experiment.\n\n**Client question:** At what test conditions can this experiment produce results that are reliable enough for its intended use? Which conditions should be avoided, and what improvement(s) to the instrumentation or setup would move the useful test envelope?\n\n**Format:** Large group, one assigned laboratory branch, four in-person lab working days, two in-person lectures, one technical report, and one short client briefing.\n\n**Experiment assignments:**\n\n- **Aeroelasticity:** Test an infinite wing at assigned angles of attack and wind-tunnel velocities, then use the supplied finite-wing dataset to predict tip deflection at its single measured condition.\n- **Spin Modules:** Calibrate the gyro, estimate reaction-wheel and spacecraft-body inertia, estimate rotational resistance, and predict rotational dynamics.\n\n## Why Tier 2 is different from Tier 1\n\nTier 1 focused on understanding an existing experiment and performing pointwise analysis. Tier 2 asks you to evaluate the experiment as a measurement system over a range of possible test conditions.\n\nThe central question is no longer only:\n\n> What value did we measure at this condition?\n\nIt is:\n\n> How does the quality of the derived result change as the test condition changes, and what\n> should an engineer do about that?\n\nYou will use a physics-based prediction, sensor specifications, calibration information, and measured data to construct a **condition-dependent uncertainty envelope**. The envelope will show where the experiment is informative and where sensor resolution, calibration, friction, signal processing, or model assumptions make the result difficult to interpret.\n\nThe assignment is motivated by the uncertainty-analysis approach used in ASEN 6011, Experimental Fluid Mechanics, taught by Professor John Farnsworth. Students interested in experimental methods, fluid mechanics, aerospace testing, or measurement science are strongly encouraged to consider ASEN 6011. That course develops these ideas in substantially greater depth, both through its assignments and through the broader course sequence.\n\n## Learning goals\n\nBy the end of Tier 2, you should be able to:\n\n1. Build a predictive measurement model before collecting data.\n2. Trace uncertainty from sensor and DAQ information to an aerospace quantity of interest.\n3. Explain normalized standard uncertainty using dimensionless sensitivity coefficients.\n4. Use Monte Carlo analysis to propagate realistic sensor and parameter distributions.\n5. Identify appropriate and inappropriate test conditions from an uncertainty envelope.\n6. Propose a specific, quantitatively justified improvement to the experiment that would move the useful test envelope.\n7. Distinguish measurement uncertainty from model-form discrepancy and setup limitations.\n\n## Vocabulary for this assignment\n\nUse the following terms consistently:\n\n- **Standard uncertainty:** A one-standard-deviation uncertainty estimate for a quantity.\n- **Relative standard uncertainty:** Standard uncertainty divided by the nominal quantity, such as \\(u_y/|y|\\).\n- **Condition-dependent uncertainty envelope:** A plot of absolute or relative standard uncertainty versus a test condition, such as freestream velocity or applied torque.\n- **Sensitivity coefficient:** The dimensionless factor that describes how a fractional input change affects a fractional output change.\n- **Useful test envelope:** The region where the predicted result has acceptable uncertainty, the hardware is operating within limits, and the model remains appropriate.\n\nThe phrase \u201csensitivity of the uncertainty\u201d is understandable but imprecise. In your report, use **condition-dependent uncertainty envelope** for the overall plot and **dimensionless sensitivity coefficient** for the mathematical factors.\n\n## Two in-person lectures\n\n### Lecture 1 - From Tier 1 pointwise uncertainty to an uncertainty envelope\n\nThis lecture makes the cognitive transition from a single Monte Carlo analysis at one data point to an aerospace test-condition study. It introduces:\n\n- the complete measurement chain from physical system to sensor to DAQ to derived result;\n- the difference between pointwise random variation and setup-level or calibration errors;\n- normalized standard uncertainty;\n- dimensionless sensitivity coefficients;\n- why a fixed sensor resolution can be insignificant at one condition and dominant at another;\n- how to compare Taylor-series propagation and Monte Carlo propagation;\n- how an uncertainty curve becomes an engineering recommendation.\n\nThe power-measurement bridge in 'TIER2_power_lab_bridge.md' should be completed before or during this lecture.\n\n### Lecture 2 - From an uncertainty curve to a test decision\n\nThis lecture focuses on engineering judgment. It addresses:\n\n- defining an acceptable test result before collecting data;\n- distinguishing low relative uncertainty from physically meaningful or safe operation;\n- selecting test points efficiently when lab time is limited;\n- separating instrumentation changes from model changes;\n- predicting how a sensor range, resolution, calibration, or sampling choice would move the useful test envelope;\n- writing a recommendation that a client could act on.\n\n## Four-day laboratory plan\n\nThe exact scheduling of groups may vary, but the assignment is designed around four in-person working days.\n\n| Day | Common purpose | Expected branch work | Required evidence |\n|---|---|---|---|\n| 1 | Understand and plan | Inspect setup, confirm sensors and limits, freeze prediction, begin calibration or baseline measurements | Measurement-chain diagram, prediction, initial test matrix |\n| 2 | Collect primary data | Wind-tunnel pressure/airspeed data, or gyro and spin-up data | Raw data, field notes, condition log |\n| 3 | Complete the model and uncertainty sweep | Finite-wing/deflection analysis, or coast-down/resistance characterization and Monte Carlo sweep | Preliminary uncertainty envelope and identified gaps |\n| 4 | Validate and recommend | Targeted repeat/check measurements, finalize comparisons, test or quantify proposed setup change | Final evidence for test-envelope recommendation |\n\nLarge groups should divide the work into parallel roles, but every student must understand the complete measurement chain and the final recommendation.\n\n## Phase 1 - Consulting brief and pre-test prediction\n\nBefore collecting primary data, submit or show the instructor/TA a short prediction brief. This is a working document, not a polished report. It must contain:\n\n1. **Client objective:** What quantity will the client use the experiment to estimate or predict?\n2. **Measurement chain:** What physical quantity is measured by each sensor, and how does it enter the data-reduction equation?\n3. **Predicted response:** Give numerical values or curves over the planned test range.\n4. **Initial uncertainty envelope:** Use the supplied specifications to estimate where the result should be reliable or unreliable.\n5. **Committed test matrix:** Identify the conditions you will test and why they are useful.\n6. **Acceptance criterion:** Define what agreement between prediction and measurement would be adequate for the stated client objective.\n7. **Risk forecast:** Describe one data pattern that would indicate a setup, sensor, or model problem rather than ordinary scatter.\n\nThe prediction is frozen when the group begins its primary test. A wrong prediction is useful evidence; silently rewriting it after seeing the data is not.\n\n## Phase 2 - Laboratory execution\n\nFollow the branch-specific procedure. During testing:\n\n- record the actual condition, not only the commanded condition;\n- record sensor range, units, calibration information, and any changes to the setup;\n- note anomalies while they happen;\n- preserve raw data and a clear file naming convention;\n- use the uncertainty envelope to decide whether a repeat or additional test point is worth the available time;\n- do not spend the final lab day collecting points that your own analysis predicts will be dominated by resolution or model limitations unless the purpose is to demonstrate that limitation.\n\n## Phase 3 - Required analysis\n\n### 3.1 Prediction versus measurement\n\nCompare the committed prediction with the measured result. Use residuals or equivalent comparison plots. State whether the acceptance criterion was met and classify important discrepancies as likely measurement variation, calibration or bias, setup effect, data-reduction issue, parameter uncertainty, or model-form discrepancy.\n\n### 3.2 Condition-dependent uncertainty envelope\n\nFor the primary derived quantity, produce both:\n\n- absolute scaled systematic standard uncertainty versus test condition; and\n- relative systematic standard uncertainty \\(\\mathrm{NSU}_{y,\\mathrm{sys}}=b_{y,\\mathrm{sys}}/|y|\\) versus test condition.\n\nIdentify:\n\n- the low-uncertainty region;\n- the high-uncertainty region;\n- the dominant uncertainty source in each region;\n- any regions that are physically invalid, unsafe, saturated, or outside model validity.\n\n### 3.3 Taylor-series and Monte Carlo methods\n\nUse the method required by your branch document. In general, the report should include:\n\n- a normalized sensitivity derivation for the main data-reduction equation;\n- a Monte Carlo implementation with at least 10,000 trials per representative condition or a justified convergence study;\n- a comparison of the two methods at selected conditions;\n- an explanation of any disagreement based on nonlinearity, bounded distributions, shared parameters, or invalid samples.\n\nMonte Carlo is not a substitute for understanding the data-reduction equation. It is a way to propagate the model and uncertainty distributions without manually differentiating every equation.\n\n### 3.4 Client recommendation and setup modification\n\nYour group must recommend:\n\n1. appropriate test conditions;\n2. inappropriate or low-value test conditions;\n3. the dominant reason for each decision; and\n4. at least one specific setup alteration that would move the useful test envelope.\n\nThe alteration may involve sensor range, sensor resolution, calibration, signal conditioning, sampling, test-point selection, geometry, or an additional measurement. Estimate the effect of the improvement quantitatively. \u201cUse a better sensor\u201d is not sufficient.\n\n## Branch requirements\n\n### Aeroelasticity branch\n\nThe primary quantity is finite-wing tip deflection predicted from aerodynamic loading, but the student-collected aerodynamic dataset comes from the infinite-wing model. Students will:\n\n1. Use the supplied differential-pressure, atmospheric-pressure, and temperature information to calculate freestream velocity and dynamic pressure.\n2. Test the infinite wing at the assigned angles of attack and wind-tunnel velocities.\n3. Use the infinite-wing pressure distribution to estimate sectional \\(C_l\\), lift, and a baseline load distribution.\n4. Use the instructor-provided finite-wing dataset, collected at one assigned angle of attack and airspeed, to estimate the finite-wing load distribution and predict tip deflection.\n5. Convert the aerodynamic load distribution to structural loading and tip deflection using the supplied beam equations and geometry.\n6. Propagate uncertainty to lift and tip deflection as a function of freestream velocity, while treating the finite-wing dataset as a single-condition validation dataset.\n7. Recommend a useful wind-tunnel velocity and angle-of-attack envelope, plus an instrumentation or setup improvement that would move it.\n\nThe Tier 2 experiment uses the PILOT low-speed wind tunnel only. Students are not required to derive the whiffle-tree geometry or repeat the structural derivation; the instructor provides the structural equations and the needed geometry.\n\n### Spin-module branch\n\nThe primary quantities are calibrated angular rate, reaction-wheel inertia, spacecraft-body inertia, and predicted rotational response.\n\nStudents will:\n\n1. Calibrate the gyro against the encoder reference over the assigned rate range.\n2. Use reaction-wheel torque and angular-acceleration data to estimate reaction-wheel inertia.\n3. Use base-motor torque and spacecraft angular-acceleration data to estimate spacecraft-body inertia.\n4. Conduct or analyze a coast-down segment to estimate the lumped resistance parameters \\(c\\) and \\(\\tau_0\\), or use instructor-provided estimates if time or hardware availability requires.\n5. Use \\(I\\dot{\\omega}+c\\omega+\\tau_0\\operatorname{sgn}(\\omega)=\\tau_{\\mathrm{applied}}\\) to predict rotational performance.\n6. Propagate uncertainty versus applied torque for spin-up and inertia testing, and versus angular rate for gyro or coast-down testing.\n7. Recommend useful and inappropriate torque/rate conditions and a setup improvement that would move the useful test envelope.\n\nThe minimum Tier 2 spin dataset is gyro calibration, multiple reaction-wheel torque trials, multiple base-motor torque trials, and one coast-down or instructor-provided resistance characterization. Torque constants, sample data, exact sensor specifications, and final test limits remain instructor-provided placeholders until verified.\n\n## Deliverables\n\n### 1. Technical report\n\nSubmit one group report containing:\n\n1. consulting objective and intended use;\n2. committed pre-test prediction;\n3. measurement-chain diagram and assumptions;\n4. test matrix and actual test conditions;\n5. prediction-versus-measurement comparison;\n6. normalized sensitivity derivation;\n7. Monte Carlo method and distribution assumptions;\n8. absolute and relative uncertainty envelopes;\n9. dominant-source interpretation;\n10. appropriate/inappropriate test-condition recommendations;\n11. one quantitatively justified setup alteration;\n12. limitations, unresolved placeholders, and conclusion;\n13. individual contribution statement.\n\nThe report should be concise enough that a client could find the recommendation quickly.\n\n### 2. Client briefing\n\nPrepare one quad chart or equivalent single-page briefing with:\n\n- client question and predicted result;\n- uncertainty envelope with useful and inappropriate regions marked;\n- comparison with measured data;\n- recommended setup change and expected effect;\n- final test-envelope recommendation.\n\nEach group gives a short briefing followed by questions. The purpose is technical decision-making, not a complete reproduction of the report.\n\n### 3. Individual evidence\n\nEach student must be able to explain the measurement chain, the normalized uncertainty, the Monte Carlo result, and the group recommendation. The instructor may use a short individual check or targeted question during the briefing.", "module_id": null, "source_type": "overview"}</script>
 </body>
 </html>
