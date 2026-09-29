@@ -41,6 +41,15 @@ By the end of Tier 2, you should be able to:
 6. Propose a specific, quantitatively justified improvement to the experiment that would move the useful test envelope.
 7. Distinguish measurement uncertainty from model-form discrepancy and setup limitations.
 
+## Student support handouts
+
+These standalone handouts provide the uncertainty concepts and power-lab bridge used to prepare for Tier 2. They are separate from the assignment page so they can also be shared independently:
+
+- [From Pointwise Uncertainty to a Test Envelope](student-guides/TIER2_normalized_uncertainty_guide.pdf)
+- [The Power Lab as a Bridge to a Test Envelope](student-guides/power-lab-example/TIER2_power_lab_bridge.pdf)
+- [Power-lab MATLAB code](student-guides/power-lab-example/power-lab-example-matlab/matlab_code.html)
+- [Download the raw MATLAB file](student-guides/power-lab-example/power-lab-example-matlab/matlab_code.m)
+
 ## Vocabulary for this assignment
 
 Use the following terms consistently:
@@ -67,7 +76,7 @@ This lecture makes the cognitive transition from a single Monte Carlo analysis a
 - how to compare Taylor-series propagation and Monte Carlo propagation;
 - how an uncertainty curve becomes an engineering recommendation.
 
-The power-measurement bridge in 'TIER2_power_lab_bridge.md' should be completed before or during this lecture.
+The [power-lab bridge handout](student-guides/power-lab-example/TIER2_power_lab_bridge.pdf) should be completed before or during this lecture. The [normalized-uncertainty handout](student-guides/TIER2_normalized_uncertainty_guide.pdf) provides the general framework used in both experiment branches.
 
 ### Lecture 2 - From an uncertainty curve to a test decision
 
