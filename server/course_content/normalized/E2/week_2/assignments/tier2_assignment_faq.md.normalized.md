@@ -1,87 +1,121 @@
-# Tier 2 Lab Assignment — Frequently Asked Questions
+# Tier 2 Experimental Investigation - Frequently Asked Questions
 
-## 1. Is Tier 2 an individual assignment or a group assignment?
+## 1. What is the consulting scenario?
 
-Tier 2 is a group assignment.
-You develop the pre-lab prediction as a group, run the experiment as a group, submit one group report, and present one quad chart as a group.
-However, every student is still responsible for understanding the full workflow and contributing meaningfully to the analysis and presentation.
+Your group is acting as an engineering consulting team. The client wants to know which
+conditions produce useful data, which conditions should be avoided, and what setup change
+would improve the experiment.
 
-## 2. What exactly has to be ready before we can touch the equipment?
+## 2. How is this different from Tier 1?
 
-Your group must arrive with a documented pre-lab prediction that includes all five required elements:
-- system response features
-- theoretical model / working equation
-- estimated uncertainty in the primary derived quantity
-- numerical acceptance criterion
-- risk assessment
+Tier 1 emphasized pointwise analysis. Tier 2 asks you to repeat the uncertainty analysis
+across a range of test conditions and use the resulting uncertainty envelope to make a test
+decision.
 
-If one of those pieces is missing, the prediction is incomplete and the group may be asked to finish it before proceeding.
+## 3. What is the uncertainty envelope?
 
-## 3. Does the prediction have to be polished?
+It is a plot of absolute or relative standard uncertainty versus a test condition. Examples
+include freestream velocity for the wind tunnel and applied torque for spin-up testing.
 
-No.
-It can be handwritten, a short typed document, or a MATLAB script with clearly labeled outputs.
-What matters is that it is complete, legible, and defensible.
+## 4. What should we call the new idea?
 
-## 4. What makes an acceptance criterion good enough?
+Use **condition-dependent uncertainty envelope** for the plot and **dimensionless sensitivity
+coefficient** for the mathematical factors. Use **relative standard uncertainty** for
+u_y/|y| at one condition.
 
-It must be numerical and committed before data collection.
-“Looks close” is not enough.
-A good criterion states what level of agreement would count as adequate for the intended use, such as a percent threshold or whether the measured result falls within a labeled uncertainty interval.
+## 5. Is this an individual or group assignment?
 
-## 5. What if our prediction turns out to be wrong?
+The experiment and report are group work. Every student must understand the full measurement
+chain and be able to explain the group's uncertainty envelope and recommendation.
 
-That is not automatically a problem.
-Tier 2 is not graded on whether your first prediction was lucky.
-It is graded on whether the prediction was reasoned, whether the comparison is technically honest, and whether you can explain what the discrepancy means.
+## 6. How much testing do we have?
 
-## 6. Are we allowed to revise the prediction after we see the data?
+The assignment is designed for four in-person lab working days. Large groups should divide
+calibration, data collection, reduction, uncertainty analysis, and documentation tasks in
+parallel, while preserving shared raw data and decisions.
 
-You may refine your interpretation later, but the original prediction must remain intact.
-The report reproduces the committed pre-lab prediction as evidence of what you believed before the experiment ran.
-Do not quietly rewrite it after the fact.
+## 7. What must be ready before primary testing?
 
-## 7. How detailed does the calibration section need to be?
+Your group needs a short prediction brief containing the client objective, measurement chain,
+predicted response, initial uncertainty envelope, committed test matrix, acceptance criterion,
+and risk forecast.
 
-It needs more than a note that an instrument was “calibrated.”
-You must document the calibration date, the required interval, whether the instrument is still within that interval, and what calibration uncertainty means for your primary result.
-The point is to connect calibration status to the validation argument, not just to record paperwork.
+## 8. What if the prediction is wrong?
 
-## 8. What counts as a real improvement proposal?
+That is useful. The grade is based on whether the prediction was reasoned and specific and
+whether you diagnose the discrepancy honestly. Do not rewrite the original prediction after
+seeing the data.
 
-A real improvement proposal is specific and tied to your evidence.
-It should name a quantity, sensor, DAQ choice, operating condition, model assumption, or measurement strategy that should change, and it should explain why that change follows from your data or uncertainty analysis.
-“Use better sensors” is too generic by itself.
+## 9. Do we need to derive every structural equation?
 
-## 9. Do we have to use MATLAB?
+No. In the aeroelasticity branch, the instructor provides the beam, load-to-deflection, and
+geometry equations needed to predict tip deflection. Students focus on the aerodynamic
+measurement chain, finite-wing load estimate, uncertainty, and test recommendation.
 
-MATLAB is the course-supported path, especially when the experiment-specific lab document uses a MATLAB-based DAQ workflow.
-If your group uses another tool for processing or figure generation, the work still needs to be organized, reproducible, and compatible with the required deliverables.
-Follow the experiment-specific lab document for any hard setup requirements.
+## 10. What exactly is required for the aeroelasticity branch?
 
-## 10. What should the quad chart actually show?
+Use wind-tunnel pressure, atmospheric, and temperature information to estimate freestream
+conditions; compare infinite-wing and finite-wing lift/load estimates; predict tip deflection;
+and determine how uncertainty changes across the approved velocity range.
 
-Each cell should stand on its own:
-- prediction vs. outcome
-- uncertainty analysis
-- calibration status
-- top improvement recommendation
+## 11. What exactly is required for the spin-module branch?
 
-A reader who sees only one cell should still understand what that cell is claiming and why it matters.
+Calibrate the gyro, estimate reaction-wheel and spacecraft-body inertia from torque trials,
+and characterize coast-down resistance either experimentally or from instructor-provided
+data. Then predict rotational response and map uncertainty versus the appropriate rate or
+torque condition.
 
-## 11. How should we use the student rubric?
+## 12. Should spin-module uncertainty be plotted versus rate or torque?
 
-Use `TIER2_rubric_student.md` alongside this assignment from the beginning, not just before submission.
-The assignment tells you what to produce.
-The rubric tells you what a passing and excellent response look like in the report, the quad chart, the Q&A, and the peer evaluations.
+Use the variable that matches the experiment:
 
-## 12. Are peer evaluations really graded?
+- gyro calibration: angular rate;
+- spin-up/inertia testing: applied torque or motor current;
+- coast-down: angular rate.
 
-Yes.
-Peer evaluations are graded on quality, not on generosity.
-A useful evaluation names a specific strength, a specific weakness, and a concrete improvement recommendation supported by evidence from the presentation.
+For spin-up, applied torque is usually the better design variable because it is controlled,
+while angular rate is a response.
 
----
+## 13. Can Monte Carlo replace partial derivatives?
 
-*ASEN 3501 — Tier 2 FAQ | Companion to `TIER2_assignment.md` and `TIER2_rubric_student.md`*
-*Evergreen — structure, expectations, and grading logic are stable across experiment assignments*
+Monte Carlo can replace manual derivative calculations for the numerical propagation, but
+you still need to state the data-reduction equation and explain the input distributions.
+Compare Monte Carlo with the normalized Taylor result at representative conditions.
+
+## 14. How many Monte Carlo samples should we use?
+
+Use at least 10,000 trials per representative condition unless a convergence study justifies
+a different number. Check that the reported standard deviation or percentile interval is
+stable when the sample count increases.
+
+## 15. Do we redraw systematic errors for every time sample?
+
+Usually no. A calibration, scale-factor, or fixed offset error is shared across a virtual
+experiment. Draw it once for that experiment. Redraw sample-to-sample noise only when the
+model is intended to represent random measurement noise.
+
+## 16. What makes a setup change convincing?
+
+Name the affected measurement or parameter, identify the limitation, estimate how the
+uncertainty envelope changes, and explain why the change is feasible. “Use a better sensor”
+is not enough.
+
+## 17. What if a sensor specification or sample dataset is missing?
+
+Use the clearly labeled instructor placeholder and state how the missing information affects
+your conclusion. Do not invent a sensor specification or torque constant.
+
+## 18. What should the client briefing show?
+
+Show the client question, predicted result, measured comparison, uncertainty envelope with
+useful and inappropriate regions marked, recommended setup alteration, and final test-
+envelope recommendation.
+
+## 19. Why mention ASEN 6011?
+
+The assignment is motivated by the uncertainty-analysis perspective used in Professor John
+Farnsworth's ASEN 6011 Experimental Fluid Mechanics course. Students who want a deeper
+treatment of uncertainty propagation, experimental fluid mechanics, and measurement-system
+design are encouraged to consider taking ASEN 6011.
+
+*ASEN 3501 - Tier 2 FAQ | Working draft*

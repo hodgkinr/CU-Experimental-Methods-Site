@@ -44,7 +44,7 @@
       <section class="hero compact">
         <p class="eyebrow">Tier 2 Candidate</p>
         <h1>Aeroelasticity</h1>
-        <p class="lead">Measure structural response of a flexible structure under aerodynamic loading.</p>
+        <p class="lead">Evaluate wind-tunnel pressure measurements, infinite- and finite-wing lift estimates, and uncertainty in predicted flexible-wing tip deflection across the useful freestream-velocity envelope.</p>
       </section>
       <section class="experiment-scaffold">
         <div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure — Aeroelasticity Lab (Compiled First Pass)</h1>
@@ -255,7 +255,46 @@
 <li>Confirm that the masking tape reference mark is on the spar, not the skin, since skin flexes independently.</li>
 </ul>
 <hr>
-<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Theoretical Framework — Aeroelasticity Lab (Compiled First Pass)</h1>
+<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p>
+<hr>
+<h2>Tier 2 Scope and Four-Day Execution Plan</h2>
+<p>The Tier 2 aeroelasticity branch is a consulting-style evaluation of the wind-tunnel measurement system. Students are not asked to redesign the whiffle tree or re-derive the beam equations. The instructional team supplies the structural model and geometry.</p>
+<h3>Day 1 - Prediction and setup</h3>
+<ul>
+<li>inspect the pressure, atmospheric, temperature, and DAQ measurement chain;</li>
+<li>identify the actual sensor ranges and placeholder specifications;</li>
+<li>predict \(V_\infty\), \(q_\infty\), \(C_l\), spanwise load, and tip deflection;</li>
+<li>compare the infinite-wing and finite-wing modeling paths;</li>
+<li>produce a preliminary uncertainty envelope versus velocity;</li>
+<li>commit to the initial test matrix and acceptance criterion.</li>
+</ul>
+<h3>Day 2 - Primary aerodynamic data</h3>
+<ul>
+<li>collect or process the approved chord-wise pressure data;</li>
+<li>collect or process the approved spanwise pressure data;</li>
+<li>record actual tunnel conditions and sensor settings;</li>
+<li>preserve raw files and document anomalies;</li>
+<li>obtain unloaded and loaded spar-tip positions if the hardware test is performed.</li>
+</ul>
+<h3>Day 3 - Finite-wing and uncertainty analysis</h3>
+<ul>
+<li>compute the infinite-wing baseline;</li>
+<li>integrate or interpolate the finite-wing spanwise load;</li>
+<li>calculate tip deflection using the supplied distributed-load or equivalent-load equation;</li>
+<li>perform the Taylor and Monte Carlo uncertainty sweeps;</li>
+<li>identify candidate useful and inappropriate velocity regions.</li>
+</ul>
+<h3>Day 4 - Targeted validation and recommendation</h3>
+<ul>
+<li>repeat selected conditions or perform a focused check near an uncertainty-envelope</li>
+</ul>
+<p>boundary;</p>
+<ul>
+<li>compare predicted and measured tip deflection;</li>
+<li>quantify one possible setup alteration, such as a different pressure range or resolution;</li>
+<li>finalize the client recommendation.</li>
+</ul>
+<p>The branch should prioritize a defensible velocity-envelope recommendation over exhaustive coverage of all possible angles of attack, span stations, or structural configurations.</p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Theoretical Framework — Aeroelasticity Lab (Compiled First Pass)</h1>
 <p>This document extracts the governing equations, derivations, and stated assumptions from the three Milestone source documents. It is organized by topic rather than by source document page order. All equations are preserved as stated in the source; symbols are defined immediately following each equation.</p>
 <hr>
 <h2>1. Airspeed Measurement from Differential Pressure</h2>
@@ -477,7 +516,25 @@
 <h2>Summary Table — Key Constants for This Experiment</h2>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Constant</th><th>Value</th><th>Units</th></tr></thead><tbody><tr><td>Spar material</td><td>Aluminum 6061</td><td>—</td></tr><tr><td>Modulus of elasticity E</td><td>10⁷ (69 GPa)</td><td>psi (Pa)</td></tr><tr><td>Spar width w</td><td>0.5</td><td>in</td></tr><tr><td>Spar thickness t</td><td>0.12</td><td>in</td></tr><tr><td>Spar length L</td><td>10</td><td>in</td></tr><tr><td>Second moment of area I_y</td><td>7.2 × 10⁻⁵</td><td>in⁴</td></tr><tr><td>Test angle of attack (M3)</td><td>10°</td><td>deg</td></tr><tr><td>Wind tunnel test velocity (M3)</td><td>30</td><td>m/s</td></tr><tr><td>Sampling rate (PILOT tunnel)</td><td>500</td><td>Hz</td></tr><tr><td>Samples per collection point</td><td>20</td><td>—</td></tr><tr><td>Air specific gas constant R</td><td>287</td><td>J/(kg·K)</td></tr></tbody></table></div>
 <hr>
-<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Sensor and DAQ Specifications — Aeroelasticity Lab</h1>
+<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p>
+<hr>
+<h2>Tier 2 Extension - Aerodynamic Loading to Tip Deflection</h2>
+<p>The Tier 2 branch does not require students to derive the whiffle-tree geometry or repeat the beam derivation. Provide the following equations as the supplied structural model.</p>
+<h3>Sectional lift from the aerodynamic measurement</h3>
+<p>For a spanwise station \(z\), the lift per unit span is</p>
+<p>$$ \ell&#x27;(z)=q_\infty c C_l(z) $$</p>
+<p>where \(q_\infty=\frac{1}{2}\rho_\infty V_\infty^2\). Use consistent SI or English units throughout the calculation.</p>
+<p>For an infinite-wing baseline, use the chord-wise pressure data to obtain one sectional \(C_l\) and apply the appropriate uniform or instructor-specified spanwise approximation. For a finite-wing estimate, use the spanwise pressure data to obtain \(C_l(z)\) and interpolate between the supplied span stations.</p>
+<h3>Distributed-load tip deflection</h3>
+<p>Let \(w(z)\) be the lift load intensity along a cantilever of length \(L\). The tip deflection due to the distributed load is</p>
+<p>$$ \nu_{\mathrm{tip}} = \frac{1}{6EI} \int_0^L w(z)z^2(3L-z)\,dz. $$</p>
+<p>For discrete span stations, use a documented numerical quadrature rule. The equivalent point-load approximation may also be used when the instructor supplies or approves \(F_{\mathrm{eq}}\) and \(x_{F_{\mathrm{eq}}}\):</p>
+<p>$$ \nu_{\mathrm{tip}} = \frac{F_{\mathrm{eq}}x_{F_{\mathrm{eq}}}^2(3L-x_{F_{\mathrm{eq}}})}{6EI}. $$</p>
+<h3>Tier 2 uncertainty target</h3>
+<p>The primary output is \(\nu_{\mathrm{tip}}\), with \(V_\infty\) or another instructor- approved operating condition as the sweep variable. Propagate uncertainty from the pressure measurement, atmospheric conditions, temperature, angle of attack, spanwise position, and any instructor-designated structural parameters.</p>
+<p>Produce both:</p>
+<p>$$ u_{\nu_{\mathrm{tip}}} \qquad\text{and}\qquad \frac{u_{\nu_{\mathrm{tip}}}}{|\nu_{\mathrm{tip}}|}. $$</p>
+<p>Compare the infinite-wing and finite-wing envelopes and explain whether the extra spanwise information materially changes the test recommendation.</p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Sensor and DAQ Specifications — Aeroelasticity Lab</h1>
 <p>This document summarizes everything known about the sensors, instruments, and DAQ systems used in this experiment. Items marked <code>[MISSING]</code> or <code>[INSTRUCTOR TO PROVIDE]</code> require human follow-up before this package is student-ready.</p>
 <hr>
 <h2>1. Pressure Transducer — Honeywell ABP2 Series</h2>
@@ -542,7 +599,24 @@
 <h2>Note for Instructor</h2>
 <p>The Honeywell ABP2 partial datasheet excerpt in Milestone 1 (pages 13–15) covers the order guide nomenclature and pressure range specifications table. It confirms the sensor model, pressure range (±5 inH₂O differential), transfer function (10%–90% of V_supply analog), and total error band (±2.0 %FSS at 0–50°C). The excerpt does <strong>not</strong> include the full analog transfer function calibration curve or the detailed electrical specifications. Download the complete datasheet from the URL listed above before finalizing the uncertainty analysis in this lab.</p>
 <hr>
-<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Aeroelasticity Lab</h1>
+<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p>
+<hr>
+<h2>Tier 2 Instructor Verification Block</h2>
+<p>Before release, complete the following fields:</p>
+<ul>
+<li>differential-pressure sensor model: [PLACEHOLDER];</li>
+<li>differential-pressure range: [PLACEHOLDER];</li>
+<li>accuracy and resolution: [PLACEHOLDER];</li>
+<li>transfer function and tare procedure: [PLACEHOLDER];</li>
+<li>atmospheric-pressure sensor model/range/accuracy: [PLACEHOLDER];</li>
+<li>temperature sensor model/range/accuracy: [PLACEHOLDER];</li>
+<li>pitot-static probe model: [PLACEHOLDER];</li>
+<li>Scanivalve model and channel uncertainty: [PLACEHOLDER];</li>
+<li>confirmed sample-data column definitions: [PLACEHOLDER];</li>
+<li>approved velocity and safety limits: [PLACEHOLDER]; and</li>
+<li>client threshold for acceptable relative standard uncertainty: [PLACEHOLDER].</li>
+</ul>
+<p>The student uncertainty envelope should use the verified values or explicitly identify any remaining placeholders.</p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Aeroelasticity Lab</h1>
 <p>This document describes the expected data types, formats, and collection conditions for each experimental phase. No actual dataset is present in the source directory.</p>
 <p><code>[MISSING_DATA: No sample dataset from a prior run is present in the source directory. A real dataset must be obtained from the lab team or prior Canvas submissions before this lab can be assigned with real data analysis exercises.]</code></p>
 <hr>
@@ -649,7 +723,43 @@
 <li>DAQ data may contain columns for sensors not relevant to this lab (logged by the LabVIEW VI for all possible channels). Ignore unused columns.</li>
 </ol>
 <hr>
-<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes — Aeroelasticity Lab (Instructor Use Only)</h1>
+<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p>
+<hr>
+<h2>Tier 2 Data Products and Placeholders</h2>
+<p>The Tier 2 group uses the existing aerodynamic datasets as inputs to a measurement-system study. The minimum analysis package should contain:</p>
+<ol>
+<li>a chord-wise pressure dataset for the infinite-wing baseline;</li>
+<li>a spanwise dataset or instructor-provided finite-wing load distribution;</li>
+<li>atmospheric pressure and temperature information;</li>
+<li>wind-tunnel operating conditions;</li>
+<li>unloaded and loaded spar-tip positions for a deflection comparison; and</li>
+<li>sensor specifications and uncertainty models for every quantity used in the prediction.</li>
+</ol>
+<p>The following items remain placeholders until verified by the instructional team:</p>
+<ul>
+<li>[INSTRUCTOR PLACEHOLDER: differential-pressure sensor model, range, accuracy, resolution,</li>
+</ul>
+<p>calibration, and transfer function];</p>
+<ul>
+<li>[INSTRUCTOR PLACEHOLDER: atmospheric-pressure and temperature sensor specifications];</li>
+<li>[INSTRUCTOR PLACEHOLDER: pitot-static probe and Scanivalve specifications];</li>
+<li>[INSTRUCTOR PLACEHOLDER: sample data files and confirmed column definitions];</li>
+<li>[INSTRUCTOR PLACEHOLDER: spanwise station and position uncertainty];</li>
+<li>[INSTRUCTOR PLACEHOLDER: structural parameters E, I, L, and their uncertainties]; and</li>
+<li>[INSTRUCTOR PLACEHOLDER: approved velocity range, safety limits, and acceptable relative</li>
+</ul>
+<p>uncertainty threshold].</p>
+<h3>Tier 2 uncertainty sweep</h3>
+<p>Unless the instructor supplies a complete multi-speed dataset, students may use the instructor-approved nominal model to sweep freestream velocity while holding the geometric and dimensionless aerodynamic information fixed. They must state that assumption and distinguish it from a direct measurement at every velocity.</p>
+<p>The recommended outputs are:</p>
+<ul>
+<li>infinite-wing C_l, lift, and tip-deflection prediction;</li>
+<li>finite-wing C_l(z), integrated lift, and tip-deflection prediction;</li>
+<li>absolute and relative uncertainty versus freestream velocity;</li>
+<li>comparison of the two uncertainty envelopes; and</li>
+<li>measured-data comparison at the available test conditions.</li>
+</ul>
+<p>The finite-wing result should be treated as the preferred prediction for tip deflection when spanwise data are available. The infinite-wing result is the baseline model used to show what is gained by including finite-wing information.</p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes — Aeroelasticity Lab (Instructor Use Only)</h1>
 <p>This document consolidates CLO alignment summaries, lab character notes, instructor discussion prompts, and adaptation notes for the ASEN 3501 context. Not student-facing.</p>
 <hr>
 <h2>1. CLO Alignment Summary (from Milestone agent analyses)</h2>
@@ -777,12 +887,17 @@
 <h2>5. Prior Course Note</h2>
 <p>Source course: <strong>ASEN 2802: Aerospace Sciences Lab</strong>, CU Boulder, Spring 2025 and Fall 2025 (the two Milestones reference both semester labels). This was the second major lab project in a 2000-level lab course for sophomore aerospace engineering students. All course-specific terminology (course number, team structure, Canvas references, grading criteria) has been stripped from the compiled output files.</p>
 <hr>
-<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p></div></div>
+<p><em>This file was created on 2026-05-20 by Claude claude-sonnet-4-6</em></p>
+<hr>
+<h2>Tier 2 Adaptation Notes</h2>
+<p>The Tier 2 branch is intentionally narrower than the original multi-milestone aeroelasticity project. The student team should use the wind-tunnel measurement chain to evaluate the uncertainty in an aerodynamic load and finite-wing tip-deflection prediction.</p>
+<p>The infinite-wing result is the baseline model. The finite-wing spanwise load distribution is the preferred prediction for tip deflection when the spanwise data are available. The structural equations and geometry are supplied so that the four-day assignment can focus on measurement quality, condition-dependent uncertainty, and experimental design.</p>
+<p>The primary design variable should normally be freestream velocity because differential- pressure resolution and proportional sensor terms change materially across the velocity range. The group should not recommend a velocity based only on the uncertainty minimum; it must also consider tunnel limits, model validity, structural safety, and the intended deflection measurement.</p></div></div>
       </section>
     </main>
     
     
   
-  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier2-aeroelasticity", "title": "Aeroelasticity", "url": "labs/tier2/aeroelasticity/index.html", "text": "Aeroelasticity Measure structural response of a flexible structure under aerodynamic loading.", "module_id": null, "source_type": "overview"}</script>
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier2-aeroelasticity", "title": "Aeroelasticity", "url": "labs/tier2/aeroelasticity/index.html", "text": "Aeroelasticity Evaluate wind-tunnel pressure measurements, infinite- and finite-wing lift estimates, and uncertainty in predicted flexible-wing tip deflection across the useful freestream-velocity envelope.", "module_id": null, "source_type": "overview"}</script>
 </body>
 </html>

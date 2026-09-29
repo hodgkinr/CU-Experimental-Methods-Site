@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Spin Modules</title>
   <link rel="stylesheet" href="../../../style.css">
-  <link rel="stylesheet" href="../../../chat_widget.css">
-  <script defer src="../../../chat_widget.js"></script>
   <script>
     window.MathJax = {
       tex: {
@@ -42,12 +40,14 @@
     
     <main class="page-shell">
       <section class="hero compact">
-        <p class="eyebrow">Tier 1 Candidate</p>
+        <p class="eyebrow">Tier 2 Candidate</p>
         <h1>Spin Modules</h1>
-        <p class="lead">Calibrate the spin module rate gyro and estimate reaction wheel and spacecraft body moments of inertia from rotational motion data, with reference-value comparisons marked as placeholders until confirmed.</p>
+        <p class="lead">Evaluate gyro calibration, reaction-wheel and spacecraft-body inertia estimates, coast-down resistance, and rotational-response uncertainty across useful angular-rate and applied-torque conditions.</p>
       </section>
       <section class="experiment-scaffold">
-        <div class="scaffold-section compiled"><h3>30,000 Ft View</h3><div class="compiled-content"><p>In this experiment you will use the CU Boulder spin module to calibrate a rate gyro and estimate moments of inertia from rotational motion data. The core deliverables are the reaction wheel moment of inertia and the spacecraft body moment of inertia using encoder measurements and gyro calibration information where assigned. Comparisons to theoretical/reference values for the brass reaction wheel, motor contribution, SolidWorks spacecraft model, and possible aluminum plate configuration are placeholders until the teaching team confirms the hardware files and reference values.</p></div></div><div class="scaffold-section compiled"><h3>Overview</h3><div class="compiled-content"><h1>Overview - Spin Modules</h1>
+        <div class="scaffold-section compiled"><h3>30,000 Ft View</h3><div class="compiled-content"><p>In this experiment you will use the CU Boulder spin module to calibrate a rate gyro and estimate moments of inertia from rotational motion data. The core deliverables are the reaction wheel moment of inertia and the spacecraft body moment of inertia using encoder measurements and gyro calibration information where assigned. Comparisons to theoretical/reference values for the brass reaction wheel, motor contribution, SolidWorks spacecraft model, and possible aluminum plate configuration are placeholders until the teaching team confirms the hardware files and reference values.</p>
+<h2>Tier 2 Elevator Pitch</h2>
+<p>Students act as consultants evaluating whether the spin module can measure and predict rotational behavior reliably across a range of rates and applied torques. They calibrate the gyro, estimate both reaction-wheel and spacecraft-body inertia, characterize resistance, map uncertainty against the relevant test condition, and recommend where to test and what hardware or measurement change would improve the experiment.</p></div></div><div class="scaffold-section compiled"><h3>Overview</h3><div class="compiled-content"><h1>Overview - Spin Modules</h1>
 <p>In this lab, you will work with a single-axis spacecraft mockup called the CU Boulder Spin Module. The experiment focuses on sensor calibration and inertia estimation rather than closed-loop attitude control.</p>
 <p>The student-facing core of this lab is:</p>
 <ul>
@@ -64,7 +64,9 @@
 <li>compute moment of inertia from torque and angular acceleration</li>
 <li>explain how calibration, sensor choice, and missing reference values affect confidence in the final estimate</li>
 </ul>
-<p><strong>Placeholder:</strong> theoretical/reference values for the brass reaction wheel, motor contribution, spacecraft SolidWorks model, and possible aluminum plate configuration still need teaching-team confirmation before final student release.</p></div></div><div class="scaffold-section compiled"><h3>Unverified Derivation</h3><div class="compiled-content"><h1>Theoretical Derivation — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
+<p><strong>Placeholder:</strong> theoretical/reference values for the brass reaction wheel, motor contribution, spacecraft SolidWorks model, and possible aluminum plate configuration still need teaching-team confirmation before final student release.</p>
+<h2>Tier 2 Positioning</h2>
+<p>For Tier 2, this is an engineering investigation of the spin-module measurement envelope. Students use gyro calibration, reaction-wheel inertia, spacecraft-body inertia, and coast-down resistance information to determine which angular-rate and applied-torque conditions produce useful dynamic predictions. The deliverable is a defensible test recommendation and a quantitatively justified setup alteration, not a complete controls design.</p></div></div><div class="scaffold-section compiled"><h3>Unverified Derivation</h3><div class="compiled-content"><h1>Theoretical Derivation — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
 <p>&gt; <strong>Scope:</strong> MEMS rate gyro sensor model and calibration; reaction wheel MOI estimation; spacecraft body MOI estimation &gt; <strong>Sources:</strong> ASEN3801 Lab 3 Sections 3.1–3.3a; ASEN3200 LabA1 Sections 5.1–5.2, Section 6</p>
 <hr>
 <h2>Section 1 — MEMS Rate Gyro: Sensor Model and Calibration</h2>
@@ -214,17 +216,40 @@ t_sat = H_max / τ_disturbance [s]
 </ul>
 <hr>
 <p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p>
+<hr>
+<h2>Tier 2 Extension - From Identification to Test-Envelope Recommendation</h2>
+<p>The existing derivations provide the Tier 1 foundation. The Tier 2 extension uses the identified parameters to predict rotational performance over a range of test conditions.</p>
+<p>For the spacecraft body,</p>
+<p>$$ \alpha(\tau,\omega) = \frac{\tau-c\omega-\tau_0\operatorname{sgn}(\omega)}{I}. $$</p>
+<p>The group should use applied torque or measured motor current as the primary condition variable for spin-up testing. Angular rate is the primary condition variable for gyro calibration and coast-down testing.</p>
+<p>The uncertainty study should account for the quantities that enter the chosen prediction:</p>
+<ul>
+<li>gyro bias and scale factor;</li>
+<li>encoder or Hall-sensor rate;</li>
+<li>motor current;</li>
+<li>motor torque constant;</li>
+<li>fitted acceleration;</li>
+<li>inertia;</li>
+<li>coast-down parameters \(c\) and \(\tau_0\); and</li>
+<li>any instructor-provided covariance or shared calibration uncertainty.</li>
+</ul>
+<p>The expected engineering result is a condition-dependent uncertainty envelope, not merely a single uncertainty value for \(I\). The group should mark regions where the predicted acceleration or inferred inertia is too uncertain, where the model approaches zero net torque, and where the hardware limits the test.</p>
 <h1>Model Equations Reference — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
 <p>&gt; Quick reference for all equations used in this lab. Symbols defined and units stated for each. &gt; Sources: ASEN3801 Lab 3 Sections 3.1–3.3a; ASEN3200 LabA1 Sections 5.1–5.2</p>
 <hr>
 <h2>Core vs Optional Calculations</h2>
-<p>Core Tier 1 calculations:</p>
+<p>The original compilation treated these as Tier 1 calculations. For the Tier 2 branch, the same calculations are retained as the measurement foundation and are extended into a condition-dependent uncertainty envelope and a rotational-performance recommendation.</p>
+<p>Core Tier 2 calculations:</p>
 <ul>
 <li>gyro bias <code>b</code> and scale factor <code>K</code></li>
 <li>reaction wheel moment of inertia <code>I_RW</code></li>
 <li>spacecraft body moment of inertia <code>I_sc</code></li>
 <li>comparison to theoretical/reference MOI values when the teaching team provides those values</li>
+<li>coast-down or instructor-provided resistance characterization</li>
+<li>predicted angular acceleration or angular-rate response using the full rotational model</li>
+<li>uncertainty versus applied torque for spin-up/inertia testing and versus angular rate for</li>
 </ul>
+<p>gyro/coast-down testing</p>
 <p>Optional enrichment calculations unless explicitly assigned:</p>
 <ul>
 <li>reaction wheel angular momentum capacity <code>H_max</code></li>
@@ -307,7 +332,24 @@ I_unc = I_std / sqrt(N)
 </code></pre>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Symbol</th><th>Description</th><th>Units</th></tr></thead><tbody><tr><td><code>I_mean</code></td><td>Mean MOI across N trials</td><td>kg·m²</td></tr><tr><td><code>I_std</code></td><td>Standard deviation of MOI across trials</td><td>kg·m²</td></tr><tr><td><code>I_unc</code></td><td>Uncertainty of the mean (standard error)</td><td>kg·m²</td></tr><tr><td><code>N</code></td><td>Number of trials used</td><td>—</td></tr></tbody></table></div>
 <hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p>
+<hr>
+<h2>10. Tier 2 Rotational-Performance Model</h2>
+<p>Use the full lumped-resistance model when predicting spacecraft-body response:</p>
+<p>~~~ I <em> alpha + c </em> omega + tau_0 * sgn(omega) = tau_applied ~~~</p>
+<p>For a specified applied torque and angular rate,</p>
+<p>~~~ alpha = (tau_applied - c<em>omega - tau_0</em>sgn(omega)) / I ~~~</p>
+<p>The simple relation tau = I*alpha may be used for an initial inertia estimate when the resistance terms are demonstrably small, but the Tier 2 prediction should state whether that approximation is adequate.</p>
+<p>For spin-up/inertia testing, use applied torque or measured motor current as the primary condition variable. For gyro calibration and coast-down analysis, use angular rate.</p>
+<h2>11. Tier 2 Uncertainty Targets</h2>
+<p>For gyro calibration, the primary derived quantity is</p>
+<p>~~~ omega_calibrated = (gyro_output - b) / K ~~~</p>
+<p>and the relative uncertainty can be evaluated versus encoder angular rate.</p>
+<p>For inertia estimation, the primary quantity may be</p>
+<p>~~~ I = tau / alpha ~~~</p>
+<p>with tau = k_t * I_motor when torque is inferred from current. Propagate uncertainty in the torque constant, current, acceleration fit, calibration parameters, and any resistance correction included in the model.</p>
+<p>For rotational-performance prediction, evaluate uncertainty in alpha or the predicted rate history versus applied torque and/or angular rate. Report both absolute and relative standard uncertainty.</p>
+<p>Parameter estimates from the same regression are not necessarily independent. If a covariance matrix is supplied, preserve the joint parameter distribution in Monte Carlo. Otherwise, identify the possible correlation and state the simplifying assumption.</p></div></div><div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
 <p>&gt; <strong>Lab:</strong> Spin Modules — Rate Gyro Calibration and Inertia Estimation &gt; <strong>Scope:</strong> MEMS rate gyro calibration; reaction wheel MOI; spacecraft body MOI &gt; <strong>Hardware:</strong> CU Boulder Spin Module (single-axis spacecraft mockup) &gt; <strong>Software:</strong> LabVIEW VI — <code>All_Spin_Module_Labs.vi</code> &gt; <strong>Source:</strong> ASEN3801 Lab 3 (primary); ASEN3200 LabA1 (supplemental)</p>
 <hr>
 <p>[SAFETY: Power-up sequence is ORDER-DEPENDENT. Incorrect power-up can damage the hardware. Follow the exact sequence in Part 1 below. Clamp the spin module to the table BEFORE running any motor commands — an unclamped module will fly off the table.]</p>
@@ -487,7 +529,45 @@ I_unc = I_std / sqrt(N)
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Issue</th><th>Cause</th><th>Remedy</th></tr></thead><tbody><tr><td>Module flies off table</td><td>Not clamped before running motor</td><td>Always clamp before powering up motors</td></tr><tr><td>Gyro voltage drifts from zero at rest</td><td>Accumulated bias in Arduino</td><td>Click &quot;Reinitialize Arduino&quot; in VI</td></tr><tr><td>Low Link Speed (&lt; 1.5)</td><td>Xbee interference or low battery</td><td>Check battery voltage; reduce wireless interference</td></tr><tr><td>&quot;DUMPING&quot; shown instead of &quot;QUEUING&quot;</td><td>Buffer state issue</td><td>Use &quot;Reinitialize Spreadsheet Data&quot;; check before saving</td></tr><tr><td>Base motor controller LED turns RED</td><td>Input exceeded allowable limits</td><td>Reduce commanded torque</td></tr><tr><td>Mode cannot be changed while VI runs</td><td>VI operating mode lock</td><td>Stop VI before changing Gyro/Torque tab</td></tr><tr><td>Gyro shows &quot;looping&quot;</td><td>Abrupt rate changes → nonlinear response</td><td>Use gentle sinusoidal motion; avoid step inputs</td></tr><tr><td>Battery voltage below 14V</td><td>Low onboard battery</td><td>Stop satellite board; request new batteries from staff</td></tr></tbody></table></div>
 <p>[SETUP_PHOTO NEEDED: Spin module with clamp in place, showing &quot;clamp here&quot; location and power connections. Also: VI front panel layout showing Gyro/Torque tabs, Begin Test button, Write to File button, and status indicators.]</p>
 <hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation and DAQ Details</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p>
+<hr>
+<h2>Tier 2 Scope and Four-Day Execution Plan</h2>
+<p>The Tier 2 spin-module branch is a consulting-style evaluation of the rotational measurement system. The purpose is to determine which rate and torque conditions provide useful parameter estimates and dynamic predictions.</p>
+<h3>Day 1 - Prediction and calibration</h3>
+<ul>
+<li>inspect the gyro, encoder, Hall-sensor, current, motor, DAQ, and wireless measurement chain;</li>
+<li>verify units, limits, and available torque constants;</li>
+<li>collect or analyze gyro calibration data;</li>
+<li>commit to the initial rate and torque test matrix;</li>
+<li>predict the initial uncertainty envelope.</li>
+</ul>
+<h3>Day 2 - Spin-up and inertia data</h3>
+<ul>
+<li>collect multiple reaction-wheel torque trials;</li>
+<li>collect multiple base-motor torque trials for spacecraft-body response;</li>
+<li>record actual current, rate, torque command, and timing information;</li>
+<li>preserve raw data and document battery, link, clamp, and operating-limit status.</li>
+</ul>
+<h3>Day 3 - Resistance and uncertainty analysis</h3>
+<ul>
+<li>collect or analyze a coast-down segment;</li>
+<li>estimate c and tau_0 as lumped resistance parameters, or use instructor-provided values;</li>
+<li>estimate reaction-wheel and spacecraft-body inertia;</li>
+<li>run the Taylor and Monte Carlo uncertainty sweeps versus torque and/or rate;</li>
+<li>identify candidate useful and inappropriate regions.</li>
+</ul>
+<h3>Day 4 - Targeted validation and recommendation</h3>
+<ul>
+<li>repeat selected torque or rate conditions near an uncertainty-envelope boundary;</li>
+<li>compare predicted and measured angular response;</li>
+<li>quantify one setup change, such as improved current/torque resolution, gyro calibration,</li>
+</ul>
+<p>sampling, or an additional resistance measurement;</p>
+<ul>
+<li>finalize the client recommendation.</li>
+</ul>
+<h3>Scope boundary</h3>
+<p>The minimum Tier 2 result is not a complete spacecraft controls study. Reaction-wheel saturation time, solar-panel comparison, and controller design are enrichment topics unless the instructor assigns them. The required result is a defensible uncertainty envelope and test recommendation based on gyro calibration, both inertia estimates, and a resistance characterization.</p></div></div><div class="scaffold-section compiled"><h3>Instrumentation and DAQ Details</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
 <p>&gt; <strong>Sources:</strong> ASEN3801 Lab 3; ASEN3200 LabA1 &gt; <strong>Scope:</strong> In-scope instrumentation only (rate gyro calibration; RW MOI; spacecraft body MOI)</p>
 <hr>
 <h2>Hardware System Overview: CU Boulder Spin Module</h2>
@@ -540,7 +620,23 @@ I_unc = I_std / sqrt(N)
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Parameter</th><th>Value / Notes</th></tr></thead><tbody><tr><td>Part number</td><td>200142</td></tr><tr><td>Datasheet page</td><td>265 of motor catalog</td></tr><tr><td>Type</td><td>Brushless DC motor</td></tr><tr><td>Torque constant k_t</td><td><code>[MISSING — same issue as RW motor]</code></td></tr><tr><td>Angular velocity sensor</td><td>Optical encoder (separate from Hall sensors)</td></tr></tbody></table></div>
 <p><code>[MISSING — CRITICAL: Both motor torque constants (k_t) are required to convert measured current to torque for the MOI experiments. The datasheets are embedded as images (pages 14–15 of ASEN3801 source) and could not be read as text. The MOI calculation cannot be completed until k_t is obtained. See instrumentation/datasheets/README_agent.md for action steps.]</code></p>
 <hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p>
+<hr>
+<h2>Tier 2 Instructor Verification Block</h2>
+<p>Before release, complete the following fields:</p>
+<ul>
+<li>reaction-wheel motor torque constant k_t: [PLACEHOLDER];</li>
+<li>base-motor torque constant k_t: [PLACEHOLDER];</li>
+<li>current-sensor range, resolution, and accuracy: [PLACEHOLDER];</li>
+<li>gyro range, sampling rate, calibration uncertainty, and data format: [PLACEHOLDER];</li>
+<li>encoder accuracy, resolution, and units: [PLACEHOLDER];</li>
+<li>Hall-sensor accuracy, resolution, and units: [PLACEHOLDER];</li>
+<li>confirmed sample-data column definitions: [PLACEHOLDER];</li>
+<li>coast-down data or accepted c and tau_0 estimates: [PLACEHOLDER];</li>
+<li>approved torque, speed, battery, and mechanical limits: [PLACEHOLDER]; and</li>
+<li>client threshold for acceptable relative standard uncertainty: [PLACEHOLDER].</li>
+</ul>
+<p>The torque-constant placeholders are especially important: if torque is inferred from current, their uncertainty directly enters both inertia estimates and predicted rotational response.</p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
 <p>&gt; Describes expected data format, collection conditions, file naming, and known characteristics. &gt; Sources: ASEN3801 Lab 3 Section 3.1–3.3a; ASEN3200 LabA1 Section 5.1–5.2</p>
 <hr>
 <h2>Data File Format</h2>
@@ -597,7 +693,46 @@ I_unc = I_std / sqrt(N)
 </ol>
 <p><strong>Contact:</strong> CU AES laboratory staff or former ASEN3200/3801 teaching team for archived data files.</p>
 <hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p></div></div><div class="scaffold-section compiled"><h3>FAQs</h3><div class="compiled-content"><h1>FAQs - Spin Modules</h1>
+<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p>
+<hr>
+<h2>Tier 2 Data Products and Placeholders</h2>
+<p>The Tier 2 branch is designed around a four-day investigation. The minimum usable data package is:</p>
+<ol>
+<li>at least three gyro-calibration files spanning the assigned rate range;</li>
+<li>multiple reaction-wheel torque trials with current and wheel-rate channels;</li>
+<li>multiple base-motor torque trials with current and spacecraft-rate channels; and</li>
+<li>one or more coast-down records, or instructor-provided estimates of c and tau_0.</li>
+</ol>
+<p>The following items remain explicit instructor placeholders until verified:</p>
+<ul>
+<li>[INSTRUCTOR PLACEHOLDER: reaction-wheel motor torque constant k_t];</li>
+<li>[INSTRUCTOR PLACEHOLDER: base-motor torque constant k_t];</li>
+<li>[INSTRUCTOR PLACEHOLDER: current-sensor accuracy, range, and resolution];</li>
+<li>[INSTRUCTOR PLACEHOLDER: gyro range, sampling rate, calibration uncertainty, and data</li>
+</ul>
+<p>format];</p>
+<ul>
+<li>[INSTRUCTOR PLACEHOLDER: encoder and Hall-sensor accuracy, resolution, and units];</li>
+<li>[INSTRUCTOR PLACEHOLDER: confirmed sample files and column order];</li>
+<li>[INSTRUCTOR PLACEHOLDER: approved torque, speed, battery, and mechanical limits]; and</li>
+<li>[INSTRUCTOR PLACEHOLDER: client threshold for acceptable relative standard uncertainty].</li>
+</ul>
+<h3>Tier 2 condition sweeps</h3>
+<p>Use the condition variable that matches the experiment:</p>
+<ul>
+<li>gyro calibration: encoder angular rate;</li>
+<li>reaction-wheel and spacecraft-body spin-up: applied torque or measured motor current;</li>
+<li>coast-down: angular rate.</li>
+</ul>
+<p>The required outputs are:</p>
+<ul>
+<li>calibration and parameter estimates;</li>
+<li>predicted rotational response;</li>
+<li>absolute and relative uncertainty versus the selected condition;</li>
+<li>a comparison of Taylor and Monte Carlo results at representative conditions; and</li>
+<li>an appropriate/inappropriate test-condition recommendation.</li>
+</ul>
+<p>If torque is inferred from current, the uncertainty in k_t is part of the torque uncertainty. If resistance parameters are estimated from the same data used for the prediction, students must identify possible parameter correlation or use an instructor-provided joint covariance model.</p></div></div><div class="scaffold-section compiled"><h3>FAQs</h3><div class="compiled-content"><h1>FAQs - Spin Modules</h1>
 <h2>What are the core deliverables for this lab?</h2>
 <p>Determine the reaction wheel moment of inertia and the spacecraft body moment of inertia. The gyro calibration is also part of the core workflow because it explains how the rate sensor compares to the encoder reference.</p>
 <h2>Are angular momentum capacity and saturation time required?</h2>
@@ -607,12 +742,22 @@ I_unc = I_std / sqrt(N)
 <h2>Which sensor is the truth reference for gyro calibration?</h2>
 <p>The existing source notes use the encoder as the truth reference for angular rate during gyro calibration.</p>
 <h2>What motor constants do I need?</h2>
-<p>The reaction wheel and base motor torque constants are needed to convert current to torque. They are currently marked as missing in the instrumentation notes.</p></div></div>
+<p>The reaction wheel and base motor torque constants are needed to convert current to torque. They are currently marked as missing in the instrumentation notes.</p>
+<h2>What changes for Tier 2?</h2>
+<p>The calibration and inertia calculations remain, but they are now used to evaluate a condition-dependent uncertainty envelope. The group must recommend useful and inappropriate angular-rate or applied-torque conditions and propose one setup change that would move the useful region.</p>
+<h2>Should the uncertainty plot use angular rate or torque?</h2>
+<p>Use angular rate for gyro calibration and coast-down analysis. Use applied torque or measured motor current for spin-up and inertia testing because that is the controlled test input.</p>
+<h2>Is the full resistance model required?</h2>
+<p>The Tier 2 prediction should use the lumped model</p>
+<p>\[ I\dot{\omega}+c\omega+\tau_0\operatorname{sgn}(\omega)=\tau_{\mathrm{applied}}. \]</p>
+<p>If the group cannot collect a coast-down dataset, the instructor may provide \(c\) and \(\tau_0\), but the group must identify them as provided parameters and include their uncertainty or limitation in the report.</p>
+<h2>What is outside the four-day scope?</h2>
+<p>Complete controller design, solar-panel comparison, saturation-time analysis, and detailed hardware redesign are enrichment topics unless explicitly assigned.</p></div></div>
       </section>
     </main>
     
     
   
-  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier1-spin_modules", "title": "Spin Modules", "url": "labs/tier1/spin_modules/index.html", "text": "Spin Modules Calibrate the spin module rate gyro and estimate reaction wheel and spacecraft body moments of inertia from rotational motion data, with reference-value comparisons marked as placeholders until confirmed.", "module_id": null, "source_type": "overview"}</script>
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier2-spin_modules", "title": "Spin Modules", "url": "labs/tier2/spin_modules/index.html", "text": "Spin Modules Evaluate gyro calibration, reaction-wheel and spacecraft-body inertia estimates, coast-down resistance, and rotational-response uncertainty across useful angular-rate and applied-torque conditions.", "module_id": null, "source_type": "overview"}</script>
 </body>
 </html>
