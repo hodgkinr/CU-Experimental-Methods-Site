@@ -465,17 +465,19 @@
 <p>These are the <strong>scaled systematic standard uncertainty</strong> curves. They answer: how many watts of uncertainty should be attached to the reported power at each resistance?</p>
 <h2>Monte Carlo version of the same power study</h2>
 <p>The Monte Carlo analysis uses the same uncertainty model as the Taylor-series analysis, but it propagates simulated measurements through the power equations directly. At each resistance, generate a large population of possible measured values. For each input, include both a percentage-of-reading perturbation and an independent fixed-term perturbation:</p>
-<p>\[ \begin{aligned} V^<em>&amp;=V+h_V|V|\xi_{V,1}+d_V\xi_{V,2},\\ I^</em>&amp;=I+h_I|I|\xi_{I,1}+d_I\xi_{I,2},\\ R^*&amp;=R+h_R|R|\xi_{R,1}+d_R\xi_{R,2}, \end{aligned} \]</p>
+<p>\[ V^{\ast}=V+h_V|V|\xi_{V,1}+d_V\xi_{V,2}. \]</p>
+<p>\[ I^{\ast}=I+h_I|I|\xi_{I,1}+d_I\xi_{I,2}. \]</p>
+<p>\[ R^{\ast}=R+h_R|R|\xi_{R,1}+d_R\xi_{R,2}. \]</p>
 <p>where every \(\xi\) is an independent draw from a uniform distribution on \([-1,1]\). The two perturbations for each input are independent because they represent different uncertainty sources. The corresponding simulated powers are</p>
-<p>\[ P_1^<em>=V^</em>I^<em>,\qquad P_2^</em>=(I^<em>)^2R^</em>,\qquad P_3^<em>=\frac{(V^</em>)^2}{R^*}. \]</p>
+<p>\[ P_1^{\ast}=V^{\ast}I^{\ast},\qquad P_2^{\ast}=(I^{\ast})^2R^{\ast},\qquad P_3^{\ast}=\frac{(V^{\ast})^2}{R^{\ast}}. \]</p>
 <p>At each resistance, calculate the sample standard deviations:</p>
-<p>\[ \mathrm{SSU}^{\mathrm{MC}}_{P_k,\mathrm{sys}}(R) =\operatorname{std}\!\left(P_k^*\right), \qquad \mathrm{NSU}^{\mathrm{MC}}_{P_k,\mathrm{sys}}(R) =\frac{\mathrm{SSU}^{\mathrm{MC}}_{P_k,\mathrm{sys}}(R)}{|P_k(R)|}. \]</p>
+<p>\[ \mathrm{SSU}^{\mathrm{MC}}_{P_k,\mathrm{sys}}(R) =\operatorname{std}\!\left(P_k^{\ast}\right), \qquad \mathrm{NSU}^{\mathrm{MC}}_{P_k,\mathrm{sys}}(R) =\frac{\mathrm{SSU}^{\mathrm{MC}}_{P_k,\mathrm{sys}}(R)}{|P_k(R)|}. \]</p>
 <p>Use this workflow across the full resistance sweep:</p>
 <ol>
 <li>Set the nominal \(V(R)\), \(I(R)\), and \(R\).</li>
 <li>Draw independent bounded uniform values for each proportional and fixed contribution.</li>
-<li>Construct \(V^<em>\), \(I^</em>\), and \(R^*\) for every Monte Carlo trial.</li>
-<li>Evaluate \(P_1^<em>\), \(P_2^</em>\), and \(P_3^*\).</li>
+<li>Construct \(V^{\ast}\), \(I^{\ast}\), and \(R^{\ast}\) for every Monte Carlo trial.</li>
+<li>Evaluate \(P_1^{\ast}\), \(P_2^{\ast}\), and \(P_3^{\ast}\).</li>
 <li>Compute SSU and NSU from the simulated populations.</li>
 <li>Plot the Monte Carlo estimates over the Taylor-series curves.</li>
 </ol>
