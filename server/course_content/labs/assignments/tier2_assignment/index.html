@@ -410,13 +410,26 @@
       <section class="content-card markdown-body" style="padding:1.5rem; margin-top:1.5rem">
         <hr style="margin-bottom:1.5rem">
         <h1>Tier 2 Student Guide - The Power Lab as a Bridge to a Test Envelope</h1>
-<p>This example connects the familiar Tier 1 power measurement to the Tier 2 question: how does the uncertainty change when the test condition changes? Here the test condition is the resistance \(R\), not the current. The resistance can be changed by replacing the load resistor while the electrical measurement system remains the same.</p>
-<p>The example follows the structure of the ASEN 6011 uncertainty-analysis approach used as motivation for this assignment, but the equations, workflow, and plots below are written for this course.</p>
+<p>This example connects the familiar power lab measurement to the Tier 2 question: how does the uncertainty change when the test condition changes? Here the test condition is the resistance. The resistance can be changed by replacing the load resistor while the electrical measurement system remains the same.</p>
 <h2>Start with three valid power data-reduction equations</h2>
 <p>For a resistor with voltage \(V\), current \(I\), and resistance \(R\), the same nominal power can be written three ways:</p>
 <p>\[ P_1=VI,\qquad P_2=I^2R,\qquad P_3=\frac{V^2}{R}. \]</p>
 <p>These are physically equivalent when \(V=IR\), but they do not have the same uncertainty propagation because each equation uses a different pair of measured quantities.</p>
-<p>The dimensionless sensitivity coefficients are</p>
+<p>For any data-reduction equation \(y=f(x_1,x_2,\ldots)\), define the signed dimensionless sensitivity coefficient by</p>
+<p>\[ S_{x_i}=\frac{x_i}{y}\frac{\partial y}{\partial x_i}. \]</p>
+<p>Apply that definition to each power equation. For \(P_1=VI\),</p>
+<p>\[ \frac{\partial P_1}{\partial V}=I,\qquad \frac{\partial P_1}{\partial I}=V,\qquad \frac{\partial P_1}{\partial R}=0, \]</p>
+<p>so</p>
+<p>\[ S_V=\frac{V}{P_1}I=1,\qquad S_I=\frac{I}{P_1}V=1,\qquad S_R=\frac{R}{P_1}(0)=0. \]</p>
+<p>For \(P_2=I^2R\),</p>
+<p>\[ \frac{\partial P_2}{\partial V}=0,\qquad \frac{\partial P_2}{\partial I}=2IR,\qquad \frac{\partial P_2}{\partial R}=I^2, \]</p>
+<p>so</p>
+<p>\[ S_V=0,\qquad S_I=\frac{I}{P_2}(2IR)=2,\qquad S_R=\frac{R}{P_2}I^2=1. \]</p>
+<p>For \(P_3=V^2/R\),</p>
+<p>\[ \frac{\partial P_3}{\partial V}=\frac{2V}{R},\qquad \frac{\partial P_3}{\partial I}=0,\qquad \frac{\partial P_3}{\partial R}=-\frac{V^2}{R^2}, \]</p>
+<p>so</p>
+<p>\[ S_V=\frac{V}{P_3}\frac{2V}{R}=2,\qquad S_I=0,\qquad S_R=\frac{R}{P_3}\left(-\frac{V^2}{R^2}\right)=-1. \]</p>
+<p>The resulting dimensionless sensitivity coefficients are summarized below:</p>
 <p>\[ \begin{array}{c|ccc} \text{data-reduction equation} &amp; S_V &amp; S_I &amp; S_R\\ \hline P_1=VI &amp; 1 &amp; 1 &amp; 0\\ P_2=I^2R &amp; 0 &amp; 2 &amp; 1\\ P_3=V^2/R &amp; 2 &amp; 0 &amp; -1 \end{array} \]</p>
 <p>For example, \(S_R=-1\) in \(P_3=V^2/R\) means that a fractional increase in \(R\) produces an approximately equal fractional decrease in \(P_3\), holding \(V\) fixed. The negative sign disappears when that contribution is squared in an uncertainty budget.</p>
 <p>If the voltmeter, ammeter, and ohmmeter have the same constant relative systematic standard uncertainty \(q\), then</p>
@@ -462,13 +475,19 @@
 <p>At low resistance, the current is larger and a fixed current resolution is a smaller fraction of the reading. At high resistance, the current is smaller and the same current resolution may dominate \(n_I\). The resistance measurement may show the opposite behavior if its fixed resolution is most important at low \(R\). The best test region is where the scaled power uncertainty is acceptably small, the normalized uncertainty is below the client threshold, the electrical limits are satisfied, and the selected data-reduction equation is appropriate.</p>
 <p>Do not choose a resistor only because it minimizes relative uncertainty. A very high resistance may produce too little current for the ammeter, while a very low resistance may exceed the source or resistor power rating.</p>
 <h2>Monte Carlo version of the same power study</h2>
-<p>Monte Carlo should reproduce the same two curves without manually differentiating the power equations. At each resistance:</p>
+<p>Monte Carlo should reproduce the same two curves without manually differentiating the power equations. At each resistance, use nominal values plus random perturbations that represent the assumed measurement uncertainties. For example,</p>
+<p>\[ \begin{aligned} V^<em>&amp;=V+g_V|V|Z_V+\frac{a_V}{2}U_V,\\ I^</em>&amp;=I+g_I|I|Z_I+\frac{a_I}{2}U_I,\\ R^*&amp;=R+g_R|R|Z_R+\frac{a_R}{2}U_R, \end{aligned} \]</p>
+<p>where each \(Z\) is a standard-normal draw and each \(U\) is an independent draw from a uniform distribution on \([-1,1]\). The corresponding simulated powers are</p>
+<p>\[ P_1^<em>=V^</em>I^<em>,\qquad P_2^</em>=(I^<em>)^2R^</em>,\qquad P_3^<em>=\frac{(V^</em>)^2}{R^*}. \]</p>
+<p>At each resistance:</p>
+<p>The Monte Carlo estimates are</p>
+<p>\[ \mathrm{SSU}^{\mathrm{MC}}_{P_k,\mathrm{sys}}(R) =\operatorname{std}\!\left(P_k^*\right), \qquad \mathrm{NSU}^{\mathrm{MC}}_{P_k,\mathrm{sys}}(R) =\frac{\mathrm{SSU}^{\mathrm{MC}}_{P_k,\mathrm{sys}}(R)}{|P_k(R)|}. \]</p>
 <ol>
 <li>Set the nominal \(V\), \(I\), and \(R\).</li>
 <li>Draw proportional Gaussian errors and bounded resolution errors for the measured quantities.</li>
-<li>Compute \(P_1^<em>=V^</em>I^<em>\), \(P_2^</em>=(I^<em>)^2R^</em>\), and \(P_3^<em>=(V^</em>)^2/R^*\).</li>
-<li>Use the standard deviation of each power sample set as the Monte Carlo estimate of \(\mathrm{SSU}_{P_k,\mathrm{sys}}\).</li>
-<li>Divide by the nominal power to obtain the corresponding \(\mathrm{NSU}_{P_k,\mathrm{sys}}\).</li>
+<li>Evaluate the three simulated power equations above for every trial.</li>
+<li>Use the standard deviation in the first equation above.</li>
+<li>Divide by the nominal power using the second equation above.</li>
 <li>Plot the Monte Carlo curves on top of the Taylor-series curves and explain any differences.</li>
 </ol>
 <p>For example, one resistance point can be simulated with:</p>
