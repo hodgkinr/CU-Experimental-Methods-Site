@@ -2,8 +2,9 @@
 % This script creates presentation-quality plots for the resistance-sweep
 % example used in the Tier 2 normalized-uncertainty guide.
 %
-% The instrument values below are illustrative placeholders. Replace them
-% with the specifications supplied for the actual power-lab instruments.
+% The manufacturer half-widths below are illustrative values selected for
+% this bridge example. Replace them with the specifications supplied for
+% the actual power-lab instruments.
 %
 % Outputs written to this folder:
 %   scaled_systematic_uncertainty_vs_resistance.png
@@ -27,16 +28,23 @@ P1 = V .* I;                                     % P = V I
 P2 = I.^2 .* R;                                  % P = I^2 R
 P3 = V.^2 ./ R;                                  % P = V^2 / R
 
-%% Illustrative systematic standard-uncertainty model
-% a_x is the full width of a rectangular resolution interval.
-% g_x is a proportional accuracy coefficient expressed as a fraction.
-aV = 0.010;  gV = 0.005;                         % voltmeter [V], fraction
-aI = 0.002;  gI = 0.010;                         % ammeter [A], fraction
-aR = 0.50;   gR = 0.005;                         % ohmmeter [ohm], fraction
+%% Manufacturer half-width model
+% For this bridge example, use only the manufacturer half-width as the
+% systematic uncertainty input. No additional proportional accuracy,
+% fixed-offset, or resolution term is added. The standard uncertainty
+% used in the Taylor-series propagation is h/sqrt(3), consistent with
+% a bounded uniform perturbation over the manufacturer interval.
+hV = 0.005 / 100;                                % voltmeter, fraction of reading
+hI = 0.060 / 100;                                % ammeter, fraction of reading
+hR = 0.012 / 100;                                % ohmmeter, fraction of reading
 
-bV = sqrt((aV / sqrt(12)).^2 + (gV .* abs(V)).^2);
-bI = sqrt((aI / sqrt(12)).^2 + (gI .* abs(I)).^2);
-bR = sqrt((aR / sqrt(12)).^2 + (gR .* abs(R)).^2);
+uV = hV / sqrt(3);
+uI = hI / sqrt(3);
+uR = hR / sqrt(3);
+
+bV = uV .* abs(V);
+bI = uI .* abs(I);
+bR = uR .* abs(R);
 
 nV = bV ./ abs(V);
 nI = bI ./ abs(I);
@@ -66,7 +74,7 @@ mcNSU = zeros(numel(mcResistance), 3);
 for k = 1:numel(mcResistance)
     j = findClosestIndex(R, mcResistance(k));
     [mcSSU(k, :), mcNSU(k, :)] = monteCarloPower( ...
-        V(j), I(j), R(j), aV, gV, aI, gI, aR, gR, mcSamples);
+        V(j), I(j), R(j), hV, hI, hR, mcSamples);
 end
 
 %% Plot 1: scaled systematic standard uncertainty in power
@@ -117,7 +125,7 @@ h3 = loglog(ax, R, nR, ':', 'LineWidth', 2.8);
 styleAxes(ax, theme);
 
 title(ax, {'Normalized systematic standard uncertainty of measured inputs', ...
-    'Illustrative sensor model'}, ...
+    'Manufacturer half-width model'}, ...
     'FontSize', theme.titleSize, 'FontWeight', 'bold', 'Color', theme.black);
 xlabel(ax, 'Resistance, R [\Omega]', 'Interpreter', 'tex', 'Color', theme.black);
 ylabel(ax, 'Normalized systematic standard uncertainty', ...
@@ -148,20 +156,20 @@ for k = 1:3
         'LineWidth', 0.8, 'HandleVisibility', 'off');
 end
 
-illustrativeThreshold = 0.05;
-yline(ax, illustrativeThreshold, '-.', 'Illustrative 5% threshold', ...
+illustrativeThreshold = 0.0005;
+yline(ax, illustrativeThreshold, '-.', 'Illustrative 0.05% threshold', ...
     'Color', theme.darkGray, 'LineWidth', 1.4, ...
     'LabelHorizontalAlignment', 'right', 'FontSize', theme.annotationSize, ...
     'HandleVisibility', 'off');
 styleAxes(ax, theme);
 
 title(ax, {'Normalized systematic standard uncertainty in power', ...
-    'Taylor-series curves with Monte Carlo checks'}, ...
+    'Manufacturer half-width model with Monte Carlo checks'}, ...
     'FontSize', theme.titleSize, 'FontWeight', 'bold', 'Color', theme.black);
 xlabel(ax, 'Resistance, R [\Omega]', 'Interpreter', 'tex', 'Color', theme.black);
 ylabel(ax, 'NSU_{P,sys} = SSU_P / |P|', 'Interpreter', 'tex', 'Color', theme.black);
 lgd = legend(ax, [h1, h2, h3], {'P = VI', 'P = I^2R', 'P = V^2/R'}, ...
-    'Location', 'best', 'Box', 'off', 'FontSize', theme.legendSize);
+    'Location', 'northwest', 'Box', 'off', 'FontSize', theme.legendSize);
 lgd.TextColor = theme.black;
 exportgraphics(fig, fullfile(outputFolder, ...
     'normalized_power_uncertainty_vs_resistance.png'), 'Resolution', 300);
@@ -207,10 +215,11 @@ function index = findClosestIndex(values, target)
 [~, index] = min(abs(values - target));
 end
 
-function [ssu, nsu] = monteCarloPower(V, I, R, aV, gV, aI, gI, aR, gR, N)
-Vstar = V + gV * abs(V) * randn(N, 1) + (aV / 2) * (2 * rand(N, 1) - 1);
-Istar = I + gI * abs(I) * randn(N, 1) + (aI / 2) * (2 * rand(N, 1) - 1);
-Rstar = R + gR * abs(R) * randn(N, 1) + (aR / 2) * (2 * rand(N, 1) - 1);
+function [ssu, nsu] = monteCarloPower(V, I, R, hV, hI, hR, N)
+% Treat each manufacturer half-width as a bounded uniform perturbation.
+Vstar = V + hV * abs(V) * (2 * rand(N, 1) - 1);
+Istar = I + hI * abs(I) * (2 * rand(N, 1) - 1);
+Rstar = R + hR * abs(R) * (2 * rand(N, 1) - 1);
 
 P1star = Vstar .* Istar;
 P2star = Istar.^2 .* Rstar;

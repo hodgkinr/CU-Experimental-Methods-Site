@@ -430,26 +430,32 @@
 <p>The resulting dimensionless sensitivity coefficients are summarized below:</p>
 <p>\[ \begin{array}{c|ccc} \text{data-reduction equation} &amp; S_V &amp; S_I &amp; S_R\\ \hline P_1=VI &amp; 1 &amp; 1 &amp; 0\\ P_2=I^2R &amp; 0 &amp; 2 &amp; 1\\ P_3=V^2/R &amp; 2 &amp; 0 &amp; -1 \end{array} \]</p>
 <p>For example, \(S_R=-1\) in \(P_3=V^2/R\) means that a fractional increase in \(R\) produces an approximately equal fractional decrease in \(P_3\), holding \(V\) fixed. The negative sign disappears when that contribution is squared in an uncertainty budget.</p>
-<p>If the voltmeter, ammeter, and ohmmeter have the same constant relative systematic standard uncertainty \(q\), then</p>
-<p>\[ \mathrm{NSU}_{P_1,\mathrm{sys}}=\sqrt{q^2+q^2}=\sqrt{2}\,q, \]</p>
-<p>\[ \mathrm{NSU}_{P_2,\mathrm{sys}}=\sqrt{(2q)^2+q^2}=\sqrt{5}\,q, \]</p>
-<p>\[ \mathrm{NSU}_{P_3,\mathrm{sys}}=\sqrt{(2q)^2+q^2}=\sqrt{5}\,q. \]</p>
-<p>This reproduces the central comparison from the motivating homework: \(P=VI\) has the smallest relative uncertainty when all three instruments have equal relative accuracy.</p>
+<p>For this simplified bridge example, the manufacturer half-width is the only uncertainty input:</p>
+<p>\[ h_V=0.005\%=5.0\times 10^{-5},\qquad h_I=0.06\%=6.0\times 10^{-4},\qquad h_R=0.012\%=1.2\times 10^{-4}. \]</p>
+<p>Interpret each value as a bounded manufacturer statement of \(\pm h_x|x|\). Because the uncertainty budget uses standard uncertainties, a rectangular half-width is converted using</p>
+<p>\[ u_x=\frac{h_x}{\sqrt{3}}. \]</p>
+<p>The \(\sqrt{3}\) is not an additional sensor term; it is the standard deviation of a uniform distribution on the stated interval. We intentionally omit any additional proportional accuracy coefficient, fixed offset, or separate resolution term. Thus,</p>
+<p>\[ b_{V,\mathrm{sys}}=u_V|V|,\qquad b_{I,\mathrm{sys}}=u_I|I|,\qquad b_{R,\mathrm{sys}}=u_R|R|, \]</p>
+<p>and the normalized input standard uncertainties are \(n_V=u_V\), \(n_I=u_I\), and \(n_R=u_R\). The propagated normalized systematic standard uncertainties are therefore</p>
+<p>\[ \mathrm{NSU}_{P_1,\mathrm{sys}} =\sqrt{u_V^2+u_I^2} =3.48\times 10^{-4}=0.0348\%, \]</p>
+<p>\[ \mathrm{NSU}_{P_2,\mathrm{sys}} =\sqrt{(2u_I)^2+u_R^2} =6.96\times 10^{-4}=0.0696\%, \]</p>
+<p>\[ \mathrm{NSU}_{P_3,\mathrm{sys}} =\sqrt{(2u_V)^2+u_R^2} =9.01\times 10^{-5}=0.00901\%. \]</p>
+<p>The ranking is now driven by the assumed instrument specifications rather than an equal-accuracy assumption. In this example, \(P_3=V^2/R\) has the smallest normalized standard uncertainty because the voltage and resistance measurements are relatively accurate, while \(P_2=I^2R\) has the largest because the current uncertainty is both relatively large and multiplied by the sensitivity coefficient \(S_I=2\).</p>
 <h2>Make resistance the changing test condition</h2>
 <p>Choose a voltage level \(V_0\) that is safe for the circuit and use a set of resistors spanning the intended test range. For an illustrative constant-voltage study,</p>
 <p>\[ V(R)=V_0,\qquad I(R)=\frac{V_0}{R},\qquad P(R)=\frac{V_0^2}{R}. \]</p>
 <p>The actual laboratory may have a different source behavior. Use the measured or instructor-provided \(V(R)\) and calculate the nominal current and power from the selected model. The important point is that \(R\) is the independent test condition, while \(V\), \(I\), and \(P\) generally change with \(R\).</p>
 <h2>Assign systematic standard uncertainties to the instruments</h2>
-<p>Use the supplied specifications to construct an uncertainty model for each measured variable. A useful placeholder model combines a proportional accuracy term with a fixed rectangular resolution term:</p>
-<p>\[ b_{V,\mathrm{sys}}(R)=\sqrt{\left(\frac{a_V}{\sqrt{12}}\right)^2+\left(g_V|V(R)|\right)^2}, \]</p>
-<p>\[ b_{I,\mathrm{sys}}(R)=\sqrt{\left(\frac{a_I}{\sqrt{12}}\right)^2+\left(g_I|I(R)|\right)^2}, \]</p>
-<p>\[ b_{R,\mathrm{sys}}(R)=\sqrt{\left(\frac{a_R}{\sqrt{12}}\right)^2+\left(g_R|R|\right)^2}. \]</p>
-<p>Here \(a_V\), \(a_I\), and \(a_R\) are the full widths of the corresponding rectangular resolution intervals, and \(g_V\), \(g_I\), and \(g_R\) are proportional accuracy coefficients. Replace these placeholders with the actual instrument specifications. If a datasheet gives a standard uncertainty directly, use that value instead of dividing by \(\sqrt{12}\).</p>
+<p>Use the supplied specifications to construct an uncertainty model for each measured variable. For this simplified bridge example, assume the manufacturer half-width is the only uncertainty contribution:</p>
+<p>\[ b_{V,\mathrm{sys}}(R)=u_V|V(R)|,\qquad u_V=\frac{0.005\%}{\sqrt{3}}, \]</p>
+<p>\[ b_{I,\mathrm{sys}}(R)=u_I|I(R)|,\qquad u_I=\frac{0.06\%}{\sqrt{3}}, \]</p>
+<p>\[ b_{R,\mathrm{sys}}(R)=u_R|R|,\qquad u_R=\frac{0.012\%}{\sqrt{3}}. \]</p>
+<p>Here \(u_V\), \(u_I\), and \(u_R\) are the standard uncertainties obtained from the manufacturer half-widths. No additional proportional accuracy coefficient, fixed offset, or resolution term is included in this example. This is intentionally a basic model for isolating the effect of unequal sensor specifications. In a real Tier 2 analysis, use the complete supplied sensor specifications when they include fixed offsets, range dependence, resolution, or calibration terms.</p>
 <p>The normalized systematic uncertainties of the inputs are</p>
 <p>\[ n_V(R)=\frac{b_{V,\mathrm{sys}}(R)}{|V(R)|},\qquad n_I(R)=\frac{b_{I,\mathrm{sys}}(R)}{|I(R)|},\qquad n_R(R)=\frac{b_{R,\mathrm{sys}}(R)}{|R|}. \]</p>
-<p>These three curves show how the quality of each measurement changes as the resistor changes. In particular, a fixed current resolution becomes a larger fraction of the current as \(R\) increases and \(I\) decreases.</p>
+<p>Because this model uses only a fixed percentage of each reading, the three normalized input-uncertainty curves are constant with resistance. That result is useful diagnostically: manufacturer percentage-of-reading terms alone do not create a low- versus high-uncertainty region in normalized uncertainty. The scaled uncertainty can still change because the nominal power changes with resistance. To produce a genuinely condition-dependent normalized uncertainty envelope for the actual Tier 2 laboratory, include the real sensor terms that do not scale perfectly with the reading, such as fixed resolution, offsets, range changes, calibration residuals, or operating limits.</p>
 <h2>Produce the normalized and scaled power curves</h2>
-<p>For each candidate data-reduction equation, multiply the input normalized uncertainty by the magnitude of its sensitivity coefficient:</p>
+<p>For each candidate data-reduction equation, multiply the input normalized uncertainty by the magnitude of its sensitivity coefficient. With the manufacturer half-width values above, this gives the constant normalized power uncertainties</p>
 <p>\[ n_{V\rightarrow P_1}=n_V,\qquad n_{I\rightarrow P_1}=n_I, \]</p>
 <p>\[ n_{I\rightarrow P_2}=2n_I,\qquad n_{R\rightarrow P_2}=n_R, \]</p>
 <p>\[ n_{V\rightarrow P_3}=2n_V,\qquad n_{R\rightarrow P_3}=n_R. \]</p>
@@ -457,6 +463,8 @@
 <p>\[ \mathrm{NSU}_{P_1,\mathrm{sys}}(R)=\sqrt{n_V^2+n_I^2}, \]</p>
 <p>\[ \mathrm{NSU}_{P_2,\mathrm{sys}}(R)=\sqrt{(2n_I)^2+n_R^2}, \]</p>
 <p>\[ \mathrm{NSU}_{P_3,\mathrm{sys}}(R)=\sqrt{(2n_V)^2+n_R^2}. \]</p>
+<p>Numerically,</p>
+<p>\[ \mathrm{NSU}_{P_1,\mathrm{sys}}=0.0348\%,\qquad \mathrm{NSU}_{P_2,\mathrm{sys}}=0.0696\%,\qquad \mathrm{NSU}_{P_3,\mathrm{sys}}=0.00901\%. \]</p>
 <p>These are the <strong>normalized systematic standard uncertainty</strong> curves. They answer: what fraction of the reported power is uncertain at each resistance?</p>
 <p>Scale each normalized curve by the nominal power:</p>
 <p>\[ \mathrm{SSU}_{P_k,\mathrm{sys}}(R)=|P_k(R)|\,\mathrm{NSU}_{P_k,\mathrm{sys}}(R),\qquad k\in\{1,2,3\}. \]</p>
@@ -470,19 +478,19 @@
 <p><img class="markdown-image" src="../../../assets/assignments/tier2_assignment/power-lab-example-matlab/normalized_input_uncertainty_vs_resistance.png" alt="Normalized systematic standard uncertainty of voltage, current, and resistance versus resistance."></p>
 <p><img class="markdown-image" src="../../../assets/assignments/tier2_assignment/power-lab-example-matlab/normalized_power_uncertainty_vs_resistance.png" alt="Normalized systematic standard uncertainty in power versus resistance, including Monte Carlo checks."></p>
 <h2>What the plots mean</h2>
-<p>At low resistance, the current is larger and a fixed current resolution is a smaller fraction of the reading. At high resistance, the current is smaller and the same current resolution may dominate \(n_I\). The resistance measurement may show the opposite behavior if its fixed resolution is most important at low \(R\). The best test region is where the scaled power uncertainty is acceptably small, the normalized uncertainty is below the client threshold, the electrical limits are satisfied, and the selected data-reduction equation is appropriate.</p>
+<p>Under the simplified manufacturer-half-width model, the normalized curves are horizontal because every input uncertainty is a constant fraction of its reading. The scaled power uncertainty still changes with resistance because the nominal power changes. The best test region is where the scaled power uncertainty is acceptably small, the normalized uncertainty is below the client threshold, the electrical limits are satisfied, and the selected data-reduction equation is appropriate. The actual Tier 2 laboratory should use its full sensor specifications to determine whether fixed terms or operating limits create additional condition dependence.</p>
 <p>Do not choose a resistor only because it minimizes relative uncertainty. A very high resistance may produce too little current for the ammeter, while a very low resistance may exceed the source or resistor power rating.</p>
 <h2>Monte Carlo version of the same power study</h2>
-<p>Monte Carlo should reproduce the same two curves without manually differentiating the power equations. At each resistance, use nominal values plus random perturbations that represent the assumed measurement uncertainties. For example,</p>
-<p>\[ \begin{aligned} V^<em>&amp;=V+g_V|V|Z_V+\frac{a_V}{2}U_V,\\ I^</em>&amp;=I+g_I|I|Z_I+\frac{a_I}{2}U_I,\\ R^*&amp;=R+g_R|R|Z_R+\frac{a_R}{2}U_R, \end{aligned} \]</p>
-<p>where each \(Z\) is a standard-normal draw and each \(U\) is an independent draw from a uniform distribution on \([-1,1]\). The corresponding simulated powers are</p>
+<p>Monte Carlo should reproduce the same curves without manually differentiating the power equations. At each resistance, use nominal values plus bounded random perturbations within the manufacturer half-widths. For example,</p>
+<p>\[ \begin{aligned} V^<em>&amp;=V+h_V|V|\xi_V,\\ I^</em>&amp;=I+h_I|I|\xi_I,\\ R^*&amp;=R+h_R|R|\xi_R, \end{aligned} \]</p>
+<p>where each \(\xi\) is an independent draw from a uniform distribution on \([-1,1]\). The corresponding simulated powers are</p>
 <p>\[ P_1^<em>=V^</em>I^<em>,\qquad P_2^</em>=(I^<em>)^2R^</em>,\qquad P_3^<em>=\frac{(V^</em>)^2}{R^*}. \]</p>
 <p>At each resistance:</p>
 <p>The Monte Carlo estimates are</p>
 <p>\[ \mathrm{SSU}^{\mathrm{MC}}_{P_k,\mathrm{sys}}(R) =\operatorname{std}\!\left(P_k^*\right), \qquad \mathrm{NSU}^{\mathrm{MC}}_{P_k,\mathrm{sys}}(R) =\frac{\mathrm{SSU}^{\mathrm{MC}}_{P_k,\mathrm{sys}}(R)}{|P_k(R)|}. \]</p>
 <ol>
 <li>Set the nominal \(V\), \(I\), and \(R\).</li>
-<li>Draw proportional Gaussian errors and bounded resolution errors for the measured quantities.</li>
+<li>Draw independent bounded uniform errors within the three manufacturer half-widths.</li>
 <li>Evaluate the three simulated power equations above for every trial.</li>
 <li>Use the standard deviation in the first equation above.</li>
 <li>Divide by the nominal power using the second equation above.</li>
@@ -490,10 +498,10 @@
 </ol>
 <p>For example, one resistance point can be simulated with:</p>
 <p>~~~matlab N = 10000; j = 100; % one selected index in the R array</p>
-<p>Vstar = V(j) + gV<em>abs(V(j))</em>randn(N,1) + (aV/2)<em>(2</em>rand(N,1)-1); Istar = I(j) + gI<em>abs(I(j))</em>randn(N,1) + (aI/2)<em>(2</em>rand(N,1)-1); Rstar = R(j) + gR<em>abs(R(j))</em>randn(N,1) + (aR/2)<em>(2</em>rand(N,1)-1);</p>
+<p>Vstar = V(j) + hV<em>abs(V(j))</em>(2<em>rand(N,1)-1); Istar = I(j) + hI</em>abs(I(j))<em>(2</em>rand(N,1)-1); Rstar = R(j) + hR<em>abs(R(j))</em>(2*rand(N,1)-1);</p>
 <p>P1star = Vstar .<em> Istar; P2star = Istar.^2 .</em> Rstar; P3star = Vstar.^2 ./ Rstar;</p>
 <p>ssuP1_mc = std(P1star); ssuP2_mc = std(P2star); ssuP3_mc = std(P3star); ~~~</p>
-<p>Use independent draws only when the physical uncertainty sources are independent. If the same calibration error affects multiple readings, preserve that correlation in the Monte Carlo model.</p>
+<p>Use independent draws only when the physical uncertainty sources are independent. If the same calibration error affects multiple readings, preserve that correlation in the Monte Carlo model. The bounded uniform sampling here is a deliberate simplification that matches the manufacturer half-width assumption; it is not a replacement for the actual uncertainty distributions in the Tier 2 laboratory.</p>
 <h2>The Tier 2 translation</h2>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Power example</th><th>Aeroelasticity</th><th>Spin Modules</th></tr></thead><tbody><tr><td>Test condition \(R\)</td><td>Freestream velocity or angle of attack</td><td>Applied torque or angular rate</td></tr><tr><td>Measured inputs \(V,I,R\)</td><td>Differential pressure, atmospheric pressure, temperature, angle of attack</td><td>Current, gyro rate, encoder rate, motor torque constant</td></tr><tr><td>Derived output \(P\)</td><td>Airspeed, lift, or finite-wing tip deflection</td><td>Angular acceleration, inertia, or predicted rate</td></tr><tr><td>Low-signal problem</td><td>Small differential pressure at low speed</td><td>Small net torque or low gyro rate</td></tr><tr><td>Improvement</td><td>Pressure-sensor range, resolution, calibration, or sampling</td><td>Current/torque range, gyro calibration, sampling, or resistance characterization</td></tr></tbody></table></div>
 <p>The analysis is not complete until the group identifies the dominant input, marks the useful and inappropriate regions, and proposes a specific improvement that moves the test envelope.</p>
