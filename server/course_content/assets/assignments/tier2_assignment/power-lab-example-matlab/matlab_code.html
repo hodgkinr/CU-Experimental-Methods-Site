@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MATLAB code</title><style>body{margin:0;background:#f7f7f5;color:#000;font-family:Arial,Helvetica,sans-serif;}header{background:#000;color:#fff;border-bottom:6px solid #CFB87C;padding:1rem 1.5rem;}h1{font-size:1.35rem;margin:0;}p{margin:.35rem 0 0;color:#e8e8e8;}main{max-width:1100px;margin:2rem auto;padding:0 1rem;}pre{background:#fff;border:1px solid #CFB87C;border-left:5px solid #CFB87C;padding:1.25rem;overflow:auto;line-height:1.45;font-size:.9rem;box-shadow:0 2px 8px rgba(0,0,0,.08);}a{color:#5b4d29;font-weight:700;}</style></head><body><header><h1>ASEN 3501 MATLAB example</h1><p>Power-lab resistance sweep and uncertainty-envelope plots</p></header><main><p><a href="matlab_code.m">Download matlab_code.m</a></p><pre><code>%% ASEN 3501 Tier 2 power-lab example
+% This script creates presentation-quality plots for the resistance-sweep
+% example used in the Tier 2 normalized-uncertainty guide.
+%
+% The instrument values below are illustrative placeholders. Replace them
+% with the specifications supplied for the actual power-lab instruments.
+%
+% Outputs written to this folder:
+%   scaled_systematic_uncertainty_vs_resistance.png
+%   normalized_input_uncertainty_vs_resistance.png
+%   normalized_power_uncertainty_vs_resistance.png
+
+clear;
+close all;
+clc;
+
+outputFolder = fileparts(mfilename(&#x27;fullpath&#x27;));
+theme = cuTheme();
+
+%% Nominal power model
+R = logspace(log10(10), log10(1000), 400);       % resistance [ohm]
+V0 = 5.0;                                       % nominal source voltage [V]
+V = V0 .* ones(size(R));                         % constant-voltage example
+I = V ./ R;                                      % nominal current [A]
+
+P1 = V .* I;                                     % P = V I
+P2 = I.^2 .* R;                                  % P = I^2 R
+P3 = V.^2 ./ R;                                  % P = V^2 / R
+
+%% Illustrative systematic standard-uncertainty model
+% a_x is the full width of a rectangular resolution interval.
+% g_x is a proportional accuracy coefficient expressed as a fraction.
+aV = 0.010;  gV = 0.005;                         % voltmeter [V], fraction
+aI = 0.002;  gI = 0.010;                         % ammeter [A], fraction
+aR = 0.50;   gR = 0.005;                         % ohmmeter [ohm], fraction
+
+bV = sqrt((aV / sqrt(12)).^2 + (gV .* abs(V)).^2);
+bI = sqrt((aI / sqrt(12)).^2 + (gI .* abs(I)).^2);
+bR = sqrt((aR / sqrt(12)).^2 + (gR .* abs(R)).^2);
+
+nV = bV ./ abs(V);
+nI = bI ./ abs(I);
+nR = bR ./ abs(R);
+
+% Dimensionless sensitivity coefficients for the three power equations:
+% P = V I       -&gt; S_V = 1,  S_I = 1
+% P = I^2 R     -&gt; S_I = 2,  S_R = 1
+% P = V^2 / R   -&gt; S_V = 2,  S_R = -1
+nsuP1 = sqrt(nV.^2 + nI.^2);
+nsuP2 = sqrt((2 .* nI).^2 + nR.^2);
+nsuP3 = sqrt((2 .* nV).^2 + nR.^2);
+
+ssuP1 = abs(P1) .* nsuP1;                        % scaled uncertainty [W]
+ssuP2 = abs(P2) .* nsuP2;
+ssuP3 = abs(P3) .* nsuP3;
+
+%% Pointwise Monte Carlo check
+% The markers in the figures compare Monte Carlo estimates with the
+% first-order Taylor-series curves at representative resistance values.
+rng(3501, &#x27;twister&#x27;);
+mcResistance = [25, 100, 400];                  % [ohm]
+mcSamples = 20000;
+mcSSU = zeros(numel(mcResistance), 3);
+mcNSU = zeros(numel(mcResistance), 3);
+
+for k = 1:numel(mcResistance)
+    j = findClosestIndex(R, mcResistance(k));
+    [mcSSU(k, :), mcNSU(k, :)] = monteCarloPower( ...
+        V(j), I(j), R(j), aV, gV, aI, gI, aR, gR, mcSamples);
+end
+
+%% Plot 1: scaled systematic standard uncertainty in power
+fig = presentationFigure([1050, 680]);
+ax = axes(fig); %#ok&lt;LAXES&gt;
+styleAxes(ax, theme);
+axes(ax);
+colororder(theme.plotColors);
+set(ax, &#x27;ColorOrder&#x27;, theme.plotColors, &#x27;ColorOrderIndex&#x27;, 1);
+
+h1 = loglog(ax, R, ssuP1, &#x27;-&#x27;, &#x27;LineWidth&#x27;, 2.4);
+hold(ax, &#x27;on&#x27;);
+h2 = loglog(ax, R, ssuP2, &#x27;--&#x27;, &#x27;LineWidth&#x27;, 2.4);
+h3 = loglog(ax, R, ssuP3, &#x27;:&#x27;, &#x27;LineWidth&#x27;, 2.8);
+
+for k = 1:3
+    scatter(ax, mcResistance, mcSSU(:, k), 72, theme.plotColors(k, :), ...
+        &#x27;o&#x27;, &#x27;filled&#x27;, &#x27;MarkerEdgeColor&#x27;, theme.black, ...
+        &#x27;LineWidth&#x27;, 0.8, &#x27;HandleVisibility&#x27;, &#x27;off&#x27;);
+end
+styleAxes(ax, theme);
+
+title(ax, {&#x27;Scaled systematic standard uncertainty in power&#x27;, ...
+    &#x27;Illustrative constant-voltage resistance sweep&#x27;}, ...
+    &#x27;FontSize&#x27;, theme.titleSize, &#x27;FontWeight&#x27;, &#x27;bold&#x27;, &#x27;Color&#x27;, theme.black);
+xlabel(ax, &#x27;Resistance, R [\Omega]&#x27;, &#x27;Interpreter&#x27;, &#x27;tex&#x27;, &#x27;Color&#x27;, theme.black);
+ylabel(ax, &#x27;Scaled systematic standard uncertainty, SSU_P [W]&#x27;, ...
+    &#x27;Interpreter&#x27;, &#x27;tex&#x27;, &#x27;Color&#x27;, theme.black);
+lgd = legend(ax, [h1, h2, h3], {&#x27;P = VI&#x27;, &#x27;P = I^2R&#x27;, &#x27;P = V^2/R&#x27;}, ...
+    &#x27;Location&#x27;, &#x27;southwest&#x27;, &#x27;Box&#x27;, &#x27;off&#x27;, &#x27;FontSize&#x27;, theme.legendSize);
+lgd.TextColor = theme.black;
+exportgraphics(fig, fullfile(outputFolder, ...
+    &#x27;scaled_systematic_uncertainty_vs_resistance.png&#x27;), &#x27;Resolution&#x27;, 300);
+close(fig);
+
+%% Plot 2: normalized systematic standard uncertainty of V, I, and R
+fig = presentationFigure([1050, 680]);
+ax = axes(fig); %#ok&lt;LAXES&gt;
+styleAxes(ax, theme);
+axes(ax);
+colororder(theme.plotColors);
+set(ax, &#x27;ColorOrder&#x27;, theme.plotColors, &#x27;ColorOrderIndex&#x27;, 1);
+
+h1 = loglog(ax, R, nV, &#x27;-&#x27;, &#x27;LineWidth&#x27;, 2.4);
+hold(ax, &#x27;on&#x27;);
+h2 = loglog(ax, R, nI, &#x27;--&#x27;, &#x27;LineWidth&#x27;, 2.4);
+h3 = loglog(ax, R, nR, &#x27;:&#x27;, &#x27;LineWidth&#x27;, 2.8);
+styleAxes(ax, theme);
+
+title(ax, {&#x27;Normalized systematic standard uncertainty of measured inputs&#x27;, ...
+    &#x27;Illustrative sensor model&#x27;}, ...
+    &#x27;FontSize&#x27;, theme.titleSize, &#x27;FontWeight&#x27;, &#x27;bold&#x27;, &#x27;Color&#x27;, theme.black);
+xlabel(ax, &#x27;Resistance, R [\Omega]&#x27;, &#x27;Interpreter&#x27;, &#x27;tex&#x27;, &#x27;Color&#x27;, theme.black);
+ylabel(ax, &#x27;Normalized systematic standard uncertainty&#x27;, ...
+    &#x27;Interpreter&#x27;, &#x27;tex&#x27;, &#x27;Color&#x27;, theme.black);
+lgd = legend(ax, [h1, h2, h3], {&#x27;Voltage, V&#x27;, &#x27;Current, I&#x27;, &#x27;Resistance, R&#x27;}, ...
+    &#x27;Location&#x27;, &#x27;best&#x27;, &#x27;Box&#x27;, &#x27;off&#x27;, &#x27;FontSize&#x27;, theme.legendSize);
+lgd.TextColor = theme.black;
+exportgraphics(fig, fullfile(outputFolder, ...
+    &#x27;normalized_input_uncertainty_vs_resistance.png&#x27;), &#x27;Resolution&#x27;, 300);
+close(fig);
+
+%% Plot 3: normalized systematic standard uncertainty of power
+fig = presentationFigure([1050, 680]);
+ax = axes(fig); %#ok&lt;LAXES&gt;
+styleAxes(ax, theme);
+axes(ax);
+colororder(theme.plotColors);
+set(ax, &#x27;ColorOrder&#x27;, theme.plotColors, &#x27;ColorOrderIndex&#x27;, 1);
+
+h1 = loglog(ax, R, nsuP1, &#x27;-&#x27;, &#x27;LineWidth&#x27;, 2.4);
+hold(ax, &#x27;on&#x27;);
+h2 = loglog(ax, R, nsuP2, &#x27;--&#x27;, &#x27;LineWidth&#x27;, 2.4);
+h3 = loglog(ax, R, nsuP3, &#x27;:&#x27;, &#x27;LineWidth&#x27;, 2.8);
+
+for k = 1:3
+    scatter(ax, mcResistance, mcNSU(:, k), 72, theme.plotColors(k, :), ...
+        &#x27;o&#x27;, &#x27;filled&#x27;, &#x27;MarkerEdgeColor&#x27;, theme.black, ...
+        &#x27;LineWidth&#x27;, 0.8, &#x27;HandleVisibility&#x27;, &#x27;off&#x27;);
+end
+
+illustrativeThreshold = 0.05;
+yline(ax, illustrativeThreshold, &#x27;-.&#x27;, &#x27;Illustrative 5% threshold&#x27;, ...
+    &#x27;Color&#x27;, theme.darkGray, &#x27;LineWidth&#x27;, 1.4, ...
+    &#x27;LabelHorizontalAlignment&#x27;, &#x27;right&#x27;, &#x27;FontSize&#x27;, theme.annotationSize, ...
+    &#x27;HandleVisibility&#x27;, &#x27;off&#x27;);
+styleAxes(ax, theme);
+
+title(ax, {&#x27;Normalized systematic standard uncertainty in power&#x27;, ...
+    &#x27;Taylor-series curves with Monte Carlo checks&#x27;}, ...
+    &#x27;FontSize&#x27;, theme.titleSize, &#x27;FontWeight&#x27;, &#x27;bold&#x27;, &#x27;Color&#x27;, theme.black);
+xlabel(ax, &#x27;Resistance, R [\Omega]&#x27;, &#x27;Interpreter&#x27;, &#x27;tex&#x27;, &#x27;Color&#x27;, theme.black);
+ylabel(ax, &#x27;NSU_{P,sys} = SSU_P / |P|&#x27;, &#x27;Interpreter&#x27;, &#x27;tex&#x27;, &#x27;Color&#x27;, theme.black);
+lgd = legend(ax, [h1, h2, h3], {&#x27;P = VI&#x27;, &#x27;P = I^2R&#x27;, &#x27;P = V^2/R&#x27;}, ...
+    &#x27;Location&#x27;, &#x27;best&#x27;, &#x27;Box&#x27;, &#x27;off&#x27;, &#x27;FontSize&#x27;, theme.legendSize);
+lgd.TextColor = theme.black;
+exportgraphics(fig, fullfile(outputFolder, ...
+    &#x27;normalized_power_uncertainty_vs_resistance.png&#x27;), &#x27;Resolution&#x27;, 300);
+close(fig);
+
+disp([&#x27;Plots written to: &#x27;, outputFolder]);
+
+%% Local functions
+function theme = cuTheme()
+% Centralized CU Boulder palette and shared presentation settings.
+theme.black = [0, 0, 0];
+theme.gold = [207, 184, 124] / 255;              % #CFB87C
+theme.darkGray = [86, 90, 92] / 255;            % #565A5C
+theme.lightGray = [0.88, 0.88, 0.88];
+theme.plotColors = [theme.black; theme.gold; theme.darkGray];
+theme.fontName = &#x27;Helvetica&#x27;;
+theme.bodySize = 14;
+theme.titleSize = 17;
+theme.legendSize = 13;
+theme.annotationSize = 11;
+end
+
+function fig = presentationFigure(position)
+if numel(position) == 2
+    position = [100, 100, position];
+end
+fig = figure(&#x27;Color&#x27;, &#x27;white&#x27;, &#x27;Position&#x27;, position, ...
+    &#x27;InvertHardcopy&#x27;, &#x27;off&#x27;, &#x27;Renderer&#x27;, &#x27;painters&#x27;);
+end
+
+function styleAxes(ax, theme)
+set(ax, &#x27;FontName&#x27;, theme.fontName, &#x27;FontSize&#x27;, theme.bodySize, ...
+    &#x27;LineWidth&#x27;, 1.1, &#x27;Box&#x27;, &#x27;off&#x27;, &#x27;TickDir&#x27;, &#x27;out&#x27;, ...
+    &#x27;Color&#x27;, &#x27;white&#x27;, &#x27;XColor&#x27;, theme.black, &#x27;YColor&#x27;, theme.black, ...
+    &#x27;ColorOrder&#x27;, theme.plotColors, &#x27;ColorOrderIndex&#x27;, 1, ...
+    &#x27;XMinorGrid&#x27;, &#x27;on&#x27;, &#x27;YMinorGrid&#x27;, &#x27;on&#x27;, ...
+    &#x27;GridColor&#x27;, theme.lightGray, &#x27;MinorGridColor&#x27;, theme.lightGray, ...
+    &#x27;GridAlpha&#x27;, 0.8, &#x27;MinorGridAlpha&#x27;, 0.45);
+grid(ax, &#x27;on&#x27;);
+end
+
+function index = findClosestIndex(values, target)
+[~, index] = min(abs(values - target));
+end
+
+function [ssu, nsu] = monteCarloPower(V, I, R, aV, gV, aI, gI, aR, gR, N)
+Vstar = V + gV * abs(V) * randn(N, 1) + (aV / 2) * (2 * rand(N, 1) - 1);
+Istar = I + gI * abs(I) * randn(N, 1) + (aI / 2) * (2 * rand(N, 1) - 1);
+Rstar = R + gR * abs(R) * randn(N, 1) + (aR / 2) * (2 * rand(N, 1) - 1);
+
+P1star = Vstar .* Istar;
+P2star = Istar.^2 .* Rstar;
+P3star = Vstar.^2 ./ Rstar;
+
+ssu = [std(P1star), std(P2star), std(P3star)];
+nominalPower = [V * I, I^2 * R, V^2 / R];
+nsu = ssu ./ abs(nominalPower);
+end
+</code></pre></main></body></html>
