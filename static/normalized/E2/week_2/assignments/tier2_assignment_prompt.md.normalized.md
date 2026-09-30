@@ -154,7 +154,9 @@ Use the method required by your branch document. In general, the report should i
 - a normalized sensitivity derivation for the main data-reduction equation;
 - a Monte Carlo implementation with at least 10,000 trials per representative condition or a justified convergence study;
 - a comparison of the two methods at selected conditions;
-- an explanation of any disagreement based on nonlinearity, bounded distributions, shared parameters, or invalid samples.
+- an explanation of any disagreement based on nonlinearity relative to the uncertainty size, a nominal value near zero, omitted correlations, nonsmooth behavior, or invalid samples.
+
+For a linear model, the Taylor root-sum-square standard deviation is exact for any input distributions with finite variance. Bounded distributions mainly change the shape of the output distribution and therefore affect percentile or coverage intervals, not the standard deviation itself.
 
 Monte Carlo is not a substitute for understanding the data-reduction equation. It is a way to propagate the model and uncertainty distributions without manually differentiating every equation.
 
