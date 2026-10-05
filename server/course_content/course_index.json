@@ -1,6 +1,6 @@
 {
   "course_id": "asen3501-fall2026",
-  "generated_at": "2026-10-05T22:33:11.997290+00:00",
+  "generated_at": "2026-10-05T22:52:18.220943+00:00",
   "pages": [
     {
       "page_id": "home",
@@ -1688,11 +1688,11 @@
       "module_id": null,
       "url": "labs/tier2/aeroelasticity/index.html",
       "source_type": "overview",
-      "text": "Aeroelasticity Evaluate wind-tunnel pressure measurements, infinite- and finite-wing lift estimates, and uncertainty in predicted flexible-wing tip deflection across the useful freestream-velocity envelope.",
+      "text": "Aeroelasticity Use wind-tunnel sensor uncertainty to select informative airspeed or dynamic-pressure conditions, then determine infinite-wing Cl and Cd versus angle of attack and recommend a defensible test envelope.",
       "chunks": [
         {
           "chunk_id": "labs-tier2-aeroelasticity-chunk-001",
-          "text": "Aeroelasticity Evaluate wind-tunnel pressure measurements, infinite- and finite-wing lift estimates, and uncertainty in predicted flexible-wing tip deflection across the useful freestream-velocity envelope.",
+          "text": "Aeroelasticity Use wind-tunnel sensor uncertainty to select informative airspeed or dynamic-pressure conditions, then determine infinite-wing Cl and Cd versus angle of attack and recommend a defensible test envelope.",
           "anchor": ""
         }
       ]
@@ -1703,11 +1703,11 @@
       "module_id": null,
       "url": "labs/tier2/spin_modules/index.html",
       "source_type": "overview",
-      "text": "Spin Modules Evaluate gyro calibration, reaction-wheel and spacecraft-body inertia estimates, coast-down resistance, and rotational-response uncertainty across useful angular-rate and applied-torque conditions.",
+      "text": "Spin Modules Use base-rate uncertainty versus applied reaction-wheel torque to select torque conditions, predict base rate with a rotational model, compare against the encoder, and interpret residuals.",
       "chunks": [
         {
           "chunk_id": "labs-tier2-spin_modules-chunk-001",
-          "text": "Spin Modules Evaluate gyro calibration, reaction-wheel and spacecraft-body inertia estimates, coast-down resistance, and rotational-response uncertainty across useful angular-rate and applied-torque conditions.",
+          "text": "Spin Modules Use base-rate uncertainty versus applied reaction-wheel torque to select torque conditions, predict base rate with a rotational model, compare against the encoder, and interpret residuals.",
           "anchor": ""
         }
       ]
@@ -1733,11 +1733,11 @@
       "module_id": null,
       "url": "labs/tier2_candidates.html",
       "source_type": "overview",
-      "text": "Tier 2 Lab Candidates Canned aerospace department experiments for the Phase II (E2) lab. Specifics TBD \u2014 placeholders in use. Aeroelasticity Spin Modules",
+      "text": "Tier 2 Lab Candidates Consulting-style aerospace experiments for the Phase II (E2) lab. Students use condition-dependent uncertainty to select informative tests, compare predictions with measurements, and recommend improvements. Aeroelasticity Spin Modules",
       "chunks": [
         {
           "chunk_id": "labs-tier2-candidates-chunk-001",
-          "text": "Tier 2 Lab Candidates Canned aerospace department experiments for the Phase II (E2) lab. Specifics TBD \u2014 placeholders in use. Aeroelasticity Spin Modules",
+          "text": "Tier 2 Lab Candidates Consulting-style aerospace experiments for the Phase II (E2) lab. Students use condition-dependent uncertainty to select informative tests, compare predictions with measurements, and recommend improvements. Aeroelasticity Spin Modules",
           "anchor": ""
         }
       ]

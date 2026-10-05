@@ -44,7 +44,7 @@
       <section class="hero compact">
         <p class="eyebrow">Tier 2 Candidate</p>
         <h1>Aeroelasticity</h1>
-        <p class="lead">Evaluate wind-tunnel pressure measurements, infinite- and finite-wing lift estimates, and uncertainty in predicted flexible-wing tip deflection across the useful freestream-velocity envelope.</p>
+        <p class="lead">Use wind-tunnel sensor uncertainty to select informative airspeed or dynamic-pressure conditions, then determine infinite-wing Cl and Cd versus angle of attack and recommend a defensible test envelope.</p>
       </section>
       <section class="experiment-scaffold">
         <div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure - Aeroelasticity Tier 2 Experiment</h1>
@@ -58,18 +58,11 @@
 <ol>
 <li>Inspect the pressure, temperature, atmospheric-pressure, angle-of-attack, and airspeed measurement chain.</li>
 <li>Record the sensor models, ranges, calibration information, sampling settings, units, and any instructor-provided uncertainty values.</li>
-<li>Review the pressure-port mapping, measured-versus-commanded condition fields, and supplied</li>
-</ol>
-<p>coefficient equations.</p>
-<ol>
-<li>Use the sensor specifications to construct an initial uncertainty envelope primarily</li>
-</ol>
-<p>versus measured tunnel airspeed or dynamic pressure.</p>
-<ol>
+<li>Review the pressure-port mapping, measured-versus-commanded condition fields, and supplied coefficient equations.</li>
+<li>Use the sensor specifications to construct an initial uncertainty envelope primarily versus measured tunnel airspeed or dynamic pressure.</li>
 <li>Define the decision rule for informative, marginal, and uncertainty-dominated conditions.</li>
-<li>Select the angle-of-attack and tunnel-condition matrix to test, documenting why the</li>
+<li>Select the angle-of-attack and tunnel-condition matrix to test, documenting why the selected conditions are worth the available time.</li>
 </ol>
-<p>selected conditions are worth the available time.</p>
 <h2>Day 2 - Infinite-wing pressure measurements</h2>
 <ol>
 <li>Confirm the Clark Y-14 model is mounted securely and that the active pressure-port set is connected correctly.</li>
@@ -86,30 +79,19 @@
 <li>Convert the pressure channels to physical units using the supplied calibration information.</li>
 <li>Calculate measured \(U_\infty\), \(\rho_\infty\), \(q_\infty\), and \(C_p\) for each condition.</li>
 <li>Use the pressure-port mapping and supplied geometry to calculate \(C_n\), \(C_a\), \(C_l\), and \(C_d\).</li>
-<li>Run Taylor-series and Monte Carlo uncertainty sweeps versus measured airspeed or dynamic</li>
+<li>Run Taylor-series and Monte Carlo uncertainty sweeps versus measured airspeed or dynamic pressure, using the instructor-approved model assumptions.</li>
+<li>Compare uncertainty contributions from differential pressure, atmospheric pressure, temperature, angle of attack, surface pressure, and any other available channels.</li>
+<li>Compare the physics-based coefficient prediction with measured coefficients and prepare residual plots.</li>
 </ol>
-<p>pressure, using the instructor-approved model assumptions.</p>
-<ol>
-<li>Compare uncertainty contributions from differential pressure, atmospheric pressure,</li>
-</ol>
-<p>temperature, angle of attack, surface pressure, and any other available channels.</p>
-<ol>
-<li>Compare the physics-based coefficient prediction with measured coefficients and prepare</li>
-</ol>
-<p>residual plots.</p>
 <h2>Day 4 - Targeted validation and recommendation</h2>
 <ol>
 <li>Inspect the preliminary absolute and relative uncertainty envelopes.</li>
 <li>Select targeted repeat conditions near a predicted low-uncertainty region, a high-uncertainty region, and any proposed boundary.</li>
 <li>Collect only the additional points needed to test the recommendation or diagnose a discrepancy.</li>
 <li>Compare measured infinite-wing results with the committed prediction.</li>
-<li>Apply the stated decision rule to classify conditions as informative, marginal, or</li>
+<li>Apply the stated decision rule to classify conditions as informative, marginal, or uncertainty-dominated.</li>
+<li>Quantify one improvement, such as pressure-sensor range, resolution, calibration, sampling, or atmospheric-condition measurement, and show how it changes the useful test envelope.</li>
 </ol>
-<p>uncertainty-dominated.</p>
-<ol>
-<li>Quantify one improvement, such as pressure-sensor range, resolution, calibration,</li>
-</ol>
-<p>sampling, or atmospheric-condition measurement, and show how it changes the useful test envelope.</p>
 <h2>Required data products</h2>
 <ul>
 <li>Raw pressure and tunnel-condition files for every collected condition.</li>
@@ -183,34 +165,43 @@
 <p>Compare the physics-based prediction with the measured \(C_l\) and \(C_d\) results at the selected conditions. Plot residuals versus angle of attack and the selected tunnel condition. Do not fold persistent model-form differences into sensor uncertainty without explaining the distinction.</p>
 <h2>Reference-only material</h2>
 <p>Finite-wing spanwise loading, spar/beam parameters, structural deflection, whiffle-tree analysis, finite-wing validation, and finite-wing structural uncertainty are outside the revised student objective. Any finite-wing files in the repository are historical or instructor-reference material only.</p>
-<h2>Key instructor placeholders</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>Differential-pressure sensor</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Pressure calibration and resolution</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Atmospheric-pressure sensor</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Temperature sensor</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Infinite-wing test matrix</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Decision rule and approved condition limits</td><td>[INSTRUCTOR TO PROVIDE]</td></tr></tbody></table></div>
+<h2>Working values and release checks</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>Surface-pressure scanner</td><td>Scanivalve DSA3217; approximately \(\pm 10\) inH2O; stated accuracy approximately \(\pm 0.20\%\) of full scale</td></tr><tr><td>Pitot/dynamic-pressure sensor</td><td>Honeywell ABP2DDAN005NDAA3XX; approximately \(\pm 5\) inH2O; working uncertainty approximately \(\pm 49.8\) Pa under the supplied convention</td></tr><tr><td>Atmospheric pressure</td><td>Working uncertainty \(\pm 50\) Pa unless a better specification is supplied</td></tr><tr><td>Temperature</td><td>Working uncertainty approximately \(\pm 0.0278\) K unless a better specification is supplied</td></tr><tr><td>Tunnel velocity</td><td>Use measured airspeed; current working limit less than 50 mph, approximately 22.35 m/s</td></tr><tr><td>Angle of attack</td><td>Working range \(\pm 16\) deg and working uncertainty \(\pm 0.5\) deg</td></tr></tbody></table></div>
+<p>The exact scanner calibration record, resolution, final released column definitions, approved test matrix, and decision rule still require instructional verification. The values above are working assumptions and must be labeled as such if they are not confirmed before student release.</p>
 <p><em>Tier 2 equation reference - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Sensor and DAQ Specifications - Aeroelasticity Tier 2 Experiment</h1>
-<p>This document lists the measurement channels needed to select wind-tunnel conditions and reduce the infinite-wing pressure data to \(C_l\) and \(C_d\). Values marked as placeholders must be verified by the instructional team before student release.</p>
-<h2>1. Surface-pressure measurement</h2>
-<p><strong>Purpose:</strong> Measure the chord-wise pressure distribution on the Clark Y-14 infinite-wing model.</p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Item</th><th>Value</th></tr></thead><tbody><tr><td>Pressure scanner model</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Number and mapping of pressure ports</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Measurement range</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Accuracy and resolution</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Calibration or transfer function</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Sampling rate</td><td>[INSTRUCTOR TO PROVIDE]</td></tr></tbody></table></div>
-<p>The pressure-port coordinate file and channel mapping must accompany the student dataset.</p>
-<h2>2. Freestream and atmospheric measurements</h2>
-<p>The data-reduction model requires differential pressure or dynamic pressure, freestream or atmospheric pressure, temperature, and measured tunnel velocity.</p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Sensor/model</th><th>Range</th><th>Accuracy/resolution</th></tr></thead><tbody><tr><td>Differential or dynamic pressure</td><td>[INSTRUCTOR TO PROVIDE]</td><td>[PLACEHOLDER]</td><td>[PLACEHOLDER]</td></tr><tr><td>Atmospheric pressure</td><td>[INSTRUCTOR TO PROVIDE]</td><td>[PLACEHOLDER]</td><td>[PLACEHOLDER]</td></tr><tr><td>Temperature</td><td>[INSTRUCTOR TO PROVIDE]</td><td>[PLACEHOLDER]</td><td>[PLACEHOLDER]</td></tr><tr><td>Tunnel velocity</td><td>[INSTRUCTOR TO PROVIDE]</td><td>[PLACEHOLDER]</td><td>[PLACEHOLDER]</td></tr></tbody></table></div>
-<h2>3. Angle-of-attack measurement</h2>
-<p>Students test assigned angles of attack for the infinite-wing model. Provide the angle-setting method, zero reference, resolution, repeatability, and uncertainty. The angle must be recorded with every data block.</p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Item</th><th>Value</th></tr></thead><tbody><tr><td>Angle-setting method</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Range</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Resolution</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Repeatability or systematic uncertainty</td><td>[INSTRUCTOR TO PROVIDE]</td></tr></tbody></table></div>
-<h2>4. Pressure-port mapping and data interface</h2>
-<p>Provide the port-to-channel map, port coordinates, surface ordering, sign convention, and the rule for handling disconnected or theoretical ports. The data interface must preserve the commanded condition, measured condition, timestamps, run identifier, pressure channels, atmospheric pressure, temperature, differential pressure, angle of attack, and any other available sensor channels.</p>
-<h2>5. Data interface and quality checks</h2>
-<p>The LabVIEW interface or equivalent logging system must record the actual measured velocity, angle of attack, pressure channels, atmospheric conditions, timestamps, and run identifiers. Before each run, zero or tare the relevant channels according to the instructor’s procedure. Do not replace the actual measured velocity with the commanded setting.</p>
-<h2>Instructor release checklist</h2>
+<p>This summary consolidates the current working specifications for the Tier 2 infinite-wing wind-tunnel investigation. Students use the measurement chain and its uncertainty to select informative tunnel conditions before reducing the selected data to \(C_l\) and \(C_d\). Finite-wing structural analysis is not part of the student application.</p>
+<h2>Measurement chain</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Measurement</th><th>Equipment or channel</th><th>Working specification</th><th>Role in analysis</th></tr></thead><tbody><tr><td>Surface pressure</td><td>Scanivalve DSA3217 pressure scanner</td><td>Differential range approximately \(\pm 10\) inH2O (\(\pm 2.49\) kPa); stated accuracy approximately \(\pm 0.20\%\) of full scale. Exact resolution and calibration date remain unverified.</td><td>Chord-wise pressure distribution for \(C_p\), \(C_n\), \(C_a\), \(C_l\), and \(C_d\).</td></tr><tr><td>Surface-pressure uncertainty</td><td>DSA3217 stated accuracy</td><td>The quoted full-scale convention must be documented. It corresponds to approximately \(\pm 4.98\) Pa if 10 inH2O is used as full scale, or approximately \(\pm 9.96\) Pa if the full bipolar span is used.</td><td>Candidate dominant uncertainty at low dynamic pressure or low aerodynamic load.</td></tr><tr><td>Pitot/dynamic pressure</td><td>Honeywell ABP2DDAN005NDAA3XX differential-pressure sensor</td><td>3.3 V supply; \(\pm 5\) inH2O range; working scale approximately 754.82 Pa/V; stated total error approximately 2% of full scale, or about \(\pm 49.8\) Pa under the supplied convention.</td><td>Determines dynamic pressure and supports tunnel-velocity calculation.</td></tr><tr><td>Atmospheric pressure</td><td>Atmospheric-pressure channel; exact model not identified</td><td>Working accuracy approximately 1 hPa. Use \(\pm 0.5\) hPa, or \(\pm 50\) Pa, unless a better specification is supplied.</td><td>Supports air-density calculation and atmospheric-state correction.</td></tr><tr><td>Temperature</td><td>ThermPro temperature measurement</td><td>Stated accuracy approximately 0.1 degF. Use \(\pm 0.05\) degF, or approximately \(\pm 0.0278\) K, unless a better specification is supplied.</td><td>Supports air-density calculation.</td></tr><tr><td>Tunnel velocity</td><td>Recorded Airspeed [m/s] channel and differential-pressure measurement</td><td>Use measured velocity rather than commanded velocity. Current working limit: less than 50 mph, approximately less than 22.35 m/s.</td><td>Primary test-condition variable for the uncertainty envelope.</td></tr><tr><td>Angle of attack</td><td>Recorded Angle of Attack [deg] channel and angle-setting mechanism</td><td>Working range \(\pm 16\) deg; working angle uncertainty \(\pm 0.5\) deg.</td><td>Independent variable for \(C_l(\alpha)\) and \(C_d(\alpha)\).</td></tr></tbody></table></div>
+<h2>Data and pressure-port interface</h2>
 <ul>
-<li>Verify the pressure scanner model, pressure-port map, calibration, range, accuracy, resolution, and sampling rate.</li>
-<li>Verify atmospheric-pressure and temperature channels.</li>
-<li>Verify the angle-of-attack setting and uncertainty.</li>
-<li>Provide the approved velocity and angle-of-attack limits.</li>
-<li>Provide the client threshold for acceptable absolute and relative uncertainty.</li>
-<li>Define or explicitly defer the decision rule for classifying a tunnel condition as</li>
+<li>LabVIEW acquisition is documented at 500 Hz for 0.04 s, giving 20 samples per condition.</li>
+<li>The infinite-wing data include atmospheric temperature, atmospheric pressure, density, measured</li>
 </ul>
-<p>appropriate, marginal, or uncertainty-dominated.</p>
+<p>airspeed, Pitot dynamic pressure, auxiliary dynamic pressure, applied voltage, angle of attack, sting loads, and 16 Scanivalve pressure channels.</p>
+<ul>
+<li>The pressure channels are already expressed in Pa; the upstream voltage-to-pressure conversion has</li>
+</ul>
+<p>already been applied, but the exact transfer-function and calibration record remain unverified.</p>
+<ul>
+<li>The working Clark Y-14 model has a 3.5 in chord. The connected port map is:</li>
+</ul>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Airfoil port</th><th>Scanivalve channel</th><th>Status</th></tr></thead><tbody><tr><td>1-8</td><td>1-8</td><td>Connected</td></tr><tr><td>9</td><td>—</td><td>Not connected</td></tr><tr><td>10</td><td>9</td><td>Connected</td></tr><tr><td>11</td><td>—</td><td>Theoretical trailing-edge point</td></tr><tr><td>12</td><td>10</td><td>Connected</td></tr><tr><td>13</td><td>—</td><td>Not connected</td></tr><tr><td>14</td><td>11</td><td>Connected</td></tr><tr><td>15</td><td>—</td><td>Not connected</td></tr><tr><td>16-20</td><td>12-16</td><td>Connected</td></tr></tbody></table></div>
+<p>Use only connected pressure ports and the supplied port coordinates. Preserve commanded and measured conditions, timestamps, run identifiers, angle of attack, atmospheric pressure, temperature, differential pressure, and all available sensor channels with every data block.</p>
+<h2>Operating and uncertainty guidance</h2>
+<ul>
+<li>Use airspeed below 50 mph (approximately 22.35 m/s) and angle of attack within \(\pm 16\) deg unless the instructional team changes the approved limits.</li>
+<li>The supplied infinite-wing CSV is near 30 m/s and therefore exceeds the current working airspeed limit. Treat it as historical/reference data for format and coefficient-reduction work, not as an approved current test condition.</li>
+<li>Treat quoted accuracy values as bounds and state the assumed probability distribution used to convert each bound to standard uncertainty.</li>
+<li>Keep the Scanivalve full-scale convention explicit.</li>
+<li>Zero or tare relevant channels before each run and allow the tunnel to reach steady operation.</li>
+</ul>
+<h2>Release items still requiring verification</h2>
+<ul>
+<li>Exact pressure-scanner calibration record, resolution, and full-scale convention.</li>
+<li>Exact atmospheric-pressure sensor model and temperature-sensor documentation.</li>
+<li>Final pressure-port coordinate/channel files and column definitions for the released dataset.</li>
+<li>Approved velocity and angle-of-attack limits and the decision rule used to classify conditions.</li>
+</ul>
 <p><em>Tier 2 instrumentation summary - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes - Aeroelasticity Tier 2 Experiment</h1>
 <p>No completed sample dataset is currently stored in this compilation. The instructional team must provide representative files, verified column definitions, and the final sensor specifications before student release.</p>
 <h2>Dataset 1 - Infinite-wing chord-wise pressure data</h2>
@@ -224,18 +215,15 @@
 <li>Measured tunnel velocity.</li>
 <li>Angle of attack and run identifier.</li>
 </ul>
-<p><strong>Expected format:</strong> LabVIEW-exported ASCII or CSV files with one file or clearly labeled block per test condition. The exact column order remains an instructor placeholder.</p>
-<p><strong>Expected outputs:</strong> \(C_p(x/c)\), \(C_n\), \(C_a\), \(C_l\), lift, residuals, and uncertainty versus velocity and angle of attack.</p>
+<p><strong>Expected format:</strong> LabVIEW-exported ASCII or CSV files with one file or clearly labeled block per test condition. The current working file contains 20 samples per integer angle from \(-15\) through \(+16\) degrees; the final released column order must be verified.</p>
+<p><strong>Expected outputs:</strong> \(C_p(x/c)\), \(C_n\), \(C_a\), \(C_l\), \(C_d\), residuals, and uncertainty versus measured airspeed or dynamic pressure and angle of attack.</p>
 <h2>Reference material - finite-wing files</h2>
 <p>Finite-wing files may remain in the compilation for historical or instructor reference, but they are not required student inputs for the revised Tier 2 objective. Students do not perform finite-wing spanwise loading, finite-wing validation, structural deflection, spar/beam calculations, whiffle-tree analysis, or finite-wing structural uncertainty.</p>
-<h2>Instructor placeholders</h2>
+<h2>Release items still requiring verification</h2>
 <ul>
-<li>Differential-pressure sensor model, range, accuracy, resolution, calibration, and transfer function.</li>
-<li>Scanivalve model, channel uncertainty, and pressure-port mapping.</li>
-<li>Atmospheric-pressure and temperature sensor specifications.</li>
-<li>Sample data files and confirmed column definitions.</li>
+<li>Differential-pressure calibration record, resolution, and full-scale convention.</li>
+<li>Final released sample-data files and confirmed column definitions.</li>
 <li>Approved velocity and angle-of-attack limits.</li>
-<li>Client threshold for acceptable absolute and relative uncertainty.</li>
 <li>Decision rule for classifying conditions as appropriate, marginal, or uncertainty-dominated.</li>
 </ul>
 <h2>Recommended data products</h2>
@@ -290,6 +278,6 @@
     
     
   
-  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier2-aeroelasticity", "title": "Aeroelasticity", "url": "labs/tier2/aeroelasticity/index.html", "text": "Aeroelasticity Evaluate wind-tunnel pressure measurements, infinite- and finite-wing lift estimates, and uncertainty in predicted flexible-wing tip deflection across the useful freestream-velocity envelope.", "module_id": null, "source_type": "overview"}</script>
+  <script id="bobpe-page-context" type="application/json">{"course_id": "asen3501-fall2026", "page_id": "labs-tier2-aeroelasticity", "title": "Aeroelasticity", "url": "labs/tier2/aeroelasticity/index.html", "text": "Aeroelasticity Use wind-tunnel sensor uncertainty to select informative airspeed or dynamic-pressure conditions, then determine infinite-wing Cl and Cd versus angle of attack and recommend a defensible test envelope.", "module_id": null, "source_type": "overview"}</script>
 </body>
 </html>
