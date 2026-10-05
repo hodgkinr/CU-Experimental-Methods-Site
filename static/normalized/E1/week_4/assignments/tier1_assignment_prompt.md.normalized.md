@@ -317,16 +317,16 @@ Phase 3 is the moment when these are compared.
 ### The presentation structure
 
 Your paired presentation has three segments, delivered jointly. Aim for approximately
-8–10 minutes total (instructor will confirm against enrollment and available class time).
+6 minutes total.
 
 **Segment 1 — Forward (each student presents their own Phase 1)**
 Each student in the pair briefly presents their own experiment: what they measured, what
-their result was, and what it revealed about the system. 2–3 minutes per student.
+their result was, and what it revealed about the system. ~2 minutes for the pair.
 
 **Segment 2 — Reverse (each student presents their prediction of the other's experiment)**
 Each student presents their Phase 2 prediction for the other's experiment: what they
 expected, what the acceptance criterion was, and then what the actual data showed.
-Did the prediction hold? Where did it diverge? Why? 2–3 minutes per student.
+Did the prediction hold? Where did it diverge? Why? ~2 minutes for the pair.
 
 **Segment 3 — Synthesis (presented jointly)**
 The pair synthesizes across both experiments. This is the most important segment and will
@@ -338,16 +338,6 @@ change and why? 2–3 minutes for the pair.
 *One useful starting point for Segment 3: what assumption does your experiment’s model make
 that the other experiment’s model also makes, and where do those assumptions diverge?
 The most interesting synthesis often lives in that gap.*
-
-### Group of 4 (if applicable)
-
-If resources and enrollment allow, your pair will be combined with another pair that worked
-on the same two experiments. The group of 4 presents jointly. Each pair presents Segments
-1 and 2 from their own perspective, and the full group of 4 delivers Segment 3 together.
-This creates a richer synthesis: four data points, four predictions, two experiments.
-
-The instructor will confirm whether group-of-4 presentations are scheduled for your group
-based on the number of completed Phase 2 submissions.
 
 ### Peer evaluation
 
