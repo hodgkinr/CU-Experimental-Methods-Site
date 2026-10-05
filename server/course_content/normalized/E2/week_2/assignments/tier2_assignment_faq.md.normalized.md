@@ -30,7 +30,7 @@ parallel, while preserving shared raw data and decisions.
 ## 7. What must be ready before primary testing?
 
 Your group needs a short prediction brief containing the client objective, measurement chain,
-predicted response, initial uncertainty envelope, committed test matrix, acceptance criterion,
+predicted response, initial uncertainty envelope, committed test matrix, decision rule,
 and risk forecast.
 
 ## 8. What if the prediction is wrong?
@@ -39,55 +39,68 @@ That is useful. The grade is based on whether the prediction was reasoned and sp
 whether you diagnose the discrepancy honestly. Do not rewrite the original prediction after
 seeing the data.
 
-## 9. Do we need to derive every structural equation?
+## 9. What is required in the wind-tunnel branch?
 
-No. In the aeroelasticity branch, the instructor provides the beam, load-to-deflection, and geometry equations needed to predict tip deflection. Students focus on the aerodynamic measurement chain, the infinite-wing test matrix, the supplied single-condition finite-wing load estimate, uncertainty, and test recommendation.
+First use the tunnel sensor values and uncertainty information to select appropriate
+airspeed or dynamic-pressure conditions. Then apply those conditions to infinite-wing data
+over angle of attack and calculate \(C_l\) and \(C_d\), with uncertainty. Include the
+pressure-port mapping, measured-versus-commanded condition comparison, residuals, and a
+stated rule for classifying conditions.
 
-## 10. What exactly is required for the aeroelasticity branch?
+## 10. Is finite-wing structural analysis required?
 
-Test the infinite wing at multiple assigned angles of attack and velocities using pressure, atmospheric, temperature, and angle-of-attack information. Use the supplied finite-wing dataset at one assigned angle of attack and airspeed to predict tip deflection, then determine how uncertainty changes across the approved velocity range.
+No. Finite-wing spanwise loading, spar/beam calculations, structural deflection,
+whiffle-tree analysis, finite-wing validation, and finite-wing structural uncertainty are
+reference material only for this revised student objective.
 
 ## 11. What exactly is required for the spin-module branch?
 
-Calibrate the gyro, estimate reaction-wheel and spacecraft-body inertia from torque trials, and characterize coast-down resistance either experimentally or from instructor-provided data. Then predict rotational response and map uncertainty versus the appropriate rate or torque condition.
+Analyze uncertainty in base rotational velocity versus applied reaction-wheel torque, use it
+to select torque conditions, predict base rate with the rotational model, compare it with the
+encoder base-rate channel, and plot residuals versus applied torque. Distinguish commanded
+torque from current-inferred torque using the motor torque constant. Interpret residuals using
+sensor, torque, parameter, resistance, timing, and model-form explanations.
 
-## 12. Should spin-module uncertainty be plotted versus rate or torque?
+## 12. Is gyro calibration required?
 
-Use the variable that matches the experiment:
+Not as the primary application. Use it as supporting work if it is needed to establish
+base-rate uncertainty or if the instructor assigns it. The central comparison uses the
+encoder as the base-rate truth/reference sensor.
 
-- gyro calibration: angular rate;
-- spin-up/inertia testing: applied torque or motor current;
-- coast-down: angular rate.
+## 13. What is the applied torque in the spin analysis?
 
-For spin-up, applied torque is usually the better design variable because it is controlled, while angular rate is a response.
+State whether you use commanded torque \(\tau_{\mathrm{cmd}}\) or torque inferred from
+motor current, \(\tau_{\mathrm{inf}}=k_t I_{\mathrm{motor}}\). Do not treat them as
+interchangeable without explaining the motor constant, current uncertainty, and any command
+calibration.
 
-## 13. Can Monte Carlo replace partial derivatives?
+## 14. Can Monte Carlo replace partial derivatives?
 
 Monte Carlo can replace manual derivative calculations for the numerical propagation, but you still need to state the data-reduction equation and explain the input distributions. Compare Monte Carlo with the normalized Taylor result at representative conditions.
 
-## 14. How many Monte Carlo samples should we use?
+## 15. How many Monte Carlo samples should we use?
 
 Use at least 10,000 trials per representative condition unless a convergence study justifies
 a different number. Check that the reported standard deviation or percentile interval is
 stable when the sample count increases.
 
-## 15. Do we redraw systematic errors for every time sample?
+## 16. Do we redraw systematic errors for every time sample?
 
 Usually no. A calibration, scale-factor, or fixed offset error is shared across a virtual experiment. Draw it once for that experiment. Redraw sample-to-sample noise only when the model is intended to represent random measurement noise.
 
-## 16. What makes a setup change convincing?
+## 17. What makes a setup change convincing?
 
 Name the affected measurement or parameter, identify the limitation, estimate how the uncertainty envelope changes, and explain why the change is feasible. “Use a better sensor” is not enough.
 
-## 17. What if a sensor specification or sample dataset is missing?
+## 18. What if a sensor specification or sample dataset is missing?
 
 Use the clearly labeled instructor placeholder and state how the missing information affects your conclusion. Do not invent a sensor specification or torque constant.
 
-## 18. What should the client briefing show?
+## 19. What should the client briefing show?
 
 Show the client question, predicted result, measured comparison, uncertainty envelope with useful and inappropriate regions marked, recommended setup alteration, and final test-envelope recommendation.
 
-## 19. Why mention ASEN 6011?
+## 20. Why mention ASEN 6011?
 
 The assignment is motivated by the uncertainty-analysis perspective used in Professor John Farnsworth's ASEN 6011 Experimental Fluid Mechanics course. Students who want a deeper treatment of uncertainty propagation, experimental fluid mechanics, and measurement-system design are encouraged to consider taking ASEN 6011.
 

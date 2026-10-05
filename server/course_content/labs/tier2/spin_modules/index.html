@@ -47,407 +47,312 @@
         <p class="lead">Evaluate gyro calibration, reaction-wheel and spacecraft-body inertia estimates, coast-down resistance, and rotational-response uncertainty across useful angular-rate and applied-torque conditions.</p>
       </section>
       <section class="experiment-scaffold">
-        <div class="scaffold-section compiled"><h3>30,000 Ft View</h3><div class="compiled-content"><p>In this experiment you will use the CU Boulder spin module to calibrate a rate gyro and estimate moments of inertia from rotational motion data. The core deliverables are the reaction wheel moment of inertia and the spacecraft body moment of inertia using encoder measurements and gyro calibration information where assigned. Comparisons to theoretical/reference values for the brass reaction wheel, motor contribution, SolidWorks spacecraft model, and possible aluminum plate configuration are placeholders until the teaching team confirms the hardware files and reference values.</p>
+        <div class="scaffold-section compiled"><h3>30,000 Ft View</h3><div class="compiled-content"><p>In this experiment you will use the CU Boulder spin module to determine which reaction-wheel torque conditions support a reliable prediction of base rotational velocity. The core deliverables are an uncertainty envelope versus applied reaction-wheel torque, a rotational-model prediction, comparison with the encoder base-rate reference, and residual interpretation.</p>
 <h2>Tier 2 Elevator Pitch</h2>
-<p>Students act as consultants evaluating whether the spin module can measure and predict rotational behavior reliably across a range of rates and applied torques. They calibrate the gyro, estimate both reaction-wheel and spacecraft-body inertia, characterize resistance, map uncertainty against the relevant test condition, and recommend where to test and what hardware or measurement change would improve the experiment.</p></div></div><div class="scaffold-section compiled"><h3>Overview</h3><div class="compiled-content"><h1>Overview - Spin Modules</h1>
-<p>In this lab, you will work with a single-axis spacecraft mockup called the CU Boulder Spin Module. The experiment focuses on sensor calibration and inertia estimation rather than closed-loop attitude control.</p>
+<p>Students act as consultants evaluating whether the spin module can predict base rotational behavior reliably across a range of applied reaction-wheel torques. They distinguish commanded torque from current-inferred torque, map uncertainty against torque, compare predicted and encoder base rates, and recommend where to test and what measurement or setup change would improve the experiment. Gyro calibration is supporting work only when needed.</p></div></div><div class="scaffold-section compiled"><h3>Overview</h3><div class="compiled-content"><h1>Overview - Spin Modules</h1>
+<p>In this lab, you will work with a single-axis spacecraft mockup called the CU Boulder Spin Module. The experiment focuses on selecting reaction-wheel torque conditions that produce a reliable prediction of base rotational velocity.</p>
 <p>The student-facing core of this lab is:</p>
 <ul>
-<li>calibrate the MEMS rate gyro using encoder data as the truth reference</li>
-<li>estimate the reaction wheel moment of inertia from a constant-torque spin-up test</li>
-<li>estimate the spacecraft body moment of inertia from rotational acceleration data</li>
-<li>compare experimental moment-of-inertia estimates to theoretical or reference values when those values are provided</li>
+<li>map commanded torque and current-inferred reaction-wheel torque;</li>
+<li>analyze base-rate uncertainty versus applied reaction-wheel torque;</li>
+<li>select appropriate, marginal, and inappropriate torque conditions;</li>
+<li>use supplied or fitted inertia and resistance parameters in a rotational model;</li>
+<li>compare predicted base rate with the encoder base-rate reference;</li>
+<li>produce residuals versus applied reaction-wheel torque and interpret their trends.</li>
 </ul>
 <p>By the end of the lab, you should be able to:</p>
 <ul>
 <li>identify the measurement chain connecting the gyro, encoder, Hall sensors, current sensors, myRIO, Arduino DUE, Xbee link, and LabVIEW VI</li>
-<li>fit gyro bias and scale factor from calibration data</li>
-<li>use angular velocity data to estimate angular acceleration</li>
-<li>compute moment of inertia from torque and angular acceleration</li>
-<li>explain how calibration, sensor choice, and missing reference values affect confidence in the final estimate</li>
+<li>explain how current, motor torque constant, encoder rate, inertia, resistance, timing, and</li>
 </ul>
-<p><strong>Placeholder:</strong> theoretical/reference values for the brass reaction wheel, motor contribution, spacecraft SolidWorks model, and possible aluminum plate configuration still need teaching-team confirmation before final student release.</p>
+<p>model form affect confidence in the prediction</p>
+<p><strong>Placeholder:</strong> the instructor must identify which inertia and resistance parameters are supplied, fitted, or provisional, and must define the approved torque/rate limits.</p>
 <h2>Tier 2 Positioning</h2>
-<p>For Tier 2, this is an engineering investigation of the spin-module measurement envelope. Students use gyro calibration, reaction-wheel inertia, spacecraft-body inertia, and coast-down resistance information to determine which angular-rate and applied-torque conditions produce useful dynamic predictions. The deliverable is a defensible test recommendation and a quantitatively justified setup alteration, not a complete controls design.</p></div></div><div class="scaffold-section compiled"><h3>Unverified Derivation</h3><div class="compiled-content"><h1>Theoretical Framework - Spin Modules Tier 2 Experiment</h1>
-<h2>1. Gyro calibration</h2>
-<p>Use the encoder as the angular-rate reference and model the raw gyro output as</p>
-<p>\[ \omega_{\mathrm{gyro}}=K\omega_{\mathrm{true}}+b+\epsilon_{\mathrm{gyro}}. \]</p>
-<p>The calibrated rate is</p>
-<p>\[ \omega_{\mathrm{calibrated}}=\frac{\omega_{\mathrm{gyro}}-b}{K}. \]</p>
-<p>Fit \(K\) and \(b\) for each assigned calibration run, compare the fitted parameters, and report the uncertainty in the calibration.</p>
-<h2>2. Inertia from spin-up</h2>
-<p>For the reaction-wheel test, hold the spacecraft body stationary and apply torque to the reaction wheel. For the body-inertia test, allow the spacecraft to rotate and apply torque with the base motor. In either case, the initial model is</p>
-<p>\[ I\dot{\omega}=\tau. \]</p>
-<p>Use</p>
-<p>\[ \tau=k_t I_{\mathrm{motor}}, \qquad I=\frac{\tau}{\dot{\omega}}. \]</p>
-<p>Fit \(\dot{\omega}\) from the rate history rather than differentiating noisy samples directly. Report the individual-trial estimates, mean, scatter, and uncertainty.</p>
-<h2>3. Measurement-chain interpretation</h2>
-<p>The torque estimate depends on the motor torque constant \(k_t\) and current measurement. The angular-acceleration estimate depends on the selected encoder or Hall-sensor channel, the sampling rate, the fitting window, and the rate calibration. Each of these quantities belongs in the uncertainty model.</p>
-<h2>4. Resistance model</h2>
-<p>Use the lumped viscous-plus-Coulomb model</p>
+<p>For Tier 2, this is an engineering investigation of the spin-module measurement envelope. Students first analyze uncertainty in base rotational velocity versus applied reaction-wheel torque. They then use the selected torque conditions to predict base rate, compare it with the encoder reference, and interpret residuals. The deliverable is a defensible test recommendation and a quantitatively justified setup alteration, not a complete controls design.</p></div></div><div class="scaffold-section compiled"><h3>Unverified Derivation</h3><div class="compiled-content"><h1>Theoretical Framework - Spin Modules Tier 2 Experiment</h1>
+<p>This framework supports the revised application: uncertainty in base rotational velocity versus applied reaction-wheel torque, rotational prediction, encoder comparison, residual analysis, and uncertainty propagation. Parameter identification is supporting work when needed to establish the model.</p>
+<h2>1. Applied torque and measurement chain</h2>
+<p>\[ \tau_{\mathrm{cmd}}=\text{commanded reaction-wheel torque}, \qquad \tau_{\mathrm{inf}}=k_{t,\mathrm{RW}}I_{\mathrm{RW,motor}}. \]</p>
+<p>Keep commanded and current-inferred torque separate. State which one enters the model and propagate the uncertainty in the other quantity or use their difference diagnostically.</p>
+<h2>2. Base-rate prediction</h2>
+<p>Use the instructor-supplied sign convention and model:</p>
+<p>\[ I_{\mathrm{base}}\dot{\omega}_{\mathrm{base}} +c_{\mathrm{base}}\omega_{\mathrm{base}} +\tau_{0,\mathrm{base}}\operatorname{sgn}(\omega_{\mathrm{base}}) =s_\tau\tau_{\mathrm{applied}}. \]</p>
+<p>Here \(s_\tau\) is the verified sign relating reaction-wheel torque to base torque. State whether \(I_{\mathrm{base}}\), \(c_{\mathrm{base}}\), and \(\tau_{0,\mathrm{base}}\) are supplied, fitted, or provisional. Integrate the model when a rate history is required.</p>
+<h2>3. Supporting parameter identification</h2>
+<p>When an inertia or resistance parameter is needed and is not supplied, use a documented fitting window:</p>
+<p>\[ I=\frac{\tau}{\dot{\omega}}, \qquad \tau=k_t I_{\mathrm{motor}}, \]</p>
+<p>and, for resistance,</p>
 <p>\[ I\dot{\omega}+c\omega+\tau_0\operatorname{sgn}(\omega)=\tau_{\mathrm{applied}}. \]</p>
-<p>For a coast-down record, \(\tau_{\mathrm{applied}}=0\), so</p>
-<p>\[ \dot{\omega} = -\frac{c\omega+\tau_0\operatorname{sgn}(\omega)}{I}. \]</p>
-<p>Estimate \(c\) and \(\tau_0\) from the coast-down data or use instructor-provided values. Keep the two parameters in LaTeX notation in plots, tables, and prose.</p>
-<h2>5. Dynamic prediction</h2>
-<p>For a selected applied torque and angular rate,</p>
-<p>\[ \dot{\omega}(\tau_{\mathrm{applied}},\omega) = \frac{\tau_{\mathrm{applied}}-c\omega-\tau_0\operatorname{sgn}(\omega)}{I}. \]</p>
-<p>Integrate this equation when a predicted rate history is required. Compare the prediction with measured rate and acceleration, and distinguish sensor uncertainty from an imperfect resistance model.</p>
-<h2>6. Tier 2 uncertainty envelope</h2>
-<p>Use applied torque as the primary condition for the spin-up and inertia studies. Use angular rate as the primary condition for gyro calibration and coast-down analysis. For any derived output \(y\), report</p>
-<p>\[ \mathrm{SSU}_{y,\mathrm{sys}}(q)=b_{y,\mathrm{sys}}(q) \]</p>
-<p>and</p>
-<p>\[ \mathrm{NSU}_{y,\mathrm{sys}}(q)=\frac{b_{y,\mathrm{sys}}(q)}{|y(q)|}, \]</p>
-<p>where \(q\) is the selected torque or rate condition. Use both Taylor-series sensitivity coefficients and Monte Carlo propagation at representative conditions.</p>
+<p>Do not make a separate gyro, base-motor, or coast-down study central unless it is needed to establish a parameter used by the base-rate prediction. Label every parameter as measured, fitted, supplied, or provisional.</p>
+<h2>4. Encoder comparison and residuals</h2>
+<p>Use the base encoder as the truth/reference sensor:</p>
+<p>\[ r_\omega(\tau_{\mathrm{applied}}) = \omega_{\mathrm{base,predicted}}(\tau_{\mathrm{applied}}) - \omega_{\mathrm{base,encoder}}(\tau_{\mathrm{applied}}). \]</p>
+<p>Plot residuals versus applied torque. Interpret trends using sensor uncertainty, torque uncertainty, parameter uncertainty, friction/resistance, timing, and model-form error.</p>
+<h2>5. Tier 2 uncertainty envelope</h2>
+<p>Use applied reaction-wheel torque as the primary condition variable. For base rotational velocity \(y=\omega_{\mathrm{base}}\), report</p>
+<p>\[ \mathrm{SSU}_{y,\mathrm{sys}}(q)=b_{y,\mathrm{sys}}(q), \qquad \mathrm{NSU}_{y,\mathrm{sys}}(q)=\frac{b_{y,\mathrm{sys}}(q)}{|y(q)|}, \]</p>
+<p>where \(q\) is applied reaction-wheel torque. Use Taylor-series sensitivity coefficients and Monte Carlo propagation at representative conditions. Near a nominal zero, use absolute uncertainty and do not interpret the relative curve through the zero.</p>
+<h2>6. Supporting gyro calibration</h2>
+<p>If assigned or needed to establish base-rate uncertainty, use</p>
+<p>\[ \omega_{\mathrm{gyro}}=K\omega_{\mathrm{true}}+b, \qquad \omega_{\mathrm{calibrated}}=\frac{\omega_{\mathrm{gyro}}-b}{K}. \]</p>
+<p>The encoder remains the truth/reference sensor for the primary base-rate comparison.</p>
 <h2>7. Instructor placeholders</h2>
 <ul>
-<li>Reaction-wheel motor torque constant \(k_{t,\mathrm{RW}}\): [PLACEHOLDER].</li>
-<li>Base motor torque constant \(k_{t,\mathrm{base}}\): [PLACEHOLDER].</li>
-<li>Gyro and encoder ranges, resolutions, calibration, and sampling: [PLACEHOLDER].</li>
-<li>Current-sensor ranges and uncertainties: [PLACEHOLDER].</li>
-<li>Coast-down data or fitted \(c\) and \(\tau_0\): [PLACEHOLDER].</li>
-<li>Approved torque and angular-rate limits: [PLACEHOLDER].</li>
+<li>Reaction-wheel motor torque constant \(k_{t,\mathrm{RW}}\): [INSTRUCTOR TO PROVIDE OR VERIFY].</li>
+<li>Base motor torque constant \(k_{t,\mathrm{base}}\): only if a supporting base-motor</li>
+</ul>
+<p>measurement is assigned.</p>
+<ul>
+<li>Encoder, current-sensor, timing, and supporting gyro specifications: [PLACEHOLDER].</li>
+<li>Inertia and resistance parameters: [SUPPLIED, FITTED, OR PROVISIONAL - INSTRUCTOR TO IDENTIFY].</li>
+<li>Approved torque and base-rate limits: [PLACEHOLDER].</li>
 </ul>
 <p><em>Tier 2 theoretical framework - working draft for instructor review</em></p>
 <h1>Model Equations Reference - Spin Modules Tier 2 Experiment</h1>
-<p>This reference lists the equations needed for gyro calibration, inertia estimation, resistance characterization, rotational prediction, and uncertainty propagation.</p>
-<h2>1. Gyro calibration</h2>
-<p>Model the raw gyro output as</p>
-<p>\[ \omega_{\mathrm{gyro}}=K\omega_{\mathrm{true}}+b, \]</p>
-<p>where \(K\) is the scale factor and \(b\) is the bias. With the encoder as the reference,</p>
-<p>\[ \omega_{\mathrm{calibrated}}=\frac{\omega_{\mathrm{gyro}}-b}{K}. \]</p>
-<p>Fit \(K\) and \(b\) from the assigned calibration data and report their uncertainty.</p>
-<h2>2. Angular position from rate</h2>
-<p>\[ \theta(t)=\theta_0+\int_{t_0}^{t}\omega(\tau)\,d\tau. \]</p>
-<p>In MATLAB, the cumtrapz function is an appropriate numerical integration method. Compare integrated calibrated gyro rate with encoder angle and report drift.</p>
-<h2>3. Motor torque</h2>
-<p>When torque is inferred from motor current,</p>
-<p>\[ \tau=k_t I_{\mathrm{motor}}, \]</p>
-<p>where \(k_t\) is the motor torque constant. Use separate instructor-provided values for the reaction-wheel motor and base motor.</p>
-<h2>4. Reaction-wheel inertia</h2>
-<p>For a reaction-wheel spin-up test with the spacecraft body held stationary,</p>
-<p>\[ I_{\mathrm{RW}}\dot{\omega}_{\mathrm{RW}}=\tau_{\mathrm{RW}}. \]</p>
-<p>The initial estimate is</p>
-<p>\[ I_{\mathrm{RW}}=\frac{\tau_{\mathrm{RW}}}{\dot{\omega}_{\mathrm{RW}}}. \]</p>
-<p>Use multiple torque trials, fit angular acceleration, and report the mean, scatter, and propagated uncertainty.</p>
-<h2>5. Spacecraft-body inertia</h2>
-<p>For a base-motor spin-up test with the spacecraft allowed to rotate,</p>
-<p>\[ I_{\mathrm{sc}}\dot{\omega}_{\mathrm{sc}}=\tau_{\mathrm{base}}, \]</p>
-<p>for the initial model. Use the full resistance model below when the coast-down analysis shows that resistance is not negligible.</p>
-<p>\[ I_{\mathrm{sc}}=\frac{\tau_{\mathrm{base}}}{\dot{\omega}_{\mathrm{sc}}}. \]</p>
-<h2>6. Coast-down resistance model</h2>
-<p>Use the lumped viscous-plus-Coulomb resistance model</p>
+<p>This reference supports the revised Tier 2 application: uncertainty in base rotational velocity versus applied reaction-wheel torque, rotational prediction, encoder comparison, residual analysis, and uncertainty propagation. Parameter estimation is supporting work only when needed to establish the model.</p>
+<h2>1. Applied torque definition</h2>
+<p>Keep commanded and inferred torque separate:</p>
+<p>\[ \tau_{\mathrm{cmd}}=\text{commanded reaction-wheel torque}, \qquad \tau_{\mathrm{inf}}=k_{t,\mathrm{RW}}I_{\mathrm{RW,motor}}. \]</p>
+<p>Use the torque quantity specified by the instructor or justified by the data as the model input. Propagate uncertainty in the other quantity or use the difference between them as a diagnostic. The motor torque constant \(k_{t,\mathrm{RW}}\) must be labeled as supplied, measured, fitted, or provisional.</p>
+<h2>2. Base-rate rotational model</h2>
+<p>Use the supplied sign convention and parameter definitions. A generic working form is</p>
+<p>\[ I_{\mathrm{base}}\dot{\omega}_{\mathrm{base}} +c_{\mathrm{base}}\omega_{\mathrm{base}} +\tau_{0,\mathrm{base}}\operatorname{sgn}(\omega_{\mathrm{base}}) =s_\tau\,\tau_{\mathrm{applied}}, \]</p>
+<p>where \(s_\tau\) is the instructor-verified sign relating reaction-wheel torque to base torque. If the supplied model includes additional terms, use that model and state the difference. The required output is the predicted base rotational-rate history or condition response.</p>
+<p>For a specified torque and rate,</p>
+<p>\[ \dot{\omega}_{\mathrm{base}} = \frac{s_\tau\tau_{\mathrm{applied}} -c_{\mathrm{base}}\omega_{\mathrm{base}} -\tau_{0,\mathrm{base}}\operatorname{sgn}(\omega_{\mathrm{base}})} {I_{\mathrm{base}}}. \]</p>
+<p>State whether \(I_{\mathrm{base}}\), \(c_{\mathrm{base}}\), and \(\tau_{0,\mathrm{base}}\) are supplied, fitted, or provisional.</p>
+<h2>3. Supporting gyro calibration</h2>
+<p>If assigned or needed to establish base-rate uncertainty, model the raw gyro output as</p>
+<p>\[ \omega_{\mathrm{gyro}}=K\omega_{\mathrm{true}}+b, \qquad \omega_{\mathrm{calibrated}}=\frac{\omega_{\mathrm{gyro}}-b}{K}. \]</p>
+<p>Fit \(K\) and \(b\) from calibration data only when the instructor assigns this supporting analysis. The encoder remains the truth/reference sensor for the primary base-rate comparison.</p>
+<h2>4. Supporting inertia and resistance parameters</h2>
+<p>For a supporting reaction-wheel or base-motor trial, use</p>
+<p>\[ I=\frac{\tau}{\dot{\omega}}, \qquad \tau=k_t I_{\mathrm{motor}}, \]</p>
+<p>only when that parameter is needed by the base-rate model. Use a documented fitting window and distinguish measured, fitted, supplied, and provisional values.</p>
+<p>For a coast-down or resistance fit, use</p>
 <p>\[ I\dot{\omega}+c\omega+\tau_0\operatorname{sgn}(\omega)=\tau_{\mathrm{applied}}. \]</p>
-<p>Here \(c\) is the viscous resistance coefficient and \(\tau_0\) is the approximately constant Coulomb-friction torque. During coast-down, \(\tau_{\mathrm{applied}}=0\), so</p>
-<p>\[ \dot{\omega} = -\frac{c\omega+\tau_0\operatorname{sgn}(\omega)}{I}. \]</p>
-<p>Estimate \(c\) and \(\tau_0\) from the supplied coast-down data or use instructor-provided estimates. State clearly whether the values are measured, fitted, or supplied.</p>
-<h2>7. Rotational-performance prediction</h2>
-<p>For a specified applied torque and angular rate,</p>
-<p>\[ \dot{\omega} = \frac{\tau_{\mathrm{applied}}-c\omega-\tau_0\operatorname{sgn}(\omega)}{I}. \]</p>
-<p>Use this equation to predict angular acceleration or integrate the predicted rate history. Compare the prediction with measured data.</p>
-<h2>8. Tier 2 uncertainty targets</h2>
-<p>For gyro calibration, evaluate uncertainty in \(\omega_{\mathrm{calibrated}}\) versus encoder angular rate. For inertia estimation, evaluate uncertainty in \(I=\tau/\dot{\omega}\) versus applied torque. For rotational-performance prediction, evaluate uncertainty in \(\dot{\omega}\) or predicted rate history versus applied torque and angular rate.</p>
-<p>Report</p>
-<p>\[ \mathrm{SSU}_{y,\mathrm{sys}}(q)=b_{y,\mathrm{sys}}(q) \]</p>
-<p>and</p>
-<p>\[ \mathrm{NSU}_{y,\mathrm{sys}}(q)=\frac{b_{y,\mathrm{sys}}(q)}{|y(q)|}, \]</p>
-<p>where \(q\) is the selected torque or rate test condition. Preserve covariance among parameters estimated from the same regression when a covariance matrix is available.</p>
+<p>During coast-down, \(\tau_{\mathrm{applied}}=0\). Do not make coast-down a central deliverable unless it is needed to support the prediction.</p>
+<h2>5. Encoder comparison and residuals</h2>
+<p>Treat the encoder base-rate channel as the truth/reference sensor for the primary comparison:</p>
+<p>\[ r_\omega(\tau_{\mathrm{applied}}) = \omega_{\mathrm{base,predicted}}(\tau_{\mathrm{applied}}) - \omega_{\mathrm{base,encoder}}(\tau_{\mathrm{applied}}). \]</p>
+<p>Plot residuals versus applied torque and, where useful, versus time or measured rate. Interpret trends using sensor uncertainty, torque uncertainty, parameter uncertainty, friction/resistance, timing, and model-form error.</p>
+<h2>6. Condition-dependent uncertainty</h2>
+<p>The primary sweep variable is applied reaction-wheel torque. Propagate uncertainty from current, \(k_{t,\mathrm{RW}}\), command calibration, inertia, resistance, timing, and encoder/base-rate measurement. Calculate absolute and relative uncertainty in base rotational velocity:</p>
+<p>\[ \mathrm{SSU}_{\omega,\mathrm{base},\mathrm{sys}}(q) =b_{\omega,\mathrm{base},\mathrm{sys}}(q), \]</p>
+<p>\[ \mathrm{NSU}_{\omega,\mathrm{base},\mathrm{sys}}(q) = \frac{b_{\omega,\mathrm{base},\mathrm{sys}}(q)} {\lvert\omega_{\mathrm{base}}(q)\rvert}, \]</p>
+<p>where \(q\) is the applied reaction-wheel torque. Near a nominal zero, use absolute uncertainty and do not interpret the relative curve through the zero.</p>
 <h2>Instructor placeholders</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>Reaction-wheel motor \(k_t\)</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Base motor \(k_t\)</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Gyro range, resolution, and sampling</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Encoder range, resolution, and sampling</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Current-sensor range and uncertainty</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Coast-down data or \(c,\tau_0\) estimates</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Approved torque/rate limits</td><td>[INSTRUCTOR TO PROVIDE]</td></tr></tbody></table></div>
-<p><em>Tier 2 equation reference - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure — Spin Modules: Rate Gyro Calibration and Inertia Estimation</h1>
-<p>&gt; <strong>Lab:</strong> Spin Modules — Rate Gyro Calibration and Inertia Estimation &gt; <strong>Scope:</strong> MEMS rate gyro calibration; reaction wheel MOI; spacecraft body MOI &gt; <strong>Hardware:</strong> CU Boulder Spin Module (single-axis spacecraft mockup) &gt; <strong>Software:</strong> LabVIEW VI — <code>All_Spin_Module_Labs.vi</code> &gt; <strong>Source:</strong> ASEN3801 Lab 3 (primary); ASEN3200 LabA1 (supplemental)</p>
-<hr>
-<p>[SAFETY: Power-up sequence is ORDER-DEPENDENT. Incorrect power-up can damage the hardware. Follow the exact sequence in Part 1 below. Clamp the spin module to the table BEFORE running any motor commands — an unclamped module will fly off the table.]</p>
-<hr>
-<h2>Part 1 — Spin Module Power-Up Procedure</h2>
-<p><em>Primary source: ASEN3801 Lab 3, Setup Procedure (pages 12–13); supplemental: ASEN3200 LabA1 (pages 8–9).</em></p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>Reaction-wheel motor \(k_t\)</td><td>[INSTRUCTOR TO PROVIDE OR VERIFY]</td></tr><tr><td>Base motor \(k_t\)</td><td>Only if a supporting base-motor measurement is assigned</td></tr><tr><td>Gyro range, resolution, and sampling</td><td>Supporting/optional unless needed</td></tr><tr><td>Encoder range, resolution, and sampling</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Current-sensor range and uncertainty</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Inertia and resistance parameters</td><td>[SUPPLIED, FITTED, OR PROVISIONAL - INSTRUCTOR TO IDENTIFY]</td></tr><tr><td>Approved torque/rate limits</td><td>[INSTRUCTOR TO PROVIDE]</td></tr></tbody></table></div>
+<p><em>Tier 2 equation reference - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure - Spin Modules Tier 2 Experiment</h1>
+<p>&gt; <strong>Lab:</strong> Reaction-wheel torque, base rotational-rate prediction, and uncertainty &gt; &gt; <strong>Hardware:</strong> CU Boulder Spin Module, reaction-wheel motor, base encoder, current channel, &gt; rate channels, DAQ, and LabVIEW interface &gt; &gt; <strong>Software:</strong> LabVIEW VI and MATLAB analysis tools</p>
+<h2>Purpose</h2>
+<p>Act as an engineering consultant evaluating whether the spin module can predict base rotational velocity reliably over a range of applied reaction-wheel torques. The uncertainty analysis comes first: use it to select torque conditions, then use a rotational model to predict base rate, compare the prediction with the encoder base-rate reference, and interpret residuals.</p>
+<p>Gyro calibration is supporting work only when it is needed to establish base-rate uncertainty or when the instructor assigns it. Solar-panel comparison, saturation-time analysis, controller design, and unrelated hardware redesign are outside the required scope.</p>
+<h2>Safety and setup</h2>
+<p>Follow the instructor&#x27;s power-up and wind-down procedure exactly. Clamp the spin module before any motor command. Verify power-supply settings, battery condition, communication status, and the approved torque, current, speed, and mechanical limits before testing. Do not change LabVIEW operating modes while the VI is running. Stop the VI before changing tabs or wiring.</p>
+<p>Record the software version, hardware/setup identifier, battery state if available, channel names, units, sign conventions, and any dropout or status flags. Preserve raw files without overwriting them.</p>
+<h2>Applied-torque definition</h2>
+<p>Record both the commanded and current-inferred quantities:</p>
+<p>\[ \tau_{\mathrm{cmd}}=\text{commanded reaction-wheel torque}, \qquad \tau_{\mathrm{inf}}=k_{t,\mathrm{RW}}I_{\mathrm{RW,motor}}. \]</p>
+<p>Use the instructor-approved torque constant and current calibration. Do not assume that \(\tau_{\mathrm{cmd}}=\tau_{\mathrm{inf}}\). State which quantity enters the rotational model and propagate uncertainty in the other quantity or use their difference diagnostically. Label \(k_{t,\mathrm{RW}}\) as supplied, measured, fitted, or provisional.</p>
+<h2>Day 1 - Measurement model and uncertainty-based test selection</h2>
 <ol>
-<li>Use the clamp provided to secure the spin module base to the lab station top. Place the clamp on the base plate at the spot labeled &quot;clamp here&quot;.</li>
-<li><strong>CHECK that you have completed step 1.</strong> If you do not clamp the spin module down and you run the motor, it will fly off the table and be damaged.</li>
-<li>Connect the USB cable Type B end to the National Instruments myRIO port labeled &quot;DEVICE&quot; (the middle port). The other Type A end connects to the lab station computer. (Do not connect to the Type A top port on the myRIO.)</li>
-<li>Connect the power adapter to the barrel connector. The power light on the myRIO should now be illuminated blue.</li>
-<li>Wait 1–2 minutes until the Status light on the myRIO turns from orange to off.</li>
-<li>Verify the lab assistant has connected the second power supply to the base station printed circuit board (PCB). Verify the U8002A power supply is set to a limit of 12.00 V and 0.300 A (press &quot;Display Limit&quot; on the supply). Do not plug in any power connections until power supply settings have been verified.</li>
-<li>Confirm that the satellite 9V battery pack has been plugged in. Wait for the lower board motor controller to flash its green LED.</li>
-<li>Once the above steps are complete, turn on the satellite board power located on the top PCB, inside the spin module chassis, using the red toggle switch.</li>
-<li>Verify the board goes through a series of status LEDs shown near the toggle switch. The remaining LED under the switch should be Yellow; the Alive LED should be green.</li>
-<li>Open <code>All_Spin_Module_Labs.vi</code> located in your current semester&#x27;s class folder (Courses H:/AES/Software/VIs/ASEN 3200/). <strong>Do NOT run the VI yet.</strong></li>
-<li>Check the battery voltage meter in the VI status panel (bottom right corner). If the battery voltage of the satellite&#x27;s onboard battery pack drops below 14 V, turn off the top satellite board with the red toggle switch and request staff assistance for new batteries.</li>
-<li>The &quot;Reinitialize Arduino&quot; button is used if you notice the gyro voltage drift over time from zero at rest. Use it to reset this offset bias.</li>
-<li>The green indicators show if the myRIO (on the base) and the Arduino DUE (inside the satellite) are properly connected and communicating.</li>
-<li>Check the &quot;Link Speed&quot; dial — a good typical value is 1.5 or higher. If you see frequent dropouts to zero, the Xbee channel may be experiencing interference from other wireless sources, or the battery voltage may be too low.</li>
+<li>Map the reaction-wheel current, motor torque constant, reaction-wheel rate, base encoder</li>
 </ol>
-<p><strong>NOTE:</strong> For safety, you cannot change the LabVIEW operating modes (Torque vs. Gyro) of the Spin Module while the VI is running.</p>
-<p>[SETUP_PHOTO NEEDED: myRIO port layout (USB DEVICE port location, barrel connector location). See LabA1 Figure 2 in source — not available as a standalone image file.]</p>
-<hr>
-<h2>Part 2 — Rate Gyro Calibration</h2>
-<p><em>Primary source: ASEN3801 Section 3.1; supplemental: ASEN3200 LabA1 Section 5.1.</em></p>
-<p><strong>Purpose:</strong> Characterize the MEMS gyro bias \(b\) and scale factor \(K\) relative to the encoder truth reference.</p>
-<h3>Sub-Part 2a: Manual Experiment (Qualitative)</h3>
+<p>rate, time, DAQ, and data-reduction chain.</p>
 <ol>
-<li>Select the &quot;Gyro&quot; tab on the VI front panel.</li>
-<li>Start running the VI by clicking &quot;play&quot;. The VI will now display live gyro measurements.</li>
-<li>Select &quot;Manual Control&quot; from the VI front panel.</li>
-<li>Move the spacecraft gently back and forth by hand in a smooth, sinusoidal manner so that a good linear relationship between gyro rate measurement and input angular rate can be observed on the VI.</li>
+<li>Confirm the base encoder is the truth/reference sensor for the primary predicted-versus-</li>
 </ol>
-<ul>
-<li><strong>Note:</strong> Abrupt changes in angular velocity lead to non-linear effects in the gyro output that appear as &quot;looping&quot; in the relationship between true angular rate and gyro measurement. Use gentle, sinusoidal motion to avoid this.</li>
-</ul>
+<p>measured base-rate comparison.</p>
 <ol>
-<li>Observe how moving the spacecraft at different rates affects the data collection.</li>
-<li>Collect approximately 1 minute of data for observation; there is no need to save this file.</li>
-<li>Take notes on the performance of the MEMS gyro for later discussion.</li>
+<li>Identify the inertia and resistance parameters required by the supplied rotational model.</li>
 </ol>
-<h3>Sub-Part 2b: Motor-Driven Calibration Data Collection</h3>
+<p>Mark each parameter as supplied, fitted, or provisional.</p>
 <ol>
-<li>While still on the &quot;Gyro&quot; tab, select &quot;Automatic RW Control&quot; from the VI front panel.</li>
-<li>Set the desired output frequency and amplitude. A <strong>0.2 Hz sine wave at an amplitude of 0.5 Amps</strong> is a good starting point.</li>
-<li>Click &quot;Begin Test&quot;. The VI will display data on the screen (not yet logging to file).</li>
-<li>Collect approximately 1 minute of data.</li>
-<li>Click &quot;Write to File&quot; and save using the naming convention:</li>
+<li>Use the available sensor specifications and parameter uncertainties to calculate an initial</li>
 </ol>
-<p><code>YEAR_MONTH_DAY_SEC_MEMS_F#C#</code></p>
-<ul>
-<li>Example: <code>2024_XX_XX_001_MEMS_F02C05</code> (Section 001, 0.2 Hz, 0.5 A)</li>
-</ul>
+<p>uncertainty envelope for base rotational velocity versus applied reaction-wheel torque.</p>
 <ol>
-<li>Repeat for at least 2 more different frequency/amplitude combinations, saving each file.</li>
-<li>Use the &quot;STOP&quot; button when done collecting.</li>
+<li>Define the decision rule for appropriate, marginal, and inappropriate torque conditions.</li>
 </ol>
-<p><strong>Data quality note:</strong> If &quot;DUMPING&quot; is displayed and illuminated (rather than &quot;QUEUING&quot;), data will not be saved — check this before clicking Write to File.</p>
-<h3>Sub-Part 2c: MATLAB Analysis</h3>
-<p><em>From ASEN3801 Section 3.1, Tasks 1–4.</em></p>
+<p>Do not invent an operating limit or numerical acceptance threshold.</p>
 <ol>
-<li>For one data set: import the data into MATLAB. Identify what information is in each column and convert the rate data from RPM to rad/s.</li>
-<li>On the same graph, plot the time history of the encoder rate measurement (true angular rate) and the gyro rate measurement (in rad/s). Note: you should observe that the gyro rate measurements have the opposite sign from the encoder rate measurements.</li>
-<li>To determine the calibration parameters, plot the encoder rate measurement on the horizontal axis and the gyro rate measurement on the vertical axis. Fit a line to the data to determine:</li>
+<li>Commit to torque conditions that test the predicted low-uncertainty region, high-uncertainty</li>
 </ol>
-<ul>
-<li>Gyro bias \(b\) [rad/s] (y-intercept)</li>
-<li>Scale factor \(K\) [unitless, (rad/s)/(rad/s)] (slope)</li>
-</ul>
+<p>region, and any proposed decision boundary.</p>
+<h2>Day 2 - Reaction-wheel torque and base-rate data</h2>
 <ol>
-<li>Write a calibration equation for how the gyro rate measurements should be corrected. Apply the calibration to the data set and plot the time history of encoder rate and calibrated rate on the same axes — they should match well.</li>
-<li>Make a table of b and K for each run. Compute the mean and standard deviation of b and K across all runs. Explain which trials you used and which portions of the data, if any, you removed before computing statistics.</li>
-<li>For two data sets, compute and plot:</li>
+<li>Verify the reaction-wheel and base-rate channels, units, signs, timestamps, and status</li>
 </ol>
-<ul>
-<li>(a) Time history of encoder rate and calibrated rate</li>
-<li>(b) Time history of angular rate error (calibrated rate − encoder rate)</li>
-<li>(c) Time history of true angular position (from encoder) and measured angular position (from calibrated gyro rate); compute positions by integrating the respective rates.</li>
-<li>(d) Time history of angular position error (measured − true)</li>
-<li>(e) Angular position error as a function of encoder rate (encoder rate on x-axis)</li>
-</ul>
-<p><code>[STUDENT TASK: Determine bias and scale factor; write calibration equation; analyze position drift from integrated gyro measurements.]</code></p>
-<hr>
-<h2>Part 3 — Reaction Wheel MOI Estimation</h2>
-<p><em>Primary source: ASEN3801 Section 3.2; supplemental: ASEN3200 LabA1 Section 5.2.</em></p>
-<p><strong>Purpose:</strong> Estimate the moment of inertia of the reaction wheel using a constant-torque spin-up test.</p>
-<p>[SAFETY: When torque is applied to the reaction wheel, the spacecraft will naturally start to spin (Newton&#x27;s 3rd Law reaction). To measure ONLY the reaction wheel MOI, hold the spacecraft body stationary with your hand during this measurement.]</p>
-<p><strong>NOTE:</strong> You cannot change operating modes (Gyro vs. Torque) while the VI is running. Stop the VI before switching tabs.</p>
+<p>flags.</p>
 <ol>
-<li>Triple-check that the spin module is clamped to the table. This is especially important for torque measurements.</li>
-<li>Select the &quot;Torque&quot; tab on the VI front panel.</li>
-<li>Start running the VI by clicking &quot;play&quot;.</li>
-<li>Configure for RW MOI measurement:</li>
+<li>Select the assigned torque command and record both \(\tau_{\mathrm{cmd}}\) and the</li>
 </ol>
-<ul>
-<li>Select the &quot;<strong>RW</strong>&quot; switch to apply a constant torque to the RW motor (displays &quot;Torque Applied to RW&quot; on the Commanded Torque plot).</li>
-<li>Under &quot;Angular Velocity Sensor,&quot; select &quot;<strong>Reaction Wheel (Hall Sensors)</strong>&quot; to measure the actual angular velocity of the reaction wheel using the RW motor&#x27;s built-in Hall-effect sensors (displayed on the Angular Speed plot).</li>
-<li>Select &quot;<strong>RW</strong>&quot; for the Current Sensor to display actual current drawn by the RW motor (third plot).</li>
-</ul>
+<p>current-inferred \(\tau_{\mathrm{inf}}\) where available.</p>
 <ol>
-<li>Enter the desired torque in mNm.</li>
-<li>Click &quot;Begin Test&quot;. Let the wheel spin up to an observable rate.</li>
-<li>Click &quot;Write to File&quot;. Save using the naming convention:</li>
+<li>Collect or inspect multiple reaction-wheel torque trials over the committed range.</li>
+<li>Preserve the base encoder rate and reaction-wheel rate channels with the current and time</li>
 </ol>
-<p><code>YEAR_MONTH_DAY_SEC_RWHEEL_T#t#</code></p>
-<ul>
-<li>Example: <code>2024_XX_XX_003_RWHEEL_T10t5</code> (10 mNm torque, 5 seconds)</li>
-</ul>
+<p>channels. Record any command transitions, dropouts, saturation, or nonsteady intervals.</p>
 <ol>
-<li>Use &quot;STOP&quot; to stop the VI between runs.</li>
-<li>Repeat for at least 4 more different torque values, saving each file.</li>
+<li>Include at least one condition predicted to be marginal or uncertainty-dominated when safe</li>
 </ol>
-<p><strong>Current-to-torque conversion:</strong></p>
-<ul>
-<li>Use the RW motor datasheet (motor part #251601, datasheet page 300 of motor catalog) to find the torque constant \(k_t\) [mN·m/A].</li>
-<li>Convert measured motor current to torque using \(\tau=k_t I_{\mathrm{motor}}\).</li>
-<li><code>[MISSING: RW motor torque constant k_t — motor datasheet embedded as image in ASEN3801 source (pages 14–15); actual k_t value must be read from the physical datasheet or PDF. See instrumentation/datasheets/README_agent.md.]</code></li>
-</ul>
-<p><strong>MATLAB Analysis:</strong></p>
+<p>and permitted, so the recommendation is tested rather than assumed.</p>
+<h2>Day 3 - Model, uncertainty, and residual analysis</h2>
 <ol>
-<li>Import each data file; plot angular velocity vs. time for each trial.</li>
-<li>Fit a line (linear regression) to find average angular acceleration \(\alpha\) [rad/s²].</li>
-<li>Compute \(I_{\mathrm{RW}}=\tau/\alpha\) [kg·m²].</li>
-<li>Compute the mean and standard deviation of \(I_{\mathrm{RW}}\) across all trials.</li>
-<li>Optional enrichment, if assigned: estimate angular-momentum capacity \(H_{\max}=I_{\mathrm{RW}}\omega_{\max}\), where the source lists \(\omega_{\max}=4000\ \mathrm{rpm}=419\ \mathrm{rad/s}\).</li>
-<li>Optional enrichment, if assigned: estimate saturation time \(t_{\mathrm{sat}}=H_{\max}/\tau_{\mathrm{disturbance}}\) using the instructor-provided disturbance torque.</li>
+<li>Estimate or import the inertia and resistance parameters required by the model. Use a</li>
 </ol>
-<p><code>[STUDENT TASK: Fit angular acceleration; compute reaction wheel MOI; compute mean and std dev across trials. H_max and t_sat are optional enrichment unless explicitly assigned.]</code></p>
-<hr>
-<h2>Part 4 — Spacecraft Body MOI Estimation</h2>
-<p><em>Source: ASEN3801 Section 3.3a only — not in LabA1. ASEN3801 is the only source for this measurement.</em></p>
-<p><strong>Purpose:</strong> Estimate the moment of inertia \(I_{\mathrm{sc}}\) of the spacecraft body about its spin axis.</p>
-<p><strong>Key difference from Part 3:</strong></p>
-<ul>
-<li>NOW allow the spacecraft to spin freely (do not hold it).</li>
-<li>Apply torque with the <strong>BASE motor</strong> (not the RW motor).</li>
-<li>Measure angular velocity with the <strong>BASE ENCODER</strong> (not Hall sensors).</li>
-<li>Use the <strong>BASE MOTOR torque constant</strong> for current-to-torque conversion (motor part #200142).</li>
-</ul>
+<p>documented fitting window if parameters are estimated from reaction-wheel, base-motor, or coast-down data.</p>
 <ol>
-<li>Confirm the spin module is clamped to the table.</li>
-<li>Select the &quot;Torque&quot; tab on the VI.</li>
-<li>Start running the VI.</li>
-<li>Configure for spacecraft body MOI measurement:</li>
+<li>Use the supplied sign convention and rotational model to predict base rate:</li>
 </ol>
-<ul>
-<li>Select the &quot;<strong>Base</strong>&quot; switch to apply a constant torque to the base motor (displays &quot;Torque Applied to BASE&quot; on the Commanded Torque plot).</li>
-<li>Under &quot;Angular Velocity Sensor,&quot; select &quot;<strong>Base (Encoder)</strong>.&quot; The base encoder data will be displayed on the Angular Speed plot.</li>
-<li>Select &quot;<strong>Base</strong>&quot; for the Current Sensor.</li>
-</ul>
+<p>\[ I_{\mathrm{base}}\dot{\omega}_{\mathrm{base}} +c_{\mathrm{base}}\omega_{\mathrm{base}} +\tau_{0,\mathrm{base}}\operatorname{sgn}(\omega_{\mathrm{base}}) =s_\tau\tau_{\mathrm{applied}}. \]</p>
 <ol>
-<li>Enter the desired torque in mNm.</li>
-<li>Click &quot;Begin Test.&quot; Allow the spacecraft to spin up.</li>
-<li>Click &quot;Write to File.&quot; Save files with a consistent naming convention (adapt the RWHEEL convention: e.g., <code>YEAR_MONTH_DAY_SEC_SC_T#t#</code>).</li>
-<li>Repeat for multiple torque values, saving each file.</li>
+<li>Run Taylor/sensitivity and Monte Carlo propagation for base rotational velocity versus</li>
 </ol>
-<p><strong>Current-to-torque conversion:</strong></p>
-<ul>
-<li>Use the BASE motor datasheet (motor part #200142, datasheet page 265) to find the torque constant \(k_t\) [mN·m/A].</li>
-<li><code>[MISSING: Base motor torque constant k_t — same issue as RW motor. See instrumentation/datasheets/README_agent.md.]</code></li>
-</ul>
-<p><strong>MATLAB Analysis:</strong> Identical to Part 3: linear fit \(\rightarrow\alpha\rightarrow I_{\mathrm{sc}}=\tau/\alpha\). Report the mean and standard deviation of \(I_{\mathrm{sc}}\) across trials.</p>
-<p><code>[STUDENT TASK: Same method as RW MOI applied to spacecraft body — fit angular acceleration, compute I_sc, report mean and std dev.]</code></p>
-<hr>
-<h2>Power-Down Procedure</h2>
+<p>applied reaction-wheel torque.</p>
 <ol>
-<li>Turn off the red toggle switch on the satellite body.</li>
-<li>Disconnect the 9V battery pack using the blue pry bar located in the clear plastic box.</li>
+<li>Compare the predicted base rate with the encoder base-rate measurement.</li>
+<li>Calculate residuals:</li>
 </ol>
+<p>\[ r_\omega =\omega_{\mathrm{base,predicted}}-\omega_{\mathrm{base,encoder}}. \]</p>
+<ol>
+<li>Plot the residuals versus applied torque and, where useful, time or measured rate.</li>
+<li>Separate sensor uncertainty from torque uncertainty, parameter uncertainty,</li>
+</ol>
+<p>friction/resistance, timing, and model-form error.</p>
+<h2>Day 4 - Targeted validation and recommendation</h2>
+<ol>
+<li>Select targeted repeat conditions near the predicted low-uncertainty region, a</li>
+</ol>
+<p>high-uncertainty region, and any proposed boundary.</p>
+<ol>
+<li>Compare the repeated measurements with the predicted uncertainty envelope and residual</li>
+</ol>
+<p>trends.</p>
+<ol>
+<li>Decide which torque conditions are appropriate, marginal, or inappropriate according to</li>
+</ol>
+<p>the stated decision rule.</p>
+<ol>
+<li>Quantify one feasible improvement, such as current/torque resolution, torque calibration,</li>
+</ol>
+<p>encoder measurement, timing, resistance characterization, sampling, or parameter estimation, and show how it changes the useful envelope.</p>
+<ol>
+<li>Document limitations caused by provisional parameters, missing sensor specifications,</li>
+</ol>
+<p>timing gaps, or unverified operating limits.</p>
+<h2>Required data products</h2>
 <ul>
-<li><strong>IMPORTANT:</strong> Do this every session — the battery pack does not have a built-in safety cutoff, and leaving it connected drains battery life.</li>
+<li>Measurement-chain diagram with commanded torque, current-inferred torque, rate channels,</li>
 </ul>
-<hr>
-<h2>Known Pitfalls and Common Mistakes</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Issue</th><th>Cause</th><th>Remedy</th></tr></thead><tbody><tr><td>Module flies off table</td><td>Not clamped before running motor</td><td>Always clamp before powering up motors</td></tr><tr><td>Gyro voltage drifts from zero at rest</td><td>Accumulated bias in Arduino</td><td>Click &quot;Reinitialize Arduino&quot; in VI</td></tr><tr><td>Low Link Speed (&lt; 1.5)</td><td>Xbee interference or low battery</td><td>Check battery voltage; reduce wireless interference</td></tr><tr><td>&quot;DUMPING&quot; shown instead of &quot;QUEUING&quot;</td><td>Buffer state issue</td><td>Use &quot;Reinitialize Spreadsheet Data&quot;; check before saving</td></tr><tr><td>Base motor controller LED turns RED</td><td>Input exceeded allowable limits</td><td>Reduce commanded torque</td></tr><tr><td>Mode cannot be changed while VI runs</td><td>VI operating mode lock</td><td>Stop VI before changing Gyro/Torque tab</td></tr><tr><td>Gyro shows &quot;looping&quot;</td><td>Abrupt rate changes → nonlinear response</td><td>Use gentle sinusoidal motion; avoid step inputs</td></tr><tr><td>Battery voltage below 14V</td><td>Low onboard battery</td><td>Stop satellite board; request new batteries from staff</td></tr></tbody></table></div>
-<p>[SETUP_PHOTO NEEDED: Spin module with clamp in place, showing &quot;clamp here&quot; location and power connections. Also: VI front panel layout showing Gyro/Torque tabs, Begin Test button, Write to File button, and status indicators.]</p>
-<hr>
-<p><em>This file was created on 2026-05-21 by Claude claude-sonnet-4-6</em></p>
-<hr>
-<h2>Tier 2 Scope and Four-Day Execution Plan</h2>
-<p>The Tier 2 spin-module branch is a consulting-style evaluation of the rotational measurement system. The purpose is to determine which rate and torque conditions provide useful parameter estimates and dynamic predictions.</p>
-<h3>Day 1 - Prediction and calibration</h3>
+<p>encoder reference, timing, and data reduction.</p>
 <ul>
-<li>inspect the gyro, encoder, Hall-sensor, current, motor, DAQ, and wireless measurement chain;</li>
-<li>verify units, limits, and available torque constants;</li>
-<li>collect or analyze gyro calibration data;</li>
-<li>commit to the initial rate and torque test matrix;</li>
-<li>predict the initial uncertainty envelope.</li>
+<li>Table of supplied, fitted, and provisional parameters with units and uncertainties.</li>
+<li>Base rotational-velocity uncertainty envelope versus applied reaction-wheel torque, including</li>
 </ul>
-<h3>Day 2 - Spin-up and inertia data</h3>
+<p>absolute and relative forms where the relative form is meaningful.</p>
 <ul>
-<li>collect multiple reaction-wheel torque trials;</li>
-<li>collect multiple base-motor torque trials for spacecraft-body response;</li>
-<li>record actual current, rate, torque command, and timing information;</li>
-<li>preserve raw data and document battery, link, clamp, and operating-limit status.</li>
+<li>Rotational-model prediction of base rate using the selected torque definition.</li>
+<li>Encoder comparison and residuals versus applied reaction-wheel torque.</li>
+<li>Taylor-series and Monte Carlo comparison at representative conditions.</li>
+<li>Interpretation of residual trends and a decision-rule-based recommendation.</li>
+<li>Quantitatively justified instrumentation or setup improvement.</li>
 </ul>
-<h3>Day 3 - Resistance and uncertainty analysis</h3>
+<h2>Data-quality checks</h2>
 <ul>
-<li>collect or analyze a coast-down segment;</li>
-<li>estimate \(c\) and \(\tau_0\) as lumped resistance parameters, or use instructor-provided values;</li>
-<li>estimate reaction-wheel and spacecraft-body inertia;</li>
-<li>run the Taylor and Monte Carlo uncertainty sweeps versus torque and/or rate;</li>
-<li>identify candidate useful and inappropriate regions.</li>
+<li>Confirm that commanded and measured/inferred torque are not silently conflated.</li>
+<li>Use recorded time rather than assuming perfectly uniform sampling.</li>
+<li>Do not differentiate noisy rates without documenting the fit, smoothing, or differentiation</li>
 </ul>
-<h3>Day 4 - Targeted validation and recommendation</h3>
+<p>method.</p>
 <ul>
-<li>repeat selected torque or rate conditions near an uncertainty-envelope boundary;</li>
-<li>compare predicted and measured angular response;</li>
-<li>quantify one setup change, such as improved current/torque resolution, gyro calibration,</li>
+<li>Check for current clipping, motor saturation, encoder quantization, wireless dropouts,</li>
 </ul>
-<p>sampling, or an additional resistance measurement;</p>
+<p>battery degradation, sign errors, and command-transition artifacts.</p>
 <ul>
-<li>finalize the client recommendation.</li>
+<li>Treat the encoder as the reference sensor for the primary base-rate comparison.</li>
+<li>State clearly which parameters are supplied, fitted, or provisional.</li>
 </ul>
-<h3>Scope boundary</h3>
-<p>The minimum Tier 2 result is not a complete spacecraft controls study. Reaction-wheel saturation time, solar-panel comparison, and controller design are enrichment topics unless the instructor assigns them. The required result is a defensible uncertainty envelope and test recommendation based on gyro calibration, both inertia estimates, and a resistance characterization.</p></div></div><div class="scaffold-section compiled"><h3>Instrumentation and DAQ Details</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary - Spin Modules Tier 2 Experiment</h1>
-<p>The Tier 2 measurement chain contains the gyro, encoder, Hall sensors, motor-current channels, motor torque constants, DAQ, and LabVIEW interface. Values marked as placeholders must be verified before student release.</p>
-<h2>Angular-rate sensors</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Sensor</th><th>Role</th><th>Required information</th></tr></thead><tbody><tr><td>MEMS rate gyro</td><td>Calibrated angular rate</td><td>Range, bias, scale factor, resolution, sampling rate, and uncertainty</td></tr><tr><td>Base encoder</td><td>Reference for spacecraft-body rate</td><td>Counts/revolution, range, resolution, sampling, sign convention, and uncertainty</td></tr><tr><td>Reaction-wheel Hall sensors</td><td>Reaction-wheel spin-up rate</td><td>Resolution, sampling, conversion to angular rate, and uncertainty</td></tr></tbody></table></div>
+<p><em>Tier 2 branch procedure - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation and DAQ Details</h3><div class="compiled-content"><h1>Sensor and Instrumentation Summary - Spin Modules Tier 2 Experiment</h1>
+<p>The Tier 2 measurement chain contains the reaction-wheel motor-current channel, reaction-wheel torque constant, reaction-wheel and base-rate channels, encoder/reference channel, timing, DAQ, and LabVIEW interface. Supporting gyro information is included only if it is needed to establish base-rate uncertainty. Values marked as placeholders must be verified before student release.</p>
+<h2>Angular-rate and reference sensors</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Sensor</th><th>Role</th><th>Required information</th></tr></thead><tbody><tr><td>Base encoder</td><td>Truth/reference for base rate</td><td>Counts/revolution, range, resolution, sampling, sign convention, and uncertainty</td></tr><tr><td>Reaction-wheel Hall/encoder channel</td><td>Reaction-wheel rate used by the model</td><td>Resolution, sampling, conversion to angular rate, and uncertainty</td></tr><tr><td>MEMS rate gyro</td><td>Supporting base-rate channel only if assigned</td><td>Range, bias, scale factor, resolution, sampling rate, and uncertainty</td></tr></tbody></table></div>
 <h2>Current and torque</h2>
-<p>Motor torque is inferred from current:</p>
-<p>\[ \tau=k_t I_{\mathrm{motor}}. \]</p>
-<p>Provide separate values and uncertainties for \(k_{t,\mathrm{RW}}\) and \(k_{t,\mathrm{base}}\). The current channels require range, resolution, calibration, sampling rate, and uncertainty.</p>
+<p>Distinguish the commanded and current-inferred torque:</p>
+<p>\[ \tau_{\mathrm{cmd}}\ne\text{assumed }\tau_{\mathrm{inf}}, \qquad \tau_{\mathrm{inf}}=k_t I_{\mathrm{RW,motor}}. \]</p>
+<p>Use the reaction-wheel torque constant \(k_{t,\mathrm{RW}}\) supplied by the instructor or approved information map. The current channel requires range, resolution, calibration, sampling rate, and uncertainty. Use \(k_{t,\mathrm{base}}\) only if a supporting base-motor measurement is assigned.</p>
 <h2>DAQ and software</h2>
 <p>Document the myRIO, Arduino DUE, wireless link, LabVIEW VI, timestamps, sample rate, file format, and any filtering applied before the data reach MATLAB. Record the exact channel names used for gyro, encoder, Hall-sensor, current, commanded torque, and status flags.</p>
 <h2>Operating limits</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>Reaction-wheel speed limit</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Base-motor torque/current limit</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Reaction-wheel torque/current limit</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Minimum battery voltage</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Wireless link or dropout criterion</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Approved angular-rate range</td><td>[INSTRUCTOR TO PROVIDE]</td></tr></tbody></table></div>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>Reaction-wheel speed limit</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Reaction-wheel torque/current limit</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Minimum battery voltage</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Wireless link or dropout criterion</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Approved base-rate range</td><td>[INSTRUCTOR TO PROVIDE]</td></tr></tbody></table></div>
 <h2>Instructor release checklist</h2>
 <ul>
-<li>Provide \(k_{t,\mathrm{RW}}\) and \(k_{t,\mathrm{base}}\) with units and uncertainty.</li>
-<li>Provide gyro, encoder, Hall-sensor, and current-sensor specifications.</li>
+<li>Provide \(k_{t,\mathrm{RW}}\) with units and uncertainty; provide \(k_{t,\mathrm{base}}\) only if a supporting measurement is assigned.</li>
+<li>Provide encoder, Hall-sensor, current-sensor, timing, and any supporting gyro specifications.</li>
 <li>Provide sample-data files and a channel-definition table.</li>
-<li>Provide the coast-down dataset or accepted \(c\) and \(\tau_0\) values with uncertainty.</li>
+<li>Provide the rotational-model inertia and resistance parameters, or identify which will be fitted and which are provisional.</li>
 <li>Verify the sign conventions in the torque and angular-rate channels.</li>
 <li>Verify clamp, battery, motor, and rate safety limits.</li>
 </ul>
 <p><em>Tier 2 instrumentation summary - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes - Spin Modules Tier 2 Experiment</h1>
 <p>No completed sample dataset is currently stored in this compilation. The instructional team must provide representative files, verified column definitions, and the final sensor specifications before student release.</p>
-<h2>Dataset 1 - Gyro calibration</h2>
-<p>Students need synchronized gyro and encoder angular-rate data over the assigned rate range. Required metadata include sampling rate, units, sign convention, calibration run identifier, and any discarded startup or dropout interval.</p>
+<h2>Primary dataset - reaction-wheel torque and base rate</h2>
+<p>Students use reaction-wheel records containing time, commanded torque, reaction-wheel current, reaction-wheel rate, and base encoder rate where available. The actual applied torque must be defined explicitly:</p>
+<p>\[ \tau_{\mathrm{cmd}}=\text{commanded torque}, \qquad \tau_{\mathrm{inf}}=k_{t,\mathrm{RW}}I_{\mathrm{RW,motor}}. \]</p>
+<p>The data analysis should identify which quantity is used as the model input and propagate uncertainty in the alternative quantity as a sensitivity or limitation.</p>
 <p>Expected outputs:</p>
-<p>\[ \omega_{\mathrm{gyro}}=K\omega_{\mathrm{true}}+b, \qquad \omega_{\mathrm{calibrated}}=\frac{\omega_{\mathrm{gyro}}-b}{K}. \]</p>
-<h2>Dataset 2 - Reaction-wheel inertia</h2>
-<p>Students collect multiple reaction-wheel spin-up records with the spacecraft body held stationary. Required channels include reaction-wheel rate, reaction-wheel current, commanded torque, time, and the motor torque constant \(k_{t,\mathrm{RW}}\).</p>
-<p>Expected output:</p>
-<p>\[ I_{\mathrm{RW}}=\frac{\tau_{\mathrm{RW}}}{\dot{\omega}_{\mathrm{RW}}}, \qquad \tau_{\mathrm{RW}}=k_{t,\mathrm{RW}}I_{\mathrm{RW,motor}}. \]</p>
-<h2>Dataset 3 - Spacecraft-body inertia</h2>
-<p>Students collect multiple base-motor spin-up records with the spacecraft allowed to rotate. Required channels include base encoder rate, base-motor current, commanded torque, time, and \(k_{t,\mathrm{base}}\).</p>
-<p>Expected output:</p>
-<p>\[ I_{\mathrm{sc}}=\frac{\tau_{\mathrm{base}}}{\dot{\omega}_{\mathrm{sc}}}, \qquad \tau_{\mathrm{base}}=k_{t,\mathrm{base}}I_{\mathrm{base,motor}}. \]</p>
-<h2>Dataset 4 - Coast-down resistance</h2>
-<p>Students collect or receive at least one coast-down record with angular rate and time. Fit the lumped parameters \(c\) and \(\tau_0\) using</p>
-<p>\[ \dot{\omega} = -\frac{c\omega+\tau_0\operatorname{sgn}(\omega)}{I}. \]</p>
-<p>If the dataset cannot be collected, the instructor may provide accepted values and their uncertainties. The report must identify them as supplied parameters.</p>
+<ul>
+<li>base rotational-velocity uncertainty versus applied reaction-wheel torque;</li>
+<li>selected appropriate, marginal, and inappropriate torque conditions;</li>
+<li>predicted base rate from the supplied or fitted rotational model;</li>
+<li>encoder base-rate comparison and residuals versus applied torque.</li>
+</ul>
+<h2>Supporting parameter data</h2>
+<p>Reaction-wheel inertia, spacecraft-body/base inertia, resistance parameters \(c\) and \(\tau_0\), motor torque constants, encoder conversion, current scaling, and timing information may be supplied, fitted from available data, or provisional. The report must label each parameter accordingly and include its uncertainty or limitation.</p>
+<p>If a coast-down record is used to estimate resistance, state the fit window and model:</p>
+<p>\[ I\dot{\omega}+c\omega+\tau_0\operatorname{sgn}(\omega)=\tau_{\mathrm{applied}}. \]</p>
+<h2>Optional supporting dataset - gyro calibration</h2>
+<p>Gyro and encoder data may be used when needed to establish base-rate uncertainty. Gyro calibration is not the central deliverable unless the instructor assigns it.</p>
 <h2>Required data products</h2>
 <ol>
 <li>Raw files with unchanged original names and a separate processed copy.</li>
 <li>A table defining every channel, unit, sign convention, calibration, and uncertainty.</li>
-<li>Gyro calibration coefficients \(K\) and \(b\).</li>
-<li>Reaction-wheel and spacecraft-body inertia estimates from multiple trials.</li>
-<li>Coast-down estimates or instructor-provided values for \(c\) and \(\tau_0\).</li>
-<li>Taylor-series and Monte Carlo uncertainty envelopes versus torque and/or angular rate.</li>
+<li>Applied-torque definition and uncertainty model.</li>
+<li>Taylor-series and Monte Carlo uncertainty envelopes versus reaction-wheel torque.</li>
+<li>Predicted base-rate history or condition curve and encoder comparison.</li>
+<li>Residuals versus applied torque with an interpretation of likely causes.</li>
 </ol>
 <h2>Instructor placeholders</h2>
 <ul>
-<li>\(k_{t,\mathrm{RW}}\): [PLACEHOLDER].</li>
-<li>\(k_{t,\mathrm{base}}\): [PLACEHOLDER].</li>
-<li>Gyro, encoder, Hall-sensor, and current-sensor specifications: [PLACEHOLDER].</li>
+<li>\(k_{t,\mathrm{RW}}\): supplied/provisional value and uncertainty [INSTRUCTOR TO VERIFY].</li>
+<li>\(k_{t,\mathrm{base}}\): only if a supporting base-motor measurement is assigned.</li>
+<li>Encoder, Hall-sensor, current-sensor, timing, and supporting gyro specifications: [PLACEHOLDER].</li>
 <li>Sample-data column definitions: [PLACEHOLDER].</li>
 <li>Coast-down data or accepted \(c\) and \(\tau_0\) estimates: [PLACEHOLDER].</li>
 <li>Approved torque, rate, battery, and motor limits: [PLACEHOLDER].</li>
 </ul>
 <p><em>Tier 2 data notes - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>FAQs</h3><div class="compiled-content"><h1>FAQs - Spin Modules</h1>
 <h2>What are the core deliverables for this lab?</h2>
-<p>Determine the reaction wheel moment of inertia and the spacecraft body moment of inertia. The gyro calibration is also part of the core workflow because it explains how the rate sensor compares to the encoder reference.</p>
+<p>Analyze uncertainty in base rotational velocity versus applied reaction-wheel torque. Use the uncertainty result to choose torque conditions, predict base rate, compare it with the encoder base-rate reference, and interpret residuals versus applied torque.</p>
 <h2>Are angular momentum capacity and saturation time required?</h2>
 <p>They are optional enrichment calculations unless your instructor explicitly assigns them. The core Tier 2 result is the uncertainty envelope and test recommendation.</p>
-<h2>What theoretical values should I compare against?</h2>
-<p><strong>Placeholder:</strong> the teaching team still needs to provide or confirm the reference values. Current notes mention the brass reaction wheel theoretical value, the motor contribution, a spacecraft SolidWorks model, and a possible TBD aluminum plate configuration. Do not invent these values.</p>
-<h2>Which sensor is the truth reference for gyro calibration?</h2>
-<p>The existing source notes use the encoder as the truth reference for angular rate during gyro calibration.</p>
+<h2>What parameters may be supplied?</h2>
+<p>Inertia, resistance, motor-constant, encoder, and current-sensor values may be supplied, fitted, or provisional. Label the source and status of each parameter; do not invent a missing value.</p>
+<h2>Which sensor is the truth reference for the base-rate comparison?</h2>
+<p>Use the base encoder as the truth/reference sensor for comparing predicted and measured base rotational rate.</p>
 <h2>What motor constants do I need?</h2>
-<p>The reaction wheel and base motor torque constants are needed to convert current to torque. They are currently marked as missing in the instrumentation notes.</p>
+<p>The reaction-wheel motor torque constant is needed when torque is inferred from current. State the commanded torque and current-inferred torque separately:</p>
+<p>\[ \tau_{\mathrm{inf}}=k_{t,\mathrm{RW}}I_{\mathrm{RW,motor}}. \]</p>
 <h2>What changes for Tier 2?</h2>
-<p>The calibration and inertia calculations remain, but they are now used to evaluate a condition-dependent uncertainty envelope. The group must recommend useful and inappropriate angular-rate or applied-torque conditions and propose one setup change that would move the useful region.</p>
+<p>The core sequence is uncertainty in base rate versus reaction-wheel torque, torque-condition selection, rotational-model prediction, encoder comparison, residual interpretation, and one quantified setup improvement.</p>
 <h2>Should the uncertainty plot use angular rate or torque?</h2>
-<p>Use angular rate for gyro calibration and coast-down analysis. Use applied torque or measured motor current for spin-up and inertia testing because that is the controlled test input.</p>
+<p>Use applied reaction-wheel torque as the primary design variable. If you use commanded torque and current-inferred torque separately, explain which one enters the model and propagate the uncertainty in the other. Angular rate may be used as a secondary diagnostic.</p>
 <h2>Is the full resistance model required?</h2>
 <p>The Tier 2 prediction should use the lumped model</p>
 <p>\[ I\dot{\omega}+c\omega+\tau_0\operatorname{sgn}(\omega)=\tau_{\mathrm{applied}}. \]</p>
-<p>If the group cannot collect a coast-down dataset, the instructor may provide \(c\) and \(\tau_0\), but the group must identify them as provided parameters and include their uncertainty or limitation in the report.</p>
+<p>Use supplied or fitted \(c\), \(\tau_0\), and inertia parameters as required by the branch model. Identify whether each is measured, fitted, supplied, or provisional, and include its uncertainty or limitation.</p>
+<h2>Is gyro calibration required?</h2>
+<p>Not as the primary application. Use it as supporting work if it is needed to establish base-rate uncertainty or if the instructor assigns it.</p>
 <h2>What is outside the four-day scope?</h2>
 <p>Complete controller design, solar-panel comparison, saturation-time analysis, and detailed hardware redesign are enrichment topics unless explicitly assigned.</p></div></div>
       </section>

@@ -48,21 +48,28 @@
       </section>
       <section class="experiment-scaffold">
         <div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure - Aeroelasticity Tier 2 Experiment</h1>
-<p>&gt; <strong>Lab:</strong> Infinite-wing pressure measurements and finite-wing tip-deflection prediction &gt; &gt; <strong>Hardware:</strong> PILOT low-speed wind tunnel, Clark Y-14 infinite-wing model, supplied finite-wing dataset, and supplied structural model &gt; &gt; <strong>Software:</strong> LabVIEW wind-tunnel interface and MATLAB analysis tools</p>
+<p>&gt; <strong>Lab:</strong> Wind-tunnel condition selection and infinite-wing aerodynamic coefficients &gt; &gt; <strong>Hardware:</strong> PILOT low-speed wind tunnel, Clark Y-14 infinite-wing model, pressure scanner, and tunnel sensors &gt; &gt; <strong>Software:</strong> LabVIEW wind-tunnel interface and MATLAB analysis tools</p>
 <h2>Purpose</h2>
-<p>The group will evaluate the wind-tunnel measurement system as an engineering consultant. The student-collected experiment varies angle of attack and freestream velocity for the infinite-wing model. The finite-wing data needed for the tip-deflection prediction are supplied at one assigned angle of attack and airspeed because the available laboratory time does not support a full finite-wing survey.</p>
-<p>There is no separate auxiliary-tunnel activity in the Tier 2 experiment. The structural equations and geometry are supplied; students do not design or derive the whiffle tree.</p>
+<p>The group will evaluate the wind-tunnel measurement system as an engineering consultant. Students first use sensor values and uncertainty information to choose informative tunnel airspeed or dynamic-pressure conditions. They then apply those selected conditions to infinite-wing data over angle of attack and calculate \(C_l\), \(C_d\), and their uncertainties.</p>
+<p>There is no separate auxiliary-tunnel activity in the Tier 2 experiment. Finite-wing structural and whiffle-tree analysis is reference material only and is not required student work.</p>
 <h2>Safety and setup</h2>
 <p>Follow the instructor’s wind-tunnel safety briefing. Secure the airfoil and all pressure tubing before running the tunnel, keep loose objects outside the test section, and return the tunnel to zero speed before changing the angle of attack. Confirm that the model, pressure scanner, and tunnel control interface are operating before collecting the committed dataset.</p>
 <h2>Day 1 - Prediction and test matrix</h2>
 <ol>
 <li>Inspect the pressure, temperature, atmospheric-pressure, angle-of-attack, and airspeed measurement chain.</li>
 <li>Record the sensor models, ranges, calibration information, sampling settings, units, and any instructor-provided uncertainty values.</li>
-<li>Review the supplied finite-wing dataset and structural equations.</li>
-<li>Select the assigned infinite-wing angles of attack and freestream velocities.</li>
-<li>Predict the pressure distribution, sectional \(C_l\), lift, and the finite-wing tip deflection at the supplied finite-wing condition.</li>
-<li>Prepare the initial uncertainty envelope versus freestream velocity and identify the conditions most worth testing.</li>
+<li>Review the pressure-port mapping, measured-versus-commanded condition fields, and supplied</li>
 </ol>
+<p>coefficient equations.</p>
+<ol>
+<li>Use the sensor specifications to construct an initial uncertainty envelope primarily</li>
+</ol>
+<p>versus measured tunnel airspeed or dynamic pressure.</p>
+<ol>
+<li>Define the decision rule for informative, marginal, and uncertainty-dominated conditions.</li>
+<li>Select the angle-of-attack and tunnel-condition matrix to test, documenting why the</li>
+</ol>
+<p>selected conditions are worth the available time.</p>
 <h2>Day 2 - Infinite-wing pressure measurements</h2>
 <ol>
 <li>Confirm the Clark Y-14 model is mounted securely and that the active pressure-port set is connected correctly.</li>
@@ -74,80 +81,79 @@
 <li>Repeat for the remaining assigned angles of attack and velocities.</li>
 </ol>
 <p>The test matrix should contain enough conditions to show how the pressure and derived lift uncertainty change with velocity and angle of attack. The group should not spend limited time collecting redundant points in a region already predicted to be dominated by sensor resolution.</p>
-<h2>Day 3 - Data reduction and finite-wing prediction</h2>
+<h2>Day 3 - Data reduction and uncertainty analysis</h2>
 <ol>
 <li>Convert the pressure channels to physical units using the supplied calibration information.</li>
-<li>Calculate \(q_\infty\), \(C_p\), \(C_n\), \(C_a\), and \(C_l\) for each infinite-wing condition.</li>
-<li>Use the supplied finite-wing dataset at its single assigned angle of attack and airspeed to obtain the spanwise \(C_l(z)\) distribution.</li>
-<li>Convert the spanwise finite-wing distribution to lift load intensity \(w(z)\).</li>
-<li>Use the supplied beam equation to calculate finite-wing tip deflection at the supplied finite-wing condition.</li>
-<li>Compare the infinite-wing baseline model with the finite-wing prediction and identify the physical reason for their difference.</li>
-<li>Run the Taylor-series and Monte Carlo uncertainty sweeps versus freestream velocity using the instructor-approved model assumptions.</li>
+<li>Calculate measured \(U_\infty\), \(\rho_\infty\), \(q_\infty\), and \(C_p\) for each condition.</li>
+<li>Use the pressure-port mapping and supplied geometry to calculate \(C_n\), \(C_a\), \(C_l\), and \(C_d\).</li>
+<li>Run Taylor-series and Monte Carlo uncertainty sweeps versus measured airspeed or dynamic</li>
 </ol>
+<p>pressure, using the instructor-approved model assumptions.</p>
+<ol>
+<li>Compare uncertainty contributions from differential pressure, atmospheric pressure,</li>
+</ol>
+<p>temperature, angle of attack, surface pressure, and any other available channels.</p>
+<ol>
+<li>Compare the physics-based coefficient prediction with measured coefficients and prepare</li>
+</ol>
+<p>residual plots.</p>
 <h2>Day 4 - Targeted validation and recommendation</h2>
 <ol>
 <li>Inspect the preliminary absolute and relative uncertainty envelopes.</li>
 <li>Select targeted repeat conditions near a predicted low-uncertainty region, a high-uncertainty region, and any proposed boundary.</li>
 <li>Collect only the additional points needed to test the recommendation or diagnose a discrepancy.</li>
 <li>Compare measured infinite-wing results with the committed prediction.</li>
-<li>Report the finite-wing prediction and its uncertainty at the supplied finite-wing condition.</li>
-<li>Quantify one improvement, such as pressure-sensor range, resolution, calibration, sampling, or atmospheric-condition measurement, and show how it changes the useful test envelope.</li>
+<li>Apply the stated decision rule to classify conditions as informative, marginal, or</li>
 </ol>
+<p>uncertainty-dominated.</p>
+<ol>
+<li>Quantify one improvement, such as pressure-sensor range, resolution, calibration,</li>
+</ol>
+<p>sampling, or atmospheric-condition measurement, and show how it changes the useful test envelope.</p>
 <h2>Required data products</h2>
 <ul>
 <li>Raw pressure and tunnel-condition files for every collected condition.</li>
 <li>A measurement-chain diagram with the physical quantity, sensor output, calibration, and data-reduction role of each channel.</li>
-<li>Infinite-wing pressure, \(C_p\), \(C_l\), and lift results across the assigned angle-of-attack and velocity matrix.</li>
-<li>The supplied finite-wing spanwise dataset and the resulting tip-deflection prediction at its single assigned condition.</li>
-<li>Absolute scaled systematic standard uncertainty and normalized systematic standard uncertainty curves versus freestream velocity.</li>
+<li>Infinite-wing pressure, \(C_p\), \(C_n\), \(C_a\), \(C_l\), and \(C_d\) results across the selected angle-of-attack and tunnel-condition matrix.</li>
+<li>Absolute scaled systematic standard uncertainty and normalized systematic standard uncertainty curves versus measured airspeed or dynamic pressure.</li>
 <li>A comparison of the Taylor-series and Monte Carlo results at representative conditions.</li>
-<li>A client recommendation identifying appropriate and inappropriate velocity/angle-of-attack regions and a quantified improvement.</li>
+<li>Residuals and a discussion separating sensor uncertainty from model-form differences.</li>
+<li>A client recommendation identifying informative, marginal, and uncertainty-dominated regions</li>
 </ul>
+<p>using the stated decision rule, plus a quantified improvement.</p>
 <h2>Data-quality checks</h2>
 <ul>
 <li>Verify the pressure and airspeed channels are zeroed before each run.</li>
 <li>Confirm that the actual measured velocity, not just the commanded velocity, is used in the data reduction.</li>
 <li>Check for saturated channels, disconnected pressure ports, implausible pressure distributions, and nonsteady tunnel operation.</li>
 <li>Preserve the original raw files and record every deletion, filtering choice, or excluded sample.</li>
-<li>State clearly that the finite-wing result is based on one supplied finite-wing condition rather than a student-collected finite-wing sweep.</li>
+<li>State clearly which conditions were commanded and which were measured.</li>
+<li>State the decision rule and any instructor-defined limits used to classify conditions.</li>
 </ul>
 <p><em>Tier 2 branch procedure - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Theoretical Framework - Aeroelasticity Tier 2 Experiment</h1>
+<p>This framework supports the revised student application: use the tunnel measurement chain and uncertainty model to select conditions, then reduce infinite-wing data to \(C_l\) and \(C_d\), compare prediction and measurement, and recommend a test envelope.</p>
 <h2>1. Freestream model</h2>
-<p>Using the ideal-gas relation and the measured pressure difference,</p>
-<p>\[ \rho_\infty=\frac{p_\infty}{R_{\mathrm{air}}T_\infty}, \qquad V_\infty=\sqrt{\frac{2\Delta p}{\rho_\infty}} =\sqrt{\frac{2R_{\mathrm{air}}T_\infty\Delta p}{p_\infty}}. \]</p>
-<p>The dynamic pressure is</p>
-<p>\[ q_\infty=\frac{1}{2}\rho_\infty V_\infty^2. \]</p>
-<p>Use \(R_{\mathrm{air}}=287\ \mathrm{J/(kg\,K)}\) unless the instructor supplies another value.</p>
-<h2>2. Pressure-to-lift model</h2>
-<p>The pressure coefficient is</p>
+<p>\[ \rho_\infty=\frac{p_\infty}{R_{\mathrm{air}}T_\infty}, \qquad V_\infty=\sqrt{\frac{2\Delta p}{\rho_\infty}}, \qquad q_\infty=\frac{1}{2}\rho_\infty V_\infty^2. \]</p>
+<p>Use \(R_{\mathrm{air}}=287\ \mathrm{J/(kg\,K)}\) unless the instructor supplies another value. Keep commanded and measured tunnel conditions separate; use measured quantities in the data reduction.</p>
+<h2>2. Pressure-to-coefficient model</h2>
 <p>\[ C_p=\frac{p-p_\infty}{q_\infty}. \]</p>
 <p>Integrate the measured chord-wise pressure distribution using the supplied port coordinates:</p>
 <p>\[ C_n=-\frac{1}{c}\oint C_p\,dy, \qquad C_a=\frac{1}{c}\oint C_p\,dz. \]</p>
-<p>Rotate the sectional force coefficients into the freestream frame:</p>
+<p>Rotate the sectional force coefficients:</p>
 <p>\[ C_l=C_n\cos\alpha-C_a\sin\alpha, \qquad C_d=C_n\sin\alpha+C_a\cos\alpha. \]</p>
-<p>For the infinite-wing baseline, the lift per unit span is</p>
-<p>\[ \ell&#x27;_\infty=q_\infty c C_l. \]</p>
-<p>Students collect these quantities at multiple assigned values of \(\alpha\) and \(V_\infty\).</p>
-<h2>3. Supplied finite-wing model</h2>
-<p>The instructor provides a finite-wing spanwise pressure dataset at one assigned angle of attack and airspeed. Use the supplied span stations to determine \(C_l(z)\) and</p>
-<p>\[ w(z)=q_\infty c C_l(z). \]</p>
-<p>Interpolate between stations using a documented method. The finite-wing dataset is intentionally a single-condition dataset; it is not a student-collected full test envelope.</p>
-<h2>4. Supplied structural model</h2>
-<p>The instructor provides the structural geometry and beam properties. For a cantilever of length \(L\), use</p>
-<p>\[ \nu_{\mathrm{tip}} = \frac{1}{6EI}\int_0^L w(z)z^2(3L-z)\,dz. \]</p>
-<p>For a discrete dataset, evaluate the integral with a documented numerical quadrature rule. If an equivalent point load is supplied, use</p>
-<p>\[ \nu_{\mathrm{tip}} = \frac{F_{\mathrm{eq}}x_{\mathrm{eq}}^2(3L-x_{\mathrm{eq}})}{6EI}. \]</p>
-<p>Students do not derive or redesign a whiffle tree and do not re-derive the supplied beam equation.</p>
-<h2>5. Uncertainty and experimental design</h2>
-<p>The output of interest is \(\nu_{\mathrm{tip}}\). Sweep \(V_\infty\) over the approved range and hold \(\alpha\) at an assigned value or use it as a second approved condition variable. Propagate uncertainty from pressure, atmospheric pressure, temperature, angle of attack, spanwise position, and structural parameters.</p>
-<p>Report the scaled systematic standard uncertainty</p>
-<p>\[ \mathrm{SSU}_{\nu,\mathrm{sys}}(V_\infty)=b_{\nu,\mathrm{sys}}(V_\infty) \]</p>
-<p>and the normalized systematic standard uncertainty</p>
-<p>\[ \mathrm{NSU}_{\nu,\mathrm{sys}}(V_\infty)=\frac{b_{\nu,\mathrm{sys}}(V_\infty)}{|\nu_{\mathrm{tip}}(V_\infty)|}. \]</p>
-<p>Use both Taylor-series sensitivity coefficients and Monte Carlo propagation at representative conditions. Compare the infinite-wing baseline with the supplied finite-wing result and explain how the finite-wing information changes the prediction and the recommended test envelope.</p>
+<p>The infinite-wing lift per unit span, when needed for interpretation, is \(\ell&#x27;_\infty=q_\infty c C_l\). It is not a finite-wing structural calculation.</p>
+<h2>3. Uncertainty and experimental design</h2>
+<p>Use measured airspeed \(V_\infty\) or dynamic pressure \(q_\infty\) as the primary sweep variable and angle of attack as a second condition variable. Propagate uncertainty from differential pressure, atmospheric pressure, temperature, angle of attack, surface-pressure channels, port geometry, and any other instructor-designated inputs.</p>
+<p>Report</p>
+<p>\[ \mathrm{SSU}_{y,\mathrm{sys}}(q)=b_{y,\mathrm{sys}}(q), \qquad \mathrm{NSU}_{y,\mathrm{sys}}(q)=\frac{b_{y,\mathrm{sys}}(q)}{|y(q)|}, \]</p>
+<p>for selected outputs such as \(V_\infty\), \(q_\infty\), \(C_l\), or \(C_d\). Near a nominal zero, use absolute uncertainty and do not interpret the relative curve through the zero. Use Taylor-series sensitivity coefficients and Monte Carlo propagation at representative conditions.</p>
+<h2>4. Prediction, residuals, and model form</h2>
+<p>Compare the physics-based coefficient prediction with measured \(C_l\) and \(C_d\). Plot residuals versus angle of attack and the selected tunnel condition. Interpret persistent differences as possible model-form differences rather than silently absorbing them into sensor uncertainty.</p>
+<h2>Reference-only material</h2>
+<p>Finite-wing spanwise loading, spar/beam parameters, structural deflection, whiffle-tree analysis, finite-wing validation, and finite-wing structural uncertainty are outside the revised student objective. Related files may remain in the repository as historical or instructor-reference material.</p>
 <p><em>Tier 2 theoretical framework - working draft for instructor review</em></p>
 <h1>Model Equations Reference - Aeroelasticity Tier 2 Experiment</h1>
-<p>This reference supplies the equations needed for the Tier 2 analysis. Students use the equations to reduce the infinite-wing data, process the supplied finite-wing data, predict tip deflection, and propagate uncertainty. The structural equations are supplied; students do not derive or redesign the whiffle tree.</p>
+<p>This reference supplies the equations needed for the Tier 2 analysis. Students use the equations to select tunnel conditions, reduce the infinite-wing data to aerodynamic coefficients, compare prediction and measurement, and propagate uncertainty.</p>
 <h2>1. Freestream density, dynamic pressure, and velocity</h2>
 <p>\[ \rho_\infty=\frac{p_\infty}{R_{\mathrm{air}}T_\infty}, \qquad q_\infty=\frac{1}{2}\rho_\infty V_\infty^2. \]</p>
 <p>For a Pitot-static measurement,</p>
@@ -164,35 +170,25 @@
 <p>The lift and pressure-drag coefficients are</p>
 <p>\[ C_l=C_n\cos\alpha-C_a\sin\alpha, \qquad C_d=C_n\sin\alpha+C_a\cos\alpha. \]</p>
 <p>Use radians inside trigonometric functions.</p>
-<h2>4. Infinite-wing aerodynamic loading</h2>
-<p>For the infinite-wing baseline, calculate the sectional lift per unit span using</p>
-<p>\[ \ell&#x27;_\infty=q_\infty c C_l. \]</p>
-<p>Students test the infinite wing at multiple assigned values of \(\alpha\) and \(V_\infty\). Use those data to determine how \(C_l\), lift, and uncertainty change with the test condition.</p>
-<h2>5. Supplied finite-wing loading</h2>
-<p>The instructor supplies the finite-wing spanwise pressure data at one assigned angle of attack and airspeed. Calculate \(C_l(z)\) at the supplied span stations and convert it to spanwise lift-load intensity:</p>
-<p>\[ w(z)=q_\infty c C_l(z). \]</p>
-<p>Interpolate between the supplied stations using a documented method. Do not imply that the finite-wing dataset represents a full student-collected velocity or angle-of-attack survey.</p>
-<h2>6. Supplied tip-deflection model</h2>
-<p>For a cantilever of length \(L\), the supplied distributed-load model is</p>
-<p>\[ \nu_{\mathrm{tip}} = \frac{1}{6EI}\int_0^L w(z)z^2(3L-z)\,dz. \]</p>
-<p>For discrete spanwise stations, evaluate the integral with a documented numerical quadrature rule. If the instructor supplies an equivalent point load \(F_{\mathrm{eq}}\) acting at \(x_{\mathrm{eq}}\), the equivalent expression is</p>
-<p>\[ \nu_{\mathrm{tip}} = \frac{F_{\mathrm{eq}}x_{\mathrm{eq}}^2(3L-x_{\mathrm{eq}})}{6EI}. \]</p>
-<p>Use the supplied \(E\), \(I\), \(L\), geometry, and unit system. The structural parameters are instructor-provided inputs to the uncertainty model.</p>
-<h2>7. Condition-dependent uncertainty</h2>
-<p>The primary output is \(\nu_{\mathrm{tip}}\). The sweep variable is normally \(V_\infty\), with \(\alpha\) held at an assigned value or treated as a second approved condition variable. Propagate uncertainty from pressure, atmospheric pressure, temperature, airspeed, angle of attack, spanwise position, and instructor-designated structural parameters.</p>
-<p>Report both</p>
-<p>\[ \mathrm{SSU}_{\nu,\mathrm{sys}}(V_\infty)=b_{\nu,\mathrm{sys}}(V_\infty) \]</p>
+<h2>4. Infinite-wing aerodynamic coefficients</h2>
+<p>Students test the infinite wing at multiple assigned values of \(\alpha\) and measured \(V_\infty\) or \(q_\infty\). Use the pressure integration equations to determine how \(C_l\), \(C_d\), lift-related quantities, and their uncertainty change with the test condition.</p>
+<h2>5. Condition-dependent uncertainty</h2>
+<p>The primary sweep variable is measured tunnel airspeed \(V_\infty\) or dynamic pressure \(q_\infty\), with angle of attack varied as a second test variable. Propagate uncertainty from differential pressure, atmospheric pressure, temperature, angle of attack, surface pressure channels, pressure-port geometry, and any other instructor-designated inputs.</p>
+<p>For each condition, report both</p>
+<p>\[ \mathrm{SSU}_{y,\mathrm{sys}}(q)=b_{y,\mathrm{sys}}(q) \]</p>
 <p>and</p>
-<p>\[ \mathrm{NSU}_{\nu,\mathrm{sys}}(V_\infty) = \frac{b_{\nu,\mathrm{sys}}(V_\infty)}{|\nu_{\mathrm{tip}}(V_\infty)|}. \]</p>
-<p>Use the normalized-sensitivity guide for the Taylor-series calculation and the same data-reduction model for Monte Carlo.</p>
-<h2>8. Comparison required for Tier 2</h2>
-<p>Compare the infinite-wing baseline and the supplied finite-wing result at the finite-wing condition. Explain how finite-wing spanwise information changes the predicted load and tip deflection, and state which result is appropriate for the client’s intended use.</p>
+<p>\[ \mathrm{NSU}_{y,\mathrm{sys}}(q) =\frac{b_{y,\mathrm{sys}}(q)}{|y(q)|}, \]</p>
+<p>for the selected quantity \(y\), such as \(V_\infty\), \(q_\infty\), \(C_l\), or \(C_d\). Use the normalized-sensitivity guide for the Taylor-series calculation and the same data-reduction model for Monte Carlo. Near a nominal zero, use absolute uncertainty and do not interpret the relative curve through the zero.</p>
+<h2>6. Prediction, residuals, and model-form differences</h2>
+<p>Compare the physics-based prediction with the measured \(C_l\) and \(C_d\) results at the selected conditions. Plot residuals versus angle of attack and the selected tunnel condition. Do not fold persistent model-form differences into sensor uncertainty without explaining the distinction.</p>
+<h2>Reference-only material</h2>
+<p>Finite-wing spanwise loading, spar/beam parameters, structural deflection, whiffle-tree analysis, finite-wing validation, and finite-wing structural uncertainty are outside the revised student objective. Any finite-wing files in the repository are historical or instructor-reference material only.</p>
 <h2>Key instructor placeholders</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>Differential-pressure sensor</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Pressure calibration and resolution</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Atmospheric-pressure sensor</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Temperature sensor</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Infinite-wing test matrix</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Finite-wing assigned \(\alpha\) and \(V_\infty\)</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>\(E\), \(I\), \(L\), and structural uncertainties</td><td>[INSTRUCTOR TO PROVIDE]</td></tr></tbody></table></div>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>Differential-pressure sensor</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Pressure calibration and resolution</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Atmospheric-pressure sensor</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Temperature sensor</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Infinite-wing test matrix</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Decision rule and approved condition limits</td><td>[INSTRUCTOR TO PROVIDE]</td></tr></tbody></table></div>
 <p><em>Tier 2 equation reference - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Sensor and DAQ Specifications - Aeroelasticity Tier 2 Experiment</h1>
-<p>This document lists the measurement channels needed for the infinite-wing pressure survey and the supplied finite-wing tip-deflection analysis. Values marked as placeholders must be verified by the instructional team before student release.</p>
+<p>This document lists the measurement channels needed to select wind-tunnel conditions and reduce the infinite-wing pressure data to \(C_l\) and \(C_d\). Values marked as placeholders must be verified by the instructional team before student release.</p>
 <h2>1. Surface-pressure measurement</h2>
-<p><strong>Purpose:</strong> Measure the chord-wise pressure distribution on the Clark Y-14 infinite-wing model and in the supplied finite-wing dataset.</p>
+<p><strong>Purpose:</strong> Measure the chord-wise pressure distribution on the Clark Y-14 infinite-wing model.</p>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Item</th><th>Value</th></tr></thead><tbody><tr><td>Pressure scanner model</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Number and mapping of pressure ports</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Measurement range</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Accuracy and resolution</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Calibration or transfer function</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Sampling rate</td><td>[INSTRUCTOR TO PROVIDE]</td></tr></tbody></table></div>
 <p>The pressure-port coordinate file and channel mapping must accompany the student dataset.</p>
 <h2>2. Freestream and atmospheric measurements</h2>
@@ -201,9 +197,8 @@
 <h2>3. Angle-of-attack measurement</h2>
 <p>Students test assigned angles of attack for the infinite-wing model. Provide the angle-setting method, zero reference, resolution, repeatability, and uncertainty. The angle must be recorded with every data block.</p>
 <div class="table-wrapper"><table class="md-table"><thead><tr><th>Item</th><th>Value</th></tr></thead><tbody><tr><td>Angle-setting method</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Range</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Resolution</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Repeatability or systematic uncertainty</td><td>[INSTRUCTOR TO PROVIDE]</td></tr></tbody></table></div>
-<h2>4. Structural inputs</h2>
-<p>The instructor provides the structural model and the parameters needed to predict finite-wing tip deflection. Students do not derive or redesign the whiffle tree.</p>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>Elastic modulus \(E\)</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Second moment of area \(I\)</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Beam length \(L\)</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Chord \(c\) and spanwise station locations</td><td>[INSTRUCTOR TO PROVIDE]</td></tr><tr><td>Structural parameter uncertainties</td><td>[INSTRUCTOR TO PROVIDE]</td></tr></tbody></table></div>
+<h2>4. Pressure-port mapping and data interface</h2>
+<p>Provide the port-to-channel map, port coordinates, surface ordering, sign convention, and the rule for handling disconnected or theoretical ports. The data interface must preserve the commanded condition, measured condition, timestamps, run identifier, pressure channels, atmospheric pressure, temperature, differential pressure, angle of attack, and any other available sensor channels.</p>
 <h2>5. Data interface and quality checks</h2>
 <p>The LabVIEW interface or equivalent logging system must record the actual measured velocity, angle of attack, pressure channels, atmospheric conditions, timestamps, and run identifiers. Before each run, zero or tare the relevant channels according to the instructor’s procedure. Do not replace the actual measured velocity with the commanded setting.</p>
 <h2>Instructor release checklist</h2>
@@ -211,11 +206,11 @@
 <li>Verify the pressure scanner model, pressure-port map, calibration, range, accuracy, resolution, and sampling rate.</li>
 <li>Verify atmospheric-pressure and temperature channels.</li>
 <li>Verify the angle-of-attack setting and uncertainty.</li>
-<li>Provide the finite-wing dataset at its single assigned angle of attack and airspeed.</li>
-<li>Provide \(E\), \(I\), \(L\), geometry, and approved uncertainty values.</li>
 <li>Provide the approved velocity and angle-of-attack limits.</li>
 <li>Provide the client threshold for acceptable absolute and relative uncertainty.</li>
+<li>Define or explicitly defer the decision rule for classifying a tunnel condition as</li>
 </ul>
+<p>appropriate, marginal, or uncertainty-dominated.</p>
 <p><em>Tier 2 instrumentation summary - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes - Aeroelasticity Tier 2 Experiment</h1>
 <p>No completed sample dataset is currently stored in this compilation. The instructional team must provide representative files, verified column definitions, and the final sensor specifications before student release.</p>
 <h2>Dataset 1 - Infinite-wing chord-wise pressure data</h2>
@@ -231,41 +226,26 @@
 </ul>
 <p><strong>Expected format:</strong> LabVIEW-exported ASCII or CSV files with one file or clearly labeled block per test condition. The exact column order remains an instructor placeholder.</p>
 <p><strong>Expected outputs:</strong> \(C_p(x/c)\), \(C_n\), \(C_a\), \(C_l\), lift, residuals, and uncertainty versus velocity and angle of attack.</p>
-<h2>Dataset 2 - Supplied finite-wing data</h2>
-<p><strong>Source:</strong> Instructor-provided finite-wing spanwise pressure dataset.</p>
-<p><strong>Student collection:</strong> Students do not perform a full finite-wing sweep. The course provides one finite-wing dataset at a single assigned angle of attack and airspeed.</p>
-<p><strong>Expected channels:</strong></p>
-<ul>
-<li>Chord-wise pressure data at the supplied spanwise stations.</li>
-<li>Spanwise station location \(z\).</li>
-<li>Freestream or dynamic pressure.</li>
-<li>Temperature, atmospheric pressure, and measured airspeed.</li>
-<li>The supplied angle of attack and run identifier.</li>
-</ul>
-<p><strong>Expected outputs:</strong> \(C_l(z)\), lift-load intensity \(w(z)\), integrated lift, and finite-wing tip-deflection prediction at the supplied condition.</p>
-<p>The finite-wing dataset is a validation and structural-loading input. Do not describe it as a student-collected multi-condition survey.</p>
-<h2>Dataset 3 - Structural and geometry inputs</h2>
-<p>The instructor provides the structural equations and geometry needed to convert aerodynamic loading to tip deflection. The minimum inputs are \(E\), \(I\), beam length \(L\), chord \(c\), spanwise station locations, and any approved uncertainty estimates.</p>
-<p>Students do not derive or redesign the whiffle tree for this Tier 2 branch.</p>
+<h2>Reference material - finite-wing files</h2>
+<p>Finite-wing files may remain in the compilation for historical or instructor reference, but they are not required student inputs for the revised Tier 2 objective. Students do not perform finite-wing spanwise loading, finite-wing validation, structural deflection, spar/beam calculations, whiffle-tree analysis, or finite-wing structural uncertainty.</p>
 <h2>Instructor placeholders</h2>
 <ul>
 <li>Differential-pressure sensor model, range, accuracy, resolution, calibration, and transfer function.</li>
 <li>Scanivalve model, channel uncertainty, and pressure-port mapping.</li>
 <li>Atmospheric-pressure and temperature sensor specifications.</li>
 <li>Sample data files and confirmed column definitions.</li>
-<li>Finite-wing dataset at the single assigned angle of attack and airspeed.</li>
-<li>Structural parameters \(E\), \(I\), \(L\), and their uncertainties.</li>
 <li>Approved velocity and angle-of-attack limits.</li>
 <li>Client threshold for acceptable absolute and relative uncertainty.</li>
+<li>Decision rule for classifying conditions as appropriate, marginal, or uncertainty-dominated.</li>
 </ul>
 <h2>Recommended data products</h2>
 <ol>
 <li>Raw infinite-wing pressure files for every assigned angle of attack and velocity.</li>
 <li>A table of actual measured conditions and data-quality flags.</li>
-<li>Processed \(C_p\), \(C_l\), and lift results for the infinite wing.</li>
-<li>The supplied finite-wing \(C_l(z)\) distribution and finite-wing tip-deflection prediction at its one condition.</li>
-<li>Taylor-series and Monte Carlo uncertainty envelopes versus freestream velocity.</li>
-<li>A comparison between the infinite-wing baseline and finite-wing result, with the limited finite-wing condition clearly identified.</li>
+<li>Processed \(C_p\), \(C_n\), \(C_a\), \(C_l\), and \(C_d\) results for the infinite wing.</li>
+<li>Taylor-series and Monte Carlo uncertainty envelopes versus measured airspeed or dynamic pressure.</li>
+<li>Residuals or prediction-versus-measurement comparisons with model-form differences discussed separately.</li>
+<li>A decision-rule-based recommendation identifying informative, marginal, and uncertainty-dominated conditions.</li>
 </ol>
 <h2>Data-quality reminders</h2>
 <ul>
@@ -277,24 +257,28 @@
 </ul>
 <p><em>Tier 2 data notes - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Notes</h3><div class="compiled-content"><h1>Additional Notes - Aeroelasticity Tier 2</h1>
 <h2>Pedagogical purpose</h2>
-<p>The branch connects a student-collected infinite-wing pressure survey to an instructor-provided finite-wing structural prediction. The main learning move is from pointwise pressure uncertainty to a condition-dependent recommendation about velocity and angle of attack.</p>
+<p>The branch uses uncertainty analysis to select tunnel conditions before applying those conditions to an infinite-wing pressure survey. The main learning move is from pointwise pressure uncertainty to a condition-dependent recommendation about measured airspeed or dynamic pressure and angle of attack.</p>
 <h2>Recommended emphasis</h2>
 <ul>
 <li>Treat the measured velocity and angle of attack as test conditions, not merely metadata.</li>
 <li>Use the pressure measurement chain to explain why the uncertainty changes across the test matrix.</li>
-<li>Use the infinite-wing result as the baseline model.</li>
-<li>Use the finite-wing dataset at its one supplied condition to show why spanwise loading matters for tip deflection.</li>
-<li>Keep measurement uncertainty, model-form discrepancy, and finite-wing data coverage separate.</li>
+<li>Use the infinite-wing result as the physics-based comparison.</li>
+<li>Keep sensor-input uncertainty, model-form discrepancy, and commanded-versus-measured</li>
+</ul>
+<p>conditions separate.</p>
+<ul>
+<li>Require a stated decision rule for appropriate, marginal, and uncertainty-dominated</li>
+</ul>
+<p>conditions.</p>
+<ul>
 <li>Require both scaled output uncertainty and normalized uncertainty contributions.</li>
 </ul>
 <h2>Four-day planning note</h2>
-<p>Day 1 should be prediction and test-matrix planning. Day 2 should be the infinite-wing pressure survey. Day 3 should be data reduction, finite-wing processing, and uncertainty sweeps. Day 4 should be targeted validation and the client recommendation.</p>
+<p>Day 1 should be measurement-chain modeling, uncertainty-based condition selection, and prediction. Day 2 should be the infinite-wing pressure survey at selected conditions. Day 3 should be coefficient reduction, uncertainty sweeps, and residual analysis. Day 4 should be targeted validation and the client recommendation.</p>
 <h2>Instructor decisions still required</h2>
 <ul>
 <li>Which angles of attack and velocities are assigned?</li>
 <li>Which infinite-wing pressure channels and sample-data columns are released?</li>
-<li>Which single finite-wing angle of attack and airspeed are supplied?</li>
-<li>What structural equations and geometry are released?</li>
 <li>What uncertainty threshold defines an acceptable test condition?</li>
 <li>Which sensor or setup improvements are students allowed to evaluate?</li>
 </ul>
