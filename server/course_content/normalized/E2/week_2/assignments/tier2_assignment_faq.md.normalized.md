@@ -55,24 +55,30 @@ reference material only for this revised student objective.
 
 ## 11. What exactly is required for the spin-module branch?
 
-Analyze uncertainty in base rotational velocity versus applied reaction-wheel torque, use it
-to select torque conditions, predict base rate with the rotational model, compare it with the
-encoder base-rate channel, and plot residuals versus applied torque. Distinguish commanded
-torque from current-inferred torque using the motor torque constant. Interpret residuals using
-sensor, torque, parameter, resistance, timing, and model-form explanations.
+Use the existing SC free-base records to fit inertia and effective dynamic retardance from
+**base-motor support torque**. Then use those parameters to predict base angular acceleration
+for a **reaction-wheel torque** input and plot predicted relative percent uncertainty in
+acceleration versus RW torque. The historical RW records hold the base stationary; they can
+characterize RW current/torque and wheel speed, but they do not measure free-base acceleration
+or validate the transfer prediction. State the unresolved assumption that SC support-fit
+inertia and retardance apply to internal RW torque. Use a decision rule to select a candidate
+region and explain that “good” means only that the selected uncertainty criterion is met.
+Document the uncertainty terms, explicit first-pass negligible assumptions, unresolved sensor
+systematics, and the data needed for later free-base RW validation.
 
 ## 12. Is gyro calibration required?
 
 Not as the primary application. Use it as supporting work if it is needed to establish
 base-rate uncertainty or if the instructor assigns it. The central comparison uses the
-encoder as the base-rate truth/reference sensor.
+encoder as the available base-rate reference channel. Its quadrature convention and
+processed-rate systematic accuracy remain unresolved, so do not treat it as uncertainty-free.
 
 ## 13. What is the applied torque in the spin analysis?
 
-State whether you use commanded torque \(\tau_{\mathrm{cmd}}\) or torque inferred from
-motor current, \(\tau_{\mathrm{inf}}=k_t I_{\mathrm{motor}}\). Do not treat them as
-interchangeable without explaining the motor constant, current uncertainty, and any command
-calibration.
+Use the base-motor torque constant only for the SC support fit and the RW-motor torque
+constant only for the RW prediction input. Keep commanded and current-inferred RW torque
+distinct. The motor datasheets give nominal constants but no ±0.05 mN\,m/A calibration
+tolerance; that bound is a working assumption, not a verified calibration uncertainty.
 
 ## 14. Can Monte Carlo replace partial derivatives?
 
