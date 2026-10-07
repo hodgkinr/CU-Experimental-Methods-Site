@@ -10,7 +10,7 @@
 **Experiment assignments:**
 
 - **Aeroelasticity:** Use the tunnel sensor values and uncertainty information to select informative conditions, then apply the selected conditions to infinite-wing data over angle of attack and determine \(C_l\) and \(C_d\) with uncertainty.
-- **Spin Modules:** Fit inertia and dynamic retardance from SC base-motor support records, predict base angular acceleration and relative uncertainty versus reaction-wheel torque, and select a candidate torque region. Historical RW records hold the base stationary and cannot validate the free-base prediction.
+- **Spin Modules:** Fit the SC base-motor support response, estimate effective reaction-wheel retardance from the supplied free-base RW records, compare measured base acceleration with the two-loss prediction, and plot predicted and residual-based relative uncertainty versus reaction-wheel torque. Select a candidate region using the stated uncertainty rule while documenting unresolved transfer and measurement assumptions.
 
 ## Why Tier 2 is different from Tier 1
 
@@ -96,9 +96,9 @@ The exact scheduling of groups may vary, but the assignment is designed around f
 | Day | Common purpose | Expected branch work | Required evidence |
 |---|---|---|---|
 | 1 | Understand and plan | Inspect setup, confirm sensors and limits, freeze prediction, begin calibration or baseline measurements | Measurement-chain diagram, prediction, initial test matrix |
-| 2 | Collect primary data | Wind-tunnel data at selected conditions, or inspect the SC support and fixture-held RW records; collect additional data only as assigned | Raw data, field notes, condition log |
-| 3 | Complete the model and uncertainty sweep | \(C_l/C_d\) reduction and uncertainty analysis, or SC support fit, RW-input acceleration prediction, and uncertainty sweep | Preliminary uncertainty envelope and identified gaps |
-| 4 | Compare evidence and recommend | Targeted checks where data exist; for spin, state what a future free-base RW validation must measure | Final evidence and limits for the test-envelope recommendation |
+| 2 | Collect primary data | Wind-tunnel data at selected conditions, or inspect SC support, new free-base `RW_freespin`, and historical fixture-held RW records; collect additional data only as assigned | Raw data, field notes, data-role classification |
+| 3 | Complete the model and uncertainty sweep | \(C_l/C_d\) reduction and uncertainty analysis, or SC support fit, RW-side retardance fit, corrected acceleration prediction, comparison, and uncertainty sweep | Preliminary uncertainty envelope, residual diagnostic, and identified gaps |
+| 4 | Compare evidence and recommend | Targeted checks where data exist; for spin, interpret the single-run free-base comparison and specify further validation needs | Final evidence and limits for the test-envelope recommendation |
 
 Large groups should divide the work into parallel roles, but every student must understand the complete measurement chain and the final recommendation.
 
@@ -131,7 +131,7 @@ Follow the branch-specific procedure. During testing:
 
 ### 3.1 Prediction versus measurement
 
-Compare the committed prediction with a measured result when the branch data contain the corresponding physical response. Use residuals or equivalent comparison plots and classify discrepancies. **Spin-module exception:** existing RW records hold the base stationary and do not measure the free-base RW response, so they cannot be used for model validation or RW/base-acceleration residuals. The spin prediction is transferred from SC base-motor support data; identify the transfer assumption and specify the data needed for a later free-base validation.
+Compare the committed prediction with measured results when the branch data contain the corresponding physical response. Use residuals or equivalent comparison plots and classify discrepancies. For spin, distinguish the historical fixture-held RW files, which have no free-base response, from the separate `RW_freespin` records, which provide one free-base response record at each supplied torque level. Use the latter for the measured acceleration comparison and residual diagnostic. These few single-run points provide an initial model check, not a validated uncertainty distribution or repeatability estimate.
 
 ### 3.2 Condition-dependent uncertainty envelope
 
@@ -194,30 +194,51 @@ Finite-wing spanwise loading, finite-wing validation, spar/beam parameters, stru
 
 ### Spin-module branch
 
-The required spin analysis is a prediction of **base angular acceleration** from reaction-wheel torque. First identify support parameters from existing SC (bare-spacecraft) records in which the **base motor** accelerates the free base. Then transfer those parameters provisionally to a future test in which reaction-wheel torque accelerates the free base. The historical reaction-wheel records hold the base stationary: they can characterize reaction-wheel torque/current and wheel speed, but they do not measure free-base angular acceleration and do not validate the transfer prediction.
+The required spin analysis combines three different data roles:
 
-For the moving branch, use the simplified constant-retarding-torque model
+- Five SC support records (nominal base-motor torque 4, 5, 6, 8, and 10 mN\,m): fit base support inertia and effective dynamic retardance.
+- Seven `RW_freespin` records (nominal RW command labels 3, 4, 5, 6, 8, 10, and 12 mN\,m): estimate RW torque/current and wheel acceleration, fit an **effective wheel-side retardance**, and compare measured base acceleration with the corrected prediction. There is one record per torque.
+- Historical fixture-held `RW_*` records: characterize RW current/torque and wheel speed only. Their base is held stationary; they do not provide a free-base acceleration response.
+
+For the SC support fit, use
 
 \[
-|\alpha_{\mathrm{base}}|=\frac{|\tau_{\mathrm{RW}}|-\tau_r}{1000 I},
-\qquad |\tau_{\mathrm{RW}}|>\tau_r,
+\tau_{\mathrm{base,mN\,m}}=1000 I_{\mathrm{fit}}\alpha_{\mathrm{base}}+\tau_{r,\mathrm{base}}.
 \]
 
-when torque is in mN\,m, inertia is in kg\,m\(^2\), and acceleration is in rad/s\(^2\). The factor 1000 converts mN\,m to N\,m. In signed form, the motor torque on the wheel and reaction torque on the base have opposite signs; the retarding torque opposes the direction of base motion. The fitted \(\tau_r\) is an effective **dynamic** retardance. Static breakaway is not identified, so this moving-branch equation does not describe a stationary base or establish a breakaway threshold.
+For wheel spin-up, fit the effective torque balance
+
+\[
+|\tau_{m,\mathrm{RW}}|=1000 I_{\mathrm{RW}}|\alpha_{\mathrm{RW}}|+\tau_{r,\mathrm{RW}}.
+\]
+
+The current free-base records log wheel rate relative to the base under the working interpretation. If positive wheel spin causes opposite base acceleration, estimate absolute wheel acceleration as \(\alpha_{\mathrm{RW}}=\alpha_{\mathrm{RW,relative}}-|\alpha_{\mathrm{base}}|\). Verify the channel reference and sign convention; include a sensitivity comparison if they cannot be confirmed. Interpret the fitted wheel-side intercept as an **effective** retardance, not a calibrated bearing-friction value.
+
+When the motor reaction dominates both wheel-side and base-side losses, use the two-loss moving branch
+
+\[
+|\alpha_{\mathrm{base}}|=\frac{|\tau_{m,\mathrm{RW}}|-\tau_{r,\mathrm{RW}}-\tau_{r,\mathrm{base}}}{1000 I_{\mathrm{fit}}},
+\qquad |\tau_{m,\mathrm{RW}}|>\tau_{r,\mathrm{RW}}+\tau_{r,\mathrm{base}}.
+\]
+
+Here torques/retardances are in mN\,m, inertia in kg\,m\(^2\), and acceleration in rad/s\(^2\); 1000 converts mN\,m to N\,m. Positive motor torque accelerates the wheel and applies opposite motor reaction to the base. Wheel-side drag opposes wheel spin; its reaction on the base reduces the magnitude of the motor reaction available to accelerate the base. Base retardance then further opposes base motion. This simplified constant-loss equation applies only on the moving branch. It does not estimate static breakaway or predict whether motion starts at/below the combined threshold.
+
+The model provisionally uses the SC support-fit inertia and base retardance for the RW-driven case. The derivation treats wheel inertia separately in internal angular-momentum exchange, and the available layout information does not establish that the support-fit inertia is the appropriate base inertia. Keep this transfer assumption unresolved, even though the new free-base data provide an initial empirical comparison.
 
 Students will:
 
-1. Use the five SC base-motor support records (nominal 4, 5, 6, 8, and 10 mN\,m) to estimate base acceleration by fitting encoder rate against recorded time over the documented steady command window. Check timestamps and gaps.
-2. Infer support torque from baseline-corrected base-motor current using \(\tau_{base}=K_{t,base}(I_{base}-I_0)\); fit inertia and effective dynamic retardance using \(\tau_{\mathrm{base,mN\,m}}=1000I\alpha+\tau_r\).
-3. Label \(I\) as the value fitted from this support configuration. The model assumes it is appropriate for the base response to internal reaction-wheel torque; the supplied derivation identifies a separate reaction-wheel inertia and angular-momentum exchange, and the hardware documentation does not establish that the fitted support inertia equals the base inertia in that case. Keep this transfer assumption unresolved and state what hardware or free-base experiment would test it.
-4. Characterize RW current/torque and wheel speed with the historical fixture-held RW records. When torque is inferred from current, use \(\tau_{RW}=K_{t,RW}I_{RW}\), keeping the RW constant distinct from \(K_{t,base}\). Do not use their near-zero base-rate channel as a free-base acceleration measurement.
-5. Propagate the documented first-pass uncertainty terms and assumptions through the RW-torque prediction. Plot predicted relative (percent) standard uncertainty in base angular acceleration versus applied RW torque. Use the working decision rule “good” = relative standard uncertainty ≤25% to select a candidate torque region, unless the instructor supplies another criterion. This cutoff is a chosen uncertainty criterion, not evidence of experimental validation or universal safety.
-6. Discuss included uncertainty sources, terms treated as negligible by explicit first-pass assumption, and unresolved encoder scale/decoding, current calibration, timing, systematic, and between-run repeatability uncertainties. Keep base-motor and RW-motor torque constants in their separate roles.
-7. State what a later free-base RW validation must record: signed RW current or independently measured torque, RW speed, base encoder rate, synchronized timestamps, command transitions, and repeated trials; derive acceleration with a predeclared fit window and compare it with the prediction.
+1. Fit the SC support model and freeze an SC-only baseline prediction before inspecting the `RW_freespin` response records. Preserve this initial prediction so the effect of adding wheel-side loss is visible.
+2. Estimate SC base acceleration by fitting encoder rate against actual recorded timestamps over the documented steady interval. Check time gaps, command changes, and fit residuals.
+3. Infer SC support torque from pre-command baseline-corrected base current with the **base-motor** constant, then fit \(I_{fit}\) and \(\tau_{r,base}\).
+4. Use `RW_freespin` current and wheel/base rate records to estimate current-inferred RW motor torque, fit \(I_{RW}\) and \(\tau_{r,RW}\), and state the rate-reference/sign assumption.
+5. Calculate measured base acceleration, plot acceleration versus current-inferred RW torque with the corrected two-loss model and uncertainty band, and calculate residuals only where the corrected moving branch is sufficiently probable. Report the residual mean and pooled residual RMS after subtracting modeled/measurement variance in quadrature as a **diagnostic scale**, not torque-specific repeatability. The wheel-loss fit and base comparison use the same records, so this is not an independent holdout validation.
+6. Propagate the documented first-pass uncertainty terms. Plot the conditional predicted relative standard uncertainty (percent) versus applied RW torque and show the residual-inflated empirical error scale as a separate curve where data support it. State the branch validity and distinguish the chosen ≤25% criterion from empirical agreement, validation, safety, or universal acceptability.
+7. Separate quantified uncertainties, terms treated as negligible only by first-pass assumption, and unresolved current calibration, encoder scale/sign, timing, systematic, fit-transfer, and repeatability terms. Use the **base-motor** constant only for SC support torque and the **RW-motor** constant for RW torque.
+8. Explain what further synchronized, repeated free-base measurements are needed to validate the model across the threshold and intended operating region.
 
-The required spin uncertainty deliverable is the predicted relative (percent) standard uncertainty in base angular acceleration versus applied RW torque. An absolute uncertainty table or curve may support interpretation, but do not describe historical stationary-base RW measurements as an empirical acceleration-uncertainty curve.
+The current analysis estimates SC support-fit \(I_{fit}\approx0.005567\) kg\,m\(^2\) and \(\tau_{r,base}\approx2.319\) mN\,m. The RW torque balance gives effective \(I_{RW}\approx1.278\times10^{-4}\) kg\,m\(^2\) and \(\tau_{r,RW}\approx2.838\) mN\,m (conditional Monte Carlo 95% interval about 2.70–2.98 mN\,m). The combined nominal retardance is about 5.16 mN\,m. The corrected model has a moving-branch probability below the 99% reporting threshold for the first three records; residual analysis pools only the 6, 8, 10, and 12 mN\,m labels. On those four points, mean measured-minus-predicted residual is about −0.175 rad/s\(^2\), raw RMS about 0.202 rad/s\(^2\), and pooled residual discrepancy RMS about 0.179 rad/s\(^2\). The residuals remain negative. These reference results use the same free-base runs to fit wheel-side loss and compare base response; they are an initial model check, not an independent validation or validated uncertainty model. Each torque has one run and sensor/transfer uncertainties remain unresolved.
 
-The bare-minimum deliverable is the SC support fit, RW-input model prediction, uncertainty propagation, required plot, and candidate torque-region recommendation. A 3000 rpm RW speed limit and a MEMS gyro comparison are optional advanced extensions. Wheel-speed feasibility depends on applied torque, duration, and initial wheel speed; 3000 rpm is not a universal torque ceiling. A gyro may change empirical acceleration uncertainty, but does not automatically change the theoretical parameter/input-uncertainty curve. Solar-panel comparison, saturation-time analysis, and controller design are outside the required scope unless explicitly assigned.
+The bare-minimum deliverable is the SC support fit, RW wheel-loss fit, corrected RW-input model, uncertainty propagation, acceleration/model plot, relative-uncertainty plot, residual discussion, and candidate-region decision. The selected ≤25% conditional-uncertainty region is not a recommendation by itself while the measured residual bias and parameter transfer remain unresolved. A 3000 rpm RW speed limit and a MEMS gyro comparison are optional advanced extensions. Wheel-speed feasibility depends on applied torque, duration, and initial wheel speed; 3000 rpm is not a universal torque ceiling. A gyro may change empirical acceleration uncertainty, but does not automatically change the theoretical parameter/input uncertainty curve. Solar-panel comparison, saturation-time analysis, and controller design are outside the required scope unless explicitly assigned.
 
 ## Deliverables
 
@@ -229,7 +250,7 @@ Submit one group report containing:
 2. committed pre-test prediction;
 3. measurement-chain diagram and assumptions;
 4. test matrix and actual test conditions;
-5. prediction-versus-measurement comparison and residual interpretation where the branch data contain the corresponding physical response; for spin, explain why no historical free-base RW comparison exists and identify the future validation measurements;
+5. prediction-versus-measurement comparison and residual interpretation where the branch data contain the corresponding physical response; for spin, distinguish free-base `RW_freespin` data from stationary-fixture characterization and identify the limitations and further validation needs;
 6. normalized sensitivity derivation;
 7. Monte Carlo method and distribution assumptions;
 8. absolute and relative uncertainty envelopes;
@@ -247,7 +268,7 @@ Prepare one quad chart or equivalent single-page briefing with:
 
 - client question and predicted result;
 - uncertainty envelope with useful and inappropriate regions marked;
-- measured comparison when corresponding data exist; for spin, label the RW response as a prediction and state the missing free-base validation data;
+- measured comparison when corresponding data exist; for spin, show the free-base RW acceleration/model comparison and residual limitation, and state what additional validation data are needed;
 - recommended setup change and expected effect when required by the assigned branch;
 - final test-envelope recommendation.
 
