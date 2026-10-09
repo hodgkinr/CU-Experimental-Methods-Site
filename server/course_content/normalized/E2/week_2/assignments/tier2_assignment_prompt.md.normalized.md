@@ -10,7 +10,7 @@
 **Experiment assignments:**
 
 - **Aeroelasticity:** Use the tunnel sensor values and uncertainty information to select informative conditions, then apply the selected conditions to infinite-wing data over angle of attack and determine \(C_l\) and \(C_d\) with uncertainty.
-- **Spin Modules:** Fit the SC base-motor support response, estimate effective reaction-wheel retardance from the supplied free-base RW records, compare measured base acceleration with the two-loss prediction, and plot predicted and residual-based relative uncertainty versus reaction-wheel torque. Select a candidate region using the stated uncertainty rule while documenting unresolved transfer and measurement assumptions.
+- **Spin Modules:** Fit the base-motor support response, estimate effective reaction-wheel retardance from the gathered data, compare measured base acceleration with the two-loss prediction, and plot predicted and residual-based relative uncertainty versus reaction-wheel torque. Select a candidate region using the stated uncertainty rule.
 
 ## Why Tier 2 is different from Tier 1
 
@@ -22,8 +22,7 @@ The central question is no longer only:
 
 It is:
 
-> How does the quality of the derived result change as the test condition changes, and what
-> should an engineer do about that?
+> How does the quality of the derived result change as the test condition changes
 
 You will use a physics-based prediction, sensor specifications, calibration information, and measured data to construct a **condition-dependent uncertainty envelope**. The envelope will show where the experiment is informative and where sensor resolution, calibration, friction, signal processing, or model assumptions make the result difficult to interpret.
 
