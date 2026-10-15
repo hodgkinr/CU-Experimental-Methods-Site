@@ -52,6 +52,6 @@ Present one quad chart or equivalent concise briefing that makes the decision, s
 
 ## Additional resources
 
-- [Detailed Aero lab instructions, measurement models, equations, and analysis workflow](../lab_compilations/tier2_lab_aeroelasticity/procedure/procedure_agent.md)
-- [Aero sensor and data-input summary](../lab_compilations/tier2_lab_aeroelasticity/instrumentation/sensor_specs_summary_agent.md)
+- [Detailed Aero lab instructions, measurement models, equations, and analysis workflow](../lab_compilations/tier2_lab_aeroelasticity/procedure/procedure_agent.pdf)
+- [Aero sensor and data-input summary](../lab_compilations/tier2_lab_aeroelasticity/instrumentation/sensor_specs_summary_agent.pdf)
 - [Normalized uncertainty guide](student-guides/TIER2_normalized_uncertainty_guide.pdf)
