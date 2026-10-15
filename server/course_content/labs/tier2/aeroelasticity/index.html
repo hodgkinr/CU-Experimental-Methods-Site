@@ -47,162 +47,224 @@
         <p class="lead">Use wind-tunnel sensor uncertainty to select informative airspeed or dynamic-pressure conditions, then determine infinite-wing Cl and Cd versus angle of attack and recommend a defensible test envelope.</p>
       </section>
       <section class="experiment-scaffold">
-        <div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure - Aeroelasticity Tier 2 Experiment</h1>
-<p>&gt; <strong>Lab:</strong> Wind-tunnel condition selection and infinite-wing aerodynamic coefficients &gt; &gt; <strong>Hardware:</strong> PILOT low-speed wind tunnel, Clark Y-14 infinite-wing model, pressure scanner, and tunnel sensors &gt; &gt; <strong>Software:</strong> LabVIEW wind-tunnel interface and MATLAB analysis tools</p>
-<h2>Purpose</h2>
-<p>The group will evaluate the wind-tunnel measurement system as an engineering consultant. Students first use sensor values and uncertainty information to choose informative tunnel airspeed or dynamic-pressure conditions. They then apply those selected conditions to infinite-wing data over angle of attack and calculate \(C_l\), \(C_d\), and their uncertainties.</p>
-<p>There is no separate auxiliary-tunnel activity in the Tier 2 experiment. Finite-wing structural and whiffle-tree analysis is reference material only and is not required student work.</p>
-<h2>Safety and setup</h2>
-<p>Follow the instructor’s wind-tunnel safety briefing. Secure the airfoil and all pressure tubing before running the tunnel, keep loose objects outside the test section, and return the tunnel to zero speed before changing the angle of attack. Confirm that the model, pressure scanner, and tunnel control interface are operating before collecting the committed dataset.</p>
-<h2>Day 1 - Prediction and test matrix</h2>
+        <div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Aeroelasticity Tier 2: Choose Useful Wind-Tunnel Conditions</h1>
+<h2>Purpose and sequence</h2>
+<p>Use uncertainty analysis <strong>before testing</strong> to decide which wind-tunnel conditions are likely to provide useful airspeed and airfoil-pressure measurements. Then use the released Clark Y-14 pressure data, estimate uncertainty in the aerodynamic coefficients, and interpret the results against the supplied reference.</p>
+<p>The required sequence is:</p>
+<p><strong>Airspeed measurement uncertainty → favorable-condition selection → airfoil pressure measurements → aerodynamic coefficients → coefficient uncertainty and model/data interpretation.</strong></p>
+<p>The tunnel maximum is 60 m/s. This is the tunnel&#x27;s operating capability, not the range of every sensor. Work only within approved test directions and released measurement limits.</p>
+<h2>A. Measurement system and airspeed model</h2>
+<p>A Pitot-static system measures dynamic pressure, the difference between stagnation pressure and freestream static pressure:</p>
+<p>$$ q=p_0-p_\infty. $$</p>
+<p>Here, $q$ is dynamic pressure in pascals (Pa), $p_0$ is stagnation pressure in Pa, and $p_\infty$ is freestream static pressure in Pa. Atmospheric pressure $p$ and absolute temperature $T$ determine low-speed air density $\rho$:</p>
+<p>$$ \rho=\frac{p}{R_{air}T},\qquad V=\sqrt{\frac{2q}{\rho}}=\sqrt{\frac{2qR_{air}T}{p}},\qquad R_{air}=287.05\;\mathrm{J/(kg\,K)}. $$</p>
+<p>In these equations, $p$ is absolute atmospheric pressure in Pa, $T$ is in kelvins (K), $\rho$ is density in $kg/m^3$, $V$ is derived freestream speed in $m/s$, and $R_{air}$ is the specific gas constant for air. For this low-speed model, atmospheric pressure $p$ is the freestream static pressure $p_\infty$.</p>
+<p>Use measured $q,p,T$ once as the primitive airspeed inputs. Logged airspeed and density calculated from these inputs are derived values, not additional independent measurements. The Scanivalve measures airfoil surface pressure; it does not enter this Pitot-static airspeed model.</p>
+<p>The DSA3217 is confirmed in the ±10 inH₂O configuration. Keep this scanner range distinct from the tunnel&#x27;s confirmed 60 m/s maximum and the candidate Pitot sensor range. Use the numerical values in the <a href="../../../assets/assignments/lab_compilations/tier2_lab_aeroelasticity/instrumentation/sensor_specs_summary_agent.md">sensor and data-input summary</a> as the designated <strong>provisional calculation scenario</strong>. The specific installed Pitot, atmospheric-pressure, and temperature sensor identities/conversion paths remain provisional; they are not verified calibration facts. Do not search instructor-only solution files for specifications.</p>
+<h2>B. Airspeed uncertainty and condition selection</h2>
+<p>For independent primitive inputs, the first-order Taylor sensitivities of the speed model are:</p>
+<p>$$ \frac{\partial V}{\partial q}=\frac{V}{2q},\qquad \frac{\partial V}{\partial p}=-\frac{V}{2p},\qquad \frac{\partial V}{\partial T}=\frac{V}{2T}. $$</p>
+<p>Each sensitivity describes the local change in calculated speed per unit change in one input. For example, $(\partial V/\partial q)u_q$ is the speed-uncertainty contribution from dynamic pressure. For independent inputs, combine their contributions by root-sum-square:</p>
+<p>$$ u_V=\sqrt{\left(\frac{V}{2q}u_q\right)^2+ \left(\frac{V}{2p}u_p\right)^2+ \left(\frac{V}{2T}u_T\right)^2},\qquad \frac{u_V}{V}=\frac12\sqrt{\left(\frac{u_q}{q}\right)^2+ \left(\frac{u_p}{p}\right)^2+ \left(\frac{u_T}{T}\right)^2}. $$</p>
+<p>Here, $u_q$ and $u_p$ are standard uncertainties in Pa, $u_T$ is in K, and $u_V$ is in m/s. Absolute uncertainty describes expected speed uncertainty in m/s; normalized uncertainty is dimensionless and is often reported as a percentage. The normalized contribution from input $i$ is its individual Taylor contribution divided by $V$. The Taylor expressions for $u_V$ and $u_V/V$ are undefined at exactly $V=0$; do not evaluate them there.</p>
+<p>Treat each released plus/minus bound $a$ as a rectangular distribution from $-a$ to $+a$, so the standard uncertainty is $u=a/\sqrt{3}$. Independence is a modeling assumption, not a demonstrated property of the installed instruments. Use the instructor-designated temperature case if more than one candidate bound is listed.</p>
+<p>For the full 0–60 m/s tunnel envelope, make these plots:</p>
 <ol>
-<li>Inspect the pressure, temperature, atmospheric-pressure, angle-of-attack, and airspeed measurement chain.</li>
-<li>Record the sensor models, ranges, calibration information, sampling settings, units, and any instructor-provided uncertainty values.</li>
-<li>Review the pressure-port mapping, measured-versus-commanded condition fields, and supplied coefficient equations.</li>
-<li>Use the sensor specifications to construct an initial uncertainty envelope primarily versus measured tunnel airspeed or dynamic pressure.</li>
-<li>Define the decision rule for informative, marginal, and uncertainty-dominated conditions.</li>
-<li>Select the angle-of-attack and tunnel-condition matrix to test, documenting why the selected conditions are worth the available time.</li>
+<li>Combined normalized standard uncertainty $100u_V/V$ in percent versus speed. Plot relative uncertainty only at positive speeds.</li>
+<li>Absolute standard uncertainty $u_V$ in m/s versus speed, evaluated only where the Taylor model is defined.</li>
+<li>Individual normalized contributions $100u_{V,q}/V$, $100u_{V,p}/V$, and $100u_{V,T}/V$, together with the combined curve.</li>
 </ol>
-<h2>Day 2 - Infinite-wing pressure measurements</h2>
+<p>Explain the shapes and trends. Compare what the absolute and normalized plots say, identify dominant inputs, and distinguish the tunnel envelope from sensor-valid conditions. Show the sensor-range boundary and mark Taylor or other mathematical extrapolation beyond it. A result calculated outside an instrument&#x27;s usable range is not a claim about achievable measurement accuracy. Check surface-pressure range separately when evaluating the airfoil data.</p>
+<p>Use the plots and practical constraints to recommend favorable and unfavorable or unsupported regions. State your decision rule before applying it. A 3% threshold may be shown as an example only; it is not a universal engineering rule. Also consider whether the measurement signal and aerodynamic response would be useful.</p>
+<h3>Limited Monte Carlo check of airspeed</h3>
+<p>Use the bounded-input Monte Carlo approach to check the Taylor model at three representative speeds: one low speed where the dynamic-pressure bound is large relative to nominal $q$, one midrange speed, and one high speed near or beyond the candidate Pitot limit. The instructor may specify a comparable compact set if operating or verified sensor information changes.</p>
+<p>For each trial, draw $q,p,T$ independently from their released uniform bounds, recompute $V$, and calculate the sample standard deviation. About 10,000 trials per speed is sufficient for this check; report the draw count. Compare the Monte Carlo standard deviation with the Taylor value. Count and report nonphysical draws and flag sensor-overrange draws. Do not silently discard them or describe over-range results as realizable measurements. Explain why mathematically valid propagation can still be unusable when an instrument is out of range.</p>
+<h2>C. Airfoil pressure measurements and force derivation</h2>
+<p>Use the approved student-accessible historical measurement file and data dictionary. The instructional-team source file is <code>ASEN2802_InfiniteWing_FullRange (1).csv</code>: 640 measured rows, 20 samples at each integer angle from −15° through +16°, at approximately 30.37 m/s. This is a <strong>historical single-speed sweep</strong>, not a newly measured multi-speed dataset.</p>
+<p>The source file&#x27;s 30 fields are: atmospheric temperature (K), atmospheric pressure (Pa), atmospheric density (kg/m³), logged airspeed (m/s), Pitot dynamic pressure (Pa), auxiliary dynamic pressure (Pa), actual voltage (V), angle of attack (deg), spanwise position (in), sting axial force (N), sting normal force (N), sting pitching moment (N·m), ELD probe x/y positions (mm), and Scanivalve pressure channels 1–16 (Pa). Use only columns designated by the approved dictionary. The reduction uses Pitot $q$ and surface pressures; auxiliary pressure and implausible sting loads are not used.</p>
+<p>Pressure pushes normal to a surface. To find the aerodynamic force per unit span on a two-dimensional airfoil, add the pressure-force contributions around the complete closed contour. For each straight segment, the endpoint pressures are averaged to approximate the pressure along that segment. The sign of each contribution depends on the contour direction and the direction of the pressure difference across the surface.</p>
+<p>Use $x$ positive from leading edge to trailing edge and $y$ positive upward. Traverse the contour clockwise: along the upper surface from leading edge to trailing edge, then along the lower surface back toward the leading edge, and finally across the leading-edge closing segment. The airfoil interior stays to the right of the direction of travel. Define axial force as positive in $+x$ and normal force as positive in $+y$.</p>
+<p>For directed element $i$ from point $i$ to point $i+1$, let $\Delta x_i=x_{i+1}-x_i$, $\Delta y_i=y_{i+1}-y_i$, and $\Delta s_i$ be its length. Let $\theta_i$ be the signed angle measured counterclockwise from the positive $x$ axis to the segment. Then</p>
+<p>$$ \cos\theta_i=\frac{\Delta x_i}{\Delta s_i},\qquad \sin\theta_i=\frac{\Delta y_i}{\Delta s_i}. $$</p>
+<p>For this clockwise contour, the inward unit normal is the right-hand normal to the tangent:</p>
+<p>$$ \hat{\mathbf n}_{in,i}=\sin\theta_i\,\hat{\mathbf x}-\cos\theta_i\,\hat{\mathbf y}. $$</p>
+<p>Let $p_i$ be local surface pressure, $p_\infty$ freestream static pressure, and $\Delta p_i=p_i-p_\infty$. The average pressure difference on an element is $\overline{\Delta p}_i=(\Delta p_i+\Delta p_{i+1})/2$. Pressure force per unit span equals pressure difference times element length and points inward:</p>
+<p>$$ \Delta\mathbf F&#x27;_{p,i}=\overline{\Delta p}_i\,\Delta s_i\,\hat{\mathbf n}_{in,i}. $$</p>
+<p>Resolve this elemental force into axial and normal components. Using $\Delta s_i\sin\theta_i=\Delta y_i$ and $\Delta s_i\cos\theta_i=\Delta x_i$ gives</p>
+<p>$$ \Delta F&#x27;_{a,i}=\overline{\Delta p}_i\,\Delta y_i,\qquad \Delta F&#x27;_{n,i}=-\overline{\Delta p}_i\,\Delta x_i. $$</p>
+<p>The length and angle cancel, so the implementation needs signed coordinate changes rather than a separately calculated angle. A prime denotes force per unit span; each elemental term has units Pa·m = N/m when SI units are used.</p>
+<p>Sum all elements around the closed contour before forming coefficients:</p>
+<p>$$ F&#x27;_a=\sum_i\overline{\Delta p}_i\,\Delta y_i,\qquad F&#x27;_n=-\sum_i\overline{\Delta p}_i\,\Delta x_i. $$</p>
+<p>Completing the contour matters. On a closed contour, $\sum_i\Delta x_i=0$ and $\sum_i\Delta y_i=0$, so a constant freestream pressure contributes no net force. Thus the measured surface-to-freestream differences $\Delta p_i$ can be used directly. Disconnected ports are not measurements: do not invent values for them or include them as tap locations.</p>
+<p>Freestream dynamic pressure is $q_\infty=\tfrac12\rho_\infty V_\infty^2$. Define pressure coefficient at point $i$ as</p>
+<p>$$ C_{p,i}=\frac{p_i-p_\infty}{q_\infty}=\frac{\Delta p_i}{q_\infty}. $$</p>
+<p>The sectional normal and axial coefficients are force per unit span divided by $q_\infty c$, where chord $c$ is in the same length units as the coordinates:</p>
+<p>$$ C_n=\frac{F&#x27;_n}{q_\infty c},\qquad C_a=\frac{F&#x27;_a}{q_\infty c}. $$</p>
+<p>The denominator has units Pa·m = N/m, so these coefficients are dimensionless. Substituting the force sums and applying the trapezoidal rule gives the discrete contour equations:</p>
+<p>$$ C_n=-\sum_i\frac{C_{p,i}+C_{p,i+1}}{2}\frac{\Delta x_i}{c},\qquad C_a=+\sum_i\frac{C_{p,i}+C_{p,i+1}}{2}\frac{\Delta y_i}{c}. $$</p>
+<p>For closely spaced elements, these sums approach the corresponding contour integrals:</p>
+<p>$$ C_n=-\oint C_p\,\frac{dx}{c},\qquad C_a=+\oint C_p\,\frac{dy}{c}. $$</p>
+<p>These are two-dimensional sectional coefficients based on force per unit span, not finite-wing planform lift or drag coefficients.</p>
+<p>Finally, rotate the chord-axis force components into lift and drag axes referenced to the freestream. Let $\alpha$ be angle of attack, the angle between the chord reference and freestream direction using the course data&#x27;s sign convention:</p>
+<p>$$ C_l=C_n\cos\alpha-C_a\sin\alpha,\qquad C_d=C_n\sin\alpha+C_a\cos\alpha. $$</p>
+<p>The normal-force component projects mostly into lift; its drag projection grows with angle of attack. The axial-force component projects mostly into drag and subtracts from lift for positive $\alpha$ under this convention. MATLAB&#x27;s <code>sin</code> and <code>cos</code> expect radians; convert measured degrees with <code>deg2rad</code>, or use <code>sind</code> and <code>cosd</code>.</p>
+<h2>D. Apply the method to the connected pressure taps</h2>
+<p>The model is a Clark Y-14 infinite wing with nominal chord $c=3.5$ in (0.0889 m). Coordinates $x$ and $y$ are in inches in the map below. Channel numbers and physical port numbers are not interchangeable.</p>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Channel</th><th>Port</th><th>$x$ (in)</th><th>$y$ (in)</th><th>Surface</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0.000</td><td>0.14665</td><td>Upper</td></tr><tr><td>2</td><td>2</td><td>0.175</td><td>0.33075</td><td>Upper</td></tr><tr><td>3</td><td>3</td><td>0.350</td><td>0.40180</td><td>Upper</td></tr><tr><td>4</td><td>4</td><td>0.700</td><td>0.47600</td><td>Upper</td></tr><tr><td>5</td><td>5</td><td>1.050</td><td>0.49000</td><td>Upper</td></tr><tr><td>6</td><td>6</td><td>1.400</td><td>0.47740</td><td>Upper</td></tr><tr><td>7</td><td>7</td><td>1.750</td><td>0.44030</td><td>Upper</td></tr><tr><td>8</td><td>8</td><td>2.100</td><td>0.38325</td><td>Upper</td></tr><tr><td>9</td><td>10</td><td>2.800</td><td>0.21875</td><td>Upper</td></tr><tr><td>10</td><td>12</td><td>2.800</td><td>0.00000</td><td>Lower</td></tr><tr><td>11</td><td>14</td><td>2.100</td><td>0.00000</td><td>Lower</td></tr><tr><td>12</td><td>16</td><td>1.400</td><td>0.00000</td><td>Lower</td></tr><tr><td>13</td><td>17</td><td>1.050</td><td>0.00000</td><td>Lower</td></tr><tr><td>14</td><td>18</td><td>0.700</td><td>0.00140</td><td>Lower</td></tr><tr><td>15</td><td>19</td><td>0.350</td><td>0.01750</td><td>Lower</td></tr><tr><td>16</td><td>20</td><td>0.175</td><td>0.03885</td><td>Lower</td></tr></tbody></table></div>
+<p>Channels 1–9 follow the upper surface from the leading edge toward the trailing edge (ports 1–8 and 10). Channels 10–16 follow the lower surface back toward the leading edge (ports 12, 14, 16, 17, 18, 19, and 20). Ports 9, 13, and 15 are disconnected. Port 11 is the theoretical trailing-edge point at $(x_{TE},y_{TE})=(3.5\text{ in},0)$, not a measured channel. The upper contour proceeds from channel 9 to this trailing-edge point; the lower contour returns through channel 10 and the remaining lower taps. Close the contour with a straight segment from the last connected lower tap (port 20) to port 1.</p>
+<h3>Trailing-edge pressure closure</h3>
+<p>Extrapolate each surface&#x27;s pressure coefficient from its two nearest connected taps using the general two-point linear formula evaluated at $x_{TE}$:</p>
+<p>$$ C_{p,TE}=C_{p,a}+(C_{p,b}-C_{p,a})\frac{x_{TE}-x_a}{x_b-x_a}. $$</p>
+<p>Average the two extrapolations to obtain the theoretical trailing-edge coefficient:</p>
+<p>$$ C_{p,TE}=\frac{C_{p,TE,u}+C_{p,TE,l}}{2}. $$</p>
+<p>For each selected angle, calculate $C_{p,i}=\Delta p_i/q_\infty$. The supplied surface-pressure channels are already surface-to-freestream pressure differences in Pa; do not subtract atmospheric pressure a second time. Use the measured Pitot dynamic pressure for the corresponding angle group. Plot $C_p$ versus $x/c$ for representative angles, and measured $C_l$ and $C_d$ versus angle of attack. Reduce enough points to show the measured trend; exhaustive repeated reductions or multi-speed coefficient maps are not required.</p>
+<h2>E. Coefficient uncertainty and reference comparison</h2>
+<p>For every measured angle included in the final coefficient plots, use 10,000 Monte Carlo trials and the designated provisional rectangular bounds from the sensor summary. In each trial:</p>
 <ol>
-<li>Confirm the Clark Y-14 model is mounted securely and that the active pressure-port set is connected correctly.</li>
-<li>Confirm the pressure scanner and tunnel airspeed channels are zeroed or tared according to the instructor’s procedure.</li>
-<li>Set the first assigned angle of attack and close the tunnel test section.</li>
-<li>Run the assigned freestream velocities in the approved order. Record the actual measured velocity, commanded velocity, angle of attack, atmospheric conditions, and file name for every condition.</li>
-<li>Collect the chord-wise pressure data after the tunnel has reached steady operation. Preserve the raw data file without overwriting it.</li>
-<li>Return the tunnel to zero speed before changing angle of attack.</li>
-<li>Repeat for the remaining assigned angles of attack and velocities.</li>
+<li>Add one uniform perturbation from −49.8 Pa to +49.8 Pa to measured Pitot dynamic pressure. Share this same perturbed $q$ across all 16 taps.</li>
+<li>Independently add a uniform perturbation from −4.9818 Pa to +4.9818 Pa to each measured surface-pressure channel.</li>
+<li>Add one uniform perturbation from −0.5° to +0.5° to measured angle of attack.</li>
+<li>Recalculate pressure coefficients, trailing-edge closure, full-contour $C_n$ and $C_a$, and rotated $C_l$ and $C_d$.</li>
+<li>Repeat for all 10,000 trials at that angle and calculate sample standard deviations $s_{C_l}$ and $s_{C_d}$.</li>
 </ol>
-<p>The test matrix should contain enough conditions to show how the pressure and derived lift uncertainty change with velocity and angle of attack. The group should not spend limited time collecting redundant points in a region already predicted to be dominated by sensor resolution.</p>
-<h2>Day 3 - Data reduction and uncertainty analysis</h2>
+<p>Plot the sample standard deviations as ±1 combined-standard-uncertainty bars centered on the nominal measured coefficients. These are standard uncertainty bars, not 95% intervals. Independent channel errors are the provisional baseline because channel covariance has not been measured. These bounds and distributions are propagation assumptions, not confirmed calibration values. Do not perturb atmospheric pressure, temperature, density, or derived airspeed again: the coefficient calculation uses measured $q$ as its denominator.</p>
+<p>Compare measured sectional $C_l(\alpha)$ and $C_d(\alpha)$ with the supplied Clark Y-14 reference data over its stated validity range. Evaluate agreement and disagreement; do not assume agreement is required. Consider Reynolds-number and other condition differences, and distinguish coefficient uncertainty from model/reference discrepancy. The current historical pressure dataset is a single-speed sweep near 30.37 m/s; the empirical NACA TR 628 reference is near $Re\approx3.02\times10^6$, while the measured sweep is near $Re\approx1.46\times10^5$. The comparison is limited to −8° through +12°. These data do not establish aerodynamic response at other speeds or experimentally verify a recommended operating region.</p>
+<p>Finite-wing planform coefficients, structural deflection, beam or spar calculations, and whiffle-tree analysis are outside this student task.</p>
+<h2>F. Engineering conclusion and report</h2>
+<p>Connect the airspeed uncertainty plots and selected favorable region to the aerodynamic measurements available. State clearly whether each aerodynamic condition is newly measured, historical, or a calculation. Explain how speed and sensor constraints inform a current or future test choice, and what the coefficient data support. Because the available pressure sweep is at one historical speed, it does not experimentally verify the recommended operating region or establish a multi-speed aerodynamic response.</p>
+<p>In the group report, recommend <strong>one feasible improvement to the experimental setup or measurement process</strong>, supported by your uncertainty analysis or experimental observations. Submit one concise report communicating the airspeed model and uncertainty plots, test-region recommendation, relevant coefficient reduction and uncertainty method, measured aerodynamic trends, reference comparison, and limitations. The client briefing presents the decision and evidence concisely. The scheduled <strong>group report</strong> and <strong>client briefing</strong> are the only Tier 2 assessments.</p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Aeroelasticity Tier 2: Theory Reference</h1>
+<p>The current student model and required equations are maintained in the <a href="../../../assets/assignments/lab_compilations/tier2_lab_aeroelasticity/model/model_equations_agent.md">measurement model and coefficient equations</a>. This note records the aligned instructional sequence and scope so it does not introduce a competing equation set.</p>
+<h2>Analysis sequence</h2>
 <ol>
-<li>Convert the pressure channels to physical units using the supplied calibration information.</li>
-<li>Calculate measured \(U_\infty\), \(\rho_\infty\), \(q_\infty\), and \(C_p\) for each condition.</li>
-<li>Use the pressure-port mapping and supplied geometry to calculate \(C_n\), \(C_a\), \(C_l\), and \(C_d\).</li>
-<li>Run Taylor-series and Monte Carlo uncertainty sweeps versus measured airspeed or dynamic pressure, using the instructor-approved model assumptions.</li>
-<li>Compare uncertainty contributions from differential pressure, atmospheric pressure, temperature, angle of attack, surface pressure, and any other available channels.</li>
-<li>Compare the physics-based coefficient prediction with measured coefficients and prepare residual plots.</li>
+<li>Use the primitive Pitot dynamic pressure (q), atmospheric pressure (p), and temperature (T) in the airspeed model. Propagate their released uncertainties across the tunnel envelope and identify sensor-valid and unsupported regions.</li>
+<li>Use that uncertainty evidence to recommend operating conditions before reducing the airfoil data.</li>
+<li>Use the instructor-released historical or current surface-pressure measurements, connected-port map, geometry, and data dictionary to calculate (C_p), (C_n), (C_a), (C_l), and (C_d).</li>
+<li>Use the specified Monte Carlo perturbations to estimate standard uncertainty in measured (C_l) and (C_d), then compare the results with the supplied reference under its validity caveats.</li>
 </ol>
-<h2>Day 4 - Targeted validation and recommendation</h2>
+<p>The current airfoil source data are a historical single-speed sweep near 30.37 m/s. No multi-speed aerodynamic response is implied unless additional measured data are released. The 60 m/s tunnel maximum is confirmed; candidate (q,p,T) sensor models and several channel uncertainty assumptions remain provisional as identified in the sensor summary.</p>
+<p>Finite-wing spanwise loading, structural deflection, beam/spar analysis, whiffle-tree calculations, advanced covariance analysis, and exhaustive coefficient uncertainty maps are outside the required Tier 2 work.</p>
+<h1>Aeroelasticity Tier 2: Measurement Model and Coefficient Derivation</h1>
+<p>Use this reference with the <a href="../../../assets/assignments/lab_compilations/tier2_lab_aeroelasticity/procedure/procedure_agent.md">Aero procedure</a>, designated provisional sensor scenario, student data dictionary, connected-port map, and supplied reference data. The equations below follow the pressure-integration method used in the instructor implementation. The sensor scenario supports the calculation; it does not verify installed hardware identities.</p>
+<h2>1. Measurement system and airspeed model</h2>
+<p>The Pitot-static system measures dynamic pressure, the difference between stagnation pressure and freestream static pressure:</p>
+<p>$$ q=p_0-p_\infty. $$</p>
+<p>Here, $q$ is dynamic pressure in pascals (Pa), $p_0$ is stagnation pressure in Pa, and $p_\infty$ is freestream static pressure in Pa. Atmospheric pressure $p$ and absolute temperature $T$ determine low-speed air density $\rho$:</p>
+<p>$$ \rho=\frac{p}{R_{air}T},\qquad V=\sqrt{\frac{2q}{\rho}}=\sqrt{\frac{2qR_{air}T}{p}},\qquad R_{air}=287.05\;\mathrm{J/(kg\,K)}. $$</p>
+<p>In these equations, $p$ is absolute atmospheric pressure in Pa, $T$ is absolute temperature in kelvins (K), $\rho$ is density in kg/m$^3$, $V$ is derived freestream speed in m/s, and $R_{air}$ is the specific gas constant for air. In this low-speed model, the atmospheric pressure $p$ is the freestream static pressure $p_\infty$.</p>
+<p>Use measured $q,p,T$ once as the primitive airspeed inputs. Logged airspeed and density calculated from these inputs are derived values, not additional independent measurements. The Scanivalve measures airfoil surface pressure; it does not enter this Pitot-static airspeed model.</p>
+<h2>2. Airspeed uncertainty propagation</h2>
+<p>For independent primitive inputs, the first-order Taylor sensitivities are:</p>
+<p>$$ \frac{\partial V}{\partial q}=\frac{V}{2q},\qquad \frac{\partial V}{\partial p}=-\frac{V}{2p},\qquad \frac{\partial V}{\partial T}=\frac{V}{2T}. $$</p>
+<p>Each sensitivity says how much the calculated speed changes per unit change in one input near its nominal value. For example, $(\partial V/\partial q)u_q$ is the speed uncertainty contribution from dynamic pressure. The sensitivities have units of (m/s)/Pa for $q$ and $p$, and (m/s)/K for $T$. Combining independent contributions by root-sum-square gives the absolute standard uncertainty:</p>
+<p>$$ u_V= \sqrt{ \left(\frac{V}{2q}u_q\right)^2+ \left(\frac{V}{2p}u_p\right)^2+ \left(\frac{V}{2T}u_T\right)^2 }. $$</p>
+<p>Dividing by nominal speed gives normalized standard uncertainty:</p>
+<p>$$ \frac{u_V}{V} =\frac{1}{2} \sqrt{ \left(\frac{u_q}{q}\right)^2+ \left(\frac{u_p}{p}\right)^2+ \left(\frac{u_T}{T}\right)^2 }. $$</p>
+<p>Here $u_q$ and $u_p$ are standard uncertainties in Pa, $u_T$ is in K, and $u_V$ is in m/s. Absolute uncertainty describes the expected speed error in m/s; normalized uncertainty is dimensionless and is often reported as a percentage. These expressions are not evaluated at exactly $V=0$.</p>
+<p>For the designated calculation scenario, treat each stated plus/minus bound $a$ as an independent rectangular distribution from $-a$ to $+a$. Its standard uncertainty is $u=a/\sqrt{3}$. Independence is a model assumption, not a demonstrated property of the installed instruments. The DSA3217 surface-pressure scanner is separate from the $q,p,T$ airspeed chain. The confirmed tunnel maximum is 60 m/s; the confirmed scanner configuration is ±10 inH$_2$O. Candidate Pitot, atmospheric-pressure, and temperature sensor identities remain provisional.</p>
+<h2>3. Pressure forces on a two-dimensional airfoil</h2>
+<p>Pressure pushes normal to a surface. To obtain the aerodynamic force per unit span on a two-dimensional airfoil, add the pressure-force contributions over its complete closed contour. The sign of a contribution depends on the surface direction and the pressure difference across it.</p>
+<p>Use chordwise coordinate $x$ positive from leading edge to trailing edge and thickness coordinate $y$ positive upward. Traverse the contour clockwise: along the upper surface from leading edge to trailing edge, then along the lower surface back toward the leading edge, and finally across the small leading-edge closing segment. The airfoil interior stays to the right of the direction of travel. Define axial force as positive in the $+x$ direction and normal force as positive in the $+y$ direction.</p>
+<p>For tap or contour point $i$:</p>
+<ul>
+<li>$p_i$ is the local airfoil surface pressure in Pa.</li>
+<li>$p_\infty$ is freestream static pressure in Pa.</li>
+<li>$\Delta p_i=p_i-p_\infty$ is the local pressure difference in Pa.</li>
+<li>$(x_i,y_i)$ is the point coordinate. Coordinates may be in inches or metres, but use one consistent unit system within each calculation.</li>
+<li>$c$ is airfoil chord length in the same length units as the coordinates.</li>
+<li>$\Delta s_i$ is the length of the straight surface element from point $i$ to point $i+1$.</li>
+<li>$\Delta x_i=x_{i+1}-x_i$ and $\Delta y_i=y_{i+1}-y_i$ are signed coordinate changes.</li>
+<li>$\theta_i$ is the signed angle measured counterclockwise from the positive $x$ axis to the directed segment from point $i$ to point $i+1$.</li>
+<li>$F_a&#x27;$ and $F_n&#x27;$ are axial and normal forces per unit span, respectively, in N/m.</li>
+</ul>
+<p>The average pressure difference on element $i$ is $\overline{\Delta p}_i=(\Delta p_i+\Delta p_{i+1})/2$.</p>
+<h2>4. Elemental force derivation</h2>
+<p>The tangent segment follows the contour from point $i$ to point $i+1$. With the angle convention above:</p>
+<p>$$ \cos\theta_i=\frac{\Delta x_i}{\Delta s_i},\qquad \sin\theta_i=\frac{\Delta y_i}{\Delta s_i}. $$</p>
+<p>Because the contour is clockwise, the inward unit normal is the right-hand normal to the tangent:</p>
+<p>$$ \hat{\mathbf n}_{in,i} =\sin\theta_i\,\hat{\mathbf x} -\cos\theta_i\,\hat{\mathbf y}. $$</p>
+<p>For a straight element, approximate the pressure difference as its endpoint average. Pressure force per unit span equals pressure difference times element length, directed inward:</p>
+<p>$$ \Delta\mathbf F&#x27;_{p,i} =\overline{\Delta p}_i\,\Delta s_i\,\hat{\mathbf n}_{in,i}. $$</p>
+<p>Project onto the positive axial and normal axes:</p>
+<p>$$ \Delta F&#x27;_{a,i} =\overline{\Delta p}_i\,\Delta s_i\sin\theta_i =\overline{\Delta p}_i\,\Delta y_i, $$</p>
+<p>$$ \Delta F&#x27;_{n,i} =-\overline{\Delta p}_i\,\Delta s_i\cos\theta_i =-\overline{\Delta p}_i\,\Delta x_i. $$</p>
+<p>The segment length and angle cancel because $\Delta s_i\sin\theta_i=\Delta y_i$ and $\Delta s_i\cos\theta_i=\Delta x_i$. The implementation therefore needs the endpoint coordinates, not a separately calculated segment angle. Each force contribution has units Pa·m = N/m.</p>
+<h2>5. Sum forces and nondimensionalize</h2>
+<p>Sum the elemental contributions around the entire closed contour before forming coefficients:</p>
+<p>$$ F&#x27;_a=\sum_i\overline{\Delta p}_i\,\Delta y_i,\qquad F&#x27;_n=-\sum_i\overline{\Delta p}_i\,\Delta x_i. $$</p>
+<p>Completing the contour matters. A constant freestream pressure acting around a closed contour contributes no net force because the signed coordinate changes sum to zero:</p>
+<p>$$ \sum_i\Delta x_i=0,\qquad \sum_i\Delta y_i=0. $$</p>
+<p>Thus the constant $p_\infty$ terms cancel, and the measured surface-to-freestream differences $\Delta p_i$ can be used. Disconnected ports are not measurements: do not invent values for them or include them as tap locations.</p>
+<p>The freestream dynamic pressure is</p>
+<p>$$ q_\infty=\frac{1}{2}\rho_\infty V_\infty^2, $$</p>
+<p>where $\rho_\infty$ is freestream density in kg/m$^3$ and $V_\infty$ is freestream speed in m/s. Define the pressure coefficient at point $i$ as</p>
+<p>$$ C_{p,i}=\frac{p_i-p_\infty}{q_\infty} =\frac{\Delta p_i}{q_\infty}. $$</p>
+<p>The sectional normal and axial coefficients are force per unit span divided by $q_\infty c$:</p>
+<p>$$ C_n=\frac{F&#x27;_n}{q_\infty c},\qquad C_a=\frac{F&#x27;_a}{q_\infty c}. $$</p>
+<p>This denominator has units Pa·m = N/m, so the coefficients are dimensionless. Substituting the force sums and using $\overline{C}_{p,i}=(C_{p,i}+C_{p,i+1})/2$ gives the discrete trapezoidal-rule equations:</p>
+<p>$$ C_n=-\sum_i\frac{C_{p,i}+C_{p,i+1}}{2}\frac{\Delta x_i}{c}, $$</p>
+<p>$$ C_a=+\sum_i\frac{C_{p,i}+C_{p,i+1}}{2}\frac{\Delta y_i}{c}. $$</p>
+<p>In the limit of closely spaced elements, these sums are the corresponding closed-contour integrals:</p>
+<p>$$ C_n=-\oint C_p\,\frac{dx}{c},\qquad C_a=+\oint C_p\,\frac{dy}{c}. $$</p>
+<p>These are two-dimensional sectional coefficients based on force per unit span. They are not finite-wing planform lift or drag coefficients.</p>
+<h2>6. Rotate normal and axial into lift and drag</h2>
+<p>$C_n$ and $C_a$ are referenced to the airfoil chord axes. Lift and drag are referenced to the freestream axes. Let $\alpha$ be angle of attack: the angle between the chord reference and freestream direction, using the course data&#x27;s sign convention. Project the chord-axis force components onto the freestream lift and drag axes:</p>
+<p>$$ C_l=C_n\cos\alpha-C_a\sin\alpha, $$</p>
+<p>$$ C_d=C_n\sin\alpha+C_a\cos\alpha. $$</p>
+<p>The normal-force contribution projects mostly into lift, while its projection into drag grows with angle of attack. The axial-force contribution projects mostly into drag and subtracts from lift for positive $\alpha$ under this convention. MATLAB&#x27;s sin and cos functions expect radians; convert measured degrees with deg2rad, or use the degree-specific sind and cosd functions.</p>
+<h2>7. Apply the derivation to the Tier 2 pressure taps</h2>
+<p>Use the complete connected-port coordinates and ordering in the <a href="../../../assets/assignments/lab_compilations/tier2_lab_aeroelasticity/procedure/procedure_agent.md">Aero procedure</a>; this document does not define a competing geometry map. In that map, channels 1–9 follow the upper surface from the leading edge toward the trailing edge (ports 1–8 and 10). Channels 10–16 follow the lower surface back toward the leading edge (ports 12, 14, 16, 17, 18, 19, and 20). Channel numbers and physical port numbers are not interchangeable.</p>
+<p>Ports 9, 13, and 15 are disconnected and provide no measured pressures. Port 11 is the theoretical trailing-edge point at $(x_{TE},y_{TE})=(3.5\text{ in},0)$, not a measured channel. The upper contour goes from channel 9 to this theoretical trailing-edge point; the lower contour returns from it through channel 10 and the remaining lower taps. After the last connected lower tap, port 20, close the contour with the specified straight segment to port 1.</p>
+<h3>Trailing-edge pressure closure</h3>
+<p>Extrapolate each surface&#x27;s pressure coefficient from its two nearest connected taps using the general two-point linear formula evaluated at $x_{TE}$:</p>
+<p>$$ C_{p,TE}=C_{p,a} +(C_{p,b}-C_{p,a})\frac{x_{TE}-x_a}{x_b-x_a}. $$</p>
+<p>For the upper surface, use channel 8 at port 8 ($x_a=2.1$ in) and channel 9 at port 10 ($x_b=2.8$ in). For the lower surface, order the points by increasing $x$: channel 11 at port 14 ($x_a=2.1$ in) and channel 10 at port 12 ($x_b=2.8$ in). In both cases, $x_{TE}=3.5$ in. The measured spacing is 0.7 in, and the trailing edge is one more 0.7 in step from the aft tap, so the extrapolation ratio is 2. Therefore the general formula simplifies to:</p>
+<p>$$ C_{p,TE,u}=C_{p,8}+(C_{p,9}-C_{p,8})\frac{3.5-2.1}{2.8-2.1} =2C_{p,9}-C_{p,8}, $$</p>
+<p>$$ C_{p,TE,l}=C_{p,11}+(C_{p,10}-C_{p,11})\frac{3.5-2.1}{2.8-2.1} =2C_{p,10}-C_{p,11}. $$</p>
+<p>Average the upper and lower extrapolations for the theoretical trailing-edge coefficient:</p>
+<p>$$ C_{p,TE}=\frac{C_{p,TE,u}+C_{p,TE,l}}{2}. $$</p>
+<h3>Convert the measurements to pressure coefficients</h3>
+<p>For each selected angle, calculate:</p>
+<p>$$ C_{p,i}=\frac{\Delta p_i}{q_\infty}. $$</p>
+<p>Here, $\Delta p_i$ is already the surface-to-freestream pressure difference. Do not subtract atmospheric pressure from these columns a second time. Use the measured Pitot dynamic pressure as $q_\infty$ for the corresponding angle group.</p>
+<h2>8. Coefficient uncertainty by Monte Carlo</h2>
+<p>For every measured angle of attack included in the final coefficient plots, use 10,000 trials and the designated provisional rectangular bounds. These bounds are propagation assumptions, not confirmed calibration values. For each trial:</p>
 <ol>
-<li>Inspect the preliminary absolute and relative uncertainty envelopes.</li>
-<li>Select targeted repeat conditions near a predicted low-uncertainty region, a high-uncertainty region, and any proposed boundary.</li>
-<li>Collect only the additional points needed to test the recommendation or diagnose a discrepancy.</li>
-<li>Compare measured infinite-wing results with the committed prediction.</li>
-<li>Apply the stated decision rule to classify conditions as informative, marginal, or uncertainty-dominated.</li>
-<li>Quantify one improvement, such as pressure-sensor range, resolution, calibration, sampling, or atmospheric-condition measurement, and show how it changes the useful test envelope.</li>
+<li>Add one uniform perturbation from -49.8 Pa to +49.8 Pa to the measured Pitot dynamic pressure. Share this same perturbed $q$ across all 16 taps.</li>
+<li>Independently add a uniform perturbation from -4.9818 Pa to +4.9818 Pa to each measured surface-pressure channel.</li>
+<li>Add one uniform perturbation from -0.5° to +0.5° to the measured angle of attack.</li>
+<li>Recalculate the pressure coefficients, trailing-edge closure, full-contour $C_n$ and $C_a$, and rotated $C_l$ and $C_d$.</li>
+<li>Repeat for all 10,000 trials at that angle. Calculate the sample standard deviations $s_{C_l}$ and $s_{C_d}$.</li>
 </ol>
-<h2>Required data products</h2>
-<ul>
-<li>Raw pressure and tunnel-condition files for every collected condition.</li>
-<li>A measurement-chain diagram with the physical quantity, sensor output, calibration, and data-reduction role of each channel.</li>
-<li>Infinite-wing pressure, \(C_p\), \(C_n\), \(C_a\), \(C_l\), and \(C_d\) results across the selected angle-of-attack and tunnel-condition matrix.</li>
-<li>Absolute scaled systematic standard uncertainty and normalized systematic standard uncertainty curves versus measured airspeed or dynamic pressure.</li>
-<li>A comparison of the Taylor-series and Monte Carlo results at representative conditions.</li>
-<li>Residuals and a discussion separating sensor uncertainty from model-form differences.</li>
-<li>A client recommendation identifying informative, marginal, and uncertainty-dominated regions</li>
-</ul>
-<p>using the stated decision rule, plus a quantified improvement.</p>
-<h2>Data-quality checks</h2>
-<ul>
-<li>Verify the pressure and airspeed channels are zeroed before each run.</li>
-<li>Confirm that the actual measured velocity, not just the commanded velocity, is used in the data reduction.</li>
-<li>Check for saturated channels, disconnected pressure ports, implausible pressure distributions, and nonsteady tunnel operation.</li>
-<li>Preserve the original raw files and record every deletion, filtering choice, or excluded sample.</li>
-<li>State clearly which conditions were commanded and which were measured.</li>
-<li>State the decision rule and any instructor-defined limits used to classify conditions.</li>
-</ul>
-<p><em>Tier 2 branch procedure - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Model / Derivation</h3><div class="compiled-content"><h1>Theoretical Framework - Aeroelasticity Tier 2 Experiment</h1>
-<p>This framework supports the revised student application: use the tunnel measurement chain and uncertainty model to select conditions, then reduce infinite-wing data to \(C_l\) and \(C_d\), compare prediction and measurement, and recommend a test envelope.</p>
-<h2>1. Freestream model</h2>
-<p>\[ \rho_\infty=\frac{p_\infty}{R_{\mathrm{air}}T_\infty}, \qquad V_\infty=\sqrt{\frac{2\Delta p}{\rho_\infty}}, \qquad q_\infty=\frac{1}{2}\rho_\infty V_\infty^2. \]</p>
-<p>Use \(R_{\mathrm{air}}=287\ \mathrm{J/(kg\,K)}\) unless the instructor supplies another value. Keep commanded and measured tunnel conditions separate; use measured quantities in the data reduction.</p>
-<h2>2. Pressure-to-coefficient model</h2>
-<p>\[ C_p=\frac{p-p_\infty}{q_\infty}. \]</p>
-<p>Integrate the measured chord-wise pressure distribution using the supplied port coordinates:</p>
-<p>\[ C_n=-\frac{1}{c}\oint C_p\,dy, \qquad C_a=\frac{1}{c}\oint C_p\,dz. \]</p>
-<p>Rotate the sectional force coefficients:</p>
-<p>\[ C_l=C_n\cos\alpha-C_a\sin\alpha, \qquad C_d=C_n\sin\alpha+C_a\cos\alpha. \]</p>
-<p>The infinite-wing lift per unit span, when needed for interpretation, is \(\ell&#x27;_\infty=q_\infty c C_l\). It is not a finite-wing structural calculation.</p>
-<h2>3. Uncertainty and experimental design</h2>
-<p>Use measured airspeed \(V_\infty\) or dynamic pressure \(q_\infty\) as the primary sweep variable and angle of attack as a second condition variable. Propagate uncertainty from differential pressure, atmospheric pressure, temperature, angle of attack, surface-pressure channels, port geometry, and any other instructor-designated inputs.</p>
-<p>Report</p>
-<p>\[ \mathrm{SSU}_{y,\mathrm{sys}}(q)=b_{y,\mathrm{sys}}(q), \qquad \mathrm{NSU}_{y,\mathrm{sys}}(q)=\frac{b_{y,\mathrm{sys}}(q)}{|y(q)|}, \]</p>
-<p>for selected outputs such as \(V_\infty\), \(q_\infty\), \(C_l\), or \(C_d\). Near a nominal zero, use absolute uncertainty and do not interpret the relative curve through the zero. Use Taylor-series sensitivity coefficients and Monte Carlo propagation at representative conditions.</p>
-<h2>4. Prediction, residuals, and model form</h2>
-<p>Compare the physics-based coefficient prediction with measured \(C_l\) and \(C_d\). Plot residuals versus angle of attack and the selected tunnel condition. Interpret persistent differences as possible model-form differences rather than silently absorbing them into sensor uncertainty.</p>
-<h2>Reference-only material</h2>
-<p>Finite-wing spanwise loading, spar/beam parameters, structural deflection, whiffle-tree analysis, finite-wing validation, and finite-wing structural uncertainty are outside the revised student objective. Related files may remain in the repository as historical or instructor-reference material.</p>
-<p><em>Tier 2 theoretical framework - working draft for instructor review</em></p>
-<h1>Model Equations Reference - Aeroelasticity Tier 2 Experiment</h1>
-<p>This reference supplies the equations needed for the Tier 2 analysis. Students use the equations to select tunnel conditions, reduce the infinite-wing data to aerodynamic coefficients, compare prediction and measurement, and propagate uncertainty.</p>
-<h2>1. Freestream density, dynamic pressure, and velocity</h2>
-<p>\[ \rho_\infty=\frac{p_\infty}{R_{\mathrm{air}}T_\infty}, \qquad q_\infty=\frac{1}{2}\rho_\infty V_\infty^2. \]</p>
-<p>For a Pitot-static measurement,</p>
-<p>\[ V_\infty=\sqrt{\frac{2\Delta p}{\rho_\infty}} =\sqrt{\frac{2R_{\mathrm{air}}T_\infty\Delta p}{p_\infty}}. \]</p>
-<p>Use \(R_{\mathrm{air}}=287\ \mathrm{J/(kg\,K)}\), unless the instructor supplies another value.</p>
-<h2>2. Pressure coefficient</h2>
-<p>\[ C_p=\frac{p-p_\infty}{q_\infty}. \]</p>
-<p>Here \(p\) is the local surface pressure, \(p_\infty\) is the freestream static pressure, and \(q_\infty\) is dynamic pressure. Confirm the sign convention used by the supplied pressure files before plotting.</p>
-<h2>3. Sectional force coefficients</h2>
-<p>Using the pressure-port geometry and a documented trapezoidal integration,</p>
-<p>\[ C_n=-\frac{1}{c}\oint C_p\,dy, \qquad C_a=\frac{1}{c}\oint C_p\,dz. \]</p>
-<p>The discrete implementation is</p>
-<p>\[ C_n=-\sum_i\frac{C_{p,i}+C_{p,i+1}}{2}\frac{\Delta y_i}{c}, \qquad C_a=\sum_i\frac{C_{p,i}+C_{p,i+1}}{2}\frac{\Delta z_i}{c}. \]</p>
-<p>The lift and pressure-drag coefficients are</p>
-<p>\[ C_l=C_n\cos\alpha-C_a\sin\alpha, \qquad C_d=C_n\sin\alpha+C_a\cos\alpha. \]</p>
-<p>Use radians inside trigonometric functions.</p>
-<h2>4. Infinite-wing aerodynamic coefficients</h2>
-<p>Students test the infinite wing at multiple assigned values of \(\alpha\) and measured \(V_\infty\) or \(q_\infty\). Use the pressure integration equations to determine how \(C_l\), \(C_d\), lift-related quantities, and their uncertainty change with the test condition.</p>
-<h2>5. Condition-dependent uncertainty</h2>
-<p>The primary sweep variable is measured tunnel airspeed \(V_\infty\) or dynamic pressure \(q_\infty\), with angle of attack varied as a second test variable. Propagate uncertainty from differential pressure, atmospheric pressure, temperature, angle of attack, surface pressure channels, pressure-port geometry, and any other instructor-designated inputs.</p>
-<p>For each condition, report both</p>
-<p>\[ \mathrm{SSU}_{y,\mathrm{sys}}(q)=b_{y,\mathrm{sys}}(q) \]</p>
-<p>and</p>
-<p>\[ \mathrm{NSU}_{y,\mathrm{sys}}(q) =\frac{b_{y,\mathrm{sys}}(q)}{|y(q)|}, \]</p>
-<p>for the selected quantity \(y\), such as \(V_\infty\), \(q_\infty\), \(C_l\), or \(C_d\). Use the normalized-sensitivity guide for the Taylor-series calculation and the same data-reduction model for Monte Carlo. Near a nominal zero, use absolute uncertainty and do not interpret the relative curve through the zero.</p>
-<h2>6. Prediction, residuals, and model-form differences</h2>
-<p>Compare the physics-based prediction with the measured \(C_l\) and \(C_d\) results at the selected conditions. Plot residuals versus angle of attack and the selected tunnel condition. Do not fold persistent model-form differences into sensor uncertainty without explaining the distinction.</p>
-<h2>Reference-only material</h2>
-<p>Finite-wing spanwise loading, spar/beam parameters, structural deflection, whiffle-tree analysis, finite-wing validation, and finite-wing structural uncertainty are outside the revised student objective. Any finite-wing files in the repository are historical or instructor-reference material only.</p>
-<h2>Working values and release checks</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody><tr><td>Surface-pressure scanner</td><td>Scanivalve DSA3217; approximately \(\pm 10\) inH2O; stated accuracy approximately \(\pm 0.20\%\) of full scale</td></tr><tr><td>Pitot/dynamic-pressure sensor</td><td>Honeywell ABP2DDAN005NDAA3XX; approximately \(\pm 5\) inH2O; working uncertainty approximately \(\pm 49.8\) Pa under the supplied convention</td></tr><tr><td>Atmospheric pressure</td><td>Working uncertainty \(\pm 50\) Pa unless a better specification is supplied</td></tr><tr><td>Temperature</td><td>Working uncertainty approximately \(\pm 0.0278\) K unless a better specification is supplied</td></tr><tr><td>Tunnel velocity</td><td>Use measured airspeed; current working limit less than 50 mph, approximately 22.35 m/s</td></tr><tr><td>Angle of attack</td><td>Working range \(\pm 16\) deg and working uncertainty \(\pm 0.5\) deg</td></tr></tbody></table></div>
-<p>The exact scanner calibration record, resolution, final released column definitions, approved test matrix, and decision rule still require instructional verification. The values above are working assumptions and must be labeled as such if they are not confirmed before student release.</p>
-<p><em>Tier 2 equation reference - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Sensor and DAQ Specifications - Aeroelasticity Tier 2 Experiment</h1>
-<p>This summary consolidates the current working specifications for the Tier 2 infinite-wing wind-tunnel investigation. Students use the measurement chain and its uncertainty to select informative tunnel conditions before reducing the selected data to \(C_l\) and \(C_d\). Finite-wing structural analysis is not part of the student application.</p>
-<h2>Measurement chain</h2>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Measurement</th><th>Equipment or channel</th><th>Working specification</th><th>Role in analysis</th></tr></thead><tbody><tr><td>Surface pressure</td><td>Scanivalve DSA3217 pressure scanner</td><td>Differential range approximately \(\pm 10\) inH2O (\(\pm 2.49\) kPa); stated accuracy approximately \(\pm 0.20\%\) of full scale. Exact resolution and calibration date remain unverified.</td><td>Chord-wise pressure distribution for \(C_p\), \(C_n\), \(C_a\), \(C_l\), and \(C_d\).</td></tr><tr><td>Surface-pressure uncertainty</td><td>DSA3217 stated accuracy</td><td>The quoted full-scale convention must be documented. It corresponds to approximately \(\pm 4.98\) Pa if 10 inH2O is used as full scale, or approximately \(\pm 9.96\) Pa if the full bipolar span is used.</td><td>Candidate dominant uncertainty at low dynamic pressure or low aerodynamic load.</td></tr><tr><td>Pitot/dynamic pressure</td><td>Honeywell ABP2DDAN005NDAA3XX differential-pressure sensor</td><td>3.3 V supply; \(\pm 5\) inH2O range; working scale approximately 754.82 Pa/V; stated total error approximately 2% of full scale, or about \(\pm 49.8\) Pa under the supplied convention.</td><td>Determines dynamic pressure and supports tunnel-velocity calculation.</td></tr><tr><td>Atmospheric pressure</td><td>Atmospheric-pressure channel; exact model not identified</td><td>Working accuracy approximately 1 hPa. Use \(\pm 0.5\) hPa, or \(\pm 50\) Pa, unless a better specification is supplied.</td><td>Supports air-density calculation and atmospheric-state correction.</td></tr><tr><td>Temperature</td><td>ThermPro temperature measurement</td><td>Stated accuracy approximately 0.1 degF. Use \(\pm 0.05\) degF, or approximately \(\pm 0.0278\) K, unless a better specification is supplied.</td><td>Supports air-density calculation.</td></tr><tr><td>Tunnel velocity</td><td>Recorded Airspeed [m/s] channel and differential-pressure measurement</td><td>Use measured velocity rather than commanded velocity. Current working limit: less than 50 mph, approximately less than 22.35 m/s.</td><td>Primary test-condition variable for the uncertainty envelope.</td></tr><tr><td>Angle of attack</td><td>Recorded Angle of Attack [deg] channel and angle-setting mechanism</td><td>Working range \(\pm 16\) deg; working angle uncertainty \(\pm 0.5\) deg.</td><td>Independent variable for \(C_l(\alpha)\) and \(C_d(\alpha)\).</td></tr></tbody></table></div>
-<h2>Data and pressure-port interface</h2>
-<ul>
-<li>LabVIEW acquisition is documented at 500 Hz for 0.04 s, giving 20 samples per condition.</li>
-<li>The infinite-wing data include atmospheric temperature, atmospheric pressure, density, measured</li>
-</ul>
-<p>airspeed, Pitot dynamic pressure, auxiliary dynamic pressure, applied voltage, angle of attack, sting loads, and 16 Scanivalve pressure channels.</p>
-<ul>
-<li>The pressure channels are already expressed in Pa; the upstream voltage-to-pressure conversion has</li>
-</ul>
-<p>already been applied, but the exact transfer-function and calibration record remain unverified.</p>
-<ul>
-<li>The working Clark Y-14 model has a 3.5 in chord. The connected port map is:</li>
-</ul>
-<div class="table-wrapper"><table class="md-table"><thead><tr><th>Airfoil port</th><th>Scanivalve channel</th><th>Status</th></tr></thead><tbody><tr><td>1-8</td><td>1-8</td><td>Connected</td></tr><tr><td>9</td><td>—</td><td>Not connected</td></tr><tr><td>10</td><td>9</td><td>Connected</td></tr><tr><td>11</td><td>—</td><td>Theoretical trailing-edge point</td></tr><tr><td>12</td><td>10</td><td>Connected</td></tr><tr><td>13</td><td>—</td><td>Not connected</td></tr><tr><td>14</td><td>11</td><td>Connected</td></tr><tr><td>15</td><td>—</td><td>Not connected</td></tr><tr><td>16-20</td><td>12-16</td><td>Connected</td></tr></tbody></table></div>
-<p>Use only connected pressure ports and the supplied port coordinates. Preserve commanded and measured conditions, timestamps, run identifiers, angle of attack, atmospheric pressure, temperature, differential pressure, and all available sensor channels with every data block.</p>
-<h2>Operating and uncertainty guidance</h2>
-<ul>
-<li>Use airspeed below 50 mph (approximately 22.35 m/s) and angle of attack within \(\pm 16\) deg unless the instructional team changes the approved limits.</li>
-<li>The supplied infinite-wing CSV is near 30 m/s and therefore exceeds the current working airspeed limit. Treat it as historical/reference data for format and coefficient-reduction work, not as an approved current test condition.</li>
-<li>Treat quoted accuracy values as bounds and state the assumed probability distribution used to convert each bound to standard uncertainty.</li>
-<li>Keep the Scanivalve full-scale convention explicit.</li>
-<li>Zero or tare relevant channels before each run and allow the tunnel to reach steady operation.</li>
-</ul>
-<h2>Release items still requiring verification</h2>
-<ul>
-<li>Exact pressure-scanner calibration record, resolution, and full-scale convention.</li>
-<li>Exact atmospheric-pressure sensor model and temperature-sensor documentation.</li>
-<li>Final pressure-port coordinate/channel files and column definitions for the released dataset.</li>
-<li>Approved velocity and angle-of-attack limits and the decision rule used to classify conditions.</li>
-</ul>
-<p><em>Tier 2 instrumentation summary - working draft for instructor review</em></p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes - Aeroelasticity Tier 2 Experiment</h1>
+<p>Plot the sample standard deviations as ±1 combined-standard-uncertainty bars centered on the nominal measured coefficients. They are standard uncertainty bars, not 95% intervals. Independent channel errors are the provisional baseline because channel covariance has not been measured. Do not perturb atmospheric pressure, temperature, density, or derived airspeed again: the coefficient calculation uses measured $q$ as its denominator.</p>
+<h2>10. Reference comparison and limitations</h2>
+<p>Compare measured sectional $C_l(\alpha)$ and $C_d(\alpha)$ with the supplied Clark Y-14 reference data over its stated validity range. Evaluate agreement and disagreement; do not assume that agreement is required. Consider Reynolds-number and other condition differences, and distinguish coefficient uncertainty from model/reference discrepancy. The current historical pressure dataset is a single-speed sweep near 30.37 m/s, while the empirical NACA TR 628 reference is near $Re\approx3.02\times10^6$ and the measured sweep is near $Re\approx1.46\times10^5$. The comparison is limited to -8° through +12°. These data do not establish an aerodynamic response at other speeds or experimentally verify a recommended operating region.</p>
+<p>Finite-wing planform coefficients, structural deflection, beam or spar calculations, and whiffle-tree analysis are outside this student task.</p></div></div><div class="scaffold-section compiled"><h3>Instrumentation</h3><div class="compiled-content"><h1>Aeroelasticity Tier 2: Sensor Inputs and Data Release Status</h1>
+<p>This sheet distinguishes confirmed equipment facts from the designated provisional calculation scenario. Use the scenario below for the required student calculations. It is not evidence that the listed candidate sensors are installed or calibrated.</p>
+<h2>Measurement chain and limits</h2>
+<div class="table-wrapper"><table class="md-table"><thead><tr><th>Measurement</th><th>Equipment or working model</th><th>Range / uncertainty input</th><th>Status and role</th></tr></thead><tbody><tr><td>Tunnel speed</td><td>PILOT low-speed wind tunnel</td><td>Maximum 60 m/s</td><td><strong>Confirmed tunnel limit.</strong> This does not imply that every sensor measures through 60 m/s.</td></tr><tr><td>Airfoil surface pressure</td><td>Scanivalve DSA3217</td><td>Configured ±10 inH₂O (±2490.9 Pa); stated accuracy ±0.20% of 10 inH₂O = ±4.9818 Pa</td><td><strong>Configuration confirmed.</strong> Accuracy row matched to the configured range. Treat ±4.9818 Pa as a rectangular bound only for this exercise; resulting standard uncertainty is 2.876 Pa. Calibration date, zero, resolution, channel covariance, and individual channel behavior remain open.</td></tr><tr><td>Pitot dynamic pressure (q)</td><td>Honeywell ABP2DDAN005NDAA3XX candidate</td><td>Candidate positive range 0 to +5 inH₂O (1245.44 Pa); scenario error bound ±49.8 Pa</td><td><strong>Provisional calculation scenario.</strong> Installed identity, range, zero, calibration, and conversion path are unverified. At the reference state, requiring nominal (q) plus this bound to remain below full scale gives an approximate planning edge of 49.6 m/s; this is not a confirmed usable limit.</td></tr><tr><td>Atmospheric pressure (p)</td><td>MPX4250A candidate</td><td>Candidate maximum-error bound ±3.45 kPa</td><td><strong>Provisional candidate.</strong> Installed identity, channel conversion, and suitability over local pressure conditions are unverified.</td></tr><tr><td>Temperature (T)</td><td>LM35D conservative candidate</td><td>Candidate bound ±1.5 K</td><td><strong>Provisional candidate.</strong> Installed variant and conversion are unverified. Use the instructor-designated case.</td></tr><tr><td>Angle of attack α</td><td>Recorded angle channel / fixture</td><td>Working bound ±0.5°</td><td><strong>Provisional analysis assumption.</strong> Source and uncertainty meaning are unverified.</td></tr></tbody></table></div>
+<p>For the designated airspeed calculation scenario, model the stated $q,p,T$ bounds as independent rectangular distributions. Convert each bound $a$ to standard uncertainty $u=a/\sqrt3$, then use the $q,p,T$ airspeed model in the detailed instructions. Independence is an analysis assumption, not a demonstrated property of the installed system. Do not use the scanner uncertainty in the airspeed calculation. For coefficient Monte Carlo, use 10,000 trials per plotted measured angle, independent uniform/rectangular scanner bounds of ±4.9818 Pa, a uniform/rectangular angle bound of ±0.5°, and one shared Pitot $q$ draw per trial from its ±49.8 Pa bound.</p>
+<h2>Historical measurement file and data dictionary</h2>
+<p>The current instructional-team source file is <code>ASEN2802_InfiniteWing_FullRange (1).csv</code>. It contains 640 measured rows, 30 columns, 20 samples at each integer angle from −15° through +16°, and airspeed from 29.990 to 30.750 m/s (mean about 30.37 m/s). It is historical single-speed data, not a new multi-speed test matrix. The approved student-accessible file and dictionary will be linked in the Aero procedure pre-release checklist; students must not retrieve it from an instructor-only solution directory.</p>
+<p>The source column order and units are:</p>
+<ol>
+<li>Atmospheric Temperature [K]</li>
+<li>Atmospheric Pressure [Pa]</li>
+<li>Atmospheric Density [kg/m^3]</li>
+<li>Airspeed [m/s]</li>
+<li>Pitot Dynamic Pressure [Pa]</li>
+<li>Aux Dynamic Pressure [Pa]</li>
+<li>Actual Voltage [V]</li>
+<li>Angle of Attack [deg]</li>
+<li>Spanwise Position [in]</li>
+<li>Sting Axial Force [N]</li>
+<li>Sting Normal Force [N]</li>
+<li>Sting Pitching Moment [Nm]</li>
+</ol>
+<p>13–14. ELD Probe X-Axis, Y-Axis [mm] 15–30. Scanivalve Pressure 1–16 [Pa]</p>
+<p>Surface-pressure fields are in Pa. The approved data package will state pressure reference, exact column names, and any flags. The current reduction uses Pitot (q) and the connected surface-pressure channels. The auxiliary-pressure field is not used pending its definition. The historical file has no timestamps or unique run IDs.</p>
+<h2>Airfoil geometry and reference release</h2>
+<p>The model is a Clark Y-14 infinite wing with nominal 3.5 in (0.0889 m) chord. The detailed student procedure contains the connected channel/port map and coordinates. Channels 1–8 map to ports 1–8; channel 9 to port 10; channel 10 to port 12; channel 11 to port 14; channels 12–16 to ports 16–20. Ports 9, 13, and 15 are disconnected; port 11 is the theoretical trailing-edge point. The pending student data and reference package links are listed in the procedure&#x27;s pre-release checklist.</p>
+<p>The current comparison uses empirical Clark Y-14 data from NACA TR 628 near $Re\approx3.02\times10^6$. The historical tunnel sweep is near $Re\approx1.46\times10^5$; students should evaluate agreement and disagreement while recognizing this condition mismatch, not treat the comparison as same-condition validation. Current analysis uses −8° through +12°. The reference file and citation will be linked in the Aero procedure pre-release checklist.</p></div></div><div class="scaffold-section compiled"><h3>Sample Data</h3><div class="compiled-content"><h1>Data Notes - Aeroelasticity Tier 2 Experiment</h1>
 <p>No completed sample dataset is currently stored in this compilation. The instructional team must provide representative files, verified column definitions, and the final sensor specifications before student release.</p>
 <h2>Dataset 1 - Infinite-wing chord-wise pressure data</h2>
 <p><strong>Source:</strong> PILOT low-speed wind-tunnel runs with the Clark Y-14 infinite-wing model.</p>

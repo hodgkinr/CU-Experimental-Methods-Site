@@ -1,113 +1,37 @@
-# Tier 2 Experimental Investigation - Frequently Asked Questions
+# ASEN 3501 Tier 2: Frequently Asked Questions
 
-## 1. What is the consulting scenario?
+## Which experiment will we do?
 
-Your group is acting as an engineering consulting team. The client wants to know which conditions produce useful data, which conditions should be avoided, and what improvement(s) would improve the experiment.
+All students complete the Aeroelasticity / Wind Tunnel experiment for Fall 2026.
 
-## 2. How is this different from Tier 1?
+## What is the central task?
 
-Tier 1 emphasized pointwise analysis. Tier 2 asks you to repeat the uncertainty analysis across a range of test conditions and use the resulting uncertainty envelope to make a test decision.
+Use airspeed measurement uncertainty before testing to identify favorable, unfavorable, and unsupported wind-tunnel regions. Then reduce the released Clark Y-14 pressure measurements to aerodynamic coefficients, estimate coefficient uncertainty, and explain how the measurements compare with the supplied reference. The airspeed-informed condition choice is the centerpiece.
 
-## 3. What is the uncertainty envelope?
+## Which airspeed measurements enter the model?
 
-It is a plot of scaled systematic standard uncertainty or normalized systematic standard uncertainty versus a test condition. Examples include freestream velocity for the wind tunnel and applied torque for spin-up testing.
+Use Pitot dynamic pressure (q), atmospheric pressure (p), and temperature (T) once in the released airspeed model. Do not count logged speed or derived density as additional independent inputs. The Scanivalve DSA3217 measures airfoil surface pressures; it does not enter the airspeed uncertainty calculation. The confirmed tunnel maximum is 60 m/s, distinct from individual sensor ranges.
 
-## 4. What should we call the new idea?
+## What uncertainty plots and Monte Carlo work are required?
 
-Use **condition-dependent uncertainty envelope** for the plot and **dimensionless sensitivity coefficient** for the mathematical factors. Use **relative standard uncertainty** for \(\mathrm{NSU}_{y,\mathrm{sys}}=b_{y,\mathrm{sys}}/|y|\) at one condition.
+Follow the [Aero procedure](../lab_compilations/tier2_lab_aeroelasticity/procedure/procedure_agent.md), which defines the required Monte Carlo workload. Plot combined normalized and absolute standard uncertainty in airspeed across 0–60 m/s, and the individual normalized (q,p,T) contributions. Do not evaluate either Taylor expression at exactly zero speed. Complete a limited Monte Carlo check with about 10,000 trials at each of three representative speeds; large convergence studies are not required. The generic normalized-uncertainty guide is supplemental and adds no Aero analyses.
 
-## 5. Is this an individual or group assignment?
+## What airfoil data are provided?
 
-The experiment and report are group work. Every student must understand the full measurement
-chain and be able to explain the group's uncertainty envelope and recommendation.
+The currently available source dataset is historical, with 20 measurements at each angle from −15° to +16° and speed near 30.37 m/s. It is a single-speed measured sweep, not a multi-speed experiment. The approved student data copy and reference materials will be linked in the Aero procedure pre-release checklist; do not look for them in instructor-only solution files. The historical coefficient data do not experimentally verify other recommended speeds.
 
-## 6. How much testing do we have?
+## What should the coefficient uncertainty bars mean?
 
-The assignment is designed for four in-person lab working days. Large groups should divide
-calibration, data collection, reduction, uncertainty analysis, and documentation tasks in
-parallel, while preserving shared raw data and decisions.
+Use 10,000 trials for every measured angle included in your final coefficient plots. Use the provisional rectangular bounds of ±49.8 Pa for Pitot q, ±4.9818 Pa for each scanner channel, and ±0.5° for angle of attack; share one q realization across all 16 taps per trial. Use the sample standard deviation as ±1 combined standard uncertainty, not a 95% interval. The coefficient calculation does not re-perturb atmospheric pressure or temperature. These are provisional propagation assumptions, not confirmation of installed hardware.
 
-## 7. What must be ready before primary testing?
+## Is low relative uncertainty enough to recommend a test point?
 
-Your group needs a short prediction brief containing the client objective, measurement chain,
-predicted response, initial uncertainty envelope, committed test matrix, decision rule,
-and risk forecast.
+No. Also consider absolute uncertainty, signal level, aerodynamic behavior, sensor range, tunnel limits, model validity, and intended use. Any 3% threshold is an illustration unless a specific decision rule is supplied.
 
-## 8. What if the prediction is wrong?
+## What goes in the report and presentation?
 
-That is useful. The grade is based on whether the prediction was reasoned and specific and
-whether you diagnose the discrepancy honestly. Do not rewrite the original prediction after
-seeing the data.
+The group report communicates the airspeed uncertainty analysis, test-region recommendation, relevant pressure reduction and coefficient uncertainty, measured aerodynamic trends, reference comparison, limitations, and one feasible setup or measurement-process improvement supported by analysis or observations. Evaluate both agreement and disagreement with the reference while considering Reynolds number and other condition differences. The client briefing presents the decision and evidence concisely. The report remains assessed for CLO5.1; the presentation remains assessed for CLO1.5, CLO3.1, CLO3.2, and CLO5.2. These are the only Tier 2 assessments; no individual log, interview, contribution statement, or peer evaluation is added.
 
-## 9. What is required in the wind-tunnel branch?
+## What if an input or file is missing?
 
-First use the tunnel sensor values and uncertainty information to select appropriate
-airspeed or dynamic-pressure conditions. Then apply those conditions to infinite-wing data
-over angle of attack and calculate \(C_l\) and \(C_d\), with uncertainty. Include the
-pressure-port mapping, measured-versus-commanded condition comparison, residuals, and a
-stated rule for classifying conditions.
-
-## 10. Is finite-wing structural analysis required?
-
-No. Finite-wing spanwise loading, spar/beam calculations, structural deflection,
-whiffle-tree analysis, finite-wing validation, and finite-wing structural uncertainty are
-reference material only for this revised student objective.
-
-## 11. What exactly is required for the spin-module branch?
-
-Use the existing SC free-base records to fit inertia and effective dynamic retardance from
-**base-motor support torque**. Then use those parameters to predict base angular acceleration
-for a **reaction-wheel torque** input and plot predicted relative percent uncertainty in
-acceleration versus RW torque. The historical RW records hold the base stationary; they can
-characterize RW current/torque and wheel speed, but they do not measure free-base acceleration
-or validate the transfer prediction. State the unresolved assumption that SC support-fit
-inertia and retardance apply to internal RW torque. Use a decision rule to select a candidate
-region and explain that “good” means only that the selected uncertainty criterion is met.
-Document the uncertainty terms, explicit first-pass negligible assumptions, unresolved sensor
-systematics, and the data needed for later free-base RW validation.
-
-## 12. Is gyro calibration required?
-
-Not as the primary application. Use it as supporting work if it is needed to establish
-base-rate uncertainty or if the instructor assigns it. The central comparison uses the
-encoder as the available base-rate reference channel. Its quadrature convention and
-processed-rate systematic accuracy remain unresolved, so do not treat it as uncertainty-free.
-
-## 13. What is the applied torque in the spin analysis?
-
-Use the base-motor torque constant only for the SC support fit and the RW-motor torque
-constant only for the RW prediction input. Keep commanded and current-inferred RW torque
-distinct. The motor datasheets give nominal constants but no ±0.05 mN\,m/A calibration
-tolerance; that bound is a working assumption, not a verified calibration uncertainty.
-
-## 14. Can Monte Carlo replace partial derivatives?
-
-Monte Carlo can replace manual derivative calculations for the numerical propagation, but you still need to state the data-reduction equation and explain the input distributions. Compare Monte Carlo with the normalized Taylor result at representative conditions.
-
-## 15. How many Monte Carlo samples should we use?
-
-Use at least 10,000 trials per representative condition unless a convergence study justifies
-a different number. Check that the reported standard deviation or percentile interval is
-stable when the sample count increases.
-
-## 16. Do we redraw systematic errors for every time sample?
-
-Usually no. A calibration, scale-factor, or fixed offset error is shared across a virtual experiment. Draw it once for that experiment. Redraw sample-to-sample noise only when the model is intended to represent random measurement noise.
-
-## 17. What makes a setup change convincing?
-
-Name the affected measurement or parameter, identify the limitation, estimate how the uncertainty envelope changes, and explain why the change is feasible. “Use a better sensor” is not enough.
-
-## 18. What if a sensor specification or sample dataset is missing?
-
-Use the clearly labeled instructor placeholder and state how the missing information affects your conclusion. Do not invent a sensor specification or torque constant.
-
-## 19. What should the client briefing show?
-
-Show the client question, predicted result, measured comparison, uncertainty envelope with useful and inappropriate regions marked, recommended setup alteration, and final test-envelope recommendation.
-
-## 20. Why mention ASEN 6011?
-
-The assignment is motivated by the uncertainty-analysis perspective used in Professor John Farnsworth's ASEN 6011 Experimental Fluid Mechanics course. Students who want a deeper treatment of uncertainty propagation, experimental fluid mechanics, and measurement-system design are encouraged to consider taking ASEN 6011.
-
-*ASEN 3501 - Tier 2 FAQ | Working draft*
+Use the designated provisional calculation scenario in the sensor summary and identify it as an instructional assumption, not verified calibration evidence or confirmation of installed hardware. Do not invent a sensor specification, channel meaning, calibration value, or operating limit. See the Aero procedure pre-release checklist for the two pending student packages.

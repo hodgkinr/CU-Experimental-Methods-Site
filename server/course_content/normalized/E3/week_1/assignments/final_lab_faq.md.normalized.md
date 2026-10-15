@@ -1,124 +1,51 @@
-# Tier 3 Final Lab Assignment — Frequently Asked Questions
+# Tier 3 Experimental-Design Proposal — Frequently Asked Questions
 
-## Is this a real lab or a paper design?
+## Is this a built experiment or a paper design?
 
-It is a paper design. You are not expected to build and run the experiment during ASEN
-3501. Design it with enough technical detail that someone could judge whether it is worth
-building.
+It is a paper design. Your proposal should be technically plausible and clear enough for a reader to judge whether the experiment could produce useful data. You do not need to build the setup or prepare a procurement-ready design package.
 
-## Do I get to choose my own experiment?
+## What do I submit?
 
-Yes, within constraints. Your experiment must connect to a predictive model, produce
-measurable data, have a plausible instrumentation path, and be narrow enough to design
-well in the available time. The instructor may ask you to narrow, revise, or replace an
-idea if it is too broad, unsafe, too expensive, or not tied to a model.
+You develop one proposal through the existing Tier 3 submission milestones. Add and refine material at each checkpoint. The later checkpoints are not separate instrumentation and V&V reports. The oral defense, peer evaluations, and reflections remain scheduled activities; follow the dates and logistics in Canvas.
 
-## Can two groups choose similar experiments?
+## Do I need to design an aerospace experiment?
 
-Yes. Similar physical systems are allowed if the model question, instrumentation strategy,
-or validation plan differs meaningfully. The process is what is being assessed.
+The experiment should be aerospace-relevant. It may use aerospace hardware or address a measurement problem common in aerospace work, such as vibration, power, thermal behavior, thrust, pressure, flow, materials, controls, or environmental effects.
 
-## Do I have to buy hardware?
+## How large should the proposal be?
 
-No. You may investigate hardware and include cost or availability in your feasibility
-discussion, but purchase is not required. If you already own components or want to buy
-low-cost parts for personal learning, keep them. They may be useful later in senior design
-or independent projects.
+Write enough to make the design understandable and defensible. A focused proposal will often be about 4–6 pages, excluding references and useful figures, but this is guidance rather than a limit. More pages do not automatically make a stronger design.
 
-## What counts as "beyond provided" for CLO 6?
+## What model or theory do I need?
 
-Examples include a sensor not listed in the course catalog, a measurement method from a
-paper or handbook, a relevant engineering standard, a manufacturer application note, a
-different DAQ platform, a calibration method, or an analysis approach not directly handed
-to you. You need to show that you found it, evaluated it, and explained whether it improves
-your design.
+Use one relevant governing relationship, model output, or physical explanation. Define the quantities and units you use, state the assumptions that matter, and describe the expected response. Ask the instructor to help narrow a topic if you cannot identify a measurable response or a reasonable model connection.
 
-## Can I use a chatbot to brainstorm ideas?
+## Do I need a formal engineering standards citation?
 
-Yes. You may use AI tools to brainstorm experiment ideas, generate checklists, compare
-options, or identify possible failure modes. You are responsible for verifying technical
-claims using authoritative sources. Do not cite a chatbot as evidence that a sensor works,
-a standard exists, or an equation is valid.
+No. Identify one credible technical resource or alternative beyond the material supplied for the assignment. It may be a datasheet, handbook, standard, application note, paper, measurement method, sensor, or platform. Explain how it informs your design and what it does not establish. Use a standard when relevant.
 
-## What should I ask a chatbot?
+## Do I need a complete uncertainty budget or MATLAB simulation?
 
-Ask for alternatives, not answers. A useful prompt asks the chatbot to generate possible
-experiment ideas, list assumptions, identify measurable quantities, suggest candidate
-sensors, and name failure modes. Then you verify and choose. A polished chatbot response
-that you cannot defend will hurt you in the oral defense.
+No. Identify the uncertainty sources most likely to affect the design and explain their consequence. Use a simple estimate when it helps judge whether the proposed measurement could answer the question. Monte Carlo is optional when a simpler method is adequate. Do not submit extensive MATLAB code or covariance analysis unless your team has a specific technical reason and it materially improves the design argument.
 
-Use `TIER3_ai_assistant_prompt.md` as a starting point. It is designed to make the chatbot
-act like a design coach rather than a ghostwriter.
+## What instrumentation detail is expected?
 
-## Does my experiment need to be aerospace-specific?
+Justify the measurement method using the specifications that matter for your question, such as range, accuracy, response/bandwidth, setup, environment, or availability. For sampled or dynamic signals, explain the relevant sampling, filtering, conditioning, and DAQ choices. You do not need to specify every component or setting.
 
-It should be aerospace-relevant. That can mean the system itself is aerospace hardware.
-It can also mean the measurement problem is common in aerospace contexts: thermal behavior,
-vibration, power, thrust, flow, pressure, attitude dynamics, structural response, materials
-testing, controls, or environmental effects.
+## How should we choose the alternative to compare?
 
-## What if my experiment is too simple?
+Choose one plausible external method, instrument, platform, or analysis approach that could address the same measurement need. Compare it with your proposed baseline using a small number of relevant criteria, then explain why your team chose its approach.
 
-Simple is fine if the design reasoning is strong. A thermal or power experiment can be
-excellent if the model, instrumentation, uncertainty analysis, and validation logic are
-clear. A complicated experiment with vague measurement reasoning will not pass.
+## What happens at the oral defense?
 
-## What if my experiment is too ambitious?
+Your team explains the proposal and answers questions about the model, expected response, design, measurement choices, uncertainty, limitations, and outside alternative. The defense is a scheduled assessment, not another written report. Follow Canvas for timing and logistics.
 
-Narrow it. You do not need to design an entire test campaign. Choose one model claim, one
-or two primary response features, and a feasible measurement path.
+## Can AI tools help?
 
-## Do I need to use ASME V&V 10-2006?
+They may help brainstorm options or identify questions to research. Verify equations, specifications, safety claims, and other technical statements with credible sources. A chatbot response is not technical evidence.
 
-Only when its computational solid-mechanics scope is relevant to your project. V&V 20 is
-the ASME guide for CFD and heat transfer; PTC 19.1 and the GUM are the measurement-
-uncertainty references used in this course. You must cite at least one relevant standard
-or professional guide and one additional technical source, and explain what each source
-contributes and what it does not establish.
+## What makes a proposal successful?
 
-## Do I need to do uncertainty analysis if no data are collected?
+A successful proposal connects a specific question to a plausible model and response, describes a feasible measurement strategy, justifies the important instrumentation and acquisition choices, and explains how uncertainty and limitations affect the conclusion. The team can explain why the proposed design is a reasonable way to obtain evidence.
 
-Yes. This is prospective uncertainty analysis. You estimate how well the proposed
-measurement chain would perform before the experiment is built. This is one of the main
-skills of the assignment.
-
-## Do I need a Monte Carlo simulation?
-
-Use Monte Carlo when it is appropriate: nonlinear equations, multiple uncertain inputs,
-non-normal distributions, or a need to visualize the output distribution. If first-order
-propagation is sufficient, explain why.
-
-## What does "validation metric" mean in a paper design?
-
-It is the numerical rule you would use to compare the future data to the model. Examples
-include percent error in a primary response, normalized residuals, RMS error across a time
-series, slope/intercept agreement in a regression, or whether a measured response falls
-within a predefined uncertainty bound.
-
-## What if I find that my proposed experiment would not be sensitive enough?
-
-That can be a strong result if you show it clearly. You should then revise the design or
-state exactly what would need to change: better sensor, different range, different test
-condition, more repetitions, different response feature, or a narrower validation claim.
-
-## How is this different from Tier 2's improvement proposal?
-
-Tier 2 asks you to improve an experiment that was already given to you. Tier 3 asks you to
-design the experiment from the start. You are responsible for the model question, the
-measurement chain, the uncertainty, and the validation plan.
-
-## What is the most common way to do poorly on this assignment?
-
-Choosing an interesting topic but not turning it into a measurable, testable design. The
-assignment is not asking for a project idea. It is asking for a defensible experimental
-design and V&V plan.
-
-## What is the most important habit to carry from Tier 1 and Tier 2?
-
-Commit before measuring. Define what data should look like, what agreement means, what
-uncertainty you expect, and what data pattern would change your mind before the experiment
-is run.
-
----
-
-*ASEN 3501 — Tier 3 FAQ | Course Weeks 12–15*
+*ASEN 3501 — Tier 3 FAQ | Experimental-Design Proposal and Oral Defense*

@@ -86,46 +86,29 @@
 <h2>7. Additional validation data</h2>
 <p>Repeat free-base tests with independently calibrated or measured signed RW torque, a documented wheel-rate reference/sign, base encoder rate, synchronized timestamps, command/status channels, and repeated trials in both torque directions. Sample below, near, and above the combined retardance and across the intended operating region. Compare the base acceleration, wheel acceleration, and wheel/base momentum exchange with the model; separate parameter-transfer bias from wheel loss, base loss, and run-to-run scatter.</p>
 <p><em>Working derivation. Confirm rotating assembly and encoder channel conventions with the hardware owner before treating parameter transfer as established.</em></p>
-<h1>Spin Modules Tier 2: SC support fit, RW loss fit, and base-response prediction</h1>
-<h2>Data roles and analysis objective</h2>
-<p>Use three data sets for distinct purposes:</p>
-<ol>
-<li>The five SC support records (base motor drives the free base) identify the support-fit inertia and effective base retardance.</li>
-<li>Seven <code>RW_freespin</code> records (reaction-wheel motor spins the wheel while the base is free) provide wheel current/rate and measured base-rate response. They support an effective wheel-side torque-loss fit and an empirical acceleration/model comparison.</li>
-<li>Historical <code>RW_*</code> records hold the base stationary. Use them for RW current/torque and wheel-speed characterization only; their base-rate channel is not a free-base response.</li>
-</ol>
-<p>The current free-base records are one run at each of seven torque labels, without independent current/torque calibration metadata or documented repeats. The wheel-loss fit and base-response comparison use these same runs, so the residual comparison is not an independent holdout validation. Treat it as an initial model check, not as a validated uncertainty distribution or repeatability study.</p>
-<h2>SC support fit</h2>
-<p>For a base moving in a signed direction, dynamic retardance opposes base motion:</p>
-<p>\[ \tau_{base}=1000 I_{fit}\alpha_{base}+\tau_{r,base}\,\operatorname{sgn}(\omega_{base}). \]</p>
-<p>For the positive-direction SC records this reduces to</p>
-<p>\[ \tau_{base,\mathrm{mN\,m}}=1000 I_{fit}\alpha_{base}+\tau_{r,base}. \]</p>
-<p>Torque and retardance are in mN\,m, inertia in kg\,m\(^2\), acceleration in rad/s\(^2\); 1000 converts mN\,m to N\,m. Estimate SC support torque from baseline-corrected <strong>base-motor</strong> current using \(K_{t,base}\). Estimate acceleration from the slope of encoder rate in rad/s versus actual timestamp in seconds. The fitted retardance is an effective moving-branch loss, not a separately measured static breakaway torque.</p>
-<h2>RW spin-up torque balance</h2>
-<p>During RW spin-up, estimate wheel motor torque from baseline-corrected <strong>RW-motor</strong> current using its separate constant \(K_{t,RW}\). Fit</p>
-<p>\[ |\tau_{m,RW}|=1000 I_{RW}|\alpha_{RW}|+\tau_{r,RW}. \]</p>
-<p>Here \(I_{RW}\) is an effective wheel rotating inertia and \(\tau_{r,RW}\) is an effective wheel-side retarding torque. The logged rate in the free-base records is treated provisionally as wheel rate relative to the base. If the wheel accelerates positive while the base accelerates oppositely, then</p>
-<p>\[ \alpha_{RW}=\alpha_{RW,relative}-|\alpha_{base}|. \]</p>
-<p>Confirm the encoder reference and sign mapping from hardware/channel documentation. The intercept is not an independently calibrated bearing-friction value: it can include multiple wheel-side losses and torque-constant/current bias. The fit assumes approximately constant retardance over the measured spin-up conditions.</p>
-<h2>Base response to internal RW motor torque</h2>
-<p>Define positive direction along wheel spin. The motor applies \(+\tau_{m,RW}\) to the wheel and an equal-and-opposite reaction \(-\tau_{m,RW}\) to the base. Wheel-side drag opposes wheel spin; its equal-and-opposite reaction on the base points along wheel spin and reduces the magnitude of the motor reaction that accelerates the base in the opposite direction. Base retardance further opposes base motion. When the motor reaction dominates both losses, the moving-branch magnitude equation is</p>
-<p>\[ |\alpha_{base}|=\frac{|\tau_{m,RW}|-\tau_{r,RW}-\tau_{r,base}}{1000 I_{fit}}, \qquad |\tau_{m,RW}|&gt;\tau_{r,RW}+\tau_{r,base}. \]</p>
-<p>The base accelerates opposite the RW motor torque. The expression is undefined at or below combined retardance and does not predict whether a stationary base begins moving, static breakaway, or torque reversal. The equation also assumes that a single constant effective retardance for each side is adequate over the analyzed branch.</p>
-<h2>Unresolved parameter transfer</h2>
-<p>The analysis provisionally substitutes the SC support-fit \(I_{fit}\) and \(\tau_{r,base}\) into the internal RW case. The supplied dynamics derivation distinguishes base/spacecraft inertia \(I_s\) from wheel inertia \(I_w\), with internal angular-momentum exchange \(I_s\dot\omega_s+I_w\dot\omega_w=0\) when external torque is negligible. Available layout information does not establish that the base-motor support test and the internal RW test involve the same rotating assembly/effective inertia. The free-base measurements provide a comparison, but do not prove this transfer or resolve unmodeled coupling. Keep the assumption visible and state what additional hardware evidence or calibrated repeated testing would resolve it.</p>
-<h2>First-pass uncertainty and decision rule</h2>
-<p>The working analysis propagates SC slope errors, assumed base/RW motor-constant bounds, SC support-fit residual scatter, free-base rate-fit errors, and RW torque-balance fit residual scatter. The assumed \(\pm0.05\) mN\,m/A torque-constant half-width is not supplied as a manufacturer tolerance or calibration uncertainty. Current-channel calibration, encoder scale/sign systematic uncertainty, timing, between-run repeatability, and SC-to-internal-RW transfer discrepancy are not quantified. Current and timing contributions may be treated as negligible only if labeled as first-pass assumptions.</p>
-<p>Plot conditional predicted relative standard uncertainty, \(100u_\alpha/|\alpha_{base}|\), versus applied RW torque. For branch-valid residuals \(e_i=\alpha_{meas,i}-\alpha_{model,i}\), the current empirical diagnostic uses</p>
-<p>\[ u_{disc}=\sqrt{\max\left(0,\operatorname{mean}\left[e_i^2-u_{meas,i}^2-u_{model,i}^2\right]\right)},\qquad u_{emp,i}=\sqrt{u_{model,i}^2+u_{disc}^2}. \]</p>
-<p>Plot \(100u_{emp,i}/|\alpha_{model,i}|\) separately from the conditional theoretical curve. This pooled scale uses only torque points with a sufficiently probable corrected moving branch. It includes model bias and one run per usable torque, so it is diagnostic, not torque-specific repeatability or a validated probability model. Apply the selected \(\leq25\%\) criterion to the conditional model curve as an analysis rule, not as validation, universal safety, or an operating approval. Clearly mark the moving branch, low-probability/undefined conditions, and extrapolation beyond the SC support-torque range.</p>
-<h2>Current reference result (for comparison, not a guaranteed outcome)</h2>
-<p>The current MATLAB reduction estimates \(\tau_{r,base}\approx2.319\) mN\,m, \(\tau_{r,RW}\approx2.838\) mN\,m, and \(I_{RW}\approx1.278\times10^{-4}\) kg\,m\(^2\). The RW-retardance Monte Carlo interval is approximately 2.70–2.98 mN\,m under the working model and assumed uncertainties. The combined nominal retardance is about 5.16 mN\,m. Only the four records labeled 6, 8, 10, and 12 mN\,m meet the 99% moving-branch probability reporting condition. Their mean residual is about −0.175 rad/s\(^2\), raw RMS 0.202 rad/s\(^2\), and pooled residual discrepancy RMS 0.179 rad/s\(^2\); the measured accelerations remain below the model. These values inherit the unresolved encoder, current, repeatability, and transfer assumptions above.</p>
-<h2>Optional extensions</h2>
+<h1>Spin Modules Tier 2: Compact Model and Sign Reference</h1>
+<h2>Required prediction</h2>
+<p>Use the moving-branch model</p>
+<p>\[ |\alpha_b|=\frac{|\tau_{RW}|-\tau_{r,RW}-\tau_{r,b}}{1000 I_b}, \qquad |\tau_{RW}|&gt;\tau_{r,RW}+\tau_{r,b}. \]</p>
+<p>Here torque and effective retardance are in mN m, $I_b$ is in kg m\(^2\), and acceleration is in rad/s\(^2\). The factor 1000 converts mN m to N m. The base acceleration direction is opposite the positive wheel motor torque. This relation predicts a moving branch only; it does not predict static breakaway, motion at or below combined retardance, or reversal.</p>
+<p>Fit the effective parameters once from the supplied record groups:</p>
+<p>\[ \tau_{b,\mathrm{mN\,m}}=1000I_b\alpha_b+\tau_{r,b}, \qquad |\tau_{RW}|=1000I_{RW}|\alpha_{RW}|+\tau_{r,RW}. \]</p>
+<p>The first equation uses the SC base-motor support records; the second uses the free-base RW wheel records. The RW encoder rate is provisionally relative to the base. Apply the instructor-verified reference/sign convention or report the sensitivity case if it remains unconfirmed. Treat each fitted intercept as an effective dynamic retardance.</p>
+<h2>Torque and rate conventions</h2>
 <ul>
-<li><strong>Wheel speed:</strong> The working 3000 rpm limit constrains torque together with duration and initial speed. It is not a universal torque ceiling. Historical fixture-held speeds do not establish the speed trajectory during a free-base run.</li>
-<li><strong>MEMS gyro:</strong> A gyro may change empirical acceleration uncertainty through noise, bias, scale, filtering, timing, and calibration. It does not automatically change the theoretical uncertainty from model parameters and torque inputs.</li>
+<li>Use the base-motor constant, nominally 25.5 mN m/A, only for the SC support records.</li>
+<li>Use the RW-motor constant, nominally 33.5 mN m/A, only for RW torque.</li>
+<li>The constants are nominal datasheet values. They are not calibrated torque values, and the \(\pm0.05\) mN m/A working bound from prior analyses is not a datasheet tolerance.</li>
+<li>Estimate angular acceleration as the slope of encoder rate versus actual time. Convert rpm to rad/s before fitting.</li>
+<li>The supplied free-base RW rate is provisionally interpreted as rate relative to the base. Verify the channel reference and sign where possible; otherwise label the assumption and show a sensitivity case.</li>
+<li>Historical fixture-held RW records characterize wheel torque and speed. They do not measure free-base acceleration.</li>
 </ul>
-<p><em>Spin-module model reference for Tier 2; confirm encoder sign/reference, rotating assembly, and transfer assumptions before release.</em></p></div></div><div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure - Spin Modules Tier 2: SC support and RW free-base response</h1>
+<h2>Working parameter estimates</h2>
+<p>The current analysis gives $I_b\approx0.005567$ kg m\(^2\), $\tau_{r,b}\approx2.319$ mN m, and $\tau_{r,RW}\approx2.838$ mN m. Their sum is about 5.16 mN m. These are provisional analysis estimates, not calibrated parameters. The SC-to-internal-RW inertia and base-retardance transfer remains unresolved. Student use requires an instructor-approved uncertainty table; do not treat missing uncertainty values as zero.</p>
+<h2>Uncertainty and decision</h2>
+<p>Propagate the released parameter and input uncertainties to absolute acceleration uncertainty and relative uncertainty $u_\alpha/|\alpha_b|$ across torque. Relative uncertainty is not informative as the predicted response approaches zero; use absolute uncertainty there. Distinguish the conditional model curve from measured residuals. The 25% line is an analysis screening rule, not proof of model agreement, validation, safety, or operating approval.</p>
+<h2>Unresolved release items</h2>
+<p>Current-channel calibration, encoder scale and reference accuracy, timestamp uncertainty, repeatability, and the parameter-transfer assumption are not established. A model/data comparison from one free-base run per torque cannot quantify repeatability. Confirm the channel map, units, sign convention, uncertainty inputs, and operating limits before release; explicitly label any remaining assumptions.</p></div></div><div class="scaffold-section compiled"><h3>Procedure</h3><div class="compiled-content"><h1>Procedure - Spin Modules Tier 2: SC support and RW free-base response</h1>
 <h2>Objective</h2>
 <p>Fit the SC base-motor support response, estimate effective wheel-side retardance from the supplied free-base reaction-wheel records, then compare the measured base acceleration with a two-loss prediction. Produce conditional model uncertainty and a separate residual-based diagnostic versus applied RW torque. The existing <code>RW_freespin</code> data provide an initial comparison, but one run per torque is not enough to establish repeatability or validate the parameter transfer. Historical <code>RW_*</code> data hold the base stationary and are for RW torque/current and wheel-speed characterization only.</p>
 <h2>Before analysis or operation</h2>
