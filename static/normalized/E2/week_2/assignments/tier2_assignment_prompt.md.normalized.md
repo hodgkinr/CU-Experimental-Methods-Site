@@ -24,18 +24,18 @@ By the end of Tier 2, you should be able to:
 1. Identify measured inputs in the wind-tunnel airspeed model and explain their uncertainty assumptions and ranges.
 2. Calculate and interpret absolute and normalized standard uncertainty in airspeed across the tunnel envelope.
 3. Use uncertainty and practical sensor limits to justify favorable and unfavorable test conditions as well as potential improvements.
-4. Reduce airfoil pressure data to $C_p$, $C_n$, $C_a$, $C_l$, and $C_d$, and estimate uncertainty in measured $C_l$ and $C_d$.
+4. Reduce airfoil pressure data to pressure coefficients and estimate uncertainty in measured lift and drag coefficients.
 5. Compare measured aerodynamic behavior with the supplied reference and explain physical trends and limitations.
 
 ## Required investigation
 
-Complete the sequence in the [Aero Tier 2 instructions](../lab_compilations/tier2_lab_aeroelasticity/procedure/procedure_agent.md):
+Complete the sequence in the [Aero Tier 2 instructions](../lab_compilations/tier2_lab_aeroelasticity/procedure/procedure_agent.pdf):
 
 1. **Model the airspeed measurement.** Use Pitot dynamic pressure, atmospheric pressure, and temperature as the primitive inputs. Keep the confirmed 60 m/s tunnel maximum distinct from the range of each sensor; surface-pressure scanner uncertainty does not enter the airspeed calculation.
 2. **Map airspeed uncertainty across conditions.** Plot combined normalized standard uncertainty (%) and absolute standard uncertainty (m/s) across 0–60 m/s, and show the individual normalized contributions from dynamic pressure, atmospheric pressure, and temperature. Do not evaluate the Taylor airspeed uncertainty expressions at exactly zero speed; relative uncertainty is also undefined there. Mark mathematical extrapolation and sensor limits clearly.
 3. **Check the airspeed model with Monte Carlo.** At no less than five representative speeds, use approximately 10,000 trials per speed, compare Monte Carlo standard deviations with Taylor predictions, and explain low-speed nonlinearity and any sensor over-range results. The detailed Aero procedure defines this Monte Carlo scope; the general uncertainty guide is supplemental.
 4. **Make a test-condition recommendation.** Identify favorable and unfavorable or unsupported regions using uncertainty, signal and sensor ranges, the tunnel limit, and the intended measurement. State a decision rule; a 3% line, if used, is an illustration rather than a course-wide acceptance rule. Recommend one feasible improvement to the experimental setup or measurement process, supported by your uncertainty analysis or experimental observations.
-5. **Reduce and interpret the airfoil measurements.** Use the released pressure-port map, geometry, and data dictionary to calculate $C_p$, $C_n$, $C_a$, $C_l$, and $C_d$. Apply 10,000 Monte Carlo trials per angle of attack for every measured angle included in your final coefficient plots; estimate standard uncertainty in $C_l$ and $C_d$ and plot ±1 combined standard-uncertainty bars. Compare agreement and disagreement with the supplied reference while accounting for differences in Reynolds number and experimental conditions. Agreement is not presumed.
+5. **Reduce and interpret the airfoil measurements.** Use the released pressure-port map, geometry, and data dictionary to calculate pressure coefficients and use those to determine lift and drag coefficients. Apply 10,000 Monte Carlo trials per angle of attack for every measured angle included in your final coefficient plots; estimate standard uncertainty in lift and drag coefficients and plot ±1 combined standard-uncertainty bars. Compare agreement and disagreement with the supplied reference while accounting for differences in Reynolds number and experimental conditions.
 6. **Connect the results.** Explain how the initial airspeed uncertainty analysis informs the selected conditions and how the coefficient data support and limit the aerodynamic conclusions.
 
 ## Deliverables and assessment
