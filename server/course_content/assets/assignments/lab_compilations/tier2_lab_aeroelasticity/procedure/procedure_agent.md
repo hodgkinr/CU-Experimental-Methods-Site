@@ -1,4 +1,4 @@
-# Aeroelasticity Tier 2: Choose Useful Wind-Tunnel Conditions
+# Tier 2: Choose Useful Wind-Tunnel Conditions
 
 ## Purpose and sequence
 
@@ -30,7 +30,7 @@ In these equations, $p$ is absolute atmospheric pressure in Pa, $T$ is in kelvin
 
 Use measured $q,p,T$ once as the primitive airspeed inputs. Logged airspeed and density calculated from these inputs are derived values, not additional independent measurements. The Scanivalve measures airfoil surface pressure; it does not enter this Pitot-static airspeed model.
 
-The DSA3217 is confirmed in the ±10 inH₂O configuration. Keep this scanner range distinct from the tunnel's confirmed 60 m/s maximum and the candidate Pitot sensor range. Use the numerical values in the [sensor and data-input summary](../instrumentation/sensor_specs_summary_agent.md) as the designated **provisional calculation scenario**. The specific installed Pitot, atmospheric-pressure, and temperature sensor identities/conversion paths remain provisional; they are not verified calibration facts. Do not search instructor-only solution files for specifications.
+The DSA3217 is confirmed in the ±10 inH₂O configuration. Keep this scanner range distinct from the tunnel's confirmed 60 m/s maximum and the candidate Pitot sensor range. 
 
 ## B. Airspeed uncertainty and condition selection
 
@@ -75,7 +75,7 @@ For each trial, draw $q,p,T$ independently from their released uniform bounds, r
 
 ## C. Airfoil pressure measurements and force derivation
 
-Use the approved student-accessible historical measurement file and data dictionary. The instructional-team source file is `ASEN2802_InfiniteWing_FullRange (1).csv`: 640 measured rows, 20 samples at each integer angle from −15° through +16°, at approximately 30.37 m/s. This is a **historical single-speed sweep**, not a newly measured multi-speed dataset.
+Use the approved student-accessible historical measurement file and data dictionary: 640 measured rows, 20 samples at each integer angle from −15° through +16°, at approximately 30.37 m/s. This is a **historical single-speed sweep**, not a newly measured multi-speed dataset.
 
 The source file's 30 fields are: atmospheric temperature (K), atmospheric pressure (Pa), atmospheric density (kg/m³), logged airspeed (m/s), Pitot dynamic pressure (Pa), auxiliary dynamic pressure (Pa), actual voltage (V), angle of attack (deg), spanwise position (in), sting axial force (N), sting normal force (N), sting pitching moment (N·m), ELD probe x/y positions (mm), and Scanivalve pressure channels 1–16 (Pa). Use only columns designated by the approved dictionary. The reduction uses Pitot $q$ and surface pressures; auxiliary pressure and implausible sting loads are not used.
 
@@ -212,8 +212,6 @@ For every measured angle included in the final coefficient plots, use 10,000 Mon
 Plot the sample standard deviations as ±1 combined-standard-uncertainty bars centered on the nominal measured coefficients. These are standard uncertainty bars, not 95% intervals. Independent channel errors are the provisional baseline because channel covariance has not been measured. These bounds and distributions are propagation assumptions, not confirmed calibration values. Do not perturb atmospheric pressure, temperature, density, or derived airspeed again: the coefficient calculation uses measured $q$ as its denominator.
 
 Compare measured sectional $C_l(\alpha)$ and $C_d(\alpha)$ with the supplied Clark Y-14 reference data over its stated validity range. Evaluate agreement and disagreement; do not assume agreement is required. Consider Reynolds-number and other condition differences, and distinguish coefficient uncertainty from model/reference discrepancy. The current historical pressure dataset is a single-speed sweep near 30.37 m/s; the empirical NACA TR 628 reference is near $Re\approx3.02\times10^6$, while the measured sweep is near $Re\approx1.46\times10^5$. The comparison is limited to −8° through +12°. These data do not establish aerodynamic response at other speeds or experimentally verify a recommended operating region.
-
-Finite-wing planform coefficients, structural deflection, beam or spar calculations, and whiffle-tree analysis are outside this student task.
 
 ## F. Engineering conclusion and report
 
