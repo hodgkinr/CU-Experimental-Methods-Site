@@ -14,15 +14,15 @@ Use Pitot dynamic pressure (q), atmospheric pressure (p), and temperature (T) on
 
 ## What uncertainty plots and Monte Carlo work are required?
 
-Follow the detailed Aero procedure for the authoritative Monte Carlo workload. Plot combined normalized and absolute standard uncertainty in airspeed across the tunnel operating range, along with the individual normalized contributions from dynamic pressure, atmospheric pressure, and temperature. Do not evaluate Taylor uncertainty expressions at exactly zero speed. Use approximately 10,000 Monte Carlo trials at least at each speed specified by the detailed procedure, compare the resulting standard deviations with Taylor predictions, and explain low-speed nonlinearity and sensor-range limitations.
+Plot combined normalized and absolute standard uncertainty in airspeed across the tunnel operating range, along with the individual normalized contributions from dynamic pressure, atmospheric pressure, and temperature. Do not evaluate Taylor uncertainty expressions at exactly zero speed. Use three representative airspeeds and approximately 10,000 Monte Carlo trials per speed: a low speed where the dynamic-pressure bound is large relative to nominal pressure, a midrange speed, and a high speed near or beyond the candidate Pitot limit. Compare Monte Carlo standard deviations with Taylor predictions, report nonphysical draws, and flag sensor-overrange results. This limited check complements the full airspeed uncertainty plots; it does not replace them.
 
 ## What airfoil data are provided?
 
-The available source dataset is historical, with 20 measurements at each angle from −15° to +16° and speed near 30.37 m/s. It is a single-speed measured sweep, not a multi-speed experiment. The student data copy and reference materials will be linked in the Aero procedure pre-release checklist. The historical data do not experimentally verify other recommended speeds.
+The available source dataset is historical, with 20 measurements at each angle from −15° to +16° and speed near 30.37 m/s. It is a single-speed measured sweep, not a multi-speed experiment. The dataset, data dictionary, and reference materials are available to students through Canvas. The historical data do not experimentally verify other recommended speeds.
 
 ## What should the coefficient uncertainty bars mean?
 
-Use 10,000 trials for every measured angle included in your final coefficient plots. Use the provisional rectangular bounds of ±49.8 Pa for Pitot q, ±4.9818 Pa for each scanner channel, and ±0.5° for angle of attack; share one q realization across all 16 taps per trial. Use the sample standard deviation as ±1 combined standard uncertainty, not a 95% interval.
+Use 10,000 trials for every measured angle included in your final coefficient plots. Use the designated rectangular bounds of ±49.8 Pa for Pitot q, ±4.9818 Pa for each scanner channel, and ±0.5° for angle of attack; share one q realization across all 16 taps per trial. Use the sample standard deviation as ±1 combined standard uncertainty, not a 95% interval.
 
 ## Is low relative uncertainty enough to recommend a test point?
 

@@ -69,9 +69,9 @@ Use the plots and practical constraints to recommend favorable and unfavorable o
 
 ### Limited Monte Carlo check of airspeed
 
-Use the bounded-input Monte Carlo approach to check the Taylor model at three representative speeds: one low speed where the dynamic-pressure bound is large relative to nominal $q$, one midrange speed, and one high speed near or beyond the candidate Pitot limit. The instructor may specify a comparable compact set if operating or verified sensor information changes.
+Use the bounded-input Monte Carlo approach to check the Taylor model at three representative airspeeds: one low speed where the dynamic-pressure bound is large relative to nominal $q$, one midrange speed, and one high speed near or beyond the candidate Pitot limit. The instructor may specify a comparable compact set if operating or verified sensor information changes.
 
-For each trial, draw $q,p,T$ independently from their released uniform bounds, recompute $V$, and calculate the sample standard deviation. About 10,000 trials per speed is sufficient for this check; report the draw count. Compare the Monte Carlo standard deviation with the Taylor value. Count and report nonphysical draws and flag sensor-overrange draws. Do not silently discard them or describe over-range results as realizable measurements. Explain why mathematically valid propagation can still be unusable when an instrument is out of range.
+For each trial, draw $q,p,T$ independently from their released uniform bounds, recompute $V$, and calculate the sample standard deviation. Use approximately 10,000 trials per speed; report the draw count. Compare the Monte Carlo standard deviation with the Taylor value. Count and report nonphysical draws and flag sensor-overrange draws. Explain how low-speed nonlinearity can cause Monte Carlo and Taylor results to differ. Do not silently discard nonphysical draws or describe over-range results as realizable measurements. Explain why mathematically valid propagation can still be unusable when an instrument is out of range.
 
 ## C. Airfoil pressure measurements and force derivation
 
@@ -201,7 +201,7 @@ For each selected angle, calculate $C_{p,i}=\Delta p_i/q_\infty$. The supplied s
 
 ## E. Coefficient uncertainty and reference comparison
 
-For every measured angle included in the final coefficient plots, use 10,000 Monte Carlo trials and the designated provisional rectangular bounds from the sensor summary. In each trial:
+For every measured angle included in the final coefficient plots, use 10,000 Monte Carlo trials and the designated rectangular bounds from the sensor summary. In each trial:
 
 1. Add one uniform perturbation from −49.8 Pa to +49.8 Pa to measured Pitot dynamic pressure. Share this same perturbed $q$ across all 16 taps.
 2. Independently add a uniform perturbation from −4.9818 Pa to +4.9818 Pa to each measured surface-pressure channel.
@@ -209,7 +209,7 @@ For every measured angle included in the final coefficient plots, use 10,000 Mon
 4. Recalculate pressure coefficients, trailing-edge closure, full-contour $C_n$ and $C_a$, and rotated $C_l$ and $C_d$.
 5. Repeat for all 10,000 trials at that angle and calculate sample standard deviations $s_{C_l}$ and $s_{C_d}$.
 
-Plot the sample standard deviations as ±1 combined-standard-uncertainty bars centered on the nominal measured coefficients. These are standard uncertainty bars, not 95% intervals. Independent channel errors are the provisional baseline because channel covariance has not been measured. These bounds and distributions are propagation assumptions, not confirmed calibration values. Do not perturb atmospheric pressure, temperature, density, or derived airspeed again: the coefficient calculation uses measured $q$ as its denominator.
+Plot the sample standard deviations as ±1 combined-standard-uncertainty bars centered on the nominal measured coefficients. These are standard uncertainty bars, not 95% intervals. Use independent channel errors as designated for this exercise; channel covariance is not provided. The specified bounds and distributions define the calculation scenario but do not document a hardware calibration certificate. Do not perturb atmospheric pressure, temperature, density, or derived airspeed again: the coefficient calculation uses measured $q$ as its denominator.
 
 Compare measured sectional $C_l(\alpha)$ and $C_d(\alpha)$ with the supplied Clark Y-14 reference data over its stated validity range. Evaluate agreement and disagreement; do not assume agreement is required. Consider Reynolds-number and other condition differences, and distinguish coefficient uncertainty from model/reference discrepancy. The current historical pressure dataset is a single-speed sweep near 30.37 m/s; the empirical NACA TR 628 reference is near $Re\approx3.02\times10^6$, while the measured sweep is near $Re\approx1.46\times10^5$. The comparison is limited to −8° through +12°. These data do not establish aerodynamic response at other speeds or experimentally verify a recommended operating region.
 
