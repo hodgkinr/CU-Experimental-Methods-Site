@@ -12,7 +12,7 @@ Use airspeed measurement uncertainty before testing to identify favorable, unfav
 
 Use Pitot dynamic pressure (q), atmospheric pressure (p), and temperature (T) once in the released airspeed model. Do not count logged speed or derived density as additional independent inputs. The Scanivalve DSA3217 measures airfoil surface pressures; it does not enter the airspeed uncertainty calculation. The confirmed tunnel maximum is 60 m/s, distinct from individual sensor ranges.
 
-**What uncertainty plots and Monte Carlo work are required?**
+## What uncertainty plots and Monte Carlo work are required?
 
 Follow the detailed Aero procedure for the authoritative Monte Carlo workload. Plot combined normalized and absolute standard uncertainty in airspeed across the tunnel operating range, along with the individual normalized contributions from dynamic pressure, atmospheric pressure, and temperature. Do not evaluate Taylor uncertainty expressions at exactly zero speed. Use approximately 10,000 Monte Carlo trials at least at each speed specified by the detailed procedure, compare the resulting standard deviations with Taylor predictions, and explain low-speed nonlinearity and sensor-range limitations.
 
@@ -24,7 +24,7 @@ The available source dataset is historical, with 20 measurements at each angle f
 
 Use 10,000 trials for every measured angle included in your final coefficient plots. Use the provisional rectangular bounds of ±49.8 Pa for Pitot q, ±4.9818 Pa for each scanner channel, and ±0.5° for angle of attack; share one q realization across all 16 taps per trial. Use the sample standard deviation as ±1 combined standard uncertainty, not a 95% interval.
 
-**Is low relative uncertainty enough to recommend a test point?**
+## Is low relative uncertainty enough to recommend a test point?
 
 No. A test condition must satisfy the experimental measurement requirement while also remaining within sensor ranges, tunnel operating limits, and applicable model assumptions. Consider absolute uncertainty, sensor range, aerodynamic behavior, and intended use. The minimum absolute uncertainty does not necessarily identify the best operating condition. A proposed sensor change may improve low-speed uncertainty while reducing the maximum measurable airspeed.
 
