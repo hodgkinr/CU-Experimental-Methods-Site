@@ -31,7 +31,7 @@ By the end of Tier 2, you should be able to:
 
 ## Required investigation
 
-Complete the sequence in the [Aero Tier 2 instructions](../lab_compilations/tier2_lab_aeroelasticity/procedure/procedure_agent.pdf):
+See Canvas documents for more information and specific guides.
 
 1. **Model the airspeed measurement.** Use Pitot dynamic pressure, atmospheric pressure, and temperature as the primitive inputs. Keep the confirmed 60 m/s tunnel maximum distinct from the range of each sensor; surface-pressure scanner uncertainty does not enter the airspeed calculation.
 2. **Map airspeed uncertainty across conditions.** Plot combined normalized standard uncertainty (%) and absolute standard uncertainty (m/s) across 0–60 m/s, and show the individual normalized contributions from dynamic pressure, atmospheric pressure, and temperature. Do not evaluate the Taylor airspeed uncertainty expressions at exactly zero speed; relative uncertainty is also undefined there. Mark mathematical extrapolation and sensor limits clearly.
@@ -67,9 +67,7 @@ Present one concise briefing that communicates the recommended operating conditi
 
 ## Additional resources
 
-- [Detailed Aero lab instructions, measurement models, equations, and analysis workflow](../lab_compilations/tier2_lab_aeroelasticity/procedure/procedure_agent.pdf)
-- [Aero sensor and data-input summary](../lab_compilations/tier2_lab_aeroelasticity/instrumentation/sensor_specs_summary_agent.pdf)
-- [Airspeed uncertainty and instrumentation design guide](student-guides/Aero_Airspeed_Uncertainty_Student_Guide.pdf)
+See Canvas documents for more information and specific guides.
 
 ### Acknowledgment
 
