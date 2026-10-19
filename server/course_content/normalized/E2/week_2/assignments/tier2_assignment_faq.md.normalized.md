@@ -22,7 +22,7 @@ The available source dataset is historical, with 20 measurements at each angle f
 
 ## What should the coefficient uncertainty bars mean?
 
-Use 10,000 trials for every measured angle included in your final coefficient plots. Use the designated rectangular bounds of ±49.8 Pa for Pitot q, ±4.9818 Pa for each scanner channel, and ±0.5° for angle of attack; share one q realization across all 16 taps per trial. Use the sample standard deviation as ±1 combined standard uncertainty, not a 95% interval.
+Use 10,000 trials for every measured angle included in your final coefficient plots. Use the designated rectangular bounds of ±49.8 Pa for Pitot q, ±9.95 Pa for each scanner channel, and ±0.5° for angle of attack; share one q realization across all 16 taps per trial. Use the sample standard deviation as ±1 combined standard uncertainty, not a 95% interval.
 
 ## Is low relative uncertainty enough to recommend a test point?
 
