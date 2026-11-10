@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sampling Rate, Nyquist and Aliasing</title>
+<style>
+  :root{
+    --bg:#fcfcfb; --panel:#ffffff; --ink:#1c1c1b; --ink2:#4a4a47; --muted:#8a8a85;
+    --grid:#e7e7e3; --band:#f3f3f0; --border:#dcdcd7;
+    /* CU Boulder brand: CU Gold #CFB87C, Accessible CU Gold #8D7334,
+       CU Dark Gray #565A5C, CU Light Gray #A2A4A3, Black #000000 */
+    --signal:#000000; --adc:#8D7334; --adcTint:rgba(207,184,124,.32);
+    --sample:#565A5C; --sampleTint:rgba(162,164,163,.22);
+    --bad:#8a1c1c;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1a1a19; --panel:#222220; --ink:#ececea; --ink2:#bdbdb8; --muted:#85857f;
+      --grid:#30302d; --band:#252523; --border:#3a3a37;
+      --signal:#ffffff; --adc:#CFB87C; --adcTint:rgba(207,184,124,.20);
+      --sample:#A2A4A3; --sampleTint:rgba(162,164,163,.16);
+      --bad:#e08080;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:1040px;margin:0 auto;padding:24px 20px 40px}
+  h1{font-size:22px;margin:0 0 4px}
+  .sub{color:var(--ink2);margin:0 0 18px;max-width:800px}
+  .controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;
+    padding:12px 14px;background:var(--panel);border:1px solid var(--border);border-radius:10px;margin-bottom:10px}
+  .controls label{display:flex;align-items:center;gap:8px;color:var(--ink2);font-size:14px}
+  .controls input[type=range],.controls select{accent-color:var(--adc)}
+  .controls input[type=range].wide{width:200px}
+  select{background:var(--bg);color:var(--ink);border:1px solid var(--border);border-radius:6px;padding:4px 6px;font:inherit;font-size:14px}
+  .val{min-width:64px;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  button{font:inherit;font-size:14px;padding:6px 12px;border-radius:7px;cursor:pointer;
+    border:1px solid var(--border);background:var(--bg);color:var(--ink)}
+  button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink);min-width:84px}
+  button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--adc);outline-offset:2px}
+  .presets{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px;font-size:13px;color:var(--muted)}
+  .presets button{font-size:13px;padding:4px 10px}
+  .spacer{flex:1}
+  .plot{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:8px 6px 4px}
+  canvas{display:block;width:100%}
+  #c{height:380px}
+  #fq{height:130px}
+  .legend{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--ink2);padding:4px 10px 6px}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .sw{display:inline-block;width:22px;height:0;border-top:2px solid}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+  .tile{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+  .tile .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .tile .v{font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;margin-top:2px}
+  .tile .s{font-size:13px;color:var(--ink2);font-variant-numeric:tabular-nums}
+  .tile.sig{border-left:4px solid var(--signal)}
+  .tile.smp{border-left:4px solid var(--sample)}
+  .tile.app{border-left:4px solid var(--adc)}
+  .status{margin-top:10px;padding:10px 14px;border-radius:10px;border:1px solid var(--border);
+    background:var(--panel);color:var(--ink2);min-height:44px}
+  .status b{color:var(--ink)}
+  .status.ok{border-color:var(--sample);background:var(--sampleTint)}
+  .status.edge,.status.alias{border-color:var(--adc);background:var(--adcTint)}
+  .fqwrap{margin-top:12px}
+  .fqtitle{font-size:13px;color:var(--ink2);padding:2px 10px 0}
+  .notes{margin-top:18px;color:var(--ink2);font-size:14px;max-width:820px}
+  @media (max-width:720px){.tiles{grid-template-columns:repeat(2,1fr)} #c{height:320px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Sampling rate, Nyquist and aliasing</h1>
+  <p class="sub">The black curve is the true sine wave. The ADC only sees the silver dots, one per sample tick. The gold curve is what those samples look like: the simplest signal that passes through every dot. When the sample rate is above twice the signal frequency, gold matches black. Below that, the samples describe a different, slower signal. That is aliasing.</p>
+
+  <div class="controls">
+    <button id="play" class="primary">▶ Play</button>
+    <button id="reset">Show all</button>
+    <label>Signal frequency <input id="f" class="wide" type="range" min="0.1" max="12" step="0.1" value="1"><span class="val" id="fv">1.0 Hz</span></label>
+    <label>Sample rate <input id="fs" class="wide" type="range" min="1" max="40" step="0.5" value="10"><span class="val" id="fsv">10 Hz</span></label>
+    <label>Phase <input id="ph" type="range" min="0" max="360" step="5" value="20"><span class="val" id="phv">20°</span></label>
+    <label>Show samples as
+      <select id="mode">
+        <option value="sine" selected>Apparent sine</option>
+        <option value="lines">Connect the dots</option>
+        <option value="hold">Sample &amp; hold (ADC)</option>
+      </select>
+    </label>
+    <label>Speed <input id="spd" type="range" min="0.05" max="1" step="0.05" value="0.25"><span class="val" id="spdv">0.25×</span></label>
+  </div>
+
+  <div class="presets">Try:
+    <button data-f="1" data-fs="20" data-ph="20">Well sampled</button>
+    <button data-f="4" data-fs="10" data-ph="20">Close to Nyquist</button>
+    <button data-f="5" data-fs="10" data-ph="0">Exactly Nyquist, phase 0°</button>
+    <button data-f="5" data-fs="10" data-ph="90">Exactly Nyquist, phase 90°</button>
+    <button data-f="9" data-fs="10" data-ph="20">Aliased (9 Hz looks like 1 Hz)</button>
+    <button data-f="10" data-fs="10" data-ph="60">f = fs (looks like DC)</button>
+    <button data-f="11" data-fs="10" data-ph="20">Wagon wheel (11 Hz → 1 Hz)</button>
+  </div>
+
+  <div class="plot">
+    <canvas id="c" aria-label="Plot of a sine wave, its samples, and the apparent signal the samples describe"></canvas>
+    <div class="legend">
+      <span><i class="sw" style="border-color:var(--signal)"></i>True signal</span>
+      <span><i class="dot" style="background:var(--sample)"></i>Samples (what the ADC sees)</span>
+      <span><i class="sw" style="border-color:var(--adc);border-top-width:3px"></i><span id="lgApp">Apparent signal from samples</span></span>
+    </div>
+  </div>
+
+  <div class="tiles">
+    <div class="tile sig"><div class="k">Signal frequency, f</div><div class="v" id="tF">—</div><div class="s" id="tFs">—</div></div>
+    <div class="tile smp"><div class="k">Sample rate, f<sub>s</sub></div><div class="v" id="tS">—</div><div class="s" id="tSs">—</div></div>
+    <div class="tile"><div class="k">Nyquist frequency, f<sub>s</sub>/2</div><div class="v" id="tN">—</div><div class="s">highest frequency f<sub>s</sub> can capture</div></div>
+    <div class="tile app"><div class="k">Apparent frequency</div><div class="v" id="tA">—</div><div class="s" id="tAs">—</div></div>
+  </div>
+  <div class="status" id="status" aria-live="polite"></div>
+
+  <div class="plot fqwrap">
+    <div class="fqtitle"><b>Frequency view.</b> Frequencies above f<sub>s</sub>/2 fold back into the shaded band, like a mirror at the Nyquist frequency.</div>
+    <canvas id="fq" aria-label="Frequency axis showing the Nyquist frequency, the true signal frequency and its apparent (aliased) frequency"></canvas>
+  </div>
+
+  <div class="notes">
+    <p><b>The rule.</b> To capture a sine of frequency f, sample faster than 2f. Equivalently, f must be below the Nyquist frequency f<sub>s</sub>/2. Above it, the samples are identical to those of a sine at the aliased frequency |f − k·f<sub>s</sub>|, where k is the integer that makes it smallest. No processing after sampling can tell the two apart, which is why real ADCs have an analog low-pass (anti-aliasing) filter in front of them.</p>
+    <p><b>Exactly at Nyquist</b> (f = f<sub>s</sub>/2) you get two samples per cycle, and the result depends on where they land. At phase 0° every sample hits a zero crossing and the signal vanishes. At 90° you catch the peaks. That is why the rule is strictly greater than 2f, and in practice engineers sample several times faster.</p>
+    <p><b>Display modes.</b> "Apparent sine" draws the lowest-frequency sine through the samples. "Connect the dots" is what a naive plot of the data shows. "Sample &amp; hold" is the staircase the ADC actually outputs, as in the quantization demo.</p>
+  </div>
+</div>
+
+<script>
+(() => {
+  const T_END = 2.0, A = 1.0;
+  const $ = id => document.getElementById(id);
+  const cv=$('c'), ctx=cv.getContext('2d'), fcv=$('fq'), fctx=fcv.getContext('2d');
+  let f=1, fs=10, ph=20*Math.PI/180, speed=0.25, mode='sine';
+  let t=T_END, playing=false, endPause=0, lastCount=-1, flashAt=-1;
+  let col={};
+  const M={l:52,r:24,t:14,b:54};
+  let W=0,H=0,FW=0,FH=0;
+
+  const sig = tt => A*Math.sin(2*Math.PI*f*tt + ph);
+  const r6 = x => Math.round(x*1e6)/1e6;
+  // signed alias frequency: samples of sin(2πf t+φ) equal samples of sin(2π fa t+φ)
+  const aliasSigned = () => r6(f - fs*Math.round(f/fs));
+  const nyq = () => fs/2;
+
+  function readColors(){
+    const s=getComputedStyle(document.documentElement);
+    for (const k of ['ink','ink2','muted','grid','band','signal','adc','adcTint','sample','sampleTint','panel','bad'])
+      col[k]=s.getPropertyValue('--'+k).trim();
+  }
+  function fit(c,g){
+    const dpr=window.devicePixelRatio||1, r=c.getBoundingClientRect();
+    c.width=Math.round(r.width*dpr); c.height=Math.round(r.height*dpr);
+    g.setTransform(dpr,0,0,dpr,0,0); return [r.width,r.height];
+  }
+  function resize(){ [W,H]=fit(cv,ctx); [FW,FH]=fit(fcv,fctx); }
+  const X = tt => M.l + (tt/T_END)*(W-M.l-M.r);
+  const Y = v => M.t + (1-(v+1.25)/2.5)*(H-M.t-M.b);
+
+  function sampleTimes(upTo){
+    const n=Math.floor(upTo*fs+1e-9), out=[];
+    for(let k=0;k<=n;k++) out.push(k/fs);
+    return out;
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const x0=X(0), x1=X(T_END);
+    // grid
+    ctx.strokeStyle=col.grid; ctx.lineWidth=1;
+    ctx.beginPath();
+    for (const v of [-1,-0.5,0,0.5,1]){ const y=Math.round(Y(v))+.5; ctx.moveTo(x0,y); ctx.lineTo(x1,y); }
+    ctx.stroke();
+    ctx.strokeStyle=col.muted; ctx.beginPath(); ctx.moveTo(x0,Math.round(Y(0))+.5); ctx.lineTo(x1,Math.round(Y(0))+.5); ctx.stroke();
+    // labels
+    ctx.fillStyle=col.muted; ctx.font='12px system-ui,sans-serif';
+    ctx.textAlign='right'; ctx.textBaseline='middle';
+    for (const v of [-1,-0.5,0,0.5,1]) ctx.fillText(v.toFixed(1), x0-8, Y(v));
+    ctx.textAlign='center'; ctx.textBaseline='top';
+    for (let s=0;s<=T_END+1e-9;s+=0.25) ctx.fillText(s.toFixed(2).replace(/0$/,''), X(s), Y(-1.25)+16);
+    ctx.fillStyle=col.ink2; ctx.font='13px system-ui,sans-serif';
+    ctx.fillText('Time (s)', (x0+x1)/2, H-18);
+    ctx.save(); ctx.translate(14,(Y(-1.25)+Y(1.25))/2); ctx.rotate(-Math.PI/2); ctx.textBaseline='middle'; ctx.fillText('Amplitude (V)',0,0); ctx.restore();
+
+    const ts = sampleTimes(t);
+    if (ts.length!==lastCount){ if (playing && ts.length>lastCount) flashAt=performance.now(); lastCount=ts.length; }
+
+    // sample clock ticks
+    const nAll=Math.floor(T_END*fs+1e-9);
+    const tickEvery = fs>24 ? 2 : 1;
+    for (let k=0;k<=nAll;k++){
+      if (k%tickEvery) continue;
+      const xs=Math.round(X(k/fs))+.5, taken=k<ts.length;
+      ctx.fillStyle = taken?col.sample:col.panel; ctx.strokeStyle=col.sample; ctx.lineWidth=1.2;
+      ctx.beginPath(); ctx.moveTo(xs-4,Y(-1.25)+10); ctx.lineTo(xs+4,Y(-1.25)+10); ctx.lineTo(xs,Y(-1.25)+3); ctx.closePath(); ctx.fill(); ctx.stroke();
+    }
+
+    ctx.save(); ctx.beginPath(); ctx.rect(x0,Y(1.25),x1-x0,Y(-1.25)-Y(1.25)); ctx.clip();
+    // apparent / reconstructed signal
+    ctx.strokeStyle=col.adc; ctx.lineWidth=3; ctx.lineJoin='round';
+    if (ts.length){
+      ctx.beginPath();
+      if (mode==='sine'){
+        const fa=aliasSigned();
+        const tEnd = t;
+        const n=Math.max(2,Math.ceil((tEnd/T_END)*800));
+        for (let i=0;i<=n;i++){ const tt=tEnd*i/n, v=A*Math.sin(2*Math.PI*fa*tt+ph); i?ctx.lineTo(X(tt),Y(v)):ctx.moveTo(X(tt),Y(v)); }
+      } else if (mode==='lines'){
+        ts.forEach((s,i)=>{ const p=[X(s),Y(sig(s))]; i?ctx.lineTo(...p):ctx.moveTo(...p); });
+      } else {
+        ts.forEach((s,i)=>{
+          const y=Y(sig(s)); i?ctx.lineTo(X(s),y):ctx.moveTo(X(s),y);
+          ctx.lineTo(X(i<ts.length-1?ts[i+1]:t),y);
+        });
+      }
+      ctx.stroke();
+    }
+    // true signal
+    ctx.strokeStyle=col.signal; ctx.lineWidth=1.75; ctx.lineJoin='round';
+    ctx.beginPath();
+    const steps=Math.max(2,Math.ceil((t/T_END)*1600));
+    for (let i=0;i<=steps;i++){ const tt=t*i/steps; i?ctx.lineTo(X(tt),Y(sig(tt))):ctx.moveTo(X(tt),Y(sig(tt))); }
+    ctx.stroke();
+
+    ctx.restore();
+
+    // samples: stems + dots
+    const r = fs>25?3.5:4.5;
+    ts.forEach(s=>{
+      const xs=X(s), ys=Y(sig(s));
+      ctx.strokeStyle=col.sample; ctx.lineWidth=1; ctx.setLineDash([2,3]);
+      ctx.beginPath(); ctx.moveTo(xs,Y(0)); ctx.lineTo(xs,ys); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle=col.sample; ctx.strokeStyle=col.panel; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.arc(xs,ys,r,0,7); ctx.fill(); ctx.stroke();
+    });
+    // flash
+    const age=performance.now()-flashAt;
+    if (ts.length && age<500){
+      const s=ts[ts.length-1]; ctx.globalAlpha=1-age/500; ctx.strokeStyle=col.sample; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.arc(X(s),Y(sig(s)),5+age/500*16,0,7); ctx.stroke(); ctx.globalAlpha=1;
+    }
+    // cursor
+    if (t<T_END-1e-9){
+      ctx.strokeStyle=col.muted; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(Math.round(X(t))+.5,Y(1.25)); ctx.lineTo(Math.round(X(t))+.5,Y(-1.25)); ctx.stroke();
+      ctx.fillStyle=col.signal; ctx.strokeStyle=col.panel; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.arc(X(t),Y(sig(t)),5,0,7); ctx.fill(); ctx.stroke();
+    }
+  }
+
+  function drawFreq(){
+    const g=fctx; g.clearRect(0,0,FW,FH);
+    const L=52, R=FW-24, base=FH-34;
+    const fmax = Math.max(fs, f)*1.15;
+    const FX = v => L + (v/fmax)*(R-L);
+    // safe band
+    g.fillStyle=col.sampleTint; g.fillRect(FX(0),18,FX(nyq())-FX(0),base-18);
+    g.fillStyle=col.ink2; g.font='12px system-ui,sans-serif'; g.textAlign='left'; g.textBaseline='top';
+    g.fillText('captured faithfully', FX(0)+6, 22);
+    // multiples of fs/2 as fold lines
+    g.strokeStyle=col.grid; g.lineWidth=1;
+    for (let m=1; m*nyq()<=fmax; m++){
+      const x=Math.round(FX(m*nyq()))+.5; g.setLineDash(m%2?[4,4]:[]);
+      g.strokeStyle = m===1?col.sample:col.grid; g.lineWidth = m===1?1.5:1;
+      g.beginPath(); g.moveTo(x,14); g.lineTo(x,base); g.stroke();
+    }
+    g.setLineDash([]);
+    // axis
+    g.strokeStyle=col.muted; g.lineWidth=1; g.beginPath(); g.moveTo(L,base+.5); g.lineTo(R,base+.5); g.stroke();
+    g.fillStyle=col.muted; g.textAlign='center'; g.textBaseline='top';
+    const step = fmax>30?5: fmax>12?2:1;
+    for (let v=0; v<=fmax; v+=step){ g.fillRect(Math.round(FX(v)),base,1,4); g.fillText(v, FX(v), base+6); }
+    g.fillStyle=col.ink2; g.fillText('Frequency (Hz)', (L+R)/2, base+20 > FH-14 ? FH-14 : base+20);
+    // labels for fs/2 and fs
+    g.font='600 12px system-ui,sans-serif'; g.fillStyle=col.sample; g.textBaseline='bottom';
+    g.fillText('fs/2 = '+fmt(nyq()), FX(nyq()), 15);
+    if (fs<=fmax){ g.fillStyle=col.muted; g.font='12px system-ui,sans-serif'; g.fillText('fs = '+fmt(fs), FX(fs), 15); }
+
+    const fa=Math.abs(aliasSigned());
+    const yM = base-14;
+    // fold arrow
+    if (Math.abs(fa-f)>1e-6){
+      g.strokeStyle=col.adc; g.lineWidth=2; g.setLineDash([5,4]);
+      const xa=FX(f), xb=FX(fa), h=Math.min(48, base-40);
+      g.beginPath(); g.moveTo(xa,yM-8); g.bezierCurveTo(xa,yM-8-h, xb,yM-8-h, xb,yM-10); g.stroke(); g.setLineDash([]);
+      g.fillStyle=col.adc; g.beginPath(); g.moveTo(xb,yM-6); g.lineTo(xb-5,yM-15); g.lineTo(xb+5,yM-15); g.closePath(); g.fill();
+    }
+    // markers (labels beside the dot so they don't collide with the arrow)
+    const aliased = Math.abs(fa-f)>1e-6;
+    const fLabel='f = '+fmt(f);
+    g.font='600 12px system-ui,sans-serif';
+    const fitsRight = FX(f)+12+g.measureText(fLabel).width <= FW-4;
+    marker(g, FX(f), yM, col.signal, fLabel, fitsRight?'right':'left');
+    if (aliased) marker(g, FX(fa), yM, col.adc, 'looks like '+fmt(fa), 'right');
+  }
+  function marker(g,x,y,c,label,align){
+    g.fillStyle=c; g.strokeStyle=col.panel; g.lineWidth=2;
+    g.beginPath(); g.arc(x,y,6,0,7); g.fill(); g.stroke();
+    g.font='600 12px system-ui,sans-serif'; g.fillStyle=col.ink; g.textBaseline='middle';
+    if (align==='right'){ g.textAlign='left'; g.fillText(label, x+10, y); }
+    else if (align==='left'){ g.textAlign='right'; g.fillText(label, x-10, y); }
+    else { g.textAlign='center'; g.fillText(label, x, y-16); }
+  }
+  const fmt = v => (Math.abs(v-Math.round(v))<1e-6 ? Math.round(v) : v.toFixed(1))+' Hz';
+
+  function updateInfo(){
+    const fa=aliasSigned(), faa=Math.abs(fa), N=nyq();
+    $('tF').textContent=fmt(f);
+    $('tFs').textContent='period '+(1/f).toFixed(3)+' s';
+    $('tS').textContent=fmt(fs);
+    $('tSs').textContent=(fs/f).toFixed(2)+' samples per cycle';
+    $('tN').textContent=fmt(N);
+    $('tA').textContent=fmt(faa);
+    const st=$('status');
+    if (Math.abs(f-N)<1e-6){
+      $('tAs').textContent='borderline';
+      st.className='status edge';
+      st.innerHTML=`<b>Exactly at Nyquist:</b> f = f<sub>s</sub>/2, so there are exactly 2 samples per cycle. The frequency is right, but the amplitude depends on phase (you're seeing ${Math.abs(Math.sin(ph)).toFixed(2)} of the true amplitude). At phase 0° the samples land on zero crossings and the signal disappears. Sample faster than 2f to be safe.`;
+    } else if (f<N){
+      $('tAs').textContent='matches the true signal';
+      st.className='status ok';
+      const spc=fs/f;
+      st.innerHTML=`<b>Captured:</b> f<sub>s</sub> = ${fmt(fs)} is more than 2 × ${fmt(f)}. With ${spc.toFixed(1)} samples per cycle, the samples describe the true ${fmt(f)} signal.`+
+        (spc<4?` That's not many samples per cycle, so "connect the dots" looks rough even though the frequency is captured.`:'');
+    } else {
+      $('tAs').textContent = faa<1e-6 ? 'looks constant (DC)' : (fa<0?'aliased, and phase-inverted':'aliased');
+      st.className='status alias';
+      st.innerHTML = faa<1e-6
+        ? `<b>Aliased to DC:</b> f is a whole multiple of f<sub>s</sub>, so every sample lands at the same point in the cycle. A ${fmt(f)} signal looks like a constant voltage.`
+        : `<b>Aliased:</b> ${fmt(f)} is above the Nyquist frequency (${fmt(N)}). These samples are identical to the samples of a <b>${fmt(faa)}</b> sine, so the ADC can't tell the two apart. To capture ${fmt(f)}, sample faster than ${fmt(2*f)}.`;
+    }
+    $('lgApp').textContent = mode==='sine' ? 'Apparent signal (lowest-frequency sine through the samples)' : mode==='lines' ? 'Samples connected by straight lines' : 'Sample & hold output (ADC)';
+  }
+
+  let last=performance.now();
+  function frame(now){
+    const dt=Math.min(0.05,(now-last)/1000); last=now;
+    if (playing){
+      if (t>=T_END){ endPause+=dt; if (endPause>1.2){ t=0; endPause=0; lastCount=-1; } }
+      else t=Math.min(T_END, t+dt*speed);
+    }
+    draw();
+    requestAnimationFrame(frame);
+  }
+  function setPlaying(p){ playing=p; $('play').textContent=p?'❚❚ Pause':'▶ Play'; }
+  function changed(){
+    if (playing){ t=0; lastCount=-1; endPause=0; }
+    updateInfo(); drawFreq();
+  }
+
+  $('play').onclick=()=>{ if (!playing && t>=T_END){ t=0; lastCount=-1; } setPlaying(!playing); };
+  $('reset').onclick=()=>{ setPlaying(false); t=T_END; lastCount=-1; };
+  $('f').oninput=e=>{ f=+e.target.value; $('fv').textContent=f.toFixed(1)+' Hz'; changed(); };
+  $('fs').oninput=e=>{ fs=+e.target.value; $('fsv').textContent=fmt(fs); changed(); };
+  $('ph').oninput=e=>{ ph=+e.target.value*Math.PI/180; $('phv').textContent=e.target.value+'°'; changed(); };
+  $('mode').onchange=e=>{ mode=e.target.value; updateInfo(); };
+  $('spd').oninput=e=>{ speed=+e.target.value; $('spdv').textContent=speed.toFixed(2)+'×'; };
+  document.querySelectorAll('.presets button').forEach(b=>b.onclick=()=>{
+    const set=(id,v)=>{ const el=$(id); el.value=v; el.dispatchEvent(new Event('input')); };
+    set('f',b.dataset.f); set('fs',b.dataset.fs); set('ph',b.dataset.ph);
+  });
+
+  readColors(); resize(); updateInfo(); drawFreq();
+  window.addEventListener('resize',()=>{ resize(); drawFreq(); });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{ readColors(); drawFreq(); });
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
