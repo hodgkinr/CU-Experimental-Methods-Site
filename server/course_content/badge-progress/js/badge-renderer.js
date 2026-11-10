@@ -81,13 +81,14 @@ export function renderRequirements({ courseModel, event }) {
   list.replaceChildren();
 
   courseModel.majorAssessments.forEach((assessment) => {
+    const assessed = Object.hasOwn(event.majorAssessmentStates, assessment.id);
     const passed = event.majorAssessmentStates[assessment.id] === 1;
     const item = document.createElement("div");
     item.className = "requirement-item";
     item.classList.toggle("is-passed", passed);
     item.innerHTML = `
       <span class="requirement-name">${escapeHtml(assessment.label)}</span>
-      <span class="requirement-state">${passed ? "Passed" : "Not Yet Passed"}</span>
+      <span class="requirement-state">${!assessed ? "Not Yet Assessed" : passed ? "Passed" : "Not Yet Passed"}</span>
     `;
     list.append(item);
   });
@@ -95,15 +96,17 @@ export function renderRequirements({ courseModel, event }) {
 
 function renderSubCLOPanel(clo, subCLOStates, status) {
   const rows = clo.subCLOs.map((sub) => {
-    const state = subCLOStates[sub.id] ?? 0;
-    const stateMeta = PROTOTYPE_STATE_LEVELS[state];
+    const state = subCLOStates[sub.id];
+    const stateMeta = state === undefined
+      ? { label: "Not Yet Assessed" }
+      : PROTOTYPE_STATE_LEVELS[state];
     return `
       <li>
         <span class="subclo-name">
           <span class="subclo-id">${escapeHtml(sub.id)}</span>
           ${escapeHtml(sub.title)}
         </span>
-        <span class="state-token state-${state}">${escapeHtml(stateMeta.label)}</span>
+        <span class="state-token state-${state ?? "unassessed"}">${escapeHtml(stateMeta.label)}</span>
       </li>
     `;
   }).join("");

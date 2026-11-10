@@ -21,9 +21,11 @@ export const COURSE_CONFIG = Object.freeze({
   badgeAssetExtension: "png",
   majorAssessments: [
     { id: "lab1", label: "Lab 1" },
+    { id: "lab3", label: "Lab 3" },
     { id: "tier1", label: "Tier 1" },
     { id: "tier2", label: "Tier 2" },
     { id: "final_project", label: "Final Project" },
+    { id: "final_assessment", label: "Final Assessment" },
     { id: "in_class_exam", label: "In-class Exam" }
   ],
   packet: {

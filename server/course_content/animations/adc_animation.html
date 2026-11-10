@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How an ADC Samples and Quantizes a Signal</title>
+<style>
+  :root{
+    --bg:#fcfcfb; --panel:#ffffff; --ink:#1c1c1b; --ink2:#4a4a47; --muted:#8a8a85;
+    --grid:#e7e7e3; --band:#f3f3f0; --border:#dcdcd7;
+    /* CU Boulder brand: CU Gold #CFB87C, Accessible CU Gold #8D7334,
+       CU Dark Gray #565A5C, CU Light Gray #A2A4A3, Black #000000 */
+    --signal:#000000; --adc:#8D7334; --adcTint:rgba(207,184,124,.32);
+    --sample:#565A5C; --sampleTint:rgba(162,164,163,.22);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1a1a19; --panel:#222220; --ink:#ececea; --ink2:#bdbdb8; --muted:#85857f;
+      --grid:#30302d; --band:#252523; --border:#3a3a37;
+      --signal:#ffffff; --adc:#CFB87C; --adcTint:rgba(207,184,124,.20);
+      --sample:#A2A4A3; --sampleTint:rgba(162,164,163,.16);
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:1040px;margin:0 auto;padding:24px 20px 40px}
+  h1{font-size:22px;margin:0 0 4px}
+  .sub{color:var(--ink2);margin:0 0 18px;max-width:780px}
+  .controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;
+    padding:12px 14px;background:var(--panel);border:1px solid var(--border);border-radius:10px;margin-bottom:12px}
+  .controls label{display:flex;align-items:center;gap:8px;color:var(--ink2);font-size:14px}
+  .controls select,.controls input[type=range]{accent-color:var(--adc)}
+  select{background:var(--bg);color:var(--ink);border:1px solid var(--border);border-radius:6px;padding:4px 6px;font:inherit;font-size:14px}
+  .val{min-width:44px;font-variant-numeric:tabular-nums;color:var(--ink)}
+  button{font:inherit;font-size:14px;padding:6px 12px;border-radius:7px;cursor:pointer;
+    border:1px solid var(--border);background:var(--bg);color:var(--ink)}
+  button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink);min-width:84px}
+  button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--sample);outline-offset:2px}
+  .spacer{flex:1}
+  .plot{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:8px 6px 4px}
+  canvas{display:block;width:100%;height:440px}
+  .legend{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--ink2);padding:4px 10px 6px}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .sw{display:inline-block;width:22px;height:0;border-top:2px solid}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%}
+  .box{display:inline-block;width:14px;height:10px;border-radius:2px}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+  .tile{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+  .tile .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .tile .v{font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;margin-top:2px}
+  .tile .s{font-size:13px;color:var(--ink2);font-variant-numeric:tabular-nums}
+  .tile.live{border-left:4px solid var(--sample)}
+  .tile.held{border-left:4px solid var(--adc)}
+  .status{margin-top:10px;padding:10px 14px;border-radius:10px;border:1px solid var(--border);
+    background:var(--panel);color:var(--ink2);min-height:44px}
+  .status b{color:var(--ink)}
+  .status.waiting{border-color:var(--sample);background:var(--sampleTint)}
+  .status.updated{border-color:var(--adc);background:var(--adcTint)}
+  .notes{margin-top:18px;color:var(--ink2);font-size:14px;max-width:820px}
+  .notes code{font-size:13px}
+  @media (max-width:720px){.tiles{grid-template-columns:repeat(2,1fr)} canvas{height:360px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>How an ADC samples and quantizes a signal</h1>
+  <p class="sub">The black curve is the analog input. The ADC checks it only at the clock ticks (silver). At each tick it reports which voltage bin the signal is in, then holds that code until the next tick (gold). Between ticks, the signal can move into a new bin, but the output won't change until the next sample.</p>
+
+  <div class="controls">
+    <button id="play" class="primary">▶ Play</button>
+    <button id="step" title="Advance to the next sample instant">Next sample ⏭</button>
+    <button id="reset">Reset</button>
+    <span class="spacer"></span>
+    <label>Resolution
+      <select id="bits">
+        <option value="2">2-bit (4 codes)</option>
+        <option value="3" selected>3-bit (8 codes)</option>
+        <option value="4">4-bit (16 codes)</option>
+        <option value="5">5-bit (32 codes)</option>
+      </select>
+    </label>
+    <label>Sample rate <input id="fs" type="range" min="1" max="20" step="1" value="4"><span class="val" id="fsv">4 Hz</span></label>
+    <label>Noise <input id="nz" type="range" min="0" max="500" step="10" value="0"><span class="val" id="nzv">±0 mV</span></label>
+    <label>Speed <input id="spd" type="range" min="0.05" max="1" step="0.05" value="0.35"><span class="val" id="spdv">0.35×</span></label>
+  </div>
+
+  <div class="plot">
+    <canvas id="c" aria-label="Animated plot of an analog signal and the ADC's held, quantized output"></canvas>
+    <div class="legend">
+      <span><i class="sw" style="border-color:var(--signal)"></i>Analog input</span>
+      <span id="lgClean" hidden><i class="sw" style="border-color:var(--muted);border-top-style:dashed"></i>Clean signal (no noise)</span>
+      <span><i class="dot" style="background:var(--sample)"></i>Sample instant (ADC reads)</span>
+      <span><i class="sw" style="border-color:var(--adc)"></i>ADC output (held code)</span>
+      <span><i class="box" style="background:var(--sampleTint);outline:1.5px solid var(--sample)"></i>Bin the signal is in now</span>
+      <span><i class="box" style="background:var(--adcTint)"></i>Bin the ADC is reporting</span>
+    </div>
+  </div>
+
+  <div class="tiles">
+    <div class="tile"><div class="k">Time</div><div class="v" id="tT">0.00 s</div><div class="s" id="tNext">next sample in —</div></div>
+    <div class="tile"><div class="k">Analog input</div><div class="v" id="tV">— V</div><div class="s" id="tLSB">LSB = — V</div></div>
+    <div class="tile live"><div class="k">Signal is in bin</div><div class="v" id="tLive">—</div><div class="s" id="tLiveR">—</div></div>
+    <div class="tile held"><div class="k">ADC output (held)</div><div class="v" id="tHeld">—</div><div class="s" id="tHeldR">—</div></div>
+  </div>
+  <div class="status" id="status" aria-live="polite">Press <b>Play</b>, or use <b>Next sample</b> to step one reading at a time.</div>
+
+  <div class="notes">
+    <p><b>Model.</b> 0–3.3 V input range, N bits → 2<sup>N</sup> codes, LSB = 3.3 V / 2<sup>N</sup>. Code = floor(V<sub>in</sub> / LSB), clamped to 0…2<sup>N</sup>−1. The gold step is drawn at the center of the reported bin. The dashed silver segment at each sample shows the quantization error, which is at most ½ LSB.</p>
+    <p><b>Things to try.</b> Set it to 2-bit to see coarse quantization, then 5-bit to see finer steps. Lower the sample rate to 1–2 Hz: the signal crosses several bins between readings and the output jumps. That is a sampling-rate problem, not a resolution problem.</p>
+    <p><b>Noise.</b> The noise slider adds random Gaussian noise (σ = slider/3, clipped at ±slider) to the input. The dashed gray curve is the clean signal. Compare the noise to the LSB in the tiles. When the noise is much smaller than one LSB, the codes barely change. At 4–5 bits with ±100 mV or more, readings near a bin edge flicker between neighboring codes, so the extra resolution mostly digitizes noise. Near the top or bottom of the range, noise can push the input past 0 or 3.3 V, and the ADC saturates at the end code. Reset generates a new noise pattern.</p>
+  </div>
+</div>
+
+<script>
+(() => {
+  const VREF = 3.3, T_END = 4.0;
+  const clean = t => 1.65 + 1.05*Math.sin(2*Math.PI*0.45*t) + 0.35*Math.sin(2*Math.PI*1.25*t + 0.8);
+
+  // Noise: Gaussian values on a 10 ms grid, linearly interpolated, so the noisy
+  // curve stays fixed while it's redrawn. sigma = amp/3, clipped at ±amp.
+  let noiseAmp = 0;            // mV (peak)
+  const NDT = 0.01;
+  let noiseArr = [];
+  const gauss = () => { let u=0; while(!u) u=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*Math.random()); };
+  function genNoise(){
+    noiseArr = [];
+    for (let i=0;i<=Math.ceil(T_END/NDT)+1;i++) noiseArr.push(Math.max(-3,Math.min(3,gauss()))/3);
+  }
+  const noise = t => {
+    const x=t/NDT, i=Math.floor(x), f=x-i, a=noiseArr[i]??0, b=noiseArr[i+1]??0;
+    return (a+(b-a)*f)*noiseAmp/1000;
+  };
+  const sig = t => clean(t) + noise(t);
+
+  const $ = id => document.getElementById(id);
+  const cv = $('c'), ctx = cv.getContext('2d');
+  let W=0, H=0, dpr=1;
+  const M = {l:58, r:78, t:16, b:52};
+
+  let bits=3, fs=4, speed=0.35;
+  let t=0, playing=false, stepTarget=null, samples=[], flashAt=-1, endPause=0;
+  let col = {};
+
+  const N = () => 1<<bits;
+  const LSB = () => VREF/N();
+  const codeOf = v => Math.max(0, Math.min(N()-1, Math.floor(v/LSB())));
+  const bin = k => (k).toString(2).padStart(bits,'0');
+  const Ts = () => 1/fs;
+  const nextSampleTime = () => samples.length * Ts();
+
+  function readColors(){
+    const s = getComputedStyle(document.documentElement);
+    for (const k of ['ink','ink2','muted','grid','band','signal','adc','adcTint','sample','sampleTint','panel'])
+      col[k] = s.getPropertyValue('--'+k).trim();
+  }
+  function resize(){
+    dpr = window.devicePixelRatio||1;
+    const r = cv.getBoundingClientRect();
+    W = r.width; H = r.height;
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  const X = tt => M.l + (tt/T_END)*(W-M.l-M.r);
+  const Y = v => M.t + (1 - v/VREF)*(H-M.t-M.b);
+
+  function takeSamplesUpTo(tt){
+    let took=false;
+    while (nextSampleTime() <= tt + 1e-9 && nextSampleTime() <= T_END + 1e-9){
+      const ts = nextSampleTime(), v = sig(ts);
+      samples.push({t:ts, v, code:codeOf(v)});
+      flashAt = performance.now(); took=true;
+    }
+    return took;
+  }
+
+  function reset(){
+    t=0; samples=[]; stepTarget=null; endPause=0;
+    genNoise();
+    takeSamplesUpTo(0);
+    updateReadout(true);
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const n=N(), lsb=LSB(), x0=X(0), x1=X(T_END);
+    const live = codeOf(sig(t));
+    const held = samples.length ? samples[samples.length-1].code : null;
+
+    // bins
+    for (let k=0;k<n;k++){
+      const yTop=Y((k+1)*lsb), yBot=Y(k*lsb);
+      if (k%2===0){ ctx.fillStyle=col.band; ctx.fillRect(x0,yTop,x1-x0,yBot-yTop); }
+    }
+    if (held!==null){
+      ctx.fillStyle=col.adcTint;
+      ctx.fillRect(x0,Y((held+1)*lsb),x1-x0,Y(held*lsb)-Y((held+1)*lsb));
+    }
+    ctx.fillStyle=col.sampleTint;
+    ctx.fillRect(x0,Y((live+1)*lsb),x1-x0,Y(live*lsb)-Y((live+1)*lsb));
+    ctx.strokeStyle=col.sample; ctx.lineWidth=1.5;
+    ctx.strokeRect(x0+0.75,Y((live+1)*lsb)+0.75,x1-x0-1.5,Y(live*lsb)-Y((live+1)*lsb)-1.5);
+
+    // bin edges
+    ctx.strokeStyle=col.grid; ctx.lineWidth=1;
+    ctx.beginPath();
+    for (let k=0;k<=n;k++){ const y=Math.round(Y(k*lsb))+.5; ctx.moveTo(x0,y); ctx.lineTo(x1,y); }
+    ctx.stroke();
+
+    // sample clock ticks (vertical guides)
+    const nS = Math.floor(T_END*fs+1e-9);
+    for (let i=0;i<=nS;i++){
+      const xs = Math.round(X(i/fs))+.5, taken = i < samples.length;
+      ctx.strokeStyle = taken ? col.grid : col.grid;
+      ctx.setLineDash([2,4]); ctx.beginPath(); ctx.moveTo(xs,Y(VREF)); ctx.lineTo(xs,Y(0)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = taken ? col.sample : col.panel;
+      ctx.strokeStyle = col.sample; ctx.lineWidth=1.5;
+      ctx.beginPath(); ctx.moveTo(xs-5,Y(0)+11); ctx.lineTo(xs+5,Y(0)+11); ctx.lineTo(xs,Y(0)+3); ctx.closePath(); ctx.fill(); ctx.stroke();
+    }
+
+    // axes labels
+    ctx.fillStyle=col.muted; ctx.font='12px system-ui,sans-serif';
+    ctx.textAlign='right'; ctx.textBaseline='middle';
+    for (let v=0; v<=3.3+1e-9; v+=0.5){ ctx.fillText(v.toFixed(1), x0-8, Y(Math.min(v,3.3))); }
+    ctx.fillText('3.3', x0-8, Y(3.3));
+    ctx.textAlign='center'; ctx.textBaseline='top';
+    for (let s=0;s<=T_END;s+=0.5) ctx.fillText(s.toFixed(1), X(s), Y(0)+16);
+    ctx.fillStyle=col.ink2; ctx.font='13px system-ui,sans-serif';
+    ctx.fillText('Time (s)', (x0+x1)/2, H-18);
+    ctx.save(); ctx.translate(14,(Y(0)+Y(VREF))/2); ctx.rotate(-Math.PI/2);
+    ctx.textBaseline='middle'; ctx.fillText('Input voltage (V)',0,0); ctx.restore();
+
+    // code labels (right)
+    const every = n>16 ? 2 : 1;
+    ctx.textAlign='left'; ctx.textBaseline='middle';
+    for (let k=0;k<n;k++){
+      const isHeld=k===held, isLive=k===live;
+      if (k%every && !isHeld && !isLive) continue;
+      ctx.font = (isHeld||isLive?'600 ':'')+(n>16?'11px':'12px')+' ui-monospace,Menlo,monospace';
+      ctx.fillStyle = isHeld ? col.adc : isLive ? col.sample : col.muted;
+      ctx.fillText(bin(k), x1+8, Y((k+.5)*lsb));
+    }
+    ctx.font='12px system-ui,sans-serif'; ctx.fillStyle=col.ink2; ctx.textBaseline='bottom';
+    ctx.fillText('ADC code', x1+8, M.t+2 > 14 ? M.t : 14);
+
+    // ADC staircase (zero-order hold)
+    if (samples.length){
+      ctx.strokeStyle=col.adc; ctx.lineWidth=2.5; ctx.lineJoin='miter';
+      ctx.beginPath();
+      samples.forEach((s,i)=>{
+        const y=Y((s.code+.5)*lsb), xa=X(s.t);
+        if (i===0) ctx.moveTo(xa,y); else ctx.lineTo(xa,y);
+        const xe = i<samples.length-1 ? X(samples[i+1].t) : X(t);
+        ctx.lineTo(xe,y);
+      });
+      ctx.stroke();
+    }
+
+    // analog signal up to t (clipped to the plot; values beyond 0–3.3 V saturate the ADC)
+    ctx.save();
+    ctx.beginPath(); ctx.rect(x0, Y(VREF)-6, x1-x0, Y(0)-Y(VREF)+12); ctx.clip();
+    const steps=Math.max(2,Math.ceil((t/T_END)*(noiseAmp>0?1600:600)));
+    if (noiseAmp>0){
+      ctx.strokeStyle=col.muted; ctx.lineWidth=1.5; ctx.setLineDash([5,4]);
+      ctx.beginPath();
+      for (let i=0;i<=steps;i++){ const tt=t*i/steps; i?ctx.lineTo(X(tt),Y(clean(tt))):ctx.moveTo(X(tt),Y(clean(tt))); }
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+    ctx.strokeStyle=col.signal; ctx.lineWidth=noiseAmp>0?1.5:2; ctx.lineJoin='round';
+    ctx.beginPath();
+    for (let i=0;i<=steps;i++){ const tt=t*i/steps; const px=X(tt), py=Y(sig(tt)); i?ctx.lineTo(px,py):ctx.moveTo(px,py); }
+    ctx.stroke();
+    ctx.restore();
+
+    // sample points + quantization error
+    samples.forEach(s=>{
+      const xs=X(s.t), ys=Y(s.v), yq=Y((s.code+.5)*lsb);
+      ctx.strokeStyle=col.sample; ctx.lineWidth=1.5; ctx.setLineDash([3,3]);
+      ctx.beginPath(); ctx.moveTo(xs,ys); ctx.lineTo(xs,yq); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle=col.sample; ctx.strokeStyle=col.panel; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.arc(xs,ys,4.5,0,7); ctx.fill(); ctx.stroke();
+    });
+
+    // flash on newest sample
+    const age = performance.now()-flashAt;
+    if (samples.length && age < 600){
+      const s=samples[samples.length-1], a=1-age/600;
+      ctx.strokeStyle=col.sample; ctx.globalAlpha=a; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.arc(X(s.t),Y(s.v),5+age/600*18,0,7); ctx.stroke();
+      ctx.strokeStyle=col.adc; ctx.lineWidth=3;
+      ctx.beginPath(); ctx.arc(X(s.t),Y((s.code+.5)*lsb),5+age/600*12,0,7); ctx.stroke();
+      ctx.globalAlpha=1;
+    }
+
+    // cursor
+    const xc=X(t), yc=Y(sig(t));
+    ctx.strokeStyle=col.muted; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(Math.round(xc)+.5,Y(VREF)); ctx.lineTo(Math.round(xc)+.5,Y(0)); ctx.stroke();
+    ctx.fillStyle=col.signal; ctx.strokeStyle=col.panel; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.arc(xc,yc,5.5,0,7); ctx.fill(); ctx.stroke();
+  }
+
+  const st = $('status');
+  let lastMsgKey='';
+  function updateReadout(force){
+    const v=sig(t), live=codeOf(v), lsb=LSB();
+    const held = samples.length ? samples[samples.length-1] : null;
+    $('tT').textContent = t.toFixed(2)+' s';
+    const nt = nextSampleTime();
+    $('tNext').textContent = nt<=T_END+1e-9 ? 'next sample in '+Math.max(0,nt-t).toFixed(2)+' s' : 'no more samples';
+    $('tV').textContent = v.toFixed(3)+' V';
+    $('tLSB').textContent = noiseAmp>0
+      ? 'clean '+clean(t).toFixed(3)+' V, noise '+(noise(t)>=0?'+':'−')+Math.abs(noise(t)*1000).toFixed(0)+' mV'
+      : 'LSB = '+(lsb*1000).toFixed(1)+' mV';
+    $('tLive').textContent = bin(live)+'  ('+live+')';
+    $('tLiveR').textContent = (live*lsb).toFixed(3)+' – '+((live+1)*lsb).toFixed(3)+' V';
+    if (held){
+      $('tHeld').textContent = bin(held.code)+'  ('+held.code+')';
+      $('tHeldR').textContent = 'read at t = '+held.t.toFixed(2)+' s ('+held.v.toFixed(3)+' V)';
+    }
+    let key, html, cls='';
+    const justSampled = performance.now()-flashAt < 900;
+    if (justSampled && held){
+      const prev = samples.length>1 ? samples[samples.length-2].code : null;
+      if (prev===null){ key='first'; html=`<b>Sample 1:</b> the ADC reads ${held.v.toFixed(3)} V and outputs code <b>${bin(held.code)}</b>.`; cls='updated'; }
+      else if (prev===held.code){ key='same'+samples.length; html=`<b>Sample ${samples.length}:</b> the signal is still in bin ${bin(held.code)}, so the output <b>stays at ${bin(held.code)}</b>.`; }
+      else { key='chg'+samples.length; html=`<b>Sample ${samples.length}:</b> the signal has moved into a new bin. Output updates <b>${bin(prev)} → ${bin(held.code)}</b>${Math.abs(held.code-prev)>1?` (skipped ${Math.abs(held.code-prev)-1} code${Math.abs(held.code-prev)>2?'s':''} between samples)`:''}.`; cls='updated'; }
+    } else if (held && live!==held.code){
+      key='wait'+samples.length+'-'+live;
+      html=`The signal is now in bin <b>${bin(live)}</b>, but the ADC still reports <b>${bin(held.code)}</b>. It won't see the change until the next sample${nt<=T_END?` in ${(nt-t).toFixed(2)} s`:''}.`;
+      cls='waiting';
+    } else if (held){
+      key='hold'+samples.length;
+      html=`Between samples: the signal is still in bin <b>${bin(held.code)}</b>, so the held output matches.`;
+    }
+    if (key && (key!==lastMsgKey || force || cls==='waiting')){ st.innerHTML=html; st.className='status '+cls; lastMsgKey=key; }
+  }
+
+  let last=performance.now();
+  function frame(now){
+    const dt=Math.min(0.05,(now-last)/1000); last=now;
+    if (playing){
+      if (t>=T_END){
+        endPause+=dt;
+        if (endPause>1.2 && stepTarget===null) reset();
+      } else {
+        let nt = t + dt*speed;
+        if (stepTarget!==null && nt>=stepTarget){ nt=stepTarget; stepTarget=null; setPlaying(false); }
+        t=Math.min(T_END,nt);
+        takeSamplesUpTo(t);
+      }
+    }
+    draw(); updateReadout(false);
+    requestAnimationFrame(frame);
+  }
+
+  function setPlaying(p){ playing=p; $('play').textContent = p ? '❚❚ Pause' : '▶ Play'; }
+  $('play').onclick = ()=>{ stepTarget=null; if (t>=T_END) reset(); setPlaying(!playing); };
+  $('step').onclick = ()=>{
+    if (t>=T_END) reset();
+    const nt=nextSampleTime();
+    if (nt>T_END+1e-9) return;
+    stepTarget=nt; setPlaying(true);
+  };
+  $('reset').onclick = ()=>{ setPlaying(false); reset(); };
+  $('bits').onchange = e=>{ bits=+e.target.value; reset(); };
+  $('fs').oninput = e=>{ fs=+e.target.value; $('fsv').textContent=fs+' Hz'; reset(); };
+  $('nz').oninput = e=>{
+    noiseAmp=+e.target.value;
+    $('nzv').textContent='±'+noiseAmp+' mV';
+    $('lgClean').hidden = noiseAmp===0;
+    // keep the same noise pattern, just rescaled; re-read past samples so the plot stays consistent
+    samples = samples.map(s=>{ const v=sig(s.t); return {t:s.t, v, code:codeOf(v)}; });
+  };
+  $('spd').oninput = e=>{ speed=+e.target.value; $('spdv').textContent=speed.toFixed(2)+'×'; };
+
+  readColors(); resize(); reset();
+  window.addEventListener('resize', resize);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', readColors);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
