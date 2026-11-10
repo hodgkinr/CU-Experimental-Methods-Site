@@ -14,13 +14,22 @@
     --sample:#565A5C; --sampleTint:rgba(162,164,163,.22);
   }
   @media (prefers-color-scheme: dark){
-    :root{
+    :root:not([data-theme=light]){
       --bg:#1a1a19; --panel:#222220; --ink:#ececea; --ink2:#bdbdb8; --muted:#85857f;
       --grid:#30302d; --band:#252523; --border:#3a3a37;
       --signal:#ffffff; --adc:#CFB87C; --adcTint:rgba(207,184,124,.20);
       --sample:#A2A4A3; --sampleTint:rgba(162,164,163,.16);
+      color-scheme:dark;
     }
   }
+  :root[data-theme=dark]{
+      --bg:#1a1a19; --panel:#222220; --ink:#ececea; --ink2:#bdbdb8; --muted:#85857f;
+      --grid:#30302d; --band:#252523; --border:#3a3a37;
+      --signal:#ffffff; --adc:#CFB87C; --adcTint:rgba(207,184,124,.20);
+      --sample:#A2A4A3; --sampleTint:rgba(162,164,163,.16);
+      color-scheme:dark;
+  }
+  :root[data-theme=light]{color-scheme:light}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);
     font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
@@ -65,12 +74,13 @@
 <body>
 <div class="wrap">
   <h1>How an ADC samples and quantizes a signal</h1>
-  <p class="sub">The black curve is the analog input. The ADC checks it only at the clock ticks (silver). At each tick it reports which voltage bin the signal is in, then holds that code until the next tick (gold). Between ticks, the signal can move into a new bin, but the output won't change until the next sample.</p>
+  <p class="sub">The <span class="signame">black</span> curve is the analog input. The ADC checks it only at the clock ticks (silver). At each tick it reports which voltage bin the signal is in, then holds that code until the next tick (gold). Between ticks, the signal can move into a new bin, but the output won't change until the next sample.</p>
 
   <div class="controls">
     <button id="play" class="primary">▶ Play</button>
     <button id="step" title="Advance to the next sample instant">Next sample ⏭</button>
     <button id="reset">Reset</button>
+    <button id="theme" title="Switch between automatic, white and black backgrounds">◐ Auto</button>
     <span class="spacer"></span>
     <label>Resolution
       <select id="bits">
@@ -153,6 +163,7 @@
     const s = getComputedStyle(document.documentElement);
     for (const k of ['ink','ink2','muted','grid','band','signal','adc','adcTint','sample','sampleTint','panel'])
       col[k] = s.getPropertyValue('--'+k).trim();
+    document.querySelectorAll('.signame').forEach(e=>e.textContent = col.signal.toLowerCase()==='#ffffff' ? 'white' : 'black');
   }
   function resize(){
     dpr = window.devicePixelRatio||1;
@@ -374,7 +385,19 @@
   };
   $('spd').oninput = e=>{ speed=+e.target.value; $('spdv').textContent=speed.toFixed(2)+'×'; };
 
+  // Background: Auto (follows system) → White → Black. Also settable with #light or #dark in the URL.
+  const THEMES=[['auto','◐ Auto'],['light','○ White'],['dark','● Black']];
+  let themeIdx=0;
+  function applyTheme(i){
+    themeIdx=i; const [name,label]=THEMES[i];
+    if (name==='auto') delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme=name;
+    $('theme').textContent=label; readColors();
+  }
+  $('theme').onclick=()=>applyTheme((themeIdx+1)%THEMES.length);
+  const fromHash=()=>{ const h=location.hash.slice(1); const i=THEMES.findIndex(t=>t[0]===h); if(i>=0) applyTheme(i); };
+  window.addEventListener('hashchange',fromHash);
   readColors(); resize(); reset();
+  fromHash();
   window.addEventListener('resize', resize);
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', readColors);
   requestAnimationFrame(frame);
