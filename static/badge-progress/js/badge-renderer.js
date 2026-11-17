@@ -3,6 +3,7 @@ import { BADGE_STATE_THRESHOLDS, PROTOTYPE_STATE_LEVELS } from "./course-config.
 export function getBadgeStatus(clo, subCLOStates) {
   const states = clo.subCLOs.map((sub) => subCLOStates[sub.id] ?? 0);
   const earned = states.every((state) => state >= BADGE_STATE_THRESHOLDS.proficient);
+  const proficientCount = states.filter((state) => state >= BADGE_STATE_THRESHOLDS.proficient).length;
   const masteryCount = states.filter((state) => state >= BADGE_STATE_THRESHOLDS.mastery).length;
   const total = states.length;
   const mastered = earned && masteryCount === total;
@@ -12,6 +13,7 @@ export function getBadgeStatus(clo, subCLOStates) {
     earned,
     mastered,
     partial,
+    proficientCount,
     masteryCount,
     total,
     stateLabel: mastered ? "Mastery" : earned ? "Proficient" : "Not Yet Proficient",
@@ -58,13 +60,14 @@ export function renderBadges({ courseModel, event, previousEvent }) {
     card.querySelector(".badge-kicker").textContent = clo.id.replace("CLO", "CLO ");
     card.querySelector(".badge-title").textContent = clo.title;
     card.querySelector(".badge-status").textContent = status.stateLabel;
+    card.querySelector(".badge-proficient").textContent = `Proficient: ${status.proficientCount} of ${status.total}`;
     card.querySelector(".badge-mastery").textContent = `Mastery: ${status.masteryCount} of ${status.total}`;
 
     const panelId = `details-${clo.id}`;
     panel.id = panelId;
     button.setAttribute("aria-expanded", "false");
     button.setAttribute("aria-controls", panelId);
-    button.setAttribute("aria-label", `${clo.id}, ${clo.title}, ${status.stateLabel}. Mastery ${status.masteryCount} of ${status.total}. Toggle sub-CLO details.`);
+    button.setAttribute("aria-label", `${clo.id}, ${clo.title}, ${status.stateLabel}. Proficient ${status.proficientCount} of ${status.total}. Mastery ${status.masteryCount} of ${status.total}. Toggle sub-CLO details.`);
     button.addEventListener("click", () => {
       const expanded = button.getAttribute("aria-expanded") === "true";
       button.setAttribute("aria-expanded", String(!expanded));

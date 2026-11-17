@@ -481,6 +481,7 @@ textarea {
 }
 
 .badge-status,
+.badge-proficient,
 .badge-mastery {
   color: var(--muted);
   line-height: 1.35;
