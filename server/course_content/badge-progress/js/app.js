@@ -15,6 +15,9 @@ init().catch((error) => {
 });
 
 async function init() {
+  if (window.location.hash.toLowerCase() === "#embed") {
+    document.documentElement.classList.add("embed-view");
+  }
   state.courseModel = await loadCourseModel();
   bindProgressForm();
   resetDisplay();

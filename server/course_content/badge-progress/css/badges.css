@@ -93,10 +93,11 @@ p {
 
 h1 {
   margin-bottom: 0.75rem;
-  font-size: clamp(2.2rem, 5vw, 4.25rem);
+  font-size: clamp(1.7rem, 3.5vw, 3rem);
   line-height: 1;
   letter-spacing: 0;
   max-width: 900px;
+  white-space: nowrap;
 }
 
 h2 {
@@ -144,6 +145,10 @@ main {
   display: grid;
   gap: 1rem;
   padding-bottom: 3rem;
+}
+
+.embed-view .entry-panel {
+  display: none;
 }
 
 .entry-panel,
@@ -215,6 +220,75 @@ textarea {
   justify-content: space-between;
   gap: 1rem;
   align-items: start;
+}
+
+.grade-interpretation-table {
+  width: 100%;
+  margin: 0.4rem 0 1rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.76);
+  line-height: 1.5;
+}
+
+.grade-interpretation-table th,
+.grade-interpretation-table td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.grade-interpretation-table thead th {
+  background: #373936;
+  color: white;
+  font-size: 0.88rem;
+  font-weight: 750;
+  letter-spacing: 0.025em;
+}
+
+.grade-interpretation-table th:first-child,
+.grade-interpretation-table td:first-child {
+  width: 10rem;
+  white-space: nowrap;
+}
+
+.grade-interpretation-table tbody tr:nth-child(even) {
+  background: rgba(162, 164, 163, 0.1);
+}
+
+.grade-interpretation-table tbody tr + tr td {
+  border-top: 1px solid rgba(213, 208, 196, 0.75);
+}
+
+.grade-interpretation-table tbody td:first-child {
+  color: var(--accent-strong);
+  font-weight: 800;
+}
+
+.grade-interpretation-table + p {
+  max-width: 920px;
+  margin: 0 0 1.1rem;
+  padding: 0.9rem 1rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  background: rgba(207, 184, 124, 0.12);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 620px) {
+  .grade-interpretation-table th,
+  .grade-interpretation-table td {
+    padding: 0.72rem 0.65rem;
+  }
+
+  .grade-interpretation-table th:first-child,
+  .grade-interpretation-table td:first-child {
+    width: auto;
+  }
 }
 
 #timeline-output {
