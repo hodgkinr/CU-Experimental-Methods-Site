@@ -20,13 +20,13 @@ export const COURSE_CONFIG = Object.freeze({
   badgeAssetBasePath: "./badge-progress/assets/badges",
   badgeAssetExtension: "png",
   majorAssessments: [
-    { id: "lab1", label: "Lab 1" },
-    { id: "lab3", label: "Lab 3" },
+    { id: "lab1", label: "Lab 1 - Power" },
     { id: "tier1", label: "Tier 1" },
     { id: "tier2", label: "Tier 2" },
-    { id: "final_project", label: "Final Project" },
-    { id: "final_assessment", label: "Final Assessment" },
-    { id: "in_class_exam", label: "In-class Exam" }
+    { id: "lab3", label: "Final Design Project" },
+    { id: "in_class_exam", label: "In-class Exam" },
+    { id: "final_assessment", label: "Final Assessment" }
+   
   ],
   packet: {
     schema: "asen3501-progress-packet",
