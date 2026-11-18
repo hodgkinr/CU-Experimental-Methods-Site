@@ -279,7 +279,119 @@ textarea {
   line-height: 1.6;
 }
 
+.what-if-grade {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.what-if-grade h2 {
+  margin: 0;
+  color: var(--accent-strong);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.what-if-grade > p {
+  max-width: 620px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.what-if-disclaimer {
+  margin: 0.8rem 0 0;
+  padding: 0.9rem 1rem;
+  border-left: 3px solid var(--warning);
+  border-radius: 0 10px 10px 0;
+  background: rgba(154, 93, 23, 0.08);
+  line-height: 1.5;
+}
+
+.what-if-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: 0.85rem;
+}
+
+.what-if-card {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.what-if-card h3 {
+  color: var(--accent-strong);
+}
+
+.what-if-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 0.55rem 0;
+  border-top: 1px solid rgba(213, 208, 196, 0.7);
+  font-size: 0.92rem;
+}
+
+.what-if-row select {
+  max-width: 190px;
+  padding: 0.45rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--ink);
+}
+
+.what-if-row select:disabled,
+.what-if-requirement.is-passed {
+  color: #777;
+  background: #efefec;
+}
+
+.what-if-requirement input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--green);
+}
+
+.what-if-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.what-if-actions button,
+#all-passed {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.62rem 0.9rem;
+  background: rgba(207, 184, 124, 0.24);
+  color: var(--ink);
+  font-weight: 750;
+}
+.what-if-nav { display: flex; justify-content: flex-end; }
+.what-if-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--accent-strong);
+  border-radius: 999px;
+  padding: 0.68rem 1rem;
+  background: var(--accent);
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+}
+.what-if-link:hover { filter: brightness(0.96); }
+.what-if-exam-group {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.what-if-exam-group legend { padding: 0 0.4rem; color: var(--accent-strong); font-weight: 800; }
+.what-if-exam-group .requirement-item { border: 0; padding: 0.35rem 0; }
+
 @media (max-width: 620px) {
+  .what-if-grade { display: block; }
   .grade-interpretation-table th,
   .grade-interpretation-table td {
     padding: 0.72rem 0.65rem;

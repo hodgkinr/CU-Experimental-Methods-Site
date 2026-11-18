@@ -57,6 +57,12 @@ async function loadProgressCode(code, sourceLabel) {
     state.selectedIndex = state.packet.events.length - 1;
     state.previousIndex = null;
     document.querySelector("#progress-code").value = code;
+    const whatIfLink = document.querySelector("#what-if-link");
+    const nextUrl = new URL("./what-if.html", window.location.href);
+    nextUrl.searchParams.set("progress", code.trim());
+    if (window.location.hash.toLowerCase() === "#embed") nextUrl.hash = "embed";
+    whatIfLink.href = nextUrl.href;
+    whatIfLink.hidden = false;
     document.querySelector("#packet-status").textContent = "Signed packet verified";
     setupTimeline();
     renderCurrentCheckpoint();

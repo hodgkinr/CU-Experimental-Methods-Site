@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ASEN 3501 What-if Grade</title>
+  <link rel="stylesheet" href="./badge-progress/css/badges.css">
+</head>
+<body class="what-if-page">
+  <a class="skip-link" href="#what-if-controls">Skip to what-if controls</a>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">ASEN 3501 Aerospace Experimental Methods</p>
+      <h1>What-if Grade</h1>
+      <p class="intro">Explore how future CLO progress and major course requirements could affect your final grade range.</p>
+    </div>
+    <div class="status-panel" aria-live="polite"><span id="packet-status" class="status-pill">Awaiting code</span><span id="checkpoint-status">No checkpoint loaded</span></div>
+  </header>
+  <main>
+    <section class="timeline-panel" aria-labelledby="grade-heading">
+      <div class="what-if-grade"><div><p class="eyebrow">Estimated current grade range</p><h2 id="grade-heading">Load a progress code to begin</h2></div><p id="grade-reason">Your current evidence will be summarized here.</p></div>
+      <p class="what-if-disclaimer">This estimate is for planning only. Final grades are determined at the instructor’s discretion. Compare your status with the Canvas gradebook to confirm this page registered your scores correctly.</p>
+      <a id="progress-page-link" class="what-if-link" href="./badge-progress.html">Back to My Progress</a>
+    </section>
+    <section id="what-if-controls" class="timeline-panel" aria-labelledby="clo-controls-heading">
+      <div class="section-heading"><div><h2 id="clo-controls-heading">Explore CLO progress</h2><p>Choose a higher score for any sub-CLO to see a possible outcome.</p></div><div class="what-if-actions"><button type="button" id="all-proficient">Select all Proficient or Above</button><button type="button" id="all-mastery">Select all at Mastery</button></div></div>
+      <div id="clo-controls" class="what-if-grid"></div>
+    </section>
+    <section class="requirements-section" aria-labelledby="req-controls-heading">
+      <div class="section-heading"><div><h2 id="req-controls-heading">Major Course Requirements</h2><p>Mark all required items as passed. Either In-class Exam or Final Assessment is required.</p></div><button type="button" id="all-passed">Mark All as Pass</button></div>
+      <div id="requirement-controls" class="requirements-list"></div>
+    </section>
+    <section class="entry-panel" aria-labelledby="load-heading">
+      <div><h2 id="load-heading">Load Your Progress</h2><p>Open this page from a personalized progress link or paste your signed progress code.</p></div>
+      <form id="progress-form" class="progress-form"><label for="progress-code">Progress code</label><div class="entry-row"><textarea id="progress-code" rows="3" spellcheck="false" autocomplete="off"></textarea><button type="submit">Load Progress</button></div></form>
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+  <script type="module" src="./badge-progress/js/what-if.js"></script>
+</body>
+</html>
